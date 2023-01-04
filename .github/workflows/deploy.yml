@@ -19,9 +19,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           cname: alabulei1.github.io/book
-  
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
