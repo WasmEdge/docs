@@ -11,13 +11,13 @@ Knative is a platform-agnostic solution for running serverless deployments.
 
 ## Quick start
 
-You can refer to [Kubernetes + containerd](./kubernetes-containerd.md) to build a kubernetes cluster. However, as the default runtime is replaced from runc to crun in this document, it is not suitable for existing k8s cluster.
+You can refer to [Kubernetes + containerd] to build a kubernetes cluster. However, as the default runtime is replaced from runc to crun in this document, it is not suitable for existing k8s cluster.
 
 Here we setup crun as a runtimeClass in kubernetes cluster, **rather than replace the default runtime**. Then deploy Knative serving service and run a WASM serverless service.
 
 ## Compile crun
 
-Please refer to the document [crun](crun.md) to build and compile crun with WasmEdge support.
+Please refer to the document [crun](docs/deploy/crun.md) to build and compile crun with WasmEdge support.
 
 ```bash
 # Install dependencies

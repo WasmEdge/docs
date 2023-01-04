@@ -6,7 +6,7 @@ sidebar_position: 3
 
 KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge. 
 
-> This demo is based on [crun's support](crun.md)
+> This demo is based on [crun's support](docs/deploy/crun.md)
 
 ## 1. Setup Cloud Side (KubeEdge Master Node)
 
@@ -199,7 +199,7 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 
 ## 2. Setup Edge Side (KubeEdge Worker Node)
 
-You can use the CRI-O [install.sh](../crio/install.sh) script to install CRI-O and `crun` on Ubuntu 20.04.
+You can use the CRI-O [install.sh] script to install CRI-O and `crun` on Ubuntu 20.04.
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/second-state/wasmedge-containers-examples/main/crio/install.sh | bash

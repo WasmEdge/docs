@@ -112,7 +112,7 @@ systemctl start containerd
 
 #### Install WasmEdge
 
-Use the [simple install script](../../../quick_start/install.md) to install WasmEdge on your edge node.
+Use the [simple install script](docs/quick-start/install.md) to install WasmEdge on your edge node.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
@@ -202,9 +202,9 @@ An easier way to set up an OpenYurt Cluster is to use the OpenYurt Experience Ce
 
 ## Run a simple WebAssembly app
 
-Next, let's run a WebAssembly program through the OpenYurt cluster as a container in the pod. This section will start off pulling this WebAssembly-based container image from Docker hub. If you want to learn how to compile, package, and publish the WebAssembly program as a container image to Docker hub, please refer to [WasmEdge Book](../demo/wasi.md).
+Next, let's run a WebAssembly program through the OpenYurt cluster as a container in the pod. This section will start off pulling this WebAssembly-based container image from Docker hub. If you want to learn how to compile, package, and publish the WebAssembly program as a container image to Docker hub, please refer to [WasmEdge Book](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md).
 
-One thing is to note that because the kubectl run (version 1.18.9 ) missed annotations parameters, we need to adjust the command line here. If you are using OpenYurt Experience Center with OpenYurt 0.6.0 and Kubernetes 1.20.11 by default, please refer to [the Kubernetes sections](../kubernetes.md) in the WasmEdge book to run the wasm app.
+One thing is to note that because the kubectl run (version 1.18.9 ) missed annotations parameters, we need to adjust the command line here. If you are using OpenYurt Experience Center with OpenYurt 0.6.0 and Kubernetes 1.20.11 by default, please refer to [the Kubernetes sections] in the WasmEdge book to run the wasm app.
 
 ```bash
 // kubectl 1.18.9
