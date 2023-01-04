@@ -103,7 +103,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} WasmEdge, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} WasmEdge. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

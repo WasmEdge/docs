@@ -47,7 +47,7 @@ After you installed WasmEdge, you may want to use WasmEdge's more features. Then
 
 ### TensorFlow and Image Processing Extension
 
-If you would like to install WasmEdge with its [Tensorflow and image processing extensions](https://www.secondstate.io/articles/wasi-tensorflow/), please run the following command. It will install WasmEdge with the `tensorflow` and `image` extensions on your system. For the usage of those two extensions, please refer to [TensorFlow Inference in Rust](link) chapter.
+If you would like to install WasmEdge with its [Tensorflow and image processing extensions](https://www.secondstate.io/articles/wasi-tensorflow/), please run the following command. It will install WasmEdge with the `tensorflow` and `image` extensions on your system. For the usage of those two extensions, please refer to [TensorFlow Inference in Rust](/docs/rust/ai_inference/tensorflow.md) chapter.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e all

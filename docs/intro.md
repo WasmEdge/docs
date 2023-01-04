@@ -13,11 +13,11 @@ In this part, we will walk you through what is WasmEdge and how to develop Wasm 
 
 We will cover the following content:
 
-* [WasmEdge Quick Start](category/quick-start)
-* Introduce the [WasmEdge Runtime](category/wasmedge)
-* [Building and running WasmEdge apps](category/build-and-run)
-* Develop WebAssembly apps from your programming languages from [Rust](category/rust), [C/C++](category/c), [JavaScript](category/javascript), [Go](category/go), and many other laungages.
-* [Deploy Wasm Apps with the existing container toolings](category/deploy)
+* [WasmEdge Quick Start](/docs/category/quick-start)
+* Introduce the [WasmEdge Runtime](/docs/category/wasmedge)
+* [Building and running WasmEdge apps](/docs/category/build-and-run)
+* Develop WebAssembly apps from your programming languages from [Rust](/docs/category/rust), [C/C++](/docs/category/c), [JavaScript](/docs/category/javascript), [Go](/docs/category/go), and many other laungages.
+* [Deploy Wasm Apps with the existing container toolings](/docs/category/deploy)
 
 
 Besides this, we also have two more guides for embedding Wasm Functions and contributing to WasmEdge. Stay tuned.
