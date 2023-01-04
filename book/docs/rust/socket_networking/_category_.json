@@ -1,0 +1,9 @@
+{
+  "label": "4.4 Socket networking",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Run Tokio-based async Rust applications in WasmEdge."
+  }
+}
+
