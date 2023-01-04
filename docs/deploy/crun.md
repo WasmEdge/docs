@@ -183,12 +183,12 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
-Next, you can try to run the app in [Kubernetes](./use-case/kubernetes-crio.md)!
+Next, you can try to run the app in [Kubernetes]!
 
 ## Run a HTTP server app
 
 Finally, we can run a simple WebAssembly-based HTTP micro-service in CRI-O.
-[A separate article]((https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub.
 In this section, we will start off pulling this WebAssembly-based container image from Docker hub using CRI-O tools.
 
 ```bash
@@ -245,4 +245,4 @@ $ curl -d "name=WasmEdge" -X POST http://10.85.0.2:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](./use-case/kubernetes-crio.md)!
+Next, you can try to run it in [Kubernetes]!

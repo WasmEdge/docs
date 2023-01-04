@@ -298,7 +298,7 @@ rshmallows</p></div><script>$RS("S:5","P:5")</script><script>$RC("B:2","S:2")</s
 cript>
 ```
 
-The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](networking.md) and [ES6](es6.md) in this book.
+The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](http_service/server.md) and [ES6](es6.md) in this book.
 
 ## Appendix the create-react-app template
 
@@ -662,7 +662,7 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 ```
 
 * The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-* The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](quickstart.md)
+* The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world.md)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 

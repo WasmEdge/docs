@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 3.2 The AoT Compiler
 
-ne of the most important features of WasmEdge is the AoT compiler. The `wasmedgec` can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedgec` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
+One of the most important features of WasmEdge is the AoT compiler. The `wasmedgec` can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedgec` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
 
 Use `wasmedgec -v` or `wasmedgec --version` line to check out the version.
 
@@ -91,7 +91,7 @@ The options of the `wasmedgec` CLI tool are as follows.
 2. `-h|--help`: Show the help messages. Will ignore other arguments below.
 3. (Optional) `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
 4. (Optional) `--interruptible`: Generate the binary which supports interruptible execution.
-    * By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../sdk/c/ref.md#async).
+    * By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions].
 5. (Optional) Statistics informations:
     * By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
     * Use `--enable-time-measuring` to generate code for enabling the statistics of time measuring in execution.
@@ -117,5 +117,5 @@ The options of the `wasmedgec` CLI tool are as follows.
     * The default value will be `2`, which means `O2`.
 9. Input WASM file (`/path/to/wasm/file`).
 10. Output path (`/path/to/output/file`).
-    * By default, the `wasmedgec` tool will output the [universal WASM format](../quick_start/run_in_aot_mode.md#output-format-universal-wasm).
-    * If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedgec` tool will output the [shared library format](../quick_start/run_in_aot_mode.md#output-format-shared-library).
+    * By default, the `wasmedgec` tool will output the [universal WASM format].
+    * If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedgec` tool will output the [shared library format].

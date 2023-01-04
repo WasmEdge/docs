@@ -30,9 +30,8 @@ arch=amd64 version=v0.6.0 && rm -rf edgeadm-linux-* && wget https://superedge-12
 ./edgeadm join <Master Public/Intranet IP Or Domain>:Port --token xxxx --discovery-token-ca-cert-hash sha256:xxxxxxxxxx --install-pkg-path <edgeadm kube-* install package address path> --enable-edge=true --runtime=containerd
 ```
 
-See the detailed process[One-click install of edge Kubernetes cluster](../docs/installation/install_edge_kubernetes.md)
 
-Other installation, deployment, and administration, see our [**Tutorial**](../docs/tutorial.md).
+Other installation, deployment, and administration, see our [**Tutorial**](https://superedge.io/docs/installation/)
 
 ## Install WasmEdge
 
@@ -113,7 +112,7 @@ sudo systemctl restart containerd
 
 ## Create Wasmedge application in Superedge
 
-We can run a wasm image which has been pushed to [dockerhub](https://hub.docker.com/r/hydai/wasm-wasi-example). If you want to learn how to compile, package, and publish the WebAssembly program as a container image to Docker hub, please refer to [here](../demo/wasi.md).
+We can run a wasm image which has been pushed to [dockerhub](https://hub.docker.com/r/hydai/wasm-wasi-example). If you want to learn how to compile, package, and publish the WebAssembly program as a container image to Docker hub, please refer to [here](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md).
 
 ```bash
 cat > wasmedge-app.yaml << EOF
