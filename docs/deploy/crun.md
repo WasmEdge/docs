@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 8.2 Deploy with crun
 
-The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. In this chapter, we will walk you through how to deploy Wasm iamges with crun.
+The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. This chapter will walk you through deploying Wasm images with crun.
 
 ## Quick start
 
