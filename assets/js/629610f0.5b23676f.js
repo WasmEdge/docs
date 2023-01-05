@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbook=self.webpackChunkbook||[]).push([[7965],{3612:o=>{o.exports=JSON.parse('{"permalink":"/book/blog/tags/hola","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
