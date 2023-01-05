@@ -1,8 +1,0 @@
-{
-  "label": "4.3 HTTP services",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Create HTTPs request in Rust and running in WasmEdge."
-  }
-}

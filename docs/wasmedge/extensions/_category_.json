@@ -1,8 +1,0 @@
-{
-  "label": "2.2 WasmEdge Extensions",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "WasmEdge supports various WebAssembly proposals and WASI proposals, as well as several non-standard extensions, which indicates that WasmEdge is an extensionable WebAssembly runtime. In this chapter, we'll introduce the key features of WasmEdge."
-  }
-}
