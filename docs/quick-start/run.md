@@ -103,4 +103,4 @@ Now you have the basic knowledge for running apps with WasmEdge.
 Next, you can
 
 * check out all available [WasmEdge CLI options](/docs/build-and-run/cli.md) to explore WasmEdge's features
-* write Wasm apps in your favorite languages, like[Rust](/docs/category/rust), [C/C++](/docs/category/c), [JavaScript](/docs/category/javascript), [Go](/docs/category/go), and many other laungages.
+* write Wasm apps in your favorite languages, like [Rust](/docs/category/develop-wasm-apps-in-rust), [C/C++](/docs/category/develop-wasm-apps-in-cc), [JavaScript](/docs/category/developing-wasm-apps-in-javascript), [Go](/docs/category/develop-wasm-apps-in-go), and many other laungages.

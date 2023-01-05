@@ -26,7 +26,7 @@ In this section, we will demonstrate how to run and enhance JavaScript in WasmEd
 
 * [Getting started](hello_world.md) demonstrates how to run simple JavaScript programs in WasmEdge.
 * [Node.js compatibility](nodejs.md) describes Node.js APIs support in WasmEdge QuickJS.
-* [Networking sockets](/docs/javascript/http_service) shows how to create non-blocking (async) HTTP clients, including the `fetch` API, and server applications in JavaScript.
+* [Networking sockets](/docs/category/http-service) shows how to create non-blocking (async) HTTP clients, including the `fetch` API, and server applications in JavaScript.
 * [ES6 modules](es6.md) shows how to incorporate ES6 modules in WasmEdge.
 * [Node.js and NPM modules](npm.md) shows how to incorporate NPM modules in WasmEdge.
 * [Built-in modules](modules.md) shows how to add JavaScript functions into the WasmEdge runtime as built-in API functions.
