@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'WasmEdge Book',
   tagline: 'Bring the cloud-native and serverless application paradigms to Edge Computing.',
-  url: 'https://alabulei1.github.io/',
+  url: 'https://alabulei1.github.io/book/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
