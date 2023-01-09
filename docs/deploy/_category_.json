@@ -1,5 +1,5 @@
 {
-  "label": "Deploy WasmEdge apps in Kubernetes ",
+  "label": "Deploy WasmEdge apps in Kubernetes",
   "position": 8,
   "link": {
     "type": "generated-index",

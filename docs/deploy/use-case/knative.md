@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 8.5.6 Knative
+# 8.6.6 Knative
 
 
 # Knative
