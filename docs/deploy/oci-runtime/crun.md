@@ -6,7 +6,33 @@ sidebar_position: 2
 
 The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. This chapter will walk you through deploying Wasm images with crun.
 
-## Quick start
+
+## Fedora Platform
+
+The crun Fedora pakckage has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun in on the Fedora Linux distritions. For the other Linux distributions, please refer to the [next section](#other-linux-platforms).
+
+First, install crun on your fedora machine.
+
+```
+sudo dnf -y install crun
+```
+Next, run `crun -v` to check if you installed successfully.
+
+```
+crun -v
+# output
+crun version 1.7.2
+commit: 0356bf4aff9a133d655dc13b1d9ac9424706cac4
+rundir: /run/user/501/crun
+spec: 1.0.0
++SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +LIBKRUN +WASM:wasmedge +YAJL
+```
+You can see that crun has WasmEdge package already.
+
+Next, you can run Wasm apps on your fedora machine.
+
+## Other Linux Platforms
+### Quick start
 
 The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on CRI-O.
 
@@ -14,7 +40,7 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 * HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio-server.yml)
 
 
-## Prerequisites
+### Prerequisites
 
 1. Build and configure crun with WasmEdge support
 
@@ -63,7 +89,7 @@ apt-get install cri-o cri-o-runc cri-tools containernetworking-plugins
 systemctl start crio
 ```
 
-## Configure CRI-O to use crun
+### Configure CRI-O to use crun
 
 CRI-O uses the `runc` runtime by default and we need to configure it to use `crun` instead.
 That is done by adding to two configuration files.
@@ -97,7 +123,7 @@ Next, restart CRI-O to apply the configuration changes.
 systemctl restart crio
 ```
 
-## Run a simple WebAssembly app
+### Run a simple WebAssembly app
 
 Now, we can run a simple WebAssembly program using CRI-O. [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub.
 
@@ -185,7 +211,7 @@ Test 7: Delete the previous file
 
 Next, you can try to run the app in [Kubernetes]!
 
-## Run a HTTP server app
+### Run a HTTP server app
 
 Finally, we can run a simple WebAssembly-based HTTP micro-service in CRI-O.
 [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub.
