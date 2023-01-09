@@ -9,11 +9,12 @@ The [crun project](https://github.com/containers/crun) has WasmEdge support bake
 
 ## Fedora Platform
 
-The crun Fedora pakckage has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun in on the Fedora Linux distritions. For the other Linux distributions, please refer to the [next section](#other-linux-platforms).
+The crun fedora pakckage has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun in on the Fedora Linux distritions. For the other Linux distributions, please refer to the [next section](#other-linux-platforms).
 
-First, install crun on your fedora machine.
+First, install crun and WasmEdgeon your fedora machine.
 
 ```
+sudo dnf -y install wasmedge
 sudo dnf -y install crun
 ```
 Next, run `crun -v` to check if you installed successfully.
@@ -42,7 +43,8 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 
 ### Prerequisites
 
-1. Build and configure crun with WasmEdge support
+1. [Install WasmEdge](docs/quick-start/install.md)
+2. Build and configure crun with WasmEdge support
 
 For now, the easiest approach is just built it yourself from source. First, let's make sure that `crun` dependencies are installed on your Ubuntu 20.04.
 For other Linux distributions, please [see here](https://github.com/containers/crun#readme).
@@ -64,10 +66,6 @@ cd crun
 make
 sudo make install
 ```
-
-2. [Install WasmEdge](docs/quick-start/install.md)
-
-
 3. Install and configure CRI-O 
 
 Use the following commands to install CRI-O on your system.
@@ -209,7 +207,7 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
-Next, you can try to run the app in [Kubernetes]!
+Next, you can try to run the app in [Kubernetes](/docs/deploy/kubernetes.md)!
 
 ### Run a HTTP server app
 
@@ -271,4 +269,4 @@ $ curl -d "name=WasmEdge" -X POST http://10.85.0.2:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes]!
+Next, you can try to run it in [Kubernetes](/docs/deploy/kubernetes.md)!

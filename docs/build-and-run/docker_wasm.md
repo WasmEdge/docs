@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 3.3 Docker + Wasm
 
-Docker announced its support for WebAssembly in the partnership with WasmEdge. So for WasmEdge developers, you could use Docker Desktop and Docker CLI to build, share and run WasmEdge apps.
+Docker announced its support for WebAssembly in the partnership with WasmEdge. So for WasmEdge developers, you can use Docker Desktop and Docker CLI to build, publish and run WasmEdge apps.
 
 ## Configure the toolchains
 
@@ -27,7 +27,7 @@ docker run -dp 8080:8080 \
   michaelirwin244/wasm-example
 ```
 
-Here, we noticed  two new flags.
+Here, you may notice that we have two new flags.
 * `--runtime=io.containerd.wasmedge.v1` – This informs the Docker engine that we want to use the Wasm containerd shim instead of the standard Linux container runtime.
 * `--platform=wasi/wasm32` – This specifies the architecture of the wasi/wasm32 image we want to use. By leveraging a Wasm architecture, you don’t need to build separate images for the different machine architectures. The WasmEdge takes care of the final step of converting the Wasm binary to machine instructions.
 
@@ -36,7 +36,7 @@ Next, open http://localhost:8080 in your browser or use `curl localhost:8080`. T
 ```
 Hello world from Rust running with Wasm! Send POST data to /echo to have it echoed back to you%   
 ```
-That's all. Using Docker Desktop, it is easy to run a WasmEdge app.
+That's all. Next let's dive into how to build a wasm app image.
 
 ## Build a Wasm app image
 
@@ -60,13 +60,13 @@ Use `docker push` to publish the docker image.
 ```
 docker image push dockerid/docker-wasm:0.1
 ```
-After that, you could follow the Run the Wasm app image guide to run your Wasm image.
+After that, you could follow the [Run the Wasm app image guide](#run-the-wasm-app-image) to run your Wasm image.
 
 ## Run a multi-service application with Wasm
 
 How about when we need to run an applications including multuple containers? `docker compose up` could run serveral contaienrs at one time.
 
-Let's take the microservice-rust-mysql as an example. It includes three containers. Two are Linux containers and one is Wasm container. In this case, we use `docker compose up` to run three containers at once. Make sure your Docker Desktop is running and your repo includes a `docker-compose.yml` file.
+Let's take the [microservice-rust-mysql](https://github.com/second-state/microservice-rust-mysql) as an example. It includes three containers. Two are Linux containers and one is Wasm container. In this case, we use `docker compose up` to run three containers at once. Make sure your Docker Desktop is running and your repo includes a `docker-compose.yml` file.
 
 > For the instruction on setting up `docker-compose.yml` file, please check out this article.
 
@@ -85,7 +85,10 @@ Then, go back to Docker Desktop Dash board, you will see there're three containe
 ![](docker.jpeg)
 
 
-In this section, we learned how to run the Wasm app image and build the Wasm app image with the help of Docker Desktop. If you don't want to use Docker CLI, please check out this arctivle to build the Docker Engine with support of WasmEdge from Scratch.
+In this section, we learned how to run the Wasm app image and build the Wasm app image with the help of Docker Desktop. If you don't want to use Docker CLI, please check out this arcticle to [build the Docker Engine with support of WasmEdge from Scratch](https://github.com/chris-crone/wasm-day-na-22).
+
+
+Want to leran more about Docker and Wasm, go to [containerd](/docs/deploy/oci-runtime/containerd.md) chapter for more details.
 
 
 
