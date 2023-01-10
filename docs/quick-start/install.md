@@ -76,7 +76,7 @@ source /opt/intel/openvino_2021/bin/setupvars.sh
 ldconfig
 ```
 
-And then get WasmEdge and the WASI-NN plug-in with OpenVINO backend. The version of WasmEdge should be the same as wasi-nn-openvio verison.
+And then get WasmEdge and the WASI-NN plug-in with OpenVINO backend. The version of WasmEdge should be the same as wasi-nn-openvio version.
 
 
 ```bash

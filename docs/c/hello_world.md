@@ -23,9 +23,6 @@ cd emsdk
 source ./emsdk_env.sh
 ```
 
-
-
-
 ## Compile the C code into Wasm
 
 
@@ -49,7 +46,7 @@ emcc hello.c -o hello.wasm
 
 ## Run in WasmEdge
 
-Run the compiled wasm with WasmEdge CLI and you will get the hello workd output.
+Run the compiled wasm with WasmEdge CLI and you will get the hello world output.
 
 
 ```

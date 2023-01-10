@@ -16,9 +16,9 @@ In cloud-native use cases, developers often want to use JavaScript to write busi
 
 ## Why run JavaScript in WasmEdge
 
-* Lightweight and secure JS runtime. Compared with V8 and Node.js, WasmEdge itself is a lighweight， high performance JavaScript runtime。
+* Lightweight and secure JS runtime. Compared with V8 and Node.js, WasmEdge itself is a lightweight， high performance JavaScript runtime。
 * No need for Linux containers. WasmEdge could be a secure container without tons of dependencies.
-* Node.js compaitible. See the status [here](https://github.com/WasmEdge/WasmEdge/issues/1535). 
+* Node.js compatible. See the status [here](https://github.com/WasmEdge/WasmEdge/issues/1535). 
 * Use Rust to implement JS APIs. See the tutorial here.
 
 

@@ -6,9 +6,9 @@ sidebar_position: 3
 
 Docker announced its support for WebAssembly in the partnership with WasmEdge. So for WasmEdge developers, you can use Docker Desktop and Docker CLI to build, publish and run WasmEdge apps.
 
-## Configure the toolchains
+## Configure the toolchain
 
-The easist way to use docker's WasmEdge integration is to download [the newest Docker Desktop](https://docs.docker.com/desktop/release-notes/). 
+The easiest way to use docker's WasmEdge integration is to download [the newest Docker Desktop](https://docs.docker.com/desktop/release-notes/). 
 
 Before you start, make sure you have turned on the containerd image store feature in your Docker Desktop. 
 
@@ -64,7 +64,7 @@ After that, you could follow the [Run the Wasm app image guide](#run-the-wasm-ap
 
 ## Run a multi-service application with Wasm
 
-How about when we need to run an applications including multuple containers? `docker compose up` could run serveral contaienrs at one time.
+How about when we need to run an applications including multiple containers? `docker compose up` could run serveral contaienrs at one time.
 
 Let's take the [microservice-rust-mysql](https://github.com/second-state/microservice-rust-mysql) as an example. It includes three containers. Two are Linux containers and one is Wasm container. In this case, we use `docker compose up` to run three containers at once. Make sure your Docker Desktop is running and your repo includes a `docker-compose.yml` file.
 
@@ -85,10 +85,10 @@ Then, go back to Docker Desktop Dash board, you will see there're three containe
 ![](docker.jpeg)
 
 
-In this section, we learned how to run the Wasm app image and build the Wasm app image with the help of Docker Desktop. If you don't want to use Docker CLI, please check out this arcticle to [build the Docker Engine with support of WasmEdge from Scratch](https://github.com/chris-crone/wasm-day-na-22).
+In this section, we learned how to run the Wasm app image and build the Wasm app image with the help of Docker Desktop. If you don't want to use Docker CLI, please check out this article to [build the Docker Engine with support of WasmEdge from Scratch](https://github.com/chris-crone/wasm-day-na-22).
 
 
-Want to leran more about Docker and Wasm, go to [containerd](/docs/deploy/oci-runtime/containerd.md) chapter for more details.
+Want to learn more about Docker and Wasm, go to [containerd](/docs/deploy/oci-runtime/containerd.md) chapter for more details.
 
 
 

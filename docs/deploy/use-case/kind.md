@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # 8.6.5 Kind
 
-KinD is a Kubernetes distribution that runs inside Docker and is well suited for local development or integration testing. It runs containerd as CRI and runc as OCI Runtime.
+KinD is a Kubernetes distribution that runs inside Docker and is well suited for local development or integration testing. It runs containerd as CRI and crun as OCI Runtime.
 
 > This demo is based on containerd + crun.
 

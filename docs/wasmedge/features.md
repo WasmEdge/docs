@@ -8,7 +8,7 @@ WasmEdg (project under CNCF) is a lightweight, high-performance, and extensible 
 
 ## High Performance
 
-Through [the AoT compilier](/docs/build-and-run/aot.md), WasmEdge is the fastest WebAssembly runtime on the market.
+Through [the AoT compiler](/docs/build-and-run/aot.md), WasmEdge is the fastest WebAssembly runtime on the market.
 
 * [A Lightweight Design for High-performance Serverless Computing](https://arxiv.org/abs/2010.07115), published on IEEE Software, Jan 2021. [https://arxiv.org/abs/2010.07115](https://arxiv.org/abs/2010.07115)
 * [Performance Analysis for Arm vs. x86 CPUs in the Cloud](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/), published on infoQ.com, Jan 2021. [https://www.infoq.com/articles/arm-vs-x86-cloud-performance/](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/)
@@ -67,13 +67,13 @@ WasmEdge now supports:
 
 ## Easy extensible
 
-It is easy to build customized WasmEdge runtimes with native host functions in C, Go, and Rust.
+It is easy to build customized WasmEdge runtime with native host functions in C, Go, and Rust.
 
 Or you could build your own plugins for WasmEdge in C++, C, or Rust (WIP).
 
 ## Easy to Embed into a Host Application
 
-Embedded runtime is the classical use case for WasmEdge. You could embed WasmEdge functions in C, Go, Rust, Node.js Java (WIP), and Python (WIP) host applications.
+Embedded runtime is the classical use case for WasmEdge. You could embed WasmEdge functions in C, Go, Rust, Node.js, Java (WIP), and Python (WIP) host applications.
 
 
 

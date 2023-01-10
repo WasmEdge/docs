@@ -31,14 +31,14 @@ Both crun and youki could use the following image to show how it works.
 
 ## Examples we covered
 
-In this section, we will show how to mangae Wasm App in the three different ways. The goal is to load and run WebAssembly OCI images side by side with Linux OCI images (e.g., today's Docker containers) across the entire Kubernetes stack.
+In this section, we will show how to manage Wasm App in the three different ways. The goal is to load and run WebAssembly OCI images side by side with Linux OCI images (e.g., today's Docker containers) across the entire Kubernetes stack.
 
-We will cover two different demos in each way.  We will build them from Rust source code, build OCI images around them, and then publish the images to Docker Hub.
-
-Since we have already built and published those demo apps on Docker Hub, you could also just go straight to the container runtime sections to use these images. If you want to build your own Wasm image, please refer to this article.
+We will cover two different demos in most cases. We have build them from Rust source code, build OCI images around them, and then publish the images to Docker Hub.
 
 * [A simple WASI example](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md)
 * [A HTTP server example](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md)
+
+Since we have already built and published those demo apps on Docker Hub, you could also pull the images from Docker Hub. If you want to build your own Wasm image, please refer to this article.
 
 Since we have already built and published those demo apps on Docker Hub, you could also just go straight to the container runtime sections to use these images.
 

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 3.1 CLI flags
 
-After installing WasmEdge, you could use `wasmedge` CLI flags to excute a compiled wasm file.
+After installing WasmEdge, you could use `wasmedge` CLI flags to execute a compiled wasm file.
 
 The article will cover all the optional CLI flags.
 
@@ -53,7 +53,7 @@ The options of the `wasmedge` CLI tool are as follows.
     * Use `--dir guest_path:host_path` to bind the host path into the guest path in WASI virtual system.
 5. (Optional) `--env`: Assign the environment variables in WASI.
     * Use `--env ENV_NAME=VALUE` to assign the environment variable.
-6. (Optional) Statistics informations:
+6. (Optional) Statistics information:
     * Use `--enable-time-measuring` to show the execution time.
     * Use `--enable-gas-measuring` to show the amount of used gas.
     * Use `--enable-instruction-count` to display the number of executed instructions.

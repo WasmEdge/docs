@@ -18,21 +18,16 @@ Database connection is necessary for today's enterprise development. WasmEdge pr
 The [wasmedge-db-example/mysql](https://github.com/WasmEdge/wasmedge-db-examples/tree/main/mysql) is a MySQL connector example, written in Rust.
 
 ```
-// downlod the example
+// download the example
 git clone https://github.com/WasmEdge/wasmedge-db-examples.git
 cd mysql
 
 // compile the rust code into Wasm bytecode
 cargo build --target wasm32-wasi --release
 
-// Excuted the MySQL driver
+// Executed the MySQL driver
 wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wasm32-wasi/debug/query.wasm
 wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wasm32-wasi/debug/insert.wasm
 ```
 
 Then, you will see XYZ
-
-
-## The code
-
-Work in progress

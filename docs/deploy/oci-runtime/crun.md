@@ -9,9 +9,9 @@ The [crun project](https://github.com/containers/crun) has WasmEdge support bake
 
 ## Fedora Platform
 
-The crun fedora pakckage has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun in on the Fedora Linux distritions. For the other Linux distributions, please refer to the [next section](#other-linux-platforms).
+The crun fedora package has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun in on the Fedora Linux distributions. For the other Linux distributions, please refer to the [next section](#other-linux-platforms).
 
-First, install crun and WasmEdgeon your fedora machine.
+First, install crun and WasmEdge on your fedora machine.
 
 ```
 sudo dnf -y install wasmedge

@@ -52,7 +52,7 @@ $ wasmedge-tensorflow-lite classify.wasm < grace_hopper.jpg
 It is very likely a <a href='https://www.google.com/search?q=military uniform'>military uniform</a> in the picture
 ```
 
-### Code walkthrough
+### Code explanation
 
 It is fairly straightforward to use the WasmEdge Tensorflow API. You can see the entire source code in [main.rs](https://github.com/second-state/wasm-learning/blob/master/cli/tflite/src/main.rs).
 

@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ## Fedora Platform
 
-The easiest platform to run Wasm app with container is Fedeora, because the crun fedora package has supported WasmEdge as a defualt runtime. We don't need to make any changes to run WasmEdge apps on fedora platform. If you use other Linux distributions, go to [next section](#other-linux-distributions).
+The easiest platform to run Wasm app with container is Fedora, because the crun fedora package has supported WasmEdge as a default runtime. We don't need to make any changes to run WasmEdge apps on fedora platform. If you use other Linux distributions, go to [next section](#other-linux-distributions).
 
 ### Install podman and WasmEdge
 

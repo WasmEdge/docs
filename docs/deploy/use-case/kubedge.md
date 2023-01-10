@@ -225,7 +225,7 @@ $ sudo ./keadm gettoken --kube-config=/home/${user}/.kube/config
 27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
 ```
 
-### Download Kubeedge and join edge nodes
+### Download KubeEdge and join edge nodes
 
 Please see [Setting different container runtime with CRI](https://kubeedge.io/en/docs/advanced/cri/#cri-o) and [Deploying using Keadm](https://kubeedge.io/en/docs/setup/keadm/).
 

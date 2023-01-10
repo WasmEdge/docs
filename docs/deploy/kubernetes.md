@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 8.4 Kubenetes
+# 8.4 Kubernetes
 
 
 ## Quick start
@@ -82,7 +82,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ### A simple WebAssembly app
 
-[A separate article](../demo/wasi.md) explains how to compile, package, and publish a simple WebAssembly WASI program as a container image to Docker hub.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly WASI program as a container image to Docker hub.
 Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
 
 ```bash
@@ -106,7 +106,7 @@ pod "wasi-demo-2" deleted
 
 ### A WebAssembly-based HTTP service
 
-[A separate article](../demo/server.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub.
 Since the HTTP service container requires networking support provided by Kubernetes, we will use a [k8s-http_server.yaml](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/k8s-http_server.yaml) file to specify its exact configuration.
 
 ```yaml
