@@ -63,10 +63,13 @@ You can build and run [the example](https://github.com/second-state/http_req/) i
 # get the source code
 $ git clone https://github.com/second-state/http_req.git
 $ cd http_req/
+
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
+
 # Use the AoT compiler to get better performance
 wasmedgec target/wasm32-wasi/release/get.wasm target/wasm32-wasi/release/get.wasm
+
 # Run the example
 wasmedge target/wasm32-wasi/release/get.wasm
 ```
@@ -120,10 +123,13 @@ You can build and run [the example](https://github.com/WasmEdge/wasmedge_reqwest
 # get the source code
 $ git clone https://github.com/WasmEdge/wasmedge_reqwest_demo.git
 $ cd wasmedge_reqwest_demo
+
 # Build the Rust code
 cargo build --target wasm32-wasi --release
+
 # Use the AoT compiler to get better performance
 wasmedgec target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm
+
 # Run the example
 wasmedge target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm
 ```

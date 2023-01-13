@@ -69,10 +69,13 @@ You can build and run [the example](https://github.com/WasmEdge/wasmedge_hyper_d
 # Git clone or fork the example repo
 $ git clone https://github.com/WasmEdge/wasmedge_hyper_demo.git
 $ cd wasmedge_hyper_demo/server
+
 # Build the Rust code
 cargo build --target wasm32-wasi --release
+
 # Use the AoT compiler to get better performance
 wasmedgec target/wasm32-wasi/release/wasmedge_hyper_server.wasm target/wasm32-wasi/release/wasmedge_hyper_server.wasm
+
 # Run the example
 wasmedge target/wasm32-wasi/release/wasmedge_hyper_server.wasm
 ```

@@ -15,17 +15,13 @@ sidebar_position: 1
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](docs/build-and-run/cli.md). Its [source code is available here](https://github.com/second-state/wasm-learning/tree/master/cli/hello).
 
-The full source code for the Rust [main.rs](https://github.com/second-state/wasm-learning/blob/master/cli/hello/src/main.rs) file is as follows.
+The full source code for the Rust [main.rs](https://github.com/second-state/rust-examples/tree/main/hello) file is as follows.
 It echoes the command line arguments passed to this program at runtime.
 
 ```rust
-use std::env;
-
 fn main() {
-  println!("hello");
-  for argument in env::args().skip(1) {
-    println!("{}", argument);
-  }
+  let s : &str = "Hello WasmEdge!";
+  println!("{}", s);
 }
 ```
 
@@ -40,10 +36,8 @@ cargo build --target wasm32-wasi --release
 We will use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge target/wasm32-wasi/release/hello.wasm second state
-hello
-second
-state
+$ wasmedge target/wasm32-wasi/release/hello.wasm 
+Hello WasmEdge
 ```
 
 ## A simple function
