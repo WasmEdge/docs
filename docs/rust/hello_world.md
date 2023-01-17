@@ -4,12 +4,7 @@ sidebar_position: 1
 
 # 4.1 Hello world
 
-## Prerequisites
-
-* [WasmEdge installed](docs/quick-start/install.md)
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain  added
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+> Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
 
 ## A simple main app
 

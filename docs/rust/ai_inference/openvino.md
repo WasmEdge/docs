@@ -6,13 +6,7 @@ sidebar_position: 3
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) as an example to discuss how to do AI inference with OpenVINO in WasmEdge.
 
-## Prerequisites
-
-* [WasmEdge installed](docs/quick-start/install.md)
-* [Install the WASI-NN plugin with OpenVINO backend](docs/quick-start/install.md#/wasi-nn-plugin-with-openvino-backend)
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain added
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with OpenVINO installed](setup.md).
 
 ## Quick Start
 

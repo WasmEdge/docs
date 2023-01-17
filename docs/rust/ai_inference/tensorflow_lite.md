@@ -6,13 +6,7 @@ sidebar_position: 4
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) as an example to discuss how to do AI inference with TensorFlow Lite in WasmEdge.
 
-## Prerequisites
-
-* [WasmEdge installed](docs/quick-start/install.md)
-* [Install the WASI-NN plugin with TensorFlow Lite backend](docs/quick-start/install.md#/wasi-nn-plugin-with-pwith-tensorflow-lite)
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain added
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with TensorFlow Lite installed](setup.md).
 
 ## Quick Start
 

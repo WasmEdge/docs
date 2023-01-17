@@ -8,13 +8,7 @@ The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssemb
 The `wasm32-wasi` target in the Rust compiler supports WASI.
 In this section, we will use [an example project](https://github.com/second-state/rust-examples/tree/main/wasi) to show how to use Rust standard APIs to access operating system services.
 
-## Prerequisites
-
-* WasmEdge installed
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain  added
-    * To add, run `rustup target add wasm32-wasi` after installed Rust. 
-
+> Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
 
 ## Random numbers
 
