@@ -2,16 +2,9 @@
 sidebar_position: 1
 ---
 
-# 3.1 CLI flags
+# The `wasmedge` CLI
 
-After installing WasmEdge, you could use `wasmedge` CLI flags to execute a compiled wasm file.
-
-The article will cover all the optional CLI flags.
-
-
-## `wasmedge` CLI
-
-The `wasmedge` command line could execute the wasm file.
+After installing WasmEdge, you could use the `wasmedge` CLI to execute a compiled wasm file.
 
 ```bash
 $ wasmedge -v
@@ -82,41 +75,6 @@ The options of the `wasmedge` CLI tool are as follows.
 
 ## Examples
 
-### Call A WebAssembly Function Written in WAT
-
-We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) WebAssembly program.
-It exported a `fib()` function which takes a single `i32` integer as the input parameter. We can execute `wasmedge` in reactor mode to invoke the exported function.
-
-You can run:
-
-```bash
-wasmedge --reactor fibonacci.wasm fib 10
-```
-
-The output will be:
-
-```bash
-89
-```
-
-### Call A WebAssembly Function Compiled From Rust
-
-The [add.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/add.wasm) WebAssembly program contains an exported `add()` function, which is compiled from Rust.
-Checkout its [Rust source code here](https://github.com/second-state/wasm-learning/tree/master/cli/add).
-We can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters.
-
-You can run:
-
-```bash
-wasmedge --reactor add.wasm add 2 2
-```
-
-The output will be:
-
-```bash
-4
-```
-
 ### Execute A Standalone WebAssembly app: Hello world
 
 The [hello.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/hello.wasm) WebAssembly program contains a `main()` function.
@@ -137,7 +95,7 @@ second
 state
 ```
 
-### Execute With `statistics` Enabled
+#### Execute With `statistics` Enabled
 
 The CLI supports `--enable-all-statistics` flags for the statistics and gas metering.
 
@@ -246,3 +204,39 @@ $ wasmedge-tensorflow-lite --dir .:. qjs_tf.wasm main.js
 label: Hot dog
 confidence: 0.8941176470588236
 ```
+
+### Call A WebAssembly Function Written in WAT
+
+We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) WebAssembly program.
+It exported a `fib()` function which takes a single `i32` integer as the input parameter. We can execute `wasmedge` in reactor mode to invoke the exported function.
+
+You can run:
+
+```bash
+wasmedge --reactor fibonacci.wasm fib 10
+```
+
+The output will be:
+
+```bash
+89
+```
+
+### Call A WebAssembly Function Compiled From Rust
+
+The [add.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/add.wasm) WebAssembly program contains an exported `add()` function, which is compiled from Rust.
+Checkout its [Rust source code here](https://github.com/second-state/wasm-learning/tree/master/cli/add).
+We can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters.
+
+You can run:
+
+```bash
+wasmedge --reactor add.wasm add 2 2
+```
+
+The output will be:
+
+```bash
+4
+```
+
