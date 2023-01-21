@@ -1,10 +1,10 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 # Use WasmEdge Docker images
 
-The Docker images in this chapter are mostly used for development purposes. If you want to containerize Wasm apps, [check out this](quick_start_docker.md).
+The Docker images in this chapter are mostly used for development purposes. They allow you to use WasmEdge tools, build WasmEdge plugins, and compile WasmEdge itself in containerized Linux environments. If you want to containerize Wasm apps, [check out this](quick_start_docker.md).
 
 ## Slim Docker images for running WasmEdge
 
