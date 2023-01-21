@@ -1,10 +1,12 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
-# 1.3 Using WasmEdge in Docker
+# Use WasmEdge Docker images
 
-## WasmEdge DockerSlim
+The Docker images in this chapter are mostly used for development purposes. If you want to containerize Wasm apps, [check out this](quick_start_docker.md).
+
+## Slim Docker images for running WasmEdge
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 

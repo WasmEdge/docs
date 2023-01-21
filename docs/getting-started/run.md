@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 ---
 
-# 1.2 Running simple apps
+# Running simple apps
 
 In this chapter, you will learn how to use WasmEdge CLI to run wasm bytecode from Rust in two ways in 5 minutes.
 
