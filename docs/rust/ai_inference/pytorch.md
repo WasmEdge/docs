@@ -6,13 +6,7 @@ sidebar_position: 2
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) as an example to discuss how to do AI inference with Pytorch in WasmEdge.
 
-## Prerequisites
-
-* [WasmEdge installed](docs/quick-start/install.md)
-* [Install the WASI-NN plugin with Pytorch backend](docs/quick-start/install.md#/wasi-nn-plugin-with-pytorch-backend)
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain added
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with Pytorch installed](/docs/rust/setup.md).
 
 ## Quick Start
 

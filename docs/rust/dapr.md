@@ -12,10 +12,10 @@ The figure below shows a Dapr-enabled microservice running inside the WasmEdge s
 
 ## Prerequisites
 
-* [WasmEdge installed](docs/quick-start/install.md)
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain  added
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
+
+You also need to install the following tools.
+
 * [Dapr CLI installed](https://docs.dapr.io/getting-started/install-dapr-cli/)
 * the [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) or [MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/) or [TiDB](https://docs.pingcap.com/tidb/dev/quick-start-with-tidb) databases installed
 
