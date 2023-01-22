@@ -85,7 +85,7 @@ You will need to have the [Rust compiler installed](https://github.com/second-st
 cargo build --target wasm32-wasi --release
 ```
 
-We will use the `wasmedge` command to run the program.
+You can then use the `wasmedge` command to run the program.
 
 ```bash
 $ wasmedge target/wasm32-wasi/release/hello.wasm
