@@ -8,6 +8,13 @@ In this guide, we will walk you through how to quickly install and run the WasmE
 
 > If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md).
 
+We will cover the following examples.
+
+* [Run a standalone Wasm app](xxx)
+* [Run an HTTP server](xxx)
+* [Run a JavaScript server (node.js)](xxx)
+
+
 ## One-liner Installation of WasmEdge
 
 The easiest way to install WasmEdge is to run the following command. You should have root or at least `sudo` privilege. Your system should have `git` and `curl` installed as prerequisites.
@@ -84,7 +91,7 @@ To learn more about how to create Wasm apps in Rust
   * Dapr
 
 
-## Run a JavaScript app
+## Run a JavaScript server
 
 TBD TBD TBD
 
