@@ -19,35 +19,40 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 > If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory: `curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash`
 
 
-## Build and run a Wasm app from Rust
+## Run a Wasm app
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-You will need to have the [Rust compiler installed](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites), and then use the following command to build the Wasm bytecode file from the Rust source code.
+[Download the hello.wasm file here](/static/files/hello.wasm)
+
+Use the `wasmedge` command to run the program.
 
 ```bash
-cargo build --target wasm32-wasi --release
-```
-
-We will use the `wasmedge` command to run the program.
-
-```bash
-$ wasmedge target/wasm32-wasi/release/hello.wasm
+$ wasmedge hello.wasm
 Hello WasmEdge!
 ```
 
 Use the AoT compiler `wasmedgec` to get much better performance.
 
 ```
-$ wasmedgec target/wasm32-wasi/release/hello.wasm hello.wasm
-$ wasmedge hello.wasm
+$ wasmedgec hello.wasm hello_aot.wasm
+$ wasmedge hello_aot.wasm
 Hello WasmEdge!
 ```
 
 To learn more about how to create Wasm apps in Rust
 
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+  * AI inference with PyTorch and Tensorflow
+  * HTTP and HTTPS client
+  * MySQL database client
+  * Redis client
+  * Kafka client
 * [Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
+
+## Run an HTTP server
+
+TBD TBD
 
 ## Run a JavaScript app
 
