@@ -19,7 +19,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 > If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory: `curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash`
 
 
-## Run a Wasm app
+## Run a standalone Wasm app
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
@@ -52,7 +52,37 @@ To learn more about how to create Wasm apps in Rust
 
 ## Run an HTTP server
 
-TBD TBD
+This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
+
+[Download the server.wasm file here](/static/files/server.wasm)
+
+Use the `wasmedge` command to run the program.
+
+```bash
+$ wasmedge server.wasm
+Listening on http://0.0.0.0:8080
+```
+
+From another terminal window, do the following.
+
+```bash
+$ curl http://localhost:8080/
+Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
+
+$ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
+Hello WasmEdge
+```
+
+To learn more about how to create Wasm apps in Rust
+
+* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [HTTP application examples](xxx)
+* [Database application examples](xxx)
+* Lightweight microservices in Rust and WasmEdge
+  * WasmEdge + Nginx + MySQL
+  * WasmEdge + Kafka + MySQL
+  * Dapr
+
 
 ## Run a JavaScript app
 
