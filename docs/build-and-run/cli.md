@@ -77,22 +77,19 @@ The options of the `wasmedge` CLI tool are as follows.
 
 ### Execute A Standalone WebAssembly app: Hello world
 
-The [hello.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/hello.wasm) WebAssembly program contains a `main()` function.
-Checkout its [Rust source code here](https://github.com/second-state/wasm-learning/tree/master/cli/hello).
-It prints out `hello` followed by the command line arguments.
+The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-You can run:
+You will need to have the [Rust compiler installed](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites), and then use the following command to build the Wasm bytecode file from the Rust source code.
 
 ```bash
-wasmedge hello.wasm second state
+cargo build --target wasm32-wasi --release
 ```
 
-The output will be:
+We will use the `wasmedge` command to run the program.
 
 ```bash
-hello
-second
-state
+$ wasmedge target/wasm32-wasi/release/hello.wasm
+Hello WasmEdge!
 ```
 
 #### Execute With `statistics` Enabled
@@ -102,15 +99,13 @@ The CLI supports `--enable-all-statistics` flags for the statistics and gas mete
 You can run:
 
 ```bash
-wasmedge --enable-all-statistics hello.wasm second state
+wasmedge --enable-all-statistics hello.wasm
 ```
 
 The output will be:
 
 ```bash
-hello
-second
-state
+Hello WasmEdge!
 [2021-12-09 16:03:33.261] [info] ====================  Statistics  ====================
 [2021-12-09 16:03:33.261] [info]  Total execution time: 268266 ns
 [2021-12-09 16:03:33.261] [info]  Wasm instructions execution time: 251610 ns
@@ -128,15 +123,13 @@ The CLI supports `--gas-limit` flags for controlling the execution costs.
 For giving sufficient gas as the example, you can run:
 
 ```bash
-wasmedge --enable-all-statistics --gas-limit 20425 hello.wasm second state
+wasmedge --enable-all-statistics --gas-limit 20425 hello.wasm
 ```
 
 The output will be:
 
 ```bash
-hello
-second
-state
+Hello WasmEdge!
 [2021-12-09 16:03:33.261] [info] ====================  Statistics  ====================
 [2021-12-09 16:03:33.261] [info]  Total execution time: 268266 ns
 [2021-12-09 16:03:33.261] [info]  Wasm instructions execution time: 251610 ns
@@ -150,12 +143,13 @@ state
 For giving insufficient gas as the example, you can run:
 
 ```bash
-wasmedge --enable-all-statistics --gas-limit 20 hello.wasm second state
+wasmedge --enable-all-statistics --gas-limit 20 hello.wasm
 ```
 
 The output will be:
 
 ```bash
+Hello WasmEdge!
 [2021-12-23 15:19:06.690] [error] Cost exceeded limit. Force terminate the execution.
 [2021-12-23 15:19:06.690] [error]     In instruction: ref.func (0xd2) , Bytecode offset: 0x00000000
 [2021-12-23 15:19:06.690] [error]     At AST node: expression
