@@ -10,7 +10,10 @@ In this guide, we will walk you through how to quickly build and run WasmEdge ap
 
 ## Prerequisite
 
-You must have Docker Desktop 4.15+ installed. Go to the `Settings -> Features in development` tab, and enable `Use containerd for pulling and storing images`.
+You must have Docker Desktop 4.15+ installed. 
+Make sure you have turned on the containerd image store feature in your Docker Desktop. 
+
+![](https://i.imgur.com/AH0ITnc.png)
 
 ## Build and run a Wasm app from Rust
 
