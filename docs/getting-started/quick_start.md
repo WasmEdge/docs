@@ -91,9 +91,35 @@ To learn more about how to create Wasm apps in Rust
   * Dapr
 
 
-## Run a JavaScript server
+## Run a JavaScript-based server
 
-TBD TBD TBD
+This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications. Its source code and build instructions are available [here](xxx).
+
+* [Download the qjs.wasm file here](/static/files/qjs.wasm)
+* [Download the server.js file here](/static/files/server.js)
+
+Use the `wasmedge` command to run the program.
+
+```bash
+$ wasmedge --dir .:. qjs.wasm server.js 
+Listening on http://0.0.0.0:8080
+```
+
+From another terminal window, do the following.
+
+```bash
+$ curl http://localhost:8080/
+Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
+
+$ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
+Hello WasmEdge
+```
+
+To learn more about how to create Wasm apps in Rust
+
+* [Rust developer guides](xxx)
+* [AI inference application examples](xxx)
+* [Web service client examples](xxx)
 
 
 ## Next steps
