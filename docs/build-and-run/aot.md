@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 3.2 The AoT Compiler
+# The AoT Compiler
 
 One of the most important features of WasmEdge is the AoT compiler. The `wasmedgec` can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedgec` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
 
@@ -22,7 +22,9 @@ USAGE
 
 ...
 ```
-### Example for the AoT compiler
+
+## Example for the AoT compiler
+
 Use `wasmedgec XYZ.wasm XYZ.wasm` to compile WebAssembly into native machine code.
 
 Take the [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) for example.
