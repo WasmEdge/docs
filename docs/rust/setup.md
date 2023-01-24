@@ -10,7 +10,7 @@ Before we start, let's set up the software we need.
 
 ## Install WasmEdge
 
-Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation instruction](docs/quick-start/install.md).
+Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation instruction](docs/build-and-run/install.md).
 
 ```
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash

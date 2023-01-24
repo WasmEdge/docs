@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Install and uninstall WasmEdge
@@ -7,7 +7,7 @@ sidebar_position: 3
 In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms.
 We will cover how to install plugins to WasmEdge.
 
-> Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately.
+> Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. [Check out how to run WasmEdge apps in Docker Desktop.](docker_wasm.md)
 
 ## Install
 

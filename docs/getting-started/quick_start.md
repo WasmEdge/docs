@@ -10,9 +10,9 @@ In this guide, we will walk you through how to quickly install and run the WasmE
 
 We will cover the following examples.
 
-* [Run a standalone Wasm app](xxx)
-* [Run an HTTP server](xxx)
-* [Run a JavaScript server (node.js)](xxx)
+* [Run a standalone Wasm app](#run-a-standalone-wasm-app)
+* [Run an HTTP server](#run-an-http-server)
+* [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
 
 
 ## One-liner Installation of WasmEdge
@@ -83,43 +83,40 @@ Hello WasmEdge
 To learn more about how to create Wasm apps in Rust
 
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
-* [HTTP application examples](xxx)
-* [Database application examples](xxx)
+* [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
+* [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
 * Lightweight microservices in Rust and WasmEdge
-  * WasmEdge + Nginx + MySQL
-  * WasmEdge + Kafka + MySQL
-  * Dapr
+  * [WasmEdge + Nginx + MySQL](https://github.com/second-state/microservice-rust-mysql)
+  * [WasmEdge + Kafka + MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
+  * [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
 
 
 ## Run a JavaScript-based server
 
-This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications. Its source code and build instructions are available [here](xxx).
+This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
 
-* [Download the qjs.wasm file here](/static/files/qjs.wasm)
-* [Download the server.js file here](/static/files/server.js)
+* [Download the qjs.wasm file here](/static/files/wasmedge_quickjs.wasm)
+* [Download the modules.zip file here](/static/files/modules.zip) and then unzip it into the current folder as `./modules/`
+* [Download the server.js file here](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_echo.js)
 
 Use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge --dir .:. qjs.wasm server.js 
-Listening on http://0.0.0.0:8080
+$ wasmedge --dir .:. wasmedge_quickjs.wasm wasi_http_echo.js
 ```
 
 From another terminal window, do the following.
 
 ```bash
-$ curl http://localhost:8080/
-Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
-
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
-Hello WasmEdge
+echo:Hello WasmEdge
 ```
 
-To learn more about how to create Wasm apps in Rust
+To learn more about how to run JavaScript apps in WasmEdge.
 
-* [Rust developer guides](xxx)
-* [AI inference application examples](xxx)
-* [Web service client examples](xxx)
+* [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
+* [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+* [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
 
 
 ## Next steps
