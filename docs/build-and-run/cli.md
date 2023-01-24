@@ -236,7 +236,7 @@ The output will be:
 
 ## Docker images for the CLI tools
 
-The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize Wasm apps, [check out this](quick_start_docker.md).
+The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize Wasm apps, [check out this](/docs/getting-started/quick_start_docker.md).
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 

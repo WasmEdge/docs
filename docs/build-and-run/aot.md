@@ -119,5 +119,5 @@ The options of the `wasmedgec` CLI tool are as follows.
     * The default value will be `2`, which means `O2`.
 9. Input WASM file (`/path/to/wasm/file`).
 10. Output path (`/path/to/output/file`).
-    * By default, the `wasmedgec` tool will output the [universal WASM format](xxx).
+    * By default, the `wasmedgec` tool will output the universal Wasm format, which embeds a native code section into the Wasm file.
     * If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedgec` tool will output the [shared library format](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).

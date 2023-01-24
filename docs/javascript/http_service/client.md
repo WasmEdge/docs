@@ -9,9 +9,12 @@ The `fetch` API is widely used in browser and node-based JavaScript applications
 
 ## Prerequisites
 
-* [WasmEdge installed](docs/quick-start/install.md)
+* [WasmEdge installed](/docs/build-and-run/install.md)
 * Download the WasmEdge QuickJS Runtime
-    * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
+
+```bash
+curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm
+```
 
 
 ## Run the example

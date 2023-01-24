@@ -43,7 +43,7 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 
 ### Prerequisites
 
-1. [Install WasmEdge](docs/quick-start/install.md)
+1. [Install WasmEdge](/docs/getting-started/install.md)
 2. Build and configure crun with WasmEdge support
 
 For now, the easiest approach is just built it yourself from source. First, let's make sure that `crun` dependencies are installed on your Ubuntu 20.04.

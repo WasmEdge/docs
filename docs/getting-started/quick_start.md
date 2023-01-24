@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Quick start on Linux
 
-In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](install.md).
+In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](/docs/build-and-run/install.md).
 
 > If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md).
 
@@ -95,9 +95,9 @@ To learn more about how to create Wasm apps in Rust
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
 
-* [Download the qjs.wasm file here](/static/files/wasmedge_quickjs.wasm)
-* [Download the modules.zip file here](/static/files/modules.zip) and then unzip it into the current folder as `./modules/`
-* [Download the server.js file here](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_echo.js)
+* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm)
+* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
+* [Download the wasi_http_echo.js file here](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_echo.js)
 
 Use the `wasmedge` command to run the program.
 
