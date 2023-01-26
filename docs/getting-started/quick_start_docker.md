@@ -15,21 +15,52 @@ Make sure you have turned on the containerd image store feature in your Docker D
 
 ![](https://i.imgur.com/AH0ITnc.png)
 
-## Build and run a Wasm app from Rust
+## Run a standalone Wasm app
 
-The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
+The Hello world example is a standalone Rust application. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-The example uses the [Dockerfile](https://github.com/second-state/rust-examples/blob/main/hello/Dockerfile) to build the Wasm app and package it into an empty OCI container as follows. The total size of the container image of the application is around 500KB, and it is completely portable across OSes and platforms.
-
-```bash
-docker buildx build --platform wasi/wasm -t secondstate/rust-example-hello .
-```
-
-Next, use Docker to run the containerized Wasm app.
+Use Docker to run the containerized Wasm app. The Wasm container image is stored in Docker Hub, and its image size is only 500KB. This image can run on any OS and CPU platform Docker supports.
 
 ```bash
 $ docker run --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/rust-example-hello:latest
 Hello WasmEdge!
+```
+
+## Run an HTTP server
+
+This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
+
+Use Docker to pull the container image (around 800KB) from Docker Hub and then run it in a WasmEdge container. The container starts as a server. Note how we map the container's port 8080 to the local host's port 8080 so that the server becomes accessible from outside of the Wasm container.
+
+```bash
+$ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/rust-example-server:latest
+Listening on http://0.0.0.0:8080
+```
+
+From another terminal window, do the following.
+
+```bash
+$ curl http://localhost:8080/
+Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
+
+$ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
+Hello WasmEdge
+```
+
+## Run a JavaScript-based server
+
+This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
+
+```bash
+$ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/node-example-server:latest
+... ...
+```
+
+From another terminal window, do the following.
+
+```bash
+$ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
+Hello WasmEdge
 ```
 
 ## Next steps

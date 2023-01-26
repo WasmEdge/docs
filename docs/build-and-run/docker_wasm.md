@@ -90,17 +90,3 @@ In this section, we learned how to run the Wasm app image and build the Wasm app
 
 Want to learn more about Docker and Wasm, go to [containerd](/docs/deploy/oci-runtime/containerd.md) chapter for more details.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

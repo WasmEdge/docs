@@ -32,6 +32,10 @@ The Hello world example is a standalone Rust application that can be executed by
 
 [Download the hello.wasm file here](/files/hello.wasm)
 
+```bash
+wget https://wasmedge.org/books/app-dev-guide/en/files/hello.wasm
+```
+
 Use the `wasmedge` command to run the program.
 
 ```bash
@@ -62,6 +66,10 @@ To learn more about how to create Wasm apps in Rust
 This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
 [Download the server.wasm file here](/files/server.wasm)
+
+```bash
+wget https://wasmedge.org/books/app-dev-guide/en/files/server.wasm
+```
 
 Use the `wasmedge` command to run the program.
 
@@ -95,21 +103,29 @@ To learn more about how to create Wasm apps in Rust
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
 
-* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm)
-* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
-* [Download the wasi_http_echo.js file here](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_echo.js)
+* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
+* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
+* [Download the server.js file here](https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js)
+
+```bash
+wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
+wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js
+wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip
+unzip modules.zip
+```
 
 Use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge --dir .:. wasmedge_quickjs.wasm wasi_http_echo.js
+$ wasmedge --dir .:. wasmedge_quickjs.wasm server.js
+listen 8080 ...
 ```
 
 From another terminal window, do the following.
 
 ```bash
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
-echo:Hello WasmEdge
+Hello WasmEdge
 ```
 
 To learn more about how to run JavaScript apps in WasmEdge.

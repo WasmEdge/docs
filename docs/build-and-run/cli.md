@@ -75,7 +75,7 @@ The options of the `wasmedge` CLI tool are as follows.
 
 ## Examples
 
-### Execute A Standalone WebAssembly app: Hello world
+### Build and run a standalone WebAssembly app
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
@@ -92,7 +92,7 @@ $ wasmedge target/wasm32-wasi/release/hello.wasm
 Hello WasmEdge!
 ```
 
-#### Execute With `statistics` Enabled
+#### Execute with `statistics` enabled
 
 The CLI supports `--enable-all-statistics` flags for the statistics and gas metering.
 
@@ -116,7 +116,7 @@ Hello WasmEdge!
 [2021-12-09 16:03:33.261] [info] =======================   End   ======================
 ```
 
-#### Execute With `gas-limit` Enabled
+#### Execute with `gas-limit` enabled
 
 The CLI supports `--gas-limit` flags for controlling the execution costs.
 
@@ -164,17 +164,63 @@ Hello WasmEdge!
 [2021-12-23 15:19:06.690] [info]  Gas costs: 20
 ```
 
-### JavaScript Examples
+### Call a WebAssembly function compiled from Rust
 
-It is possible to use WasmEdge as a high-performance, secure, extensible, easy to deploy, and [Kubernetes-compliant](https://github.com/second-state/wasmedge-containers-examples) JavaScript runtime.
+The [add](https://github.com/second-state/wasm-learning/tree/master/cli/add) program is written in Rust and contains an exported `add()` function. You can compile it into WebAssembly and use `wasmedge` to call the `add()` function. In this example, you will see how it is done from the CLI. It is often used when you embed WasmEdge into another host application, and need to call a Wasm function from the host.
 
-The [qjs.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/js/qjs.wasm) program is a JavaScript interpreter compiled into WebAssembly and running in WasmEdge.
-The [hello.js](https://github.com/WasmEdge/WasmEdge/raw/master/examples/js/hello.js) file is a very simple JavaScript program.
+You will need to have the [Rust compiler installed](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites), and then use the following command to build the Wasm bytecode file from the Rust source code.
+
+```bash
+cargo build --target wasm32-wasi --release
+```
+
+You can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters.
+
+```bash
+wasmedge --reactor add.wasm add 2 2
+```
+
+The output will be:
+
+```bash
+4
+```
+
+### Call a WebAssembly function written in WAT
+
+We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) WebAssembly program.
+It exported a `fib()` function which takes a single `i32` integer as the input parameter. We can execute `wasmedge` in reactor mode to invoke the exported function.
 
 You can run:
 
 ```bash
-wasmedge --dir .:. qjs.wasm hello.js 1 2 3
+wasmedge --reactor fibonacci.wasm fib 10
+```
+
+The output will be:
+
+```bash
+89
+```
+
+### JavaScript examples
+
+It is possible to use WasmEdge as a high-performance, secure, extensible, easy to deploy, and [Kubernetes-compliant](https://github.com/second-state/wasmedge-containers-examples) JavaScript runtime.
+There is no need to build a JavaScript app. You just need to download the WasmEdge JavaScript runtime for Node.js.
+
+* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
+* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
+
+```bash
+wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
+wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip
+unzip modules.zip
+```
+
+The [hello.js](https://github.com/WasmEdge/WasmEdge/raw/master/examples/js/hello.js) file is a very simple JavaScript program. You can run:
+
+```bash
+wasmedge --dir .:. wasmedge_quickjs.wasm hello.js 1 2 3
 ```
 
 The output will be:
@@ -197,41 +243,6 @@ $ wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/exam
 $ wasmedge-tensorflow-lite --dir .:. qjs_tf.wasm main.js
 label: Hot dog
 confidence: 0.8941176470588236
-```
-
-### Call A WebAssembly Function Written in WAT
-
-We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) WebAssembly program.
-It exported a `fib()` function which takes a single `i32` integer as the input parameter. We can execute `wasmedge` in reactor mode to invoke the exported function.
-
-You can run:
-
-```bash
-wasmedge --reactor fibonacci.wasm fib 10
-```
-
-The output will be:
-
-```bash
-89
-```
-
-### Call A WebAssembly Function Compiled From Rust
-
-The [add.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/add.wasm) WebAssembly program contains an exported `add()` function, which is compiled from Rust.
-Checkout its [Rust source code here](https://github.com/second-state/wasm-learning/tree/master/cli/add).
-We can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters.
-
-You can run:
-
-```bash
-wasmedge --reactor add.wasm add 2 2
-```
-
-The output will be:
-
-```bash
-4
 ```
 
 ## Docker images for the CLI tools
