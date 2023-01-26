@@ -10,7 +10,7 @@ In this article, we will use the [wasmedge-quickjs/modules](https://github.com/s
 
 Before we started, you also need 
 
-* [WasmEdge installed](docs/quick-start/install.md)
+* [WasmEdge installed](docs/build-and-run/install.md)
 * Download the WasmEdge QuickJS Runtime
     * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
  

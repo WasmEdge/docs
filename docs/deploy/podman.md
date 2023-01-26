@@ -38,7 +38,7 @@ Use the following commands to install podman on your system. Here I use Ubuntu a
 sudo apt-get -y update
 sudo apt-get -y install podman
 ```
-2. [Install WasmEdge](docs/quick-start/install.md)
+2. [Install WasmEdge](docs/build-and-run/install.md)
 
 3. Build and configure crun with WasmEdge support
 

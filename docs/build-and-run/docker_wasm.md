@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# 3.3 Docker + Wasm
+# Docker + Wasm
 
 Docker announced its support for WebAssembly in the partnership with WasmEdge. So for WasmEdge developers, you can use Docker Desktop and Docker CLI to build, publish and run WasmEdge apps.
 

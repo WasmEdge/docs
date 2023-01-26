@@ -13,7 +13,7 @@ In this part, we will walk you through what is WasmEdge and how to develop Wasm 
 
 We will cover the following content:
 
-* [WasmEdge Quick Start](/docs/category/quick-start)
+* [Getting Started](/docs/category/getting-started-with-wasmEdge)
 * Introduce the [WasmEdge Runtime](/docs/category/what-is-wasmedge)
 * [Building and running WasmEdge apps](/docs/category/building-and-running-wasmedge-apps)
 * Develop WebAssembly apps from your programming languages from [Rust](/docs/category/develop-wasm-apps-in-rust), [C/C++](/docs/category/develop-wasm-apps-in-cc), [JavaScript](/docs/category/developing-wasm-apps-in-javascript), [Go](/docs/category/develop-wasm-apps-in-go), and many other laungages.

@@ -10,7 +10,7 @@ For JavaScript developers, incorporating Rust functions into JavaScript APIs is 
 
 ## Prerequisites
 
-* [WasmEdge installed](docs/quick-start/install.md)
+* [WasmEdge installed](docs/build-and-run/install.md)
 * Download the WasmEdge QuickJS Runtime
     * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
 * [Rust](https://www.rust-lang.org/tools/install) installed

@@ -10,7 +10,7 @@ Before we start, let's set up the software we need.
 
 ## Install WasmEdge
 
-Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation instruction](docs/quick-start/install.md).
+Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation instruction](docs/build-and-run/install.md).
 
 ```
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
@@ -37,7 +37,7 @@ That's it. Go to the following chapters to build and compile Rust programs in ac
 
 Besides this, if you want to explore AI inference with WasmEdge, you also need to build the Wasi-nn plugin from source.
 
-* [Install the WASI-NN plugin with OpenVINO backend](docs/quick-start/install.md#/wasi-nn-plugin-with-openvino-backend)
-* [Install the WASI-NN plugin with Pytorch backend](docs/quick-start/install.md#/wasi-nn-plugin-with-pytorch-backend)
-* [Install the WASI-NN plugin with TensorFlow Lite backend](docs/quick-start/install.md#/wasi-nn-plugin-with-pwith-tensorflow-lite)
+* [Install the WASI-NN plugin with OpenVINO backend](/docs/build-and-run/install.md#wasi-nn-plugin-with-openvino-backend)
+* [Install the WASI-NN plugin with Pytorch backend](/docs/build-and-run/install.md#wasi-nn-plugin-with-pytorch-backend)
+* [Install the WASI-NN plugin with TensorFlow Lite backend](/docs/build-and-run/install.md#wasi-nn-plugin-with-pwith-tensorflow-lite)
 
