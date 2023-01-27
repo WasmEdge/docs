@@ -6,7 +6,7 @@ sidebar_position: 1
 
 In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](/docs/build-and-run/install.md).
 
-> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md).
+> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat.md).
 
 We will cover the following examples.
 

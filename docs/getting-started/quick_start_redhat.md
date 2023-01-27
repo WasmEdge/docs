@@ -1,12 +1,12 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Quick start with Docker
+# Quick start with Red Hat
 
-In this guide, we will walk you through how to quickly run WasmEdge apps in Docker Desktop. There is no additional dependencies as the entire development and runtime environments are managed by Docker Desktop.
+In this guide, we will walk you through how to quickly run WasmEdge apps in Fedora / CentOS / Red Hat Linux / OpenShift systems. There is no additional dependencies as the entire development and runtime environments are managed by OpenSift / Podman.
 
-> If you are not using Docker Desktop, [get started here](quick_start.md).
+> If you are not using OpenShift / Podman, [get started here](quick_start.md).
 
 We will cover the following examples.
 
@@ -14,34 +14,34 @@ We will cover the following examples.
 * [Run an HTTP server](#run-an-http-server)
 * [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
 
-In this quick start guide, we cover how to run Wasm container apps using Docker commands. If you are interested in how to build, publish, and compose Wasm container apps from source code, check out the [Docker + wasm chapter](/docs/build-and-run/docker_wasm.md).
+## Install
 
-## Prerequisite
+You can use a one-liner `dnf` command to install [Podman](https://www.redhat.com/en/topics/containers/what-is-podman) on your Fedora / CentOS / Red Hat Linux system. The WasmEdge Runtime is included as an officially maintained upstream package from Fedora 37 and Red Hat REPL 8 and 9.
 
-You must have Docker Desktop 4.15+ installed. 
-Make sure you have turned on the containerd image store feature in your Docker Desktop. 
+```bash
+dnf install wasmedge crun-wasm podman
+```
 
-![](docker_config.png)
 
 ## Run a standalone Wasm app
 
 The Hello world example is a standalone Rust application. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-Use Docker to run the containerized Wasm app. The Wasm container image is stored in Docker Hub, and its image size is only 500KB. This image can run on any OS and CPU platform Docker supports.
+Use Podman to run the containerized Wasm app. The Wasm container image is stored in Docker Hub, and its image size is only 500KB. This image can run on any OS and CPU platform Red Hat supports.
 
 ```bash
-$ docker run --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/rust-example-hello:latest
+$ podman --runtime /usr/bin/crun-wasm run --platform=wasi/wasm -t --rm docker.io/secondstate/rust-example-hello:latest
 Hello WasmEdge!
 ```
 
 ## Run an HTTP server
 
-This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
+This example is a standalone HTTP server written in Rust. It demonstrates Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
-Use Docker to pull the container image (around 800KB) from Docker Hub and then run it in a WasmEdge container. The container starts as a server. Note how we map the container's port 8080 to the local host's port 8080 so that the server becomes accessible from outside of the Wasm container.
+Use Podman to pull the container image (around 800KB) from Docker Hub and then run it in a WasmEdge container. The container starts as a server. Note how we map the container's port 8080 to the local host's port 8080 so that the server becomes accessible from outside of the Wasm container.
 
 ```bash
-$ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/rust-example-server:latest
+$ podman --runtime /usr/bin/crun-wasm run -dp 8080:8080 --platform=wasi/wasm -t --rm docker.io/secondstate/rust-example-server:latest
 Listening on http://0.0.0.0:8080
 ```
 
@@ -60,7 +60,7 @@ Hello WasmEdge
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for zero-dependency and portable node.js applications.
 
 ```bash
-$ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/node-example-server:latest
+$ podman --runtime /usr/bin/crun-wasm run -dp 8080:8080 --platform=wasi/wasm -t --rm docker.io/secondstate/node-example-server:latest
 ... ...
 ```
 
@@ -73,7 +73,6 @@ Hello WasmEdge
 
 ## Next steps
 
-* [Learn more about building and managing Wasm containers in Docker](/docs/build-and-run/docker_wasm.md)
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
 * [Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * Use Docker Compose to build and Rust-based microservices
