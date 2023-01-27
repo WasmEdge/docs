@@ -16,10 +16,10 @@ We will cover the following examples.
 
 ## Install
 
-You can use a one-liner `dnf` command to install [Podman](https://www.redhat.com/en/topics/containers/what-is-podman) on your Fedora / CentOS / Red Hat Linux system. The WasmEdge Runtime is included as an officially maintained upstream package from Fedora 37 and Red Hat REPL 8 and 9.
+You can use an one-liner `dnf` command to install WasmEdge, [crun](https://github.com/containers/crun) and [Podman](https://www.redhat.com/en/topics/containers/what-is-podman) on your Fedora / CentOS / Red Hat Linux system. The WasmEdge Runtime is available as an [officially maintained upstream package](https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html) for Fedora 37 and Red Hat REPL 8 and 9.
 
 ```bash
-dnf install wasmedge crun-wasm podman
+$ dnf install wasmedge crun-wasm podman
 ```
 
 
