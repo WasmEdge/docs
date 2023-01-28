@@ -6,7 +6,7 @@ sidebar_position: 1
 
 In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](/docs/build-and-run/install.md).
 
-> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md).
+> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat.md).
 
 We will cover the following examples.
 
@@ -32,6 +32,10 @@ The Hello world example is a standalone Rust application that can be executed by
 
 [Download the hello.wasm file here](/files/hello.wasm)
 
+```bash
+wget https://wasmedge.org/books/app-dev-guide/en/files/hello.wasm
+```
+
 Use the `wasmedge` command to run the program.
 
 ```bash
@@ -49,19 +53,23 @@ Hello WasmEdge!
 
 To learn more about how to create Wasm apps in Rust
 
+* [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
   * AI inference with PyTorch and Tensorflow
   * HTTP and HTTPS client
   * MySQL database client
   * Redis client
   * Kafka client
-* [Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 
 ## Run an HTTP server
 
 This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
 [Download the server.wasm file here](/files/server.wasm)
+
+```bash
+wget https://wasmedge.org/books/app-dev-guide/en/files/server.wasm
+```
 
 Use the `wasmedge` command to run the program.
 
@@ -80,7 +88,7 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to create Wasm apps in Rust
+To learn more about how to create Wasm services in Rust
 
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
 * [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
@@ -94,22 +102,31 @@ To learn more about how to create Wasm apps in Rust
 ## Run a JavaScript-based server
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
+Its source code is available [here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
-* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm)
-* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
-* [Download the wasi_http_echo.js file here](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_echo.js)
+* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
+* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
+* [Download the server.js file here](https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js)
+
+```bash
+wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
+wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js
+wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip
+unzip modules.zip
+```
 
 Use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge --dir .:. wasmedge_quickjs.wasm wasi_http_echo.js
+$ wasmedge --dir .:. wasmedge_quickjs.wasm server.js
+listen 8080 ...
 ```
 
 From another terminal window, do the following.
 
 ```bash
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
-echo:Hello WasmEdge
+Hello WasmEdge
 ```
 
 To learn more about how to run JavaScript apps in WasmEdge.
