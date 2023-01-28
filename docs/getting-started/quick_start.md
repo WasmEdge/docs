@@ -53,13 +53,13 @@ Hello WasmEdge!
 
 To learn more about how to create Wasm apps in Rust
 
+* [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
   * AI inference with PyTorch and Tensorflow
   * HTTP and HTTPS client
   * MySQL database client
   * Redis client
   * Kafka client
-* [Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 
 ## Run an HTTP server
 
@@ -88,7 +88,7 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to create Wasm apps in Rust
+To learn more about how to create Wasm services in Rust
 
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
 * [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
@@ -102,6 +102,7 @@ To learn more about how to create Wasm apps in Rust
 ## Run a JavaScript-based server
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
+Its source code is available [here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
 * [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
 * [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`

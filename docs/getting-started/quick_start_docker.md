@@ -34,6 +34,16 @@ $ docker run --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secon
 Hello WasmEdge!
 ```
 
+To learn more about how to create Wasm apps in Rust
+
+* [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
+* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+  * AI inference with PyTorch and Tensorflow
+  * HTTP and HTTPS client
+  * MySQL database client
+  * Redis client
+  * Kafka client
+
 ## Run an HTTP server
 
 This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
@@ -55,9 +65,20 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
+To learn more about how to create Wasm services in Rust
+
+* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
+* [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
+* Lightweight microservices in Rust and WasmEdge
+  * [WasmEdge + Nginx + MySQL](https://github.com/second-state/microservice-rust-mysql)
+  * [WasmEdge + Kafka + MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
+  * [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
+
 ## Run a JavaScript-based server
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for zero-dependency and portable node.js applications.
+Its source code is available [here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
 ```bash
 $ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/node-example-server:latest
@@ -71,11 +92,17 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
+To learn more about how to run JavaScript apps in WasmEdge.
+
+* [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
+* [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+* [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
+
 ## Next steps
 
 * [Learn more about building and managing Wasm containers in Docker](/docs/build-and-run/docker_wasm.md)
+* [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
-* [Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * Use Docker Compose to build and Rust-based microservices
   * [WasmEdge / MySQL / Nginx](https://github.com/docker/awesome-compose/tree/master/wasmedge-mysql-nginx) - Sample Wasm-based web application with a static HTML frontend, using a MySQL (MariaDB) database. The frontend connects to a Wasm microservice written in Rust, that runs using the WasmEdge runtime.
   * [WasmEdge / Kafka / MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql) - Sample Wasm-based microservice that subscribes to a Kafka (Redpanda) queue topic, and transforms and saves any incoming message into a MySQL (MariaDB) database.
