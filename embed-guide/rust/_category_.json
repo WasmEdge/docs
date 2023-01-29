@@ -1,0 +1,8 @@
+{
+  "label": "WasmEdge Rust SDK",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "we will learn how to Embed WasmEdge in your Rust host applications"
+  }
+}
