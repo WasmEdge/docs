@@ -65,11 +65,34 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'develop',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Develop',
+          },{
+            type: 'doc',
+            docId: 'embed',
+            position: 'left',
+            label: 'Embed',
+          },{
+            type: 'doc',
+            docId: 'overview',
+            position: 'left',
+            label: 'Contribute',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            type: 'localeDropdown',
+            position: 'right',
+            dropdownItemsBefore: [],
+            dropdownItemsAfter: [
+              {
+                href: 'https://translate.google.com/',
+                label: 'Translate',
+                target: '_blank',
+                rel: null,
+              },
+            ],
+            className: 'icon-link language navbar__item',
+          },
           {
             href: 'https://github.com/WasmEdge/WasmEdge',
             label: 'GitHub',
