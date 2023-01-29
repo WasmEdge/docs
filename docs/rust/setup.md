@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.0 Set up SoftWare for Building and compiling Rust Programs
+# 4.0 Set up Software for Building and Compiling Rust Programs
 
 In the following chapters, we will show how to build and compile Rust programs into Wasm bytecode and then run them in WasmEdge.
 

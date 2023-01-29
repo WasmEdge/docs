@@ -19,8 +19,7 @@ In this guide, we will cover
 
 ## Prerequisite
 
-Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and  
-turn on the containerd image store feature in your Docker Desktop settings. 
+Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and turn on the containerd image store feature in your Docker Desktop settings. 
 
 ![](docker_config.png)
 

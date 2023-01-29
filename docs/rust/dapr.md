@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # 4.7 Use WasmEdge's Dapr SDK to Connect Dapr Sidecar

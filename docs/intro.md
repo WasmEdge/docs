@@ -20,7 +20,7 @@ We will cover the following content:
 * [Deploy Wasm Apps with the existing container toolings](/docs/category/deploy-wasmedge-apps-in-kubernetes)
 
 
-Besides this, we also have two more guides for embedding Wasm Functions and contributing to WasmEdge. Stay tuned.
+Besides this, we also have two more guides for embedding Wasm Functions and contributing to WasmEdge. 
 
 
 If you find some issues or have any feedback, you could reach out to us via the following ways.
