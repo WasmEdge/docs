@@ -188,7 +188,7 @@ Next, you can try to run the app in [Kubernetes](./use-case/kubernetes-crio)!
 ## Run a HTTP server app
 
 Finally, we can run a simple WebAssembly-based HTTP micro-service in CRI-O.
-[A separate article]((https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub.
 In this section, we will start off pulling this WebAssembly-based container image from Docker hub using CRI-O tools.
 
 ```bash

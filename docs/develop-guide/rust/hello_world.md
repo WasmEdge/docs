@@ -39,7 +39,7 @@ Hello WasmEdge
 
 ### The code
 
-The [add example](https://github.com/second-state/wasm-learning/tree/master/cli/add) is a Rust library function that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md) in the reactor mode.
+The [add example](https://github.com/second-state/wasm-learning/tree/master/cli/add) is a Rust library function that can be executed by the [WasmEdge CLI](../build-and-run/cli) in the reactor mode.
 
 The full source code for the Rust [lib.rs](https://github.com/second-state/wasm-learning/blob/master/cli/add/src/lib.rs) file is as follows.
 It provides a simple `add()` function.
