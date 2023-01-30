@@ -6,7 +6,7 @@ sidebar_position: 3
 
 In this guide, we will walk you through how to quickly run WasmEdge apps in Fedora / CentOS / Red Hat Linux / OpenShift systems. There is no additional dependencies as the entire development and runtime environments are managed by OpenSift / Podman.
 
-> If you are not using OpenShift / Podman, [get started here](quick_start.md).
+> If you are not using OpenShift / Podman, [get started here](quick_start).
 
 We will cover the following examples.
 
@@ -36,7 +36,7 @@ Hello WasmEdge!
 To learn more about how to create Wasm apps in Rust
 
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
   * AI inference with PyTorch and Tensorflow
   * HTTP and HTTPS client
   * MySQL database client
@@ -66,7 +66,7 @@ Hello WasmEdge
 
 To learn more about how to create Wasm services in Rust
 
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
 * [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
 * [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
 * Lightweight microservices in Rust and WasmEdge
@@ -100,5 +100,5 @@ To learn more about how to run JavaScript apps in WasmEdge.
 ## Next steps
 
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
-* Write Wasm apps in your favorite languages, like [Rust](/docs/category/develop-wasm-apps-in-rust), [C/C++](/docs/category/develop-wasm-apps-in-cc), [JavaScript](/docs/category/developing-wasm-apps-in-javascript), [Go](/docs/category/develop-wasm-apps-in-go), and many other languages.
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
+* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/developing-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

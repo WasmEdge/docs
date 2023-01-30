@@ -43,7 +43,7 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 
 ### Prerequisites
 
-1. [Install WasmEdge](/docs/build-and-run/install.md)
+1. [Install WasmEdge](../build-and-run/install)
 2. Build and configure crun with WasmEdge support
 
 For now, the easiest approach is just built it yourself from source. First, let's make sure that `crun` dependencies are installed on your Ubuntu 20.04.
@@ -207,7 +207,7 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
-Next, you can try to run the app in [Kubernetes](/docs/deploy/kubernetes.md)!
+Next, you can try to run the app in [Kubernetes](../deploy/kubernetes)!
 
 ### Run a HTTP server app
 
@@ -269,4 +269,4 @@ $ curl -d "name=WasmEdge" -X POST http://10.85.0.2:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](/docs/deploy/kubernetes.md)!
+Next, you can try to run it in [Kubernetes](../deploy/kubernetes)!

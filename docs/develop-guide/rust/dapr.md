@@ -12,7 +12,7 @@ The figure below shows a Dapr-enabled microservice running inside the WasmEdge s
 
 ## Prerequisites
 
-Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
+Before we started, make sure [you have Rust and WasmEdge installed](setup).
 
 You also need to install the following tools.
 

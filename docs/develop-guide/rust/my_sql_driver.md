@@ -6,7 +6,7 @@ sidebar_position: 7
 
 Database connection is necessary for today's enterprise development. WasmEdge provides MySQL-based drivers for Rust developer, enabling developers to build database applications in Rust and then running in WasmEdge.
 
-> Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
+> Before we started, make sure [you have Rust and WasmEdge installed](setup).
 
 ## Run the example
 

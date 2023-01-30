@@ -10,7 +10,7 @@ The popular WebAssembly System Interface (WASI) provides a design pattern for sa
 
 > If you are not familiar with Rust, you can try our [experimental AI inference DSL](https://github.com/second-state/wasm-learning/tree/master/cli/classify_yml) or try our [JavaScript examples].
 
-> Before we started, make sure [you have Rust, WasmEdge and TensorFlow Extension installed](/docs/rust/setup.md).
+> Before we started, make sure [you have Rust, WasmEdge and TensorFlow Extension installed](../rust/setup).
 
 ### Build
 

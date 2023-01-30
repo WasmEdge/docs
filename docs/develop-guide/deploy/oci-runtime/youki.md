@@ -35,7 +35,7 @@ make youki-dev
 export LD_LIBRARY_PATH=$HOME/.wasmedge/lib
 ```
 
-2. [Install WasmEdge](/docs/build-and-run/install.md)
+2. [Install WasmEdge](../build-and-run/install)
 
 3. Configure the `config.json` from youki to run Wasm modules.
 

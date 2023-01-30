@@ -10,7 +10,7 @@ With [rollup.js](https://rollupjs.org/guide/en/), we can run CommonJS (CJS) and 
 
 ## Prerequisites
 
-* [WasmEdge installed](docs/build-and-run/install.md)
+* [WasmEdge installed](../build-and-run/install)
 * Download the WasmEdge QuickJS Runtime
     * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
 
@@ -43,7 +43,7 @@ const {sqrt} = require('mathjs');
 console.log('sqrt(-4)=', sqrt(-4).toString());
 ```
 
-In order to run it, we must first use the [rollup.js](https://rollupjs.org/guide/en/) tool to build all dependencies into a single file. In the process, `rollup.js` converts CommonJS modules into [WasmEdge-compatible ES6 modules](es6.md). The build script is [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/rollup.config.js).
+In order to run it, we must first use the [rollup.js](https://rollupjs.org/guide/en/) tool to build all dependencies into a single file. In the process, `rollup.js` converts CommonJS modules into [WasmEdge-compatible ES6 modules](es6). The build script is [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/rollup.config.js).
 
 ```javascript
 const {babel} = require('@rollup/plugin-babel');

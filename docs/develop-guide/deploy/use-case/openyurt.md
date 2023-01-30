@@ -112,7 +112,7 @@ systemctl start containerd
 
 #### Install WasmEdge
 
-Use the [simple install script](/docs/build-and-run/install.md) to install WasmEdge on your edge node.
+Use the [simple install script](../build-and-run/install) to install WasmEdge on your edge node.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash

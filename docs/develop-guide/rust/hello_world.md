@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # 4.1 Hello world
 
-> Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
+> Before we started, make sure [you have Rust and WasmEdge installed](setup).
 
 ## A simple main app
 
-The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](docs/build-and-run/cli.md). Its [source code is available here](https://github.com/second-state/wasm-learning/tree/master/cli/hello).
+The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). Its [source code is available here](https://github.com/second-state/wasm-learning/tree/master/cli/hello).
 
 The full source code for the Rust [main.rs](https://github.com/second-state/rust-examples/tree/main/hello) file is as follows.
 It echoes the command line arguments passed to this program at runtime.

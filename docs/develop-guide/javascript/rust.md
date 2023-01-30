@@ -6,11 +6,11 @@ sidebar_position: 8
 
 For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" and yet still take advantage of the high performance Rust functions. With the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge), you can do exactly that.
 
-> The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules.md).
+> The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules).
 
 ## Prerequisites
 
-* [WasmEdge installed](docs/build-and-run/install.md)
+* [WasmEdge installed](../build-and-run/install)
 * Download the WasmEdge QuickJS Runtime
     * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
 * [Rust](https://www.rust-lang.org/tools/install) installed
@@ -324,4 +324,4 @@ TypeError: cannot read property 'x' of undefined
 
 Using the Rust API, we could create JavaScript classes that inherit (or extend) from existing classes. That allows developers to create complex JavaScript APIs using Rust by building on existing solutions. You can see [an example here](https://github.com/second-state/wasmedge-quickjs/blob/main/examples/js_extend.rs).
 
-Next, you can see the Rust code in the [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder for more examples on how to implement common JavaScript build-in functions including [Node.js](nodejs.md) APIs.
+Next, you can see the Rust code in the [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder for more examples on how to implement common JavaScript build-in functions including [Node.js](nodejs) APIs.

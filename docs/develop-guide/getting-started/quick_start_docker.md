@@ -6,7 +6,7 @@ sidebar_position: 2
 
 In this guide, we will walk you through how to quickly run WasmEdge apps in Docker Desktop. There is no additional dependencies as the entire development and runtime environments are managed by Docker Desktop.
 
-> If you are not using Docker Desktop, [get started here](quick_start.md).
+> If you are not using Docker Desktop, [get started here](quick_start).
 
 We will cover the following examples.
 
@@ -14,7 +14,7 @@ We will cover the following examples.
 * [Run an HTTP server](#run-an-http-server)
 * [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
 
-In this quick start guide, we cover how to run Wasm container apps using Docker commands. If you are interested in how to build, publish, and compose Wasm container apps from source code, check out the [Docker + wasm chapter](/docs/build-and-run/docker_wasm.md).
+In this quick start guide, we cover how to run Wasm container apps using Docker commands. If you are interested in how to build, publish, and compose Wasm container apps from source code, check out the [Docker + wasm chapter](../build-and-run/docker_wasm).
 
 ## Prerequisite
 
@@ -37,7 +37,7 @@ Hello WasmEdge!
 To learn more about how to create Wasm apps in Rust
 
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
   * AI inference with PyTorch and Tensorflow
   * HTTP and HTTPS client
   * MySQL database client
@@ -67,7 +67,7 @@ Hello WasmEdge
 
 To learn more about how to create Wasm services in Rust
 
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
 * [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
 * [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
 * Lightweight microservices in Rust and WasmEdge
@@ -100,10 +100,10 @@ To learn more about how to run JavaScript apps in WasmEdge.
 
 ## Next steps
 
-* [Learn more about building and managing Wasm containers in Docker](/docs/build-and-run/docker_wasm.md)
+* [Learn more about building and managing Wasm containers in Docker](../build-and-run/docker_wasm)
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
 * Use Docker Compose to build and Rust-based microservices
   * [WasmEdge / MySQL / Nginx](https://github.com/docker/awesome-compose/tree/master/wasmedge-mysql-nginx) - Sample Wasm-based web application with a static HTML frontend, using a MySQL (MariaDB) database. The frontend connects to a Wasm microservice written in Rust, that runs using the WasmEdge runtime.
   * [WasmEdge / Kafka / MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql) - Sample Wasm-based microservice that subscribes to a Kafka (Redpanda) queue topic, and transforms and saves any incoming message into a MySQL (MariaDB) database.
-* Write Wasm apps in your favorite languages, like [Rust](/docs/category/develop-wasm-apps-in-rust), [C/C++](/docs/category/develop-wasm-apps-in-cc), [JavaScript](/docs/category/developing-wasm-apps-in-javascript), [Go](/docs/category/develop-wasm-apps-in-go), and many other languages.
+* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/developing-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

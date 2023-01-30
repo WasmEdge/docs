@@ -283,4 +283,4 @@ That's it. Feel free to fork this project and use it as a template for your own 
 
 ### Further reading
 
-To learn how Docker + Wasm works under the hood, visit the [containerd](/docs/deploy/oci-runtime/containerd.md) chapter for more details.
+To learn how Docker + Wasm works under the hood, visit the [containerd](../deploy/oci-runtime/containerd) chapter for more details.

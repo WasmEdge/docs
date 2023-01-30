@@ -9,7 +9,7 @@ The `fetch` API is widely used in browser and node-based JavaScript applications
 
 ## Prerequisites
 
-* [WasmEdge installed](/docs/build-and-run/install.md)
+* [WasmEdge installed](../build-and-run/install)
 * Download the WasmEdge QuickJS Runtime
 
 ```bash

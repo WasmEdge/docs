@@ -5,9 +5,9 @@ sidebar_position: 1
 # 4.3.1 Client
 
 
-WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. In this chapter, we will cover simple synchronous clients, asynchronous clients, as well as clients based on low level hyper and socket APIs. For HTTP servers in WasmEdge, please see [the next chapter](server.md).
+WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. In this chapter, we will cover simple synchronous clients, asynchronous clients, as well as clients based on low level hyper and socket APIs. For HTTP servers in WasmEdge, please see [the next chapter](server).
 
-> Before we started, make sure [you have Rust and WasmEdge installed](/docs/rust/setup.md).
+> Before we started, make sure [you have Rust and WasmEdge installed](../rust/setup).
 
 ## Synchronous
 

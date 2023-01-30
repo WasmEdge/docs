@@ -8,7 +8,7 @@ WasmEdg (project under CNCF) is a lightweight, high-performance, and extensible 
 
 ## High Performance
 
-Through [the AoT compiler](/docs/build-and-run/aot.md), WasmEdge is the fastest WebAssembly runtime on the market.
+Through [the AoT compiler](../build-and-run/aot), WasmEdge is the fastest WebAssembly runtime on the market.
 
 * [A Lightweight Design for High-performance Serverless Computing](https://arxiv.org/abs/2010.07115), published on IEEE Software, Jan 2021. [https://arxiv.org/abs/2010.07115](https://arxiv.org/abs/2010.07115)
 * [Performance Analysis for Arm vs. x86 CPUs in the Cloud](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/), published on infoQ.com, Jan 2021. [https://www.infoq.com/articles/arm-vs-x86-cloud-performance/](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/)
@@ -43,9 +43,9 @@ WasmEdge could be seamlessly integrated with the existing cloud-native infra.
 
 There are several options to manage Wasm apps as "containers" under Kubernetes. All options will give you a Kubernetes cluster that runs Linux containers and WasmWasm containers side by side. 
 
-Option #1 is to [use an OCI runtime crun](/docs/deploy/oci-runtime/crun.md) (the C version of runc — mainly supported by Red Hat). crun decides whether an OCI image is WasmWasm or Linux based on image annotations. If the image is annotated as wasm32, crun will bypass the Linux container setup and just use WasmEdge to run it. Based on crun, we can get the entire Kubernetes stack CRI-O, containerd, Podman, kind, micro k8s, and k8s to work with Wasm images. 
+Option #1 is to [use an OCI runtime crun](../deploy/oci-runtime/crun) (the C version of runc — mainly supported by Red Hat). crun decides whether an OCI image is WasmWasm or Linux based on image annotations. If the image is annotated as wasm32, crun will bypass the Linux container setup and just use WasmEdge to run it. Based on crun, we can get the entire Kubernetes stack CRI-O, containerd, Podman, kind, micro k8s, and k8s to work with Wasm images. 
 
-Option #2 is to [use a containerd-shim to start Wasm "containers" via runwasi](/docs/deploy/oci-runtime/containerd.md). Basically, containerd could look at the image's target platform. It uses runwasi if the image is wasm32 and runc if it is x86 / arm. This is the approach behind Docker + Wasm.
+Option #2 is to [use a containerd-shim to start Wasm "containers" via runwasi](../deploy/oci-runtime/containerd). Basically, containerd could look at the image's target platform. It uses runwasi if the image is wasm32 and runc if it is x86 / arm. This is the approach behind Docker + Wasm.
 
 ## Cross Platform
 

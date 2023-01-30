@@ -6,9 +6,9 @@ sidebar_position: 2
 
 In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous. In this chapter, we will cover simple HTTP servers based on the wrap API, as well as low level hyper and socket APIs.
 
-For HTTP clients in WasmEdge, please see [the previous chapter](client.md).
+For HTTP clients in WasmEdge, please see [the previous chapter](client).
 
-> Before we started, make sure [you have Rust and WasmEdge installed](/docs/rust/setup.md).
+> Before we started, make sure [you have Rust and WasmEdge installed](../rust/setup).
 
 
 ## The simple approach

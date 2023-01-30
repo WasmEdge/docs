@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Quick start on Linux
 
-In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](/docs/build-and-run/install.md).
+In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](../build-and-run/install).
 
-> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker.md). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat.md).
+> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat).
 
 We will cover the following examples.
 
@@ -28,7 +28,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 ## Run a standalone Wasm app
 
-The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
+The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
 [Download the hello.wasm file here](/files/hello.wasm)
 
@@ -54,7 +54,7 @@ Hello WasmEdge!
 To learn more about how to create Wasm apps in Rust
 
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
   * AI inference with PyTorch and Tensorflow
   * HTTP and HTTPS client
   * MySQL database client
@@ -90,7 +90,7 @@ Hello WasmEdge
 
 To learn more about how to create Wasm services in Rust
 
-* [Rust developer guides](/docs/category/develop-wasm-apps-in-rust)
+* [Rust developer guides](../../category/develop-wasm-apps-in-rust)
 * [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
 * [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
 * Lightweight microservices in Rust and WasmEdge
@@ -138,5 +138,5 @@ To learn more about how to run JavaScript apps in WasmEdge.
 
 ## Next steps
 
-* Check out all available [WasmEdge CLI options](/docs/build-and-run/cli.md) to explore WasmEdge's features
-* Write Wasm apps in your favorite languages, like [Rust](/docs/category/develop-wasm-apps-in-rust), [C/C++](/docs/category/develop-wasm-apps-in-cc), [JavaScript](/docs/category/developing-wasm-apps-in-javascript), [Go](/docs/category/develop-wasm-apps-in-go), and many other languages.
+* Check out all available [WasmEdge CLI options](../build-and-run/cli) to explore WasmEdge's features
+* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/developing-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

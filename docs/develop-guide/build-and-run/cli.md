@@ -77,7 +77,7 @@ The options of the `wasmedge` CLI tool are as follows.
 
 ### Build and run a standalone WebAssembly app
 
-The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](/docs/build-and-run/cli.md). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
+The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
 You will need to have the [Rust compiler installed](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites), and then use the following command to build the Wasm bytecode file from the Rust source code.
 
@@ -247,7 +247,7 @@ confidence: 0.8941176470588236
 
 ## Docker images for the CLI tools
 
-The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize Wasm apps, [check out this](/docs/getting-started/quick_start_docker.md).
+The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize Wasm apps, [check out this](../getting-started/quick_start_docker).
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 

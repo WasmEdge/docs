@@ -8,7 +8,7 @@ The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssemb
 The `wasm32-wasi` target in the Rust compiler supports WASI.
 In this section, we will use [an example project](https://github.com/second-state/rust-examples/tree/main/wasi) to show how to use Rust standard APIs to access operating system services.
 
-> Before we started, make sure [you have Rust and WasmEdge installed](setup.md).
+> Before we started, make sure [you have Rust and WasmEdge installed](setup).
 
 ## Random numbers
 
@@ -137,7 +137,7 @@ File content is This is in a file
 
 ## Functions
 
-As [we have seen](hello_world.md#a-simple-function), you can create WebAssembly functions in a Rust `lib.rs` project. You can also use WASI functions in those functions.
+As [we have seen](hello_world#a-simple-function), you can create WebAssembly functions in a Rust `lib.rs` project. You can also use WASI functions in those functions.
 However, an important caveat is that, without a `main()` function, you will need to explicitly call a helper function to initialize environment for WASI functions to work properly.
 
 In the Rust program, add a helper crate in Cargo.toml so that the WASI initialization code can be applied to your exported public library functions.

@@ -38,7 +38,7 @@ Use the following commands to install podman on your system. Here I use Ubuntu a
 sudo apt-get -y update
 sudo apt-get -y install podman
 ```
-2. [Install WasmEdge](docs/build-and-run/install.md)
+2. [Install WasmEdge](../build-and-run/install)
 
 3. Build and configure crun with WasmEdge support
 
@@ -73,6 +73,6 @@ spec: 1.0.0
  podman run --rm --annotation module.wasm.image/variant=compat-smart docker.io/wasmedge/example-wasi:latest /wasi_example_main.wasm 50000000
 ```
 
-For more information, you could refered to [crun](/docs/deploy/oci-runtime/crun.md) chapter.
+For more information, you could refered to [crun](../deploy/oci-runtime/crun) chapter.
 
 There is a great open source project introducing podman and Wasm from community called [Kwasm](https://github.com/KWasm/podman-wasm). Check it out!

@@ -7,7 +7,7 @@ sidebar_position: 1
 In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms.
 We will cover how to install plugins to WasmEdge.
 
-> Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. [Check out how to run WasmEdge apps in Docker Desktop.](docker_wasm.md)
+> Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. [Check out how to run WasmEdge apps in Docker Desktop.](docker_wasm)
 
 ## Install
 
@@ -84,7 +84,7 @@ After you installed WasmEdge, you may want to use WasmEdge's more features. Then
 
 ### TensorFlow and Image Processing Extension
 
-If you would like to install WasmEdge with its [Tensorflow and image processing extensions](https://www.secondstate.io/articles/wasi-tensorflow/), please run the following command. It will install WasmEdge with the `tensorflow` and `image` extensions on your system. For the usage of those two extensions, please refer to [TensorFlow Inference in Rust](/docs/rust/ai_inference/tensorflow.md) chapter.
+If you would like to install WasmEdge with its [Tensorflow and image processing extensions](https://www.secondstate.io/articles/wasi-tensorflow/), please run the following command. It will install WasmEdge with the `tensorflow` and `image` extensions on your system. For the usage of those two extensions, please refer to [TensorFlow Inference in Rust](../rust/ai_inference/tensorflow) chapter.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e all
@@ -92,7 +92,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Next, run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Then, go to [TensorFlow-lite in Rust chapter](docs/rust/ai_inference/tensorflow.md) to see how to run AI inference with TensorFlow Lite.
+Then, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow) to see how to run AI inference with TensorFlow Lite.
 
 ### WASI-NN plugin with OpenVINO™ backend
 
@@ -129,7 +129,7 @@ export PATH=$PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/bin
 export WASMEDGE_PLUGIN_PATH=$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
 ```
 
-Next, go to the [OpenVINO in Rust](docs/rust/ai_inference/openvino.md) chapter to see how to run AI inference with OpenVINO.
+Next, go to the [OpenVINO in Rust](../rust/ai_inference/openvino) chapter to see how to run AI inference with OpenVINO.
 
 ### WASI-NN plugin with Pytorch backend
 
@@ -164,7 +164,7 @@ export PATH=$PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/bin
 export WASMEDGE_PLUGIN_PATH=$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
 ```
 
-Next, go to the [Pytorch in Rust chapter](docs/rust/ai_inference/pytorch.md) to see how to run AI inference with Pytorch.
+Next, go to the [Pytorch in Rust chapter](../rust/ai_inference/pytorch) to see how to run AI inference with Pytorch.
 
 ### WASI-NN plugin with TensorFlow Lite
 
@@ -203,7 +203,7 @@ export PATH=$PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/bin
 export WASMEDGE_PLUGIN_PATH=$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
 ```
 
-Next, go to [TensorFlow-lite in Rust chapter](docs/rust/ai_inference/tensorflow_lite.md) to see how to run AI inference with TensorFlow Lite.
+Next, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow_lite) to see how to run AI inference with TensorFlow Lite.
 
 ## Uninstall
 

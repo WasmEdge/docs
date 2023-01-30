@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Prerequisites
 
-* [WasmEdge installed](docs/build-and-run/install.md)
+* [WasmEdge installed](../build-and-run/install)
 * Download the WasmEdge QuickJS Runtime
     * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
 * Optional: [Rust](https://www.rust-lang.org/tools/install) installed, if you want to build the program yourself
@@ -44,7 +44,7 @@ Hello WasmEdge Runtime
 
 ## Build it yourself from the source
 
-This section is optional. Read on if you are interested in [adding custom built-in JavaScript APIs](rust.md) to the runtime.
+This section is optional. Read on if you are interested in [adding custom built-in JavaScript APIs](rust) to the runtime.
 
 
 Following the instructions, you will be able to build a JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.

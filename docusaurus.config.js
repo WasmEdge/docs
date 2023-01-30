@@ -12,6 +12,7 @@ const config = {
   baseUrl: '/book/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -24,7 +25,11 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en','cn'],
+    localeConfigs: {
+      en: {label: 'English'},
+      cn: {label: '简体中文'}
+    }
   },
 
   presets: [
@@ -65,17 +70,17 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'develop',
+            docId: 'develop-guide/overview',
             position: 'left',
             label: 'Develop',
           },{
             type: 'doc',
-            docId: 'embed',
+            docId: 'embed-guide/overview',
             position: 'left',
             label: 'Embed',
           },{
             type: 'doc',
-            docId: 'overview',
+            docId: 'contribute-guide/overview',
             position: 'left',
             label: 'Contribute',
           },

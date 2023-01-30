@@ -39,7 +39,7 @@ make
 sudo make install
 ```
 
-2. [Install WasmEdge](docs/quick-start/install.md)
+2. [Install WasmEdge](docs/quick-start/install)
 
 
 3. Install and configure CRI-O 
@@ -183,7 +183,7 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
-Next, you can try to run the app in [Kubernetes](./use-case/kubernetes-crio.md)!
+Next, you can try to run the app in [Kubernetes](./use-case/kubernetes-crio)!
 
 ## Run a HTTP server app
 
@@ -245,4 +245,4 @@ $ curl -d "name=WasmEdge" -X POST http://10.85.0.2:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](./use-case/kubernetes-crio.md)!
+Next, you can try to run it in [Kubernetes](./use-case/kubernetes-crio)!

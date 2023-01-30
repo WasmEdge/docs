@@ -31,7 +31,7 @@ arch=amd64 version=v0.6.0 && rm -rf edgeadm-linux-* && wget https://superedge-12
 ```
 
 
-Other installation, deployment, and administration, see our [**Tutorial**](https://superedge.io/docs/installation/)
+Other installation, deployment, and administration, see our [**Tutorial**](https://superedge.io../installation/)
 
 ## Install WasmEdge
 

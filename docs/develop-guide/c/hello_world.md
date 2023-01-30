@@ -11,7 +11,7 @@ This chapter will take Hello World as an example to show how to compile a C prog
 
 Before we started, make sure you have installed the following software:
 
-1. [Install WasmEdge](docs/build-and-run/install.md)
+1. [Install WasmEdge](../build-and-run/install)
 
 2. Emscripten, a toolchain for compiling C/C++ to WebAssembly. Please refer to the [emcc official repository](https://github.com/emscripten-core/emsdk) for the detailed instructions.
 
