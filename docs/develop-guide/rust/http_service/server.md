@@ -8,7 +8,7 @@ In order for WasmEdge to become a cloud-native runtime for microservices, it nee
 
 For HTTP clients in WasmEdge, please see [the previous chapter](client).
 
-> Before we started, make sure [you have Rust and WasmEdge installed](../rust/setup).
+> Before we started, make sure [you have Rust and WasmEdge installed](../../rust/setup).
 
 
 ## The simple approach

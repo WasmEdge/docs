@@ -10,7 +10,7 @@ While the simple HTTP connections from the previous chapter are easy to implemen
 
 So in this chapter, we will start with [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example).
 
-> Before we started, make sure [you have Rust and WasmEdge installed](../rust/setup).
+> Before we started, make sure [you have Rust and WasmEdge installed](../../rust/setup).
 
 ## A Simple HTTP Client
 

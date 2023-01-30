@@ -6,7 +6,7 @@ sidebar_position: 3
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) as an example to discuss how to do AI inference with OpenVINO in WasmEdge.
 
-> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with OpenVINO installed](../rust/setup).
+> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with OpenVINO installed](../../rust/setup).
 
 ## Quick Start
 
