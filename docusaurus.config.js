@@ -112,9 +112,15 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
+                label: 'Develop',
+                to: '/docs/develop-guide/overview',
+              },{
+                label: 'Embed',
+                to: '/docs/embed-guide/overview',
+              },{
+                label: 'Contribute',
+                to: '/docs/contribute-guide/overview',
+              }
             ],
           },
           {
