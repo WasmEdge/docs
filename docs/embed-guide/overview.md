@@ -17,7 +17,7 @@ We will cover the following content:
 
 * [Quick Start](../category/quick-start)
 * [Passing complex data](../category/passing-complex-data)
-* [Developing components using witc](../category/witc)
+* [Developing components using witc](./witc)
 * [Embed WasmEdge in C/C++](../category/wasmedge-c-api)
 * [Embed WasmEdge in Rust](../category/wasmedge-rust-sdk)
 * [Embed WasmEdge in Go](../category/wasmedge-go-sdk)
