@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 10
 ---
 
-# 8 Join WasmEdge Community
+# 10 Join WasmEdge Community
