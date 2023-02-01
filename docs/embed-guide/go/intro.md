@@ -90,15 +90,15 @@ To embed WasmEdge into your go application and run the Wasm function, we still n
 
 ## Examples
 
-- [Embed a standalone Wasm app](app.md)
-- [Embed a Wasm function](function.md)
-- [Pass complex parameters to Wasm functions](memory.md)
-- [Embed a Tensorflow inference function](tensorflow.md)
+- [Embed a standalone Wasm app](/docs/embed-guide/go/app.md)
+- [Embed a Wasm function](/docs/embed-guide/go/function.md)
+- [Pass complex parameters to Wasm functions](/docs/embed-guide/go/memory.md)
+- [Embed a Tensorflow inference function](/docs/embed-guide/go/tensorflow.md)
 - [Embed a bindgen function](bindgen.md)
 
 ## API References
 
 - [v0.11.2](/docs/embed-guide/go/reference/0.11.2.md)
 - [v0.10.1](/docs/embed-guide/go/reference/0.10.1.md)
-- [v0.9.1]((/docs/embed-guide/go/reference/0.9.1.md)
+- [v0.9.1](/docs/embed-guide/go/reference/0.9.1.md)
 
