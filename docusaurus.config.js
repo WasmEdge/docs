@@ -9,7 +9,7 @@ const config = {
     title: 'WasmEdge Book',
     tagline: 'Bring the cloud-native and serverless application paradigms to Edge Computing.',
     url: 'https://alabulei1.github.io/',
-    baseUrl: '/',
+    baseUrl: '/book/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
 
