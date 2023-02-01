@@ -9,8 +9,8 @@ Contribution is always welcome! The WebAssembly ecosystem is still in its early 
 
 To help new contributors understand WasmEdge development workflow, this guide will include
 
-* [Build WasmEdge and WasmEdge plug-in from source on different platforms](/docs/category/build-wasmedge-from-source)
-* [WasmEdge Plug-in system introduction](/docs/category/wasmedge-plugin-system)
+* [Build WasmEdge and WasmEdge plug-in from source on different platforms](/category/build-wasmedge-from-source)
+* [WasmEdge Plug-in system introduction](/category/wasmedge-plugin-system)
 * [Test WasmEdge](test.md)
 * [WasmEdge Fuzzing](fuzzing.md)
 * [WasmEdge internal explanation](internal.md)

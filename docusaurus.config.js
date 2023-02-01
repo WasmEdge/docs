@@ -107,13 +107,13 @@ const config = {
                         items: [
                             {
                                 label: 'Develop',
-                                to: '/docs/develop-guide/overview',
+                                to: '/develop-guide/overview',
                             }, {
                                 label: 'Embed',
-                                to: '/docs/embed-guide/overview',
+                                to: '/embed-guide/overview',
                             }, {
                                 label: 'Contribute',
-                                to: '/docs/contribute-guide/overview',
+                                to: '/contribute-guide/overview',
                             }
                         ],
                     },

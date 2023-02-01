@@ -14,11 +14,11 @@ In this part, we will walk you through what is WasmEdge and how to develop Wasm 
 
 We will cover the following content:
 
-* [Getting Started](/docs/category/getting-started-with-wasmEdge)
-* Introduce the [WasmEdge Runtime](/docs/category/what-is-wasmedge)
-* [Building and running WasmEdge apps](/docs/category/building-and-running-wasmedge-apps)
-* Develop WebAssembly apps from your programming languages from [Rust](/docs/category/develop-wasm-apps-in-rust), [C/C++](/docs/category/develop-wasm-apps-in-cc), [JavaScript](/docs/category/developing-wasm-apps-in-javascript), [Go](/docs/category/develop-wasm-apps-in-go), and many other laungages.
-* [Deploy Wasm Apps with the existing container toolings](/docs/category/deploy-wasmedge-apps-in-kubernetes)
+* [Getting Started](/category/getting-started-with-wasmEdge)
+* Introduce the [WasmEdge Runtime](/category/what-is-wasmedge)
+* [Building and running WasmEdge apps](/category/building-and-running-wasmedge-apps)
+* Develop WebAssembly apps from your programming languages from [Rust](/category/develop-wasm-apps-in-rust), [C/C++](/category/develop-wasm-apps-in-cc), [JavaScript](/category/developing-wasm-apps-in-javascript), [Go](/category/develop-wasm-apps-in-go), and many other laungages.
+* [Deploy Wasm Apps with the existing container toolings](/category/deploy-wasmedge-apps-in-kubernetes)
 
 
 Besides this, we also have two more guides for embedding Wasm Functions and contributing to WasmEdge. 
