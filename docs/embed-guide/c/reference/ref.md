@@ -6,7 +6,7 @@ sidebar_position: 1
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime. The following are the guides to working with the C APIs of WasmEdge.
 
-**This document is for the `0.12.0` version. For the older `0.12.0` version, please refer to the [document here](/book/category/api-reference).**
+**This document is for the `0.12.0` version. For the older `0.12.0` version, please refer to the [document here](/category/api-reference).**
 
 ## Table of Contents
 
