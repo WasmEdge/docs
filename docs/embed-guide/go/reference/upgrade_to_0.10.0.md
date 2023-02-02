@@ -1,130 +1,135 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
-# Upgrade to WasmEdge 0.10.0
+# 6.6.5 Upgrade to WasmEdge-Go 0.10.0
 
-Due to the WasmEdge C API breaking changes, this document shows the guideline of programming with WasmEdge C API to upgrade from the `0.9.1` to the `0.10.0` version.
+Due to the WasmEdge-Go API breaking changes, this document shows the guideline of programming with WasmEdge-Go API to upgrade from the `v0.9.2` to the `v0.10.0` version.
+
+**Due to the `v0.9.1` is retracted, we use the version `v0.9.2` here.**
 
 ## Concepts
 
-1. Merged the `WasmEdge_ImportObjectContext` into the `WasmEdge_ModuleInstanceContext`.
+1. Merged the `ImportObject` into the `Module`.
 
-   The `WasmEdge_ImportObjectContext` which is for the host functions is merged into `WasmEdge_ModuleInstanceContext`.
+   The `ImportObject` struct which is for the host functions is merged into `Module`.
    Developers can use the related APIs to construct host modules.
 
-   * `WasmEdge_ImportObjectCreate()` is changed to `WasmEdge_ModuleInstanceCreate()`.
-   * `WasmEdge_ImportObjectDelete()` is changed to `WasmEdge_ModuleInstanceDelete()`.
-   * `WasmEdge_ImportObjectAddFunction()` is changed to `WasmEdge_ModuleInstanceAddFunction()`.
-   * `WasmEdge_ImportObjectAddTable()` is changed to `WasmEdge_ModuleInstanceAddTable()`.
-   * `WasmEdge_ImportObjectAddMemory()` is changed to `WasmEdge_ModuleInstanceAddMemory()`.
-   * `WasmEdge_ImportObjectAddGlobal()` is changed to `WasmEdge_ModuleInstanceAddGlobal()`.
-   * `WasmEdge_ImportObjectCreateWASI()` is changed to `WasmEdge_ModuleInstanceCreateWASI()`.
-   * `WasmEdge_ImportObjectCreateWasmEdgeProcess()` is changed to `WasmEdge_ModuleInstanceCreateWasmEdgeProcess()`.
-   * `WasmEdge_ImportObjectInitWASI()` is changed to `WasmEdge_ModuleInstanceInitWASI()`.
-   * `WasmEdge_ImportObjectInitWasmEdgeProcess()` is changed to `WasmEdge_ModuleInstanceInitWasmEdgeProcess()`.
+   * `wasmedge.NewImportObject()` is changed to `wasmedge.NewModule()`.
+   * `(*wasmedge.ImportObject).Release()` is changed to `(*wasmedge.Module).Release()`.
+   * `(*wasmedge.ImportObject).AddFunction()` is changed to `(*wasmedge.Module).AddFunction()`.
+   * `(*wasmedge.ImportObject).AddTable()` is changed to `(*wasmedge.Module).AddTable()`.
+   * `(*wasmedge.ImportObject).AddMemory()` is changed to `(*wasmedge.Module).AddMemory()`.
+   * `(*wasmedge.ImportObject).AddGlobal()` is changed to `(*wasmedge.Module).AddGlobal()`.
+   * `(*wasmedge.ImportObject).NewWasiImportObject()` is changed to `(*wasmedge.Module).NewWasiModule()`.
+   * `(*wasmedge.ImportObject).NewWasmEdgeProcessImportObject()` is changed to `(*wasmedge.Module).NewWasmEdgeProcessModule()`.
+   * `(*wasmedge.ImportObject).InitWASI()` is changed to `(*wasmedge.Module).InitWASI()`.
+   * `(*wasmedge.ImportObject).InitWasmEdgeProcess()` is changed to `(*wasmedge.Module).InitWasmEdgeProcess()`.
+   * `(*wasmedge.ImportObject).WasiGetExitCode()` is changed to `(*wasmedge.Module).WasiGetExitCode`.
+   * `(*wasmedge.VM).RegisterImport()` is changed to `(*wasmedge.VM).RegisterModule()`.
+   * `(*wasmedge.VM).GetImportObject()` is changed to `(*wasmedge.VM).GetImportModule()`.
 
    For the new host function examples, please refer to [the example below](#host-functions).
 
-2. Used the pointer to `WasmEdge_FunctionInstanceContext` instead of the index in the `FuncRef` value type.
+2. Used the pointer to `Function` instead of the index in the `FuncRef` value type.
 
-   For the better performance and security, the `FuncRef` related APIs used the `const WasmEdge_FunctionInstanceContext *` for the parameters and returns.
+   For the better performance and security, the `FuncRef` related APIs used the `*wasmedge.Function` for the parameters and returns.
 
-   * `WasmEdge_ValueGenFuncRef()` is changed to use the `const WasmEdge_FunctionInstanceContext *` as it's argument.
-   * `WasmEdge_ValueGetFuncRef()` is changed to return the `const WasmEdge_FunctionInstanceContext *`.
+   * `wasmedge.NewFuncRef()` is changed to use the `*Function` as it's argument.
+   * Added `(wasmedge.FuncRef).GetRef()` to retrieve the `*Function`.
 
 3. Supported multiple anonymous WASM module instantiation.
 
-   In the version before `0.9.1`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced.
-   After the `0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed.
+   In the version before `v0.9.2`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced.
+   After the `v0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed.
    For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
 
-4. Behavior changed of `WasmEdge_StoreContext`.
+4. Behavior changed of `Store`.
 
-   The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `0.10.0` version.
+   The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `v0.10.0` version.
 
-   * `WasmEdge_StoreListFunctionLength()` and `WasmEdge_StoreListFunctionRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListFunctionLength()`.
-   * `WasmEdge_StoreListTableLength()` and `WasmEdge_StoreListTableRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListTableLength()`.
-   * `WasmEdge_StoreListMemoryLength()` and `WasmEdge_StoreListMemoryRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListMemoryLength()`.
-   * `WasmEdge_StoreListGlobalLength()` and `WasmEdge_StoreListGlobalRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListGlobalLength()`.
-   * `WasmEdge_StoreListFunction()` and `WasmEdge_StoreListFunctionRegistered()` is replaced by `WasmEdge_ModuleInstanceListFunction()`.
-   * `WasmEdge_StoreListTable()` and `WasmEdge_StoreListTableRegistered()` is replaced by `WasmEdge_ModuleInstanceListTable()`.
-   * `WasmEdge_StoreListMemory()` and `WasmEdge_StoreListMemoryRegistered()` is replaced by `WasmEdge_ModuleInstanceListMemory()`.
-   * `WasmEdge_StoreListGlobal()` and `WasmEdge_StoreListGlobalRegistered()` is replaced by `WasmEdge_ModuleInstanceListGlobal()`.
-   * `WasmEdge_StoreFindFunction()` and `WasmEdge_StoreFindFunctionRegistered()` is replaced by `WasmEdge_ModuleInstanceFindFunction()`.
-   * `WasmEdge_StoreFindTable()` and `WasmEdge_StoreFindTableRegistered()` is replaced by `WasmEdge_ModuleInstanceFindTable()`.
-   * `WasmEdge_StoreFindMemory()` and `WasmEdge_StoreFindMemoryRegistered()` is replaced by `WasmEdge_ModuleInstanceFindMemory()`.
-   * `WasmEdge_StoreFindGlobal()` and `WasmEdge_StoreFindGlobalRegistered()` is replaced by `WasmEdge_ModuleInstanceFindGlobal()`.
+   * `(*wasmedge.Store).ListFunction()` and `(*wasmedge.Store).ListFunctionRegistered()` is replaced by `(*wasmedge.Module).ListFunction()`.
+   * `(*wasmedge.Store).ListTable()` and `(*wasmedge.Store).ListTableRegistered()` is replaced by `(*wasmedge.Module).ListTable()`.
+   * `(*wasmedge.Store).ListMemory()` and `(*wasmedge.Store).ListMemoryRegistered()` is replaced by `(*wasmedge.Module).ListMemory()`.
+   * `(*wasmedge.Store).ListGlobal()` and `(*wasmedge.Store).ListGlobalRegistered()` is replaced by `(*wasmedge.Module).ListGlobal()`.
+   * `(*wasmedge.Store).FindFunction()` and `(*wasmedge.Store).FindFunctionRegistered()` is replaced by `(*wasmedge.Module).FindFunction()`.
+   * `(*wasmedge.Store).FindTable()` and `(*wasmedge.Store).FindTableRegistered()` is replaced by `(*wasmedge.Module).FindTable()`.
+   * `(*wasmedge.Store).FindMemory()` and `(*wasmedge.Store).FindMemoryRegistered()` is replaced by `(*wasmedge.Module).FindMemory()`.
+   * `(*wasmedge.Store).FindGlobal()` and `(*wasmedge.Store).FindGlobalRegistered()` is replaced by `(*wasmedge.Module).FindGlobal()`.
 
    For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
 
-5. The `WasmEdge_ModuleInstanceContext`-based resource management.
+5. The `Module`-based resource management.
 
-   Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `WasmEdge_ModuleInstanceDelete()` API.
+   Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `(*wasmedge.Module).Release()` API.
    The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
 
-## WasmEdge VM changes
+## WasmEdge-Go VM changes
 
 The `VM` APIs are basically not changed, except the `ImportObject` related APIs.
 
-The following is the example of WASI initialization in WasmEdge `0.9.1` C API:
+The following is the example of WASI initialization in WasmEdge-Go `v0.9.2`:
 
-```c
-WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
-WasmEdge_ConfigureAddHostRegistration(ConfCxt, WasmEdge_HostRegistration_Wasi);
-WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(ConfCxt, NULL);
-/* The following API can retrieve the pre-registration import objects from the VM context. */
-/* This API will return `NULL` if the corresponding pre-registration is not set into the configuration. */
-WasmEdge_ImportObjectContext *WasiObject =
-    WasmEdge_VMGetImportModuleContext(VMCxt, WasmEdge_HostRegistration_Wasi);
-/* Initialize the WASI. */
-WasmEdge_ImportObjectInitWASI(WasiObject, /* ... ignored */ );
+```go
+conf := wasmedge.NewConfigure(wasmedge.WASI)
+vm := wasmedge.NewVMWithConfig(conf)
 
-/* ... */
+// The following API can retrieve the pre-registration import objects from the VM object.
+// This API will return `nil` if the corresponding pre-registration is not set into the configuration.
+wasiobj := vm.GetImportObject(wasmedge.WASI)
+// Initialize the WASI.
+wasiobj.InitWasi(
+  os.Args[1:],     // The args
+  os.Environ(),    // The envs
+  []string{".:."}, // The mapping preopens
+)
 
-WasmEdge_VMDelete(VMCxt);
-WasmEdge_ConfigureDelete(ConfCxt);
+// ...
+
+vm.Release()
+conf.Release()
 ```
 
-Developers can change to use the WasmEdge `0.10.0` C API as follows, with only replacing the `WasmEdge_ImportObjectContext` into `WasmEdge_ModuleInstanceContext`:
+Developers can change to use the WasmEdge-Go `v0.10.0` as follows, with only replacing the `ImportObject` into `Module`:
 
-```c
-WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
-WasmEdge_ConfigureAddHostRegistration(ConfCxt, WasmEdge_HostRegistration_Wasi);
-WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(ConfCxt, NULL);
-/* The following API can retrieve the pre-registration module instances from the VM context. */
-/* This API will return `NULL` if the corresponding pre-registration is not set into the configuration. */
-WasmEdge_ModuleInstanceContext *WasiModule =
-    WasmEdge_VMGetImportModuleContext(VMCxt, WasmEdge_HostRegistration_Wasi);
-/* Initialize the WASI. */
-WasmEdge_ModuleInstanceInitWASI(WasiModule, /* ... ignored */ );
+```go
+conf := wasmedge.NewConfigure(wasmedge.WASI)
+vm := wasmedge.NewVMWithConfig(conf)
 
-/* ... */
+// The following API can retrieve the pre-registration module instances from the VM object.
+// This API will return `nil` if the corresponding pre-registration is not set into the configuration.
+wasiobj := vm.GetImportModule(wasmedge.WASI)
+// Initialize the WASI.
+wasiobj.InitWasi(
+  os.Args[1:],     // The args
+  os.Environ(),    // The envs
+  []string{".:."}, // The mapping preopens
+)
 
-WasmEdge_VMDelete(VMCxt);
-WasmEdge_ConfigureDelete(ConfCxt);
+// ...
+
+vm.Release()
+conf.Release()
 ```
 
 The `VM` provides a new API for getting the current instantiated anonymous `Module` instance.
 For example, if developer want to get the exported `Global` instance:
 
-```c
-/* Assume that a WASM module is instantiated in `VMCxt`, and exports the "global_i32". */
-WasmEdge_StoreContext *StoreCxt = WasmEdge_VMGetStoreContext(VMCxt);
-WasmEdge_String GlobName = WasmEdge_StringCreateByCString("global_i32");
-WasmEdge_GlobalInstanceContext *GlobCxt = WasmEdge_StoreFindGlobal(StoreCxt, GlobName);
-WasmEdge_StringDelete(GlobName);
+```go
+// Assume that a WASM module is instantiated in `vm`, and exports the "global_i32".
+store := vm.GetStore()
+
+globinst := store.FindGlobal("global_i32")
 ```
 
-After the WasmEdge `0.10.0` C API, developers can use the `WasmEdge_VMGetActiveModule()` to get the module instance:
+After the WasmEdge-Go `v0.10.0`, developers can use the `(*wasmedge.VM).GetActiveModule()` to get the module instance:
 
-```c
-/* Assume that a WASM module is instantiated in `VMCxt`, and exports the "global_i32". */
-const WasmEdge_ModuleInstanceContext *ModCxt = WasmEdge_VMGetActiveModule(VMCxt);
-/* The example of retrieving the global instance. */
-WasmEdge_String GlobName = WasmEdge_StringCreateByCString("global_i32");
-WasmEdge_GlobalInstanceContext *GlobCxt = WasmEdge_ModuleInstanceFindGlobal(ModCxt, GlobName);
-WasmEdge_StringDelete(GlobName);
+```go
+// Assume that a WASM module is instantiated in `vm`, and exports the "global_i32".
+mod := vm.GetActiveModule()
+
+// The example of retrieving the global instance.
+globinst := mod.FindGlobal("global_i32")
 ```
 
 ## WasmEdge Executor changes
@@ -133,438 +138,401 @@ WasmEdge_StringDelete(GlobName);
 
 1. WASM module instantiation
 
-    In WasmEdge `0.9.1` version, developers can instantiate a WASM module by the `Executor` API:
+    In WasmEdge-Go `v0.9.2` version, developers can instantiate a WASM module by the `Executor` API:
 
-    ```c
-    WasmEdge_ASTModuleContext *ASTCxt;
-    /*
-     * Assume that `ASTCxt` is a loaded WASM from file or buffer and has passed the validation.
-     * Assume that `ExecCxt` is a `WasmEdge_ExecutorContext`.
-     * Assume that `StoreCxt` is a `WasmEdge_StoreContext`.
-     */
-    WasmEdge_Result Res = WasmEdge_ExecutorInstantiate(ExecCxt, StoreCxt, ASTCxt);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    ```go
+    var ast *wasmedge.AST
+    // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
+    // Assume that `executor` is a `*wasmedge.Executor`.
+    // Assume that `store` is a `*wasmedge.Store`.
+    err := executor.Instantiate(store, ast)
+    if err != nil {
+      fmt.Println("Instantiation FAILED:", err.Error())
     }
     ```
 
     Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`.
     If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned.
-    After the WasmEdge `0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated.
-    Developers have the responsibility to destroy the outputted module instances.
+    After the WasmEdge-Go `v0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated.
+    Developers have the responsibility to release the outputted module instances.
 
-    ```c
-    WasmEdge_ASTModuleContext *ASTCxt1, *ASTCxt2;
-    /*
-     * Assume that `ASTCxt1` and `ASTCxt2` are loaded WASMs from different files or buffers,
-     * and have both passed the validation.
-     * Assume that `ExecCxt` is a `WasmEdge_ExecutorContext`.
-     * Assume that `StoreCxt` is a `WasmEdge_StoreContext`.
-     */
-    WasmEdge_ModuleInstanceContext *ModCxt1 = NULL;
-    WasmEdge_ModuleInstanceContext *ModCxt2 = NULL;
-    WasmEdge_Result Res = WasmEdge_ExecutorInstantiate(ExecCxt, &ModCxt1, StoreCxt, ASTCxt1);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    ```go
+    var ast1 *wasmedge.AST
+    var ast2 *wasmedge.AST
+    // Assume that `ast1` and `ast2` are loaded WASMs from different files or buffers,
+    // and have both passed the validation.
+    // Assume that `executor` is a `*wasmedge.Executor`.
+    // Assume that `store` is a `*wasmedge.Store`.
+    mod1, err1 := executor.Instantiate(store, ast1)
+    if err1 != nil {
+      fmt.Println("Instantiation FAILED:", err1.Error())
     }
-    Res = WasmEdge_ExecutorInstantiate(ExecCxt, &ModCxt2, StoreCxt, ASTCxt2);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    mod2, err2 := executor.Instantiate(store, ast2)
+    if err2 != nil {
+      fmt.Println("Instantiation FAILED:", err2.Error())
     }
+    mod1.Release()
+    mod2.Release()
     ```
 
 2. WASM module registration with module name
 
-    When instantiating and registering a WASM module with module name, developers can use the `WasmEdge_ExecutorRegisterModule()` API before WasmEdge `0.9.1`.
+    When instantiating and registering a WASM module with module name, developers can use the `(*wasmedge.Executor).RegisterModule()` API before WasmEdge-Go `v0.9.2`.
 
-    ```c
-    WasmEdge_ASTModuleContext *ASTCxt;
-    /*
-     * Assume that `ASTCxt` is a loaded WASM from file or buffer and has passed the validation.
-     * Assume that `ExecCxt` is a `WasmEdge_ExecutorContext`.
-     * Assume that `StoreCxt` is a `WasmEdge_StoreContext`.
-     */
+    ```go
+    var ast *wasmedge.AST
+    // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
+    // Assume that `executor` is a `*wasmedge.Executor`.
+    // Assume that `store` is a `*wasmedge.Store`.
 
-    /* Register the WASM module into store with the export module name "mod". */
-    WasmEdge_String ModName = WasmEdge_StringCreateByCString("mod");
-    Res = WasmEdge_ExecutorRegisterModule(ExecCxt, StoreCxt, ASTCxt, ModName);
-    WasmEdge_StringDelete(ModName);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("WASM registration failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    // Register the WASM module into store with the export module name "mod".
+    err := executor.RegisterModule(store, ast, "mod")
+    if err != nil {
+      fmt.Println("WASM registration FAILED:", err.Error())
     }
     ```
 
-    The same feature is implemented in WasmEdge `0.10.0`, but in different API `WasmEdge_ExecutorRegister()`:
+    The same feature is implemented in WasmEdge-Go `v0.10.0`, but in different API `(*wasmedge.Executor).Register()`:
 
-    ```c
-    WasmEdge_ASTModuleContext *ASTCxt;
-    /*
-     * Assume that `ASTCxt` is a loaded WASM from file or buffer and has passed the validation.
-     * Assume that `ExecCxt` is a `WasmEdge_ExecutorContext`.
-     * Assume that `StoreCxt` is a `WasmEdge_StoreContext`.
-     */
+    ```go
+    var ast *wasmedge.AST
+    // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
+    // Assume that `executor` is a `*wasmedge.Executor`.
+    // Assume that `store` is a `*wasmedge.Store`.
 
-    /* Register the WASM module into store with the export module name "mod". */
-    WasmEdge_String ModName = WasmEdge_StringCreateByCString("mod");
-    /* The output module instance. */
-    WasmEdge_ModuleInstanceContext *ModCxt = NULL;
-    Res = WasmEdge_ExecutorRegister(ExecCxt, &ModCxt, StoreCxt, ASTCxt, ModName);
-    WasmEdge_StringDelete(ModName);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("WASM registration failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    // Register the WASM module into store with the export module name "mod".
+    mod, err := executor.Register(store, ast, "mod")
+    if err != nil {
+      fmt.Println("WASM registration FAILED:", err.Error())
     }
+    mod.Release()
     ```
 
-    Developers have the responsibility to destroy the outputted module instances.
+    Developers have the responsibility to release the outputted module instances.
 
 3. Host module registration
 
-    In WasmEdge `0.9.1`, developers can create a `WasmEdge_ImportObjectContext` and register into `Store`.
+    In WasmEdge-Go `v0.9.2`, developers can create an `ImportObject` and register into `Store`.
 
-    ```c
-    /* Create the import object with the export module name. */
-    WasmEdge_String ModName = WasmEdge_StringCreateByCString("module");
-    WasmEdge_ImportObjectContext *ImpObj = WasmEdge_ImportObjectCreate(ModName);
-    WasmEdge_StringDelete(ModName);
-    /*
-     * ...
-     * Add the host functions, tables, memories, and globals into the import object.
-     */
-    /* The import module context has already contained the export module name. */
-    Res = WasmEdge_ExecutorRegisterImport(ExecCxt, StoreCxt, ImpObj);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Import object registration failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    ```go
+    // Create the import object with the export module name.
+    impobj := wasmedge.NewImportObject("module")
+
+    // ...
+    // Add the host functions, tables, memories, and globals into the import object.
+
+    // The import object has already contained the export module name.
+    err := executor.RegisterImport(store, impobj)
+    if err != nil {
+      fmt.Println("Import object registration FAILED:", err.Error())
     }
     ```
 
-    After WasmEdge `0.10.0`, developers should use the `WasmEdge_ModuleInstanceContext` instead:
+    After WasmEdge-Go `v0.10.0`, developers should use the `Module` instance instead:
 
-    ```c
-    /* Create the module instance with the export module name. */
-    WasmEdge_String ModName = WasmEdge_StringCreateByCString("module");
-    WasmEdge_ModuleInstanceContext *ModCxt = WasmEdge_ModuleInstanceCreate(ModName);
-    WasmEdge_StringDelete(ModName);
-    /*
-     * ...
-     * Add the host functions, tables, memories, and globals into the module instance.
-     */
-    /* The module instance context has already contained the export module name. */
-    Res = WasmEdge_ExecutorRegisterImport(ExecCxt, StoreCxt, ModCxt);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Module instance registration failed: %s\n", WasmEdge_ResultGetMessage(Res));
+    ```go
+    // Create the module instance with the export module name.
+    impmod := wasmedge.NewModule("module")
+
+    // ...
+    // Add the host functions, tables, memories, and globals into the module instance.
+
+    // The module instance has already contained the export module name.
+    err := executor.RegisterImport(store, impmod)
+    if err != nil {
+      fmt.Println("Module instance registration FAILED:", err.Error())
     }
     ```
 
-    Developers have the responsibility to destroy the created module instances.
+    Developers have the responsibility to release the created module instances.
 
 4. WASM function invocation
 
     This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
-    In WasmEdge `0.9.1` version, developers can invoke a WASM function with the export function name:
+    In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
 
-    ```c
-    /* Create the store context. The store context holds the instances. */
-    WasmEdge_StoreContext *StoreCxt = WasmEdge_StoreCreate();
-    /* Result. */
-    WasmEdge_Result Res;
+    ```go
+    // Create the store object. The store object holds the instances.
+    store := wasmedge.NewStore()
+    // Error.
+    var err error
+    // AST object.
+    var ast *wasmedge.AST
+    // Return values.
+    var res []interface{}
 
-    /* Create the loader context. The configure context can be NULL. */
-    WasmEdge_LoaderContext *LoadCxt = WasmEdge_LoaderCreate(NULL);
-    /* Create the validator context. The configure context can be NULL. */
-    WasmEdge_ValidatorContext *ValidCxt = WasmEdge_ValidatorCreate(NULL);
-    /* Create the executor context. The configure context and the statistics context can be NULL. */
-    WasmEdge_ExecutorContext *ExecCxt = WasmEdge_ExecutorCreate(NULL, NULL);
+    // Create the loader object.
+    loader := wasmedge.NewLoader()
+    // Create the validator object.
+    validator := wasmedge.NewValidator()
+    // Create the executor object.
+    executor := wasmedge.NewExecutor()
 
-    /* Load the WASM file or the compiled-WASM file and convert into the AST module context. */
-    WasmEdge_ASTModuleContext *ASTCxt = NULL;
-    Res = WasmEdge_LoaderParseFromFile(LoadCxt, &ASTCxt, "fibonacci.wasm");
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Loading phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-      return -1;
+    // Load the WASM file or the compiled-WASM file and convert into the AST object.
+    ast, err = loader.LoadFile("fibonacci.wasm")
+    if err != nil {
+      fmt.Println("Load WASM from file FAILED:", err.Error())
+      return
     }
-    /* Validate the WASM module. */
-    Res = WasmEdge_ValidatorValidate(ValidCxt, ASTCxt);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Validation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-      return -1;
+    // Validate the WASM module.
+    err = validator.Validate(ast)
+    if err != nil {
+      fmt.Println("Validation FAILED:", err.Error())
+      return
     }
-    /* Instantiate the WASM module into the store context. */
-    Res = WasmEdge_ExecutorInstantiate(ExecCxt, StoreCxt, ASTCxt);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-      return -1;
+    // Instantiate the WASM module into the Store object.
+    err = executor.Instantiate(store, ast)
+    if err != nil {
+      fmt.Println("Instantiation FAILED:", err.Error())
+      return
     }
-    /* Invoke the function which is exported with the function name "fib". */
-    WasmEdge_String FuncName = WasmEdge_StringCreateByCString("fib");
-    WasmEdge_Value Params[1] = { WasmEdge_ValueGenI32(18) };
-    WasmEdge_Value Returns[1];
-    Res = WasmEdge_ExecutorInvoke(ExecCxt, StoreCxt, FuncName, Params, 1, Returns, 1);
-    if (WasmEdge_ResultOK(Res)) {
-      printf("Get the result: %d\n", WasmEdge_ValueGetI32(Returns[0]));
+    // Invoke the function which is exported with the function name "fib".
+    res, err = executor.Invoke(store, "fib", int32(30))
+    if err == nil {
+      fmt.Println("Get fibonacci[30]:", res[0].(int32))
     } else {
-      printf("Execution phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-      return -1;
+      fmt.Println("Run failed:", err.Error())
     }
 
-    WasmEdge_ASTModuleDelete(ASTCxt);
-    WasmEdge_LoaderDelete(LoadCxt);
-    WasmEdge_ValidatorDelete(ValidCxt);
-    WasmEdge_ExecutorDelete(ExecCxt);
-    WasmEdge_StoreDelete(StoreCxt);
+    ast.Release()
+    loader.Release()
+    validator.Release()
+    executor.Release()
+    store.Release()
     ```
 
-    After the WasmEdge `0.10.0`, developers should retrieve the `Function` instance by function name first.
+    After the WasmEdge-Go `v0.10.0`, developers should retrieve the `Function` instance by function name first.
 
-    ```c
-    /*
-     * ...
-     * Ignore the unchanged steps before validation. Please refer to the sample code above.
-     */
-    WasmEdge_ModuleInstanceContext *ModCxt = NULL;
-    /* Instantiate the WASM module. */
-    Res = WasmEdge_ExecutorInstantiate(ExecCxt, &ModCxt1, StoreCxt, ASTCxt);
-    if (!WasmEdge_ResultOK(Res)) {
-      printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-      return -1;
+    ```go
+    // ...
+    // Ignore the unchanged steps before validation. Please refer to the sample code above.
+
+    var mod *wasmedge.Module
+    // Instantiate the WASM module and get the output module instance.
+    mod, err = executor.Instantiate(store, ast)
+    if err != nil {
+      fmt.Println("Instantiation FAILED:", err.Error())
+      return
     }
-    /* Retrieve the function instance by name. */
-    WasmEdge_String FuncName = WasmEdge_StringCreateByCString("fib");
-    WasmEdge_FunctionInstanceContext *FuncCxt = WasmEdge_ModuleInstanceFindFunction(ModCxt, FuncName);
-    WasmEdge_StringDelete(FuncName);
-    /* Invoke the function. */
-    WasmEdge_Value Params[1] = { WasmEdge_ValueGenI32(18) };
-    WasmEdge_Value Returns[1];
-    Res = WasmEdge_ExecutorInvoke(ExecCxt, FuncCxt, Params, 1, Returns, 1);
-    if (WasmEdge_ResultOK(Res)) {
-      printf("Get the result: %d\n", WasmEdge_ValueGetI32(Returns[0]));
+    // Retrieve the function instance by name.
+    funcinst := mod.FindFunction("fib")
+    if funcinst == nil {
+      fmt.Println("Run FAILED: Function name `fib` not found")
+      return
+    }
+    res, err = executor.Invoke(store, funcinst, int32(30))
+    if err == nil {
+      fmt.Println("Get fibonacci[30]:", res[0].(int32))
     } else {
-      printf("Execution phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-      return -1;
+      fmt.Println("Run FAILED:", err.Error())
     }
 
-    WasmEdge_ModuleInstanceDelete(ModCxt);
-    WasmEdge_ASTModuleDelete(ASTCxt);
-    WasmEdge_LoaderDelete(LoadCxt);
-    WasmEdge_ValidatorDelete(ValidCxt);
-    WasmEdge_ExecutorDelete(ExecCxt);
-    WasmEdge_StoreDelete(StoreCxt);
+    ast.Release()
+    mod.Release()
+    loader.Release()
+    validator.Release()
+    executor.Release()
+    store.Release()
     ```
 
 ## Instances retrievement
 
 This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
 
-Before the WasmEdge `0.9.1` versions, developers can retrieve all exported instances of named or anonymous modules from `Store`:
+Before the WasmEdge-Go `v0.9.2` versions, developers can retrieve all exported instances of named or anonymous modules from `Store`:
 
-```c
-/* Create the store context. The store context holds the instances. */
-WasmEdge_StoreContext *StoreCxt = WasmEdge_StoreCreate();
-/* Result. */
-WasmEdge_Result Res;
+```go
+// Create the store object. The store object holds the instances.
+store := wasmedge.NewStore()
+// Error.
+var err error
+// AST object.
+var ast *wasmedge.AST
 
-/* Create the loader context. The configure context can be NULL. */
-WasmEdge_LoaderContext *LoadCxt = WasmEdge_LoaderCreate(NULL);
-/* Create the validator context. The configure context can be NULL. */
-WasmEdge_ValidatorContext *ValidCxt = WasmEdge_ValidatorCreate(NULL);
-/* Create the executor context. The configure context and the statistics context can be NULL. */
-WasmEdge_ExecutorContext *ExecCxt = WasmEdge_ExecutorCreate(NULL, NULL);
+// Create the loader object.
+loader := wasmedge.NewLoader()
+// Create the validator object.
+validator := wasmedge.NewValidator()
+// Create the executor object.
+executor := wasmedge.NewExecutor()
 
-/* Load the WASM file or the compiled-WASM file and convert into the AST module context. */
-WasmEdge_ASTModuleContext *ASTCxt = NULL;
-Res = WasmEdge_LoaderParseFromFile(LoadCxt, &ASTCxt, "fibonacci.wasm");
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Loading phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Load the WASM file or the compiled-WASM file and convert into the AST object.
+ast, err = loader.LoadFile("fibonacci.wasm")
+if err != nil {
+  fmt.Println("Load WASM from file FAILED:", err.Error())
+  return
 }
-/* Validate the WASM module. */
-Res = WasmEdge_ValidatorValidate(ValidCxt, ASTCxt);
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Validation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Validate the WASM module.
+err = validator.Validate(ast)
+if err != nil {
+  fmt.Println("Validation FAILED:", err.Error())
+  return
 }
-/* Example: register and instantiate the WASM module with the module name "module_fib". */
-WasmEdge_String ModName = WasmEdge_StringCreateByCString("module_fib");
-Res = WasmEdge_ExecutorRegisterModule(ExecCxt, StoreCxt, ASTCxt, ModName);
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Example: register and instantiate the WASM module with the module name "module_fib".
+err = executor.RegisterModule(store, ast, "module_fib")
+if err != nil {
+  fmt.Println("Instantiation FAILED:", err.Error())
+  return
 }
-/* Example: Instantiate the WASM module into the store context. */
-Res = WasmEdge_ExecutorInstantiate(ExecCxt, StoreCxt, ASTCxt);
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Example: Instantiate the WASM module into the Store object.
+err = executor.Instantiate(store, ast)
+if err != nil {
+  fmt.Println("Instantiation FAILED:", err.Error())
+  return
 }
-WasmEdge_StringDelete(ModName);
 
-/* Now, developers can retrieve the exported instances from the store. */
-/* Take the exported functions as example. This WASM exports the function "fib". */
-WasmEdge_String FuncName = WasmEdge_StringCreateByCString("fib");
-WasmEdge_FunctionInstanceContext *FoundFuncCxt;
-/* Find the function "fib" from the instantiated anonymous module. */
-FoundFuncCxt = WasmEdge_StoreFindFunction(StoreCxt, FuncName);
-/* Find the function "fib" from the registered module "module_fib". */
-ModName = WasmEdge_StringCreateByCString("module_fib");
-FoundFuncCxt = WasmEdge_StoreFindFunctionRegistered(StoreCxt, ModName, FuncName);
-WasmEdge_StringDelete(ModName);
-WasmEdge_StringDelete(FuncName);
+// Now, developers can retrieve the exported instances from the store.
+// Take the exported functions as example. This WASM exports the function "fib".
+// Find the function "fib" from the instantiated anonymous module.
+func1 := store.FindFunction("fib")
+// Find the function "fib" from the registered module "module_fib".
+func2 := store.FindFunctionRegistered("module_fib", "fib")
 
-WasmEdge_ASTModuleDelete(ASTCxt);
-WasmEdge_LoaderDelete(LoadCxt);
-WasmEdge_ValidatorDelete(ValidCxt);
-WasmEdge_ExecutorDelete(ExecCxt);
-WasmEdge_StoreDelete(StoreCxt);
+ast.Release()
+store.Release()
+loader.Release()
+validator.Release()
+executor.Release()
 ```
 
-After the WasmEdge `0.10.0`, developers can instantiate several anonymous `Module` instances, and should retrieve the exported instances from named or anonymous `Module` instances:
+After the WasmEdge-Go `v0.10.0`, developers can instantiate several anonymous `Module` instances, and should retrieve the exported instances from named or anonymous `Module` instances:
 
-```c
-/* Create the store context. The store context is the object to link the modules for imports and exports. */
-WasmEdge_StoreContext *StoreCxt = WasmEdge_StoreCreate();
-/* Result. */
-WasmEdge_Result Res;
+```go
+// Create the store object. The store is the object to link the modules for imports and exports.
+store := wasmedge.NewStore()
+// Error.
+var err error
+// AST object.
+var ast *wasmedge.AST
+// Module instances.
+var namedmod *wasmedge.Module
+var anonymousmod *wasmedge.Module
 
-/* Create the loader context. The configure context can be NULL. */
-WasmEdge_LoaderContext *LoadCxt = WasmEdge_LoaderCreate(NULL);
-/* Create the validator context. The configure context can be NULL. */
-WasmEdge_ValidatorContext *ValidCxt = WasmEdge_ValidatorCreate(NULL);
-/* Create the executor context. The configure context and the statistics context can be NULL. */
-WasmEdge_ExecutorContext *ExecCxt = WasmEdge_ExecutorCreate(NULL, NULL);
+// Create the loader object.
+loader := wasmedge.NewLoader()
+// Create the validator object.
+validator := wasmedge.NewValidator()
+// Create the executor object.
+executor := wasmedge.NewExecutor()
 
-/* Load the WASM file or the compiled-WASM file and convert into the AST module context. */
-WasmEdge_ASTModuleContext *ASTCxt = NULL;
-Res = WasmEdge_LoaderParseFromFile(LoadCxt, &ASTCxt, "fibonacci.wasm");
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Loading phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Load the WASM file or the compiled-WASM file and convert into the AST object.
+ast, err = loader.LoadFile("fibonacci.wasm")
+if err != nil {
+  fmt.Println("Load WASM from file FAILED:", err.Error())
+  return
 }
-/* Validate the WASM module. */
-Res = WasmEdge_ValidatorValidate(ValidCxt, ASTCxt);
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Validation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Validate the WASM module.
+err = validator.Validate(ast)
+if err != nil {
+  fmt.Println("Validation FAILED:", err.Error())
+  return
 }
-/* Example: register and instantiate the WASM module with the module name "module_fib". */
-WasmEdge_ModuleInstanceContext *NamedModCxt = NULL;
-WasmEdge_String ModName = WasmEdge_StringCreateByCString("module_fib");
-Res = WasmEdge_ExecutorRegister(ExecCxt, &NamedModCxt, StoreCxt, ASTCxt, ModName);
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Example: register and instantiate the WASM module with the module name "module_fib".
+namedmod, err = executor.Register(store, ast, "module_fib")
+if err != nil {
+  fmt.Println("Instantiation FAILED:", err.Error())
+  return
 }
-/* Example: Instantiate the WASM module and get the output module instance. */
-WasmEdge_ModuleInstanceContext *ModCxt = NULL;
-Res = WasmEdge_ExecutorInstantiate(ExecCxt, &ModCxt, StoreCxt, ASTCxt);
-if (!WasmEdge_ResultOK(Res)) {
-  printf("Instantiation phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
-  return -1;
+// Example: Instantiate the WASM module and get the output module instance.
+anonymousmod, err = executor.Instantiate(store, ast)
+if err != nil {
+  fmt.Println("Instantiation FAILED:", err.Error())
+  return
 }
-WasmEdge_StringDelete(ModName);
 
-/* Now, developers can retrieve the exported instances from the module instances. */
-/* Take the exported functions as example. This WASM exports the function "fib". */
-WasmEdge_String FuncName = WasmEdge_StringCreateByCString("fib");
-WasmEdge_FunctionInstanceContext *FoundFuncCxt;
-/* Find the function "fib" from the instantiated anonymous module. */
-FoundFuncCxt = WasmEdge_ModuleInstanceFindFunction(ModCxt, FuncName);
-/* Find the function "fib" from the registered module "module_fib". */
-FoundFuncCxt = WasmEdge_ModuleInstanceFindFunction(NamedModCxt, FuncName);
-/* Or developers can get the named module instance from the store: */
-ModName = WasmEdge_StringCreateByCString("module_fib");
-const WasmEdge_ModuleInstanceContext *ModCxtGot = WasmEdge_StoreFindModule(StoreCxt, ModName);
-WasmEdge_StringDelete(ModName);
-FoundFuncCxt = WasmEdge_ModuleInstanceFindFunction(ModCxtGot, FuncName);
-WasmEdge_StringDelete(FuncName);
+// Now, developers can retrieve the exported instances from the module instances.
+// Take the exported functions as example. This WASM exports the function "fib".
+// Find the function "fib" from the instantiated anonymous module.
+func1 := anonymousmod.FindFunction("fib")
+// Find the function "fib" from the registered module "module_fib".
+func2 := namedmod.FindFunction("fib")
+// Or developers can get the named module instance from the store:
+gotmod := store.FindModule("module_fib")
+func3 := gotmod.FindFunction("fib")
 
-WasmEdge_ModuleInstanceDelete(NamedModCxt);
-WasmEdge_ModuleInstanceDelete(ModCxt);
-WasmEdge_ASTModuleDelete(ASTCxt);
-WasmEdge_LoaderDelete(LoadCxt);
-WasmEdge_ValidatorDelete(ValidCxt);
-WasmEdge_ExecutorDelete(ExecCxt);
-WasmEdge_StoreDelete(StoreCxt);
+namedmod.Release()
+anonymousmod.Release()
+ast.Release()
+store.Release()
+loader.Release()
+validator.Release()
+executor.Release()
 ```
 
 ## Host functions
 
-The difference of host functions are the replacement of `WasmEdge_ImportObjectContext`.
+The difference of host functions are the replacement of `ImportObject` struct.
 
-```c
-/* Host function body definition. */
-WasmEdge_Result Add(void *Data, WasmEdge_MemoryInstanceContext *MemCxt,
-                    const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
-  int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
-  Out[0] = WasmEdge_ValueGenI32(Val1 + Val2);
-  return WasmEdge_Result_Success;
+```go
+// Host function body definition.
+func host_add(data interface{}, mem *wasmedge.Memory, params []interface{}) ([]interface{}, wasmedge.Result) {
+  // add: i32, i32 -> i32
+  res := params[0].(int32) + params[1].(int32)
+
+  // Set the returns
+  returns := make([]interface{}, 1)
+  returns[0] = res
+
+  // Return
+  return returns, wasmedge.Result_Success
 }
 
-/* Create the import object. */
-WasmEdge_String ExportName = WasmEdge_StringCreateByCString("module");
-WasmEdge_ImportObjectContext *ImpObj = WasmEdge_ImportObjectCreate(ExportName);
-WasmEdge_StringDelete(ExportName);
+// ...
 
-/* Create and add a function instance into the import object. */
-enum WasmEdge_ValType ParamList[2] = { WasmEdge_ValType_I32, WasmEdge_ValType_I32 };
-enum WasmEdge_ValType ReturnList[1] = { WasmEdge_ValType_I32 };
-WasmEdge_FunctionTypeContext *HostFType = 
-    WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
-WasmEdge_FunctionInstanceContext *HostFunc =
-    WasmEdge_FunctionInstanceCreate(HostFType, Add, NULL, 0);
-/*
- * The third parameter is the pointer to the additional data object.
- * Developers should guarantee the life cycle of the data, and it can be
- * `NULL` if the external data is not needed.
- */
-WasmEdge_FunctionTypeDelete(HostFType);
-WasmEdge_String FuncName = WasmEdge_StringCreateByCString("add");
-WasmEdge_ImportObjectAddFunction(ImpObj, FuncName, HostFunc);
-WasmEdge_StringDelete(FuncName);
+// Create an import object with the module name "module".
+impobj := wasmedge.NewImportObject("module")
 
-/*
- * The import objects should be deleted.
- * Developers should __NOT__ destroy the instances added into the import object contexts.
- */
-WasmEdge_ImportObjectDelete(ImpObj);
+// Create and add a function instance into the import object with export name "add".
+functype := wasmedge.NewFunctionType(
+  []wasmedge.ValType{wasmedge.ValType_I32, wasmedge.ValType_I32},
+  []wasmedge.ValType{wasmedge.ValType_I32},
+)
+hostfunc := wasmedge.NewFunction(functype, host_add, nil, 0)
+// The third parameter is the pointer to the additional data object.
+// Developers should guarantee the life cycle of the data, and it can be `nil`
+// if the external data is not needed.
+functype.Release()
+impobj.AddFunction("add", hostfunc)
+
+// The import object should be released.
+// Developers should __NOT__ release the instances added into the import objects.
+impobj.Release()
 ```
 
-Developers can use the `WasmEdge_ModuleInstanceContext` to upgrade to WasmEdge `0.10.0` easily.
+Developers can use the `Module` struct to upgrade to WasmEdge `v0.10.0` easily.
 
-```c
-/* Host function body definition. */
-WasmEdge_Result Add(void *Data, WasmEdge_MemoryInstanceContext *MemCxt,
-                    const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
-  int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
-  Out[0] = WasmEdge_ValueGenI32(Val1 + Val2);
-  return WasmEdge_Result_Success;
+```go
+// Host function body definition.
+func host_add(data interface{}, mem *wasmedge.Memory, params []interface{}) ([]interface{}, wasmedge.Result) {
+  // add: i32, i32 -> i32
+  res := params[0].(int32) + params[1].(int32)
+
+  // Set the returns
+  returns := make([]interface{}, 1)
+  returns[0] = res
+
+  // Return
+  return returns, wasmedge.Result_Success
 }
 
-/* Create a module instance. */
-WasmEdge_String ExportName = WasmEdge_StringCreateByCString("module");
-WasmEdge_ModuleInstanceContext *HostModCxt = WasmEdge_ModuleInstanceCreate(ExportName);
-WasmEdge_StringDelete(ExportName);
+// ...
 
-/* Create and add a function instance into the module instance. */
-enum WasmEdge_ValType ParamList[2] = { WasmEdge_ValType_I32, WasmEdge_ValType_I32 };
-enum WasmEdge_ValType ReturnList[1] = { WasmEdge_ValType_I32 };
-WasmEdge_FunctionTypeContext *HostFType = 
-    WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
-WasmEdge_FunctionInstanceContext *HostFunc =
-    WasmEdge_FunctionInstanceCreate(HostFType, Add, NULL, 0);
-/*
- * The third parameter is the pointer to the additional data object.
- * Developers should guarantee the life cycle of the data, and it can be
- * `NULL` if the external data is not needed.
- */
-WasmEdge_FunctionTypeDelete(HostFType);
-WasmEdge_String FuncName = WasmEdge_StringCreateByCString("add");
-WasmEdge_ModuleInstanceAddFunction(HostModCxt, FuncName, HostFunc);
-WasmEdge_StringDelete(FuncName);
+// Create a module instance with the module name "module".
+mod := wasmedge.NewModule("module")
 
-/*
- * The module instance should be deleted.
- * Developers should __NOT__ destroy the instances added into the module instance contexts.
- */
-WasmEdge_ModuleInstanceDelete(HostModCxt);
+// Create and add a function instance into the module instance with export name "add".
+functype := wasmedge.NewFunctionType(
+  []wasmedge.ValType{wasmedge.ValType_I32, wasmedge.ValType_I32},
+  []wasmedge.ValType{wasmedge.ValType_I32},
+)
+hostfunc := wasmedge.NewFunction(functype, host_add, nil, 0)
+// The third parameter is the pointer to the additional data object.
+// Developers should guarantee the life cycle of the data, and it can be `nil`
+// if the external data is not needed.
+functype.Release()
+mod.AddFunction("add", hostfunc)
+
+// The module instances should be released.
+// Developers should __NOT__ release the instances added into the module instance objects.
+mod.Release()
 ```

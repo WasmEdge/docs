@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
-# 4.4.4 Upgrade to WasmEdge 0.11.0
+# 6.6.3 Upgrade to WasmEdge 0.11.0
 
 Due to the WasmEdge C API breaking changes, this document shows the guideline for programming with WasmEdge C API to upgrade from the `0.10.1` to the `0.11.0` version.
 
