@@ -64,12 +64,12 @@ const config = {
                 items: [
                     {
                         type: 'doc',
-                        docId: 'develop-guide/overview',
+                        docId: 'develop/overview',
                         position: 'left',
                         label: 'Develop',
                     }, {
                         type: 'doc',
-                        docId: 'embed-guide/overview',
+                        docId: 'embed/overview',
                         position: 'left',
                         label: 'Embed',
                     }, {
@@ -107,10 +107,10 @@ const config = {
                         items: [
                             {
                                 label: 'Develop',
-                                to: '/develop-guide/overview',
+                                to: '/develop/overview',
                             }, {
                                 label: 'Embed',
-                                to: '/embed-guide/overview',
+                                to: '/embed/overview',
                             }, {
                                 label: 'Contribute',
                                 to: '/contribute/overview',

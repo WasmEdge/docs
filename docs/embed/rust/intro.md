@@ -160,11 +160,11 @@ For those who would like to dev in Docker environment, you can reference the [Us
 
 For helping you get familiar with WasmEdge Rust bindings, this chapter will cover the following quick examples demonstrate how to use the APIs defined in `wasmedge-sdk`, respectively. In addition, we'll add more examples continuously. Please file issues [here](https://github.com/WasmEdge/WasmEdge/issues) and let us know if you have any problems with the API usage.
 
-- [Embed Wasm apps](/docs/embed-guide/rust/app.md)
-- [Embed Wasm functions and async functions](/docs/embed-guide/rust/function.md)
-- [Pass complex dats](/docs/embed-guide/rust/complex_data.md)
-- [AI inference with Pytorch](/docs/embed-guide/rust/ai.md)
-- [Asycify](/docs/embed-guide/rust/asyncify.md)
+- [Embed Wasm apps](/docs/embed/rust/app.md)
+- [Embed Wasm functions and async functions](/docs/embed/rust/function.md)
+- [Pass complex dats](/docs/embed/rust/complex_data.md)
+- [AI inference with Pytorch](/docs/embed/rust/ai.md)
+- [Asycify](/docs/embed/rust/asyncify.md)
 - [API Reference](https://crates.io/crates/wasmedge-sdk)
 - [More examples](https://github.com/second-state/wasmedge-rustsdk-examples)
 

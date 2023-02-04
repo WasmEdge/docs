@@ -17,7 +17,7 @@ $ go version
 go version go1.16.5 linux/amd64
 ```
 
-Meantime, please make sure you have installed [WasmEdge](/docs/develop-guide/build-and-run/install.md) with the same `WasmEdge-go` release version.
+Meantime, please make sure you have installed [WasmEdge](/docs/develop/build-and-run/install.md) with the same `WasmEdge-go` release version.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
@@ -79,26 +79,26 @@ The [go_WasmAOT example](https://github.com/second-state/WasmEdge-go-examples/tr
 
 To embed WasmEdge into your go application and run the Wasm function, we still need language toolchain to compile the source code to Wasm bytecode.
 
-* For Rust, please refer to [the Rust set up guide](/docs/develop-guide/rust/setup.md)
+* For Rust, please refer to [the Rust set up guide](/docs/develop/rust/setup.md)
 
-* For Tinygo, please refer to [the Tinygo set up guide](/docs/develop-guide/go/hello_world.md)
+* For Tinygo, please refer to [the Tinygo set up guide](/docs/develop/go/hello_world.md)
 
-* For C, please refer to [the C set up guide](/docs/develop-guide/c/hello_world.md)
+* For C, please refer to [the C set up guide](/docs/develop/c/hello_world.md)
 
 * For Javascript, you need to the [WasmEdge-QuickJS](https://github.com/second-state/wasmedge-quickjs) into your Go application. See a community example [here](https://github.com/Edgenesis/wasm-shifu-demo).
 
 
 ## Examples
 
-- [Embed a standalone Wasm app](/docs/embed-guide/go/app.md)
-- [Embed a Wasm function](/docs/embed-guide/go/function.md)
-- [Pass complex parameters to Wasm functions](/docs/embed-guide/go/data.md)
-- [Embed a Tensorflow inference function](/docs/embed-guide/go/ai.md)
-- [Embed a bindgen function](/docs/embed-guide/go/data.md)
+- [Embed a standalone Wasm app](/docs/embed/go/app.md)
+- [Embed a Wasm function](/docs/embed/go/function.md)
+- [Pass complex parameters to Wasm functions](/docs/embed/go/data.md)
+- [Embed a Tensorflow inference function](/docs/embed/go/ai.md)
+- [Embed a bindgen function](/docs/embed/go/data.md)
 
 ## API References
 
-- [v0.11.2](/docs/embed-guide/go/reference/0.11.2.md)
-- [v0.10.1](/docs/embed-guide/go/reference/0.10.1.md)
-- [v0.9.1](/docs/embed-guide/go/reference/0.9.1.md)
+- [v0.11.2](/docs/embed/go/reference/0.11.2.md)
+- [v0.10.1](/docs/embed/go/reference/0.10.1.md)
+- [v0.9.1](/docs/embed/go/reference/0.9.1.md)
 

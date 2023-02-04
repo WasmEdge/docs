@@ -20,7 +20,7 @@ In this section, we will discuss several examples.
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_MemoryGreet), we will demonstrate how to call [a Rust-based WebAssembly function](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreet/rust_memory_greet/src/lib.rs) from a Go app.
 Specially, we will discuss how to pass string data.
 
-> An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](/docs/embed-guide/go/function.md).
+> An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](/docs/embed/go/function.md).
 
 The Rust function takes a memory pointer for the string, and constructs the Rust string itself.
 
@@ -299,7 +299,7 @@ Hello, WasmEdge!
 
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_AccessMemory), we will demonstrate how to call [Rust-based WebAssembly functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemory/rust_access_memory/src/lib.rs) and pass arrays to and from a Go app.
 
-> An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](/docs/embed-guide/go/function.md).
+> An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](/docs/embed/go/function.md).
 
 The `fib_array()` function takes a array as a call parameter and fill it with a fibonacci sequence of numbers. Alternatively, the `fib_array_return_memory()` function returns a array of fibonacci sequence of numbers.
 

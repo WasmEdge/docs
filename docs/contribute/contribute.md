@@ -26,7 +26,7 @@ Please submit a pull request broken down into small changes bit by bit. A pull r
 
 Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace
 
-> The WasmEdge team builds lots of extensions of Server-side WebAssembly, like [TensorFlow](https://github.com/second-state/WasmEdge-tensorflow), [Storage](https://github.com/second-state/WasmEdge-storage), [Command interface] and so on. If you want to contribute to the extensions, please check out [the details here](../develop-guide/wasmedge/extensions/unique_extensions).
+> The WasmEdge team builds lots of extensions of Server-side WebAssembly, like [TensorFlow](https://github.com/second-state/WasmEdge-tensorflow), [Storage](https://github.com/second-state/WasmEdge-storage), [Command interface] and so on. If you want to contribute to the extensions, please check out [the details here](../develop/wasmedge/extensions/unique_extensions).
 
 ### Branches and Commits
 

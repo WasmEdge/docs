@@ -217,7 +217,7 @@ int main() {
 
 1. Install the WasmEdge shared library.
 
-    Please refer to the [Installation](/docs/develop-guide/build-and-run/install.md) for details.
+    Please refer to the [Installation](/docs/develop/build-and-run/install.md) for details.
 
 2. Prepare the WASM file and the `main.c` source file as above.
 
@@ -279,7 +279,7 @@ The host function "`extern_module::func_mul`" takes `externref` as a function po
 
 ### Host Functions
 
-To instantiate the above example Wasm, the host functions must be registered into WasmEdge. See [Host Functions](/docs/embed-guide/c/reference/ref.md#host-functions) for more details.
+To instantiate the above example Wasm, the host functions must be registered into WasmEdge. See [Host Functions](/docs/embed/c/reference/ref.md#host-functions) for more details.
 The host functions which take `externref`s must know the original objects' types. We take the function pointer case for example.
 
 ```c

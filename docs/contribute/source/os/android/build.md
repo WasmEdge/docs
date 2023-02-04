@@ -8,7 +8,7 @@ The WasmEdge Runtime releases come with pre-built binaries for the Android OS. W
 
 * Native speed & sandbox safety for Android apps
 * Support multiple dev languages — eg C, [Rust](/category/develop-wasm-apps-in-rust), [Go](../../../../category/develop-wasm-apps-in-go) & [JS](../../../../category/developing-wasm-apps-in-javascript)
-* [Embed 3rd party functions](../../../../embed-guide/overview.md) in your android app
+* [Embed 3rd party functions](../../../../embed/overview.md) in your android app
 * [Kubernetes managed](../../../../category/deploy-wasmedge-apps-in-kubernetes) android apps
 
 However, the WasmEdge installer does not support Android. The user must download the release files to a computer, and then use the `adb` tool to transfer the files to an Android device or simulator. We will show you how to do that.

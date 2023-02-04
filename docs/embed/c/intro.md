@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 4.1 WasmEdge C SDK Introduction
 
-The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](/docs/embed-guide/c/reference/ref.md). Before programming with the WasmEdge C API, please [install WasmEdge](/docs/develop-guide/build-and-run/install.md) first.
+The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](/docs/embed/c/reference/ref.md). Before programming with the WasmEdge C API, please [install WasmEdge](/docs/develop/build-and-run/install.md) first.
 
 The WasmEdge C API is also the fundamental API for other languages' SDK.
 
@@ -116,13 +116,13 @@ sys 0m0.011s
 
 ## API References
 
-- [0.11.2](/docs/embed-guide/c/reference/0.11.2.md)
-- [0.10.1](/docs/embed-guide/c/reference/0.10.1.md)
-- [0.9.1](/docs/embed-guide/c/reference/0.9.1.md)
+- [0.11.2](/docs/embed/c/reference/0.11.2.md)
+- [0.10.1](/docs/embed/c/reference/0.10.1.md)
+- [0.9.1](/docs/embed/c/reference/0.9.1.md)
 
 
 ## Examples
 
-- Link with the [WasmEdge library](/docs/embed-guide/c/library.md)
-- Use the [external reference](/docs/embed-guide/c/externref.md) of WebAssembly input and output in C/C++
-- Implement the [host functions](/docs/embed-guide/c/host_function.md) in C/C++
+- Link with the [WasmEdge library](/docs/embed/c/library.md)
+- Use the [external reference](/docs/embed/c/externref.md) of WebAssembly input and output in C/C++
+- Implement the [host functions](/docs/embed/c/host_function.md) in C/C++
