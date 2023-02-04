@@ -1,12 +1,12 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
-# 2.3.3 Build with WasmEdge-httpsReq Plugin
+# 2.3.1 Build with WASI-Crypto Plugin
 
 ## Prerequisites
 
-Currently, WasmEdge used `OpenSSL 1.1` or `3.0` for the the dependency of WasmEdge-HttpsReq.
+Currently, WasmEdge used `OpenSSL 1.1` or `3.0` for the WASI-Crypto implementation.
 
 For installing `OpenSSL 1.1` development package on `Ubuntu 20.04`, we recommend the following commands:
 
@@ -46,19 +46,19 @@ cd ..
 
 > We'll soon update this chapter to use `OpenSSL 3.0`.
 
-## Build WasmEdge with WasmEdge-HttpsReq Plug-in
+## Build WasmEdge with WASI-Crypto Plug-in
 
-To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](/docs/contribute-guide/source/os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_HTTPSREQ=On`.
+To enable the WasmEdge WASI-Crypto, developers need to [building the WasmEdge from source](/docs/contribute/source/os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_WASI_CRYPTO=ON`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
 mkdir -p build && cd build
 # For using self-get OpenSSL, you can assign the cmake option `-DOPENSSL_ROOT_DIR=<path/to/openssl>`.
-cmake -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_HTTPSREQ=On .. && make -j
-# For the WasmEdge-HttpsReq plugin, you should install this project.
+cmake -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_CRYPTO=On .. && make -j
+# For the WASI-Crypto plugin, you should install this project.
 cmake --install .
 ```
 
-> If the built `wasmedge` CLI tool cannot find the WasmEdge-HttpsReq plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (`/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasmedge_httpsreq/`) to try to fix this issue.
+> If the built `wasmedge` CLI tool cannot find the WASI-Crypto plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (`/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_crypto/`) to try to fix this issue.
 
-Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WasmEdge-HttpsReq plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginHttpsReq.so` after installation.
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-Crypto plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiCrypto.so` after installation.

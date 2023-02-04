@@ -117,7 +117,7 @@ To use `wasmedge-sdk` in your project, you should finish the following two steps
 
     You can choose this way if you'd like to use the latest code in the `master` branch of the `WasmEdge` github repo. For example,
 
-    - Suppose that you `git clone` WasmEdge repo in your local directory, for example, `~/workspace/me/WasmEdge`, and follow the [instructions to build](/docs/contribute-guide/source/build_from_src.md) WasmEdge native library. After that, you should find the generated `include` and `lib` directories in `~/workspace/me/WasmEdge/build`.
+    - Suppose that you `git clone` WasmEdge repo in your local directory, for example, `~/workspace/me/WasmEdge`, and follow the [instructions to build](/docs/contribute/source/build_from_src.md) WasmEdge native library. After that, you should find the generated `include` and `lib` directories in `~/workspace/me/WasmEdge/build`.
 
     - Then, set `WASMEDGE_BUILD_DIR` environment variable to specify the `build` directory.
 

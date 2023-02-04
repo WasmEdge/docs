@@ -74,7 +74,7 @@ const config = {
                         label: 'Embed',
                     }, {
                         type: 'doc',
-                        docId: 'contribute-guide/overview',
+                        docId: 'contribute/overview',
                         position: 'left',
                         label: 'Contribute',
                     },
@@ -113,7 +113,7 @@ const config = {
                                 to: '/embed-guide/overview',
                             }, {
                                 label: 'Contribute',
-                                to: '/contribute-guide/overview',
+                                to: '/contribute/overview',
                             }
                         ],
                     },
