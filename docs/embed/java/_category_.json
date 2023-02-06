@@ -1,5 +1,5 @@
 {
-  "label": "WasmEdge Java SDK",
+  "label": "Java SDK for Embedding Wasm Functions",
   "position": 7,
   "link": {
     "type": "generated-index",

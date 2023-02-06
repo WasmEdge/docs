@@ -1,5 +1,5 @@
 {
-  "label": "WasmEdge C API",
+  "label": "C SDK for Embedding Wasm Functions",
   "position": 4,
   "link": {
     "type": "generated-index",

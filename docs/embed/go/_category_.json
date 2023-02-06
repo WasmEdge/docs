@@ -1,5 +1,5 @@
 {
-  "label": "WasmEdge Go SDK",
+  "label": "Go SDK for Embedding Wasm Functions",
   "position": 6,
   "link": {
     "type": "generated-index",

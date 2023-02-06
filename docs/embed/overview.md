@@ -3,7 +3,7 @@ sidebar_position: 1
 displayed_sidebar: embedSidebar
 ---
 
-# Guide for Embedding Wasm functions
+# Embed Wasm Functions in Your Apps
 
 As we mentioned before, the most important use case for WasmEdge is to safely execute user-defined or community-contributed code as plug-ins in a software product. It enables third-party developers, vendors, suppliers, and community members to extend and customize the software product.
 

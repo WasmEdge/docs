@@ -3,7 +3,7 @@ sidebar_position: 1
 displayed_sidebar: contributeSidebar
 ---
 
-# Guide for Contributing to WasmEdge
+# Contribute and Extend WasmEdge
 
 Contribution is always welcome! The WebAssembly ecosystem is still in its early days. Hosted by CNCF, WasmEdge aims to become an open source “reference implementation” of WebAssembly and its edge-related extensions. WasmEdge is developed in the open, and is constantly being improved by our users, contributors, and maintainers. It is because of you that we can bring great software to the community.We're looking forward to working together with you!
 
