@@ -8,7 +8,7 @@ Second State launched a new [WebAssembly-based SDK for the Dapr API](https://git
 
 The figure below shows a Dapr-enabled microservice running inside the WasmEdge sandbox.
 
-![](dapr_wasm_sdk.png)
+![](dapr_wasm_rust_api.png)
 
 ## Prerequisites
 
@@ -160,4 +160,4 @@ $ curl http://localhost:9007/events
 ```
 
 
-Next, you could use WasmEdge and WasmEdge's Dapr SDK to create your own lightweight microservices with better security, faster performance, and smaller footprints.
+Next, you could use WasmEdge and WasmEdge's Dapr Rust API to create your own lightweight microservices with better security, faster performance, and smaller footprints.

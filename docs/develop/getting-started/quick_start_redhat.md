@@ -101,4 +101,4 @@ To learn more about how to run JavaScript apps in WasmEdge.
 
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * [Rust developer guides](../../category/develop-wasm-apps-in-rust)
-* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/developing-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.
+* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/develop-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

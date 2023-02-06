@@ -7,7 +7,7 @@ sidebar_position: 1
 The WasmEdge Runtime releases come with pre-built binaries for the Android OS. Why WasmEdge on Android?
 
 * Native speed & sandbox safety for Android apps
-* Support multiple dev languages — eg C, [Rust](/category/develop-wasm-apps-in-rust), [Go](../../../../category/develop-wasm-apps-in-go) & [JS](../../../../category/developing-wasm-apps-in-javascript)
+* Support multiple dev languages — eg C, [Rust](/category/develop-wasm-apps-in-rust), [Go](../../../../category/develop-wasm-apps-in-go) & [JS](../../../../category/develop-wasm-apps-in-javascript)
 * [Embed 3rd party functions](../../../../embed/overview.md) in your android app
 * [Kubernetes managed](../../../../category/deploy-wasmedge-apps-in-kubernetes) android apps
 

@@ -17,7 +17,7 @@ We will cover the following content:
 * [Getting Started](/category/getting-started-with-wasmEdge)
 * Introduce the [WasmEdge Runtime](/category/what-is-wasmedge)
 * [Building and running WasmEdge apps](/category/building-and-running-wasmedge-apps)
-* Develop WebAssembly apps from your programming languages from [Rust](/category/develop-wasm-apps-in-rust), [C/C++](/category/develop-wasm-apps-in-cc), [JavaScript](/category/developing-wasm-apps-in-javascript), [Go](/category/develop-wasm-apps-in-go), and many other laungages.
+* Develop WebAssembly apps from your programming languages from [Rust](/category/develop-wasm-apps-in-rust), [C/C++](/category/develop-wasm-apps-in-cc), [JavaScript](/category/develop-wasm-apps-in-javascript), [Go](/category/develop-wasm-apps-in-go), and many other languages.
 * [Deploy Wasm Apps with the existing container toolings](/category/deploy-wasmedge-apps-in-kubernetes)
 
 

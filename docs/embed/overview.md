@@ -17,11 +17,11 @@ In this section, we will walk you through how to embed WasmEdge in different lan
 * [Quick Start](../category/quick-start)
 * [Passing complex data](../category/passing-complex-data)
 * [Developing components using witc](./witc)
-* [Embed WasmEdge in C/C++](../category/wasmedge-c-api)
-* [Embed WasmEdge in Rust](../category/wasmedge-rust-sdk)
-* [Embed WasmEdge in Go](../category/wasmedge-go-sdk)
-* [Embed WasmEdge in Java](../category/wasmedge-java-sdk)
-* [Embed WasmEdge in Python](../category/wasmedge-python-sdk)
+* [Embed WasmEdge in C/C++](../category/c-sdk-for-embedding-wasm-functions)
+* [Embed WasmEdge in Rust](../category/rust-sdk-for-embedding-wasm-functions)
+* [Embed WasmEdge in Go](../category/go-sdk-for-embedding-wasm-functions)
+* [Embed WasmEdge in Java](../category/java-sdk-for-embedding-wasm-functions)
+* [Embed WasmEdge in Python](../category/python-sdk-for-embedding-wasm-functions)
 * [Use cases](../category/wasmedge-use-cases)
 
 
