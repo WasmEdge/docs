@@ -66,17 +66,17 @@ const config = {
                         type: 'doc',
                         docId: 'develop/overview',
                         position: 'left',
-                        label: 'Develop Wasm apps',
+                        label: 'Develop',
                     }, {
                         type: 'doc',
                         docId: 'embed/overview',
                         position: 'left',
-                        label: 'Embed Wasm functions into your app',
+                        label: 'Embed',
                     }, {
                         type: 'doc',
                         docId: 'contribute/overview',
                         position: 'left',
-                        label: 'Contribute and extend WasmEdge',
+                        label: 'Extend',
                     },
                     {
                         type: 'localeDropdown',
