@@ -139,4 +139,4 @@ To learn more about how to run JavaScript apps in WasmEdge.
 ## Next steps
 
 * Check out all available [WasmEdge CLI options](../build-and-run/cli) to explore WasmEdge's features
-* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/developing-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.
+* Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/develop-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

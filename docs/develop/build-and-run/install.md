@@ -117,16 +117,7 @@ And then get WasmEdge and the WASI-NN plug-in with OpenVINO backend. The version
 
 
 ```bash
-curl -sLO https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-tar -zxf WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-rm -f WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-curl -sLO https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-plugin-wasi_nn-openvino-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-tar -zxf WasmEdge-plugin-wasi_nn-openvino-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-rm -f WasmEdge-plugin-wasi_nn-openvino-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-mv libwasmedgePluginWasiNN.so WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib
-export PATH=$PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/bin
-export WASMEDGE_PLUGIN_PATH=$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_nn-openvino
 ```
 
 Next, go to the [OpenVINO in Rust](../rust/ai_inference/openvino) chapter to see how to run AI inference with OpenVINO.
@@ -152,16 +143,7 @@ And then get the WasmEdge and the WASI-NN plug-in with PyTorch backend. The vers
 Let's take `ubuntu20.04` as an example.
 
 ```bash
-curl -sLO https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-tar -zxf WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-rm -f WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-curl -sLO https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-plugin-wasi_nn-pytorch-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-tar -zxf WasmEdge-plugin-wasi_nn-pytorch-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-rm -f WasmEdge-plugin-wasi_nn-pytorch-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-mv libwasmedgePluginWasiNN.so WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib
-export PATH=$PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/bin
-export WASMEDGE_PLUGIN_PATH=$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_nn-pytorch
 ```
 
 Next, go to the [Pytorch in Rust chapter](../rust/ai_inference/pytorch) to see how to run AI inference with Pytorch.
@@ -191,16 +173,7 @@ Or set the environment variable `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH
 Get the WasmEdge and the WASI-NN plug-in with TensorFlow-Lite backend:
 
 ```bash
-curl -sLO https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-tar -zxf WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-rm -f WasmEdge-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-curl -sLO https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-plugin-wasi_nn-tensorflowlite-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-tar -zxf WasmEdge-plugin-wasi_nn-tensorflowlite-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-rm -f WasmEdge-plugin-wasi_nn-tensorflowlite-{{ wasmedge_version }}-ubuntu20.04_x86_64.tar.gz
-mv libwasmedgePluginWasiNN.so WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib
-export PATH=$PATH:$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/bin
-export WASMEDGE_PLUGIN_PATH=$(pwd)/WasmEdge-{{ wasmedge_version }}-Linux/lib/wasmedge
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_nn-tensorflowlite
 ```
 
 Next, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow_lite) to see how to run AI inference with TensorFlow Lite.
