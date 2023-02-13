@@ -6,7 +6,7 @@ import Link from "@docusaurus/Link";
 const FeatureList = [
     {
         title: 'Develop Wasm applications',
-        LinkUrl: '/docs/develop/overview',
+        LinkUrl: '/develop/overview',
         Svg: require('@site/static/img/programmable.svg').default,
         description: (
             <>
@@ -16,7 +16,7 @@ const FeatureList = [
     },
     {
         title: 'Embed WasmEdge into a host app',
-        LinkUrl: '/docs/embed/overview',
+        LinkUrl: '/embed/overview',
         Svg: require('@site/static/img/WebAssembly.svg').default,
         description: (
             <>
@@ -26,7 +26,7 @@ const FeatureList = [
     },
     {
         title: 'Contribute to WasmEdge',
-        LinkUrl: '/docs/contribute/overview',
+        LinkUrl: '/contribute/overview',
         Svg: require('@site/static/img/lowcode.svg').default,
         description: (
             <>
