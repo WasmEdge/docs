@@ -31,6 +31,6 @@ jobs:
           source-directory: 'build'
           destination-github-username: 'WasmEdge'
           destination-repository-name: 'www'
-          target-directory: 'newBook'
+          target-directory: 'docs'
           user-email: juyichen0413@foxmail.com
           target-branch: main
