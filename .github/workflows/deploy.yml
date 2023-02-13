@@ -14,14 +14,14 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: Change Name
-        run: |
-          mv build en
-          mkdir build
-          mv en build/en
-          cd build/en
-          mv zh ../zh
-          mv zh-TW ../zh-TW
+#      - name: Change Name
+#        run: |
+#          mv build en
+#          mkdir build
+#          mv en build/en
+#          cd build/en
+#          mv zh ../zh
+#          mv zh-TW ../zh-TW
       - name: Push directory to another repository
         if: ${{ github.event_name == 'push' }}
         uses: cpina/github-action-push-to-another-repository@main

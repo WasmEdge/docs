@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
     title: 'WasmEdge Book',
     tagline: 'Bring the cloud-native and serverless application paradigms to Edge Computing.',
-    url: 'https://alabulei1.github.io/',
+    url: 'https://wasmedge.org/',
     baseUrl: '/docs/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
@@ -28,8 +28,7 @@ const config = {
         locales: ['en', 'zh', 'zh-TW'],
         localeConfigs: {
             en: {
-                label: 'English',
-                path: 'en'
+                label: 'English'
             },
             "zh": {
                 label: '简体中文'
