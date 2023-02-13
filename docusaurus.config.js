@@ -50,7 +50,7 @@ const config = {
                     // Remove this to remove the "edit this page" links.
                     routeBasePath: '/',
                     editUrl:
-                        'https://github.com/alabulei1/book',
+                        'https://github.com/alabulei1/book/blob/main/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
