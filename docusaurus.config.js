@@ -25,10 +25,17 @@ const config = {
     // to replace "en" with "zh-Hans".
     i18n: {
         defaultLocale: 'en',
-        locales: ['en', 'zh-Hans'],
+        locales: ['en', 'zh', 'zh-TW'],
         localeConfigs: {
-            en: {label: 'English'},
-            "zh-Hans": {label: '简体中文'}
+            en: {
+                label: 'English'
+            },
+            "zh": {
+                label: '简体中文'
+            },
+            "zh-TW": {
+                label: '繁體中文'
+            }
         }
     },
 
@@ -82,14 +89,7 @@ const config = {
                         type: 'localeDropdown',
                         position: 'right',
                         dropdownItemsBefore: [],
-                        dropdownItemsAfter: [
-                            {
-                                href: 'https://translate.google.com/',
-                                label: 'Translate',
-                                target: '_blank',
-                                rel: null,
-                            },
-                        ],
+                        dropdownItemsAfter: [],
                         className: 'icon-link language navbar__item',
                     },
                     {
