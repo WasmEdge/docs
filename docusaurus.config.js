@@ -9,7 +9,7 @@ const config = {
     title: 'WasmEdge Book',
     tagline: 'Bring the cloud-native and serverless application paradigms to Edge Computing.',
     url: 'https://alabulei1.github.io/',
-    baseUrl: '/docs/en/',
+    baseUrl: '/docs/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
 
@@ -28,7 +28,8 @@ const config = {
         locales: ['en', 'zh', 'zh-TW'],
         localeConfigs: {
             en: {
-                label: 'English'
+                label: 'English',
+                path: 'en'
             },
             "zh": {
                 label: '简体中文'
