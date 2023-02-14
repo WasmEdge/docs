@@ -10,27 +10,27 @@ const FeatureList = [
         Svg: require('@site/static/img/programmable.svg').default,
         description: (
             <>
-                Develop Wasm applications from Rust, JavaScript, C++ and Tinygo.
+                Develop Wasm apps in Rust, JavaScript, Go, and Python. Those apps are compiled into Wasm and run inside the WasmEdge sandbox.
             </>
         ),
     },
     {
-        title: 'Embed WasmEdge into a host app',
+        title: 'Embed Wasm functions into a host',
         LinkUrl: '/embed/overview',
         Svg: require('@site/static/img/WebAssembly.svg').default,
         description: (
             <>
-                Embed WasmEdge into a host app using WasmEdge Rust SDK, C SDK, Go SDK, and Java SDK.
+                The host app could be written in Rust, C/C++, Go, and Java. Wasm functions are plugged in without re-compiling the host.
             </>
         ),
     },
     {
-        title: 'Contribute to WasmEdge',
+        title: 'Extend WasmEdge',
         LinkUrl: '/contribute/overview',
         Svg: require('@site/static/img/lowcode.svg').default,
         description: (
             <>
-                Becoming a contributor to WasmEdge.
+                Create WasmEdge extensions and plugins in Rust and C/C++. Contribute to the WasmEdge project.
             </>
         ),
     },
