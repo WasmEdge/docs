@@ -2,15 +2,14 @@
 sidebar_position: 1
 ---
 
-# 4.0 Set up Software for Building and Compiling Rust Programs
+# Prerequisites
 
-In the following chapters, we will show how to build and compile Rust programs into Wasm bytecode and then run them in WasmEdge.
-
-Before we start, let's set up the software we need.
+You will need the WasmEdge runtime and Rust compiler tools to get started. 
+If you are using Docker Desktop, you can skip this chapter as you can get everything on-demand from [Docker + wasm](../build-and-run/docker_wasm.md).
 
 ## Install WasmEdge
 
-Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation instruction](../build-and-run/install).
+Use the following command line to install WasmEdge on your Linux computer. For more details and options, please refer to the [WasmEdge installation guide](../build-and-run/install.md).
 
 ```
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash

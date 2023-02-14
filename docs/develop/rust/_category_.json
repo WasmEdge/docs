@@ -3,6 +3,6 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Rust is the first class citizen in WebAssembly ecosystem. In this chapter, we will learn how to create Wasm apps in Rust."
+    "description": "Rust is well supported in the WebAssembly ecosystem. In this chapter, you will learn how to create Wasm apps in Rust."
   }
 }
