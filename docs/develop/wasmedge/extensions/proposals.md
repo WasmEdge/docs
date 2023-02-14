@@ -2,10 +2,10 @@
 sidebar_position: 1
 ---
 
-# 2.2.1  Standard WebAssembly proposals
+# WebAssembly specs
 
 
-## WebAssembly proposals
+## WebAssembly features
 
 WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAssembly/proposals). Those proposals are likely to become official WebAssembly specifications in the future.
 
@@ -61,7 +61,6 @@ WasmEdge implements the following [WASI proposals](https://github.com/WebAssembl
 The following proposals is under development and may be supported in the future:
 
 * WebAssembly GC Proposal
-
 
 [Sockets]: https://github.com/WebAssembly/wasi-sockets
 [Crypto]: https://github.com/WebAssembly/wasi-crypto

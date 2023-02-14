@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2.3 Component Model and Third Party Extensions
+# Component Model
 
 The component model for Wasm would dramatically improve Wasm module’s reusability and composability. It will allow better access from one Wasm module to other modules and systems, including the operating system APIs (eg, networking). 
 

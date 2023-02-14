@@ -2,13 +2,13 @@
 sidebar_position: 1
 ---
 
-# 2.1 WasmEdge Features
+# WasmEdge Features
 
-WasmEdg (project under CNCF) is a lightweight, high-performance, and extensible WebAssembly runtime.
+WasmEdg (project under CNCF) is a safe, fast, lightweight, portable, and extensible WebAssembly runtime.
 
 ## High Performance
 
-Through [the AoT compiler](../build-and-run/aot), WasmEdge is the fastest WebAssembly runtime on the market.
+Taking advantage of [the LLVM-based AoT compiler](../build-and-run/aot), WasmEdge is the fastest WebAssembly runtime on the market.
 
 * [A Lightweight Design for High-performance Serverless Computing](https://arxiv.org/abs/2010.07115), published on IEEE Software, Jan 2021. [https://arxiv.org/abs/2010.07115](https://arxiv.org/abs/2010.07115)
 * [Performance Analysis for Arm vs. x86 CPUs in the Cloud](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/), published on infoQ.com, Jan 2021. [https://www.infoq.com/articles/arm-vs-x86-cloud-performance/](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/)

@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'WasmEdge Book',
-    tagline: 'Bring the cloud-native and serverless application paradigms to Edge Computing.',
+    title: 'WasmEdge Developer Guides',
+    tagline: 'Serverless functions anywhere in the cloud, in data / AI pipelines, in SaaS platforms, and on edge devices.',
     url: 'https://wasmedge.org/',
     baseUrl: '/docs/',
     onBrokenLinks: 'throw',
@@ -50,7 +50,7 @@ const config = {
                     // Remove this to remove the "edit this page" links.
                     routeBasePath: '/',
                     editUrl:
-                        'https://github.com/alabulei1/book/blob/main/',
+                        'https://github.com/wasmedge/docs/blob/main/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
@@ -112,7 +112,7 @@ const config = {
                                 label: 'Embed',
                                 to: '/embed/overview',
                             }, {
-                                label: 'Contribute',
+                                label: 'Extend',
                                 to: '/contribute/overview',
                             }
                         ],
