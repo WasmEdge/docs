@@ -13,8 +13,8 @@ Please follow this guide to build and test WasmEdge from the source code.
 - [OpenWrt](../source/os/openwrt.md)
 - [RISC-V](../source/os/riscv.md)
 - [OpenHarmony](../source/os/openharmony.md)
-- [seL4](/docs/contribute/source/os/sel4.md)
-- [Raspberry Pi](/docs/contribute/source/os/raspberrypi.md)
+- [seL4](/contribute/source/os/sel4)
+- [Raspberry Pi](/contribute/source/os/raspberrypi)
 
 
 

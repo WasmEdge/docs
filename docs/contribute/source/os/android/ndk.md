@@ -26,7 +26,7 @@ To compile programs with the wasmedge-tensorflow c api, you need to install the 
 
 ## Review of source code
 
-The [`test.c`](https://github.com/second-state/wasm-learning/blob/master/android/test.c) uses the wasmedge-tensorflow c api to run a WebAssembly function. The WebAssembly file `birds_v1.wasm` is compiled from Rust source code and [explained here](/docs/develop/rust/ai_inference/tensorflow.md).
+The [`test.c`](https://github.com/second-state/wasm-learning/blob/master/android/test.c) uses the wasmedge-tensorflow c api to run a WebAssembly function. The WebAssembly file `birds_v1.wasm` is compiled from Rust source code and [explained here](/develop/rust/ai_inference/tensorflow).
 
 ```c
 #include <wasmedge/wasmedge.h>

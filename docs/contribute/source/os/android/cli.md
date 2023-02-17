@@ -63,7 +63,7 @@ adb push WasmEdge-tensorflow-tools /data/local/tmp
 
 ### Sample application
 
-In this example, we will demonstrate a standard [WasmEdge Tensorflow-Lite sample application](https://github.com/second-state/wasm-learning/tree/master/rust/birds_v1). It can recognize and classify the bird type from a JPG or PNG picture of a bird. The explanation of the source code can be [found here](/docs/develop/rust/ai_inference/tensorflow.md).
+In this example, we will demonstrate a standard [WasmEdge Tensorflow-Lite sample application](https://github.com/second-state/wasm-learning/tree/master/rust/birds_v1). It can recognize and classify the bird type from a JPG or PNG picture of a bird. The explanation of the source code can be [found here](/develop/rust/ai_inference/tensorflow).
 
 ```bash
 git clone https://github.com/second-state/wasm-learning.git

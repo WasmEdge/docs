@@ -7,7 +7,7 @@ sidebar_position: 3
 
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs), we will demonstrate how to call a few simple WebAssembly functions from a Go app. The [functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs/src/lib.rs) are written in Rust, and require complex call parameters and return values. The `#[wasmedge_bindgen]` macro is needed for the compiler tools to auto-generate the correct code to pass call parameters from Go to WebAssembly.
 
-As we [described](/docs/embed/data/intro.md) before, the WebAssembly spec only supports a few simple data types out of the box. It [does not support](https://medium.com/wasm/strings-in-webassembly-wasm-57a05c1ea333) types such as string and array. In order to pass rich types in Go to WebAssembly, the compiler needs to convert them to simple integers. For example, it converts a string into an integer memory address and an integer length. The `wasmedge_bindgen` tool does this conversion automatically.
+As we [described](/embed/data/intro) before, the WebAssembly spec only supports a few simple data types out of the box. It [does not support](https://medium.com/wasm/strings-in-webassembly-wasm-57a05c1ea333) types such as string and array. In order to pass rich types in Go to WebAssembly, the compiler needs to convert them to simple integers. For example, it converts a string into an integer memory address and an integer length. The `wasmedge_bindgen` tool does this conversion automatically.
 
 ```rust
 use num_integer::lcm;

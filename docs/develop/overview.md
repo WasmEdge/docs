@@ -3,7 +3,7 @@ sidebar_position: 1
 displayed_sidebar: developSidebar
 ---
 
-# 开发 Wasm 应用程序
+# Develop Wasm Apps
 
 
 WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, udf, smart contracts, and IoT devices. WasmEdge is currently a CNCF (Cloud Native Computing Foundation) Sandbox project.

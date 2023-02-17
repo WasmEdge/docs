@@ -117,7 +117,7 @@ To use `wasmedge-sdk` in your project, you should finish the following two steps
 
     You can choose this way if you'd like to use the latest code in the `master` branch of the `WasmEdge` github repo. For example,
 
-    - Suppose that you `git clone` WasmEdge repo in your local directory, for example, `~/workspace/me/WasmEdge`, and follow the [instructions to build](/docs/contribute/source/build_from_src.md) WasmEdge native library. After that, you should find the generated `include` and `lib` directories in `~/workspace/me/WasmEdge/build`.
+    - Suppose that you `git clone` WasmEdge repo in your local directory, for example, `~/workspace/me/WasmEdge`, and follow the [instructions to build](/contribute/source/build_from_src) WasmEdge native library. After that, you should find the generated `include` and `lib` directories in `~/workspace/me/WasmEdge/build`.
 
     - Then, set `WASMEDGE_BUILD_DIR` environment variable to specify the `build` directory.
 
@@ -160,11 +160,11 @@ For those who would like to dev in Docker environment, you can reference the [Us
 
 For helping you get familiar with WasmEdge Rust bindings, this chapter will cover the following quick examples demonstrate how to use the APIs defined in `wasmedge-sdk`, respectively. In addition, we'll add more examples continuously. Please file issues [here](https://github.com/WasmEdge/WasmEdge/issues) and let us know if you have any problems with the API usage.
 
-- [Embed Wasm apps](/docs/embed/rust/app.md)
-- [Embed Wasm functions and async functions](/docs/embed/rust/function.md)
-- [Pass complex dats](/docs/embed/rust/complex_data.md)
-- [AI inference with Pytorch](/docs/embed/rust/ai.md)
-- [Asycify](/docs/embed/rust/asyncify.md)
+- [Embed Wasm apps](app.md)
+- [Embed Wasm functions and async functions](function.md)
+- [Pass complex dats](complex_data.md)
+- [AI inference with Pytorch](ai.md)
+- [Asycify](asyncify.md)
 - [API Reference](https://crates.io/crates/wasmedge-sdk)
 - [More examples](https://github.com/second-state/wasmedge-rustsdk-examples)
 

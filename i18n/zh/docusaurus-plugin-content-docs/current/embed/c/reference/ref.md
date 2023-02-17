@@ -57,7 +57,7 @@ The easiest way to install WasmEdge is to run the following command. Your system
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.12.0
 ```
 
-For more details, please refer to the [Installation Guide](/docs/develop/build-and-run/install.md) for the WasmEdge installation.
+For more details, please refer to the [Installation Guide](/develop/build-and-run/install) for the WasmEdge installation.
 
 ### Compile Sources
 
@@ -1110,7 +1110,7 @@ WasmEdge provides the following built-in pre-registrations.
 
     Developers can turn on the WASI-NN proposal support for VM in the `Configure` context.
 
-    > Note: Please check that the [dependencies and prerequisites](/docs/develop/build-and-run/install.md#install-plugins-and-extensions) are satisfied.
+    > Note: Please check that the [dependencies and prerequisites](/develop/build-and-run/install#install-plugins-and-extensions) are satisfied.
 
     ```c
     WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
@@ -1138,7 +1138,7 @@ WasmEdge provides the following built-in pre-registrations.
 
     Developers can turn on the WASI-Crypto proposal support for VM in the `Configure` context.
 
-    > Note: Please check that the [dependencies and prerequisites](/docs/develop/build-and-run/install.md#install-plugins-and-extensions) are satisfied.
+    > Note: Please check that the [dependencies and prerequisites](/develop/build-and-run/install#install-plugins-and-extensions) are satisfied.
 
     ```c
     WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
@@ -2559,8 +2559,8 @@ In WasmEdge, developers can create the `Function`, `Memory`, `Table`, and `Globa
 
     Developers can create these module instance contexts and register them into the `Store` or `VM` contexts rather than adjust the settings in the `Configure` contexts.
 
-    > Note: For the `WASI-NN` plugin, please check that the [dependencies and prerequisites](/docs/develop/build-and-run/install.md#install-plugins-and-extensions) are satisfied.
-    > Note: For the `WASI-Crypto` plugin, please check that the [dependencies and prerequisites](/docs/develop/build-and-run/install.md#install-plugins-and-extensions) are satisfied. And the 5 modules are recommended to all be created and registered together.
+    > Note: For the `WASI-NN` plugin, please check that the [dependencies and prerequisites](/develop/build-and-run/install#install-plugins-and-extensions) are satisfied.
+    > Note: For the `WASI-Crypto` plugin, please check that the [dependencies and prerequisites](/develop/build-and-run/install#install-plugins-and-extensions) are satisfied. And the 5 modules are recommended to all be created and registered together.
 
     ```c
     WasmEdge_ModuleInstanceContext *WasiModCxt =
