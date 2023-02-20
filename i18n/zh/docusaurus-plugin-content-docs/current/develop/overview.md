@@ -13,7 +13,7 @@ WasmEdge Runtime 为 WebAssembly 字节码程序提供了一个定义明确的�
 
 我们将带领你了解什么是 WasmEdge，以及如何用不同的语言开发 Wasm 应用程序。我们将在这一本书中涵盖以下内容。
 
-* [快速入门](/category/getting-started-with-asmEdge)
+* [快速入门](/category/getting-started-with-wasmEdge)
 * 介绍[WasmEdge Runtime](/category/what-is-wasmedge)
 * [建立和运行 WasmEdge 应用程序](/category/building-and-running-wasmedge-apps)
 * 使用你的编程语言中开发 WebAssembly应用程序，包括[Rust](/category/develop-wasm-apps-in-rust)、[C/C++](/category/develop-wasm-apps-in-cc)、[JavaScript](/category/develop-wasm-apps-in-javascript) 和 [Go](/category/develop-wasm-apps-in-go) 。
