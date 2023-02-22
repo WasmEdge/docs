@@ -1,0 +1,8 @@
+{
+  "label": "Passing Complex Data",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Passing Complex Data from the host app to the wasm app"
+  }
+}

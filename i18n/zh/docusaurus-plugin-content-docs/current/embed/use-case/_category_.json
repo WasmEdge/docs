@@ -1,0 +1,8 @@
+{
+  "label": "WasmEdge Use Cases",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "In this chapter, we will discuss use cases for embedding WasmEdge."
+  }
+}
