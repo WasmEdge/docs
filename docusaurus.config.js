@@ -32,9 +32,6 @@ const config = {
             },
             "zh": {
                 label: '简体中文'
-            },
-            "zh-TW": {
-                label: '繁體中文'
             }
         }
     },

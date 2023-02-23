@@ -1,0 +1,8 @@
+{
+  "label": "HTTP service",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The QuickJS WasmEdge Runtime supports Node.js's `http` and `fetch` APIs."
+  }
+}
