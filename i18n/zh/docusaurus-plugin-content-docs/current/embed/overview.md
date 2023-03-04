@@ -22,7 +22,7 @@ In this section, we will walk you through how to embed WasmEdge in different lan
 * [Embed WasmEdge in Go](../category/go-sdk-for-embedding-wasm-functions)
 * [Embed WasmEdge in Java](../category/java-sdk-for-embedding-wasm-functions)
 * [Embed WasmEdge in Python](../category/python-sdk-for-embedding-wasm-functions)
-* [Use cases](../category/wasmedge-use-cases)
+* [Use cases](../category/use-cases)
 
 
 Besides this, we also have two more guides for developing Wasm apps and contributing to WasmEdge.
