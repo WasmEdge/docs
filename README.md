@@ -8,16 +8,16 @@ https://wasmedge.org/docs/
 
 To set up the WasmEdge Docs locally, you will need to follow these general steps:
 
-1. Clone the project: Go to the GitHub repository page of the WasmEdge Docs project and click on the "Code" button to get the URL of the repository. Then, open a terminal or command prompt and type the following command:
+1. Clone the project : Go to the GitHub repository page of the WasmEdge Docs project and click on the "Code" button to get the URL of the repository. Then, open a terminal or command prompt and type the following command:
 ```
 git clone <repository-url>
 ```
 
-1. Install dependencies: Navigate to the project directory in the terminal and run the following command to install the necessary dependencies:
+1. Install dependencies : Navigate to the project directory in the terminal and run the following command to install the necessary dependencies:
 ```
 npm install
 ```
-1. Start the development server: Once the dependencies are installed, you can start the development server by running the following command:
+1. Start the development server : Once the dependencies are installed, you can start the development server by running the following command:
 ```
 npm start
 ```
@@ -31,28 +31,37 @@ That's it! You should now have a local instance of the WasmEdge Docs running on 
 
 If you want to contribute to the WasmEdge Docs, you can follow these steps:
 
-1. Fork the project: Click the "Fork" button on the top-right corner of the repository page to create a copy of the project in your GitHub account.
+1. Fork the project : Click the "Fork" button on the top-right corner of the repository page to create a copy of the project in your GitHub account.
 
-1. Clone the forked project: Open a terminal or command prompt and type the following command:
+1. Clone the forked project : Open a terminal or command prompt and type the following command:
 ```
 git clone <forked-repository-url>
 ```
-1. Create a new branch: Navigate to the project directory and create a new branch to make your changes in:
+1. Create a new branch : Navigate to the project directory and create a new branch to make your changes in:
 ```
 git checkout -b my-new-branch
 ```
-1. Make your changes: Make any changes or additions to the documentation in the project directory.
-1.Commit your changes: Once you are satisfied with your changes, commit them with a descriptive commit message
+1. Make your changes : Make any changes or additions to the documentation in the project directory.
+1.Commit your changes : Once you are satisfied with your changes, commit them with a descriptive commit message
 ```
 git add .
-git commit -m "Added new section on how to contribute"
+git commit -m " Message  Signed-off-by: Name <email@example.com>"
 ```
-1.Push your changes: Push your changes to your forked repository:
+1.Push your changes : Push your changes to your forked repository:
 ```
 git push origin my-new-branch
 ```
-1.Create a pull request: Go to the original repository page and click the "New pull request" button. Select your forked repository and the branch you created. Add a description of your changes and click "Create pull request".
+1.Create a pull request : Go to the original repository page and click the "New pull request" button. Select your forked repository and the branch you created. Add a description of your changes and click "Create pull request".
 
 That's it! Your changes will now be reviewed by the maintainers of the WasmEdge Docs project.
+
+
+**NOTE -  _DCO Sign-Off Required_** :
+To contribute to this project, each commit must be signed off with the developer's name and email address. This sign-off indicates that the contributor has the right to submit the code under the project's license and agrees to the project's Developer Certificate of Origin (DCO).
+
+To sign off a commit, add the following line to your commit message, replacing "Your Name" and "your-email@example.com" with your actual name and email address.
+
+
+
 
 
