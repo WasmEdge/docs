@@ -2,4 +2,4 @@
 sidebar_position: 3
 ---
 
-# 3.3 TinyGo
+# 2.3 TinyGo
