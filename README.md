@@ -10,7 +10,7 @@ To set up the WasmEdge Docs locally, you will need to follow these general steps
 
 1. Clone the project : Go to the GitHub repository page of the WasmEdge Docs project and click on the "Code" button to get the URL of the repository. Then, open a terminal or command prompt and type the following command:
 ```
-git clone <repository-url>
+git clone https://github.com/WasmEdge/docs.git
 ```
 
 1. Install dependencies : Navigate to the project directory in the terminal and run the following command to install the necessary dependencies:
