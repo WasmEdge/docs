@@ -5,7 +5,7 @@ WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime 
 
 # WasmEdge Docs
 
-This repository contains the technical documentation for the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge) project. The documentation website built from this repo is published [here](https://wasmedge.org/docs/). It contains all the necessary information on what Was Edge Runtime is and how to Develop, Embed and Extend WasmEdge  for contributions.
+This repository contains the technical documentation for the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge) project. The documentation website built from this repo is published [here](https://wasmedge.org/docs/). It contains all the necessary information on what Wasm Edge Runtime is and how to develop Wasm app, embed WasmEdge into your host applications, and extend/contribute to WasmEdge.
 
 Check it out!
 https://wasmedge.org/docs/
