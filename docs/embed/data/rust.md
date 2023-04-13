@@ -2,4 +2,4 @@
 sidebar_position: 2
 ---
 
-# 3.2 Rust
+# 2.2 Rust
