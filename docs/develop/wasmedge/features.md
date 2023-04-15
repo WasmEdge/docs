@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # WasmEdge Features
 
-WasmEdg (project under CNCF) is a safe, fast, lightweight, portable, and extensible WebAssembly runtime.
+WasmEdge (a sandbox project under CNCF) is a safe, fast, lightweight, portable, and extensible WebAssembly runtime.
 
 ## High Performance
 
