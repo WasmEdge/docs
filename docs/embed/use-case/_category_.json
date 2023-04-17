@@ -3,6 +3,6 @@
   "position": 11,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will discuss how popular sofwtare applications embed WasmEdge to support extended functionalities."
+    "description": "In this chapter, we will discuss how popular software applications embed WasmEdge to support extended functionalities."
   }
 }
