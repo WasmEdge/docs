@@ -16,6 +16,12 @@ sidebar_position: 2
 
 ## Quick start
 
+
+First, download the WebAssembly-based JavaScript interpreter program for WasmEdge. It is based on [QuickJS](https://bellard.org/quickjs/). See the [build it yourself section](#build-it-yourself) to learn how to compile it from Rust source code.
+
+```
+curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm
+```
 You can now try a simple "hello world" JavaScript program ([example_js/hello.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/hello.js)), which prints out the command line arguments to the console.
 
 ```javascript
@@ -28,12 +34,8 @@ setTimeout(() => {
   print('timeout 2s');
 }, 2000);
 ```
-First, fork or clone [the wasmedge-quickjs Github repository](https://github.com/second-state/wasmedge-quickjs).
 
-```
-git clone https://github.com/second-state/wasmedge-quickjs.git
-```
-Next, Run the `hello.js` file in WasmEdge’s QuickJS runtime as follows. 
+Next, Run the `hello.js` file in WasmEdge’s QuickJS runtime as follows. Make sure you have installed [WasmEdge](../build-and-run/install).
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
@@ -42,7 +44,7 @@ Hello WasmEdge Runtime
 
 > Note: the `--dir .:.` on the command line is to give `wasmedge` permission to read the local directory in the file system for the `hello.js` file.
 
-## Build it yourself from the source
+## Build it yourself 
 
 This section is optional. Read on if you are interested in [adding custom built-in JavaScript APIs](rust) to the runtime.
 
