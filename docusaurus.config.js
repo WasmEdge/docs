@@ -61,13 +61,14 @@ const config = {
             "@easyops-cn/docusaurus-search-local",
             /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
             // @ts-ignore
-            ({
+            {
+              docsRouteBasePath: '/',
               hashed: true,
               indexBlog: false,
               language: ["en", "zh"],
               highlightSearchTermsOnTargetPage: true,
               explicitSearchResultPath: true,
-            }),
+            },
           ],
         ],
 
