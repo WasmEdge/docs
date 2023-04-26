@@ -31,9 +31,9 @@ If you use `yurtctl init/join` to set up an OpenYurt Cluster, you can skip this 
 
 Find the difference between `yurtctl convert/revert` and `yurtctl init/join`, you can refer to the following two articles.
 
-[how use `Yurtctl init/join`](https://openyurt.io/docs/installation/yurtctl-init-join)
+[how use `Yurtctl init/join`](https://openyurt.io/docs/v0.6.0/installation/yurtctl-init-join)
 
-[Conversion between OpenYurt and Kubernetes:`yurtctl convert/revert`](https://openyurt.io/docs/installation/yurtctl-convert-revert)
+[Conversion between OpenYurt and Kubernetes:`yurtctl convert/revert`](https://openyurt.io/docs/v0.6.0/installation/yurtctl-convert-revert)
 
 - Close the swap space of the master and node firstly.
 
