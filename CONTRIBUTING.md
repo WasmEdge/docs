@@ -1,4 +1,4 @@
-# Contributing Overview
+# Contributing Overview for WasmEdge Docs
 
 You are always welcome to contribute and Thank you for your help in improving WasmEdge :)
 
@@ -17,7 +17,7 @@ If you are ready to contribute, please search for open issues labeled "help-want
 
 # <a name="contributing-flow">Contribution Flow</a>
 
-To contribute to WasmEdge, have a look at [here](https://wasmedge.org/docs/contribute/overview)
+To contribute to WasmEdge Docs
 
 ## <a name="commit-signoff">Signing-off on Commits (Developer Certificate of Origin)</a>
 
