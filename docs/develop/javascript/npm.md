@@ -20,7 +20,7 @@ The [simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge
 
 First, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
 
-```bash
+```
 git clone https://github.com/second-state/wasmedge-quickjs.git
 ```
 

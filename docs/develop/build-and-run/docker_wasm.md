@@ -16,6 +16,7 @@ In this guide, we will cover
 * [Create and run a node.js server](#create-and-run-a-node-js-server)
 * [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
 
+
 ## Prerequisite
 
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and turn on the containerd image store feature in your Docker Desktop settings. 
@@ -38,7 +39,7 @@ $ docker buildx build --platform wasi/wasm -t secondstate/rust-example-hello .
 
 The [Dockerfile](https://github.com/second-state/rust-examples/blob/main/hello/Dockerfile) shows how it is done. The Dockerfile has three parts. The first part sets up a Docker container for the Rust build environment.
 
-```dockerfile
+```
 FROM --platform=$BUILDPLATFORM rust:1.64 AS buildbase
 WORKDIR /src
 RUN <<EOT bash
@@ -53,7 +54,7 @@ EOT
 
 The second part uses the Rust build environment to compile the Rust source code and generate the Wasm file.
 
-```dockerfile
+```
 FROM buildbase AS build
 COPY Cargo.toml .
 COPY src ./src 
@@ -63,7 +64,7 @@ RUN cargo build --target wasm32-wasi --release
 
 The third part is the essential. It copies the Wasm file into an empty `scratch` container and then set the Wasm file as the `ENTRYPOINT` of the container. It is the container image `rust-example-hello` built by the command in this section.
 
-```dockerfile
+```
 FROM scratch
 ENTRYPOINT [ "hello.wasm" ]
 COPY --link --from=build /src/target/wasm32-wasi/release/hello.wasm /hello.wasm
@@ -75,7 +76,7 @@ The Wasm container image is only 0.5MB. It is much smaller than a natively compi
 
 To publish the Wasm container image to Docker Hub, do the following.
 
-```bash
+```
 $ docker push secondstate/rust-example-hello
 ```
 
@@ -115,7 +116,7 @@ $ docker buildx build --platform wasi/wasm -t secondstate/node-example-hello .
 
 The [Dockerfile](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/docker_wasm/server/Dockerfile) shows how it is done. The Dockerfile has three parts. The first part sets up a Docker container for the `wget` and `unzip` utilities.
 
-```dockerfile
+```
 FROM --platform=$BUILDPLATFORM rust:1.64 AS buildbase
 WORKDIR /src
 RUN <<EOT bash
@@ -128,7 +129,7 @@ EOT
 
 The second part uses `wget` and `unzip` to download and extract the WasmEdge JavaScript runtime files and the JS application files into a build container.
 
-```dockerfile
+```
 FROM buildbase AS build
 COPY server.js .
 RUN wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
@@ -138,7 +139,7 @@ RUN unzip modules.zip
 
 The third part is the essential. It copies the WasmEdge JavaScript runtime files and the JS application files into an empty `scratch` container and then set the `ENTRYPOINT`. It is the container image `node-example-hello` built by the command in this section.
 
-```dockerfile
+```
 FROM scratch
 ENTRYPOINT [ "wasmedge_quickjs.wasm", "server.js" ]
 COPY --link --from=build /src/wasmedge_quickjs.wasm /wasmedge_quickjs.wasm
@@ -151,7 +152,7 @@ The Wasm container image for the entire node.js app is only 1MB. It is much smal
 
 To publish the Wasm container image to Docker Hub, do the following.
 
-```bash
+```
 $ docker push secondstate/node-example-hello
 ```
 
@@ -186,9 +187,7 @@ The [Docker compose](https://docs.docker.com/compose/) tool is widely used to co
 
 In our [example microservice application](https://github.com/second-state/microservice-rust-mysql), there is an Nginx web server and a MySQL database. The Wasm container is only for the Rust application that accesses the database and processes the HTTP requests (i.e., the application server). 
 
-:::note
-For more Docker compose examples, including Linux containers + Wasm containers mixed deployments, check out the [awesome-compose](https://github.com/docker/awesome-compose) repo.
-:::
+> For more Docker compose examples, including Linux containers + Wasm containers mixed deployments, check out the [awesome-compose](https://github.com/docker/awesome-compose) repo.
 
 ### Build
 

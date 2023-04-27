@@ -28,7 +28,7 @@ source ./emsdk_env.sh
 
 The Hello world example is simple, and save the program to a file called hello.c.
 
-```c
+```
 #include <stdio.h>
 
 int main(void) {
@@ -39,7 +39,7 @@ int main(void) {
 
 Use `emcc` to compile the C code into Wasm. This will generate a file called hello.wasm which contains the WASI bytecode for the program.
 
-```bash
+```
 emcc hello.c -o hello.wasm
 ```
 
@@ -49,7 +49,7 @@ emcc hello.c -o hello.wasm
 Run the compiled wasm with WasmEdge CLI and you will get the hello world output.
 
 
-```bash
+```
 $ wasmedge hello.wasm
 Hello, world!
 ```

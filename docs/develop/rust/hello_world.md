@@ -4,10 +4,7 @@ sidebar_position: 2
 
 # 4.1 Hello world
 
-:::note
-Before we started, make sure [you have Rust and WasmEdge installed](setup).
-:::
-
+> Before we started, make sure [you have Rust and WasmEdge installed](setup).
 
 ## A simple main app
 

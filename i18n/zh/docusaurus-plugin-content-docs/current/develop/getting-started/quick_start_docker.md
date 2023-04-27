@@ -6,9 +6,7 @@ sidebar_position: 2
 
 In this guide, we will walk you through how to quickly run WasmEdge apps in Docker Desktop. There is no additional dependencies as the entire development and runtime environments are managed by Docker Desktop.
 
-:::note
-If you are not using Docker Desktop, [get started here](quick_start).
-:::
+> If you are not using Docker Desktop, [get started here](quick_start).
 
 We will cover the following examples.
 

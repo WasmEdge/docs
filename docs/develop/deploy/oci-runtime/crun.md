@@ -13,22 +13,21 @@ The crun fedora package has WasmEdge as the default WebAssembly Runtime. So the 
 
 First, install crun and WasmEdge on your fedora machine.
 
-```bash
+```
 sudo dnf -y install wasmedge
 sudo dnf -y install crun
 ```
 Next, run `crun -v` to check if you installed successfully.
 
-```bash
+```
 crun -v
-# Output
+# output
 crun version 1.7.2
 commit: 0356bf4aff9a133d655dc13b1d9ac9424706cac4
 rundir: /run/user/501/crun
 spec: 1.0.0
 +SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +LIBKRUN +WASM:wasmedge +YAJL
 ```
-
 You can see that crun has WasmEdge package already.
 
 Next, you can run Wasm apps on your fedora machine.

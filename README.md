@@ -8,18 +8,17 @@ https://wasmedge.org/docs/
 
 To set up the WasmEdge Docs locally, you will need to follow these general steps:
 
-1. **Clone the project:** Go to the GitHub repository page of the WasmEdge Docs project and click on the "Code" button to get the URL of the repository. Then, open a terminal or command prompt and type the following command:
-
-
+1. Clone the project : Go to the GitHub repository page of the WasmEdge Docs project and click on the "Code" button to get the URL of the repository. Then, open a terminal or command prompt and type the following command:
+```
 git clone https://github.com/WasmEdge/docs.git
 ```
 
-2. **Install dependencies:** Navigate to the project directory in the terminal and run the following command to install the necessary dependencies:
-
-
+1. Install dependencies : Navigate to the project directory in the terminal and run the following command to install the necessary dependencies:
+```
 npm install
 ```
-
+1. Start the development server : Once the dependencies are installed, you can start the development server by running the following command:
+```
 npm start
 ```
 
@@ -65,3 +64,8 @@ That's it! Your changes will now be reviewed by the maintainers of the WasmEdge 
 To contribute to this project, each commit must be signed off with the developer's name and email address. This sign-off indicates that the contributor has the right to submit the code under the project's license and agrees to the project's Developer Certificate of Origin (DCO).
 
 To sign off on a commit, you can add the following line to your commit message and replace "Your Name" and "your-email@example.com" with your actual name and email address. Alternatively, you can use the -s flag to sign off on a commit automatically.
+
+
+
+
+

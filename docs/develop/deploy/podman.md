@@ -11,7 +11,7 @@ The easiest platform to run Wasm app with container is Fedora, because the crun 
 ### Install podman and WasmEdge
 
 
-```bash
+```
 sudo dnf -y install podman
 sudo dnf -y install wasmedge
 ```
@@ -19,7 +19,7 @@ sudo dnf -y install wasmedge
 
 Now, we could run wasm apps.
 
-```bash
+```
  podman run --rm --annotation module.wasm.image/variant=compat-smart docker.io/wasmedge/example-wasi:latest /wasi_example_main.wasm 50000000
 ```
 
@@ -55,9 +55,9 @@ mv crun $(which crun)
 
 Then, you can use `crun -v` to check out if crun is installed successfully.
 
-```bash
+```
 crun --version
-# Output
+#output
 crun version 1.7.2.0.0.0.26-51af
 commit: 51af1448f60b69326cf26e726e14b38fcb253943
 rundir: /run/user/0/crun
@@ -69,7 +69,7 @@ spec: 1.0.0
 
  Now, we could run wasm apps.
 
-```bash
+```
  podman run --rm --annotation module.wasm.image/variant=compat-smart docker.io/wasmedge/example-wasi:latest /wasi_example_main.wasm 50000000
 ```
 

@@ -187,9 +187,7 @@ The [Docker compose](https://docs.docker.com/compose/) tool is widely used to co
 
 In our [example microservice application](https://github.com/second-state/microservice-rust-mysql), there is an Nginx web server and a MySQL database. The Wasm container is only for the Rust application that accesses the database and processes the HTTP requests (i.e., the application server). 
 
-:::note
-For more Docker compose examples, including Linux containers + Wasm containers mixed deployments, check out the [awesome-compose](https://github.com/docker/awesome-compose) repo.
-:::
+> For more Docker compose examples, including Linux containers + Wasm containers mixed deployments, check out the [awesome-compose](https://github.com/docker/awesome-compose) repo.
 
 ### Build
 
