@@ -6,7 +6,9 @@ sidebar_position: 1
 
 In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](../build-and-run/install).
 
-> If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat).
+:::note 
+If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat).
+:::
 
 We will cover the following examples.
 
@@ -45,7 +47,7 @@ Hello WasmEdge!
 
 Use the AoT compiler `wasmedgec` to get much better performance.
 
-```
+```bash
 $ wasmedgec hello.wasm hello_aot.wasm
 $ wasmedge hello_aot.wasm
 Hello WasmEdge!

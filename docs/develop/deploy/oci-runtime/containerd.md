@@ -16,7 +16,7 @@ The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project wi
 
 Use the following commands to install containerd on your system. Here I use Ubuntu 20.04 as the platform. For other platform, please refer to 
 
-```
+```bash
 export VERSION="1.5.7"
 echo -e "Version: $VERSION"
 echo -e "Installing libseccomp2 ..."
@@ -36,14 +36,15 @@ sudo systemctl daemon-reload
 
 Run the following command lines to install WasmEdge.
 
-```
+```bash
 $ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
 $ sudo -E sh -c 'echo "$HOME/.wasmedge/lib" > /etc/ld.so.conf.d/libwasmedge.conf'
 $ sudo ldconfig
 ```
 4. Download the runwasi project and test
 After that, run the following command line to download the runwasi project and test.
-```
+
+```bash
 $ git clone https://github.com/second-state/runwasi.git
 $ cd runwasi
 $ cargo test -- --nocapture
@@ -55,7 +56,8 @@ test instance::wasitest::test_wasi ... ok
 ```
 
 5. Build the wasmedge-containerd-shim
-```
+
+```bash
 rustup default nightly
 make build FEATURES=wasmedge
 sudo make install RUNTIME=wasmedge

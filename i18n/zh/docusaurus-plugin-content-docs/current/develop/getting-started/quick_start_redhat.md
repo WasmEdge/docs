@@ -6,7 +6,9 @@ sidebar_position: 3
 
 In this guide, we will walk you through how to quickly run WasmEdge apps in Fedora / CentOS / Red Hat Linux / OpenShift systems. There is no additional dependencies as the entire development and runtime environments are managed by OpenSift / Podman.
 
-> If you are not using OpenShift / Podman, [get started here](quick_start).
+:::note
+If you are not using OpenShift / Podman, [get started here](quick_start).
+:::
 
 We will cover the following examples.
 
