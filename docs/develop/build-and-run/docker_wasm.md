@@ -5,12 +5,12 @@ sidebar_position: 4
 # Docker + Wasm
 
 The Docker Desktop distributes with the WasmEdge Runtime embedded. That allows developers to build, share and run very lightweight containers (i.e., a `scratch` empty container with only the `.wasm` file without any Linux OS libraries or files) through Docker tools.
-Those "Wasm containers" are fully OCI-compliant and hence can be managed by Docker Hub. They are cross-platform and runs on any OS / CPU Docker supports (the OS and CPU platform is `wasi/wasm`).
-But most importantly, they are 1/10 of the size of a comparable Linux container and start up in 1/10 of the time as the Wasm containers do not need to bundle and start Linux libraries and services.
+Those "Wasm containers" are fully OCI-compliant and hence can be managed by Docker Hub. They are cross-platform and run on any OS / CPU Docker supports (the OS and CPU platform is `wasi/wasm`).
+But most importantly, they are 1/10 of the size of a comparable Linux container and start up in 1/10 of the time, as the Wasm containers do not need to bundle and start Linux libraries and services.
 
 Together with Docker's capability to containerize developer and deployment environments, you can create and deploy complex applications without installing any dependencies. For example, you could setup a complete Rust and WasmEdge development environment without installing either tool on your local dev machine. You can also deploy a complex WasmEdge app that needs to connect to a MySQL database without having to install MySQL locally.
 
-In this guide, we will cover
+In this guide, we will cover how to:
 
 * [Create and run a Rust program](#create-and-run-a-rust-program)
 * [Create and run a node.js server](#create-and-run-a-node-js-server)
