@@ -38,8 +38,8 @@ In most cases, you can add this signoff to your commit automatically with the
 `-s` or `--signoff` flag to `git commit`. You must use your real name and a reachable email
 address (sorry, no pseudonyms or anonymous contributions). An example of signing off on a commit:
 
-```
-$ commit -s -m “my commit message w/signoff”
+```bash
+$ git commit -s -m “my commit message w/signoff”
 ```
 
 To ensure all your commits are signed, you may choose to add this alias to your global `.gitconfig`:
@@ -65,13 +65,13 @@ If you want to contribute to the WasmEdge Docs, you can follow these steps:
 
 2. **Clone the forked project:** Open a terminal or command prompt and type the following command:
 
-```
+```bash
 git clone <forked-repository-url>
 ```
 
 3. **Create a new branch:** Navigate to the project directory and create a new branch to make your changes in:
 
-```
+```bash
 git checkout -b my-new-branch
 ```
 
@@ -79,11 +79,11 @@ git checkout -b my-new-branch
 
 5. **Commit your changes:** Once you are satisfied with your changes, commit them with a descriptive commit message
 
-```
+```bash
 git add .
 ```
 
-```
+```bash
 git commit -m " Message  Signed-off-by: Name <email@example.com> "
                              OR
                  git commit -s -m " Message "
@@ -91,7 +91,7 @@ git commit -m " Message  Signed-off-by: Name <email@example.com> "
 
 6. **Push your changes:** Push your changes to your forked repository:
 
-```
+```bash
 git push origin my-new-branch
 ```
 
