@@ -32,7 +32,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 ```
 
 
-## Run a standalone Wasm app
+## How to run a standalone Wasm app
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
@@ -73,7 +73,7 @@ To learn more about how to create Wasm apps in Rust
   * Redis client
   * Kafka client
 
-## Run an HTTP server
+## How to run an HTTP server
 
 This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
@@ -117,7 +117,7 @@ To learn more about how to create Wasm services in Rust
   * [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
 
 
-## Run a JavaScript-based server
+## How to run a JavaScript-based server
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
 Its source code is available [here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
