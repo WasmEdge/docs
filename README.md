@@ -1,8 +1,11 @@
+
+
+![WasmEdge Logo](https://github.com/WasmEdge/.github/raw/main/profile/wasmedge-runtime-logo.png)
+
 # WasmEdge Docs
 
-This repo contains technical documentation for the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge) project. The documentation website built from this repo is published [here](https://wasmedge.org/docs/), check it out!
 
-https://wasmedge.org/docs/
+This repo contains technical documentation for the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge) project. The documentation website built from this repo is published https://wasmedge.org/docs/, check it out!
 
 # Setting up the Docs Locally
 
@@ -72,8 +75,5 @@ That's it! Your changes will now be reviewed by the maintainers of the WasmEdge 
 To contribute to this project, each commit must be signed off with the developer's name and email address. This sign-off indicates that the contributor has the right to submit the code under the project's license and agrees to the project's Developer Certificate of Origin (DCO).
 
 To sign off on a commit, you can add the following line to your commit message and replace "Your Name" and "your-email@example.com" with your actual name and email address. Alternatively, you can use the -s flag to sign off on a commit automatically.
-
-
-
 
 

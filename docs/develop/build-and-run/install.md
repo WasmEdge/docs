@@ -7,7 +7,9 @@ sidebar_position: 1
 In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms.
 We will cover how to install plugins to WasmEdge.
 
-> Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. [Check out how to run WasmEdge apps in Docker Desktop.](docker_wasm)
+:::note
+Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. [Check out how to run WasmEdge apps in Docker Desktop.](docker_wasm)
+:::
 
 ## Install
 
@@ -60,7 +62,7 @@ WasmEdge now is an official package on Fedora 36, Fedora 37, Fedora 38, Fedora E
 
 To install WasmEdge on Fedora, using the following command line. For more usages, please check out Fedora docs. 
 
-```
+```bash
 dnf install wasmedge
 ```
 
@@ -126,7 +128,9 @@ Next, go to the [OpenVINO in Rust](../rust/ai_inference/openvino) chapter to see
 
 Note, to use Pytorch, the WasmEdge version should be at least `0.11.2`. The WASI-NN plugin for Pytorch supports both `manylinux2014` and `ubuntu20.04`.
 
-> The one-liner WasmEdge installer would install the `manylinux2014` version for Ubuntu. If you install WasmEdge with the installer or for the `manylinux2014` version, you should get the `manylinux2014` version plug-in and `libtorch`.
+:::note
+The one-liner WasmEdge installer would install the `manylinux2014` version for Ubuntu. If you install WasmEdge with the installer or for the `manylinux2014` version, you should get the `manylinux2014` version plug-in and `libtorch`.
+:::
 
 First, install the PyTorch dependency:
 
@@ -198,7 +202,9 @@ If you wish to uninstall uninteractively, you can pass in the `--quick` or `-q` 
 bash <(curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/uninstall.sh) -q
 ```
 
-> If a parent folder of the `wasmedge` binary contains `.wasmedge`, the folder will be considered for removal. For example, the script removes the default `$HOME/.wasmedge` folder altogether.
+:::note
+If a parent folder of the `wasmedge` binary contains `.wasmedge`, the folder will be considered for removal. For example, the script removes the default `$HOME/.wasmedge` folder altogether.
+:::
 
 If you used `dnf` to install WasmEdge on Fedora and Red Hat Linux, run the following command to uninstall it.
 
@@ -212,7 +218,7 @@ If you used `winget` to install WasmEdge on Windows, run the following command t
 winget uninstall wasmedge
 ```
 
-## Trouble Shooting
+## Troubleshooting
 
 Some users, especially in China, reported that they had encountered the Connection refused error when trying to download the `install.sh` from the `githubusercontent.com`.
 
