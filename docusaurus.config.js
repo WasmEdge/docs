@@ -184,7 +184,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} WasmEdge.`,
+                copyright: `Copyright © ${new Date().getFullYear()} WasmEdge. Built with Docusaurus.`,
             },
             prism: {
                 theme: lightCodeTheme,
