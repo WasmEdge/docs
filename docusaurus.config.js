@@ -118,26 +118,45 @@ const config = {
                 },
               },
             footer: {
-                style: 'dark',
+                logo: {
+                    alt: 'WasmEdge logo',
+                    src: '/img/wasmedge_logo.svg',
+                    href: 'https://wasmedge.org/',
+                    height: 105,
+                    width: 205
+                  },
+                style: 'light',
                 links: [
                     {
-                        title: 'Docs',
+                        title: 'Resources',
                         items: [
                             {
-                                label: 'Develop',
-                                to: '/develop/overview',
+                                label: 'Github',
+                                to: 'https://github.com/WasmEdge/WasmEdge',
                             }, {
-                                label: 'Embed',
-                                to: '/embed/overview',
+                                label: 'Dev docs',
+                                to: '/docs',
                             }, {
-                                label: 'Extend',
-                                to: '/contribute/overview',
+                                label: 'Second State',
+                                to: 'https://www.secondstate.io/',
+                            },
+                            {
+                                label: 'Articles & Blog',
+                                to: 'https://www.secondstate.io/articles/'
                             }
                         ],
                     },
                     {
                         title: 'Community',
                         items: [
+                            {
+                                label: 'Contribute',
+                                to: '/contribute/overview'
+                            },
+                            {
+                                label: 'Mailing List',
+                                to: 'https://groups.google.com/g/wasmedge/'
+                            },
                             {
                                 label: 'Discord',
                                 href: 'https://discord.gg/U4B5sFTkFc',
@@ -146,10 +165,18 @@ const config = {
                                 label: 'Twitter',
                                 href: 'https://twitter.com/realwasmedge',
                             },
+                            {
+                                label: 'Slack#WasmEdge',
+                                to: 'https://slack.cncf.io/'
+                            },
+                            {
+                                label: 'Community Meeting',
+                                to: 'https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing'
+                            }
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} WasmEdge. Built with Docusaurus.`,
+                copyright: `Copyright © ${new Date().getFullYear()} WasmEdge.`,
             },
             prism: {
                 theme: lightCodeTheme,
