@@ -140,7 +140,11 @@ const config = {
                             }, {
                                 label: 'Dev docs',
                                 to: '/docs',
-                            }, {
+                            },{
+                                label: 'Embeds',
+                                to: '/embed/overview',
+                            },
+                             {
                                 label: 'Second State',
                                 to: 'https://www.secondstate.io/',
                             },
