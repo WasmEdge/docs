@@ -36,16 +36,10 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-Download the hello.wasm file [here](/files/hello.wasm), or run the following command:
+Download the hello.wasm file [here](https://wasmedge.org/docs/files/hello.wasm), or run the following command:
 
 ```bash
-wget https://wasmedge.org/docs/assets/files/hello-ac4b04cab55321c2ccfef5cf435b6213.wasm
-```
-
-Rename the file to 'hello.wasm'
-
-```bash
-mv hello-ac4b04cab55321c2ccfef5cf435b6213.wasm hello.wasm
+wget https://wasmedge.org/docs/files/hello.wasm
 ```
 
 Use the `wasmedge` command to run the program.
@@ -77,16 +71,10 @@ To learn more about how to create Wasm apps in Rust
 
 This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
-Download the server.wasm file [here](/files/server.wasm), or run the following command:
+Download the server.wasm file [here](https://wasmedge.org/docs/files/server.wasm), or run the following command:
 
 ```bash
-wget https://wasmedge.org/docs/assets/files/server-df0d6137ab378c856c0ffed763266769.wasm
-```
-
-Rename the file to 'hello.wasm'
-
-```bash
-mv server-df0d6137ab378c856c0ffed763266769.wasm server.wasm
+wget https://wasmedge.org/docs/files/server.wasm
 ```
 
 Use the `wasmedge` command to run the program.
