@@ -19,7 +19,7 @@ sidebar_position: 2
 
 First, download the WebAssembly-based JavaScript interpreter program for WasmEdge. It is based on [QuickJS](https://bellard.org/quickjs/). See the [build it yourself section](#build-it-yourself) to learn how to compile it from Rust source code.
 
-```
+```bash
 curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm
 ```
 You can now try a simple "hello world" JavaScript program ([example_js/hello.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/hello.js)), which prints out the command line arguments to the console.

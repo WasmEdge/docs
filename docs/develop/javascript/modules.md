@@ -16,7 +16,7 @@ Before we started, you also need
  
 Then, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
 
-```
+```bash
 git clone https://github.com/second-state/wasmedge-quickjs.git
 ```
 The module system is just a collection of JavaScript files in the `modules` directory in the WasmEdge QuickJS distribution. To use the JavaScript functions and APIs defined in those modules, you just need to map this directory to the `/modules` directory inside the WasmEdge Runtime instance. The following example shows how to do this on the WasmEdge CLI. You can do this with any of the host language SDKs that support embedded use of WasmEdge.
