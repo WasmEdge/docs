@@ -30,7 +30,7 @@ If users install WasmEdge from the install script with the option `-e tf,image`,
   * The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
   * Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
 
-The `wasmedge` CLI tool will execute the WebAssembly in ahead-of-time(AOT) mode and interpreter mode if you use `wasmedgec` to AoT compile the wasm file.
+The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode and interpreter mode. If the file has been compiled with `wasmedgec`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
 
 ## Options
 
