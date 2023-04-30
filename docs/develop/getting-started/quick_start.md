@@ -4,17 +4,17 @@ sidebar_position: 1
 
 # Quick start on Linux
 
-In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be [found here](../build-and-run/install).
+In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be found [here](../build-and-run/install).
 
 :::note 
 If you have Docker Desktop 4.15 and above, you can skip this and [get started here](quick_start_docker). For Fedora Linux / Red Hat Linux / OpenShift / Podman users, [get started here](quick_start_redhat).
 :::
 
-We will cover the following examples.
+We will cover the following examples:
 
-* [Run a standalone Wasm app](#run-a-standalone-wasm-app)
-* [Run an HTTP server](#run-an-http-server)
-* [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
+* [How to run a standalone Wasm app](#run-a-standalone-wasm-app)
+* [How to run an HTTP server](#run-an-http-server)
+* [How to run a JavaScript server (node.js)](#run-a-javascript-based-server)
 
 
 ## One-liner Installation of WasmEdge
@@ -25,14 +25,18 @@ The easiest way to install WasmEdge is to run the following command. You should 
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | sudo bash -s -- -p /usr/local
 ```
 
-> If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory: `curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash`
+> If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory:
+
+```bash
+ `curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash`
+```
 
 
-## Run a standalone Wasm app
+## How to run a standalone Wasm app
 
 The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-[Download the hello.wasm file here](/files/hello.wasm)
+Download the hello.wasm file [here](/files/hello.wasm), or run the following command:
 
 ```bash
 wget https://wasmedge.org/books/app-dev-guide/en/files/hello.wasm
@@ -63,11 +67,11 @@ To learn more about how to create Wasm apps in Rust
   * Redis client
   * Kafka client
 
-## Run an HTTP server
+## How to run an HTTP server
 
 This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
-[Download the server.wasm file here](/files/server.wasm)
+Download the server.wasm file [here](/files/server.wasm), or run the following command:
 
 ```bash
 wget https://wasmedge.org/books/app-dev-guide/en/files/server.wasm
@@ -101,20 +105,33 @@ To learn more about how to create Wasm services in Rust
   * [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
 
 
-## Run a JavaScript-based server
+## How to run a JavaScript-based server
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications.
 Its source code is available [here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
-* [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
-* [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
-* [Download the server.js file here](https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js)
+* Download the wasmedge_quickjs.wasm file [here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm), or run the following command:
 
 ```bash
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
-wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js
+```
+
+* Download the modules.zip file [here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip), or run the following command:
+
+```bash
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip
+```
+
+Unzip the modules.zip file into the current folder as `./modules/`.
+
+```bash
 unzip modules.zip
+```
+
+* Download the server.js file [here](https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js).
+
+```bash
+wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js
 ```
 
 Use the `wasmedge` command to run the program.
