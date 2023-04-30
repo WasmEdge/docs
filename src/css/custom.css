@@ -7,7 +7,8 @@
 /* You can override the default Infima variables here. */
 :root {
 
-  --ifm-navbar-link-hover-color: #4973e8;
+  --ifm-navbar-link-hover-color: #6495fd;
+  --ifm-footer-link-hover-color: #6495fd;
   --ifm-menu-color-active: #20609f;
   --ifm-link-color:#20609f;
   --ifm-breadcrumb-color-active: #4973e8;
