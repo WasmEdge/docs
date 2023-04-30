@@ -132,14 +132,27 @@ const config = {
                 style: 'light',
                 links: [
                     {
+                        title: 'Docs',
+                        items: [
+                            {
+                                label: 'Develop',
+                                to: '/develop/overview',
+                            },{
+                                label: 'Embeds',
+                                to: '/embed/overview',
+                            },
+                             {
+                                label: 'Contribute',
+                                to: '/contribute/overview',
+                            }
+                        ],
+                    },
+                    {
                         title: 'Resources',
                         items: [
                             {
                                 label: 'Github',
-                                to: 'https://github.com/WasmEdge/WasmEdge',
-                            },{
-                                label: 'Embeds',
-                                to: '/embed/overview',
+                                href: 'https://github.com/WasmEdge/WasmEdge',
                             },
                              {
                                 label: 'Second State',
@@ -155,12 +168,8 @@ const config = {
                         title: 'Community',
                         items: [
                             {
-                                label: 'Contribute',
-                                to: '/contribute/overview'
-                            },
-                            {
                                 label: 'Mailing List',
-                                to: 'https://groups.google.com/g/wasmedge/'
+                                href: 'https://groups.google.com/g/wasmedge/'
                             },
                             {
                                 label: 'Discord',
@@ -172,11 +181,11 @@ const config = {
                             },
                             {
                                 label: 'Slack#WasmEdge',
-                                to: 'https://slack.cncf.io/'
+                                href: 'https://slack.cncf.io/'
                             },
                             {
                                 label: 'Community Meeting',
-                                to: 'https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing'
+                                href: 'https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing'
                             }
                         ],
                     },
