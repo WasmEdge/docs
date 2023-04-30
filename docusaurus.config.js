@@ -154,11 +154,11 @@ const config = {
                             },
                              {
                                 label: 'Second State',
-                                to: 'https://www.secondstate.io/',
+                                href: 'https://www.secondstate.io/',
                             },
                             {
                                 label: 'Articles & Blog',
-                                to: 'https://www.secondstate.io/articles/'
+                                href: 'https://www.secondstate.io/articles/'
                             }
                         ],
                     },
