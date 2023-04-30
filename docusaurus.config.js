@@ -126,8 +126,6 @@ const config = {
                     alt: 'WasmEdge logo',
                     src: '/img/wasmedge_logo.svg',
                     href: 'https://wasmedge.org/',
-                    height: 105,
-                    width: 205
                   },
                 style: 'light',
                 links: [
