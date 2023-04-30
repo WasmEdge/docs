@@ -39,7 +39,7 @@ The Hello world example is a standalone Rust application that can be executed by
 Download the hello.wasm file [here](https://wasmedge.org/docs/files/hello.wasm), or run the following command:
 
 ```bash
-wget https://wasmedge.org/docs/files/hello.wasm
+wget https://wasmedge.org/books/app-dev-guide/en/files/hello.wasm
 ```
 
 Use the `wasmedge` command to run the program.
@@ -74,7 +74,7 @@ This example is a standalone HTTP server written in Rust. It demonstrates that R
 Download the server.wasm file [here](https://wasmedge.org/docs/files/server.wasm), or run the following command:
 
 ```bash
-wget https://wasmedge.org/docs/files/server.wasm
+wget https://wasmedge.org/books/app-dev-guide/en/files/server.wasm
 ```
 
 Use the `wasmedge` command to run the program.
