@@ -8,6 +8,10 @@
 :root {
   --ifm-navbar-link-hover-color:#1f4abf;
   --ifm-menu-color-active:#20609f;
+  --ifm-navbar-link-hover-color: #6495fd;
+  --ifm-footer-link-hover-color: #6495fd;
+  --ifm-menu-color-active: #20609f;
+
   --ifm-link-color:#20609f;
   --ifm-footer-link-hover-color:#1f4abf;
   --ifm-breadcrumb-color-active: #4973e8;
@@ -24,6 +28,7 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
+
   --ifm-navbar-link-hover-color: #4973e8;
   --ifm-footer-link-hover-color: #4973e8;
   --ifm-menu-color-active: #20609f;
