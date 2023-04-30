@@ -137,9 +137,6 @@ const config = {
                             {
                                 label: 'Github',
                                 to: 'https://github.com/WasmEdge/WasmEdge',
-                            }, {
-                                label: 'Dev docs',
-                                to: '/docs',
                             },{
                                 label: 'Embeds',
                                 to: '/embed/overview',
