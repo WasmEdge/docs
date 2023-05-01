@@ -6,6 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  font-family: "Open Sans", sans-serif;
   --ifm-navbar-link-hover-color: #638af4;
   --ifm-footer-link-hover-color: #4973e8;
   --ifm-menu-color-active: #5496d8;
