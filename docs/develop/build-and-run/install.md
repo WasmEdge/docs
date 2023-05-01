@@ -5,7 +5,7 @@ sidebar_position: 1
 # Install and uninstall WasmEdge
 
 In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms.
-We will cover how to install plugins to WasmEdge.
+We will also cover how to install plugins to WasmEdge.
 
 :::note
 Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. [Check out how to run WasmEdge apps in Docker Desktop.](docker_wasm)
@@ -14,6 +14,8 @@ Docker Desktop 4.15+ already have WasmEdge bundled in its distribution binary. I
 ## Install
 
 You can install the WasmEdge Runtime on any generic Linux system. If you are using Windows 10 or Fedora / Red Hat Linux systems, you can also install with their default package managers.
+
+
 
 ### Generic Linux
 
@@ -66,10 +68,20 @@ To install WasmEdge on Fedora, using the following command line. For more usages
 dnf install wasmedge
 ```
 
+### vcpkg
+
+For `vcpkg` users there is a `wasmedge` [port](https://github.com/microsoft/vcpkg/tree/master/ports/wasmedge) that can be installed with the following command or by adding it to `dependencies` section of your `vcpkg.json` file. The port is useful in both scenarios: it can be embedded into a C/C++ application and it can also be run as a standalone tool.
+
+```bash
+vcpkg install wasmedge
+```
+
 ## What's installed
 
 After installation, you have the following directories and files. Here we assume that you installed into the `$HOME/.wasmedge` directory. You could also change it to `/usr/local` if you did a system-wide install.
 If you used `winget` to install WasmEdge, the files are located at `C:\Program Files\WasmEdge`.
+
+For the full options of the WasmEdge installer, please refer to the [document here](cli.md).
 
 * The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
   * The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
@@ -77,8 +89,10 @@ If you used `winget` to install WasmEdge, the files are located at `C:\Program F
   * The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
     * Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
     * Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
+  * The `wasmedge-tensorflow`, `wasmedge-tensorflow-lite` tools are runtimes that support the WasmEdge tensorflow extension.
 * The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
 * The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
+* The `$HOME/.wasmedge/plugin` directory contains the plug-ins for WasmEdge.
 
 ## Install plugins and extensions
 
@@ -206,16 +220,16 @@ bash <(curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/util
 If a parent folder of the `wasmedge` binary contains `.wasmedge`, the folder will be considered for removal. For example, the script removes the default `$HOME/.wasmedge` folder altogether.
 :::
 
-If you used `dnf` to install WasmEdge on Fedora and Red Hat Linux, run the following command to uninstall it.
-
-```bash
-dnf remove wasmedge
-```
-
 If you used `winget` to install WasmEdge on Windows, run the following command to uninstall it.
 
 ```bash
 winget uninstall wasmedge
+```
+
+If you used `dnf` to install WasmEdge on Fedora and Red Hat Linux, run the following command to uninstall it.
+
+```bash
+dnf remove wasmedge
 ```
 
 ## Troubleshooting
