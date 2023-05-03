@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # 2.3.3 Build with WasmEdge-httpsReq Plugin
 
+# Build WasmEdge With WasmEdge-HttpsReq Plug-in
+
 ## Prerequisites
 
 Currently, WasmEdge used `OpenSSL 1.1` or `3.0` for the the dependency of WasmEdge-HttpsReq.
@@ -48,7 +50,7 @@ cd ..
 
 ## Build WasmEdge with WasmEdge-HttpsReq Plug-in
 
-To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](/contribute/source/os/linux) with the cmake option `-DWASMEDGE_PLUGIN_HTTPSREQ=On`.
+To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](linux.md) with the cmake option `-DWASMEDGE_PLUGIN_HTTPSREQ=On`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>

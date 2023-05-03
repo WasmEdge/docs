@@ -1,13 +1,13 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 
-# 8.4 Kubernetes
+# 8.6.2 Kubernetes + CRI-O + crun
 
 
 ## Quick start
 
-The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + CRI-O.
+The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + CRI-O + crun.
 
 * Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
 * WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
