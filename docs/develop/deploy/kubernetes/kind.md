@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 ---
 
-# 8.6.5 Kind
+# 8.6.7 Kind
 
 KinD is a Kubernetes distribution that runs inside Docker and is well suited for local development or integration testing. It runs containerd as CRI and crun as OCI Runtime.
 
@@ -48,7 +48,7 @@ Now we have a fresh `crun` binary with wasmedge enabled under `/data/crun/crun` 
 
 ## Replace crun and configure containerd
 
-Both runc and crun implement the OCI runtime spec and they have the same CLI parametes. Therefore we can just replace the runc binary with our crun-wasmedge binary we created before.
+Both runc and crun implement the OCI runtime spec and they have the same CLI parameters. Therefore we can just replace the runc binary with our crun-wasmedge binary we created before.
 
 Since crun is using some shared libraries we need to install libyajl, wasmedge and criu to make our crun work.
 
