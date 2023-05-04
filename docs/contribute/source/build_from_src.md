@@ -11,10 +11,11 @@ Please follow this guide to build and test WasmEdge from the source code.
 - [Windows](../source/os/windows.md)
 - [Android](../../category/build-and-run-wasmedge-on-android)
 - [OpenWrt](../source/os/openwrt.md)
-- [RISC-V](../source/os/riscv.md)
-- [OpenHarmony](../source/os/openharmony.md)
+- [RISC-V](/docs/contribute/source/os/riscv64.md)
+- [OpenHarmony](/docs/contribute/source/os/openharmony.md)
 - [seL4](/contribute/source/os/sel4)
-- [Raspberry Pi](/contribute/source/os/raspberrypi)
+- [Raspberry Pi](/contribute/source/os/raspberrypi.md)
+
 
 
 
