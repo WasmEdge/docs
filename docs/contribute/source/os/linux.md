@@ -88,8 +88,8 @@ If you are looking for the pre-built binaries for the older operating system, we
 
 | Docker Image                              | Base Image  | Provided Requirements                                                    |
 | ---                                       | ---         | ---                                                                      |
-| `wasmedge/wasmedge:manylinux2014_x86_64`  | CentOS 7.9  | GLIBC <= 2.17</br>CXXABI <= 1.3.7</br>GLIBCXX <= 3.4.19</br>GCC <= 4.8.0 |
-| `wasmedge/wasmedge:manylinux2014_aarch64` | CentOS 7.9  | GLIBC <= 2.17</br>CXXABI <= 1.3.7</br>GLIBCXX <= 3.4.19</br>GCC <= 4.8.0 |
+| `wasmedge/wasmedge:manylinux2014_x86_64`  | CentOS 7.9  | GLIBC <= 2.17</br>CXXABI <= 1.3.7<br/>GLIBCXX <= 3.4.19<br/>GCC <= 4.8.0 |
+| `wasmedge/wasmedge:manylinux2014_aarch64` | CentOS 7.9  | GLIBC <= 2.17</br>CXXABI <= 1.3.7<br/>GLIBCXX <= 3.4.19<br/>GCC <= 4.8.0 |
 
 ## Build WasmEdge
 
