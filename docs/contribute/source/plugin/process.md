@@ -7,7 +7,7 @@ sidebar_position: 6
 ## Prerequisites
 
 
-The prerequisites of the WasmEdge-Process plug-in is the same as the [WasmEdge building environment on the Linux platforms](../linux.md).
+The prerequisites of the WasmEdge-Process plug-in is the same as the [WasmEdge building environment on the Linux platforms](../os/linux.md).
 
 ## Build WasmEdge with WasmEdge-Process Plug-in
 

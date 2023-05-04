@@ -31,7 +31,7 @@ spec: 1.0.0
 
 You can see that crun has WasmEdge package already.
 
-Next, you can run Wasm apps on your [fedora machine](../getting-started/quick_start_redhat.md).
+Next, you can run Wasm apps on your [fedora machine](/develop/getting-started/quick_start_redhat.md).
 
 
 ## Other Linux Platforms
