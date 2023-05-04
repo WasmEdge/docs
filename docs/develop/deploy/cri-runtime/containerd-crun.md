@@ -118,4 +118,4 @@ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd.md#a-webassembly-based-http-service)!
+Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-containerd-crun.md#a-webassembly-based-http-service)!

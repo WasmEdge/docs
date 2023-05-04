@@ -166,7 +166,7 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
-Next, you can try to run the app in [Kubernetes](../kubernetes/kubernetes-crio.md)!
+Next, you can try to run the app in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-cri-o.md)!
 
 ## Run a HTTP server app
 
@@ -232,4 +232,4 @@ $ curl -d "name=WasmEdge" -X POST http://10.85.0.2:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes.md)!
+Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-cri-o.md)!
