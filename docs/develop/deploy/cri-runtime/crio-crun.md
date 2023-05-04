@@ -44,7 +44,7 @@ systemctl start crio
 CRI-O uses the `runc` runtime by default and we need to configure it to use `crun` instead.
 That is done by adding to two configuration files.
 
-> Make sure that you have [built and installed the `crun` binary with WasmEdge support](../container/crun.md) before starting the following steps.
+> Make sure that you have [built and installed the `crun` binary with WasmEdge support](/docs/develop/deploy/oci-runtime/crun.md) before starting the following steps.
 
 First, create a `/etc/crio/crio.conf` file and add the following lines as its content. It tells CRI-O to use `crun` by default.
 
@@ -78,7 +78,7 @@ systemctl restart crio
 ## Run a simple WebAssembly app
 
 Now, we can run a simple WebAssembly program using CRI-O.
-[A separate article](../demo/wasi.md) explains how to compile, package, and publish the WebAssembly
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly
 program as a container image to Docker hub.
 In this section, we will start off pulling this WebAssembly-based container
 image from Docker hub using CRI-O tools.
@@ -171,7 +171,7 @@ Next, you can try to run the app in [Kubernetes](../kubernetes/kubernetes-crio.m
 ## Run a HTTP server app
 
 Finally, we can run a simple WebAssembly-based HTTP micro-service in CRI-O.
-[A separate article](../demo/server.md) explains how to compile, package, and publish the WebAssembly
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly
 program as a container image to Docker hub.
 In this section, we will start off pulling this WebAssembly-based container
 image from Docker hub using CRI-O tools.

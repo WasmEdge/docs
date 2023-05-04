@@ -53,12 +53,12 @@ Start the containerd service.
 sudo systemctl start containerd
 ```
 
-Next, make sure that you have [built and installed the `crun` binary with WasmEdge support](../container/crun.md) before running the following examples.
+Next, make sure that you have [built and installed the `crun` binary with WasmEdge support](/docs/develop/deploy/oci-runtime/crun.md) before running the following examples.
 
 ## Run a simple WebAssembly app
 
 Now, we can run a simple WebAssembly program using containerd.
-[A separate article](../demo/wasi.md) explains how to compile, package, and publish the WebAssembly
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly
 program as a container image to Docker hub.
 In this section, we will start off pulling this WebAssembly-based container
 image from Docker hub using containerd tools.
@@ -88,12 +88,12 @@ The args are as follows.
 File content is This is in a file
 ```
 
-Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd.md#a-simple-webassembly-app)!
+Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app)!
 
 ## Run a HTTP server app
 
 Finally, we can run a simple WebAssembly-based HTTP micro-service in containerd.
-[A separate article](../demo/server.md) explains how to compile, package, and publish the WebAssembly
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly
 program as a container image to Docker hub.
 In this section, we will start off pulling this WebAssembly-based container
 image from Docker hub using containerd tools.
