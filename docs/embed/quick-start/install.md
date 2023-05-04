@@ -2,17 +2,48 @@
 sidebar_position: 1
 ---
 
-# 1 Quick Start with the WasmEdge Go SDK
+# 1 Install Notes
 
-## Installation
+
+To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted,he version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK 0.11.2, then your WasmEdge version must be 0.11.2 as well. 
+
+> The releases of  WasmEdge language SDKs follow the official version of WasmEdge. We don't release the alpha, beta, and RC version for WasmEdge language SDKs. For the WasmEdge release process, please check [here](/docs/contribute/release.md).
+
+The WasmEdge language SDK exists as a package for its language. WasmEdge Rust SDK is a Rust Crate. Usually, you also need to install the language itself. For example, If you want to use WasmEdge Go SDK 0.11.2, then you need to install the Golang as well. 
+
+## Install WasmEdge GO SDK as an example
+
+Let's take WasmEdge Go SDK as an example to show how to embed a Wasm App in Rust to a Go Host applications.
+
+First, make sure you have installed [Go](https://go.dev/dl/) first. The Golang version should be above 1.16.
+
+Next, let's install WasmEdge and WasmEdge Go SDK. Again, The WasmEdge and WasmEdge Go SDK should be the same version.
+
+```
+$ go version
+go version go1.16.5 linux/amd64
+
+# Install WasmEdge
+$ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2
+
+# Install WasmEdge-Go
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+```
+
+Now we have set up WasmEdge and WasmEdge Go SDK. Next, let's see how to create a Wasm app using Rust and wasmedge-bindgen.
+
+
+
+
+
 
 To embed WasmEdge into your host app, you need to install WasmEdge itself and the corresponding WasmEdge's language bindings. 
 
-In this Quick Start guide, we use WasmEdge Go SDK as an example to show how it works. Specially, we will use [a bindgen function](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs) in rust to demonstrate how to call a few simple WebAssembly functions from a Go app.
+In this Quick Start guide, we use WasmEdge Go SDK as an example to show how it works. Especially, we will use [a bindgen function](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs) in rust to demonstrate how to call a few simple WebAssembly functions from a Go app.
 
 Before we start, make sure you have installed [Go first](https://go.dev/dl/). The Golang version should be above 1.16.
 
-First, let's install WasmEdge and WasmEdge Go SDK. They should be in the same version.
+First, let's install WasmEdge and WasmEdge Go SDK. **They should be in the same version**.
 
 ```
 $ go version
@@ -27,7 +58,7 @@ $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
 # Install the WasmEdge-bindgen tool, which help us handle complex data passing
 $ go get github.com/second-state/wasmedge-bindgen@v0.4.1
 ```
-> For more advanced features like AI inference, please refer to XYZ Chapter.
+> For more advanced features like AI inference, please refer to [Go SDK For Embedding Wasm Function Chapter](/docs/category/go-sdk-for-embedding-wasm-functions).
 
 Since the demo app includes [a compiled Wasm file](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs_lib.wasm) from [the Rust function](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs), so we don't need to install the Rust toolchain to compile the Rust code to wasm.
 
@@ -41,10 +72,10 @@ $ git clone https://github.com/second-state/WasmEdge-go-examples.git
 $ cd WasmEdge-go-examples//wasmedge-bindgen/go_BindgenFuncs/
 
 # build the project
-$ go build
+go build
 
 # run the example
-$ ./bindgen_funcs rust_bindgen_funcs_lib.wasm
+./bindgen_funcs rust_bindgen_funcs_lib.wasm
 ```
 
 The standard output of this example will be the following:
@@ -57,6 +88,7 @@ Run bindgen -- lowest_common_multiple: 246
 Run bindgen -- sha3_digest: [87 27 231 209 189 105 251 49 159 10 211 250 15 159 154 181 43 218 26 141 56 199 25 45 60 10 20 163 54 211 195 203]
 Run bindgen -- keccak_digest: [126 194 241 200 151 116 227 33 216 99 159 22 107 3 177 169 216 191 114 156 174 193 32 159 246 228 245 133 52 75 55 27]
 ```
+## Achieve  higher performance
 
 Use the following command line, if you want to get better performance.
 
@@ -68,4 +100,4 @@ wasmedgec rust_bindgen_funcs_lib.wasm rust_bindgen_funcs_lib.wasm
 ./bindgen_funcs rust_bindgen_funcs_lib.wasm
 ```
 
-That's it.  Let's dive into more examples.
+That's it.  Let's dive into [more examples with WasmEdge Go SDK](/docs/category/go-sdk-for-embedding-wasm-functions).
