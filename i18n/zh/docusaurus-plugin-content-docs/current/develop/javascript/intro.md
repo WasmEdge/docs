@@ -4,8 +4,6 @@ sidebar_position: 1
 
 # 5.1 Introduction
 
-
-
 WebAssembly started as a "JavaScript alternative for browsers". The idea is to run high-performance applications compiled from languages like C/C++ or Rust safely in browsers. In the browser, WebAssembly runs side by side with JavaScript.
 
 As WebAssembly is increasingly used in the cloud, it is now a universal runtime for cloud-native applications. Compared with Linux containers, WebAssembly runtimes achieve higher performance with lower resource consumption.
@@ -26,7 +24,7 @@ In this section, we will demonstrate how to run and enhance JavaScript in WasmEd
 
 * [Getting started](hello_world) demonstrates how to run simple JavaScript programs in WasmEdge.
 * [Node.js compatibility](nodejs) describes Node.js APIs support in WasmEdge QuickJS.
-* [Networking sockets](../../category/http-service) shows how to create non-blocking (async) HTTP clients, including the `fetch` API, and server applications in JavaScript.
+* [Networking sockets](networking) shows how to create non-blocking (async) HTTP clients, including the `fetch` API, and server applications in JavaScript.
 * [ES6 modules](es6) shows how to incorporate ES6 modules in WasmEdge.
 * [Node.js and NPM modules](npm) shows how to incorporate NPM modules in WasmEdge.
 * [Built-in modules](modules) shows how to add JavaScript functions into the WasmEdge runtime as built-in API functions.

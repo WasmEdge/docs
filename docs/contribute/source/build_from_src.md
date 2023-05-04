@@ -11,19 +11,10 @@ Please follow this guide to build and test WasmEdge from the source code.
 - [Windows](../source/os/windows.md)
 - [Android](../../category/build-and-run-wasmedge-on-android)
 - [OpenWrt](../source/os/openwrt.md)
-<<<<<<< HEAD
 - [RISC-V](../source/os/riscv64.md)
 - [OpenHarmony](../source/os/openharmony.md)
 - [seL4](../source/os/sel4)
 - [Raspberry Pi](../source/os/raspberrypi.md)
-=======
-- [RISC-V](/docs/contribute/source/os/riscv64.md)
-- [OpenHarmony](/docs/contribute/source/os/openharmony.md)
-- [seL4](/contribute/source/os/sel4)
-- [Raspberry Pi](/contribute/source/os/raspberrypi.md)
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
-
-
 
 
 > If you just want the latest builds from the `HEAD` of the `master` branch, and do not want to build it yourself, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/1521549504#artifacts).

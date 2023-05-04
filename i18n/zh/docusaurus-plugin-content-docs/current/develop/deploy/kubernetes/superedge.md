@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 ---
 
-# 8.6.2 SuperEdge
+# 8.6.5 SuperEdge
 
 SuperEdge is an open-source container management system for edge computing. It extends native Kubernetes to the edge in a non-intrusive way.
 

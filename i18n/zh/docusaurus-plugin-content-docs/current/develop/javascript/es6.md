@@ -19,7 +19,7 @@ We will take the example in [example_js/es6_module_demo](https://github.com/seco
 
 First, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
 
-```
+```bash
 git clone https://github.com/second-state/wasmedge-quickjs.git
 ```
 
@@ -49,7 +49,7 @@ function hello(){
 export {hello};
 ```
 
-The [module_def_async.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/es6_module_demo/module_def_async.js) file defines and exports an aysnc function and a variable.
+The [module_def_async.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/es6_module_demo/module_def_async.js) file defines and exports an async function and a variable.
 
 ```javascript
 export async function hello() {
