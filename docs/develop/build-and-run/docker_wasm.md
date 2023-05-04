@@ -94,7 +94,7 @@ That's it.
 
 To see more Dockerized Rust example apps for WasmEdge, check out the following.
 
-* [Use Rust standard libaries](https://github.com/second-state/rust-examples/tree/main/wasi)
+* [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
 * [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
 
 
@@ -284,4 +284,4 @@ That's it. Feel free to fork this project and use it as a template for your own 
 
 ### Further reading
 
-To learn how Docker + Wasm works under the hood, visit the [containerd](../deploy/oci-runtime/containerd) chapter for more details.
+To learn how Docker + Wasm works under the hood, visit the [containerd](../deploy/cri-runtime/containerd.md) chapter for more details.

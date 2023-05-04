@@ -92,7 +92,7 @@ To embed WasmEdge into your go application and run the Wasm function, we still n
 
 - [Embed a standalone Wasm app](/embed/go/app)
 - [Embed a Wasm function](/embed/go/function)
-- [Pass complex parameters to Wasm functions](/embed/go/data)
+- [Pass complex parameters to Wasm functions](/embed/go/passing_data)
 - [Embed a Tensorflow inference function](/embed/go/ai)
 - [Embed a bindgen function](/embed/go/data)
 

@@ -298,7 +298,7 @@ rshmallows</p></div><script>$RS("S:5","P:5")</script><script>$RC("B:2","S:2")</s
 cript>
 ```
 
-The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](http_service/server) and [ES6](es6) in this book.
+The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](networking) and [ES6](es6) in this book.
 
 ## Appendix the create-react-app template
 
