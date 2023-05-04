@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Develop WasmEdge Plug-in in C++ API
 
-> We recommend developers to [develop plug-ins in WasmEdge C API](c.md).
+> We recommend developers to [develop plug-ins in WasmEdge C API](develop_plug_c.md).
 
 ## Prerequisites
 
