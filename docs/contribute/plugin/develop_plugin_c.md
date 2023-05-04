@@ -9,11 +9,10 @@ WasmEdge provides a C++ based API for registering extension modules and host fun
 
 ## Prerequisites
 
-<<<<<<< HEAD
+
 For developing the WasmEdge plug-in in C API, please [install WasmEdge](/develop/build-and-run/install.md) first.
-=======
-For developing the WasmEdge plug-in in C API, please [install WasmEdge](/docs/develop/build-and-run/install.md) first.
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
+
+
 
 ## Example
 
@@ -22,15 +21,10 @@ Assume that the plug-in example is in the file `testplugin.c`.
 ### Host Functions
 
 The goal of the plug-in is to provide the host functions which can be imported when instantiating WASM.
-<<<<<<< HEAD
+
 Therefore, developers can implement their plug-in host functions first, as the same as the [host functions in WasmEdge C API](/embed/c/reference/0.12.0.md#host-functions).
 
 > For the more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
-=======
-Therefore, developers can implement their plug-in host functions first, as the same as the [host functions in WasmEdge C API](/docs/embed/c/reference/0.12.0.md#host-functions).
-
-> For the more details about the [external data](/docs/embed/c/host_function.md#host-data) and [calling frame context](/docs/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 ```c
 #include <wasmedge/wasmedge.h>

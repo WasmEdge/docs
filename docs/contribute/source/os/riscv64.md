@@ -39,11 +39,8 @@ ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt install -y llvm-12-dev liblld-12-dev
 
 ### Compile
 
-<<<<<<< HEAD
 Please refer to [here](/contribute/source/build_from_src.md#cmake-building-options) for the descriptions of all CMake options.
-=======
-Please refer to [here](/docs/contribute/source/build_from_src.md#cmake-building-options) for the descriptions of all CMake options.
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
+
 
 ```bash
 ubuntu@riscv-lab:/labs/riscv-lab$ cd WasmEdge

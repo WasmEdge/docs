@@ -7,11 +7,7 @@ sidebar_position: 1
 
 To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted,he version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK 0.11.2, then your WasmEdge version must be 0.11.2 as well. 
 
-<<<<<<< HEAD
 > The releases of  WasmEdge language SDKs follow the official version of WasmEdge. We don't release the alpha, beta, and RC version for WasmEdge language SDKs. For the WasmEdge release process, please check [here](/contribute/release.md).
-=======
-> The releases of  WasmEdge language SDKs follow the official version of WasmEdge. We don't release the alpha, beta, and RC version for WasmEdge language SDKs. For the WasmEdge release process, please check [here](/docs/contribute/release.md).
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 The WasmEdge language SDK exists as a package for its language. WasmEdge Rust SDK is a Rust Crate. Usually, you also need to install the language itself. For example, If you want to use WasmEdge Go SDK 0.11.2, then you need to install the Golang as well. 
 
@@ -62,11 +58,7 @@ $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
 # Install the WasmEdge-bindgen tool, which help us handle complex data passing
 $ go get github.com/second-state/wasmedge-bindgen@v0.4.1
 ```
-<<<<<<< HEAD
 > For more advanced features like AI inference, please refer to [Go SDK For Embedding Wasm Function Chapter](/category/go-sdk-for-embedding-wasm-functions).
-=======
-> For more advanced features like AI inference, please refer to [Go SDK For Embedding Wasm Function Chapter](/docs/category/go-sdk-for-embedding-wasm-functions).
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 Since the demo app includes [a compiled Wasm file](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs_lib.wasm) from [the Rust function](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs), so we don't need to install the Rust toolchain to compile the Rust code to wasm.
 
@@ -108,8 +100,4 @@ wasmedgec rust_bindgen_funcs_lib.wasm rust_bindgen_funcs_lib.wasm
 ./bindgen_funcs rust_bindgen_funcs_lib.wasm
 ```
 
-<<<<<<< HEAD
 That's it.  Let's dive into [more examples with WasmEdge Go SDK](/category/go-sdk-for-embedding-wasm-functions).
-=======
-That's it.  Let's dive into [more examples with WasmEdge Go SDK](/docs/category/go-sdk-for-embedding-wasm-functions).
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
