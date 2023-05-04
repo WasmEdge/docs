@@ -98,6 +98,7 @@ To embed WasmEdge into your go application and run the Wasm function, we still n
 
 ## API References
 
+- [0.12.0](embed/go/reference/0.12.0)
 - [v0.11.2](/embed/go/reference/0.11.2)
 - [v0.10.1](/embed/go/reference/0.10.1)
 - [v0.9.1](/embed/go/reference/0.9.1)
