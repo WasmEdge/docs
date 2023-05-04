@@ -6,11 +6,19 @@ sidebar_position: 6
 
 ## Prerequisites
 
+<<<<<<< HEAD
 The prerequisites of the WasmEdge-Process plug-in is the same as the [WasmEdge building environment on the Linux platforms](../linux.md).
 
 ## Build WasmEdge with WasmEdge-Process Plug-in
 
 To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_PROCESS=On`.
+=======
+The prerequisites of the WasmEdge-Process plug-in is the same as the [WasmEdge building environment on the Linux platforms](docs/contribute/source/os/linux.md).
+
+## Build WasmEdge with WasmEdge-Process Plug-in
+
+To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](docs/contribute/source/os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_PROCESS=On`.
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>

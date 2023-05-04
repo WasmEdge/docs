@@ -44,7 +44,11 @@ systemctl start crio
 CRI-O uses the `runc` runtime by default and we need to configure it to use `crun` instead.
 That is done by adding to two configuration files.
 
+<<<<<<< HEAD
 > Make sure that you have [built and installed the `crun` binary with WasmEdge support](../oci-runtime/crun.md) before starting the following steps.
+=======
+> Make sure that you have [built and installed the `crun` binary with WasmEdge support](/docs/develop/deploy/oci-runtime/crun.md) before starting the following steps.
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 First, create a `/etc/crio/crio.conf` file and add the following lines as its content. It tells CRI-O to use `crun` by default.
 
@@ -166,7 +170,11 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
+<<<<<<< HEAD
 Next, you can try to run the app in [Kubernetes](../kubernetes/kubernetes-cri-o.md)!
+=======
+Next, you can try to run the app in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-cri-o.md)!
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 ## Run a HTTP server app
 
@@ -232,4 +240,8 @@ $ curl -d "name=WasmEdge" -X POST http://10.85.0.2:1234
 echo: name=WasmEdge
 ```
 
+<<<<<<< HEAD
 Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-cri-o.md)!
+=======
+Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-cri-o.md)!
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4

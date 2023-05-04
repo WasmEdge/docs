@@ -4,6 +4,7 @@ sidebar_position: 10
 
 # 8.6.10 Kwasm
 
+<<<<<<< HEAD
 
 [Kwasm](https://kwasm.sh/) is a Kubernetes Operator that adds WebAssembly support to your Kubernetes nodes.
 
@@ -33,3 +34,8 @@ After the job finished, check the log:
 ```bash
 kubectl logs job/wasm-test
 ```
+=======
+Kwasm is a K8s operator for Wasm.
+
+WIP
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4

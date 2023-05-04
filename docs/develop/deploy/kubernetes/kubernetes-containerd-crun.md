@@ -12,7 +12,11 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 * WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd-server.yml)
 
 In the rest of this section, we will explain the steps in detail.
+<<<<<<< HEAD
 We will assume that you have already [installed and configured containerd](../cri-runtime/containerd-crun.md) to work with WasmEdge container images.
+=======
+We will assume that you have already [installed and configured containerd](/docs/develop/deploy/cri-runtime/containerd-crun.md) to work with WasmEdge container images.
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 ## Install and start Kubernetes
 

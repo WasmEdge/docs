@@ -17,7 +17,11 @@ The networking API in WasmEdge is non-blocking and hence supports asynchronous I
 
 ## Prerequisites
 
+<<<<<<< HEAD
 * [WasmEdge installed](/develop/build-and-run/install.md)
+=======
+* [WasmEdge installed](/docs/develop/build-and-run/install.md)
+>>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 * Download the WasmEdge QuickJS Runtime
 
 ```bash
