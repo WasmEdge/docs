@@ -10,7 +10,7 @@ sidebar_position: 3
 
 ## Prerequisites
 
-For developing the WasmEdge plug-in in internal C++, developers should [build WasmEdge from source](/docs/develop/build-and-run/install.md).
+For developing the WasmEdge plug-in in internal C++, developers should [build WasmEdge from source](/develop/build-and-run/install.md).
 
 ## Example
 
@@ -235,5 +235,5 @@ else()
 endif()
 ```
 
-Then you can [follow the guide to build from source](/docs/contribute/source/os/linux.md).
+Then you can [follow the guide to build from source](/contribute/source/os/linux.md).
 

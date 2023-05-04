@@ -53,7 +53,7 @@ Start the containerd service.
 sudo systemctl start containerd
 ```
 
-Next, make sure that you have [built and installed the `crun` binary with WasmEdge support](/docs/develop/deploy/oci-runtime/crun.md) before running the following examples.
+Next, make sure that you have [built and installed the `crun` binary with WasmEdge support](../oci-runtime/crun.md) before running the following examples.
 
 ## Run a simple WebAssembly app
 
@@ -88,7 +88,7 @@ The args are as follows.
 File content is This is in a file
 ```
 
-Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app)!
+Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app)!
 
 ## Run a HTTP server app
 
@@ -118,4 +118,4 @@ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](/docs/develop/deploy/kubernetes/kubernetes-containerd-crun.md#a-webassembly-based-http-service)!
+Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-webassembly-based-http-service)!

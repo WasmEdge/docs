@@ -10,7 +10,7 @@ In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK.
 
 ## Prerequisites
 
-We need to install [Rust and add `wasm32-wasi` target for Rust](/docs/develop/rust/setup.md)
+We need to install [Rust and add `wasm32-wasi` target for Rust](/develop/rust/setup.md)
 
 We also need to install `wasmedge-bindgen`.
 ```

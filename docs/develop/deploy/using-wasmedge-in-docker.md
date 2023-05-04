@@ -14,7 +14,7 @@ An easy way to run WebAssembly applications in the Docker ecosystem is to simply
 * The overall application security is managed by the WebAssembly sandbox. The risk for software supply chain attack is greatly reduced since the WebAssembly sandbox only has access to explicitly declared capabilities.
 * The above three advantages are amplified if the application is complex. For example, a WasmEdge AI inference application would NOT require a Python install. A WasmEdge node.js application would NOT require a Node.js and v8 install.
 
-However, this approach still requires starting up a Linux container. The containerized Linux OS, however slim, still takes 80% of the total image size. There is still a lot of room for optimization. The performance and security of this approach would not be as great as running WebAssembly applications directly in [crun](/docs/develop/deploy/oci-runtime/crun.md) or in a [containerd shim](/docs/develop/deploy/cri-runtime/containerd.md).
+However, this approach still requires starting up a Linux container. The containerized Linux OS, however slim, still takes 80% of the total image size. There is still a lot of room for optimization. The performance and security of this approach would not be as great as running WebAssembly applications directly in [crun](/develop/deploy/oci-runtime/crun.md) or in a [containerd shim](/develop/deploy/cri-runtime/containerd.md).
 
 ## WasmEdge DockerSlim
 

@@ -50,7 +50,7 @@ cd ..
 
 ## Build WasmEdge with WasmEdge-HttpsReq Plug-in
 
-To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](/docs/contribute/source/os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_HTTPSREQ=On`.
+To enable the WasmEdge WasmEdge-HttpsReq, developers need to [building the WasmEdge from source](../linux.md) with the cmake option `-DWASMEDGE_PLUGIN_HTTPSREQ=On`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>

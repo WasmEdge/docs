@@ -26,7 +26,7 @@ In this section, we will walk you through how to embed WasmEdge in different lan
 * [Use cases](../category/use-cases)
 
 
-Besides this, we also have two more guides for [developing Wasm apps](/docs/develop/overview) and [contributing to WasmEdge](/docs/contribute/overview).
+Besides this, we also have two more guides for [developing Wasm apps](/develop/overview) and [contributing to WasmEdge](/contribute/overview).
 
 If you find some issues or have any feedback, you could reach out to us via the following ways.
 

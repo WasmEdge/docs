@@ -66,9 +66,9 @@ Assume that this `wat` is converted into the WASM binary format and saved as `te
 
 ### Prerequisites
 
-For executing these examples, developers should [install WasmEdge](/docs/develop/build-and-run/install.md).
+For executing these examples, developers should [install WasmEdge](/develop/build-and-run/install.md).
 
-To improve the performance of executing WASM, developers can also use the [AOT compiler](/docs/develop/build-and-run/aot.md) to compile the above WASM files.
+To improve the performance of executing WASM, developers can also use the [AOT compiler](/develop/build-and-run/aot.md) to compile the above WASM files.
 
 ## Linking WASM Modules With the VM Context
 
