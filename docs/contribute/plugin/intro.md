@@ -4,8 +4,19 @@ sidebar_position: 1
 
 # 3.1 WasmEdge Plug-in System Introduction
 
+While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, developers should implement the host functions before compilation.
 
-WasmEdge adopts the plug-in system to custom WasmEdge according to their own needs. The plug-in system makes creating a new host function for WasmEdge easier because developers don't need to care about the internal structure and details of WasmEdge since the plug-in interface is abstracted.
+For the other solutions, WasmEdge provides the plug-in architecture to load the plug-in shared library for easier extending of the host functions.
+
+With developing the plug-ins, WasmEdge SDKs in the supported languages can load and register the host functions from the plug-in shared libraries.
+
+In current, developers can follow the guides to implement the plug-ins in [C API (recommended)](develop_plugin_c.md) or [C++](develop_plugin_cpp.md).
+
+## Loadable Plug-in
+
+Loadable plugin is a standalone `.so`/`.dylib`/`.dll` file that WasmEdge can load during runtime environment, and provide modules to be imported.
+
+Please [refer to the plugin example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string).
 
 ## WasmEdge Currently Released Plug-ins
 

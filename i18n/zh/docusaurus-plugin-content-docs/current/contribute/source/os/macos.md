@@ -33,14 +33,14 @@ If you want to build from source, you may need to install these dependencies by 
 ```bash
 # Tools and libraries
 brew install boost cmake ninja llvm
-export LLVM_DIR="/usr/local/opt/llvm/lib/cmake"
+export LLVM_DIR="$(brew --prefix)/opt/llvm/lib/cmake"
 export CC=clang
 export CXX=clang++
 ```
 
 ## Build WasmEdge
 
-Please refer to [here](../build_from_src#cmake-building-options) for the descriptions of all CMake options.
+Please refer to [here](../build_from_src.md#cmake-building-options) for the descriptions of all CMake options.
 
 ```bash
 cmake -Bbuild -GNinja -DWASMEDGE_BUILD_TESTS=ON .
@@ -65,3 +65,5 @@ DYLD_LIBRARY_PATH=$(pwd)/lib/api ctest
 The following tests can not pass on macos, we are investigating these issues:
 
 * wasmedgeWasiSocketTests
+
+But we have an open issue working on it. Don't hesitate to leave your feedback for [this issue](https://github.com/WasmEdge/WasmEdge/issues/2438).

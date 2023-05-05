@@ -164,7 +164,7 @@ For helping you get familiar with WasmEdge Rust bindings, this chapter will cove
 - [Embed Wasm functions and async functions](function.md)
 - [Pass complex dats](complex_data.md)
 - [AI inference with Pytorch](ai.md)
-- [Asycify](asyncify.md)
+- [Asycfy](asyncfy.md)
 - [API Reference](https://crates.io/crates/wasmedge-sdk)
 - [More examples](https://github.com/second-state/wasmedge-rustsdk-examples)
 

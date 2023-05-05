@@ -80,9 +80,9 @@ If you used `winget` to install WasmEdge, the files are located at `C:\Program F
 * The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
 * The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
 
-## Install plugins and extensions
+## Install WasmEdge and its plugins and extensions
 
-After you installed WasmEdge, you may want to use WasmEdge's more features. Then, we need to install the plugin and extensions for WasmEdge.
+WasmEdge uses plugin to extend WasmEdge. If want to use WasmEdge's more features, let's see how to install WasmEdge and its plugin and extensions.
 
 ### TensorFlow and Image Processing Extension
 
@@ -96,13 +96,23 @@ Next, run `source $HOME/.wasmedge/env` to make the installed binary available in
 
 Then, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow) to see how to run AI inference with TensorFlow Lite.
 
+### WasmEdge-Httpsreq plugin
+In order to achieve the goal of supporting HTTPS requests, we now create a WasmEdge-HttpsReq plug-in using the OpenSSL library. To install the WasmEdge-Httpsreq plugin, run the following command line.
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasmedge_httpsreq
+```
+Next, run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
+
+Then, go to [HTTPS request in Rust chapter](../rust/https-service to see how to run HTTPs services with Rust.
+
 ### WASI-NN plugin with OpenVINO™ backend
 
 WASI-NN plugin is WasmEdge's implementation of the WASI-NN proposal.
 
-Note, to use the WASI-NN plugin for WasmEdge, your OS should be at least `Ubuntu 20.04`. The WasmEdge version should be at least `wasmedge 0.10.1`
+Note, to use the WASI-NN plugin for WasmEdge, your OS should be at least `Ubuntu 20.04`. The WasmEdge version should be at least `wasmedge 0.10.1`.
 
-First, install the OpenVINO dependency.
+First, install the [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021) dependency.
 
 ```bash
 export OPENVINO_VERSION="2021.4.582"
@@ -121,8 +131,9 @@ And then get WasmEdge and the WASI-NN plug-in with OpenVINO backend. The version
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_nn-openvino
 ```
+Next, run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Next, go to the [OpenVINO in Rust](../rust/ai_inference/openvino) chapter to see how to run AI inference with OpenVINO.
+Then, go to the [OpenVINO in Rust](../rust/ai_inference/openvino) chapter to see how to run AI inference with OpenVINO.
 
 ### WASI-NN plugin with Pytorch backend
 
@@ -132,13 +143,17 @@ Note, to use Pytorch, the WasmEdge version should be at least `0.11.2`. The WASI
 The one-liner WasmEdge installer would install the `manylinux2014` version for Ubuntu. If you install WasmEdge with the installer or for the `manylinux2014` version, you should get the `manylinux2014` version plug-in and `libtorch`.
 :::
 
-First, install the PyTorch dependency:
+First, install the  [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependency:
 
 ```bash
 export PYTORCH_VERSION="1.8.2"
-curl -s -L -O --remote-name-all https://download.pytorch.org/libtorch/lts/1.8/cpu/libtorch-cxx11-abi-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip
-unzip -q "libtorch-cxx11-abi-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
-rm -f "libtorch-cxx11-abi-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
+# For the Ubuntu 20.04 or above, use the libtorch with cxx11 abi.
+export PYTORCH_ABI="libtorch-cxx11-abi"
+# For the manylinux2014, please use the without cxx11 abi version:
+#   export PYTORCH_ABI="libtorch"
+curl -s -L -O --remote-name-all https://download.pytorch.org/libtorch/lts/1.8/cpu/${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip
+unzip -q "${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
+rm -f "${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$(pwd)/libtorch/lib
 ```
 
@@ -149,19 +164,22 @@ Let's take `ubuntu20.04` as an example.
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_nn-pytorch
 ```
+Next, run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Next, go to the [Pytorch in Rust chapter](../rust/ai_inference/pytorch) to see how to run AI inference with Pytorch.
+Then, go to the [Pytorch in Rust chapter](../rust/ai_inference/pytorch) to see how to run AI inference with Pytorch.
+
+> Note: Please check that the Ubuntu version of WasmEdge and plug-in should use the cxx11-abi version of PyTorch, and the manylinux2014 version of WasmEdge and plug-in should use the PyTorch without cxx11-abi.
 
 ### WASI-NN plugin with TensorFlow Lite
 
 The WASI-NN plugin for TensorFlow Lite supports both `manylinux2014`,`ubuntu20.04`, `android_aarch64`, and `manylinux2014_aarch64`. The version and platform of WasmEdge should be the same as WASI-NN plugin with TensorFlow lite.
 
-First, install the TensorFlow-Lite dependency:
+First, install the TensorFlow-Lite 2.6.0 dependency:
 
 ```bash
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/{{ wasmedge_version }}/WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-manylinux2014_x86_64.tar.gz
-tar -zxf WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-manylinux2014_x86_64.tar.gz
-rm -f WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-manylinux2014_x86_64.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/0.11.2/WasmEdge-tensorflow-deps-TFLite-0.11.2-manylinux2014_x86_64.tar.gz
+tar -zxf WasmEdge-tensorflow-deps-TFLite-0.11.2-manylinux2014_x86_64.tar.gz
+rm -f WasmEdge-tensorflow-deps-TFLite-0.11.2-manylinux2014_x86_64.tar.gz
 ```
 
 The shared library will be extracted in the current directory `./libtensorflowlite_c.so`.
@@ -179,8 +197,21 @@ Get the WasmEdge and the WASI-NN plug-in with TensorFlow-Lite backend:
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_nn-tensorflowlite
 ```
+Next, run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Next, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow_lite) to see how to run AI inference with TensorFlow Lite.
+Then, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow_lite) to see how to run AI inference with TensorFlow Lite.
+
+
+### WASI-Crypto Plugin
+
+[WASI-crypto](https://github.com/WebAssembly/wasi-crypto) is Cryptography API proposals for WASI. To use WASI-Crypto proposal, run the following command line.
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2 --plugins wasi_crypto
+```
+Next, run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
+
+Then, go to [WASI-Crypto in Rust chapter](../rust/wasicrypto.md) to see how to run WASI crypto functions.
 
 ## Uninstall
 
@@ -229,4 +260,3 @@ Please make sure your network connection can access the `github.com` and `github
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
 curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused
 ```
-
