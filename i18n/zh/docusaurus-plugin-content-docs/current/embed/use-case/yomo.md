@@ -1,12 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# 10.1 Embed WasmEdge into your Go Host Applications
-
-The following example shows how to embed WasmEdge into a Golang application and then use WasmEdge to do AI inference.
-
----
+# YoMo framework
 
 [YoMo](https://yomo.run/) is a programming framework enabling developers to build a distributed cloud system (Geo-Distributed Cloud System). YoMo's communication layer is made on top of the QUIC protocol, which brings high-speed data transmission. In addition, it has a built-in Streaming Serverless "streaming function", which significantly improves the development experience of distributed cloud systems. The distributed cloud system built by YoMo provides an ultra-high-speed communication mechanism between near-field computing power and terminals. It has a wide range of use cases in Metaverse, VR/AR, IoT, etc.
 

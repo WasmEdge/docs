@@ -6,7 +6,7 @@ sidebar_position: 5
 
 In this section, we will show you how to create a Tensorflow inference function in Rust for image classification, and then embed it into a Go application. The project source code is [available here](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_TfliteFood).
 
-## Rust function compiled into WebAssembly
+## The Wasm app in Rust
 
 The Rust function for image classification is [available here](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_TfliteFood/rust_tflite_food/src/lib.rs).
 It utilizes the [WasmEdge Tensorflow extension API](/develop/rust/ai_inference/tensorflow) as well as the [wasmedge_bindgen](/embed/go/function) for passing call parameters.
@@ -31,10 +31,11 @@ fn infer(image_data: Vec<u8>) -> Result<Vec<u8>, String> {
   ... ...
 }
 ```
-
+## Compile the Rust code to Wasm
 You can use the standard `Cargo` command to build it into a WebAssembly function.
 
 ```bash
+git clone https://github.com/second-state/WasmEdge-go-examples.git
 cd rust_tflite_food
 cargo build --target wasm32-wasi --release
 cp target/wasm32-wasi/release/rust_tflite_food_lib.wasm ../
@@ -100,14 +101,15 @@ func main() {
 }
 ```
 
-## Build and run
+## Build and run the wasm app from your go host
 
-> You must have WasmEdge with its tensorflow extension installed on your machine. [Checkout the install guide](/develop/build-and-run/install) for details.
+> ::note
+Make sure you have installed [Go, WasmEdge, and WasmEdge Go SDK with the tensorflow extension](intro.md).
+::
 
 The following command builds the Go host application with the WasmEdge Go SDK and its tensorflow extension.
 
 ```bash
-go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
 go build -tags tensorflow
 ```
 

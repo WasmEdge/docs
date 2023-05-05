@@ -12,6 +12,7 @@ We could use WasmEdge as a standalone container and deploy WasmEdge using the ex
 WasmEdge provides SDKs for various programming languages. The WasmEdge library allows developers to embed the WasmEdge into their host applications, so that the WebAssembly applications can be executed in the WasmEdge sandbox safely. Furthermore, developers can implement the host functions for the extensions with the WasmEdge library.
 
 ![](embed_arch.png)
+
 In this section, we will walk you through how to embed WasmEdge in different languages. We will cover the following content:
 
 * [Quick Start](../category/quick-start)
@@ -25,7 +26,7 @@ In this section, we will walk you through how to embed WasmEdge in different lan
 * [Use cases](../category/use-cases)
 
 
-Besides this, we also have two more guides for developing Wasm apps and contributing to WasmEdge.
+Besides this, we also have two more guides for [developing Wasm apps](/develop/overview) and [contributing to WasmEdge](/contribute/overview).
 
 If you find some issues or have any feedback, you could reach out to us via the following ways.
 

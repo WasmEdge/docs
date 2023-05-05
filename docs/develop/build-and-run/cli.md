@@ -4,14 +4,22 @@ sidebar_position: 2
 
 # The `wasmedge` CLI
 
-After installing WasmEdge, you could use the `wasmedge` CLI to execute a compiled wasm file.
+After intalling WasmEdge, you can use the `wasmedge` CLI to execute a compiled wasm file. We will cover how to run Wasm files with WasmEdge on your own machine and Docker images.
+
+The `wasmedge` binary is a command line interface (CLI) program that runs WebAssembly programs.
+
+* If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
+* If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
+
+By default, the `wasmedge` will execute WebAssembly programs in interpreter mode, and [execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode](aot.md). If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first.
+
 
 ```bash
 $ wasmedge -v
 wasmedge version {{ wasmedge_version }}
 ```
 
-The usage of the `wasmedge` tool will be:
+Users can run the `wasmedge -h` for realizing the command line options quickly, or [refer to the detailed `wasmedge` CLI options here](#options).The usage of the `wasmedge` tool will be:
 
 ```bash
 $ wasmedge -h
