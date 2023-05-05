@@ -113,11 +113,7 @@ Get the result: 6912
 
 ## Link with WasmEdge Static Library
 
-<<<<<<< HEAD
-For preparing the WasmEdge static library, developers should [build WasmEdge from source](/contribute/source/build_from_src.md#cmake-building-options) with the options:
-=======
 For preparing the WasmEdge static library, developers should [build WasmEdge from source](docs/contribute/source/build_from_src.md#cmake-building-options) with the options:
->>>>>>> 6851334bd9d72ef2b38259ad573a8764d02577e4
 
 ```bash
 # Recommend to use the `wasmedge/wasmedge:latest` docker image. This will provide the required packages.

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 4.1 WasmEdge C SDK Introduction
 
-The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](/embed/c/reference/ref). Before programming with the WasmEdge C API, please [install WasmEdge](/develop/build-and-run/install) first.
+The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](/embed/c/reference/0.12.0.md). Before programming with the WasmEdge C API, please [install WasmEdge](/develop/build-and-run/install) first.
 
 The WasmEdge C API is also the fundamental API for other languages' SDK.
 
@@ -116,6 +116,7 @@ sys 0m0.011s
 
 ## API References
 
+- [0.12.0](/embed/c/reference/0.12.0)
 - [0.11.2](/embed/c/reference/0.11.2)
 - [0.10.1](/embed/c/reference/0.10.1)
 - [0.9.1](/embed/c/reference/0.9.1)
@@ -126,3 +127,4 @@ sys 0m0.011s
 - Link with the [WasmEdge library](/embed/c/library)
 - Use the [external reference](/embed/c/externref) of WebAssembly input and output in C/C++
 - Implement the [host functions](/embed/c/host_function) in C/C++
+- [Multiple WASM Module Example](/embed/c/multiple_modules.md)

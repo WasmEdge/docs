@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 ---
 
-# 8.6.1 OpenYurt
+# 8.6.4 OpenYurt
 
 OpenYurt is the intelligent edge computing platform which aims to extend the Cloud Native ecosystem to edge computing and IoT scenarios.
 

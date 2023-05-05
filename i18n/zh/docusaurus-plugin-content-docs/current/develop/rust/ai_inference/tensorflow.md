@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.5.1 TensorFlow
+# 4.7.1 TensorFlow
 
 AI inference is a computationally intensive task that could benefit greatly from the speed of Rust and WebAssembly. However, the standard WebAssembly sandbox provides very limited access to the native OS and hardware, such as multi-core CPUs, GPU and specialized AI inference chips. It is not ideal for the AI workload.
 
