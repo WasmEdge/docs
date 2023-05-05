@@ -29,7 +29,9 @@ By default, the `wasmedgec` AOT compiler tool could wrap the AOT-compiled native
 
 This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime, WasmEdge will extract the native binary from the custom section and execute it in AOT mode.
 
-> Note: On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedgec` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+:::note 
+On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedgec` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+:::
 
 ```bash
 wasmedgec app.wasm app_aot.wasm
