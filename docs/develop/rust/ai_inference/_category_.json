@@ -1,6 +1,6 @@
 {
-  "label": "4.5 AI Inference",
-  "position": 6,
+  "label": "4.7 AI Inference",
+  "position": 8,
   "link": {
     "type": "generated-index",
     "description": "Run AI Inference function based on TensorFlow, OpenVINO, Pytorch, and TensorFlow-lite in WasmEdge."

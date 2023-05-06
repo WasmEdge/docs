@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 4.5.4 TensorFlow Lite
+# 4.7.4 TensorFlow Lite
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) as an example to discuss how to do AI inference with TensorFlow Lite in WasmEdge.
 
@@ -20,6 +20,8 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
+# download the fixture files
+./download_mobilenet.sh
 # Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
 # If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
@@ -60,20 +62,12 @@ cargo build --target wasm32-wasi --release
 
 The output Wasm file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm`.
 
-If everything goes well, you should have the terminal output:
+Next let's use WasmEdge to identify your own images.
 
 ```bash
-Read graph weights, size in bytes: 3561598
-Loaded graph into wasi-nn with ID: 0
-Created wasi-nn execution context with ID: 0
-Read input tensor, size in bytes: 150528
-Executed graph inference
-   1.) [166](198)Aix galericulata
-   2.) [158](2)Coccothraustes coccothraustes
-   3.) [34](1)Gallus gallus domesticus
-   4.) [778](1)Sitta europaea
-   5.) [819](1)Anas platyrhynchos
+wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
+You can replace `input.jpg` with your own image file. 
 
 
 
@@ -85,9 +79,6 @@ For the AOT mode which is much more quickly, you can compile the WASM first:
 $ wasmedgec rust/tflite-bird/target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm wasmedge-wasinn-example-tflite-bird-image.wasm
 $ wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
 ```
-
-
-
 
 ## The code
 

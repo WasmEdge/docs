@@ -1,8 +1,8 @@
 ---
-sidebar_position: 9
+sidebar_position: 10
 ---
 
-# 5.9 Example: Running SSR in WasmEdge
+# 5.10 Example: Running SSR in WasmEdge
 
 
 [React](https://reactjs.org/) is very popular JavaScript web UI framework. A React application is "compiled" into an HTML and JavaScript static web site. The web UI is rendered through the generated JavaScript code. However, it is often too slow and resource consuming to execute the complex generated JavaScript entirely in the browser to build the interactive HTML DOM objects. [React Server Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55) delegates the JavaScript UI rendering to a server, and have the server stream rendered HTML DOM objects to the browser. The WasmEdge JavaScript runtime provides a lightweight and high performance container to run React SSR functions on edge servers.
@@ -298,7 +298,7 @@ rshmallows</p></div><script>$RS("S:5","P:5")</script><script>$RC("B:2","S:2")</s
 cript>
 ```
 
-The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](http_service/server) and [ES6](es6) in this book.
+The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](networking) and [ES6](es6) in this book.
 
 ## Appendix the create-react-app template
 

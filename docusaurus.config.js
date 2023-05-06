@@ -122,7 +122,12 @@ const config = {
                 },
               },
             footer: {
-                style: 'dark',
+                logo: {
+                    alt: 'WasmEdge logo',
+                    src: '/img/wasmedge_logo.svg',
+                    href: 'https://wasmedge.org/',
+                  },
+                style: 'light',
                 links: [
                     {
                         title: 'Docs',
@@ -130,18 +135,40 @@ const config = {
                             {
                                 label: 'Develop',
                                 to: '/develop/overview',
-                            }, {
-                                label: 'Embed',
+                            },{
+                                label: 'Embeds',
                                 to: '/embed/overview',
-                            }, {
-                                label: 'Extend',
+                            },
+                             {
+                                label: 'Contribute',
                                 to: '/contribute/overview',
+                            }
+                        ],
+                    },
+                    {
+                        title: 'Resources',
+                        items: [
+                            {
+                                label: 'Github',
+                                href: 'https://github.com/WasmEdge/WasmEdge',
+                            },
+                             {
+                                label: 'Second State',
+                                href: 'https://www.secondstate.io/',
+                            },
+                            {
+                                label: 'Articles & Blog',
+                                href: 'https://www.secondstate.io/articles/'
                             }
                         ],
                     },
                     {
                         title: 'Community',
                         items: [
+                            {
+                                label: 'Mailing List',
+                                href: 'https://groups.google.com/g/wasmedge/'
+                            },
                             {
                                 label: 'Discord',
                                 href: 'https://discord.gg/U4B5sFTkFc',
@@ -150,6 +177,14 @@ const config = {
                                 label: 'Twitter',
                                 href: 'https://twitter.com/realwasmedge',
                             },
+                            {
+                                label: 'Slack#WasmEdge',
+                                href: 'https://slack.cncf.io/'
+                            },
+                            {
+                                label: 'Community Meeting',
+                                href: 'https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing'
+                            }
                         ],
                     },
                 ],

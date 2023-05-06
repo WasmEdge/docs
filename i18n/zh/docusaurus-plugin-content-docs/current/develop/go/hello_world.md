@@ -6,6 +6,8 @@ sidebar_position: 1
 
 The best way to run Go programs in WasmEdge is to compile Go source code to WebAssembly using [TinyGo](https://tinygo.org/). In this article, we will show you how.
 
+The Golang is adding WASI support. Stay tuned!
+
 ## Install TinyGo
 
 You must have [Go already installed](https://go.dev/doc/install) on your machine before installing TinyGo. Go v1.17 or above is recommended.

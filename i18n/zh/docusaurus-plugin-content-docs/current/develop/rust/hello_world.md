@@ -81,9 +81,7 @@ Below are some SDK examples for complex call parameters and return values.
 
 ## Improve the Performance
 
-If we don't have extra notes for AoT, all the Wasm file could be use a
-
-To achieve native Rust performance for those applications, you could use the `wasmedgec` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
+If we don't have extra notes for AoT, all the Wasm file will be executed in the intepreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedgec` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
 
 ```bash
 $ wasmedgec hello.wasm hello_aot.wasm

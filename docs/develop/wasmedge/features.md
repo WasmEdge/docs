@@ -45,7 +45,7 @@ There are several options to manage Wasm apps as "containers" under Kubernetes. 
 
 Option #1 is to [use an OCI runtime crun](../deploy/oci-runtime/crun) (the C version of runc — mainly supported by Red Hat). crun decides whether an OCI image is WasmWasm or Linux based on image annotations. If the image is annotated as wasm32, crun will bypass the Linux container setup and just use WasmEdge to run it. Based on crun, we can get the entire Kubernetes stack CRI-O, containerd, Podman, kind, micro k8s, and k8s to work with Wasm images. 
 
-Option #2 is to [use a containerd-shim to start Wasm "containers" via runwasi](../deploy/oci-runtime/containerd). Basically, containerd could look at the image's target platform. It uses runwasi if the image is wasm32 and runc if it is x86 / arm. This is the approach behind Docker + Wasm.
+
 
 ## Cross Platform
 

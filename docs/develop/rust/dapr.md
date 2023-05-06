@@ -1,8 +1,8 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 ---
 
-# 4.7 Use WasmEdge's Dapr SDK to Connect Dapr Sidecar
+# 4.8 Use WasmEdge's Dapr SDK to Connect Dapr Sidecar
 
 Second State launched a new [WebAssembly-based SDK for the Dapr API](https://github.com/second-state/dapr-sdk-wasi), which provides an easy way for Rust-based microservices in WasmEdge to interact with Dapr APIs and sidecar services.
 
