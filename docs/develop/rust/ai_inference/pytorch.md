@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.5.2 Pytorch
+# 4.7.2 Pytorch
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) as an example to discuss how to do AI inference with Pytorch in WasmEdge.
 
@@ -20,6 +20,8 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
+# download the fixture files
+./download_mobilenet.sh
 # Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
 # If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
@@ -60,20 +62,12 @@ cargo build --target wasm32-wasi --release
 
 The output Wasm file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
 
-If everything goes well, you should have the terminal output:
+Next let's use WasmEdge to identify your own images.
 
 ```bash
-Read torchscript binaries, size in bytes: 14376924
-Loaded graph into wasi-nn with ID: 0
-Created wasi-nn execution context with ID: 0
-Read input tensor, size in bytes: 602112
-Executed graph inference
-   1.) [954](20.6681)banana
-   2.) [940](12.1483)spaghetti squash
-   3.) [951](11.5748)lemon
-   4.) [950](10.4899)orange
-   5.) [953](9.4834)pineapple, ananas
+wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
+You can replace `input.jpg` with your own image file. 
 
 
 
@@ -85,8 +79,6 @@ For the AOT mode which is much more quickly, you can compile the WASM first:
 wasmedgec wasmedge-wasinn-example-mobilenet.wasm out.wasm
 wasmedge --dir .:. out.wasm mobilenet.pt input.jpg
 ```
-
-
 
 
 ## The code

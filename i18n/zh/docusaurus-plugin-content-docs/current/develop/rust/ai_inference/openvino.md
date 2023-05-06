@@ -2,11 +2,11 @@
 sidebar_position: 3
 ---
 
-# 4.5.3 OpenVino
+# 4.7.3 OpenVino
 
 We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) as an example to discuss how to do AI inference with OpenVINO in WasmEdge.
 
-> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with OpenVINO installed](../../rust/setup).
+> Before we started, make sure [you have Rust, WasmEdge and WASI-nn plugin with OpenVINO installed](../../rust/setup).
 
 ## Quick Start
 
@@ -20,6 +20,8 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
+# download the fixture files
+./download_mobilenet.sh
 # Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 # If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
@@ -61,22 +63,12 @@ cargo build --target wasm32-wasi --release
 
 The output Wasm file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
 
-If everything goes well, you should have the terminal output:
+Next let's use WasmEdge to identify your own images.
 
 ```bash
-Read graph XML, size in bytes: 143525
-Read graph weights, size in bytes: 13956476
-Loaded graph into wasi-nn with ID: 0
-Created wasi-nn execution context with ID: 0
-Read input tensor, size in bytes: 602112
-Executed graph inference
-   1.) [954](0.9789)banana
-   2.) [940](0.0074)spaghetti squash
-   3.) [951](0.0014)lemon
-   4.) [969](0.0005)eggnog
-   5.) [942](0.0005)butternut squash
+wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
-
+You can replace `input.jpg` with your own image file. 
 
 
 ## Get better performance

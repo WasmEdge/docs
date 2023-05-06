@@ -2,4 +2,6 @@
 sidebar_position: 3
 ---
 
-# 3.3 TinyGo
+# 3.3 Go Host application with wasmedge-bindgen
+
+WIP
