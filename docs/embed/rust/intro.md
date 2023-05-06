@@ -28,14 +28,14 @@ To use `wasmedge-sdk` in your project, follow the steps below to get ready:
 
 - Deploy WasmEdge library in your local environment.
 
-  Refer to the [Quick Install](https://wasmedge.org/book/en/quick_start/install.html#quick-install) to install WasmEdge library. Or, run the following command directly to install WasmEdge v0.12.0
+  Refer to the [Quick Install](https://wasmedge.org/book/en/quick_start/install.html#quick-install) to install WasmEdge library. Or, run the following command directly to install WasmEdge library. Here, we take `WasmEdge v0.12.0` as an example.
 
   ```bash
   // install WasmEdge-0.12.0 to /usr/local
   curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr/local -v 0.12.0
   ```
 
-- Add `wasmedge-sdk` crate to your `Cargo.toml` file.
+- Add `wasmedge-sdk` crate to your `Cargo.toml` file. Note that, according to the version table, the version of `wasmedge-sdk` matching `WasmEdge v0.12.0` is `0.8.0`.
 
   ```toml
   wasmedge-sdk = "0.8.0"
@@ -43,4 +43,4 @@ To use `wasmedge-sdk` in your project, follow the steps below to get ready:
 
 ## Examples
 
-[wasmedge-rustsdk-examples](https://github.com/second-state/wasmedge-rustsdk-examples/tree/main) provides a set of examples to demonstrate how to use `wasmedge-sdk` to build up your own business applications.
+[wasmedge-rustsdk-examples](https://github.com/second-state/wasmedge-rustsdk-examples/tree/main) provides a set of examples to demonstrate how to use `wasmedge-sdk` to, for example, create host functions, create WebAssembly libraries, create plugins, and etc.
