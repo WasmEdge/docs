@@ -28,3 +28,11 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.cncf-logo {
+  background: center no-repeat url('/img/cncf-color.svg');
+}
+
+html[data-theme='dark'] .cncf-logo {
+  background: center no-repeat url('/img/cncf-white.svg');
+}
