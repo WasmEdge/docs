@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # 8.6.1 Deploy with containerd's runwasi
 
-**Work in progress.**
+:::info
+Work in Progress
+:::
 
 The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project supports WasmEdge. 
 

@@ -15,7 +15,9 @@ For HTTP clients in WasmEdge, please see [the previous chapter](client).
 
 You could use the warp API to create an asynchronous HTTP server. Here are some examples. First, you will need to import the WasmEdge adapted warp crate, which uses a special version of single threaded Tokio that is adapted for WebAssembly.
 
-Work in progress
+:::info
+Work in Progress
+:::
 
 
 ## The hyper API
