@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# 10 Join WasmEdge Community
+# Join WasmEdge Community
 
 Everyone is welcome to join the WasmEdge community.
 

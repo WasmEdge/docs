@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 6 WasmEdge Internal
+# WasmEdge Internal
 
 ## Overview of WasmEdge Execution Flow
 

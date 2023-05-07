@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 4 Testing
+# Testing
 
 :::info
 Work in Progress
