@@ -79,6 +79,11 @@ const config = {
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            announcementBar: {
+                id: "start",
+                content:
+                    '⭐️ If you like WasmEdge, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/WasmEdge/WasmEdge">GitHub</a>! ⭐️',
+            },
             navbar: {
                 title: 'WasmEdge',
                 logo: {
@@ -111,7 +116,7 @@ const config = {
                     },
                     {
                         href: 'https://github.com/WasmEdge/WasmEdge',
-                        label: 'GitHub',
+                        className: "header-github-link",
                         position: 'right',
                     },
                 ],
