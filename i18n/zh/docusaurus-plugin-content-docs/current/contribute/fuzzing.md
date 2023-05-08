@@ -2,6 +2,8 @@
 sidebar_position: 5
 ---
 
-# 5 Fuzzing
+# Fuzzing
 
+:::info
 Work in Progress
+:::

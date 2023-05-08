@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# 7 Installer System explanation
+# Installer System explanation
 
 
 ## Overview

@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# 8 Contributing Steps
+# Contributing Steps
 
 ## Setup Development Environment
 

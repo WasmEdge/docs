@@ -2,7 +2,7 @@
 sidebar_position: 9
 ---
 
-# 9 Release Process
+# Release Process
 
 ## Create the releasing process issue of the new version
 
