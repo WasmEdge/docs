@@ -36,6 +36,13 @@ export default function Home() {
       <main>
         <HomepageFeatures />
       </main>
+      <div className={clsx('homepageCNCFLogo', styles.homepageCNCFLogo)}>
+        <h2 className="hero_subtitle">
+          WasmEdge is a <a href="https://cncf.io/">CNCF (Cloud Native Computing Foundation)</a> sandbox project
+        </h2>
+        <div className={clsx('cncf-logo', styles.cncfLogo)} />
+        <br/>
+      </div>
     </Layout>
   );
 }

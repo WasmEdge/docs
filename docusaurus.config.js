@@ -79,6 +79,11 @@ const config = {
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            announcementBar: {
+                id: "start",
+                content:
+                    '⭐️ If you like WasmEdge, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/WasmEdge/WasmEdge">GitHub</a>! ⭐️',
+            },
             navbar: {
                 title: 'WasmEdge',
                 logo: {
@@ -111,7 +116,7 @@ const config = {
                     },
                     {
                         href: 'https://github.com/WasmEdge/WasmEdge',
-                        label: 'GitHub',
+                        className: "header-github-link",
                         position: 'right',
                     },
                 ],
@@ -127,7 +132,7 @@ const config = {
                     src: '/img/wasmedge_logo.svg',
                     href: 'https://wasmedge.org/',
                   },
-                style: 'light',
+                style: 'dark',
                 links: [
                     {
                         title: 'Docs',
@@ -178,8 +183,8 @@ const config = {
                                 href: 'https://twitter.com/realwasmedge',
                             },
                             {
-                                label: 'Slack#WasmEdge',
-                                href: 'https://slack.cncf.io/'
+                                label: 'Slack #WasmEdge',
+                                href: 'https://cloud-native.slack.com/archives/C0215BBK248'
                             },
                             {
                                 label: 'Community Meeting',
@@ -188,7 +193,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} WasmEdge. Built with Docusaurus.`,
+                copyright: `Copyright © ${new Date().getFullYear()} WasmEdge. Built with Docusaurus. <br /> <a href="https://github.com/WasmEdge/docs/blob/main/CODE_OF_CONDUCT.md" target="_blank">Code of Conduct</a>`,
             },
             prism: {
                 theme: lightCodeTheme,
