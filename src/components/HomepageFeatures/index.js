@@ -35,19 +35,19 @@ const FeatureList = [
         ),
     },
 ];
-function Feature({Svg, LinkSvg, LinkUrl, title, description}) {
+function Feature({ Svg, LinkSvg, LinkUrl, title, description }) {
     return (
         <div className={clsx('col col--4')}>
             <div className="text--center">
-                <Svg className={styles.featureSvg} role="img"/>
+                <Svg className={styles.featureSvg} role="img" />
             </div>
             <div className={`${styles.hoverStyle} text--center padding-horiz--md`}>
-                <div style={{display: "flex"}}>
-                    <h3>{title}</h3>
-                        <Link to={LinkUrl}>
-                            <LinkSvg className={styles.linkSvg} role="img"/>
-                        </Link>
-                </div>
+                <Link to={LinkUrl}>
+                    <div style={{ display: "flex" }}>
+                        <h3>{title}</h3>
+                        <LinkSvg className={styles.linkSvg} role="img" />
+                    </div>
+                </Link>
                 <p>{description}</p>
             </div>
         </div>
@@ -61,7 +61,7 @@ export default function HomepageFeatures() {
             <div className="container">
                 <div className="row">
                     {FeatureList.map((props, idx) => (
-                        <Feature key={idx} {...props} LinkSvg={LinkSvg}/>
+                        <Feature key={idx} {...props} LinkSvg={LinkSvg} />
                     ))}
                 </div>
             </div>
