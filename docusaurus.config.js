@@ -4,6 +4,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+require('dotenv').config();
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'WasmEdge Developer Guides',
@@ -43,6 +45,7 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
+                    remarkPlugins: [import('remark-deflist'), require('./env-plugin')],
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     routeBasePath: '/',
