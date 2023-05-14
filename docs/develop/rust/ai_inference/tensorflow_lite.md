@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 
-# 4.7.4 TensorFlow Lite
+# 4.7.2 TensorFlow Lite
 
 We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) to show how to do AI inference with a TensorFlow Lite model in WasmEdge and Rust.
 
