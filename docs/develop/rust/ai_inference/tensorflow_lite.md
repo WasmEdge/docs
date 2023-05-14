@@ -4,9 +4,11 @@ sidebar_position: 4
 
 # 4.7.4 TensorFlow Lite
 
-We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) as an example to discuss how to do AI inference with TensorFlow Lite in WasmEdge.
+We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) to show how to do AI inference with a TensorFlow Lite model in WasmEdge and Rust.
 
-> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with TensorFlow Lite installed](../../rust/setup).
+## Prerequisite
+
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with TensorFlow Lite installed](../../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite).
 
 ## Quick Start
 
@@ -20,11 +22,7 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
-# download the fixture files
-./download_mobilenet.sh
-# Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
-# If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
 ```
 
 If everything goes well, you should have the terminal output:
@@ -41,7 +39,6 @@ Executed graph inference
    4.) [778](1)Sitta europaea
    5.) [819](1)Anas platyrhynchos
 ```
-
 
 ## Build and Run the example from Rust source code
 
@@ -69,9 +66,7 @@ wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mo
 ```
 You can replace `input.jpg` with your own image file. 
 
-
-
-## Get better performance
+## Improve performance
 
 For the AOT mode which is much more quickly, you can compile the WASM first:
 
@@ -80,7 +75,7 @@ $ wasmedgec rust/tflite-bird/target/wasm32-wasi/release/wasmedge-wasinn-example-
 $ wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
 ```
 
-## The code
+## Understand the code
 
 The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/blob/master/tflite-birds_v1-image/rust/tflite-bird/src/main.rs) is the full example Rust source.
 
