@@ -8,7 +8,7 @@ We will use [this example project](https://github.com/second-state/WasmEdge-WASI
 
 ## Prerequisite
 
-Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with PyTorch installed](../../build-and-run/install#wasi-nn-plugin-with-pytorch).
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with PyTorch installed](../../build-and-run/install#wasi-nn-plugin-with-pytorch-backend).
 
 ---
 
