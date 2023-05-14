@@ -63,6 +63,8 @@ To install multiple plugins, you can pass a list of plugins seperated by commas.
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite,wasmedge_httpsreq
 ```
 
+The installer downloads the plugin files from the WasmEdge release on GitHub, unzips them, and then copies them over to the `~/.wasmedge/plugin/` folder (for user install) and to the `/usr/local/lib/wasmedge/` folder (for system install).
+
 :::note
 AI plugins for WasmEdge, such as the Tensorflow Lite or PyTorch plugins, have additional dependencies on the Tensorflow or PyTorch runtime libraries. See the next section for commands to install plugin dependencies.
 :::
@@ -89,7 +91,7 @@ dnf install wasmedge
 
 For more usages, please check out Fedora docs. 
 
-To install plugins, you can download plugin binary modules from the WasmEdge release page, unzip them, and then copy them over to `/usr/local/lib`.
+To install plugins, you can download plugin binary modules from the WasmEdge release page, unzip them, and then copy them over to `/usr/local/lib\wasmedge\`.
 
 ## What's installed
 
