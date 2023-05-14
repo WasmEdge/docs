@@ -4,9 +4,13 @@ sidebar_position: 2
 
 # 4.7.2 Pytorch
 
-We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) as an example to discuss how to do AI inference with Pytorch in WasmEdge.
+We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) to show how to do AI inference with a PyTorch model in WasmEdge and Rust.
 
-> Before we started, make sure [you have Rust, WasmEdge and Wasi-nn plugin with Pytorch installed](../../rust/setup).
+## Prerequisite
+
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with PyTorch installed](../../build-and-run/install#wasi-nn-plugin-with-pytorch).
+
+---
 
 ## Quick Start
 
@@ -20,8 +24,6 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
-# download the fixture files
-./download_mobilenet.sh
 # Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
 # If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
@@ -65,13 +67,11 @@ The output Wasm file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example
 Next let's use WasmEdge to identify your own images.
 
 ```bash
-wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
+wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
 ```
 You can replace `input.jpg` with your own image file. 
 
-
-
-## Get better performance
+## Improve performance
 
 For the AOT mode which is much more quickly, you can compile the WASM first:
 
@@ -80,8 +80,7 @@ wasmedgec wasmedge-wasinn-example-mobilenet.wasm out.wasm
 wasmedge --dir .:. out.wasm mobilenet.pt input.jpg
 ```
 
-
-## The code
+## Understand the code
 
 The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image/rust/src/main.rs) is the full example Rust source.
 
