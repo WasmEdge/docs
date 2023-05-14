@@ -28,9 +28,8 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 > If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory:
 
 ```bash
- `curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash`
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
 ```
-
 
 ## How to run a standalone Wasm app
 
@@ -61,9 +60,9 @@ To learn more about how to create Wasm apps in Rust
 
 * [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 * [Rust developer guides](../../category/develop-wasm-apps-in-rust)
-  * AI inference with PyTorch and Tensorflow
-  * HTTP and HTTPS client
-  * MySQL database client
+  * AI inference with [PyTorch](../rust/ai_inference/pytorch) and [Tensorflow Lite](../rust/ai_inference/tensorflow_lite)
+  * [HTTP and HTTPS client](../rust/http_service/client)
+  * [MySQL database client](../rust/my_sql_driver)
   * Redis client
   * Kafka client
 

@@ -2,11 +2,13 @@
 sidebar_position: 3
 ---
 
-# 4.7.3 OpenVino
+# 4.7.3 OpenVINO
 
-We will use [MobileNet](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) as an example to discuss how to do AI inference with OpenVINO in WasmEdge.
+We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) to show how to do AI inference with an OpenVINO model in WasmEdge and Rust.
 
-> Before we started, make sure [you have Rust, WasmEdge and WASI-nn plugin with OpenVINO installed](../../rust/setup).
+## Prerequisite
+
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with TensorFlow Lite installed](../../build-and-run/install#wasi-nn-plugin-with-openvino-backend).
 
 ## Quick Start
 
@@ -20,11 +22,9 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
-# download the fixture files
+# download the fixture files (OpenVINO model files)
 ./download_mobilenet.sh
-# Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
-# If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
 ```
 
 If everything goes well, you should have the terminal output:
@@ -52,7 +52,7 @@ First, git clone the `WasmEdge-WASINN-examples`.
 
 ```
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
-cd /openvino-mobilenet-image/rust/
+cd openvino-mobilenet-image/rust/
 ```
 
 Second, use `cargo` to build the template project.
@@ -63,27 +63,25 @@ cargo build --target wasm32-wasi --release
 
 The output Wasm file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
 
-Next let's use WasmEdge to identify your own images.
+Next, download the OpenVINO model files and use WasmEdge to classify your own images.
 
 ```bash
+./download_mobilenet.sh
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
+
 You can replace `input.jpg` with your own image file. 
 
-
-## Get better performance
+## Improve performance
 
 For the AOT mode which is much more quickly, you can compile the WASM first:
 
 ```bash
 wasmedgec wasmedge-wasinn-example-mobilenet.wasm out.wasm
-wasmedge --dir .:. out.wasm mobilenet.pt input.jpg
+wasmedge --dir .:. out.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
 
-
-
-
-## The code
+## Understand the code
 
 The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image/rust/src/main.rs) is the full example Rust source.
 
