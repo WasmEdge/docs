@@ -6,6 +6,7 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 import styles from './index.module.css';
+import GHButton from '../components/GHButton';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -21,6 +22,8 @@ function HomepageHeader() {
             Getting Started with WasmEdge in 5min ⏱️
           </Link>
         </div>
+        <br />
+        <GHButton type="Star" />
       </div>
     </header>
   );
@@ -31,7 +34,7 @@ export default function Home() {
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="WasmEdge Developer Guides">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

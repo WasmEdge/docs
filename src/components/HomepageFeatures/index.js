@@ -67,8 +67,8 @@ export default function HomepageFeatures() {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props) => (
-            <Feature key={props.id} {...props} LinkSvg={LinkSvg} />
+          {FeatureList.map((feature) => (
+            <Feature key={feature.id} {...feature} LinkSvg={LinkSvg} />
           ))}
         </div>
       </div>
