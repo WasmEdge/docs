@@ -6,23 +6,38 @@ sidebar_position: 2
 
 ## Prerequisites
 
-* [WasmEdge installed](../build-and-run/install)
-* Download the WasmEdge QuickJS Runtime
-    * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
-* Optional: [Rust](https://www.rust-lang.org/tools/install) installed, if you want to build the program yourself
-* Optional: `wasm32-wasi` target of the Rust toolchain added, if you want to build the program yourself
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+[Install WasmEdge](../build-and-run/install)
 
+Clone the `wasmedge-quickjs` repo and use it as the current directory.
+Then download the pre-built WasmEdge QuickJS Runtime program, and AOT compile it for better performance.
+
+```bash
+git clone https://github.com/second-state/wasmedge-quickjs
+cd wasmedge-quickjs
+curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
+wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
+```
+
+:::note
+The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo is required for the QuickJS runtime.
+:::
+
+Optional: Install the [Rust toolchain for WasmEdge](../rust/setup), if you want to build the WasmEdge QuickJS runtime yourself.
 
 ## Quick start
 
-
-First, download the WebAssembly-based JavaScript interpreter program for WasmEdge. It is based on [QuickJS](https://bellard.org/quickjs/). See the [build it yourself section](#build-it-yourself) to learn how to compile it from Rust source code.
+You can try a simple "hello world" JavaScript program ([example_js/hello.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/hello.js)), which prints out the command line arguments to the console.
 
 ```bash
-curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm
+$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
+Hello WasmEdge Runtime
 ```
-You can now try a simple "hello world" JavaScript program ([example_js/hello.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/hello.js)), which prints out the command line arguments to the console.
+
+:::note
+The `--dir .:.` on the command line is to give `wasmedge` permission to read the local directory in the file system for the `hello.js` file.
+:::
+
+The JavaScript source code for the `hello.js` program is as follows.
 
 ```javascript
 import * as os from 'os';
@@ -34,15 +49,6 @@ setTimeout(() => {
   print('timeout 2s');
 }, 2000);
 ```
-
-Next, Run the `hello.js` file in WasmEdge’s QuickJS runtime as follows. Make sure you have installed [WasmEdge](../build-and-run/install).
-
-```bash
-$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
-Hello WasmEdge Runtime
-```
-
-> Note: the `--dir .:.` on the command line is to give `wasmedge` permission to read the local directory in the file system for the `hello.js` file.
 
 ## Build it yourself 
 
