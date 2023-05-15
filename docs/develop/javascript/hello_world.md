@@ -9,11 +9,15 @@ sidebar_position: 2
 [Install WasmEdge](../build-and-run/install)
 
 Clone the `wasmedge-quickjs` repo and use it as the current directory.
-Then download the pre-built WasmEdge QuickJS Runtime program, and AOT compile it for better performance.
 
 ```bash
 git clone https://github.com/second-state/wasmedge-quickjs
 cd wasmedge-quickjs
+```
+
+Then download the pre-built WasmEdge QuickJS Runtime program, and optionally, AOT compile it for better performance.
+
+```bash
 curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
 wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 ```
@@ -21,8 +25,6 @@ wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 :::note
 The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo is required for the QuickJS runtime.
 :::
-
-Optional: Install the [Rust toolchain for WasmEdge](../rust/setup), if you want to build the WasmEdge QuickJS runtime yourself.
 
 ## Quick start
 
