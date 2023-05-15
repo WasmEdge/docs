@@ -8,7 +8,7 @@ sidebar_position: 2
 
 [Install WasmEdge](../build-and-run/install)
 
-Clone the `wasmedge-quickjs` repo and use it as the current directory.
+Clone the [wasmedge-quickjs](https://github.com/second-state/wasmedge-quickjs) repo and use it as the current directory.
 
 ```bash
 git clone https://github.com/second-state/wasmedge-quickjs

@@ -15,21 +15,7 @@ The networking API in WasmEdge is non-blocking and hence supports asynchronous I
 
 ## Prerequisites
 
-[Install WasmEdge](../build-and-run/install)
-
-Clone the `wasmedge-quickjs` repo and use it as the current directory.
-Then download the pre-built WasmEdge QuickJS Runtime program, and AOT compile it for better performance.
-
-```bash
-git clone https://github.com/second-state/wasmedge-quickjs
-cd wasmedge-quickjs
-curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
-wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
-```
-
-:::note
-The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo is required for the QuickJS runtime.
-:::
+[See here](./hello_world#prerequisites)
 
 ## Fetch client
 

@@ -1,47 +1,54 @@
 ---
-sidebar_position: 9
+sidebar_position: 4
 ---
 
-# 5.9 TensorFlow
+# 5.4 AI inference
 
-The WasmEdge-QuickJs supports the WasmEdge TensorFlow lite inference extension so that your JavaScript can run an ImageNet model for image classification. This article will show you how to use the TensorFlow Rust SDK for WasmEdge from your javascript program. You will first download the WasmEdge QuickJS Runtime with tensorflow support built-in.
+The WasmEdge-QuickJs supports the WasmEdge WASI-NN plugins so that your JavaScript can run inference on AI models. 
 
-```bash
-curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs_tf.wasm
-```
+## Prerequisites
 
-Here is an example of JavaScript. You could find the full code from [example_js/tensorflow_lite_demo/](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo).
+* Install WasmEdge with WASI-NN plugin
+  * [with the Tensorflow Lite backend](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite)
+  * [with the PyTorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
+* [Setup the WasmEdge QuickJS runtime environment](./hello_world#prerequisites)
+
+## A Tensorflow Lite example
+
+Here is an example of JavaScript. You could find the full code from [example_js/tensorflow_lite_demo/wasi_nn_main.js](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo/wasi_nn_main.js).
 
 ```javascript
-import {Image} from 'image';
-import * as std from 'std';
-import {TensorflowLiteSession} from 'tensorflow_lite';
+import { Image } from 'image';
+import * as fs from 'fs';
+import { NnGraph, NnContext, TENSOR_TYPE_U8 } from 'wasi_nn';
 
 let img = new Image(__dirname + '/food.jpg');
 let img_rgb = img.to_rgb().resize(192, 192);
 let rgb_pix = img_rgb.pixels();
 
-let session = new TensorflowLiteSession(
-    __dirname + '/lite-model_aiy_vision_classifier_food_V1_1.tflite');
-session.add_input('input', rgb_pix);
-session.run();
-let output = session.get_output('MobilenetV1/Predictions/Softmax');
-let output_view = new Uint8Array(output);
+let data = fs.readFileSync(__dirname + '/lite-model_aiy_vision_classifier_food_V1_1.tflite')
+let graph = new NnGraph([data.buffer], "tensorflowlite", "cpu");
+let context = new NnContext(graph);
+context.setInput(0, rgb_pix, [1, 192, 192, 3], TENSOR_TYPE_U8);
+context.compute();
+
+let output_view = new Uint8Array(2024);
+context.getOutput(0, output_view.buffer)
+
 let max = 0;
 let max_idx = 0;
 for (var i in output_view) {
-  let v = output_view[i];
-  if (v > max) {
-    max = v;
-    max_idx = i;
-  }
+    let v = output_view[i];
+    if (v > max) {
+        max = v;
+        max_idx = i;
+    }
 }
-let label_file = std.open(__dirname + '/aiy_food_V1_labelmap.txt', 'r');
-let label = '';
-for (var i = 0; i <= max_idx; i++) {
-  label = label_file.getline();
-}
-label_file.close();
+
+let label_file = fs.readFileSync(__dirname + '/aiy_food_V1_labelmap.txt', 'utf-8');
+let lables = label_file.split(/\r?\n/);
+
+let label = lables[max_idx]
 
 print('label:');
 print(label);
@@ -49,14 +56,13 @@ print('confidence:');
 print(max / 255);
 ```
 
-To run the JavaScript in the WasmEdge runtime, you can do the following on the CLI. You should now see the name of the food item recognized by the TensorFlow lite ImageNet model.
+To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plugin and Tensorflow Lite dependency libraries installed with WasmEdge](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
 
 ```bash
-$ wasmedge-tensorflow-lite --dir .:. /path/to/wasmedge_quickjs_tf.wasm example_js/tensorflow_lite_demo/main.js
+$ wasmedge --dir .:. wasmedge_quickjs_tf.wasm example_js/tensorflow_lite_demo/main.js
 label:
 Hot dog
 confidence:
 0.8941176470588236
 ```
 
-> The `wasmedge-tensorflow-lite` program is part of the WasmEdge package. It is the WasmEdge runtime with the Tensorflow extension built in.

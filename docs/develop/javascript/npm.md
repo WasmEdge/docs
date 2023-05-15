@@ -1,33 +1,33 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 ---
 
-# 5.7 NodeJS and NPM modules
-
+# 5.8 NodeJS and NPM modules
 
 With [rollup.js](https://rollupjs.org/guide/en/), we can run CommonJS (CJS) and NodeJS (NPM) modules in WasmEdge too.
 
-
 ## Prerequisites
 
-* [WasmEdge installed](../build-and-run/install)
-* Download the WasmEdge QuickJS Runtime
-    * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
+[See here](./hello_world#prerequisites)
 
 ## Run the example
 
 The [simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) demo shows how it works. 
 
-First, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
+First, you will need to use the NPM command to rollup the dependency modules into a single JavaScript file.
 
 ```bash
-git clone https://github.com/second-state/wasmedge-quickjs.git
+cd example_js/simple_common_js_demo
+npm install
+npm run build
+# Go back to the working directory
+cd ../../
 ```
 
-Run the result JS file in WasmEdge CLI as follows.
+NPM rolls up and generates a new JavaScript file file at `example_js/simple_common_js_demo/dist/npm_main.mjs`. This is the file you can execute with the WasmEdge QuickJS runtime.
 
 ```bash
-$ wasmedge --dir .:. /path/to/wasmedge_quickjs.wasm example_js/simple_common_js_demo/dist/npm_main.mjs
+$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/simple_common_js_demo/dist/npm_main.mjs
 md5(message)= 78e731027d8fd50ed642340b7c9a63b3
 sqrt(-4)= 2i
 ```
@@ -117,8 +117,6 @@ Run the following NPM commands to build [npm_main.js](https://github.com/second-
 ```bash
 npm install
 npm run build
-cd ../../
 ```
-
 
 You can import and run any NPM packages in WasmEdge this way.
