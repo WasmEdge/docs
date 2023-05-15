@@ -1,7 +1,7 @@
 name: CodeQL Analysis
 
 on:
-  workflow_trigger:
+  workflow_dispatch:
   push:
     branches:
       - main
