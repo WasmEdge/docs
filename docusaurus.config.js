@@ -167,6 +167,10 @@ const config = {
                             {
                                 label: 'Articles & Blog',
                                 href: 'https://www.secondstate.io/articles/'
+                            },
+                            {
+                                label: 'WasmEdge Talks',
+                                to: '/talks'
                             }
                         ],
                     },
