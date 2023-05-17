@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 4.2 Access OS services
+# 4.3 Access OS services
 
 The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssembly applications to access operating system services.
 The `wasm32-wasi` target in the Rust compiler supports WASI.
@@ -11,7 +11,6 @@ In this section, we will use [an example project](https://github.com/second-stat
 :::note
 Before we started, make sure [you have Rust and WasmEdge installed](setup).
 :::
-
 
 ## Random numbers
 
@@ -174,4 +173,3 @@ pub fn del_file(path: &str) -> String {
   ... ...
 }
 ```
-

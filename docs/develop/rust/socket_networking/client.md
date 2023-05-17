@@ -2,17 +2,32 @@
 sidebar_position: 1
 ---
 
-# 4.4.1 Client
+# 4.5.1 Client
 
 The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket) crate enables Rust developers to create networking applications and compile them into WebAssembly for WasmEdge Runtime. One of the key features of WasmEdge is that it supports non-blocking sockets. That allows even a single threaded WASM application to handle concurrent network requests. For example, while the program is waiting for data to stream in from one connection, it can start or handle another connection.
 
-While the simple HTTP connections from the previous chapter are easy to implement, they are not ready for production use. If the program can only have one connection open at a time (e.g., blocking), the fast CPU would be waiting for the slow network. Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment. 
+While there are many possibilities with sockets, we will demonstrate two familiar use cases, [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example), in this chapter.
 
-So in this chapter, we will start with [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example).
-
-> Before we started, make sure [you have Rust and WasmEdge installed](../../rust/setup).
+:::note
+Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+:::
 
 ## A Simple HTTP Client
+
+You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_client) in WasmEdge as follows.
+
+```
+git clone https://github.com/second-state/wasmedge_wasi_socket.git
+cd wasmedge_wasi_socket/http_client/
+
+# Build the Rust Code
+cargo build --target wasm32-wasi --release
+# Use the AoT compiler to get better performance
+wasmedgec target/wasm32-wasi/release/http_client.wasm http_client.wasm
+
+# Run the example
+wasmedge http_client.wasm
+```
 
 The [source code](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_client) for the HTTP client is available as follows.
 
@@ -40,24 +55,27 @@ fn main() {
   println!("{}", String::from_utf8_lossy(&writer));
 }
 ```
-You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_client) in WasmEdge as follows.
+
+## A non-blocking HTTP client example
+
+You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) in WasmEdge as follows.
 
 ```
-# get the source code
-$ git clone https://github.com/second-state/wasmedge_wasi_socket.git
-$ cd wasmedge_wasi_socket/http_client/
+git clone https://github.com/second-state/wasmedge_wasi_socket
+cd wasmedge_wasi_socket/nonblock_http_client/
 
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
-
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/http_client.wasm target/wasm32-wasi/release/http_client.wasm
+wasmedgec target/wasm32-wasi/release/nonblock_http_client.wasm nonblock_http_client.wasm
 
 # Run the example
-wasmedge target/wasm32-wasi/release/http_client.wasm
+wasmedge nonblock_http_client.wasm
 ```
 
-## A non-blocking HTTP client example
+:::note
+Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment.
+:::
 
 The [source code](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) for a non-blocking HTTP client application is available. The following `main()` function starts two HTTP connections. The program keeps both connections open, and alternatingly checks for incoming data from them. In another word, the two connections are not blocking each other. Their data are handled concurrently (or alternatingly) as the data comes in.
 
@@ -126,21 +144,5 @@ fn main() {
         }
     }
 }
-```
-You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) in WasmEdge as follows.
-
-```
-# get the source code
-$ git clone https://github.com/second-state/wasmedge_wasi_socket.git
-$ cd wasmedge_wasi_socket/nonblock_http_client/
-
-# Build the Rust Code
-cargo build --target wasm32-wasi --release
-
-# Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/nonblock_http_client.wasm target/wasm32-wasi/release/nonblock_http_client.wasm
-
-# Run the example
-wasmedge target/wasm32-wasi/release/nonblock_http_client.wasm
 ```
 

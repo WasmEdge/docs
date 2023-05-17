@@ -59,7 +59,7 @@ print(max / 255);
 To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plugin and Tensorflow Lite dependency libraries installed with WasmEdge](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
 
 ```bash
-$ wasmedge --dir .:. wasmedge_quickjs_tf.wasm example_js/tensorflow_lite_demo/main.js
+$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/tensorflow_lite_demo/wasi_nn_main.js
 label:
 Hot dog
 confidence:

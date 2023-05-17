@@ -1,8 +1,8 @@
 ---
-sidebar_position: 9
+sidebar_position: 8
 ---
 
-# 4.8 Use WasmEdge's Dapr SDK to Connect Dapr Sidecar
+# 4.8 Dapr services
 
 Second State launched a new [WebAssembly-based SDK for the Dapr API](https://github.com/second-state/dapr-sdk-wasi), which provides an easy way for Rust-based microservices in WasmEdge to interact with Dapr APIs and sidecar services.
 
@@ -17,8 +17,7 @@ Before we started, make sure [you have Rust and WasmEdge installed](setup).
 You also need to install the following tools.
 
 * [Dapr CLI installed](https://docs.dapr.io/getting-started/install-dapr-cli/)
-* the [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) or [MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/) or [TiDB](https://docs.pingcap.com/tidb/dev/quick-start-with-tidb) databases installed
-
+* An [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) or [MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/) or [TiDB](https://docs.pingcap.com/tidb/dev/quick-start-with-tidb) database installed
 
 ## The template project explanation
 
@@ -44,9 +43,7 @@ Ok, enough concepts for the template project.  Let's go ahead.
 
 [Live Demo](http://dapr-demo.secondstate.co) | [Tutorial video](https://www.youtube.com/watch?v=3v37pAT9iK8)
 
-
 ## Build and deploy these microservices in Dapr
-
 
 First, start the database and place the connection string in the [config/secrets.json](chttps://github.com/second-state/dapr-wasm/blob/main/config/secrets.json) file under `DB_URL:MYSQL`. 
 
@@ -158,6 +155,5 @@ Query the events database again.
 $ curl http://localhost:9007/events
 [{"id":1,"event_ts":1665358852918,"op_type":"grayscale","input_size":68016},{"id":2,"event_ts":1665358853114,"op_type":"classify","input_size":68016}]
 ```
-
 
 Next, you could use WasmEdge and WasmEdge's Dapr Rust API to create your own lightweight microservices with better security, faster performance, and smaller footprints.

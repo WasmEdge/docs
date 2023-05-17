@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 4.7.3 OpenVINO
+# 4.6.3 OpenVINO
 
 We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) to show how to do AI inference with an OpenVINO model in WasmEdge and Rust.
 
