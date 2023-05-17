@@ -125,7 +125,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Then, go to [HTTPS request in Rust chapter](../rust/https-service) to see how to run HTTPs services with Rust.
+Then, go to [HTTPS request in Rust chapter](../rust/http_service/client#synchronous-client-with-http-req) to see how to run HTTPs services with Rust.
 
 ### WASI-NN plugin with PyTorch backend
 
