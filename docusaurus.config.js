@@ -171,6 +171,10 @@ const config = {
                             {
                                 label: 'WasmEdge Talks',
                                 to: '/talks'
+                            },
+                            {
+                                label: 'Releases',
+                                to: '/releases'
                             }
                         ],
                     },
