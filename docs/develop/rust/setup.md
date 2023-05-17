@@ -33,11 +33,3 @@ rustup target add wasm32-wasi
 ```
 
 That's it. Go to the following chapters to build and compile Rust programs in action.
-
-
-Besides this, if you want to explore AI inference with WasmEdge, you also need to build the Wasi-nn plugin from source.
-
-* [Install the WASI-NN plugin with OpenVINO backend](../build-and-run/install#wasi-nn-plugin-with-openvino-backend)
-* [Install the WASI-NN plugin with Pytorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
-* [Install the WASI-NN plugin with TensorFlow Lite backend](../build-and-run/install#wasi-nn-plugin-with-pwith-tensorflow-lite)
-

@@ -9,7 +9,7 @@ In this section, we will show you how to create a Tensorflow inference function 
 ## The Wasm app in Rust
 
 The Rust function for image classification is [available here](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_TfliteFood/rust_tflite_food/src/lib.rs).
-It utilizes the [WasmEdge Tensorflow extension API](/develop/rust/ai_inference/tensorflow) as well as the [wasmedge_bindgen](/embed/go/function) for passing call parameters.
+It utilizes the [WasmEdge Tensorflow Lite plugin](/develop/rust/ai_inference/tensorflow_lite) as well as the [wasmedge_bindgen](/embed/go/function) for passing call parameters.
 
 ```rust
 #[wasmedge_bindgen]
