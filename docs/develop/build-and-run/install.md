@@ -226,7 +226,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Then, go to [WASI-Crypto in Rust chapter](../rust/wasicrypto.md) to see how to run WASI crypto functions.
+Then, go to [WASI-Crypto in Rust chapter](../rust/wasicrypto) to see how to run WASI crypto functions.
 
 ## Uninstall
 
