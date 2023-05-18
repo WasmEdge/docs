@@ -6,6 +6,7 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
       - '.vscode/**'
       - '.husky/**'
       - '.env'
