@@ -1,5 +1,17 @@
-name: CI
-on: [push]
+name: Deploy CI
+on:
+  workflow_trigger:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - 'CODE_OF_CONDUCT.md'
+      - '.vscode/**'
+      - '.husky/**'
+      - '.env'
+      - '.gitignore'
+    branches:
+      - main
 
 jobs:
   publish:
@@ -27,14 +39,7 @@ jobs:
 
       - name: Build
         run: npm run build
-#      - name: Change Name
-#        run: |
-#          mv build en
-#          mkdir build
-#          mv en build/en
-#          cd build/en
-#          mv zh ../zh
-#          mv zh-TW ../zh-TW
+
       - name: Push directory to another repository
         if: ${{ github.event_name == 'push' }}
         uses: cpina/github-action-push-to-another-repository@main
