@@ -1,6 +1,6 @@
 name: Deploy CI
 on:
-  workflow_trigger:
+  workflow_dispatch:
   push:
     paths-ignore:
       - 'README.md'
