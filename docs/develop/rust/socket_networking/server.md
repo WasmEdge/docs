@@ -2,13 +2,39 @@
 sidebar_position: 2
 ---
 
-# 4.4.1 Server
+# 4.5.2 Server
 
-As we described in the [client](client) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. So, in this chapter, we will discuss[an HTTP server example](#an-http-server) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
+As we described in the [client](client) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. 
+In this chapter, we will discuss[an HTTP server example](#an-http-server) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
 
-> Before we started, make sure [you have Rust and WasmEdge installed](../../rust/setup).
+:::note
+Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+:::
 
 ## An HTTP server example
+
+Build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server) in WasmEdge as follows.
+
+```
+git clone https://github.com/second-state/wasmedge_wasi_socket
+cd wasmedge_wasi_socket/http_server
+
+# Build the Rust code
+cargo build --target wasm32-wasi --release
+# Use the AoT compiler to get better performance
+wasmedgec target/wasm32-wasi/release/http_server.wasm http_server.wasm
+
+# Run the example
+$wasmedge http_server.wasm
+new connection at 1234
+```
+
+To test the HTTP server, you can submit a HTTP request to it via `curl`.
+
+```bash
+$ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
+echo: name=WasmEdge
+```
 
 The [source code](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server) for the HTTP server application is available as follows. The example below shows an HTTP server that echoes back any incoming request.
 
@@ -78,34 +104,29 @@ fn main() -> std::io::Result<()> {
   }
 }
 ```
-You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server) in WasmEdge as follows.
+
+## A non-blocking HTTP server example
+
+Build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/) in WasmEdge as follows.
 
 ```
-# Get the source code
-$ git clone https://github.com/second-state/wasmedge_wasi_socket.git
-$ cd wasmedge_wasi_socket/http_server
+git clone https://github.com/second-state/wasmedge_wasi_socket
+cd wasmedge_wasi_socket
 
 # Build the Rust code
 cargo build --target wasm32-wasi --release
-
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/http_server.wasm target/wasm32-wasi/release/http_server.wasm
+wasmedgec target/wasm32-wasi/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
 
 # Run the example
-$wasmedge target/wasm32-wasi/release/http.wasm
-new connection at 1234
+wasmedge poll_tcp_listener.wasm
 ```
-
 To test the HTTP server, you can submit a HTTP request to it via `curl`.
 
 ```bash
 $ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
 echo: name=WasmEdge
 ```
-
-
-
-## A non-blocking HTTP server example
 
 The [source code](https://github.com/second-state/wasmedge_wasi_socket/blob/main/examples/poll_tcp_listener.rs) for a non-blocking HTTP server application is available. The following `main()` function starts an HTTP server. It receives events from multiple open connections, and processes those events as they are received by calling the async handler functions registered to each connection. This server can process events from multiple open connections concurrently.
 
@@ -221,26 +242,4 @@ fn handle_connection_read(connection: &mut TcpStream) -> io::Result<bool> {
 
     Ok(false)
 }
-```
-You can build and run [the example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/server/) in WasmEdge as follows.
-
-```
-# Get the source code
-$ git clone https://github.com/second-state/wasmedge_wasi_socket.git
-$ cd wasmedge_wasi_socket
-
-# Build the Rust code
-cargo build --target wasm32-wasi --release
-
-# Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/poll_tcp_listener.wasm target/wasm32-wasi/release/poll_tcp_listener.wasm
-
-# Run the example
-wasmedge target/wasm32-wasi/release/poll_tcp_listener.wasm
-```
-To test the HTTP server, you can submit a HTTP request to it via `curl`.
-
-```bash
-$ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
-echo: name=WasmEdge
 ```
