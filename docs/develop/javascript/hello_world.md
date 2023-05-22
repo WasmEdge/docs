@@ -22,6 +22,7 @@ curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5
 wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 ```
 
+<!-- prettier-ignore -->
 :::note
 The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo is required for the QuickJS runtime.
 :::
@@ -35,6 +36,7 @@ $ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
 Hello WasmEdge Runtime
 ```
 
+<!-- prettier-ignore -->
 :::note
 The `--dir .:.` on the command line is to give `wasmedge` permission to read the local directory in the file system for the `hello.js` file.
 :::
@@ -48,7 +50,7 @@ import * as std from 'std';
 args = args.slice(1);
 print('Hello', ...args);
 setTimeout(() => {
-  print('timeout 2s');
+    print('timeout 2s');
 }, 2000);
 ```
 

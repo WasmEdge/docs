@@ -64,7 +64,8 @@ Next let's use WasmEdge to identify your own images.
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
-You can replace `input.jpg` with your own image file. 
+
+You can replace `input.jpg` with your own image file.
 
 ## Improve performance
 
@@ -167,5 +168,3 @@ for i in 0..5 {
   );
 }
 ```
-
-

@@ -1,8 +1,8 @@
 {
-  "label": "Low level runtime support",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "In this chapter, we will introduce integrations between WasmEdge and low level runtimes,like containerd and crun."
-  }
+    "label": "Low level runtime support",
+    "position": 5,
+    "link": {
+        "type": "generated-index",
+        "description": "In this chapter, we will introduce integrations between WasmEdge and low level runtimes,like containerd and crun."
+    }
 }

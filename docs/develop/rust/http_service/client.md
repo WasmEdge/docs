@@ -6,21 +6,25 @@ sidebar_position: 1
 
 WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. In this chapter, we will cover HTTP client APIs and libraries to access external web services from your WasmEdge app. For HTTP servers in WasmEdge, please see [the next chapter](server).
 
+<!-- prettier-ignore -->
 :::note
 Before we started, make sure [you have Rust and WasmEdge installed](../setup).
 :::
 
 We will discuss asynchronous HTTP and HTTPS clients with reqwest, synchronous clients with http_req, and low level clients with hyper. All of them are popular Rust crates for networking.
 
-- [Async client with reqwest](#asynchronous-client-with-reqwest)
-- [Sync client with http_req](#synchronous-client-with-http-req)
-- [Low level HTTP API with hyper](#low-level-api-with-hyper)
+-   [Async client with reqwest](#asynchronous-client-with-reqwest)
+-   [Sync client with http_req](#synchronous-client-with-http-req)
+-   [Low level HTTP API with hyper](#low-level-api-with-hyper)
 
 ## Asynchronous client with reqwest
 
 Asynchronous HTTP or HTTPS requests do not block the execution of the calling application. It allows an application to make multiple concurrent HTTP requests and to process responses as they are received. That enables high-performance networking applications in WasmEdge.
 
-:::note Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment. :::
+<!-- prettier-ignore -->
+:::note
+Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment.
+:::
 
 You could use the reqwest API to make asynchronous HTTP requests. Build and run [the example](https://github.com/WasmEdge/wasmedge_reqwest_demo/) in WasmEdge as follows. It will execute both HTTP and HTTPS examples.
 
@@ -76,10 +80,10 @@ And here is an HTTP POST request.
     println!("POST: {}", body);
 ```
 
+<!-- prettier-ignore -->
 :::note
 In order to make HTTPS requests, you need to install the WasmEdge TLS plugin.
 :::
-
 
 ## Synchronous client with http_req
 
@@ -136,6 +140,7 @@ fn main() {
 }
 ```
 
+<!-- prettier-ignore -->
 :::note
 In order to make HTTPS requests, you need to [install the wasmedge_httpsreq plugin](../../build-and-run/install#wasmedge-httpsreq-plugin). You can then run the HTTPS [GET](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) and [POST](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) examples in the example repo.
 :::
@@ -144,7 +149,10 @@ In order to make HTTPS requests, you need to [install the wasmedge_httpsreq plug
 
 The http_req and reqwest crates are convenient to use. But often times, developers need access lower level APIs. The hyper crate is an excellent HTTP library for that. Build and run [the hyper example](https://github.com/WasmEdge/wasmedge_hyper_demo/) in WasmEdge as follows.
 
-:::note The `hyper_wasi` crate utilizes non-blocking socket connections. :::
+<!-- prettier-ignore -->
+:::note
+The `hyper_wasi` crate utilizes non-blocking socket connections.
+:::
 
 ```
 git clone https://github.com/WasmEdge/wasmedge_hyper_demo
@@ -203,8 +211,7 @@ async fn post_url_return_str (url: hyper::Uri, post_body: &'static [u8]) -> Resu
 }
 ```
 
+<!-- prettier-ignore -->
 :::note
 In order to make HTTPS requests, you need to install the WasmEdge TLS plugin.
 :::
-
-

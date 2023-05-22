@@ -216,25 +216,25 @@ int main() {
 
 1. Install the WasmEdge shared library.
 
-   Please refer to the [Installation](/develop/build-and-run/install) for details.
+    Please refer to the [Installation](/develop/build-and-run/install) for details.
 
 2. Prepare the WASM file and the `main.c` source file as above.
 
 3. Compile
 
-   ```bash
-   gcc main.c -lwasmedge
-   # Or you can use g++ for the C++ case, or use the clang.
-   ```
+    ```bash
+    gcc main.c -lwasmedge
+    # Or you can use g++ for the C++ case, or use the clang.
+    ```
 
 4. Run the Test
 
-   ```bash
-   $ ./a.out
-   Test 1 -- `call_add` -- 1234 + 5678 = 6912
-   Test 2 -- `call_mul` -- 789 * 4321 = 3409269
-   Test 3 -- `call_mul` -- 8256 ^ 2 = 68161536
-   ```
+    ```bash
+    $ ./a.out
+    Test 1 -- `call_add` -- 1234 + 5678 = 6912
+    Test 2 -- `call_mul` -- 789 * 4321 = 3409269
+    Test 3 -- `call_mul` -- 8256 ^ 2 = 68161536
+    ```
 
 ## Wasm module with External References
 

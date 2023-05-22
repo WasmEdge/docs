@@ -4,10 +4,10 @@ sidebar_position: 3
 
 # 6.3 Embed Wasm Functions
 
-
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs), we will demonstrate how to call a few simple WebAssembly functions from a Go app. The [functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs/src/lib.rs) are written in Rust, and require complex call parameters and return values. The `#[wasmedge_bindgen]` macro is needed for the compiler tools to auto-generate the correct code to pass call parameters from Go to WebAssembly.
 
 ## The Wasm app in Rust
+
 As we [described](/embed/data/intro) before, the WebAssembly spec only supports a few simple data types out of the box. It [does not support](https://medium.com/wasm/strings-in-webassembly-wasm-57a05c1ea333) types such as string and array. In order to pass rich types in Go to WebAssembly, the compiler needs to convert them to simple integers. For example, it converts a string into an integer memory address and an integer length. The `wasmedge_bindgen` tool does this conversion automatically.
 
 ```rust
@@ -85,7 +85,9 @@ pub fn keccak_digest(s: Vec<u8>) -> Vec<u8> {
     return Keccak256::digest(&s).as_slice().to_vec();
 }
 ```
+
 ## Compile the Rust code to Wasm
+
 First, we will compile the Rust source code into WebAssembly bytecode functions.
 
 ```bash
@@ -94,6 +96,7 @@ cd rust_bindgen_funcs
 cargo build --release --target wasm32-wasi
 # The output WASM will be target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm
 ```
+
 ## The Go host app
 
 The [Go source code](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_BindgenFuncs/bindgen_funcs.go) to run the WebAssembly function in WasmEdge is as follows. The `Execute()` function calls the WebAssembly function and passes the call parameters using the `#[wasmedge_bindgen]` convention.
@@ -186,11 +189,10 @@ func main() {
   conf.Release()
 }
 ```
+
 ## Build and run the Wasm app from your Go host app
 
-::note
-Make sure you have installed [Go, WasmEdge, and WasmEdge Go SDK](intro.md).
-::
+::note Make sure you have installed [Go, WasmEdge, and WasmEdge Go SDK](intro.md). ::
 
 Next, let's build the Go application with the WasmEdge Go SDK.
 

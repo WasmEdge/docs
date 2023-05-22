@@ -39,7 +39,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update \
     && cd crun \
     && ./autogen.sh \
     && ./configure --with-wasmedge --enable-embedded-yajl\
-    && make 
+    && make
 
 ...
 ```

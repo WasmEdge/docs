@@ -12,57 +12,53 @@ Due to the WasmEdge-Go API breaking changes, this document shows the guideline o
 
 1. Merged the `ImportObject` into the `Module`.
 
-   The `ImportObject` struct which is for the host functions is merged into `Module`.
-   Developers can use the related APIs to construct host modules.
+    The `ImportObject` struct which is for the host functions is merged into `Module`. Developers can use the related APIs to construct host modules.
 
-   * `wasmedge.NewImportObject()` is changed to `wasmedge.NewModule()`.
-   * `(*wasmedge.ImportObject).Release()` is changed to `(*wasmedge.Module).Release()`.
-   * `(*wasmedge.ImportObject).AddFunction()` is changed to `(*wasmedge.Module).AddFunction()`.
-   * `(*wasmedge.ImportObject).AddTable()` is changed to `(*wasmedge.Module).AddTable()`.
-   * `(*wasmedge.ImportObject).AddMemory()` is changed to `(*wasmedge.Module).AddMemory()`.
-   * `(*wasmedge.ImportObject).AddGlobal()` is changed to `(*wasmedge.Module).AddGlobal()`.
-   * `(*wasmedge.ImportObject).NewWasiImportObject()` is changed to `(*wasmedge.Module).NewWasiModule()`.
-   * `(*wasmedge.ImportObject).NewWasmEdgeProcessImportObject()` is changed to `(*wasmedge.Module).NewWasmEdgeProcessModule()`.
-   * `(*wasmedge.ImportObject).InitWASI()` is changed to `(*wasmedge.Module).InitWASI()`.
-   * `(*wasmedge.ImportObject).InitWasmEdgeProcess()` is changed to `(*wasmedge.Module).InitWasmEdgeProcess()`.
-   * `(*wasmedge.ImportObject).WasiGetExitCode()` is changed to `(*wasmedge.Module).WasiGetExitCode`.
-   * `(*wasmedge.VM).RegisterImport()` is changed to `(*wasmedge.VM).RegisterModule()`.
-   * `(*wasmedge.VM).GetImportObject()` is changed to `(*wasmedge.VM).GetImportModule()`.
+    - `wasmedge.NewImportObject()` is changed to `wasmedge.NewModule()`.
+    - `(*wasmedge.ImportObject).Release()` is changed to `(*wasmedge.Module).Release()`.
+    - `(*wasmedge.ImportObject).AddFunction()` is changed to `(*wasmedge.Module).AddFunction()`.
+    - `(*wasmedge.ImportObject).AddTable()` is changed to `(*wasmedge.Module).AddTable()`.
+    - `(*wasmedge.ImportObject).AddMemory()` is changed to `(*wasmedge.Module).AddMemory()`.
+    - `(*wasmedge.ImportObject).AddGlobal()` is changed to `(*wasmedge.Module).AddGlobal()`.
+    - `(*wasmedge.ImportObject).NewWasiImportObject()` is changed to `(*wasmedge.Module).NewWasiModule()`.
+    - `(*wasmedge.ImportObject).NewWasmEdgeProcessImportObject()` is changed to `(*wasmedge.Module).NewWasmEdgeProcessModule()`.
+    - `(*wasmedge.ImportObject).InitWASI()` is changed to `(*wasmedge.Module).InitWASI()`.
+    - `(*wasmedge.ImportObject).InitWasmEdgeProcess()` is changed to `(*wasmedge.Module).InitWasmEdgeProcess()`.
+    - `(*wasmedge.ImportObject).WasiGetExitCode()` is changed to `(*wasmedge.Module).WasiGetExitCode`.
+    - `(*wasmedge.VM).RegisterImport()` is changed to `(*wasmedge.VM).RegisterModule()`.
+    - `(*wasmedge.VM).GetImportObject()` is changed to `(*wasmedge.VM).GetImportModule()`.
 
-   For the new host function examples, please refer to [the example below](#host-functions).
+    For the new host function examples, please refer to [the example below](#host-functions).
 
 2. Used the pointer to `Function` instead of the index in the `FuncRef` value type.
 
-   For the better performance and security, the `FuncRef` related APIs used the `*wasmedge.Function` for the parameters and returns.
+    For the better performance and security, the `FuncRef` related APIs used the `*wasmedge.Function` for the parameters and returns.
 
-   * `wasmedge.NewFuncRef()` is changed to use the `*Function` as it's argument.
-   * Added `(wasmedge.FuncRef).GetRef()` to retrieve the `*Function`.
+    - `wasmedge.NewFuncRef()` is changed to use the `*Function` as it's argument.
+    - Added `(wasmedge.FuncRef).GetRef()` to retrieve the `*Function`.
 
 3. Supported multiple anonymous WASM module instantiation.
 
-   In the version before `v0.9.2`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced.
-   After the `v0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed.
-   For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
+    In the version before `v0.9.2`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced. After the `v0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed. For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
 
 4. Behavior changed of `Store`.
 
-   The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `v0.10.0` version.
+    The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `v0.10.0` version.
 
-   * `(*wasmedge.Store).ListFunction()` and `(*wasmedge.Store).ListFunctionRegistered()` is replaced by `(*wasmedge.Module).ListFunction()`.
-   * `(*wasmedge.Store).ListTable()` and `(*wasmedge.Store).ListTableRegistered()` is replaced by `(*wasmedge.Module).ListTable()`.
-   * `(*wasmedge.Store).ListMemory()` and `(*wasmedge.Store).ListMemoryRegistered()` is replaced by `(*wasmedge.Module).ListMemory()`.
-   * `(*wasmedge.Store).ListGlobal()` and `(*wasmedge.Store).ListGlobalRegistered()` is replaced by `(*wasmedge.Module).ListGlobal()`.
-   * `(*wasmedge.Store).FindFunction()` and `(*wasmedge.Store).FindFunctionRegistered()` is replaced by `(*wasmedge.Module).FindFunction()`.
-   * `(*wasmedge.Store).FindTable()` and `(*wasmedge.Store).FindTableRegistered()` is replaced by `(*wasmedge.Module).FindTable()`.
-   * `(*wasmedge.Store).FindMemory()` and `(*wasmedge.Store).FindMemoryRegistered()` is replaced by `(*wasmedge.Module).FindMemory()`.
-   * `(*wasmedge.Store).FindGlobal()` and `(*wasmedge.Store).FindGlobalRegistered()` is replaced by `(*wasmedge.Module).FindGlobal()`.
+    - `(*wasmedge.Store).ListFunction()` and `(*wasmedge.Store).ListFunctionRegistered()` is replaced by `(*wasmedge.Module).ListFunction()`.
+    - `(*wasmedge.Store).ListTable()` and `(*wasmedge.Store).ListTableRegistered()` is replaced by `(*wasmedge.Module).ListTable()`.
+    - `(*wasmedge.Store).ListMemory()` and `(*wasmedge.Store).ListMemoryRegistered()` is replaced by `(*wasmedge.Module).ListMemory()`.
+    - `(*wasmedge.Store).ListGlobal()` and `(*wasmedge.Store).ListGlobalRegistered()` is replaced by `(*wasmedge.Module).ListGlobal()`.
+    - `(*wasmedge.Store).FindFunction()` and `(*wasmedge.Store).FindFunctionRegistered()` is replaced by `(*wasmedge.Module).FindFunction()`.
+    - `(*wasmedge.Store).FindTable()` and `(*wasmedge.Store).FindTableRegistered()` is replaced by `(*wasmedge.Module).FindTable()`.
+    - `(*wasmedge.Store).FindMemory()` and `(*wasmedge.Store).FindMemoryRegistered()` is replaced by `(*wasmedge.Module).FindMemory()`.
+    - `(*wasmedge.Store).FindGlobal()` and `(*wasmedge.Store).FindGlobalRegistered()` is replaced by `(*wasmedge.Module).FindGlobal()`.
 
-   For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
+    For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
 
 5. The `Module`-based resource management.
 
-   Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `(*wasmedge.Module).Release()` API.
-   The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
+    Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `(*wasmedge.Module).Release()` API. The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
 
 ## WasmEdge-Go VM changes
 
@@ -112,8 +108,7 @@ vm.Release()
 conf.Release()
 ```
 
-The `VM` provides a new API for getting the current instantiated anonymous `Module` instance.
-For example, if developer want to get the exported `Global` instance:
+The `VM` provides a new API for getting the current instantiated anonymous `Module` instance. For example, if developer want to get the exported `Global` instance:
 
 ```go
 // Assume that a WASM module is instantiated in `vm`, and exports the "global_i32".
@@ -151,10 +146,7 @@ globinst := mod.FindGlobal("global_i32")
     }
     ```
 
-    Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`.
-    If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned.
-    After the WasmEdge-Go `v0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated.
-    Developers have the responsibility to release the outputted module instances.
+    Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`. If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned. After the WasmEdge-Go `v0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated. Developers have the responsibility to release the outputted module instances.
 
     ```go
     var ast1 *wasmedge.AST
@@ -248,8 +240,7 @@ globinst := mod.FindGlobal("global_i32")
 
 4. WASM function invocation
 
-    This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
-    In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
+    This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat). In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
 
     ```go
     // Create the store object. The store object holds the instances.

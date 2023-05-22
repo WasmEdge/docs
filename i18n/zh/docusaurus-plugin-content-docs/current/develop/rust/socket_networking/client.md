@@ -6,7 +6,7 @@ sidebar_position: 1
 
 The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket) crate enables Rust developers to create networking applications and compile them into WebAssembly for WasmEdge Runtime. One of the key features of WasmEdge is that it supports non-blocking sockets. That allows even a single threaded WASM application to handle concurrent network requests. For example, while the program is waiting for data to stream in from one connection, it can start or handle another connection.
 
-While the simple HTTP connections from the previous chapter are easy to implement, they are not ready for production use. If the program can only have one connection open at a time (e.g., blocking), the fast CPU would be waiting for the slow network. Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment. 
+While the simple HTTP connections from the previous chapter are easy to implement, they are not ready for production use. If the program can only have one connection open at a time (e.g., blocking), the fast CPU would be waiting for the slow network. Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment.
 
 So in this chapter, we will start with [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example).
 
@@ -40,6 +40,7 @@ fn main() {
   println!("{}", String::from_utf8_lossy(&writer));
 }
 ```
+
 You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_client) in WasmEdge as follows.
 
 ```
@@ -127,6 +128,7 @@ fn main() {
     }
 }
 ```
+
 You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) in WasmEdge as follows.
 
 ```
@@ -143,4 +145,3 @@ wasmedgec target/wasm32-wasi/release/nonblock_http_client.wasm target/wasm32-was
 # Run the example
 wasmedge target/wasm32-wasi/release/nonblock_http_client.wasm
 ```
-

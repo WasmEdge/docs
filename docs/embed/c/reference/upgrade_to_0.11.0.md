@@ -10,15 +10,15 @@ Due to the WasmEdge C API breaking changes, this document shows the guideline fo
 
 1. Supported the user-defined error code in host functions.
 
-   Developers can use the new API `WasmEdge_ResultGen()` to generate a `WasmEdge_Result` struct with `WasmEdge_ErrCategory_UserLevelError` and the error code. With this support, developers can specify the host function error code when failed by themselves. For the examples to specify the user-defined error code, please refer to [the example below](#user-defined-error-code-in-host-functions).
+    Developers can use the new API `WasmEdge_ResultGen()` to generate a `WasmEdge_Result` struct with `WasmEdge_ErrCategory_UserLevelError` and the error code. With this support, developers can specify the host function error code when failed by themselves. For the examples to specify the user-defined error code, please refer to [the example below](#user-defined-error-code-in-host-functions).
 
 2. Calling frame for the host function extension
 
-   In the previous versions, host functions only pass the memory instance into the function body. For supporting the WASM multiple memories proposal and providing the recursive invocation in host functions, the new context `WasmEdge_CallingFrameContext` replaced the memory instance in the second argument of the host function definition. For the examples of the new host function definition, please refer to [the example below](#calling-frame-in-host-functions).
+    In the previous versions, host functions only pass the memory instance into the function body. For supporting the WASM multiple memories proposal and providing the recursive invocation in host functions, the new context `WasmEdge_CallingFrameContext` replaced the memory instance in the second argument of the host function definition. For the examples of the new host function definition, please refer to [the example below](#calling-frame-in-host-functions).
 
 3. Apply the SONAME and SOVERSION.
 
-   When linking the WasmEdge shared library, please notice that `libwasmedge_c.so` is renamed to `libwasmedge.so` after the 0.11.0 release. Please use `-lwasmedge` instead of `-lwasmedge_c` for the linker option.
+    When linking the WasmEdge shared library, please notice that `libwasmedge_c.so` is renamed to `libwasmedge.so` after the 0.11.0 release. Please use `-lwasmedge` instead of `-lwasmedge_c` for the linker option.
 
 ## User Defined Error Code In Host Functions
 

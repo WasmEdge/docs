@@ -1,8 +1,8 @@
 {
-  "label": "4.4 HTTP services",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Make HTTP requests and create HTTP servers in WasmEdge."
-  }
+    "label": "4.4 HTTP services",
+    "position": 4,
+    "link": {
+        "type": "generated-index",
+        "description": "Make HTTP requests and create HTTP servers in WasmEdge."
+    }
 }

@@ -8,6 +8,7 @@ The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket)
 
 While there are many possibilities with sockets, we will demonstrate two familiar use cases, [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example), in this chapter.
 
+<!-- prettier-ignore -->
 :::note
 Before we started, make sure [you have Rust and WasmEdge installed](../setup).
 :::
@@ -73,6 +74,7 @@ wasmedgec target/wasm32-wasi/release/nonblock_http_client.wasm nonblock_http_cli
 wasmedge nonblock_http_client.wasm
 ```
 
+<!-- prettier-ignore -->
 :::note
 Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment.
 :::

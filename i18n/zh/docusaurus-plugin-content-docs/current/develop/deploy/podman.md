@@ -10,11 +10,11 @@ The easiest platform to run Wasm app with container is Fedora, because the crun 
 
 ### Install podman and WasmEdge
 
-
 ```bash
 sudo dnf -y install podman
 sudo dnf -y install wasmedge
 ```
+
 ### Run A simple WASI app
 
 Now, we could run wasm apps.
@@ -25,12 +25,11 @@ Now, we could run wasm apps.
 
 That's it.
 
-
 ## Other Linux distributions
 
 ### Prerequisites
 
-1. Install and configure Podman 
+1. Install and configure Podman
 
 Use the following commands to install podman on your system. Here I use Ubuntu as an example. For more different types of podman, please refer to [Podman's installation instruction](https://podman.io/getting-started/installation).
 
@@ -38,6 +37,7 @@ Use the following commands to install podman on your system. Here I use Ubuntu a
 sudo apt-get -y update
 sudo apt-get -y install podman
 ```
+
 2. [Install WasmEdge](../build-and-run/install)
 
 3. Build and configure crun with WasmEdge support
@@ -67,7 +67,7 @@ spec: 1.0.0
 
 ### Run A simple WASI app
 
- Now, we could run wasm apps.
+Now, we could run wasm apps.
 
 ```bash
  podman run --rm --annotation module.wasm.image/variant=compat-smart docker.io/wasmedge/example-wasi:latest /wasi_example_main.wasm 50000000

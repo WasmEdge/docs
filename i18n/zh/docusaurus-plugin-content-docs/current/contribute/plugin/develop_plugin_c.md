@@ -6,13 +6,9 @@ sidebar_position: 2
 
 WasmEdge provides a C++ based API for registering extension modules and host functions. While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, the plugin API allows such extensions to be incorporated into WasmEdge's own building and releasing process.
 
-
 ## Prerequisites
 
-
 For developing the WasmEdge plug-in in C API, please [install WasmEdge](/develop/build-and-run/install.md) first.
-
-
 
 ## Example
 
@@ -56,8 +52,7 @@ WasmEdge_Result HostFuncSub(void *Data,
 
 Then developers should implement the module creation functions.
 
-Noticed that there can be several module instances in a plug-in shared library.
-Here take a module named as `wasmedge_plugintest_c_module` for the example.
+Noticed that there can be several module instances in a plug-in shared library. Here take a module named as `wasmedge_plugintest_c_module` for the example.
 
 ```c
 /* The creation function of creating the module instance. */
@@ -72,7 +67,7 @@ CreateTestModule(const struct WasmEdge_ModuleDescriptor *Desc) {
    *     WasmEdge_ModuleInstanceContext *(*Create)(
    *         const struct WasmEdge_ModuleDescriptor *);
    *   } WasmEdge_ModuleDescriptor;
-   * 
+   *
    * Developers can get the name and the description from this descriptor.
    */
 

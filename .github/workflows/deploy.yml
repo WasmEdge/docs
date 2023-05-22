@@ -1,59 +1,59 @@
 name: Deploy CI
 on:
-  workflow_dispatch:
-  push:
-    paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
-      - 'CODE_OF_CONDUCT.md'
-      - 'CONTRIBUTING.md'
-      - '.vscode/**'
-      - '.husky/**'
-      - '.env'
-      - '.gitignore'
-    branches:
-      - main
+    workflow_dispatch:
+    push:
+        paths-ignore:
+            - 'README.md'
+            - 'LICENSE'
+            - 'CODE_OF_CONDUCT.md'
+            - 'CONTRIBUTING.md'
+            - '.vscode/**'
+            - '.husky/**'
+            - '.env'
+            - '.gitignore'
+        branches:
+            - main
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+    group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.18.0'
-          cache: 'npm'
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - name: Install Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16.18.0'
+                  cache: 'npm'
 
-      - name: Cache NPM Dependencies
-        id: cache-npm
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+            - name: Cache NPM Dependencies
+              id: cache-npm
+              uses: actions/cache@v3
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
-      - name: Check Cache
-        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        run: npm ci
+            - name: Check Cache
+              if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+              run: npm ci
 
-      - name: Build
-        run: npm run build
+            - name: Build
+              run: npm run build
 
-      - name: Push directory to another repository
-        if: ${{ github.event_name == 'push' }}
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.BOOK }}
-        with:
-          source-directory: 'build'
-          destination-github-username: 'WasmEdge'
-          destination-repository-name: 'www'
-          target-directory: 'docs'
-          user-email: juyichen0413@foxmail.com
-          target-branch: main
+            - name: Push directory to another repository
+              if: ${{ github.event_name == 'push' }}
+              uses: cpina/github-action-push-to-another-repository@main
+              env:
+                  API_TOKEN_GITHUB: ${{ secrets.BOOK }}
+              with:
+                  source-directory: 'build'
+                  destination-github-username: 'WasmEdge'
+                  destination-repository-name: 'www'
+                  target-directory: 'docs'
+                  user-email: juyichen0413@foxmail.com
+                  target-branch: main

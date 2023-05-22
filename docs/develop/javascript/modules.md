@@ -32,7 +32,7 @@ The two JavaScript files in the `modules` directory provide two simple functions
 
 ```javascript
 export function hello_mod_1() {
-  console.log('hello from "my_mod_1.js"');
+    console.log('hello from "my_mod_1.js"');
 }
 ```
 
@@ -40,15 +40,15 @@ And the [modules/my_mod_2.js](https://github.com/second-state/wasmedge-quickjs/b
 
 ```javascript
 export function hello_mod_2() {
-  console.log('hello from "my_mod_2.js"');
+    console.log('hello from "my_mod_2.js"');
 }
 ```
 
 Then, just run the [demo.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/module_demo/demo.js) file to call the two exported functions from the modules.
 
 ```javascript
-import {hello_mod_1} from 'my_mod_1';
-import {hello_mod_2} from 'my_mod_2';
+import { hello_mod_1 } from 'my_mod_1';
+import { hello_mod_2 } from 'my_mod_2';
 
 hello_mod_1();
 hello_mod_2();

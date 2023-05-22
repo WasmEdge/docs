@@ -8,12 +8,12 @@ If you are ready to contribute, please search for open issues labeled "help-want
 
 **Contents**
 
-- <a name="contributing-flow">Contribution Flow</a>
-  - <a href="#commit-signoff">Developer Certificate of Origin</a>
-- WasmEdge Contribution Flow
-  - <a href="#contributing-docs">WasmEdge Docs</a>
-  - <a href="https://wasmedge.org/book/en/contribute/contribute.html">WasmEdge Runtime</a>
-  - <a href="https://github.com/WasmEdge/WasmEdge/blob/master/SECURITY.md">Reporting a vulnerability</a>
+-   <a name="contributing-flow">Contribution Flow</a>
+    -   <a href="#commit-signoff">Developer Certificate of Origin</a>
+-   WasmEdge Contribution Flow
+    -   <a href="#contributing-docs">WasmEdge Docs</a>
+    -   <a href="https://wasmedge.org/book/en/contribute/contribute.html">WasmEdge Runtime</a>
+    -   <a href="https://github.com/WasmEdge/WasmEdge/blob/master/SECURITY.md">Reporting a vulnerability</a>
 
 # <a name="contributing-flow">Contribution Flow</a>
 

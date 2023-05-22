@@ -8,9 +8,9 @@ The QuickJS WasmEdge Runtime supports Node.js's `http` and `fetch` APIs via the 
 
 The networking API in WasmEdge is non-blocking and hence supports asynchronous I/O intensive applications. With this API, the JavaScript program can open multiple connections concurrently. It polls those connections, or registers async callback functions, to process data whenever data comes in, without waiting for any one connection to complete its data transfer. That allows the single-threaded application to handle multiple multiple concurrent requests.
 
-- [Fetch client](#fetch-client)
-- [HTTP server](#http-server)
-- [TCP server and client](#tcp-server-and-client)
+-   [Fetch client](#fetch-client)
+-   [HTTP server](#http-server)
+-   [TCP server and client](#tcp-server-and-client)
 
 ## Prerequisites
 
@@ -32,12 +32,12 @@ The code snippet below shows an async HTTP GET from the `httpbin.org` test serve
 
 ```javascript
 async function test_fetch() {
-  try {
-    let r = await fetch('http://httpbin.org/get?id=1');
-    print('test_fetch\n', await r.text());
-  } catch (e) {
-    print(e);
-  }
+    try {
+        let r = await fetch('http://httpbin.org/get?id=1');
+        print('test_fetch\n', await r.text());
+    } catch (e) {
+        print(e);
+    }
 }
 test_fetch();
 ```
@@ -46,15 +46,15 @@ The code snippet below shows how to do an sync HTTP POST to a remote server.
 
 ```javascript
 async function test_fetch_post() {
-  try {
-    let r = await fetch('http://httpbin.org/post', {
-      method: 'post',
-      body: 'post_body',
-    });
-    print('test_fetch_post\n', await r.text());
-  } catch (e) {
-    print(e);
-  }
+    try {
+        let r = await fetch('http://httpbin.org/post', {
+            method: 'post',
+            body: 'post_body',
+        });
+        print('test_fetch_post\n', await r.text());
+    } catch (e) {
+        print(e);
+    }
 }
 test_fetch_post();
 ```
@@ -63,16 +63,16 @@ An async HTTP PUT request is as follows.
 
 ```javascript
 async function test_fetch_put() {
-  try {
-    let r = await fetch('http://httpbin.org/put', {
-      method: 'put',
-      body: JSON.stringify({a: 1}),
-      headers: {'Context-type': 'application/json'},
-    });
-    print('test_fetch_put\n', await r.text());
-  } catch (e) {
-    print(e);
-  }
+    try {
+        let r = await fetch('http://httpbin.org/put', {
+            method: 'put',
+            body: JSON.stringify({ a: 1 }),
+            headers: { 'Context-type': 'application/json' },
+        });
+        print('test_fetch_put\n', await r.text());
+    } catch (e) {
+        print(e);
+    }
 }
 test_fetch_put();
 ```
@@ -95,15 +95,15 @@ echo:WasmEdge
 The JavaScript source code of the HTTP server is as follows.
 
 ```javascript
-import {createServer, request, fetch} from 'http';
+import { createServer, request, fetch } from 'http';
 
 createServer((req, resp) => {
-  req.on('data', (body) => {
-    resp.write('echo:');
-    resp.end(body);
-  });
+    req.on('data', (body) => {
+        resp.write('echo:');
+        resp.end(body);
+    });
 }).listen(8001, () => {
-  print('listen 8001 ...\n');
+    print('listen 8001 ...\n');
 });
 ```
 
@@ -123,19 +123,19 @@ The TCP server in `wasi_net_echo.js` is as follows.
 
 ```javascript
 import * as net from 'wasi_net';
-import {TextDecoder} from 'util';
+import { TextDecoder } from 'util';
 
 async function server_start() {
-  print('listen 8000 ...');
-  try {
-    let s = new net.WasiTcpServer(8000);
-    for (var i = 0; i < 100; i++) {
-      let cs = await s.accept();
-      handle_client(cs);
+    print('listen 8000 ...');
+    try {
+        let s = new net.WasiTcpServer(8000);
+        for (var i = 0; i < 100; i++) {
+            let cs = await s.accept();
+            handle_client(cs);
+        }
+    } catch (e) {
+        print('server accept error:', e);
     }
-  } catch (e) {
-    print('server accept error:', e);
-  }
 }
 
 server_start();
@@ -145,21 +145,21 @@ The `handle_client()` function contains the logic on how to process and respond 
 
 ```javascript
 async function handle_client(cs) {
-  print('server accept:', cs.peer());
-  try {
-    while (true) {
-      let d = await cs.read();
-      if (d == undefined || d.byteLength <= 0) {
-        break;
-      }
-      let s = new TextDecoder().decode(d);
-      print('server recv:', s);
-      cs.write('echo:' + s);
+    print('server accept:', cs.peer());
+    try {
+        while (true) {
+            let d = await cs.read();
+            if (d == undefined || d.byteLength <= 0) {
+                break;
+            }
+            let s = new TextDecoder().decode(d);
+            print('server recv:', s);
+            cs.write('echo:' + s);
+        }
+    } catch (e) {
+        print('server handle_client error:', e);
     }
-  } catch (e) {
-    print('server handle_client error:', e);
-  }
-  print('server: conn close');
+    print('server: conn close');
 }
 ```
 
@@ -167,18 +167,18 @@ The TCP client uses WasmEdge's `WasiTcpConn` API to send in a request and receiv
 
 ```javascript
 async function connect_test() {
-  try {
-    let ss = await net.WasiTcpConn.connect('127.0.0.1:8000');
-    ss.write('hello');
-    let msg = (await ss.read()) || '';
-    print('client recv:', new TextDecoder().decode(msg));
-  } catch (e) {
-    print('client catch:', e);
-  } finally {
-    nextTick(() => {
-      exit(0);
-    });
-  }
+    try {
+        let ss = await net.WasiTcpConn.connect('127.0.0.1:8000');
+        ss.write('hello');
+        let msg = (await ss.read()) || '';
+        print('client recv:', new TextDecoder().decode(msg));
+    } catch (e) {
+        print('client catch:', e);
+    } finally {
+        nextTick(() => {
+            exit(0);
+        });
+    }
 }
 
 connect_test();

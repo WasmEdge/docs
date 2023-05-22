@@ -12,9 +12,9 @@ In this article, we will show you how to use the WasmEdge QuickJS runtime to imp
 
 We will start from a complete tutorial to create and deploy a simple React Streaming SSR web application, and then move on to a full React 18 demo.
 
-- [Getting started with React streaming SSR](#getting-started)
-- [A full React 18 app](#a-full-react-18-app)
-- [Appendix: the create-react-app template](#appendix-the-create-react-app-template)
+-   [Getting started with React streaming SSR](#getting-started)
+-   [A full React 18 app](#a-full-react-18-app)
+-   [Appendix: the create-react-app template](#appendix-the-create-react-app-template)
 
 ## Getting started
 
@@ -23,40 +23,40 @@ The [example_js/react_ssr_stream](https://github.com/second-state/wasmedge-quick
 The [component/LazyHome.jsx](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/component/LazyHome.jsx) file is the main page template in React. It "lazy" loads the inner page template after a 2s delay once the outer HTML is rendered and returned to the user.
 
 ```javascript
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import * as LazyPage from './LazyPage.jsx';
 
 async function sleep(ms) {
-  return new Promise((r, _) => {
-    setTimeout(() => r(), ms);
-  });
+    return new Promise((r, _) => {
+        setTimeout(() => r(), ms);
+    });
 }
 
 async function loadLazyPage() {
-  await sleep(2000);
-  return LazyPage;
+    await sleep(2000);
+    return LazyPage;
 }
 
 class LazyHome extends React.Component {
-  render() {
-    let LazyPage1 = React.lazy(() => loadLazyPage());
-    return (
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <title>Title</title>
-        </head>
-        <body>
-          <div>
-            <div> This is LazyHome </div>
-            <Suspense fallback={<div> loading... </div>}>
-              <LazyPage1 />
-            </Suspense>
-          </div>
-        </body>
-      </html>
-    );
-  }
+    render() {
+        let LazyPage1 = React.lazy(() => loadLazyPage());
+        return (
+            <html lang="en">
+                <head>
+                    <meta charSet="utf-8" />
+                    <title>Title</title>
+                </head>
+                <body>
+                    <div>
+                        <div> This is LazyHome </div>
+                        <Suspense fallback={<div> loading... </div>}>
+                            <LazyPage1 />
+                        </Suspense>
+                    </div>
+                </body>
+            </html>
+        );
+    }
 }
 
 export default LazyHome;
@@ -68,13 +68,13 @@ The [LazyPage.jsx](https://github.com/second-state/wasmedge-quickjs/blob/main/ex
 import React from 'react';
 
 class LazyPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>This is lazy page</div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <div>This is lazy page</div>
+            </div>
+        );
+    }
 }
 
 export default LazyPage;
@@ -84,16 +84,16 @@ The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/exampl
 
 ```javascript
 import * as React from 'react';
-import {renderToPipeableStream} from 'react-dom/server';
-import {createServer} from 'http';
+import { renderToPipeableStream } from 'react-dom/server';
+import { createServer } from 'http';
 
 import LazyHome from './component/LazyHome.jsx';
 
 createServer((req, res) => {
-  res.setHeader('Content-type', 'text/html; charset=utf-8');
-  renderToPipeableStream(<LazyHome />).pipe(res);
+    res.setHeader('Content-type', 'text/html; charset=utf-8');
+    renderToPipeableStream(<LazyHome />).pipe(res);
 }).listen(8001, () => {
-  print('listen 8001...');
+    print('listen 8001...');
 });
 ```
 
@@ -145,75 +145,75 @@ The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/exampl
 
 ```javascript
 import * as React from 'react';
-import {renderToPipeableStream} from 'react-dom/server';
-import {createServer} from 'http';
+import { renderToPipeableStream } from 'react-dom/server';
+import { createServer } from 'http';
 import * as std from 'std';
 
 import App from './component/App.js';
-import {DataProvider} from './component/data.js';
+import { DataProvider } from './component/data.js';
 
 let assets = {
-  'main.js': '/main.js',
-  'main.css': '/main.css',
+    'main.js': '/main.js',
+    'main.css': '/main.css',
 };
 
 const css = std.loadFile('./public/main.css');
 
 function createServerData() {
-  let done = false;
-  let promise = null;
-  return {
-    read() {
-      if (done) {
-        return;
-      }
-      if (promise) {
-        throw promise;
-      }
-      promise = new Promise((resolve) => {
-        setTimeout(() => {
-          done = true;
-          promise = null;
-          resolve();
-        }, 2000);
-      });
-      throw promise;
-    },
-  };
+    let done = false;
+    let promise = null;
+    return {
+        read() {
+            if (done) {
+                return;
+            }
+            if (promise) {
+                throw promise;
+            }
+            promise = new Promise((resolve) => {
+                setTimeout(() => {
+                    done = true;
+                    promise = null;
+                    resolve();
+                }, 2000);
+            });
+            throw promise;
+        },
+    };
 }
 
 createServer((req, res) => {
-  print(req.url);
-  if (req.url == '/main.css') {
-    res.setHeader('Content-Type', 'text/css; charset=utf-8');
-    res.end(css);
-  } else if (req.url == '/favicon.ico') {
-    res.end();
-  } else {
-    res.setHeader('Content-type', 'text/html');
+    print(req.url);
+    if (req.url == '/main.css') {
+        res.setHeader('Content-Type', 'text/css; charset=utf-8');
+        res.end(css);
+    } else if (req.url == '/favicon.ico') {
+        res.end();
+    } else {
+        res.setHeader('Content-type', 'text/html');
 
-    res.on('error', (e) => {
-      print('res error', e);
-    });
-    let data = createServerData();
-    print('createServerData');
+        res.on('error', (e) => {
+            print('res error', e);
+        });
+        let data = createServerData();
+        print('createServerData');
 
-    const stream = renderToPipeableStream(
-      <DataProvider data={data}>
-        <App assets={assets} />
-      </DataProvider>,
-      {
-        onShellReady: () => {
-          stream.pipe(res);
-        },
-        onShellError: (e) => {
-          print('onShellError:', e);
-        },
-      },
-    );
-  }
+        const stream = renderToPipeableStream(
+            <DataProvider data={data}>
+                <App assets={assets} />
+            </DataProvider>,
+            {
+                onShellReady: () => {
+                    stream.pipe(res);
+                },
+                onShellError: (e) => {
+                    print('onShellError:', e);
+                },
+            },
+        );
+    }
 }).listen(8002, () => {
-  print('listen 8002...');
+    print('listen 8002...');
 });
 ```
 
@@ -326,10 +326,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 ReactDOM.hydrate(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
 ```
 
@@ -364,95 +364,95 @@ import * as net from 'wasi_net';
 import App from '../src/App.js';
 
 async function handle_client(cs) {
-  print('open:', cs.peer());
-  let buffer = new http.Buffer();
+    print('open:', cs.peer());
+    let buffer = new http.Buffer();
 
-  while (true) {
-    try {
-      let d = await cs.read();
-      if (d == undefined || d.byteLength <= 0) {
-        return;
-      }
-      buffer.append(d);
-      let req = buffer.parseRequest();
-      if (req instanceof http.WasiRequest) {
-        handle_req(cs, req);
-        break;
-      }
-    } catch (e) {
-      print(e);
+    while (true) {
+        try {
+            let d = await cs.read();
+            if (d == undefined || d.byteLength <= 0) {
+                return;
+            }
+            buffer.append(d);
+            let req = buffer.parseRequest();
+            if (req instanceof http.WasiRequest) {
+                handle_req(cs, req);
+                break;
+            }
+        } catch (e) {
+            print(e);
+        }
     }
-  }
-  print('end:', cs.peer());
+    print('end:', cs.peer());
 }
 
 function enlargeArray(oldArr, newLength) {
-  let newArr = new Uint8Array(newLength);
-  oldArr && newArr.set(oldArr, 0);
-  return newArr;
+    let newArr = new Uint8Array(newLength);
+    oldArr && newArr.set(oldArr, 0);
+    return newArr;
 }
 
 async function handle_req(s, req) {
-  print('uri:', req.uri);
+    print('uri:', req.uri);
 
-  let resp = new http.WasiResponse();
-  let content = '';
-  if (req.uri == '/') {
-    const app = ReactDOMServer.renderToString(<App />);
-    content = std.loadFile('./build/index.html');
-    content = content.replace(
-      '<div id="root"></div>',
-      `<div id="root">${app}</div>`,
-    );
-  } else {
-    let chunk = 1000; // Chunk size of each reading
-    let length = 0; // The whole length of the file
-    let byteArray = null; // File content as Uint8Array
+    let resp = new http.WasiResponse();
+    let content = '';
+    if (req.uri == '/') {
+        const app = ReactDOMServer.renderToString(<App />);
+        content = std.loadFile('./build/index.html');
+        content = content.replace(
+            '<div id="root"></div>',
+            `<div id="root">${app}</div>`,
+        );
+    } else {
+        let chunk = 1000; // Chunk size of each reading
+        let length = 0; // The whole length of the file
+        let byteArray = null; // File content as Uint8Array
 
-    // Read file into byteArray by chunk
-    let file = std.open('./build' + req.uri, 'r');
-    while (true) {
-      byteArray = enlargeArray(byteArray, length + chunk);
-      let readLen = file.read(byteArray.buffer, length, chunk);
-      length += readLen;
-      if (readLen < chunk) {
-        break;
-      }
+        // Read file into byteArray by chunk
+        let file = std.open('./build' + req.uri, 'r');
+        while (true) {
+            byteArray = enlargeArray(byteArray, length + chunk);
+            let readLen = file.read(byteArray.buffer, length, chunk);
+            length += readLen;
+            if (readLen < chunk) {
+                break;
+            }
+        }
+        content = byteArray.slice(0, length).buffer;
+        file.close();
     }
-    content = byteArray.slice(0, length).buffer;
-    file.close();
-  }
-  let contentType = 'text/html; charset=utf-8';
-  if (req.uri.endsWith('.css')) {
-    contentType = 'text/css; charset=utf-8';
-  } else if (req.uri.endsWith('.js')) {
-    contentType = 'text/javascript; charset=utf-8';
-  } else if (req.uri.endsWith('.json')) {
-    contentType = 'text/json; charset=utf-8';
-  } else if (req.uri.endsWith('.ico')) {
-    contentType = 'image/vnd.microsoft.icon';
-  } else if (req.uri.endsWith('.png')) {
-    contentType = 'image/png';
-  }
-  resp.headers = {
-    'Content-Type': contentType,
-  };
+    let contentType = 'text/html; charset=utf-8';
+    if (req.uri.endsWith('.css')) {
+        contentType = 'text/css; charset=utf-8';
+    } else if (req.uri.endsWith('.js')) {
+        contentType = 'text/javascript; charset=utf-8';
+    } else if (req.uri.endsWith('.json')) {
+        contentType = 'text/json; charset=utf-8';
+    } else if (req.uri.endsWith('.ico')) {
+        contentType = 'image/vnd.microsoft.icon';
+    } else if (req.uri.endsWith('.png')) {
+        contentType = 'image/png';
+    }
+    resp.headers = {
+        'Content-Type': contentType,
+    };
 
-  let r = resp.encode(content);
-  s.write(r);
+    let r = resp.encode(content);
+    s.write(r);
 }
 
 async function server_start() {
-  print('listen 8002...');
-  try {
-    let s = new net.WasiTcpServer(8002);
-    for (var i = 0; ; i++) {
-      let cs = await s.accept();
-      handle_client(cs);
+    print('listen 8002...');
+    try {
+        let s = new net.WasiTcpServer(8002);
+        for (var i = 0; ; i++) {
+            let cs = await s.accept();
+            handle_client(cs);
+        }
+    } catch (e) {
+        print(e);
     }
-  } catch (e) {
-    print(e);
-  }
 }
 
 server_start();
@@ -460,9 +460,9 @@ server_start();
 
 The server renders the `<App>` component, and then sends the rendered HTML string back to the browser. Three important things are taking place here.
 
-- ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
-- The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
-- Other files from the `build` directory are read and served as needed at the requests of the browser.
+-   ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
+-   The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
+-   Other files from the `build` directory are read and served as needed at the requests of the browser.
 
 ### Step 3 — Build and deploy
 
@@ -472,7 +472,7 @@ Create a new Babel configuration file named `.babelrc.json` in the project's roo
 
 ```json
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"]
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
 ```
 
@@ -481,35 +481,39 @@ Create a webpack config for the server that uses Babel Loader to transpile the c
 ```js
 const path = require('path');
 module.exports = {
-  entry: './server/index.js',
-  externals: [{wasi_http: 'wasi_http'}, {wasi_net: 'wasi_net'}, {std: 'std'}],
-  output: {
-    path: path.resolve('server-build'),
-    filename: 'index.js',
-    chunkFormat: 'module',
-    library: {
-      type: 'module',
-    },
-  },
-  experiments: {
-    outputModule: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: 'babel-loader',
-      },
-      {
-        test: /\.css$/,
-        use: ['css-loader'],
-      },
-      {
-        test: /\.svg$/,
-        use: ['svg-url-loader'],
-      },
+    entry: './server/index.js',
+    externals: [
+        { wasi_http: 'wasi_http' },
+        { wasi_net: 'wasi_net' },
+        { std: 'std' },
     ],
-  },
+    output: {
+        path: path.resolve('server-build'),
+        filename: 'index.js',
+        chunkFormat: 'module',
+        library: {
+            type: 'module',
+        },
+    },
+    experiments: {
+        outputModule: true,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+            },
+            {
+                test: /\.css$/,
+                use: ['css-loader'],
+            },
+            {
+                test: /\.svg$/,
+                use: ['svg-url-loader'],
+            },
+        ],
+    },
 };
 ```
 
@@ -533,8 +537,8 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 },
 ```
 
-- The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+-   The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
+-   The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 
@@ -567,7 +571,7 @@ Alternatively, you could use the [rollup.js](https://rollupjs.org/guide/en/) too
 Create a rollup config for the server that uses Babel Loader to transpile the code. Start by creating the `rollup.config.js` file in the project's root directory.
 
 ```js
-const {babel} = require('@rollup/plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 const nodeResolve = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const replace = require('@rollup/plugin-replace');
@@ -579,35 +583,35 @@ const css = require('rollup-plugin-import-css');
 const svg = require('rollup-plugin-svg');
 
 const babelOptions = {
-  babelrc: false,
-  presets: ['@babel/preset-react'],
-  babelHelpers: 'bundled',
+    babelrc: false,
+    presets: ['@babel/preset-react'],
+    babelHelpers: 'bundled',
 };
 
 module.exports = [
-  {
-    input: './server/index.js',
-    output: {
-      file: 'server-build/index.js',
-      format: 'esm',
+    {
+        input: './server/index.js',
+        output: {
+            file: 'server-build/index.js',
+            format: 'esm',
+        },
+        external: ['std', 'wasi_net', 'wasi_http'],
+        plugins: [
+            plugin_async(),
+            babel(babelOptions),
+            nodeResolve({ preferBuiltins: true }),
+            commonjs({ ignoreDynamicRequires: false }),
+            css(),
+            svg({ base64: true }),
+            globals(),
+            builtins(),
+            replace({
+                preventAssignment: true,
+                'process.env.NODE_ENV': JSON.stringify('production'),
+                'process.env.NODE_DEBUG': JSON.stringify(''),
+            }),
+        ],
     },
-    external: ['std', 'wasi_net', 'wasi_http'],
-    plugins: [
-      plugin_async(),
-      babel(babelOptions),
-      nodeResolve({preferBuiltins: true}),
-      commonjs({ignoreDynamicRequires: false}),
-      css(),
-      svg({base64: true}),
-      globals(),
-      builtins(),
-      replace({
-        preventAssignment: true,
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        'process.env.NODE_DEBUG': JSON.stringify(''),
-      }),
-    ],
-  },
 ];
 ```
 
@@ -647,8 +651,8 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 },
 ```
 
-- The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+-   The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
+-   The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 

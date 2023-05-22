@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 8.6.1 Deploy with containerd's runwasi
 
+<!-- prettier-ignore -->
 :::info
 Work in Progress
 :::

@@ -6,16 +6,16 @@ sidebar_position: 1
 
 The WasmEdge Runtime releases come with pre-built binaries for the Android OS. Why WasmEdge on Android?
 
-* Native speed & sandbox safety for Android apps
-* Support multiple dev languages — eg C, [Rust](/category/develop-wasm-apps-in-rust), [Go](../../../../category/develop-wasm-apps-in-go) & [JS](../../../../category/develop-wasm-apps-in-javascript)
-* [Embed 3rd party functions](../../../../embed/overview.md) in your android app
-* [Kubernetes managed](../../../../category/deploy-wasmedge-apps-in-kubernetes) android apps
+-   Native speed & sandbox safety for Android apps
+-   Support multiple dev languages — eg C, [Rust](/category/develop-wasm-apps-in-rust), [Go](../../../../category/develop-wasm-apps-in-go) & [JS](../../../../category/develop-wasm-apps-in-javascript)
+-   [Embed 3rd party functions](../../../../embed/overview.md) in your android app
+-   [Kubernetes managed](../../../../category/deploy-wasmedge-apps-in-kubernetes) android apps
 
 However, the WasmEdge installer does not support Android. The user must download the release files to a computer, and then use the `adb` tool to transfer the files to an Android device or simulator. We will show you how to do that.
 
-* [WasmEdge CLI tools for Android](./cli.md)
-* [Call WasmEdge functions from an NDK native app](./ndk.md)
-* [Call WasmEdge functions from an Android APK app](./apk.md)
+-   [WasmEdge CLI tools for Android](./cli.md)
+-   [Call WasmEdge functions from an NDK native app](./ndk.md)
+-   [Call WasmEdge functions from an Android APK app](./apk.md)
 
 ## Build from source for Android platforms
 
@@ -27,11 +27,11 @@ Please follow this guide to build and test WasmEdge from source code with Androi
 
 We recommend developers to [use our Docker images](../linux.md##prepare-the-environment) and follow the steps to prepare the building environment.
 
-* Download and extract the [Android NDK 23b](https://developer.android.com/ndk/downloads).
-* Check the cmake for [CMake 3.21](https://cmake.org/download/) or greater version.
-* Download and install the [ADB platform tools](https://developer.android.com/studio/releases/platform-tools).
-  * If you use the debian or ubuntu Linux distributions, you can install the ADB platform tools via `apt`.
-* An Android device which is [enabled developer options and USB debugging](https://developer.android.com/studio/debug/dev-options) and with at least Android 6.0 or higher system version.
+-   Download and extract the [Android NDK 23b](https://developer.android.com/ndk/downloads).
+-   Check the cmake for [CMake 3.21](https://cmake.org/download/) or greater version.
+-   Download and install the [ADB platform tools](https://developer.android.com/studio/releases/platform-tools).
+    -   If you use the debian or ubuntu Linux distributions, you can install the ADB platform tools via `apt`.
+-   An Android device which is [enabled developer options and USB debugging](https://developer.android.com/studio/debug/dev-options) and with at least Android 6.0 or higher system version.
 
 ## Build WasmEdge for Android platforms
 
@@ -103,5 +103,5 @@ Hello 1 2 3
 
 ## Notice
 
-* For the Android 10 or greater versions, SELinux will disallow the untrusted applications' `exec()` system call to execute the binaries in `home` or `/data/local/tmp` folder.
-* The Android SELinux policy will disallow the untrusted applications to access the `/data/local/tmp` folder.
+-   For the Android 10 or greater versions, SELinux will disallow the untrusted applications' `exec()` system call to execute the binaries in `home` or `/data/local/tmp` folder.
+-   The Android SELinux policy will disallow the untrusted applications to access the `/data/local/tmp` folder.

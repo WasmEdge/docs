@@ -104,6 +104,7 @@ func main() {
 
 ## Build and run the wasm app from your go host
 
+<!-- prettier-ignore -->
 :::note
 Make sure you have installed [Go, WasmEdge, and WasmEdge Go SDK with the tensorflow extension](intro.md).
 :::

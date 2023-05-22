@@ -1,8 +1,8 @@
 {
-  "label": "Develop Wasm Apps in JavaScript",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Yes! You could run JavaScript programs in WasmEdge."
-  }
+    "label": "Develop Wasm Apps in JavaScript",
+    "position": 5,
+    "link": {
+        "type": "generated-index",
+        "description": "Yes! You could run JavaScript programs in WasmEdge."
+    }
 }
