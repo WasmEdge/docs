@@ -25,8 +25,8 @@
     "lint:style": "stylelint \"**/*.css\""
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/preset-classic": "^2.4.0",
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/preset-classic": "^2.4.1",
     "@easyops-cn/docusaurus-search-local": "^0.35.0",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.2.1",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.8",
-    "@docusaurus/eslint-plugin": "^2.4.0",
-    "@docusaurus/module-type-aliases": "^2.4.0",
+    "@docusaurus/eslint-plugin": "^2.4.1",
+    "@docusaurus/module-type-aliases": "^2.4.1",
     "eslint": "^8.35.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.7.0",
