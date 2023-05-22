@@ -27,7 +27,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-build:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
