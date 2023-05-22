@@ -8,8 +8,7 @@ In this section, we will show you how to create a Tensorflow inference function 
 
 ## The Wasm app in Rust
 
-The Rust function for image classification is [available here](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_TfliteFood/rust_tflite_food/src/lib.rs).
-It utilizes the [WasmEdge Tensorflow Lite plugin](/develop/rust/ai_inference/tensorflow_lite) as well as the [wasmedge_bindgen](/embed/go/function) for passing call parameters.
+The Rust function for image classification is [available here](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_TfliteFood/rust_tflite_food/src/lib.rs). It utilizes the [WasmEdge Tensorflow Lite plugin](/develop/rust/ai_inference/tensorflow_lite) as well as the [wasmedge_bindgen](/embed/go/function) for passing call parameters.
 
 ```rust
 #[wasmedge_bindgen]
@@ -31,7 +30,9 @@ fn infer(image_data: Vec<u8>) -> Result<Vec<u8>, String> {
   ... ...
 }
 ```
+
 ## Compile the Rust code to Wasm
+
 You can use the standard `Cargo` command to build it into a WebAssembly function.
 
 ```bash
@@ -103,9 +104,9 @@ func main() {
 
 ## Build and run the wasm app from your go host
 
-> ::note
+:::note
 Make sure you have installed [Go, WasmEdge, and WasmEdge Go SDK with the tensorflow extension](intro.md).
-::
+:::
 
 The following command builds the Go host application with the WasmEdge Go SDK and its tensorflow extension.
 
