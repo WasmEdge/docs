@@ -1,0 +1,52 @@
+name: Lint Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - docusaurus-v**
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.18.0'
+          cache: npm
+
+      - name: Cache NPM Dependencies
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      
+      - name: Check Cache
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Check immutable package-lock
+        run: git diff --exit-code
+      - name: Lint
+        run: |
+          echo "::add-matcher::.github/workflows/cspell-problem-matcher.json"
+          npm run lint:ci
+
+      - name: Prettier Code
+        run: npm run format:diff
