@@ -17,14 +17,14 @@
   width: 20px;
 }
 
-.hoverStyle{
+.hoverStyle {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.hoverStyle:hover h3{
-  text-shadow: #FC0 1px 0 10px;
+.hoverStyle:hover h3 {
+  text-shadow: #fc0 1px 0 10px;
 }
 
 .hoverStyle:hover .linkSvg {

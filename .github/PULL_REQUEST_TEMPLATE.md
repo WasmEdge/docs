@@ -22,6 +22,5 @@ Please link the GitHub issue this pull request resolves in the format of `Closes
 ## Proposed Changes
 
 <!--
-Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request. 
+Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request.
 -->
-

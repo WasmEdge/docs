@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player/lazy'
 
 ### March 16th
 
-#### Introduction to WebAssembly (WASM) with Rust and WASMEdge 
+#### Introduction to WebAssembly (WASM) with Rust and WASMEdge
 
 <ReactPlayer url='https://www.youtube.com/live/shy9DYpoHtQ' />
 
@@ -28,7 +28,7 @@ import ReactPlayer from 'react-player/lazy'
 
 ---
 
-#### Lightning Talk: Lightweight Dapr Microservices In WebAssembly - Vivian Hu, Second State 
+#### Lightning Talk: Lightweight Dapr Microservices In WebAssembly - Vivian Hu, Second State
 
 <ReactPlayer url='https://youtu.be/RQYDCEF9c8c' />
 
@@ -48,6 +48,6 @@ import ReactPlayer from 'react-player/lazy'
 
 ## 2021
 
-#### Introduction to WasmEdge, A Cloud-native WebAssembly Runtime - Michael Yuan, WasmEdge    
+#### Introduction to WasmEdge, A Cloud-native WebAssembly Runtime - Michael Yuan, WasmEdge
 
 <ReactPlayer url='https://youtu.be/9LpvgWaG_T0' />
