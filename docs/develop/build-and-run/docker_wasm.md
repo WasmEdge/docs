@@ -4,33 +4,29 @@ sidebar_position: 4
 
 # Docker + Wasm
 
-The Docker Desktop distributes with the WasmEdge Runtime embedded. That allows developers to build, share and run very lightweight containers (i.e., a `scratch` empty container with only the `.wasm` file without any Linux OS libraries or files) through Docker tools.
-Those "Wasm containers" are fully OCI-compliant and hence can be managed by Docker Hub. They are cross-platform and can run on any OS / CPU Docker supports (the OS and CPU platform is `wasi/wasm`).
-But most importantly, they are 1/10 of the size of a comparable Linux container and start up in 1/10 of the time, as the Wasm containers do not need to bundle and start Linux libraries and services.
+The Docker Desktop distributes with the WasmEdge Runtime embedded. That allows developers to build, share and run very lightweight containers (i.e., a `scratch` empty container with only the `.wasm` file without any Linux OS libraries or files) through Docker tools. Those "Wasm containers" are fully OCI-compliant and hence can be managed by Docker Hub. They are cross-platform and can run on any OS / CPU Docker supports (the OS and CPU platform is `wasi/wasm`). But most importantly, they are 1/10 of the size of a comparable Linux container and start up in 1/10 of the time, as the Wasm containers do not need to bundle and start Linux libraries and services.
 
 Together with Docker's capability to containerize developer and deployment environments, you can create and deploy complex applications without installing any dependencies. For example, you could setup a complete Rust and WasmEdge development environment without installing either tool on your local dev machine. You can also deploy a complex WasmEdge app that needs to connect to a MySQL database without having to install MySQL locally.
 
 In this guide, we will cover how to:
 
-* [Create and run a Rust program](#create-and-run-a-rust-program)
-* [Create and run a node.js server](#create-and-run-a-node-js-server)
-* [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
+- [Create and run a Rust program](#create-and-run-a-rust-program)
+- [Create and run a node.js server](#create-and-run-a-node-js-server)
+- [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
 
 ## Prerequisite
 
-Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and turn on the containerd image store feature in your Docker Desktop settings. 
+Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and turn on the containerd image store feature in your Docker Desktop settings.
 
 ![](docker_config.png)
 
 ## Create and run a Rust program
 
-With Docker + wasm, you can use the entire Rust toolchain in a Docker container to build the Wasm bytecode application, and then publish and run the Wasm application.
-The [example Rust source code and build instructions are available here](https://github.com/second-state/rust-examples/tree/main/hello).
+With Docker + wasm, you can use the entire Rust toolchain in a Docker container to build the Wasm bytecode application, and then publish and run the Wasm application. The [example Rust source code and build instructions are available here](https://github.com/second-state/rust-examples/tree/main/hello).
 
 ### Build
 
-In the project directory, run the following command to build the Rust source code into Wasm and then package the Wasm file into an empty container image.
-Notice that you do not need to install the Rust compiler toolchain here.
+In the project directory, run the following command to build the Rust source code into Wasm and then package the Wasm file into an empty container image. Notice that you do not need to install the Rust compiler toolchain here.
 
 ```bash
 $ docker buildx build --platform wasi/wasm -t secondstate/rust-example-hello .
@@ -56,7 +52,7 @@ The second part uses the Rust build environment to compile the Rust source code 
 ```dockerfile
 FROM buildbase AS build
 COPY Cargo.toml .
-COPY src ./src 
+COPY src ./src
 # Build the Wasm binary
 RUN cargo build --target wasm32-wasi --release
 ```
@@ -88,22 +84,20 @@ $ docker run --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secon
 Hello WasmEdge!
 ```
 
-That's it. 
+That's it.
 
 ### Further reading
 
 To see more Dockerized Rust example apps for WasmEdge, check out the following.
 
-* [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
-* [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
-
+- [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
+- [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
 
 ## Create and run a node.js server
 
 WasmEdge provides a node.js compatible JavaScript runtime. You can create lightweight Wasm container images that runs node.js apps. Compared with standard node.js Linux container images, the Wasm images are 1/100 of the size, completely portable, and starts up in 1/10 of the time.
 
-In this guide, the example app is an HTTP web server written in node.js.
-Its [source code and build instructions are available here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
+In this guide, the example app is an HTTP web server written in node.js. Its [source code and build instructions are available here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
 ### Build
 
@@ -145,6 +139,7 @@ COPY --link --from=build /src/wasmedge_quickjs.wasm /wasmedge_quickjs.wasm
 COPY --link --from=build /src/server.js /server.js
 COPY --link --from=build /src/modules /modules
 ```
+
 The Wasm container image for the entire node.js app is only 1MB. It is much smaller than a standard node.js image, which is 300+MB.
 
 ### Publish
@@ -157,8 +152,7 @@ $ docker push secondstate/node-example-hello
 
 ### Run and test
 
-You can use the regular Docker `run` command to run the Wasm container application. Notice that you do need to specify the `runtime` and `platform` flags to tell Docker that this is a non-Linux container and requires WasmEdge to run it.
-Since this is an HTTP server app, you also need to map the container port 8080 to host so that you can access the server from the host.
+You can use the regular Docker `run` command to run the Wasm container application. Notice that you do need to specify the `runtime` and `platform` flags to tell Docker that this is a non-Linux container and requires WasmEdge to run it. Since this is an HTTP server app, you also need to map the container port 8080 to host so that you can access the server from the host.
 
 ```bash
 $ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/node-example-server:latest
@@ -172,19 +166,18 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-That's it. 
+That's it.
 
 ### Further reading
 
-* [Use the fetch() API](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
-* [Image classification using Tensorflow Lite](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+- [Use the fetch() API](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
+- [Image classification using Tensorflow Lite](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
 
 ## Create and deploy a database driven microservice in Rust
 
-Docker + wasm allows us to build and run Wasm containers. However, in most complex applications, the Wasm container is only part of the application. It needs to work together with other Linux containers in the system.
-The [Docker compose](https://docs.docker.com/compose/) tool is widely used to compose and manage multi-container deployments. It is installed with Docker Desktop.
+Docker + wasm allows us to build and run Wasm containers. However, in most complex applications, the Wasm container is only part of the application. It needs to work together with other Linux containers in the system. The [Docker compose](https://docs.docker.com/compose/) tool is widely used to compose and manage multi-container deployments. It is installed with Docker Desktop.
 
-In our [example microservice application](https://github.com/second-state/microservice-rust-mysql), there is an Nginx web server and a MySQL database. The Wasm container is only for the Rust application that accesses the database and processes the HTTP requests (i.e., the application server). 
+In our [example microservice application](https://github.com/second-state/microservice-rust-mysql), there is an Nginx web server and a MySQL database. The Wasm container is only for the Rust application that accesses the database and processes the HTTP requests (i.e., the application server).
 
 :::note
 For more Docker compose examples, including Linux containers + Wasm containers mixed deployments, check out the [awesome-compose](https://github.com/docker/awesome-compose) repo.
@@ -226,13 +219,13 @@ services:
       MYSQL_ROOT_PASSWORD: whalehello
 ```
 
-* The `client` container is an Nginx web server
-  * Linux container with mapped HTTP port and volume for the static HTML/JS files
-* The `server` container is a Rust container for the business logic
-  * The Wasm container is built from [Rust source code](https://github.com/second-state/microservice-rust-mysql/blob/main/src/main.rs) using this [Dockerfile](https://github.com/second-state/microservice-rust-mysql/blob/main/Dockerfile)
-  * Wasm container with mapped web service port and an environment variable for the database connection string
-* The `db` container is a MySQL database
-  * Linux container with a pre-set database password
+- The `client` container is an Nginx web server
+  - Linux container with mapped HTTP port and volume for the static HTML/JS files
+- The `server` container is a Rust container for the business logic
+  - The Wasm container is built from [Rust source code](https://github.com/second-state/microservice-rust-mysql/blob/main/src/main.rs) using this [Dockerfile](https://github.com/second-state/microservice-rust-mysql/blob/main/Dockerfile)
+  - Wasm container with mapped web service port and an environment variable for the database connection string
+- The `db` container is a MySQL database
+  - Linux container with a pre-set database password
 
 ### Deploy
 

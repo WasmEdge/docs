@@ -4,7 +4,6 @@ sidebar_position: 2
 
 # 2.2.4.2 CLI Tools
 
-
 In this section, we will show you how to use WasmEdge CLI tools on Android devices. We will showcase a full WasmEdge demo to perform image classification (Tensorflow-based AI inference) on an Android device.
 
 ## Install Android version of WasmEdge-TensorFlow-Tools

@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
   WasmEdge_ConfigureAddHostRegistration(ConfCxt, WasmEdge_HostRegistration_Wasi);
   WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(ConfCxt, NULL);
   WasmEdge_ConfigureDelete(ConfCxt);
-  
+
   /* Create the image and TFLite import objects. */
   WasmEdge_ModuleInstanceContext *ImageImpObj = WasmEdge_Image_ModuleInstanceCreate();
   WasmEdge_ModuleInstanceContext *TFLiteImpObj = WasmEdge_TensorflowLite_ModuleInstanceCreate();

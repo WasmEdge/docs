@@ -4,7 +4,6 @@ sidebar_position: 1
 
 # 2.2.1 Build on Linux
 
-
 ## Get the Source Code
 
 ```bash
@@ -25,7 +24,6 @@ docker pull wasmedge/wasmedge # Pulls the latest - wasmedge/wasmedge:latest
 ```
 
 Or you can pull with the [available tags](/contribute/source/docker.md#docker-images-for-building-wasmedge).
-
 
 ### Install Dependencies on Ubuntu Manually
 
@@ -84,13 +82,12 @@ sudo apt install -y clang-12
 
 Our development environment requires `libLLVM-12` and `>=GLIBCXX_3.4.33`.
 
-If users are using operating systems older than Ubuntu 20.04, please use our special docker image to build WasmEdge.
-If you are looking for the pre-built binaries for the older operating system, we also provide several pre-built binaries based on `manylinux*` distributions.
+If users are using operating systems older than Ubuntu 20.04, please use our special docker image to build WasmEdge. If you are looking for the pre-built binaries for the older operating system, we also provide several pre-built binaries based on `manylinux*` distributions.
 
-| Docker Image                              | Base Image  | Provided Requirements                                                    |
-| ---                                       | ---         | ---                                                                      |
-| `wasmedge/wasmedge:manylinux2014_x86_64`  | CentOS 7.9  | GLIBC <= 2.17<br/>CXXABI <= 1.3.7<br/>GLIBCXX <= 3.4.19<br/>GCC <= 4.8.0 |
-| `wasmedge/wasmedge:manylinux2014_aarch64` | CentOS 7.9  | GLIBC <= 2.17<br/>CXXABI <= 1.3.7<br/>GLIBCXX <= 3.4.19<br/>GCC <= 4.8.0 |
+| Docker Image | Base Image | Provided Requirements |
+| --- | --- | --- |
+| `wasmedge/wasmedge:manylinux2014_x86_64` | CentOS 7.9 | GLIBC <= 2.17<br/>CXXABI <= 1.3.7<br/>GLIBCXX <= 3.4.19<br/>GCC <= 4.8.0 |
+| `wasmedge/wasmedge:manylinux2014_aarch64` | CentOS 7.9 | GLIBC <= 2.17<br/>CXXABI <= 1.3.7<br/>GLIBCXX <= 3.4.19<br/>GCC <= 4.8.0 |
 
 ## Build WasmEdge
 

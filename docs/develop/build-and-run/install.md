@@ -4,8 +4,7 @@ sidebar_position: 1
 
 # Install and uninstall WasmEdge
 
-In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms.
-We will cover how to install plugins to WasmEdge.
+In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms. We will cover how to install plugins to WasmEdge.
 
 :::note
 Docker Desktop 4.15+ already has WasmEdge bundled in its distribution binary. If you use Docker Desktop, you will not need to install WasmEdge separately. Check out [how to run WasmEdge apps in Docker Desktop.](docker_wasm)
@@ -39,8 +38,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 #### Install a specific version of WasmEdge
 
-The WasmEdge installer script will install the latest official release by default.
-You could install a specific version of WasmEdge, including pre-releases or old releases by passing the `-v` argument to the installer script. Here is an example.
+The WasmEdge installer script will install the latest official release by default. You could install a specific version of WasmEdge, including pre-releases or old releases by passing the `-v` argument to the installer script. Here is an example.
 
 ```bash
 VERSION=0.12.1
@@ -89,7 +87,7 @@ WasmEdge now is an official package on Fedora 36, Fedora 37, Fedora 38, Fedora E
 dnf install wasmedge
 ```
 
-For more usages, please check out Fedora docs. 
+For more usages, please check out Fedora docs.
 
 To install plugins, you can download plugin binary modules from the WasmEdge release page, unzip them, and then copy them over to `/usr/local/lib\wasmedge\`.
 
@@ -97,14 +95,14 @@ To install plugins, you can download plugin binary modules from the WasmEdge rel
 
 If you installed into the `$HOME/.wasmedge` directory, you will have the following directories and files after installation:
 
-* The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
-  * The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
-    * Execute a WASM file: `wasmedge --dir .:. app.wasm`
-  * The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
-    * Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
-    * Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
-* The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
-* The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
+- The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
+  - The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
+    - Execute a WASM file: `wasmedge --dir .:. app.wasm`
+  - The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
+    - Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
+    - Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
+- The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
+- The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
 
 :::note
 You could also change it to `/usr/local` if you did a system-wide install.
@@ -137,7 +135,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Now, the WasmEdge PyTorch plugin depends on the PyTorch C library to perform AI/ML computations. You need to install the  [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependencies in order for it to work properly.
+Now, the WasmEdge PyTorch plugin depends on the PyTorch C library to perform AI/ML computations. You need to install the [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependencies in order for it to work properly.
 
 ```bash
 export PYTORCH_VERSION="1.8.2"
