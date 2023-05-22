@@ -43,10 +43,9 @@ jobs:
 
       - name: Check immutable package-lock
         run: git diff --exit-code
+
       - name: Lint
-        run: |
-          echo "::add-matcher::.github/workflows/cspell-problem-matcher.json"
-          npm run lint:ci
+        run: npm run lint:ci
 
       - name: Prettier Code
         run: npm run format:diff
