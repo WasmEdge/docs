@@ -9,7 +9,7 @@ import styles from './index.module.css';
 import GHButton from '../components/GHButton';
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
+  const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -23,14 +23,14 @@ function HomepageHeader() {
           </Link>
         </div>
         <br />
-        <GHButton type='Star' />
+        <GHButton type="Star" />
       </div>
     </header>
   );
 }
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
+  const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -41,7 +41,11 @@ export default function Home() {
       </main>
       <div className={clsx('homepageCNCFLogo', styles.homepageCNCFLogo)}>
         <h2 className="hero_subtitle">
-          WasmEdge is a <a href="https://cncf.io/">CNCF (Cloud Native Computing Foundation)</a> sandbox project
+          WasmEdge is a{' '}
+          <a href="https://cncf.io/">
+            CNCF (Cloud Native Computing Foundation)
+          </a>{' '}
+          sandbox project
         </h2>
         <div className={clsx('cncf-logo', styles.cncfLogo)} />
         <br />
