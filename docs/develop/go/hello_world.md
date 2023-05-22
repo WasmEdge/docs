@@ -10,8 +10,7 @@ The Golang is adding WASI support. Stay tuned!
 
 ## Install TinyGo
 
-You must have [Go already installed](https://go.dev/doc/install) on your machine before installing TinyGo. Go v1.17 or above is recommended.
-For Ubuntu or other Debian-based Linux systems on x86 processors, you could use the following command line to install TinyGo. For other platforms, please refer to [TinyGo docs](https://tinygo.org/getting-started/install/).
+You must have [Go already installed](https://go.dev/doc/install) on your machine before installing TinyGo. Go v1.17 or above is recommended. For Ubuntu or other Debian-based Linux systems on x86 processors, you could use the following command line to install TinyGo. For other platforms, please refer to [TinyGo docs](https://tinygo.org/getting-started/install/).
 
 ```bash
 wget https://github.com/tinygo-org/tinygo/releases/download/v0.21.0/tinygo_0.21.0_amd64.deb
@@ -27,8 +26,7 @@ tinygo version 0.21.0 linux/amd64 (using go version go1.16.7 and LLVM version 11
 
 ## Hello world
 
-The simple Go app has a `main()` function to print a message to the console.
-The source code in `main.go` file is as follows.
+The simple Go app has a `main()` function to print a message to the console. The source code in `main.go` file is as follows.
 
 ```go
 package main
@@ -96,8 +94,7 @@ You will see a file named `fib.wasm` in the same directory. This is a WebAssembl
 
 ### A simple function: Run
 
-You can run it with the [WasmEdge CLI](../build-and-run/cli) in its `--reactor` mode.
-The command line arguments that follow the `wasm` file are the function name and its call parameters.
+You can run it with the [WasmEdge CLI](../build-and-run/cli) in its `--reactor` mode. The command line arguments that follow the `wasm` file are the function name and its call parameters.
 
 ```bash
 $ wasmedge --reactor fib.wasm fibArray 10

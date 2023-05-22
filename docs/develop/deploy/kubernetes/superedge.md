@@ -30,7 +30,6 @@ arch=amd64 version=v0.6.0 && rm -rf edgeadm-linux-* && wget https://superedge-12
 ./edgeadm join <Master Public/Intranet IP Or Domain>:Port --token xxxx --discovery-token-ca-cert-hash sha256:xxxxxxxxxx --install-pkg-path <edgeadm kube-* install package address path> --enable-edge=true --runtime=containerd
 ```
 
-
 Other installation, deployment, and administration, see our [**Tutorial**](https://superedge.io/docs/installation/)
 
 ## Install WasmEdge

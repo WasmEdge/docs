@@ -12,7 +12,7 @@ With [rollup.js](https://rollupjs.org/guide/en/), we can run CommonJS (CJS) and 
 
 ## Run the example
 
-The [simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) demo shows how it works. 
+The [simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) demo shows how it works.
 
 First, you will need to use the NPM command to rollup the dependency modules into a single JavaScript file.
 
@@ -33,6 +33,7 @@ sqrt(-4)= 2i
 ```
 
 ## Code explanation
+
 The [simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) utilizes the third-party `md5` and `mathjs` modules.
 
 ```javascript
@@ -56,7 +57,7 @@ const builtins = require('rollup-plugin-node-builtins');
 const plugin_async = require('rollup-plugin-async');
 
 const babelOptions = {
-  'presets': ['@babel/preset-react']
+  presets: ['@babel/preset-react'],
 };
 
 module.exports = [
@@ -67,7 +68,7 @@ module.exports = [
       file: 'dist/npm_main.mjs',
       format: 'esm',
     },
-    external: ['process', 'wasi_net','std'],
+    external: ['process', 'wasi_net', 'std'],
     plugins: [
       plugin_async(),
       nodeResolve(),

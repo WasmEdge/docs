@@ -6,4 +6,3 @@
     "description": "Run AI Inference function based on TensorFlow, OpenVINO, Pytorch, and TensorFlow-lite in WasmEdge."
   }
 }
-

@@ -1,22 +1,22 @@
 ---
 sidebar_position: 3
 ---
+
 # 8.6.3 CRI-O + crun
 
 ## Quick start
 
-The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example
-apps on CRI-O.
+The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on CRI-O.
 
-* Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio.yml)
-* HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio-server.yml)
+- Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio.yml)
+- HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio-server.yml)
 
 In the sections below, we will explain the steps in the quick start scripts.
 
-* [Install CRI-O](#install-cri-o)
-* [Configure CRI-O and crun](#configure-cri-o-to-use-crun)
-* [Example 1: Simple WebAssembly](#run-a-simple-webassembly-app)
-* [Example 2: HTTP server in WebAssembly](#run-a-http-server-app)
+- [Install CRI-O](#install-cri-o)
+- [Configure CRI-O and crun](#configure-cri-o-to-use-crun)
+- [Example 1: Simple WebAssembly](#run-a-simple-webassembly-app)
+- [Example 2: HTTP server in WebAssembly](#run-a-http-server-app)
 
 ## Install CRI-O
 
@@ -41,8 +41,7 @@ systemctl start crio
 
 ## Configure CRI-O to use crun
 
-CRI-O uses the `runc` runtime by default and we need to configure it to use `crun` instead.
-That is done by adding to two configuration files.
+CRI-O uses the `runc` runtime by default and we need to configure it to use `crun` instead. That is done by adding to two configuration files.
 
 > Make sure that you have [built and installed the `crun` binary with WasmEdge support](../oci-runtime/crun.md) before starting the following steps.
 
@@ -77,20 +76,13 @@ systemctl restart crio
 
 ## Run a simple WebAssembly app
 
-Now, we can run a simple WebAssembly program using CRI-O.
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly
-program as a container image to Docker hub.
-In this section, we will start off pulling this WebAssembly-based container
-image from Docker hub using CRI-O tools.
+Now, we can run a simple WebAssembly program using CRI-O. [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub. In this section, we will start off pulling this WebAssembly-based container image from Docker hub using CRI-O tools.
 
 ```bash
 sudo crictl pull docker.io/hydai/wasm-wasi-example:with-wasm-annotation
 ```
 
-Next, we need to create two simple configuration files that specifies how
-CRI-O should run this WebAssembly image in a sandbox. We already have those
-two files [container_wasi.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/container_wasi.json) and [sandbox_config.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/sandbox_config.json).
-You can just download them to your local directory as follows.
+Next, we need to create two simple configuration files that specifies how CRI-O should run this WebAssembly image in a sandbox. We already have those two files [container_wasi.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/container_wasi.json) and [sandbox_config.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/sandbox_config.json). You can just download them to your local directory as follows.
 
 ```bash
 wget https://raw.githubusercontent.com/second-state/wasmedge-containers-examples/main/crio/sandbox_config.json
@@ -166,26 +158,17 @@ File content is This is in a file
 Test 7: Delete the previous file
 ```
 
-
 Next, you can try to run the app in [Kubernetes](../kubernetes/kubernetes-cri-o.md)!
-
 
 ## Run a HTTP server app
 
-Finally, we can run a simple WebAssembly-based HTTP micro-service in CRI-O.
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly
-program as a container image to Docker hub.
-In this section, we will start off pulling this WebAssembly-based container
-image from Docker hub using CRI-O tools.
+Finally, we can run a simple WebAssembly-based HTTP micro-service in CRI-O. [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub. In this section, we will start off pulling this WebAssembly-based container image from Docker hub using CRI-O tools.
 
 ```bash
 sudo crictl pull docker.io/avengermojo/http_server:with-wasm-annotation
 ```
 
-Next, we need to create two simple configuration files that specifies how
-CRI-O should run this WebAssembly image in a sandbox. We already have those
-two files [container_http_server.json](https://raw.githubusercontent.com/second-state/wasmedge-containers-examples/main/crio/http_server/container_http_server.json) and [sandbox_config.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/sandbox_config.json).
-You can just download them to your local directory as follows.
+Next, we need to create two simple configuration files that specifies how CRI-O should run this WebAssembly image in a sandbox. We already have those two files [container_http_server.json](https://raw.githubusercontent.com/second-state/wasmedge-containers-examples/main/crio/http_server/container_http_server.json) and [sandbox_config.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/sandbox_config.json). You can just download them to your local directory as follows.
 
 > The `sandbox_config.json` file is the same for the simple WASI example and the HTTP server example. The other `container_*.json` file is application specific as it contains the application's Docker Hub URL.
 
@@ -215,7 +198,7 @@ Starting the container would execute the WebAssembly program. You can see the ou
 # Start the container
 $ sudo crictl start $CONTAINER_ID
 
-# Check the container status. It should be Running. 
+# Check the container status. It should be Running.
 # If not, wait a few seconds and check again
 $ sudo crictl ps -a
 CONTAINER           IMAGE                                          CREATED                  STATE               NAME                ATTEMPT             POD ID
@@ -235,4 +218,3 @@ echo: name=WasmEdge
 ```
 
 Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-cri-o.md)!
-

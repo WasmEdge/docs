@@ -4,21 +4,18 @@ sidebar_position: 2
 
 # 8.6.2 Kubernetes + CRI-O + crun
 
-
 ## Quick start
 
 The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + CRI-O + crun.
 
-* Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
-* WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
+- Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
+- WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
 
-In the rest of this section, we will explain the steps in detail.
-We will assume that you have already [installed and configured CRI-O](../oci-runtime/crun.md) to work with WasmEdge container images.
+In the rest of this section, we will explain the steps in detail. We will assume that you have already [installed and configured CRI-O](../oci-runtime/crun.md) to work with WasmEdge container images.
 
 ## Install and start Kubernetes
 
-Run the following commands from a terminal window.
-It sets up Kubernetes for local development.
+Run the following commands from a terminal window. It sets up Kubernetes for local development.
 
 ```bash
 # Install go
@@ -46,13 +43,12 @@ sudo CGROUP_DRIVER=systemd CONTAINER_RUNTIME=remote CONTAINER_RUNTIME_ENDPOINT='
 ... ...
 Local Kubernetes cluster is running. Press Ctrl-C to shut it down.
 ```
-  
+
 Do NOT close your terminal window. Kubernetes is running!
 
 ## Run WebAssembly container images in Kubernetes
 
-Finally, we can run WebAssembly programs in Kubernetes as containers in pods.
-In this section, we will start from **another terminal window** and start using the cluster.
+Finally, we can run WebAssembly programs in Kubernetes as containers in pods. In this section, we will start from **another terminal window** and start using the cluster.
 
 ```bash
 export KUBERNETES_PROVIDER=local
@@ -82,8 +78,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ### A simple WebAssembly app
 
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly WASI program as a container image to Docker hub.
-Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly WASI program as a container image to Docker hub. Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
 
 ```bash
 sudo cluster/kubectl.sh run -it --rm --restart=Never wasi-demo --image=wasmedge/example-wasi:latest --annotations="module.wasm.image/variant=compat-smart" /wasi_example_main.wasm 50000000
@@ -106,8 +101,7 @@ pod "wasi-demo-2" deleted
 
 ### A WebAssembly-based HTTP service
 
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub.
-Since the HTTP service container requires networking support provided by Kubernetes, we will use a [k8s-http_server.yaml](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/k8s-http_server.yaml) file to specify its exact configuration.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub. Since the HTTP service container requires networking support provided by Kubernetes, we will use a [k8s-http_server.yaml](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/k8s-http_server.yaml) file to specify its exact configuration.
 
 ```yaml
 apiVersion: v1
@@ -120,17 +114,17 @@ metadata:
 spec:
   hostNetwork: true
   containers:
-  - name: http-server
-    image: wasmedge/example-wasi-http:latest
-    command: [ "/http_server.wasm" ]
-    ports:
-    - containerPort: 1234
-      protocol: TCP
-    livenessProbe:
-      tcpSocket:
-        port: 1234
-      initialDelaySeconds: 3
-      periodSeconds: 30
+    - name: http-server
+      image: wasmedge/example-wasi-http:latest
+      command: ['/http_server.wasm']
+      ports:
+        - containerPort: 1234
+          protocol: TCP
+      livenessProbe:
+        tcpSocket:
+          port: 1234
+        initialDelaySeconds: 3
+        periodSeconds: 30
 ```
 
 Run the WebAssembly-based image from Docker Hub using the above `k8s-http_server.yaml` file in the Kubernetes cluster as follows.
@@ -139,8 +133,7 @@ Run the WebAssembly-based image from Docker Hub using the above `k8s-http_server
 sudo ./kubernetes/cluster/kubectl.sh apply -f k8s-http_server.yaml
 ```
 
-Use the following command to see the running container applications and their IP addresses.
-Since we are using `hostNetwork` in the yaml configuration, the HTTP server image is running on the local network with IP address `127.0.0.1`.
+Use the following command to see the running container applications and their IP addresses. Since we are using `hostNetwork` in the yaml configuration, the HTTP server image is running on the local network with IP address `127.0.0.1`.
 
 ```bash
 $ sudo cluster/kubectl.sh get pod --all-namespaces -o wide

@@ -12,22 +12,18 @@ In this article, we will introduce how to run a WasmEdge simple demo app with Co
 
 ## Set up an OpenYurt Cluster
 
-Here, we introduce two ways to set up an OpenYurt Cluster.
-The first one is to set up an OpenYurt Cluster from scratch, use `yurtctl convert` to realize a K8s Cluster conversion to an OpenYurt Cluster.
-The second one is to use the ability of OpenYurt Experience Center, which is easy to achieve an OpenYurt Cluster.
+Here, we introduce two ways to set up an OpenYurt Cluster. The first one is to set up an OpenYurt Cluster from scratch, use `yurtctl convert` to realize a K8s Cluster conversion to an OpenYurt Cluster. The second one is to use the ability of OpenYurt Experience Center, which is easy to achieve an OpenYurt Cluster.
 
 ### Prerequisite
 
-|        | OS/kernel                            | Private IP/Public IP         |
-| ------ | ------------------------------------ | ---------------------------- |
-| Master | Ubuntu  20.04.3 LTS/5.4.0-91-generic | 192.168.3.169/120.55.126.18  |
-| Node   | Ubuntu  20.04.3 LTS/5.4.0-91-generic | 192.168.3.170/121.43.113.152 |  
+|        | OS/kernel                           | Private IP/Public IP         |
+| ------ | ----------------------------------- | ---------------------------- |
+| Master | Ubuntu 20.04.3 LTS/5.4.0-91-generic | 192.168.3.169/120.55.126.18  |
+| Node   | Ubuntu 20.04.3 LTS/5.4.0-91-generic | 192.168.3.170/121.43.113.152 |
 
-It should be noted that some steps may differ slightly depending on the operating system differences.
-Please refer to the installation of [OpenYurt](https://github.com/openyurtio/openyurt) and [crun](https://github.com/containers/crun).
+It should be noted that some steps may differ slightly depending on the operating system differences. Please refer to the installation of [OpenYurt](https://github.com/openyurtio/openyurt) and [crun](https://github.com/containers/crun).
 
-We use `yurtctl convert` to convert a K8s Cluster to OpenYurt Cluster, so we should set up a K8s Cluster.
-If you use `yurtctl init/join` to set up an OpenYurt Cluster, you can skip this step which introduces the process of installing K8s.
+We use `yurtctl convert` to convert a K8s Cluster to OpenYurt Cluster, so we should set up a K8s Cluster. If you use `yurtctl init/join` to set up an OpenYurt Cluster, you can skip this step which introduces the process of installing K8s.
 
 Find the difference between `yurtctl convert/revert` and `yurtctl init/join`, you can refer to the following two articles.
 
@@ -46,7 +42,7 @@ free -m
 - Configure the file /etc/hosts of two nodes as the following.
 
 ```bash
-192.168.3.169  oy-master 
+192.168.3.169  oy-master
 120.55.126.18  oy-master
 92.168.3.170   oy-node
 121.43.113.152 oy-node
@@ -57,14 +53,14 @@ free -m
 ```bash
 //load the module
 sudo modprobe br_netfilter
-//verify   
+//verify
 lsmod | grep br_netfilter
 // create k8s.conf
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
-sudo sysctl --system 
+sudo sysctl --system
 ```
 
 - Setup the value of rp-filter (adjusting the value of two parameters in `/etc/sysctl.d/10-network-security.conf` from 2 to 1 and setting up the value of /proc/sys/net/ipv4/ip_forward to 1)
@@ -144,8 +140,7 @@ sudo make install
 
 ### From scratch set up an OpenYurt Cluster
 
-In this demo, we will use two machines to set up an OpenYurt Cluster. One simulated cloud node is called Master, the other one simulated edge node is called Node. These two nodes form the simplest
-OpenYurt Cluster, where OpenYurt components run on.
+In this demo, we will use two machines to set up an OpenYurt Cluster. One simulated cloud node is called Master, the other one simulated edge node is called Node. These two nodes form the simplest OpenYurt Cluster, where OpenYurt components run on.
 
 #### Set up a K8s Cluster
 
@@ -158,7 +153,7 @@ $ curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-k
 $ sudo tee /etc/apt/sources.list.d/kubernetes.list <<EOF
 $ deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 // install K8s components 1.18.9
-$ sudo apt-get update && sudo apt-get install -y kubelet=1.18.9-00 kubeadm=1.18.9-00 kubectl=1.18.9-00 
+$ sudo apt-get update && sudo apt-get install -y kubelet=1.18.9-00 kubeadm=1.18.9-00 kubectl=1.18.9-00
 // Initialize the master node
 $ sudo kubeadm init --pod-network-cidr 172.16.0.0/16 \
 --apiserver-advertise-address=192.168.3.167 \
@@ -193,8 +188,7 @@ yurtctl convert --deploy-yurttunnel --cloud-nodes oy-master --provider kubeadm\
 
 We need to change the `openyurt/node-server-version` to latest here: `--node-servant-image="openyurt/node-servant:latest"`
 
-Actually, OpenYurt components 0.6.0 version is recommended to be installed and proved to be a success to run a WasmEdge demo.
-How to install OpenYurt:0.6.0, you can see [this](https://github.com/openyurtio/openyurt/releases/tag/v0.6.0)
+Actually, OpenYurt components 0.6.0 version is recommended to be installed and proved to be a success to run a WasmEdge demo. How to install OpenYurt:0.6.0, you can see [this](https://github.com/openyurtio/openyurt/releases/tag/v0.6.0)
 
 ### Use OpenYurt Experience Center to quickly set up an OpenYurt Cluster
 
@@ -240,5 +234,5 @@ You can see the events from scheduling to running the WebAssembly workload in th
 
 ```bash
 CONTAINER           IMAGE               CREATED             STATE               NAME                 ATTEMPT             POD ID
-0c176ed65599a       0423b8eb71e31       8 seconds ago       Exited              wasi-demo  
+0c176ed65599a       0423b8eb71e31       8 seconds ago       Exited              wasi-demo
 ```

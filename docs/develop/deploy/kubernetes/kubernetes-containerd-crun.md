@@ -8,8 +8,8 @@ sidebar_position: 1
 
 The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + containerd + crun.
 
-* Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd.yml)
-* WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd-server.yml)
+- Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd.yml)
+- WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd-server.yml)
 
 In the rest of this section, we will explain the steps in detail.
 
@@ -17,8 +17,7 @@ We will assume that you have already [installed and configured containerd](../cr
 
 ## Install and start Kubernetes
 
-Run the following commands from a terminal window.
-It sets up Kubernetes for local development.
+Run the following commands from a terminal window. It sets up Kubernetes for local development.
 
 ```bash
 # Install go
@@ -46,13 +45,12 @@ $ sudo CGROUP_DRIVER=systemd CONTAINER_RUNTIME=remote CONTAINER_RUNTIME_ENDPOINT
 ... ...
 Local Kubernetes cluster is running. Press Ctrl-C to shut it down.
 ```
-  
+
 Do NOT close your terminal window. Kubernetes is running!
 
 ## Run WebAssembly container images in Kubernetes
 
-Finally, we can run WebAssembly programs in Kubernetes as containers in pods.
-In this section, we will start from **another terminal window** and start using the cluster.
+Finally, we can run WebAssembly programs in Kubernetes as containers in pods. In this section, we will start from **another terminal window** and start using the cluster.
 
 ```bash
 export KUBERNETES_PROVIDER=local
@@ -82,8 +80,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ### A simple WebAssembly app
 
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly WASI program as a container image to Docker hub.
-Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly WASI program as a container image to Docker hub. Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
 
 ```bash
 sudo cluster/kubectl.sh run -it --rm --restart=Never wasi-demo --image=wasmedge/example-wasi:latest --annotations="module.wasm.image/variant=compat-smart" --overrides='{"kind":"Pod", "apiVersion":"v1", "spec": {"hostNetwork": true}}' /wasi_example_main.wasm 50000000
@@ -106,15 +103,13 @@ pod "wasi-demo-2" deleted
 
 ### A WebAssembly-based HTTP service
 
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub.
-Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
+[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub. Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
 
 ```bash
 sudo cluster/kubectl.sh run --restart=Never http-server --image=wasmedge/example-wasi-http:latest --annotations="module.wasm.image/variant=compat-smart" --overrides='{"kind":"Pod", "apiVersion":"v1", "spec": {"hostNetwork": true}}'
 ```
 
-Since we are using `hostNetwork` in the `kubectl run` command, the HTTP server image is running on the local network with IP address `127.0.0.1`.
-Now, you can use the `curl` command to access the HTTP service.
+Since we are using `hostNetwork` in the `kubectl run` command, the HTTP server image is running on the local network with IP address `127.0.0.1`. Now, you can use the `curl` command to access the HTTP service.
 
 ```bash
 $ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234

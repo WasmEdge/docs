@@ -52,10 +52,9 @@ setTimeout(() => {
 }, 2000);
 ```
 
-## Build it yourself 
+## Build it yourself
 
 This section is optional. Read on if you are interested in [adding custom built-in JavaScript APIs](rust) to the runtime.
-
 
 Following the instructions, you will be able to build a JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
 
@@ -64,6 +63,7 @@ Following the instructions, you will be able to build a JavaScript interpreter f
 sudo apt update
 sudo apt install build-essential
 ```
+
 Then, we could build the WasmEdge-Quickjs runtime.
 
 Fork or clone [the wasmedge-quickjs Github repository](https://github.com/second-state/wasmedge-quickjs).

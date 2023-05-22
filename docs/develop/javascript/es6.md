@@ -4,7 +4,6 @@ sidebar_position: 6
 
 # 5.6 ES6 Modules
 
-
 The WasmEdge QuickJS runtime supports ES6 modules. In fact, the rollup commands we used in the [React SSR](ssr) examples convert and bundle CommonJS and NPM modules into ES6 modules so that they can be executed in WasmEdge QuickJS. This article will show you how to use ES6 module in WasmEdge.
 
 ## Prerequisites
@@ -13,8 +12,7 @@ The WasmEdge QuickJS runtime supports ES6 modules. In fact, the rollup commands 
 
 ## Run the example
 
-We will take the example in [example_js/es6_module_demo](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/es6_module_demo) folder as an example. 
-To run the example, you can do the following on the CLI.
+We will take the example in [example_js/es6_module_demo](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/es6_module_demo) folder as an example. To run the example, you can do the following on the CLI.
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/es6_module_demo/demo.js
@@ -32,7 +30,7 @@ Make sure that run those commands from the `wasmedge-quickjs` directory. [Here i
 The [module_def.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/es6_module_demo/module_def.js) file defines and exports a simple JS function.
 
 ```javascript
-function hello(){
+function hello() {
   console.log('hello from module_def.js');
 }
 
@@ -65,5 +63,3 @@ var f = async () => {
 
 f();
 ```
-
-

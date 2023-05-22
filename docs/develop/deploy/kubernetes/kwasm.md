@@ -4,10 +4,10 @@ sidebar_position: 10
 
 # 8.6.10 Kwasm
 
-
 [Kwasm](https://kwasm.sh/) is a Kubernetes Operator that adds WebAssembly support to your Kubernetes nodes.
 
 ## Quick start
+
 You will need a running kubernetes cluster to install Kwasm operator. Here we use a fresh cluster created by [kind](https://kind.sigs.k8s.io/):
 
 ```bash
@@ -28,9 +28,9 @@ Apply the yaml file for the wasm job:
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/KWasm/kwasm-node-installer/main/example/test-job.yaml
 ```
+
 After the job finished, check the log:
 
 ```bash
 kubectl logs job/wasm-test
 ```
-

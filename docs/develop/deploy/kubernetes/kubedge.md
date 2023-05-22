@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # 8.6.6 KubeEdge
 
-KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge. 
+KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.
 
 > This demo is based on [crun's support](../../deploy/oci-runtime/crun)
 
@@ -299,7 +299,7 @@ Start Time:   Mon, 06 Dec 2021 15:45:34 +0000
 Labels:       run=wasi-demo
 Annotations:  module.wasm.image/variant: compat-smart
 Status:       Succeeded
-IP:           
+IP:
 IPs:          <none>
 Containers:
   wasi-demo:
@@ -323,9 +323,9 @@ Containers:
       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bhszr (ro)
 Conditions:
   Type           Status
-  Initialized    True 
-  Ready          False 
-  PodScheduled   True 
+  Initialized    True
+  Ready          False
+  PodScheduled   True
 Volumes:
   kube-api-access-bhszr:
     Type:                    Projected (a volume that contains injected data from multiple sources)
