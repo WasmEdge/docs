@@ -37,4 +37,8 @@ import ReleaseNotes from '@theme/ReleaseNotes';
     <p><a href="https://github.com/WasmEdge/rskafka_wasi">View releases on GitHub</a></p>
     <ReleaseNotes url='https://raw.githubusercontent.com/WasmEdge/rskafka_wasi/main/CHANGELOG.md' />
   </TabItem>
+  <TabItem value ='WasmEdge-Go-SDK' label="wasmedge-go">
+    <p><a href="https://github.com/second-state/WasmEdge-go/releases">View releases on GitHub</a></p>
+    <ReleaseNotes url='https://raw.githubusercontent.com/second-state/WasmEdge-go/master/Changelog.md' />
+ </TabItem>
 </Tabs>
