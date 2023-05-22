@@ -48,3 +48,7 @@ TIME     EVENT COMM             PID     PPID    FILENAME/EXIT CODE
 13:38:00 EXIT  dirname          121493  121492  [0] (1ms)
 13:38:00 EXIT  lesspipe         121492  121490  [0]
 ```
+
+## Other examples
+
+Each directory under `wasm-bpf/examples` represents an examples able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding wasm with `WasmEdge`
