@@ -4,32 +4,30 @@ sidebar_position: 1
 
 # WebAssembly specs
 
-
 ## WebAssembly features
 
 WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAssembly/proposals). These proposals are likely to become official WebAssembly specifications in the future.
 
-| Proposal                                  | WasmEdge CLI flag                     | WasmEdge C API enumeration                       | Default turning on | Interpreter mode   | AOT mode           |
-| ----------------------------------------- | ------------------------------------- | ------------------------------------------------ | ------------------ | ------------------ | ------------------ |
-| [Import/Export of Mutable Globals][]      | `--disable-import-export-mut-globals` | `WasmEdge_Proposal_ImportExportMutGlobals`       | ✓ (since `0.8.2`)  | ✓                  | ✓                  |
-| [Non-trapping float-to-int conversions][] | `--disable-non-trap-float-to-int`     | `WasmEdge_Proposal_NonTrapFloatToIntConversions` | ✓ (since `0.8.2`)  | ✓                  | ✓                  |
-| [Sign-extension operators][]              | `--disable-sign-extension-operators`  | `WasmEdge_Proposal_SignExtensionOperators`       | ✓ (since `0.8.2`)  | ✓                  | ✓                  |
-| [Multi-value][]                           | `--disable-multi-value`               | `WasmEdge_Proposal_MultiValue`                   | ✓ (since `0.8.2`)  | ✓                  | ✓                  |
-| [Reference Types][]                       | `--disable-reference-types`           | `WasmEdge_Proposal_ReferenceTypes`               | ✓ (since `0.8.2`)  | ✓                  | ✓                  |
-| [Bulk memory operations][]                | `--disable-bulk-memory`               | `WasmEdge_Proposal_BulkMemoryOperations`         | ✓ (since `0.8.2`)  | ✓                  | ✓                  |
-| [Fixed-width SIMD][]                      | `--disable-simd`                      | `WasmEdge_Proposal_SIMD`                         | ✓ (since `0.9.0`)  | ✓ (since `0.8.2`)  | ✓ (since `0.8.2`)  |
-| [Tail call][]                             | `--enable-tail-call`                  | `WasmEdge_Proposal_TailCall`                     |                    | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
-| [Multiple memories][]                     | `--enable-multi-memory`               | `WasmEdge_Proposal_MultiMemories`                |                    | ✓ (since `0.9.1`)  | ✓ (since `0.9.1`)  |
-| [Extended Constant Expressions][]         | `--enable-extended-const`             | `WasmEdge_Proposal_ExtendedConst`                |                    | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
-| [Threads][]                               | `--enable-threads`                    | `WasmEdge_Proposal_Threads`                      |                    | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
-
+| Proposal | WasmEdge CLI flag | WasmEdge C API enumeration | Default turning on | Interpreter mode | AOT mode |
+| --- | --- | --- | --- | --- | --- |
+| [Import/Export of Mutable Globals][] | `--disable-import-export-mut-globals` | `WasmEdge_Proposal_ImportExportMutGlobals` | ✓ (since `0.8.2`) | ✓ | ✓ |
+| [Non-trapping float-to-int conversions][] | `--disable-non-trap-float-to-int` | `WasmEdge_Proposal_NonTrapFloatToIntConversions` | ✓ (since `0.8.2`) | ✓ | ✓ |
+| [Sign-extension operators][] | `--disable-sign-extension-operators` | `WasmEdge_Proposal_SignExtensionOperators` | ✓ (since `0.8.2`) | ✓ | ✓ |
+| [Multi-value][] | `--disable-multi-value` | `WasmEdge_Proposal_MultiValue` | ✓ (since `0.8.2`) | ✓ | ✓ |
+| [Reference Types][] | `--disable-reference-types` | `WasmEdge_Proposal_ReferenceTypes` | ✓ (since `0.8.2`) | ✓ | ✓ |
+| [Bulk memory operations][] | `--disable-bulk-memory` | `WasmEdge_Proposal_BulkMemoryOperations` | ✓ (since `0.8.2`) | ✓ | ✓ |
+| [Fixed-width SIMD][] | `--disable-simd` | `WasmEdge_Proposal_SIMD` | ✓ (since `0.9.0`) | ✓ (since `0.8.2`) | ✓ (since `0.8.2`) |
+| [Tail call][] | `--enable-tail-call` | `WasmEdge_Proposal_TailCall` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
+| [Multiple memories][] | `--enable-multi-memory` | `WasmEdge_Proposal_MultiMemories` |  | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
+| [Extended Constant Expressions][] | `--enable-extended-const` | `WasmEdge_Proposal_ExtendedConst` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
+| [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
 
 The following proposals are under development and may be supported in the future:
 
-* [Component Model][]
-* [Exception handling][]
-* [Garbage collection][]
-* [WebAssembly C and C++ API][]
+- [Component Model][]
+- [Exception handling][]
+- [Garbage collection][]
+- [WebAssembly C and C++ API][]
 
 [Import/Export of Mutable Globals]: https://github.com/WebAssembly/mutable-global
 [Non-trapping float-to-int conversions]: https://github.com/WebAssembly/nontrapping-float-to-int-conversions
@@ -51,16 +49,16 @@ The following proposals are under development and may be supported in the future
 
 WasmEdge implements the following [WASI proposals](https://github.com/WebAssembly/WASI/blob/main/Proposals.md):
 
-| Proposal                       | Platforms                                                                                                          |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| [Sockets][]                    | `x86_64 Linux`, `aarch64 Linux` (since `0.10.0`)                                                                   |
-| [Crypto][]                     | `x86_64 Linux`, `aarch64 Linux` (since `0.10.1`)                                                                   |
+| Proposal | Platforms |
+| --- | --- |
+| [Sockets][] | `x86_64 Linux`, `aarch64 Linux` (since `0.10.0`) |
+| [Crypto][] | `x86_64 Linux`, `aarch64 Linux` (since `0.10.1`) |
 | [Machine Learning (wasi-nn)][] | `x86_64 Linux`, OpenVINO (since `0.10.1`), PyTorch (since `0.11.1`), and TensorFlow-Lite (since `0.11.2`) backends |
-| [proxy-wasm][]                 | `x86_64 Linux (Interpreter only)` (since `0.8.2`)                                                                  |
+| [proxy-wasm][] | `x86_64 Linux (Interpreter only)` (since `0.8.2`) |
 
 The following proposals is under development and may be supported in the future:
 
-* WebAssembly GC Proposal
+- WebAssembly GC Proposal
 
 [Sockets]: https://github.com/WebAssembly/wasi-sockets
 [Crypto]: https://github.com/WebAssembly/wasi-crypto

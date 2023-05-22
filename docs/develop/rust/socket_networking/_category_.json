@@ -6,4 +6,3 @@
     "description": "Run Tokio-based async Rust applications in WasmEdge."
   }
 }
-
