@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Bpf userspace program example with wasm_bpf plugin
 
-Currently there is a WasmEdge plugin called `wasm_bpf` which provided APIs to perform operations on eBPF program, such ad loading, attaching and polling.
+Currently, there is a WasmEdge plugin called `wasm_bpf` which provided APIs to perform operations on eBPF program, such ad loading, attaching and polling.
 
 The detailed description could be found at [https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md](https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md).
 
@@ -14,16 +14,16 @@ Here we will provide several examples to demonstrate the `wasm_bpf` plugin
 
 ## Prerequisites
 
-For simplicity, we will just reuse the `Makefile`s of [wasm-bpf](https://github.com/eunomia-bpf/wasm-bpf), since `wasmEdge_bpfPlugin` has the exactly same API as `wasm-bpf`
+For simplicity, we will just reuse the `Makefile` of [wasm-bpf](https://github.com/eunomia-bpf/wasm-bpf), since `wasmEdge_bpfPlugin` has the exactly same API as `wasm-bpf`
 
 1. Clone the [`wasm-bpf`](https://github.com/eunomia-bpf/wasm-bpf) repo.
 2. Run `make install-deps` and `make /opt/wasi-sdk` at the root of the project. This will install the build prerequisites.
 3. [Install WasmEdge](../build-and-run/install)
-4. Build and install the `wasm_bpf` plugin. Currently we have to build `wasm_bpf` plugin manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
+4. Build and install the `wasm_bpf` plugin. Currently, we have to build `wasm_bpf` plugin manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
 
 ## The bootstrap example
 
-`bootstrap` is a simple ebpf program to track the entry and exit of all processes. It will print a line of message when there is an entry of exiting event of a process. 
+`bootstrap` is a simple eBPF program to track the entry and exit of all processes. It will print a line of message when there is an entry of exiting event of a process. 
 
 Run `make` in `wasm-bpf/examples/bootstrap`, and you will find the `bootstrap.wasm`, which can be executed by `WasmEdge`.
 
@@ -51,4 +51,4 @@ TIME     EVENT COMM             PID     PPID    FILENAME/EXIT CODE
 
 ## Other examples
 
-Each directory under `wasm-bpf/examples` represents an examples able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding wasm with `WasmEdge`
+Each directory under `wasm-bpf/examples` represents an example able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding Wasm with `WasmEdge`
