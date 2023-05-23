@@ -71,6 +71,7 @@ Fork or clone [the wasmedge-quickjs Github repository](https://github.com/second
 ```bash
 # get the source code
 git clone https://github.com/second-state/wasmedge-quickjs
+cd wasmedge-quickjs
 
 # Build the QuickJS JavaScript interpreter
 cargo build --target wasm32-wasi --release
