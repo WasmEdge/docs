@@ -186,7 +186,11 @@ rm -f WasmEdge-tensorflow-deps-TFLite-$VERSION-manylinux2014_x86_64.tar.gz
 The shared library will be extracted in the current directory `./libtensorflowlite_c.so`. You can move the library to the installation path:
 
 ```bash
+# If you installed wasmedge locally as above
 mv libtensorflowlite_c.so ~/.wasmedge/lib
+
+# Or, if you installed wasmedge for all users in /usr/local/
+mv libtensorflowlite_c.so /usr/local/lib
 ```
 
 Or, you can set the environment variable: `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH}`.
