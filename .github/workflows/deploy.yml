@@ -16,13 +16,13 @@ on:
 
 jobs:
   publish:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.14.0
+          node-version: 16
           cache: 'npm'
 
       - name: Cache NPM Dependencies
