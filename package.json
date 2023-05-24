@@ -24,6 +24,10 @@
     "lint:style-fix": "stylelint --fix \"**/*.css\"",
     "lint:style": "stylelint \"**/*.css\""
   },
+  "engines": {
+    "node": ">=16.14.0",
+    "npm": ">=8.3.1"
+  },
   "dependencies": {
     "@docusaurus/core": "^2.4.0",
     "@docusaurus/preset-classic": "^2.4.0",
@@ -69,8 +73,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": ">=16.14"
   }
 }
