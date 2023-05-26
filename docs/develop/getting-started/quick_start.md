@@ -62,7 +62,7 @@ To learn more about how to create Wasm apps in Rust
 * [Rust developer guides](../../category/develop-wasm-apps-in-rust)
   * AI inference with [PyTorch](../rust/ai_inference/pytorch) and [Tensorflow Lite](../rust/ai_inference/tensorflow_lite)
   * [HTTP and HTTPS client](../rust/http_service/client)
-  * [MySQL database client](../rust/my_sql_driver)
+  * [MySQL database client](../rust/database/my_sql_driver)
   * Redis client
   * Kafka client
 

@@ -1,7 +1,7 @@
 name: CodeQL Analysis
 
 on:
-  workflow_trigger:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -25,8 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language:
-          - ['javascript']
+        language: ['javascript']
 
     steps:
       - name: Checkout
@@ -39,6 +38,3 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2.3.3
-        paths:
-          - src
-          - docs
