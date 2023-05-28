@@ -22,24 +22,36 @@ WasmEdge Rust SDK consists of four crates. In the diagram below, the blue rectan
 
 ## Usage
 
-> Notice that the correct version of WasmEdge library should be installed in your local environment in advance. The [versioning table](https://crates.io/crates/wasmedge-sdk) below provides the version information.
-
-To use `wasmedge-sdk` in your project, follow the steps below to get ready:
-
 - Deploy WasmEdge library in your local environment.
 
-  Refer to the [Quick Install](https://wasmedge.org/book/en/quick_start/install.html#quick-install) to install WasmEdge library. Or, run the following command directly to install WasmEdge library. Here, we take `WasmEdge v0.12.0` as an example.
+  Since this crate depends on the WasmEdge C API, it needs to be installed in your system first. Please refer to [WasmEdge Installation and Uninstallation](https://wasmedge.org/book/en/quick_start/install.html) to install the WasmEdge library. The versioning table below shows the version of the WasmEdge library required by each version of the `wasmedge-sdk` crate.
 
-  ```bash
-  // install WasmEdge-0.12.0 to /usr/local
-  curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr/local -v 0.12.0
-  ```
+    | wasmedge-sdk  | WasmEdge lib  | wasmedge-sys  | wasmedge-types| wasmedge-macro|
+    | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
+    | 0.8.1         | 0.12.1        | 0.13.1        | 0.4.1         | 0.3.0         |
+    | 0.8.0         | 0.12.0        | 0.13.0        | 0.4.1         | 0.3.0         |
+    | 0.7.1         | 0.11.2        | 0.12.2        | 0.3.1         | 0.3.0         |
+    | 0.7.0         | 0.11.2        | 0.12          | 0.3.1         | 0.3.0         |
+    | 0.6.0         | 0.11.2        | 0.11          | 0.3.0         | 0.2.0         |
+    | 0.5.0         | 0.11.1        | 0.10          | 0.3.0         | 0.1.0         |
+    | 0.4.0         | 0.11.0        | 0.9           | 0.2.1         | -             |
+    | 0.3.0         | 0.10.1        | 0.8           | 0.2           | -             |
+    | 0.1.0         | 0.10.0        | 0.7           | 0.1           | -             |
+
+  WasmEdge Rust SDK can automatically search the following paths for the WasmEdge library:
+
+  - `/usr/local` (Linux/macOS)
+  - `$HOME/.wasmedge` (Linux/macOS)
+
+  Note that if you have installed the WasmEdge library in a different path, you can set the `WASMEDGE_INCLUDE_DIR` and `WASMEDGE_LIB_DIR` environment variables to the path of the WasmEdge library.
 
 - Add `wasmedge-sdk` crate to your `Cargo.toml` file. Note that, according to the version table, the version of `wasmedge-sdk` matching `WasmEdge v0.12.0` is `0.8.0`.
 
   ```toml
   wasmedge-sdk = "0.8.0"
   ```
+
+**Notice:** The minimum supported Rust version is 1.67.
 
 ## Examples
 
