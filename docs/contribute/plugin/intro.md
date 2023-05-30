@@ -18,7 +18,7 @@ graph LR
     B -- Registers --> C((Wasmedge Runtime))
 ```
 
-In this diagram, the "Host Application" represents the application or environment where the Wasmedge runtime is embedded or used. The "Plugin Shared Library" refers to the library containing the plugin code and functions that extend the functionality of the Wasmedge runtime. The "Wasmedge Runtime" represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
+In this diagram, the *Host Application* represents the application or environment where the Wasmedge runtime is embedded or used. The *Plugin Shared Library* refers to the library containing the plugin code and functions that extend the functionality of the Wasmedge runtime. The *Wasmedge Runtime* represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
 
 ## Benefits of Using the WasmEdge Plugin System
 
