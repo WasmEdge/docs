@@ -12,6 +12,14 @@ A WasmEdge plugin is a software component that extends the functionality of the 
 
 WasmEdge plugins can be used in a variety of ways, depending on the specific needs of a project. Plugins can be used to add new functionality to the WasmEdge runtime, or to customize the runtime to suit the specific needs of a project. Plugins can also be used to improve performance by offloading compute-intensive tasks to edge devices, or to improve security by running code in a sandboxed environment.
 
+```mermaid
+graph LR
+    A((Host Application)) -- Loads --> B((Plugin Shared Library))
+    B -- Registers --> C((Wasmedge Runtime))
+```
+
+In this diagram, the "Host Application" represents the application or environment where the Wasmedge runtime is embedded or used. The "Plugin Shared Library" refers to the library containing the plugin code and functions that extend the functionality of the Wasmedge runtime. The "Wasmedge Runtime" represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
+
 ## Benefits of Using the WasmEdge Plugin System
 
 WasmEdge plugins are designed to extend the functionality of the WasmEdge runtime, and can be useful for developers and end-users in several ways:
