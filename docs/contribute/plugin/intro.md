@@ -8,10 +8,6 @@ While the WasmEdge language SDKs allow registering host functions from a host (w
 
 A WasmEdge plugin is a software component that extends the functionality of the WasmEdge runtime. Currently, developers can follow the guides to implement the plug-ins in [C API (recommended)](develop_plugin_c.md) or [C++](develop_plugin_cpp.md). With the help of the WasmEdge SDKs in the supported languages, developers can load and register the host functions from the plug-in shared libraries, allowing them to seamlessly integrate the plugins into the WasmEdge runtime as if they were part of the core runtime.
 
-## Usages of WasmEdge Plugin
-
-WasmEdge plugins can be used in a variety of ways, depending on the specific needs of a project. Plugins can be used to add new functionality to the WasmEdge runtime, or to customize the runtime to suit the specific needs of a project. Plugins can also be used to improve performance by offloading compute-intensive tasks to edge devices, or to improve security by running code in a sandboxed environment.
-
 ```mermaid
 graph LR
     A((Host Application)) -- Loads --> B((Plugin Shared Library))
@@ -19,6 +15,10 @@ graph LR
 ```
 
 In this diagram, the *Host Application* represents the application or environment where the Wasmedge runtime is embedded or used. The *Plugin Shared Library* refers to the library containing the plugin code and functions that extend the functionality of the Wasmedge runtime. The *Wasmedge Runtime* represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
+
+## Usages of WasmEdge Plugin
+
+WasmEdge plugins can be used in a variety of ways, depending on the specific needs of a project. Plugins can be used to add new functionality to the WasmEdge runtime, or to customize the runtime to suit the specific needs of a project. Plugins can also be used to improve performance by offloading compute-intensive tasks to edge devices, or to improve security by running code in a sandboxed environment.
 
 ## Benefits of Using WasmEdge Plugin
 
