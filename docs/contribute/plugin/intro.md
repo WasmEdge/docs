@@ -14,9 +14,35 @@ In current, developers can follow the guides to implement the plug-ins in [C API
 
 ## Loadable Plug-in
 
-Loadable plugin is a standalone `.so`/`.dylib`/`.dll` file that WasmEdge can load during runtime environment, and provide modules to be imported.
+Loadable plugins are standalone shared libraries (`.so`/`.dylib`/`.dll` files) that can be loaded by the WasmEdge runtime environment at runtime. These plugins can provide additional functionality to the WasmEdge runtime environment, such as new modules that can be imported by WebAssembly modules.
 
-Please [refer to the plugin example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string).
+To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of C/C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string.
+
+Once a loadable plugin has been created, it can be loaded by the WasmEdge runtime environment using the WasmEdge_LoadWasmFromFile or WasmEdge_LoadWasmFromBuffer API. The plugin can then be used to provide functionality to WebAssembly modules, such as access to system resources or specialized hardware.
+
+Here's a flowchart that shows the basic steps involved in creating and using a loadable plugin in WasmEdge:
+
+<div style="text-align: center;">
+  <div class="mermaid">
+    graph TD
+    A[Create Plugin]
+    B[Compile Plugin]
+    C[Load Plugin]
+    D[Register Plugin]
+    E[Load WebAssembly Module]
+    F[Import Plugin Module]
+    G[Execute WebAssembly Module]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+  </div>
+</div>
+
+This flowchart shows the basic steps involved in creating and using a loadable plugin in WasmEdge. The first step is to create the plugin, which involves writing the code for the plugin functions and compiling the code into a shared library.
 
 ## WasmEdge Currently Released Plug-ins
 
