@@ -44,6 +44,11 @@ Here's a flowchart that shows the basic steps involved in creating and using a l
 
 This flowchart shows the basic steps involved in creating and using a loadable plugin in WasmEdge. The first step is to create the plugin, which involves writing the code for the plugin functions and compiling the code into a shared library.
 
+Once the plugin has been compiled, it can be loaded by the WasmEdge runtime environment using the `WasmEdge_LoadWasmFromFile` or `WasmEdge_LoadWasmFromBuffer` API. The plugin can then be registered with the runtime environment using the `WasmEdge_RegisterImport` API.
+
+After the plugin has been registered, a WebAssembly module can be loaded using the `WasmEdge_LoadWasmFromFile` or `WasmEdge_LoadWasmFromBuffer` API. The module can then import the plugin module using the `WasmEdge_VMRegisterModule` API.
+Finally, the WebAssembly module can execute its functions, which may call the functions provided by the plugin module. The plugin functions can then perform their specific tasks, such as accessing system resources or specialized hardware.
+
 ## WasmEdge Currently Released Plug-ins
 
 There are several plug-in releases with the WasmEdge official releases.
