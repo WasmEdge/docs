@@ -8,9 +8,9 @@ sidebar_position: 1
 
 WasmEdge Rust SDK consists of four crates. In the diagram below, the blue rectangles represent the crates, and the arrows show the dependency relation.
 
-
-![](image/arch-rust-sdk.jpg)
-
+<div align="center">
+  <img src="image/arch-rust-sdk.jpg" width="50%"/>
+</div>
 
 - `wasmedge-sdk` crate defines a group of safe, ergonomic high-level APIs, which are used by developers to build up their own business applications.
 
