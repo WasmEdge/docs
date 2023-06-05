@@ -31,6 +31,7 @@ module.exports = {
         'react/prop-types': 'off',
         'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
         'react/jsx-props-no-spreading': 'off',
+        'react/destructuring-assignment': ['warn'],
         'import/no-unresolved': 'off',
         'import/extensions': [
             'error',
