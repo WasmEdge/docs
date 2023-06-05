@@ -22,11 +22,10 @@ jobs:
             contents: read
             security-events: write
 
-        strategy:
-            fail-fast: false
-            matrix:
-                language:
-                    - ['javascript']
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
 
         steps:
             - name: Checkout
@@ -37,5 +36,5 @@ jobs:
               with:
                   languages: ${{ matrix.language }}
 
-            - name: Perform CodeQL Analysis
-              uses: github/codeql-action/analyze@v2.3.3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2.3.3

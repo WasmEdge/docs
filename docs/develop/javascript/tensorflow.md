@@ -8,10 +8,24 @@ The WasmEdge-QuickJs supports the WasmEdge WASI-NN plugins so that your JavaScri
 
 ## Prerequisites
 
--   Install WasmEdge with WASI-NN plugin
-    -   [with the Tensorflow Lite backend](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite)
-    -   [with the PyTorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
--   [Setup the WasmEdge QuickJS runtime environment](./hello_world#prerequisites)
+Install WasmEdge with WASI-NN plugin
+
+* [with the Tensorflow Lite backend](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite)
+* [with the PyTorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
+
+Instead of a [standard](./hello_world#prerequisites) QuickJS setup, you need to get the WasmEdge QuickJS runtime with WASI NN support built-in. Clone the wasmedge-quickjs repo and use it as the current directory.
+
+```bash
+git clone https://github.com/second-state/wasmedge-quickjs
+cd wasmedge-quickjs
+```
+
+Then download the pre-built [WasmEdge QuickJS + WASI NN Runtime program](#build-it-yourself), and optionally, AOT compile it for better performance.
+
+```bash
+curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs_nn.wasm
+wasmedgec wasmedge_quickjs_nn.wasm wasmedge_quickjs_nn.wasm
+```
 
 ## A Tensorflow Lite example
 
@@ -64,9 +78,39 @@ print(max / 255);
 To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plugin and Tensorflow Lite dependency libraries installed with WasmEdge](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
 
 ```bash
-$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/tensorflow_lite_demo/wasi_nn_main.js
+$ wasmedge --dir .:. wasmedge_quickjs_nn.wasm example_js/tensorflow_lite_demo/wasi_nn_main.js
 label:
 Hot dog
 confidence:
 0.8941176470588236
 ```
+
+## Build it yourself
+
+Following the instructions, you will be able to build a WASI-NN enabled JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
+
+```bash
+# Install GCC
+sudo apt update
+sudo apt install build-essential
+```
+
+Then, we could build the WasmEdge-Quickjs runtime. Fork or clone the [wasmedge-quickjs Github repository](https://github.com/second-state/wasmedge-quickjs).
+
+```bash
+# get the source code
+git clone https://github.com/second-state/wasmedge-quickjs
+cd wasmedge-quickjs
+
+# Build the QuickJS JavaScript interpreter with WASI NN
+cargo build --target wasm32-wasi --release --features=wasi_nn
+```
+
+The WebAssembly-based JavaScript interpreter program is located in the build `target` directory.
+
+WasmEdge provides a `wasmedgec` utility to compile and add a native machine code section to the wasm file. You can use wasmedge to run the natively instrumented wasm file to get much faster performance.
+
+```bash
+wasmedgec target/wasm32-wasi/release/wasmedge_quickjs.wasm wasmedge_quickjs_nn.wasm
+```
+

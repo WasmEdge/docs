@@ -116,17 +116,23 @@ If you used `winget` to install WasmEdge, the files are located at `C:\Program F
 
 WasmEdge uses plugins to extend its functionality. If you want to use more of WasmEdge's features, you can install WasmEdge along with its plugins and extensions as described below:
 
-### WasmEdge-Httpsreq plugin
+### TLS plugin
 
-The WasmEdge-HttpsReq plugin utilizes the native OpenSSL library to support HTTPS requests from WasmEdge apps. To install the WasmEdge-Httpsreq plugin, run the following command line.
+The WasmEdge TLS plugin utilizes the native OpenSSL library to support HTTPS and TLS requests from WasmEdge sockets. To install the WasmEdge TLS plugin on Linux, run the following commands after you have installed WasmEdge.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_httpsreq
+wget https://github.com/second-state/wasmedge_rustls_plugin/releases/download/0.1.0/WasmEdge-plugin-wasmedge_rustls-0.1.0-alpha-ubuntu20.04_x86_64.tar
+tar -xf WasmEdge-plugin-wasmedge_rustls-*.tar
+
+# If you only installed WasmEdge for the local user
+cp *.so ~/.wasmedge/plugin/
+
+# If you installed Wasmedge at /usr/local for all users 
+sudo mkdir -p /usr/local/lib/wasmedge/
+sudo cp *.so /usr/local/lib/wasmedge/
 ```
 
-Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
-
-Then, go to [HTTPS request in Rust chapter](../rust/http_service/client#synchronous-client-with-http-req) to see how to run HTTPs services with Rust.
+Then, go to [HTTPS request in Rust chapter](../rust/http_service/client) to see how to run HTTPs services with Rust.
 
 ### WASI-NN plugin with PyTorch backend
 
@@ -182,7 +188,11 @@ rm -f WasmEdge-tensorflow-deps-TFLite-$VERSION-manylinux2014_x86_64.tar.gz
 The shared library will be extracted in the current directory `./libtensorflowlite_c.so`. You can move the library to the installation path:
 
 ```bash
+# If you installed wasmedge locally as above
 mv libtensorflowlite_c.so ~/.wasmedge/lib
+
+# Or, if you installed wasmedge for all users in /usr/local/
+mv libtensorflowlite_c.so /usr/local/lib
 ```
 
 Or, you can set the environment variable: `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH}`.
@@ -230,6 +240,22 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
 Then, go to [WASI-Crypto in Rust chapter](../rust/wasicrypto) to see how to run WASI crypto functions.
+
+### WasmEdge-Httpsreq plugin
+
+:::caution
+This is being deprecated. Please install the [TLS plugin](#tls-plugin) instead!
+:::
+
+The WasmEdge-HttpsReq plugin utilizes the native OpenSSL library to support HTTPS requests from WasmEdge apps. To install the WasmEdge-Httpsreq plugin, run the following command line.
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_httpsreq
+```
+
+Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
+
+Then, go to [HTTPS request in Rust chapter](../rust/http_service/client#synchronous-client-with-http-req) to see how to run HTTPs services with Rust.
 
 ## Uninstall
 
