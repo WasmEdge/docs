@@ -127,7 +127,7 @@ tar -xf WasmEdge-plugin-wasmedge_rustls-*.tar
 # If you only installed WasmEdge for the local user
 cp *.so ~/.wasmedge/plugin/
 
-# If you installed Wasmedge at /usr/local for all users 
+# If you installed Wasmedge at /usr/local for all users
 sudo mkdir -p /usr/local/lib/wasmedge/
 sudo cp *.so /usr/local/lib/wasmedge/
 ```
@@ -243,9 +243,7 @@ Then, go to [WASI-Crypto in Rust chapter](../rust/wasicrypto) to see how to run 
 
 ### WasmEdge-Httpsreq plugin
 
-:::caution
-This is being deprecated. Please install the [TLS plugin](#tls-plugin) instead!
-:::
+:::caution This is being deprecated. Please install the [TLS plugin](#tls-plugin) instead! :::
 
 The WasmEdge-HttpsReq plugin utilizes the native OpenSSL library to support HTTPS requests from WasmEdge apps. To install the WasmEdge-Httpsreq plugin, run the following command line.
 

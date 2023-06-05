@@ -13,9 +13,9 @@ Before we started, make sure [you have Rust and WasmEdge installed](../setup). I
 
 We will discuss HTTP and HTTPS asynchronous clients with hyper, synchronous clients with http_req, and simple clients with reqwest. All of them are popular Rust crates for networking.
 
-* [Async client with hyper](#asynchronous-client-with-hyper)
-* [Sync client with http_req](#synchronous-client-with-http-req)
-* [reqwest client](#reqwest-client)
+-   [Async client with hyper](#asynchronous-client-with-hyper)
+-   [Sync client with http_req](#synchronous-client-with-http-req)
+-   [reqwest client](#reqwest-client)
 
 ## Asynchronous client with hyper
 
@@ -41,8 +41,7 @@ wasmedgec target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_hyper_c
 wasmedge wasmedge_hyper_client.wasm
 ```
 
-In your Rust application, import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single threaded Tokio that is adapted for WebAssembly.
-Just add the following line to your Cargo.toml.
+In your Rust application, import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following line to your Cargo.toml.
 
 ```
 [dependencies]
