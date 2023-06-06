@@ -8,6 +8,7 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import styles from './index.module.css';
 import GHButton from '../components/GHButton';
 
+// Homepage Header Content
 function HomepageHeader() {
     const { siteConfig } = useDocusaurusContext();
     return (
@@ -29,6 +30,7 @@ function HomepageHeader() {
     );
 }
 
+// To render the default home page
 export default function Home() {
     const { siteConfig } = useDocusaurusContext();
     return (

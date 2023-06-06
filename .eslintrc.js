@@ -1,16 +1,9 @@
 module.exports = {
-    parser: '@babel/eslint-parser',
+    parser: '@typescript-eslint/parser',
     env: {
         browser: true,
         es6: true,
     },
-    extends: [
-        'airbnb',
-        'plugin:prettier/recommended',
-        'plugin:jsx-a11y/recommended',
-        'plugin:import/errors',
-        'plugin:import/warnings',
-    ],
     plugins: [
         'react',
         'jsx-a11y',
@@ -18,6 +11,16 @@ module.exports = {
         'prettier',
         'react-hooks',
         'regexp',
+        '@typescript-eslint',
+    ],
+    extends: [
+        'airbnb',
+        'plugin:prettier/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -29,19 +32,15 @@ module.exports = {
     rules: {
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
         'react/prop-types': 'off',
-        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'react/jsx-filename-extension': [
+            1,
+            { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+        ],
         'react/jsx-props-no-spreading': 'off',
         'react/destructuring-assignment': ['warn'],
         'import/no-unresolved': 'off',
-        'import/extensions': [
-            'error',
-            'ignorePackages',
-            {
-                js: 'never',
-                jsx: 'never',
-            },
-        ],
-        'react-hooks/rules-of-hooks': 'error',
+        'import/extensions': 'off',
+        'react-hooks/rules-of-hooks': 'warn',
         'react-hooks/exhaustive-deps': 'warn',
         'regexp/no-unused-capturing-group': 'error',
         'regexp/no-useless-backreference': 'error',

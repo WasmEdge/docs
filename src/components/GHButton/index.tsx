@@ -1,8 +1,17 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import GitHubButton from 'react-github-btn';
 
-// eslint-disable-next-line no-unused-vars
-function GHButton({ type, children, href }) {
+interface IProps {
+    type: 'Star' | string;
+    children?: typeof React.Children;
+    href?: URL;
+}
+
+// For GitHub button on the homepage
+function GHButton(props: IProps) {
+    const { type } = props;
     return type === 'Star' ? (
         <GitHubButton
             href="https://github.com/WasmEdge/WasmEdge"
