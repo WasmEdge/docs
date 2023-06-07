@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-#  Build on macOS
+# Build on macOS
 
 Currently, WasmEdge project on MacOS supports both Intel and M1 models. However, we only test and develop on `Catalina`, `Big Sur`, and `Monterey`.
 
