@@ -8,8 +8,8 @@ After intalling WasmEdge, you can use the `wasmedge` CLI to execute a compiled w
 
 The `wasmedge` binary is a command line interface (CLI) program that runs WebAssembly programs.
 
--   If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
--   If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
+- If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
+- If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
 
 By default, the `wasmedge` will execute WebAssembly programs in interpreter mode, and [execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode](aot.md). If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first.
 
@@ -30,12 +30,12 @@ USAGE
 
 If users install WasmEdge from the install script with the option `-e tf,image`, the WasmEdge CLI tools with TensorFlow and TensorFlow-Lite extensions will be installed alongside.
 
--   `wasmedge-tensorflow` CLI tool
-    -   The `wasmedge` tool with TensorFlow, TensorFlow-Lite, and `wasmedge-image` extensions.
-    -   Only on `x86_64` and `aarch64` Linux platforms and `x86_64` MacOS.
--   `wasmedge-tensorflow-lite` CLI tool
-    -   The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
-    -   Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
+- `wasmedge-tensorflow` CLI tool
+  - The `wasmedge` tool with TensorFlow, TensorFlow-Lite, and `wasmedge-image` extensions.
+  - Only on `x86_64` and `aarch64` Linux platforms and `x86_64` MacOS.
+- `wasmedge-tensorflow-lite` CLI tool
+  - The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
+  - Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
 
 The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedgec`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
 
@@ -213,8 +213,8 @@ The output will be:
 
 It is possible to use WasmEdge as a high-performance, secure, extensible, easy to deploy, and [Kubernetes-compliant](https://github.com/second-state/wasmedge-containers-examples) JavaScript runtime. There is no need to build a JavaScript app. You just need to download the WasmEdge JavaScript runtime for Node.js.
 
--   [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
--   [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
+- [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
+- [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
 
 ```bash
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
@@ -254,19 +254,19 @@ The Docker images in this section are mostly used for development purposes. They
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 
--   Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
--   Image `wasmedge/slim:{version}` includes the following command line utilities:
-    -   `wasmedge`
-    -   `wasmedgec`
--   Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
-    -   `wasmedge`
-    -   `wasmedgec`
-    -   `wasmedge-tensorflow-lite`
-    -   `wasmedge-tensorflow`
-    -   `show-tflite-tensor`
--   The working directory of the release docker image is `/app`.
+- Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
+- Image `wasmedge/slim:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedgec`
+- Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedgec`
+  - `wasmedge-tensorflow-lite`
+  - `wasmedge-tensorflow`
+  - `show-tflite-tensor`
+- The working directory of the release docker image is `/app`.
 
-### Examples
+### Dockerslim Examples
 
 Afer pulling the docker iamge successfully, you could use `wasmedgec` and `wasmedge` to aot compile the wasm file and run the wasm app.
 

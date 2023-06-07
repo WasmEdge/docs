@@ -14,21 +14,21 @@ In cloud-native use cases, developers often want to use JavaScript to write busi
 
 ## Why run JavaScript in WasmEdge
 
--   Lightweight and secure JS runtime. Compared with V8 and Node.js, WasmEdge itself is a lightweight， high performance JavaScript runtime。
--   No need for Linux containers. WasmEdge could be a secure container without tons of dependencies.
--   Node.js compatible. See the status [here](https://github.com/WasmEdge/WasmEdge/issues/1535).
--   Use Rust to implement JS APIs. See the tutorial here.
+- Lightweight and secure JS runtime. Compared with V8 and Node.js, WasmEdge itself is a lightweight， high performance JavaScript runtime。
+- No need for Linux containers. WasmEdge could be a secure container without tons of dependencies.
+- Node.js compatible. See the status [here](https://github.com/WasmEdge/WasmEdge/issues/1535).
+- Use Rust to implement JS APIs. See the tutorial here.
 
 In this section, we will demonstrate how to run and enhance JavaScript in WasmEdge.
 
--   [Getting started](hello_world) demonstrates how to run simple JavaScript programs in WasmEdge.
--   [Networking sockets](networking) shows how to create non-blocking (async) HTTP clients, including the `fetch` API, and server applications in JavaScript.
--   [Node.js compatibility](nodejs) describes Node.js APIs support in WasmEdge QuickJS.
--   [ES6 modules](es6) shows how to incorporate ES6 modules in WasmEdge.
--   [Node.js and NPM modules](npm) shows how to incorporate NPM modules in WasmEdge.
--   [Built-in modules](modules) shows how to add JavaScript functions into the WasmEdge runtime as built-in API functions.
--   [Use Rust to implement JS API](rust) discusses how to use Rust to implement and support a JavaScript API.
--   [React SSR](ssr) shows example React SSR applications, including streaming SSR support.
+- [Getting started](hello_world) demonstrates how to run simple JavaScript programs in WasmEdge.
+- [Networking sockets](networking) shows how to create non-blocking (async) HTTP clients, including the `fetch` API, and server applications in JavaScript.
+- [Node.js compatibility](nodejs) describes Node.js APIs support in WasmEdge QuickJS.
+- [ES6 modules](es6) shows how to incorporate ES6 modules in WasmEdge.
+- [Node.js and NPM modules](npm) shows how to incorporate NPM modules in WasmEdge.
+- [Built-in modules](modules) shows how to add JavaScript functions into the WasmEdge runtime as built-in API functions.
+- [Use Rust to implement JS API](rust) discusses how to use Rust to implement and support a JavaScript API.
+- [React SSR](ssr) shows example React SSR applications, including streaming SSR support.
 
 ## A note on v8
 

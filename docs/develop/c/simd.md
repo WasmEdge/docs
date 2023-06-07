@@ -2,8 +2,6 @@
 sidebar_position: 4
 ---
 
-# SIMD
-
 # WebAssembly SIMD Example in C
 
 [128-bit packed Single Instruction Multiple Data (SIMD)](https://webassembly.github.io/simd/core/syntax/instructions.html#simd-instructions) instructions provide simultaneous computations over packed data in just one instruction. It's commonly used to improve performance for multimedia applications. With the SIMD proposal, the modules can benefit from using these commonly used instructions in modern hardware to gain more speedup.

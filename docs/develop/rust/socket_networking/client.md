@@ -17,7 +17,7 @@ Before we started, make sure [you have Rust and WasmEdge installed](../setup).
 
 You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_client) in WasmEdge as follows.
 
-```
+```bash
 git clone https://github.com/second-state/wasmedge_wasi_socket.git
 cd wasmedge_wasi_socket/http_client/
 
@@ -61,7 +61,7 @@ fn main() {
 
 You can build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) in WasmEdge as follows.
 
-```
+```bash
 git clone https://github.com/second-state/wasmedge_wasi_socket
 cd wasmedge_wasi_socket/nonblock_http_client/
 

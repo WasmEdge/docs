@@ -12,7 +12,7 @@ Before we start, let's set up the software we need.
 
 Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation instruction](../build-and-run/install).
 
-```
+```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
 ```
 
@@ -20,7 +20,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Use the following command line to install Rust on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [Rust installation instruction](https://www.rust-lang.org/tools/install).
 
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -28,7 +28,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 To build a Wasm file running in server-side WebAssembly like WasmEdge, we need to add the `wasm32-wasi` target for the Rust compiler after Rust is installed.
 
-```
+```bash
 rustup target add wasm32-wasi
 ```
 

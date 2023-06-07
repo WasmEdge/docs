@@ -14,38 +14,18 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    name: Lint
-    timeout-minutes: 30
+  lint-markdown:
+    name: Lint markdown
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.18.0
-          cache: npm
-
-      - name: Cache NPM Dependencies
-        id: cache-npm
-        uses: actions/cache@v3
+      - name: Lint markdown format
+        uses: github/super-linter/slim@v5
         env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Check Cache
-        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        run: npm ci
-
-      - name: Check immutable package-lock
-        run: git diff --exit-code
-
-      - name: Lint
-        run: npm run lint:ci
-
-      - name: Prettier Code
-        run: npm run format:diff
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          FILTER_REGEX_INCLUDE: .*docs/.*md$
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_MARKDOWN: true

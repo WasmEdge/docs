@@ -37,7 +37,7 @@ WasmEdge
 
 In your Rust application, import the WasmEdge adapted warp crate, which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following lines to your Cargo.toml.
 
-```
+```toml
 [dependencies]
 tokio_wasi = { version = "1", features = ["rt", "macros", "net", "time", "io-util"]}
 warp_wasi = "0.3"
@@ -92,7 +92,7 @@ WasmEdge
 
 In your Rust application, import the WasmEdge adapted hyper crate, which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following line to your Cargo.toml.
 
-```
+```toml
 [dependencies]
 tokio_wasi = { version = "1", features = ["rt", "macros", "net", "time", "io-util"]}
 hyper_wasi = "0.15.0"

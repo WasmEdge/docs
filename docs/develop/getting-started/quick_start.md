@@ -13,9 +13,9 @@ If you have Docker Desktop 4.15 and above, you can skip this and [get started he
 
 We will cover the following examples:
 
--   [How to run a standalone Wasm app](#run-a-standalone-wasm-app)
--   [How to run an HTTP server](#run-an-http-server)
--   [How to run a JavaScript server (node.js)](#run-a-javascript-based-server)
+- [How to run a standalone Wasm app](#how-to-run-a-standalone-wasm-app)
+- [How to run an HTTP server](#how-to-run-an-http-server)
+- [How to run a JavaScript server (node.js)](#how-to-run-a-javascript-based-server)
 
 ## One-liner Installation of WasmEdge
 
@@ -58,13 +58,13 @@ Hello WasmEdge!
 
 To learn more about how to create Wasm apps in Rust
 
--   [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
--   [Rust developer guides](../../category/develop-wasm-apps-in-rust)
-    -   AI inference with [PyTorch](../rust/ai_inference/pytorch) and [Tensorflow Lite](../rust/ai_inference/tensorflow_lite)
-    -   [HTTP and HTTPS client](../rust/http_service/client)
-    -   [MySQL database client](../rust/database/my_sql_driver)
-    -   Redis client
-    -   Kafka client
+- [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
+- [Rust developer guides](../../category/develop-wasm-apps-in-rust)
+  - AI inference with [PyTorch](../rust/ai_inference/pytorch) and [Tensorflow Lite](../rust/ai_inference/tensorflow_lite)
+  - [HTTP and HTTPS client](../rust/http_service/client)
+  - [MySQL database client](../rust/database/my_sql_driver)
+  - Redis client
+  - Kafka client
 
 ## How to run an HTTP server
 
@@ -95,25 +95,25 @@ Hello WasmEdge
 
 To learn more about how to create Wasm services in Rust
 
--   [Rust developer guides](../../category/develop-wasm-apps-in-rust)
--   [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
--   [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
--   Lightweight microservices in Rust and WasmEdge
-    -   [WasmEdge + Nginx + MySQL](https://github.com/second-state/microservice-rust-mysql)
-    -   [WasmEdge + Kafka + MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
-    -   [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
+- [Rust developer guides](../../category/develop-wasm-apps-in-rust)
+- [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
+- [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
+- Lightweight microservices in Rust and WasmEdge
+  - [WasmEdge + Nginx + MySQL](https://github.com/second-state/microservice-rust-mysql)
+  - [WasmEdge + Kafka + MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
+  - [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
 
 ## How to run a JavaScript-based server
 
 This example is a standalone HTTP server written in JavaScript using the node.js API. It demonstrates WasmEdge as a lightweight runtime for node.js applications. Its source code is available [here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
--   Download the wasmedge_quickjs.wasm file [here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm), or run the following command:
+- Download the wasmedge_quickjs.wasm file [here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm), or run the following command:
 
 ```bash
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
 ```
 
--   Download the modules.zip file [here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip), or run the following command:
+- Download the modules.zip file [here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip), or run the following command:
 
 ```bash
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip
@@ -125,7 +125,7 @@ Unzip the modules.zip file into the current folder as `./modules/`.
 unzip modules.zip
 ```
 
--   Download the server.js file [here](https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js).
+- Download the server.js file [here](https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js).
 
 ```bash
 wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js
@@ -147,11 +147,11 @@ Hello WasmEdge
 
 To learn more about how to run JavaScript apps in WasmEdge.
 
--   [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
--   [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
--   [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
+- [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
+- [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+- [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
 
 ## Next steps
 
--   Check out all available [WasmEdge CLI options](../build-and-run/cli) to explore WasmEdge's features
--   Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/develop-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.
+- Check out all available [WasmEdge CLI options](../build-and-run/cli) to explore WasmEdge's features
+- Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/develop-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

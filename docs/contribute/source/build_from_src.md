@@ -6,15 +6,15 @@ sidebar_position: 1
 
 Please follow this guide to build and test WasmEdge from the source code.
 
--   [Linux](../source/os/linux.md)
--   [MacOS](../source/os/macos.md)
--   [Windows](../source/os/windows.md)
--   [Android](../../category/build-and-run-wasmedge-on-android)
--   [OpenWrt](../source/os/openwrt.md)
--   [RISC-V](../source/os/riscv64.md)
--   [OpenHarmony](../source/os/openharmony.md)
--   [seL4](../source/os/sel4)
--   [Raspberry Pi](../source/os/raspberrypi.md)
+- [Linux](../source/os/linux.md)
+- [MacOS](../source/os/macos.md)
+- [Windows](../source/os/windows.md)
+- [Android](../../category/build-and-run-wasmedge-on-android)
+- [OpenWrt](../source/os/openwrt.md)
+- [RISC-V](../source/os/riscv64.md)
+- [OpenHarmony](../source/os/openharmony.md)
+- [seL4](../source/os/sel4)
+- [Raspberry Pi](../source/os/raspberrypi.md)
 
 > If you just want the latest builds from the `HEAD` of the `master` branch, and do not want to build it yourself, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/1521549504#artifacts).
 
@@ -70,9 +70,9 @@ Developers can set the CMake options to customize the WasmEdge building.
 
 Developers can follow the steps to build WasmEdge with plug-ins from source.
 
--   [WASI-NN (OpenVINO and PyTorch backends)](../source/plugin/was_nn.md)
--   [WASI-Crypto](../source/plugin/wasi_crypto.md)
--   [WasmEdge-HttpsReq](../source/plugin/httpsreq.md)
+- [WASI-NN (OpenVINO and PyTorch backends)](../source/plugin/was_nn.md)
+- [WASI-Crypto](../source/plugin/wasi_crypto.md)
+- [WasmEdge-HttpsReq](../source/plugin/httpsreq.md)
 
 ## Run Tests
 

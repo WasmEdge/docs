@@ -69,7 +69,7 @@ The installer downloads the plugin files from the WasmEdge release on GitHub, un
 AI plugins for WasmEdge, such as the Tensorflow Lite or PyTorch plugins, have additional dependencies on the Tensorflow or PyTorch runtime libraries. See the next section for commands to install plugin dependencies.
 :::
 
-To see a list of supported plugins and their specific install commands, [see the next section](#install-wasmedge-with-plugins-1).
+To see a list of supported plugins and their specific install commands, [see the next section](#install-wasmedge-plugins-and-dependencies).
 
 ### Windows
 
@@ -97,14 +97,14 @@ To install plugins, you can download plugin binary modules from the WasmEdge rel
 
 If you installed into the `$HOME/.wasmedge` directory, you will have the following directories and files after installation:
 
--   The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
-    -   The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
-        -   Execute a WASM file: `wasmedge --dir .:. app.wasm`
-    -   The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
-        -   Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
-        -   Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
--   The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
--   The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
+- The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
+  - The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
+    - Execute a WASM file: `wasmedge --dir .:. app.wasm`
+  - The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
+    - Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
+    - Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
+- The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
+- The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
 
 <!-- prettier-ignore -->
 :::note
@@ -112,7 +112,7 @@ You could also change it to `/usr/local` if you did a system-wide install.
 If you used `winget` to install WasmEdge, the files are located at `C:\Program Files\WasmEdge`.
 :::
 
-## Install WasmEdge with plugins
+## Install WasmEdge plugins and dependencies
 
 WasmEdge uses plugins to extend its functionality. If you want to use more of WasmEdge's features, you can install WasmEdge along with its plugins and extensions as described below:
 
@@ -180,7 +180,7 @@ Now, the WasmEdge Tensorflow Lite plugin depends on the Tensorflow Lite C librar
 
 ```bash
 VERSION=0.12.1
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/0.11.2/WasmEdge-tensorflow-deps-TFLite-$VERSION-manylinux2014_x86_64.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/$VERSION/WasmEdge-tensorflow-deps-TFLite-$VERSION-manylinux2014_x86_64.tar.gz
 tar -zxf WasmEdge-tensorflow-deps-TFLite-$VERSION-manylinux2014_x86_64.tar.gz
 rm -f WasmEdge-tensorflow-deps-TFLite-$VERSION-manylinux2014_x86_64.tar.gz
 ```

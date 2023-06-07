@@ -63,8 +63,8 @@ Before opening any issue, please look up the existing [issues](https://github.co
 
 When reporting issues, always include:
 
--   Version of your system
--   Configuration files of WasmEdge
+- Version of your system
+- Configuration files of WasmEdge
 
 Because the issues are open to the public, when submitting the log and configuration files, be sure to remove any sensitive information, e.g. user name, password, IP address, and company name. You can replace those parts with "REDACTED" or other strings like "\*\*\*\*". Be sure to include the steps to reproduce the problem if applicable. It can help us understand and fix your issue faster.
 

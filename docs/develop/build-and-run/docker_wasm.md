@@ -10,26 +10,26 @@ Together with Docker's capability to containerize developer and deployment envir
 
 In this guide, we will cover how to:
 
--   [Create and run a Rust program](#create-and-run-a-rust-program)
--   [Create and run a node.js server](#create-and-run-a-node-js-server)
--   [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
+- [Create and run a Rust program](#create-and-run-a-rust-program)
+- [Create and run a node.js server](#create-and-run-a-nodejs-server)
+- [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
 
 ## Prerequisite
 
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and turn on the containerd image store feature in your Docker Desktop settings.
 
-![](docker_config.png)
+![Docker config](docker_config.png)
 
 ## Create and run a Rust program
 
 With Docker + wasm, you can use the entire Rust toolchain in a Docker container to build the Wasm bytecode application, and then publish and run the Wasm application. The [example Rust source code and build instructions are available here](https://github.com/second-state/rust-examples/tree/main/hello).
 
-### Build
+### Build the rust example
 
 In the project directory, run the following command to build the Rust source code into Wasm and then package the Wasm file into an empty container image. Notice that you do not need to install the Rust compiler toolchain here.
 
 ```bash
-$ docker buildx build --platform wasi/wasm -t secondstate/rust-example-hello .
+docker buildx build --platform wasi/wasm -t secondstate/rust-example-hello .
 ```
 
 The [Dockerfile](https://github.com/second-state/rust-examples/blob/main/hello/Dockerfile) shows how it is done. The Dockerfile has three parts. The first part sets up a Docker container for the Rust build environment.
@@ -67,15 +67,15 @@ COPY --link --from=build /src/target/wasm32-wasi/release/hello.wasm /hello.wasm
 
 The Wasm container image is only 0.5MB. It is much smaller than a natively compiled Rust program in a minimal Linux container.
 
-### Publish
+### Publish the rust example
 
 To publish the Wasm container image to Docker Hub, do the following.
 
 ```bash
-$ docker push secondstate/rust-example-hello
+docker push secondstate/rust-example-hello
 ```
 
-### Run
+### Run the rust example
 
 You can use the regular Docker `run` command to run the Wasm container application. Notice that you do need to specify the `runtime` and `platform` flags to tell Docker that this is a non-Linux container and requires WasmEdge to run it.
 
@@ -86,12 +86,12 @@ Hello WasmEdge!
 
 That's it.
 
-### Further reading
+### Further reading for the rust example
 
 To see more Dockerized Rust example apps for WasmEdge, check out the following.
 
--   [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
--   [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
+- [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
+- [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
 
 ## Create and run a node.js server
 
@@ -99,12 +99,12 @@ WasmEdge provides a node.js compatible JavaScript runtime. You can create lightw
 
 In this guide, the example app is an HTTP web server written in node.js. Its [source code and build instructions are available here](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server).
 
-### Build
+### Build the node.js example
 
 In the project directory, run the following command to package the WasmEdge JavaScript runtime and the JS HTTP server program into an empty container image.
 
 ```bash
-$ docker buildx build --platform wasi/wasm -t secondstate/node-example-hello .
+docker buildx build --platform wasi/wasm -t secondstate/node-example-hello .
 ```
 
 The [Dockerfile](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/docker_wasm/server/Dockerfile) shows how it is done. The Dockerfile has three parts. The first part sets up a Docker container for the `wget` and `unzip` utilities.
@@ -142,15 +142,15 @@ COPY --link --from=build /src/modules /modules
 
 The Wasm container image for the entire node.js app is only 1MB. It is much smaller than a standard node.js image, which is 300+MB.
 
-### Publish
+### Publish the node.js example
 
 To publish the Wasm container image to Docker Hub, do the following.
 
 ```bash
-$ docker push secondstate/node-example-hello
+docker push secondstate/node-example-hello
 ```
 
-### Run and test
+### Run and test the node.js example
 
 You can use the regular Docker `run` command to run the Wasm container application. Notice that you do need to specify the `runtime` and `platform` flags to tell Docker that this is a non-Linux container and requires WasmEdge to run it. Since this is an HTTP server app, you also need to map the container port 8080 to host so that you can access the server from the host.
 
@@ -168,10 +168,10 @@ Hello WasmEdge
 
 That's it.
 
-### Further reading
+### Further reading for the node.js example
 
--   [Use the fetch() API](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
--   [Image classification using Tensorflow Lite](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+- [Use the fetch() API](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
+- [Image classification using Tensorflow Lite](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
 
 ## Create and deploy a database driven microservice in Rust
 
@@ -184,12 +184,12 @@ In our [example microservice application](https://github.com/second-state/micros
 For more Docker compose examples, including Linux containers + Wasm containers mixed deployments, check out the [awesome-compose](https://github.com/docker/awesome-compose) repo.
 :::
 
-### Build
+### Build the microservice example
 
 In the project directory, run the following command to build all three containers: `client`, `server` and `db`.
 
 ```bash
-$ docker compose up
+docker compose up
 ```
 
 There is a [docker-compose.yml](https://github.com/second-state/microservice-rust-mysql/blob/main/docker-compose.yml) file. It defines the 3 containers needed in this application.
@@ -220,25 +220,25 @@ services:
             MYSQL_ROOT_PASSWORD: whalehello
 ```
 
--   The `client` container is an Nginx web server
-    -   Linux container with mapped HTTP port and volume for the static HTML/JS files
--   The `server` container is a Rust container for the business logic
-    -   The Wasm container is built from [Rust source code](https://github.com/second-state/microservice-rust-mysql/blob/main/src/main.rs) using this [Dockerfile](https://github.com/second-state/microservice-rust-mysql/blob/main/Dockerfile)
-    -   Wasm container with mapped web service port and an environment variable for the database connection string
--   The `db` container is a MySQL database
-    -   Linux container with a pre-set database password
+- The `client` container is an Nginx web server
+  - Linux container with mapped HTTP port and volume for the static HTML/JS files
+- The `server` container is a Rust container for the business logic
+  - The Wasm container is built from [Rust source code](https://github.com/second-state/microservice-rust-mysql/blob/main/src/main.rs) using this [Dockerfile](https://github.com/second-state/microservice-rust-mysql/blob/main/Dockerfile)
+  - Wasm container with mapped web service port and an environment variable for the database connection string
+- The `db` container is a MySQL database
+  - Linux container with a pre-set database password
 
-### Deploy
+### Deploy the microservice example
 
 Start and run all three containers in the correct order with one command.
 
 ```bash
-$ docker compose up
+docker compose up
 ```
 
 Go back to Docker Desktop Dash board, you will see there're three containers running.
 
-![](docker.jpeg)
+![Docker](docker.jpeg)
 
 ### CRUD tests
 
@@ -276,6 +276,6 @@ curl http://localhost:8080/delete_order?id=2
 
 That's it. Feel free to fork this project and use it as a template for your own lightweight microservices!
 
-### Further reading
+### Further reading for the microservice example
 
 To learn how Docker + Wasm works under the hood, visit the [containerd](../deploy/cri-runtime/containerd.md) chapter for more details.

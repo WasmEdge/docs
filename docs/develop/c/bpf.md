@@ -2,8 +2,6 @@
 sidebar_position: 5
 ---
 
-# Bpf
-
 # Bpf userspace program example with wasm_bpf plugin
 
 Currently, there is a WasmEdge plugin called `wasm_bpf` which provided APIs to perform operations on eBPF program, such ad loading, attaching and polling.
@@ -35,8 +33,7 @@ WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/ wasmedge bootstrap.wasm
 
 Example output:
 
-```
-
+```bash
 TIME     EVENT COMM             PID     PPID    FILENAME/EXIT CODE
 13:38:00 EXEC  bash             121487  40189   /usr/bin/bash
 13:38:00 EXEC  groups           121489  121487  /usr/bin/groups

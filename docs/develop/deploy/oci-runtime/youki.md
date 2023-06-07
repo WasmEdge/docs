@@ -10,49 +10,49 @@ youki is an OCI container runtime written in Rust. youki has WasmEdge baked in. 
 
 1. Build and configure youki with WasmEdge support
 
-We will use ubuntu 20.04 as an example. For other OS, please [see here](https://containers.github.io/youki/user/basic_setup.html).
+    We will use ubuntu 20.04 as an example. For other OS, please [see here](https://containers.github.io/youki/user/basic_setup.html).
 
-Run the following command line to build and install youki on your machine
+    Run the following command line to build and install youki on your machine
 
-```bash
-$ sudo apt-get install   \
-      pkg-config         \
-      libsystemd-dev     \
-      libdbus-glib-1-dev \
-      build-essential    \
-      libelf-dev \
-      libseccomp-dev \
-      libclang-dev
-```
+    ```bash
+    $ sudo apt-get install   \
+        pkg-config         \
+        libsystemd-dev     \
+        libdbus-glib-1-dev \
+        build-essential    \
+        libelf-dev \
+        libseccomp-dev \
+        libclang-dev
+    ```
 
-Next, configure, build, and install a `youki` binary with WasmEdge support.
+    Next, configure, build, and install a `youki` binary with WasmEdge support.
 
-```bash
-git clone https://github.com/containers/youki.git
-go into the cloned directory
-cd youki
-make youki-dev
-./youki -h
-./scripts/build.sh -o . -r -f wasm-wasmedge
-export LD_LIBRARY_PATH=$HOME/.wasmedge/lib
-```
+    ```bash
+    git clone https://github.com/containers/youki.git
+    go into the cloned directory
+    cd youki
+    make youki-dev
+    ./youki -h
+    ./scripts/build.sh -o . -r -f wasm-wasmedge
+    export LD_LIBRARY_PATH=$HOME/.wasmedge/lib
+    ```
 
 2. [Install WasmEdge](../../build-and-run/install)
 
 3. Configure the `config.json` from youki to run Wasm modules.
 
-To run a webassembly module with youki, the `config.json` has to include either runc.oci.handler or module.wasm.image/variant=compat". It also needs you to specify a valid .wasm (webassembly binary) or .wat (webassembly test) module as entrypoint for the container.
+    To run a webassembly module with youki, the `config.json` has to include either runc.oci.handler or module.wasm.image/variant=compat". It also needs you to specify a valid .wasm (webassembly binary) or .wat (webassembly test) module as entrypoint for the container.
 
-```json
-"ociVersion": "1.0.2-dev",
-"annotations": {
-    "run.oci.handler": "wasm"
-},
-"process": {
-    "args": [
-        "wasi_example_main.wasm",
-        ],
-```
+    ```json
+    "ociVersion": "1.0.2-dev",
+    "annotations": {
+        "run.oci.handler": "wasm"
+    },
+    "process": {
+        "args": [
+            "wasi_example_main.wasm",
+            ],
+    ```
 
 ## Run a simple WebAssembly app
 

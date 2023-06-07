@@ -31,8 +31,8 @@ For the developers who don't want to use docker, they can setup the environment 
 
 Please check that these dependencies are satisfied.
 
--   LLVM 12.0.0 (>= 10.0.0)
--   (Optional) GCC 11.1.0 (>= 9.4.0), install it if you prefer to use GCC toolchain.
+- LLVM 12.0.0 (>= 10.0.0)
+- (Optional) GCC 11.1.0 (>= 9.4.0), install it if you prefer to use GCC toolchain.
 
 #### For Ubuntu 22.04
 

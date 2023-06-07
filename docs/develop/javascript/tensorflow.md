@@ -10,8 +10,8 @@ The WasmEdge-QuickJs supports the WasmEdge WASI-NN plugins so that your JavaScri
 
 Install WasmEdge with WASI-NN plugin
 
--   [with the Tensorflow Lite backend](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite)
--   [with the PyTorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
+- [with the Tensorflow Lite backend](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite)
+- [with the PyTorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
 
 Instead of a [standard](./hello_world#prerequisites) QuickJS setup, you need to get the WasmEdge QuickJS runtime with WASI NN support built-in. Clone the wasmedge-quickjs repo and use it as the current directory.
 

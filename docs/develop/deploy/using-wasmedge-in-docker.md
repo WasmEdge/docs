@@ -8,11 +8,11 @@ sidebar_position: 5
 
 An easy way to run WebAssembly applications in the Docker ecosystem is to simply embed the WebAssembly bytecode file in a Linux container image. Specifically, we trim down the Linux OS inside the container to the point where it is just enough to support the `wasmedge` runtime. This approach has many advantages.
 
--   It works seamlessly with any tool in the Docker or container ecosystem since the WebAssembly application is wrapped in a regular container.
--   The memory footprint of the entire image of Linux OS and WasmEdge can be reduced to as low as 4MB.
--   The attack surface of the slimmed Linux OS is dramatically reduced from a regular Linux OS.
--   The overall application security is managed by the WebAssembly sandbox. The risk for software supply chain attack is greatly reduced since the WebAssembly sandbox only has access to explicitly declared capabilities.
--   The above three advantages are amplified if the application is complex. For example, a WasmEdge AI inference application would NOT require a Python install. A WasmEdge node.js application would NOT require a Node.js and v8 install.
+- It works seamlessly with any tool in the Docker or container ecosystem since the WebAssembly application is wrapped in a regular container.
+- The memory footprint of the entire image of Linux OS and WasmEdge can be reduced to as low as 4MB.
+- The attack surface of the slimmed Linux OS is dramatically reduced from a regular Linux OS.
+- The overall application security is managed by the WebAssembly sandbox. The risk for software supply chain attack is greatly reduced since the WebAssembly sandbox only has access to explicitly declared capabilities.
+- The above three advantages are amplified if the application is complex. For example, a WasmEdge AI inference application would NOT require a Python install. A WasmEdge node.js application would NOT require a Node.js and v8 install.
 
 However, this approach still requires starting up a Linux container. The containerized Linux OS, however slim, still takes 80% of the total image size. There is still a lot of room for optimization. The performance and security of this approach would not be as great as running WebAssembly applications directly in [crun](/develop/deploy/oci-runtime/crun.md) or in a [containerd shim](/develop/deploy/cri-runtime/containerd.md).
 
@@ -20,17 +20,17 @@ However, this approach still requires starting up a Linux container. The contain
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 
--   Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
--   Image `wasmedge/slim:{version}` includes the following command line utilities:
-    -   `wasmedge`
-    -   `wasmedgec`
--   Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
-    -   `wasmedge`
-    -   `wasmedgec`
-    -   `wasmedge-tensorflow-lite`
-    -   `wasmedge-tensorflow`
-    -   `show-tflite-tensor`
--   The working directory of the release docker image is `/app`.
+- Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
+- Image `wasmedge/slim:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedgec`
+- Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedgec`
+  - `wasmedge-tensorflow-lite`
+  - `wasmedge-tensorflow`
+  - `show-tflite-tensor`
+- The working directory of the release docker image is `/app`.
 
 ## Run a simple WebAssembly app
 
@@ -96,9 +96,9 @@ echo: name=WasmEdge
 
 With WasmEdge QuickJS support for the Node.js API, we can run a lightweight and secure node.js server from Docker CLI. The slim Linux + WasmEdge + Node.js support image size is less than 15MB as opposed to over 350MB for a standard Node.js image. You will need to do the following.
 
--   [Download the WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm) here. You will have the `wasmedge_quickjs.wasm` file.
--   [Download the modules](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) directory from the WasmEdge QuickJS repo.
--   Create a JavaScript file for the server. Below is an example `http_echo.js` file you can use.
+- [Download the WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm) here. You will have the `wasmedge_quickjs.wasm` file.
+- [Download the modules](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) directory from the WasmEdge QuickJS repo.
+- Create a JavaScript file for the server. Below is an example `http_echo.js` file you can use.
 
 ```javascript
 import { createServer, request, fetch } from 'http';

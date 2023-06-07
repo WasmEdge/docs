@@ -12,9 +12,9 @@ In this article, we will show you how to use the WasmEdge QuickJS runtime to imp
 
 We will start from a complete tutorial to create and deploy a simple React Streaming SSR web application, and then move on to a full React 18 demo.
 
--   [Getting started with React streaming SSR](#getting-started)
--   [A full React 18 app](#a-full-react-18-app)
--   [Appendix: the create-react-app template](#appendix-the-create-react-app-template)
+- [Getting started with React streaming SSR](#getting-started)
+- [A full React 18 app](#a-full-react-18-app)
+- [Appendix: the create-react-app template](#appendix-the-create-react-app-template)
 
 ## Getting started
 
@@ -460,9 +460,9 @@ server_start();
 
 The server renders the `<App>` component, and then sends the rendered HTML string back to the browser. Three important things are taking place here.
 
--   ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
--   The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
--   Other files from the `build` directory are read and served as needed at the requests of the browser.
+- ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
+- The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
+- Other files from the `build` directory are read and served as needed at the requests of the browser.
 
 ### Step 3 — Build and deploy
 
@@ -537,8 +537,8 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 },
 ```
 
--   The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
--   The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+- The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
+- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 
@@ -651,8 +651,8 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 },
 ```
 
--   The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
--   The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+- The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
+- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 
