@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.1 Hello world
+# Hello world
 
 <!-- prettier-ignore -->
 :::note

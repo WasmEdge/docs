@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 8.6.6 KubeEdge
+# KubeEdge
 
 KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.
 

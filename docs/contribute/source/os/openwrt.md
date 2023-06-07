@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 2.2.5 Build on OpenWRT
+# Build on OpenWRT
 
 Please follow this tutorial to build and test WasmEdge in OpenWrt(x86_64) from source code.
 

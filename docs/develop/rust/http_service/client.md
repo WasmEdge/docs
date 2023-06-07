@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.4.1 Client
+# Client
 
 WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. In this chapter, we will cover HTTP client APIs and libraries to access external web services from your WasmEdge app. For HTTP servers in WasmEdge, please see [the next chapter](server).
 

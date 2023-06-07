@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 5.1 Introduction
+# Introduction
 
 WebAssembly started as a "JavaScript alternative for browsers". The idea is to run high-performance applications compiled from languages like C/C++ or Rust safely in browsers. In the browser, WebAssembly runs side by side with JavaScript.
 

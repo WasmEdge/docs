@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.2 Hello world
+# Hello world
 
 Before we start, make sure [you have Rust and WasmEdge installed](setup).
 

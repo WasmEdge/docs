@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.7.1 MySQL driver
+# MySQL driver
 
 Database connection is necessary for today's enterprise development. WasmEdge provides an MySQL driver for Rust developer, enabling developers to build database applications in Rust and then running in WasmEdge.
 

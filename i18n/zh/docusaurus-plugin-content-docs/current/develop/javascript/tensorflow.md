@@ -2,7 +2,7 @@
 sidebar_position: 9
 ---
 
-# 5.9 TensorFlow
+# TensorFlow
 
 The WasmEdge-QuickJs supports the WasmEdge TensorFlow lite inference extension so that your JavaScript can run an ImageNet model for image classification. This article will show you how to use the TensorFlow Rust SDK for WasmEdge from your javascript program. You will first download the WasmEdge QuickJS Runtime with tensorflow support built-in.
 

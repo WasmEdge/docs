@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 2.3.6 Build WasmEdge With WasmEdge-Process Plug-in
+# Build WasmEdge With WasmEdge-Process Plug-in
 
 ## Prerequisites
 

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2.2.3 Build on Windows 10
+# Build on Windows 10
 
 You can also find the details [here](https://github.com/WasmEdge/WasmEdge/blob/master/.github/workflows/reusable-build-on-windows.yml#L37-L48).
 

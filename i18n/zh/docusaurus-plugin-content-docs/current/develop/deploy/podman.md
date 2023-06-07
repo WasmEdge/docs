@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 8.3 Podman
+# Podman
 
 ## Fedora Platform
 

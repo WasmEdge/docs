@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# 4.9 Command interface
+# Command interface
 
 WASI enables WebAssembly programs to call standard library functions in the host operating system. It does so through a fine-grained security model known as “capability-based security”. The WebAssembly VM owner can grant access to host system resources when the VM starts up. The program cannot access any resources (e.g., file folders) that are not explicitly allowed.
 

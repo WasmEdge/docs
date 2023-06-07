@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 8.6.2 Kubernetes + CRI-O + crun
+# Kubernetes + CRI-O + crun
 
 ## Quick start
 

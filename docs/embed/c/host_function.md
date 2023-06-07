@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 4.3 Host Functions
+# Host Functions
 
 [Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are the functions outside WebAssembly and passed to WASM modules as imports. The following steps give an example of implementing host functions and registering a `host module` into the WasmEdge runtime.
 

@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 5.5 Node.js support
+# Node.js support
 
 Many existing JavaScript apps simply use Node.js built-in APIs. In order to support and reuse these JavaScript apps, we are in the process of implementing many Node.JS APIs for WasmEdge QuickJS. The goal is to have unmodified Node.js programs running in WasmEdge QuickJS.
 

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 8.5.3 Deploy with youki
+# Deploy with youki
 
 youki is an OCI container runtime written in Rust. youki has WasmEdge baked in. This chapter will walk you through deploying Wasm images with youki.
 

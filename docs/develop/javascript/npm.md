@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# 5.8 NodeJS and NPM modules
+# NodeJS and NPM modules
 
 With [rollup.js](https://rollupjs.org/guide/en/), we can run CommonJS (CJS) and NodeJS (NPM) modules in WasmEdge too.
 

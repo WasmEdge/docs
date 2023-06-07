@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 5.2 Quickstart for JavaScript
+# Quickstart for JavaScript
 
 ## Prerequisites
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 3.1 WasmEdge-Bindgen Introduction
+# WasmEdge-Bindgen Introduction
 
 Passing complex data like string is difficult for WebAssembly since Wasm does not have a string data type. That's why we have the [WasmEdge-Bindgen](https://github.com/second-state/wasmedge-bindgen) project. The Wasmedge-Bindgen project provides Rust macros for functions to accept and return complex data types, and then for functions in the host to call such Rust functions running in WasmEdge.
 

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 8.6.2 containerd + crun
+# containerd + crun
 
 ## Quick start
 

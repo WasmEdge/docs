@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# 2.2.8 Build on seL4 RTOS
+# Build on seL4 RTOS
 
 [Video demo](https://youtu.be/2Qu-Trtkspk) | [Build logs](https://github.com/second-state/wasmedge-seL4/runs/3982081148?check_suite_focus=true) | [Build artifact](https://github.com/second-state/wasmedge-seL4/actions/runs/1374510169)
 

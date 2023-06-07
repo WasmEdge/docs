@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 2.2.1 Build on Linux
+# Build on Linux
 
 ## Get the Source Code
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.1 Set up Rust toolchain
+# Set up Rust toolchain
 
 In the following chapters, we will show how to build and compile Rust programs into Wasm bytecode and then run them in WasmEdge.
 

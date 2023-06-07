@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 6.6 Embed a bindgen function
+# Embed a bindgen function
 
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_BindgenFuncs), we will demonstrate how to call a few simple WebAssembly functions from a Go app. The [functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_BindgenFuncs/rust_bindgen_funcs/src/lib.rs) are written in Rust, and require complex call parameters and return values. The `#[wasmedge_bindgen]` macro is needed for the compiler tools to auto-generate the correct code to pass call parameters from Go to WebAssembly.
 

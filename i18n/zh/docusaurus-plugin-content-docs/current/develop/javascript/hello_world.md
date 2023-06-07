@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 5.2 Quick Start with JavaScript on WasmEdge
+# Quick Start with JavaScript on WasmEdge
 
 ## Prerequisites
 

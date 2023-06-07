@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# 4.10 Bindgen of Rust Functions
+# Bindgen of Rust Functions
 
 If your Rust program has a `main()` function, you could compile it into WebAssembly, and run it using the `wasmedge` CLI tool as a standalone application. However, a far more common use case is to compile a Rust function into WebAssembly, and then call it from a host application. That is known as an embedded WASM function. The host application uses WasmEdge language SDKs (e.g., [Go](/category/go-sdk-for-embedding-wasm-functions), [Rust](/category/rust-sdk-for-embedding-wasm-functions), [C](/category/c-sdk-for-embedding-wasm-functions), Python (WIP) and Java (WIP)) to call those WASM functions compiled from Rust source code. In this chapter, we will cover a little about WasmEdge-bindgen and you can find more information [here](/category/passing-complex-data)
 

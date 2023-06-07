@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 6.1 Hello World
+# Hello World
 
 This chapter will take Hello World as an example to show how to compile a C program to Wasm bytecode and run in WasmEdge.
 

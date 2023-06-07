@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 6.4 Pass complex parameters to Wasm functions
+# Pass complex parameters to Wasm functions
 
 An issue with the WebAssembly spec is that it only supports a very limited number of data types. If you want to embed a WebAssembly function with complex call parameters or return values, you will need to manage memory pointers both on Go SDK and WebAssembly function sides.
 

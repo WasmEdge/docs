@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 3.2 Develop WasmEdge Plug-in in C API
+# Develop WasmEdge Plug-in in C API
 
 WasmEdge provides a C++ based API for registering extension modules and host functions. While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, the plugin API allows such extensions to be incorporated into WasmEdge's own building and releasing process.
 

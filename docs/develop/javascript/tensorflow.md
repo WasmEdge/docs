@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 5.4 AI inference
+# AI inference
 
 The WasmEdge-QuickJs supports the WasmEdge WASI-NN plugins so that your JavaScript can run inference on AI models.
 

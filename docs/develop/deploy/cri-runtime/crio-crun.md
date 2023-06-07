@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 8.6.3 CRI-O + crun
+# CRI-O + crun
 
 ## Quick start
 

@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# 5.8 Native JS API in Rust
+# Native JS API in Rust
 
 For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" and yet still take advantage of the high performance Rust functions. With the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge), you can do exactly that.
 

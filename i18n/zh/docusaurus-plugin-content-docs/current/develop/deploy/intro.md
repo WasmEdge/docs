@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 8.1 Introduction
+# Introduction
 
 WasmEdge could be integrated with the existing cloud native infra seamlessly. So developers can leverage container tools such as Kubernetes, Docker and CRI-O to deploy, manage, and run lightweight WebAssembly applications. In this chapter, we will demonstrate how Kubernetes ecosystem tools work with WasmEdge WebAssembly applications.
 

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.2 Use WasmEdge Library
+# Use WasmEdge Library
 
 When programming with WasmEdge C API, developers should include the required headers and link with the WasmEdge Library. Besides [install WasmEdge](/develop/build-and-run/install) with the WasmEdge shared library, developers can also [build WasmEdge](/contribute/source/build_from_src.md) to generate the WasmEdge static library.
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 7.1 TinyGo
+# TinyGo
 
 The best way to run Go programs in WasmEdge is to compile Go source code to WebAssembly using [TinyGo](https://tinygo.org/). In this article, we will show you how.
 

@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# 8.6.10 Kwasm
+# Kwasm
 
 [Kwasm](https://kwasm.sh/) is a Kubernetes Operator that adds WebAssembly support to your Kubernetes nodes.
 

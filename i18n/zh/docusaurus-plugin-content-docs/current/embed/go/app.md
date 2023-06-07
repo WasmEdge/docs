@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 6.2 Embed a standalone WASM app
+# Embed a standalone WASM app
 
 The WasmEdge Go SDK can [embed standalone WebAssembly applications](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_ReadFile) — ie a Rust application with a `main()` function compiled into WebAssembly.
 

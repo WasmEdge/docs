@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 4.5 Multiple WASM Module Example
+# Multiple WASM Module Example
 
 For those WASM modules export their functions, the other WASM modules can import them as a library.
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.7.1 PyTorch
+# PyTorch
 
 We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) to show how to do AI inference with a PyTorch model in WasmEdge and Rust.
 

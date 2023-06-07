@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 2.2.4.1 Build WasmEdge for Android
+# Build WasmEdge for Android
 
 The WasmEdge Runtime releases come with pre-built binaries for the Android OS. Why WasmEdge on Android?
 

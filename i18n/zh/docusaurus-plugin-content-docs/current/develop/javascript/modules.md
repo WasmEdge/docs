@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 5.6 Built-in modules
+# Built-in modules
 
 The WasmEdge QuickJS runtime supports [ES6](es6) and [NPM](npm) modules for application developers. However, those approaches are too cumbersome for system developers. They need an easier way to add multiple JavaScript modules and APIs into the runtime without having to go through build tools like rollup.js. The WasmEdge QuickJS modules system allow developers to just drop JavaScript files into a `modules` folder, and have the JavaScript functions defined in the files immediately available to all JavaScript programs in the runtime. A good use case for this modules system is to support [Node.js](nodejs) APIs in WasmEdge.
 

@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 8.5 Using WasmEdge in Docker
+# Using WasmEdge in Docker
 
 ## What is the WasmEdge DockerSlim
 

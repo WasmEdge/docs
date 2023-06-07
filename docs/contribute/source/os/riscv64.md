@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 2.2.6 Build on RISC-V 64
+# Build on RISC-V 64
 
 ## Prepare the Environment
 

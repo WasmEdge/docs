@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 5.6 ES6 Modules
+# ES6 Modules
 
 The WasmEdge QuickJS runtime supports ES6 modules. In fact, the rollup commands we used in the [React SSR](ssr) examples convert and bundle CommonJS and NPM modules into ES6 modules so that they can be executed in WasmEdge QuickJS. This article will show you how to use ES6 module in WasmEdge.
 

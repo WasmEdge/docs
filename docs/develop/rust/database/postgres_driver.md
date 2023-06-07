@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.7.2 PostgreSQL driver
+# PostgreSQL driver
 
 Database connection is necessary for today's enterprise development. WasmEdge provides a PostgreSQL driver for Rust developer, enabling developers to build database applications in Rust and then running in WasmEdge.
 

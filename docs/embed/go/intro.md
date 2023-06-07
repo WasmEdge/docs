@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 6.1 WasmEdge Go SDK Introduction
+# WasmEdge Go SDK Introduction
 
 The following are the guide to work with the WasmEdge Go API. You can embed the WasmEdge into your go application through the WasmEdge Go API.
 

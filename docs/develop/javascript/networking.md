@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 5.3 Networking
+# Networking
 
 The QuickJS WasmEdge Runtime supports Node.js's `http` and `fetch` APIs via the WasmEdge [networking socket extension](https://github.com/second-state/wasmedge_wasi_socket). That enables WasmEdge developers to create HTTP server and client, as well as TCP/IP server and client, applications in JavaScript.
 

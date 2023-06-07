@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 8.6.1 Kubernetes + containerd + crun
+# Kubernetes + containerd + crun
 
 ## Quick start
 

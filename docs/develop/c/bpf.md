@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 6.5 Bpf
+# Bpf
 
 # Bpf userspace program example with wasm_bpf plugin
 

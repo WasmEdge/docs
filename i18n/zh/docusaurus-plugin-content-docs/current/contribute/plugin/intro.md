@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 3.1 WasmEdge Plug-in System Introduction
+# WasmEdge Plug-in System Introduction
 
 While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, developers should implement the host functions before compilation.
 
