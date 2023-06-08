@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 8.5.3 Deploy with youki
+# Deploy with youki
 
 youki is an OCI container runtime written in Rust. youki has WasmEdge baked in. This chapter will walk you through deploying Wasm images with youki.
 
@@ -24,14 +24,15 @@ $ sudo apt-get install   \
       libseccomp-dev \
       libclang-dev
 ```
+
 Next, configure, build, and install a `youki` binary with WasmEdge support.
 
 ```bash
 git clone https://github.com/containers/youki.git
 go into the cloned directory
 cd youki
-make youki-dev 
-./youki -h 
+make youki-dev
+./youki -h
 ./scripts/build.sh -o . -r -f wasm-wasmedge
 export LD_LIBRARY_PATH=$HOME/.wasmedge/lib
 ```
@@ -52,7 +53,6 @@ To run a webassembly module with youki, the `config.json` has to include either 
         "wasi_example_main.wasm",
         ],
 ```
-
 
 ## Run a simple WebAssembly app
 

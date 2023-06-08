@@ -1,7 +1,8 @@
 ---
 sidebar_position: 5
 ---
-# 4.5 Multiple WASM Module Example
+
+# Multiple WASM Module Example
 
 For those WASM modules export their functions, the other WASM modules can import them as a library.
 
@@ -28,8 +29,7 @@ Assume that there's a WASM which exports it's function:
 )
 ```
 
-Users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) live tool.
-Assume that this `wat` is converted into the WASM binary format and saved as `lib.wasm`.
+Users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) live tool. Assume that this `wat` is converted into the WASM binary format and saved as `lib.wasm`.
 
 ### The Entering WASM
 
@@ -61,8 +61,7 @@ Assume that there's a WASM which imports some functions from the `lib.wasm`, and
 )
 ```
 
-Users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) live tool.
-Assume that this `wat` is converted into the WASM binary format and saved as `test.wasm`.
+Users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) live tool. Assume that this `wat` is converted into the WASM binary format and saved as `test.wasm`.
 
 ### Prerequisites
 
@@ -72,9 +71,7 @@ To improve the performance of executing WASM, developers can also use the [AOT c
 
 ## Linking WASM Modules With the VM Context
 
-With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quickly.
-There's at least 4 ways to linking these multiple WASM modules with the VM context.
-For the example codes below, assume that the C code is saved as `example.c`.
+With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quickly. There's at least 4 ways to linking these multiple WASM modules with the VM context. For the example codes below, assume that the C code is saved as `example.c`.
 
 1. Register and instantiate the `lib.wasm` from file directly
 

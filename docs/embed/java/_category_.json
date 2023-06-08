@@ -1,8 +1,8 @@
 {
-  "label": "Java SDK for Embedding Wasm Functions",
-  "position": 7,
-  "link": {
-    "type": "generated-index",
-    "description": "In this chapter, we will learn how to Embed WasmEdge in your Java host applications."
-  }
+    "label": "Java SDK for Embedding Wasm Functions",
+    "position": 7,
+    "link": {
+        "type": "generated-index",
+        "description": "In this chapter, we will learn how to Embed WasmEdge in your Java host applications."
+    }
 }

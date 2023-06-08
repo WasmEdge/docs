@@ -2,23 +2,23 @@
 sidebar_position: 9
 ---
 
-# 5.9 Native JS API in Rust
+# Native JS API in Rust
 
 For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" and yet still take advantage of the high performance Rust functions. With the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge), you can do exactly that.
 
+<!-- prettier-ignore -->
 :::note
 The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules).
 :::
 
 ## Prerequisites
 
-* [Install the Rust toolchain](../rust/setup)
-* [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
+-   [Install the Rust toolchain](../rust/setup)
+-   [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
 
 ## Run the examples
 
-The examples are in the `examples/embed_js` folder in the `wasmedge-quickjs` repo.
-You can build and run all the examples as follows.
+The examples are in the `examples/embed_js` folder in the `wasmedge-quickjs` repo. You can build and run all the examples as follows.
 
 ```bash
 cd examples/embed_js
@@ -47,7 +47,7 @@ fn main() {
 }
 ```
 
-## Code explanation: create a JavaScript function API 
+## Code explanation: create a JavaScript function API
 
 The following code snippet defines a Rust function that can be incorporate into the JavaScript interpreter as an API.
 
@@ -62,7 +62,7 @@ fn run_rust_function(ctx: &mut Context) {
       JsValue::UnDefined
     }
   }
-  
+
   ...
 }
 ```
@@ -72,7 +72,7 @@ The following code snippet shows how to add this Rust function into the JavaScri
 ```rust
 fn run_rust_function(ctx: &mut Context) {
   ...
-  
+
   let f = ctx.new_function::<HelloFn>("hello");
   ctx.get_global().set("hi", f.into());
   let code = r#"hi(1,2,3)"#;
@@ -311,7 +311,7 @@ fn main() {
     } catch(e) {
       print("An error has been caught");
       print(e)
-    }  
+    }
     })
   "#;
 

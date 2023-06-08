@@ -1,22 +1,22 @@
 {
-  "title": {
-    "message": "WasmEdge",
-    "description": "The title in the navbar"
-  },
-  "item.label.Develop": {
-    "message": "Develop",
-    "description": "Navbar item with label Develop"
-  },
-  "item.label.Embed": {
-    "message": "Embed",
-    "description": "Navbar item with label Embed"
-  },
-  "item.label.Extend": {
-    "message": "Extend",
-    "description": "Navbar item with label Extend"
-  },
-  "item.label.GitHub": {
-    "message": "GitHub",
-    "description": "Navbar item with label GitHub"
-  }
+    "title": {
+        "message": "WasmEdge",
+        "description": "The title in the navbar"
+    },
+    "item.label.Develop": {
+        "message": "Develop",
+        "description": "Navbar item with label Develop"
+    },
+    "item.label.Embed": {
+        "message": "Embed",
+        "description": "Navbar item with label Embed"
+    },
+    "item.label.Extend": {
+        "message": "Extend",
+        "description": "Navbar item with label Extend"
+    },
+    "item.label.GitHub": {
+        "message": "GitHub",
+        "description": "Navbar item with label GitHub"
+    }
 }

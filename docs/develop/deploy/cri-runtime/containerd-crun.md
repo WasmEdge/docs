@@ -1,21 +1,21 @@
 ---
 sidebar_position: 2
 ---
-# 8.6.2 containerd + crun
+
+# containerd + crun
 
 ## Quick start
 
-The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example
-apps on containerd.
+The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on containerd.
 
-* Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/containerd/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/containerd.yml)
-* HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/containerd/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/containerd-server.yml)
+-   Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/containerd/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/containerd.yml)
+-   HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/containerd/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/containerd-server.yml)
 
 In the sections below, we will explain the steps in the quick start scripts.
 
-* [Install containerd](#install-containerd)
-* [Example 1: Simple WebAssembly](#run-a-simple-webassembly-app)
-* [Example 2: HTTP server in WebAssembly](#run-a-http-server-app)
+-   [Install containerd](#install-containerd)
+-   [Example 1: Simple WebAssembly](#run-a-simple-webassembly-app)
+-   [Example 2: HTTP server in WebAssembly](#run-a-http-server-app)
 
 ## Install containerd
 
@@ -37,8 +37,7 @@ sudo tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${VERSION}-linux-amd64.
 sudo systemctl daemon-reload
 ```
 
-Configure containerd to use `crun` as the underlying OCI runtime.
-It makes changes to the `/etc/containerd/config.toml` file.
+Configure containerd to use `crun` as the underlying OCI runtime. It makes changes to the `/etc/containerd/config.toml` file.
 
 ```bash
 sudo mkdir -p /etc/containerd/
@@ -57,11 +56,7 @@ Next, make sure that you have [built and installed the `crun` binary with WasmEd
 
 ## Run a simple WebAssembly app
 
-Now, we can run a simple WebAssembly program using containerd.
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly
-program as a container image to Docker hub.
-In this section, we will start off pulling this WebAssembly-based container
-image from Docker hub using containerd tools.
+Now, we can run a simple WebAssembly program using containerd. [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub. In this section, we will start off pulling this WebAssembly-based container image from Docker hub using containerd tools.
 
 ```bash
 sudo ctr i pull docker.io/wasmedge/example-wasi:latest
@@ -90,14 +85,9 @@ File content is This is in a file
 
 Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app)!
 
-
 ## Run a HTTP server app
 
-Finally, we can run a simple WebAssembly-based HTTP micro-service in containerd.
-[A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly
-program as a container image to Docker hub.
-In this section, we will start off pulling this WebAssembly-based container
-image from Docker hub using containerd tools.
+Finally, we can run a simple WebAssembly-based HTTP micro-service in containerd. [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish the WebAssembly program as a container image to Docker hub. In this section, we will start off pulling this WebAssembly-based container image from Docker hub using containerd tools.
 
 ```bash
 sudo ctr i pull docker.io/wasmedge/example-wasi-http:latest
@@ -119,6 +109,4 @@ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
 echo: name=WasmEdge
 ```
 
-
 Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-webassembly-based-http-service)!
-

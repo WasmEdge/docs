@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2.2.4.3 Call WasmEdge functions from an NDK native app
+# Call WasmEdge functions from an NDK native app
 
 In this section, we will demonstrate how to build an Android native application using C and the Android SDK. The native application uses the WasmEdge C SDK to embed the WasmEdge Runtime, and call WASM functions through WasmEdge.
 
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
   WasmEdge_ConfigureAddHostRegistration(ConfCxt, WasmEdge_HostRegistration_Wasi);
   WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(ConfCxt, NULL);
   WasmEdge_ConfigureDelete(ConfCxt);
-  
+
   /* Create the image and TFLite import objects. */
   WasmEdge_ModuleInstanceContext *ImageImpObj = WasmEdge_Image_ModuleInstanceCreate();
   WasmEdge_ModuleInstanceContext *TFLiteImpObj = WasmEdge_TensorflowLite_ModuleInstanceCreate();

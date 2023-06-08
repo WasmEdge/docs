@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 2 Embed the Wasm app into your Go Host app
 
-In the previous chapter, we learned how to  create a Wasm app using Rust and `wasmedge-bindgen` tool. In this chapter, I will walk you through how to embed the compiled Wasm app into your Go Host app.
+In the previous chapter, we learned how to create a Wasm app using Rust and `wasmedge-bindgen` tool. In this chapter, I will walk you through how to embed the compiled Wasm app into your Go Host app.
 
 ## The Go Host Application
 
@@ -36,7 +36,7 @@ func main() {
 Next, you can call any `[wasmedge_bindgen]` annotated functions in the VM via the `bindgen` object.
 
 ```go
-  // create_line: string, string, string -> string (inputs are JSON stringified) 
+  // create_line: string, string, string -> string (inputs are JSON stringified)
   res, err := bg.Execute("create_line", "{\"x\":2.5,\"y\":7.8}", "{\"x\":2.5,\"y\":5.8}", "A thin red line")
   if err == nil {
     fmt.Println("Run bindgen -- create_line:", string(res))
@@ -90,9 +90,11 @@ Next, you can call any `[wasmedge_bindgen]` annotated functions in the VM via th
   conf.Release()
 }
 ```
+
 ## Run the Wasm app from your Go Host
 
 Before that, maker sure you have [installed Go, WasmEdge, and WasmEdge Go SDK](install.md).
+
 ```bash
 $ cd rust_bindgen_funcs
 go build

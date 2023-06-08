@@ -2,21 +2,19 @@
 sidebar_position: 10
 ---
 
-# 5.10 Example: SSR
-
+# Example: SSR
 
 [React](https://reactjs.org/) is very popular JavaScript web UI framework. A React application is "compiled" into an HTML and JavaScript static web site. The web UI is rendered through the generated JavaScript code. However, it is often too slow and resource consuming to execute the complex generated JavaScript entirely in the browser to build the interactive HTML DOM objects. [React Server Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55) delegates the JavaScript UI rendering to a server, and have the server stream rendered HTML DOM objects to the browser. The WasmEdge JavaScript runtime provides a lightweight and high performance container to run React SSR functions on edge servers.
 
 > Server-side rendering (SSR) is a popular technique for rendering a client-side single page application (SPA) on the server and then sending a fully rendered page to the client. This allows for dynamic components to be served as static HTML markup. This approach can be useful for search engine optimization (SEO) when indexing does not handle JavaScript properly. It may also be beneficial in situations where downloading a large JavaScript bundle is impaired by a slow network. -- [from Digital Ocean](https://www.digitalocean.com/community/tutorials/react-server-side-rendering).
 
-In this article, we will show you how to use the WasmEdge QuickJS runtime to implement a React SSR function.
-Compared with the Docker + Linux + nodejs + v8 approach, WasmEdge is safer (suitable for multi-tenancy environments) and much lighter (1% of the footprint) with similar performance.
+In this article, we will show you how to use the WasmEdge QuickJS runtime to implement a React SSR function. Compared with the Docker + Linux + nodejs + v8 approach, WasmEdge is safer (suitable for multi-tenancy environments) and much lighter (1% of the footprint) with similar performance.
 
 We will start from a complete tutorial to create and deploy a simple React Streaming SSR web application, and then move on to a full React 18 demo.
 
-* [Getting started with React streaming SSR](#getting-started)
-* [A full React 18 app](#a-full-react-18-app)
-* [Appendix: the create-react-app template](#appendix-the-create-react-app-template)
+-   [Getting started with React streaming SSR](#getting-started)
+-   [A full React 18 app](#a-full-react-18-app)
+-   [Appendix: the create-react-app template](#appendix-the-create-react-app-template)
 
 ## Getting started
 
@@ -29,36 +27,36 @@ import React, { Suspense } from 'react';
 import * as LazyPage from './LazyPage.jsx';
 
 async function sleep(ms) {
-  return new Promise((r, _) => {
-    setTimeout(() => r(), ms)
-  });
+    return new Promise((r, _) => {
+        setTimeout(() => r(), ms);
+    });
 }
 
 async function loadLazyPage() {
-  await sleep(2000);
-  return LazyPage
+    await sleep(2000);
+    return LazyPage;
 }
 
 class LazyHome extends React.Component {
-  render() {
-    let LazyPage1 = React.lazy(() => loadLazyPage());
-    return (
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <title>Title</title>
-        </head>
-        <body>
-          <div>
-            <div> This is LazyHome </div>
-            <Suspense fallback={<div> loading... </div>}>
-              <LazyPage1 />
-            </Suspense>
-          </div>
-        </body>
-      </html>
-    );
-  }
+    render() {
+        let LazyPage1 = React.lazy(() => loadLazyPage());
+        return (
+            <html lang="en">
+                <head>
+                    <meta charSet="utf-8" />
+                    <title>Title</title>
+                </head>
+                <body>
+                    <div>
+                        <div> This is LazyHome </div>
+                        <Suspense fallback={<div> loading... </div>}>
+                            <LazyPage1 />
+                        </Suspense>
+                    </div>
+                </body>
+            </html>
+        );
+    }
 }
 
 export default LazyHome;
@@ -70,22 +68,19 @@ The [LazyPage.jsx](https://github.com/second-state/wasmedge-quickjs/blob/main/ex
 import React from 'react';
 
 class LazyPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>
-          This is lazy page
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <div>This is lazy page</div>
+            </div>
+        );
+    }
 }
 
 export default LazyPage;
 ```
 
-The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/main.mjs)
-file starts a non-blocking HTTP server using standard Node.js APIs, and then renders the HTML page in multiple chuncks to the response.
+The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/main.mjs) file starts a non-blocking HTTP server using standard Node.js APIs, and then renders the HTML page in multiple chuncks to the response.
 
 ```javascript
 import * as React from 'react';
@@ -95,15 +90,14 @@ import { createServer } from 'http';
 import LazyHome from './component/LazyHome.jsx';
 
 createServer((req, res) => {
-  res.setHeader('Content-type', 'text/html; charset=utf-8');
-  renderToPipeableStream(<LazyHome />).pipe(res);
+    res.setHeader('Content-type', 'text/html; charset=utf-8');
+    renderToPipeableStream(<LazyHome />).pipe(res);
 }).listen(8001, () => {
-  print('listen 8001...');
-})
+    print('listen 8001...');
+});
 ```
 
-The [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/rollup.config.js) and [package.json](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/package.json) files are to build the React SSR dependencies and components into a bundled JavaScript file for WasmEdge. You should use the `npm` command to build it.
-The output is in the `dist/main.mjs` file.
+The [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/rollup.config.js) and [package.json](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/package.json) files are to build the React SSR dependencies and components into a bundled JavaScript file for WasmEdge. You should use the `npm` command to build it. The output is in the `dist/main.mjs` file.
 
 ```bash
 npm install
@@ -147,8 +141,7 @@ The results are as follows. The service first returns an HTML page with an empty
 
 In this section, we will demonstrate a complete React 18 SSR application. It renders the web UI through streaming SSR. The [example_js/react18_ssr](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react18_ssr) folder in the GitHub repo contains the example's source code. The [component](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react18_ssr/component) folder contains the entire React 18 application's source code, and the [public](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react18_ssr/public) folder contains the public resources (CSS and images) for the web application. The application also demonstrates a data provider for the UI.
 
-The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react18_ssr/main.mjs)
-file starts a non-blocking HTTP server, fetches data from a data provider, maps the `main.css` and `main.js` files in the `public` folder to web URLs, and then renders the HTML page for each request in `renderToPipeableStream()`.
+The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react18_ssr/main.mjs) file starts a non-blocking HTTP server, fetches data from a data provider, maps the `main.css` and `main.js` files in the `public` folder to web URLs, and then renders the HTML page for each request in `renderToPipeableStream()`.
 
 ```javascript
 import * as React from 'react';
@@ -157,74 +150,74 @@ import { createServer } from 'http';
 import * as std from 'std';
 
 import App from './component/App.js';
-import { DataProvider } from './component/data.js'
+import { DataProvider } from './component/data.js';
 
 let assets = {
-  'main.js': '/main.js',
-  'main.css': '/main.css',
+    'main.js': '/main.js',
+    'main.css': '/main.css',
 };
 
-const css = std.loadFile('./public/main.css')
+const css = std.loadFile('./public/main.css');
 
 function createServerData() {
-  let done = false;
-  let promise = null;
-  return {
-    read() {
-      if (done) {
-        return;
-      }
-      if (promise) {
-        throw promise;
-      }
-      promise = new Promise(resolve => {
-        setTimeout(() => {
-          done = true;
-          promise = null;
-          resolve();
-        }, 2000);
-      });
-      throw promise;
-    },
-  };
+    let done = false;
+    let promise = null;
+    return {
+        read() {
+            if (done) {
+                return;
+            }
+            if (promise) {
+                throw promise;
+            }
+            promise = new Promise((resolve) => {
+                setTimeout(() => {
+                    done = true;
+                    promise = null;
+                    resolve();
+                }, 2000);
+            });
+            throw promise;
+        },
+    };
 }
 
 createServer((req, res) => {
-  print(req.url)
-  if (req.url == '/main.css') {
-    res.setHeader('Content-Type', 'text/css; charset=utf-8')
-    res.end(css)
-  } else if (req.url == '/favicon.ico') {
-    res.end()
-  } else {
-    res.setHeader('Content-type', 'text/html');
+    print(req.url);
+    if (req.url == '/main.css') {
+        res.setHeader('Content-Type', 'text/css; charset=utf-8');
+        res.end(css);
+    } else if (req.url == '/favicon.ico') {
+        res.end();
+    } else {
+        res.setHeader('Content-type', 'text/html');
 
-    res.on('error', (e) => {
-      print('res error', e)
-    })
-    let data = createServerData()
-    print('createServerData')
+        res.on('error', (e) => {
+            print('res error', e);
+        });
+        let data = createServerData();
+        print('createServerData');
 
-    const stream = renderToPipeableStream(
-      <DataProvider data={data}>
-        <App assets={assets} />
-      </DataProvider>, {
-      onShellReady: () => {
-        stream.pipe(res)
-      },
-      onShellError: (e) => {
-        print('onShellError:', e)
-      }
+        const stream = renderToPipeableStream(
+            <DataProvider data={data}>
+                <App assets={assets} />
+            </DataProvider>,
+            {
+                onShellReady: () => {
+                    stream.pipe(res);
+                },
+                onShellError: (e) => {
+                    print('onShellError:', e);
+                },
+            },
+        );
     }
-    );
-  }
 }).listen(8002, () => {
-  print('listen 8002...')
-})
+    print('listen 8002...');
+});
 ```
 
-The [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react18_ssr/rollup.config.js) and [package.json](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react18_ssr/package.json) files are to build the React 18 SSR dependencies and components into a bundled JavaScript file for WasmEdge. You should use the `npm` command to build it.
-The output is in the `dist/main.mjs` file.
+The [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react18_ssr/rollup.config.js) and [package.json](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react18_ssr/package.json) files are to build the React 18 SSR dependencies and components into a bundled JavaScript file for WasmEdge. You should use the `npm` command to build it. The output is in the `dist/main.mjs` file.
 
 ```bash
 npm install
@@ -273,7 +266,7 @@ pinner--active" role="progressbar" aria-busy="true"></div><!--/$--></section><h2
 >Thanks for reading!</h2></article></main><!--/$--><script>assetManifest = {"mai
 n.js":"/main.js","main.css":"/main.css"};</script></body></html><div hidden id="
 S:0"><template id="P:3"></template></div><div hidden id="S:1"><template id="P:4"
-></template></div><div hidden id="S:2"><template id="P:5"></template></div><div 
+></template></div><div hidden id="S:2"><template id="P:5"></template></div><div
 hidden id="S:3"><h1>Archive</h1><ul><li>May 2021</li><li>April 2021</li><li>Marc
 h 2021</li><li>February 2021</li><li>January 2021</li><li>December 2020</li><li>
 November 2020</li><li>October 2020</li><li>September 2020</li></ul></div><script
@@ -326,18 +319,17 @@ npm start
 
 You should see the example React app displayed in your browser window. At this stage, the app is rendered in the browser. The browser runs the generated React JavaScript to build the HTML DOM UI.
 
-Now in order to prepare for SSR, you will need to make some changes to the app's `index.js` file. Change ReactDOM's `render` method to `hydrate` to indicate to the DOM renderer that you intend to rehydrate the app after it is rendered on the server.
-Replace the contents of the `index.js` file with the following.
+Now in order to prepare for SSR, you will need to make some changes to the app's `index.js` file. Change ReactDOM's `render` method to `hydrate` to indicate to the DOM renderer that you intend to rehydrate the app after it is rendered on the server. Replace the contents of the `index.js` file with the following.
 
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 ReactDOM.hydrate(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
 ```
 
@@ -372,92 +364,95 @@ import * as net from 'wasi_net';
 import App from '../src/App.js';
 
 async function handle_client(cs) {
-  print('open:', cs.peer());
-  let buffer = new http.Buffer();
+    print('open:', cs.peer());
+    let buffer = new http.Buffer();
 
-  while (true) {
-    try {
-      let d = await cs.read();
-      if (d == undefined || d.byteLength <= 0) {
-        return;
-      }
-      buffer.append(d);
-      let req = buffer.parseRequest();
-      if (req instanceof http.WasiRequest) {
-        handle_req(cs, req);
-        break;
-      }
-    } catch (e) {
-      print(e);
+    while (true) {
+        try {
+            let d = await cs.read();
+            if (d == undefined || d.byteLength <= 0) {
+                return;
+            }
+            buffer.append(d);
+            let req = buffer.parseRequest();
+            if (req instanceof http.WasiRequest) {
+                handle_req(cs, req);
+                break;
+            }
+        } catch (e) {
+            print(e);
+        }
     }
-  }
-  print('end:', cs.peer());
+    print('end:', cs.peer());
 }
 
 function enlargeArray(oldArr, newLength) {
-  let newArr = new Uint8Array(newLength);
-  oldArr && newArr.set(oldArr, 0);
-  return newArr;
+    let newArr = new Uint8Array(newLength);
+    oldArr && newArr.set(oldArr, 0);
+    return newArr;
 }
 
 async function handle_req(s, req) {
-  print('uri:', req.uri)
+    print('uri:', req.uri);
 
-  let resp = new http.WasiResponse();
-  let content = '';
-  if (req.uri == '/') {
-    const app = ReactDOMServer.renderToString(<App />);
-    content = std.loadFile('./build/index.html');
-    content = content.replace('<div id="root"></div>', `<div id="root">${app}</div>`);
-  } else {
-    let chunk = 1000; // Chunk size of each reading
-    let length = 0; // The whole length of the file
-    let byteArray = null; // File content as Uint8Array
-    
-    // Read file into byteArray by chunk
-    let file = std.open('./build' + req.uri, 'r');
-    while (true) {
-      byteArray = enlargeArray(byteArray, length + chunk);
-      let readLen = file.read(byteArray.buffer, length, chunk);
-      length += readLen;
-      if (readLen < chunk) {
-        break;
-      }
+    let resp = new http.WasiResponse();
+    let content = '';
+    if (req.uri == '/') {
+        const app = ReactDOMServer.renderToString(<App />);
+        content = std.loadFile('./build/index.html');
+        content = content.replace(
+            '<div id="root"></div>',
+            `<div id="root">${app}</div>`,
+        );
+    } else {
+        let chunk = 1000; // Chunk size of each reading
+        let length = 0; // The whole length of the file
+        let byteArray = null; // File content as Uint8Array
+
+        // Read file into byteArray by chunk
+        let file = std.open('./build' + req.uri, 'r');
+        while (true) {
+            byteArray = enlargeArray(byteArray, length + chunk);
+            let readLen = file.read(byteArray.buffer, length, chunk);
+            length += readLen;
+            if (readLen < chunk) {
+                break;
+            }
+        }
+        content = byteArray.slice(0, length).buffer;
+        file.close();
     }
-    content = byteArray.slice(0, length).buffer;
-    file.close();
-  }
-  let contentType = 'text/html; charset=utf-8';
-  if (req.uri.endsWith('.css')) {
-    contentType = 'text/css; charset=utf-8';
-  } else if (req.uri.endsWith('.js')) {
-    contentType = 'text/javascript; charset=utf-8';
-  } else if (req.uri.endsWith('.json')) {
-    contentType = 'text/json; charset=utf-8';
-  } else if (req.uri.endsWith('.ico')) {
-    contentType = 'image/vnd.microsoft.icon';
-  } else if (req.uri.endsWith('.png')) {
-    contentType = 'image/png';
-  }
-  resp.headers = {
-    'Content-Type': contentType
-  };
+    let contentType = 'text/html; charset=utf-8';
+    if (req.uri.endsWith('.css')) {
+        contentType = 'text/css; charset=utf-8';
+    } else if (req.uri.endsWith('.js')) {
+        contentType = 'text/javascript; charset=utf-8';
+    } else if (req.uri.endsWith('.json')) {
+        contentType = 'text/json; charset=utf-8';
+    } else if (req.uri.endsWith('.ico')) {
+        contentType = 'image/vnd.microsoft.icon';
+    } else if (req.uri.endsWith('.png')) {
+        contentType = 'image/png';
+    }
+    resp.headers = {
+        'Content-Type': contentType,
+    };
 
-  let r = resp.encode(content);
-  s.write(r);
+    let r = resp.encode(content);
+    s.write(r);
 }
 
 async function server_start() {
-  print('listen 8002...');
-  try {
-    let s = new net.WasiTcpServer(8002);
-    for (var i = 0; ; i++) {
-      let cs = await s.accept();
-      handle_client(cs);
+    print('listen 8002...');
+    try {
+        let s = new net.WasiTcpServer(8002);
+        for (var i = 0; ; i++) {
+            let cs = await s.accept();
+            handle_client(cs);
+        }
+    } catch (e) {
+        print(e);
     }
-  } catch (e) {
-    print(e);
-  }
 }
 
 server_start();
@@ -465,9 +460,9 @@ server_start();
 
 The server renders the `<App>` component, and then sends the rendered HTML string back to the browser. Three important things are taking place here.
 
-* ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
-* The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
-* Other files from the `build` directory are read and served as needed at the requests of the browser.
+-   ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
+-   The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
+-   Other files from the `build` directory are read and served as needed at the requests of the browser.
 
 ### Step 3 — Build and deploy
 
@@ -477,10 +472,7 @@ Create a new Babel configuration file named `.babelrc.json` in the project's roo
 
 ```json
 {
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
-  ]
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
 ```
 
@@ -489,39 +481,39 @@ Create a webpack config for the server that uses Babel Loader to transpile the c
 ```js
 const path = require('path');
 module.exports = {
-  entry: './server/index.js',
-  externals: [
-    {"wasi_http": "wasi_http"},
-    {"wasi_net": "wasi_net"},
-    {"std": "std"}
-  ],
-  output: {
-    path: path.resolve('server-build'),
-    filename: 'index.js',
-    chunkFormat: "module",
-    library: {
-      type: "module"
+    entry: './server/index.js',
+    externals: [
+        { wasi_http: 'wasi_http' },
+        { wasi_net: 'wasi_net' },
+        { std: 'std' },
+    ],
+    output: {
+        path: path.resolve('server-build'),
+        filename: 'index.js',
+        chunkFormat: 'module',
+        library: {
+            type: 'module',
+        },
     },
-  },
-  experiments: {
-    outputModule: true
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.css$/,
-        use: ["css-loader"]
-      },
-      {
-        test: /\.svg$/,
-        use: ["svg-url-loader"]
-      }
-    ]
-  }
+    experiments: {
+        outputModule: true,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+            },
+            {
+                test: /\.css$/,
+                use: ['css-loader'],
+            },
+            {
+                test: /\.svg$/,
+                use: ['svg-url-loader'],
+            },
+        ],
+    },
 };
 ```
 
@@ -545,8 +537,8 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 },
 ```
 
-* The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-* The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+-   The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
+-   The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 
@@ -579,7 +571,7 @@ Alternatively, you could use the [rollup.js](https://rollupjs.org/guide/en/) too
 Create a rollup config for the server that uses Babel Loader to transpile the code. Start by creating the `rollup.config.js` file in the project's root directory.
 
 ```js
-const {babel} = require('@rollup/plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 const nodeResolve = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const replace = require('@rollup/plugin-replace');
@@ -587,41 +579,39 @@ const replace = require('@rollup/plugin-replace');
 const globals = require('rollup-plugin-node-globals');
 const builtins = require('rollup-plugin-node-builtins');
 const plugin_async = require('rollup-plugin-async');
-const css = require("rollup-plugin-import-css");
+const css = require('rollup-plugin-import-css');
 const svg = require('rollup-plugin-svg');
 
 const babelOptions = {
-  babelrc: false,
-  presets: [
-    '@babel/preset-react'
-  ],
-  babelHelpers: 'bundled'
+    babelrc: false,
+    presets: ['@babel/preset-react'],
+    babelHelpers: 'bundled',
 };
 
 module.exports = [
-  {
-    input: './server/index.js',
-    output: {
-      file: 'server-build/index.js',
-      format: 'esm',
+    {
+        input: './server/index.js',
+        output: {
+            file: 'server-build/index.js',
+            format: 'esm',
+        },
+        external: ['std', 'wasi_net', 'wasi_http'],
+        plugins: [
+            plugin_async(),
+            babel(babelOptions),
+            nodeResolve({ preferBuiltins: true }),
+            commonjs({ ignoreDynamicRequires: false }),
+            css(),
+            svg({ base64: true }),
+            globals(),
+            builtins(),
+            replace({
+                preventAssignment: true,
+                'process.env.NODE_ENV': JSON.stringify('production'),
+                'process.env.NODE_DEBUG': JSON.stringify(''),
+            }),
+        ],
     },
-    external: [ 'std', 'wasi_net','wasi_http'],
-    plugins: [
-      plugin_async(),
-      babel(babelOptions),
-      nodeResolve({preferBuiltins: true}),
-      commonjs({ignoreDynamicRequires: false}),
-      css(),
-      svg({base64: true}),
-      globals(),
-      builtins(),
-      replace({
-        preventAssignment: true,  
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        'process.env.NODE_DEBUG': JSON.stringify(''),
-      }),
-    ],
-  },
 ];
 ```
 
@@ -661,8 +651,8 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 },
 ```
 
-* The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-* The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+-   The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
+-   The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
 
 Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
 

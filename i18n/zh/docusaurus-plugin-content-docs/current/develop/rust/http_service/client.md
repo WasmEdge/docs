@@ -4,7 +4,6 @@ sidebar_position: 1
 
 # 4.3.1 Client
 
-
 WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. In this chapter, we will cover simple synchronous clients, asynchronous clients, as well as clients based on low level hyper and socket APIs. For HTTP servers in WasmEdge, please see [the next chapter](server).
 
 > Before we started, make sure [you have Rust and WasmEdge installed](../../rust/setup).
@@ -70,12 +69,12 @@ wasmedgec target/wasm32-wasi/release/get.wasm target/wasm32-wasi/release/get.was
 wasmedge target/wasm32-wasi/release/get.wasm
 ```
 
-
-## Asynchronous 
+## Asynchronous
 
 You could use the reqwest API to make asynchronous HTTP requests. Here are some examples. First, you will need to import the WasmEdge adapted [reqwest_wasi crate](https://crates.io/crates/reqwest_wasi), which uses a special version of single threaded Tokio that is adapted for WebAssembly.
 
 Just add the following line to your Cargo.toml.
+
 ```
 [dependencies]
 reqwest_wasi = { version = "0.11", features = ["json"] }
@@ -135,10 +134,12 @@ wasmedge target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm
 The http_req and reqwest crates are convenient to use. But often times, developers need access lower level APIs. The hyper crate is an excellent HTTP library for that. Here are some examples. First, you will need to import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single threaded Tokio that is adapted for WebAssembly.
 
 Just add the following line to your Cargo.toml.
+
 ```
 [dependencies]
 hyper_wasi = "0.15.0"
 ```
+
 The example below shows an HTTP GET request.
 
 ```

@@ -1,8 +1,8 @@
 {
-  "label": "Go SDK for Embedding Wasm Functions",
-  "position": 6,
-  "link": {
-    "type": "generated-index",
-    "description": "In this chapter, we will learn how to Embed WasmEdge in your Go host applications."
-  }
+    "label": "Go SDK for Embedding Wasm Functions",
+    "position": 6,
+    "link": {
+        "type": "generated-index",
+        "description": "In this chapter, we will learn how to Embed WasmEdge in your Go host applications."
+    }
 }

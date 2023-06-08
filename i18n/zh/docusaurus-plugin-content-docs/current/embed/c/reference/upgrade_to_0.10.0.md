@@ -10,58 +10,54 @@ Due to the WasmEdge C API breaking changes, this document shows the guideline of
 
 1. Merged the `WasmEdge_ImportObjectContext` into the `WasmEdge_ModuleInstanceContext`.
 
-   The `WasmEdge_ImportObjectContext` which is for the host functions is merged into `WasmEdge_ModuleInstanceContext`.
-   Developers can use the related APIs to construct host modules.
+    The `WasmEdge_ImportObjectContext` which is for the host functions is merged into `WasmEdge_ModuleInstanceContext`. Developers can use the related APIs to construct host modules.
 
-   * `WasmEdge_ImportObjectCreate()` is changed to `WasmEdge_ModuleInstanceCreate()`.
-   * `WasmEdge_ImportObjectDelete()` is changed to `WasmEdge_ModuleInstanceDelete()`.
-   * `WasmEdge_ImportObjectAddFunction()` is changed to `WasmEdge_ModuleInstanceAddFunction()`.
-   * `WasmEdge_ImportObjectAddTable()` is changed to `WasmEdge_ModuleInstanceAddTable()`.
-   * `WasmEdge_ImportObjectAddMemory()` is changed to `WasmEdge_ModuleInstanceAddMemory()`.
-   * `WasmEdge_ImportObjectAddGlobal()` is changed to `WasmEdge_ModuleInstanceAddGlobal()`.
-   * `WasmEdge_ImportObjectCreateWASI()` is changed to `WasmEdge_ModuleInstanceCreateWASI()`.
-   * `WasmEdge_ImportObjectCreateWasmEdgeProcess()` is changed to `WasmEdge_ModuleInstanceCreateWasmEdgeProcess()`.
-   * `WasmEdge_ImportObjectInitWASI()` is changed to `WasmEdge_ModuleInstanceInitWASI()`.
-   * `WasmEdge_ImportObjectInitWasmEdgeProcess()` is changed to `WasmEdge_ModuleInstanceInitWasmEdgeProcess()`.
+    - `WasmEdge_ImportObjectCreate()` is changed to `WasmEdge_ModuleInstanceCreate()`.
+    - `WasmEdge_ImportObjectDelete()` is changed to `WasmEdge_ModuleInstanceDelete()`.
+    - `WasmEdge_ImportObjectAddFunction()` is changed to `WasmEdge_ModuleInstanceAddFunction()`.
+    - `WasmEdge_ImportObjectAddTable()` is changed to `WasmEdge_ModuleInstanceAddTable()`.
+    - `WasmEdge_ImportObjectAddMemory()` is changed to `WasmEdge_ModuleInstanceAddMemory()`.
+    - `WasmEdge_ImportObjectAddGlobal()` is changed to `WasmEdge_ModuleInstanceAddGlobal()`.
+    - `WasmEdge_ImportObjectCreateWASI()` is changed to `WasmEdge_ModuleInstanceCreateWASI()`.
+    - `WasmEdge_ImportObjectCreateWasmEdgeProcess()` is changed to `WasmEdge_ModuleInstanceCreateWasmEdgeProcess()`.
+    - `WasmEdge_ImportObjectInitWASI()` is changed to `WasmEdge_ModuleInstanceInitWASI()`.
+    - `WasmEdge_ImportObjectInitWasmEdgeProcess()` is changed to `WasmEdge_ModuleInstanceInitWasmEdgeProcess()`.
 
-   For the new host function examples, please refer to [the example below](#host-functions).
+    For the new host function examples, please refer to [the example below](#host-functions).
 
 2. Used the pointer to `WasmEdge_FunctionInstanceContext` instead of the index in the `FuncRef` value type.
 
-   For the better performance and security, the `FuncRef` related APIs used the `const WasmEdge_FunctionInstanceContext *` for the parameters and returns.
+    For the better performance and security, the `FuncRef` related APIs used the `const WasmEdge_FunctionInstanceContext *` for the parameters and returns.
 
-   * `WasmEdge_ValueGenFuncRef()` is changed to use the `const WasmEdge_FunctionInstanceContext *` as it's argument.
-   * `WasmEdge_ValueGetFuncRef()` is changed to return the `const WasmEdge_FunctionInstanceContext *`.
+    - `WasmEdge_ValueGenFuncRef()` is changed to use the `const WasmEdge_FunctionInstanceContext *` as it's argument.
+    - `WasmEdge_ValueGetFuncRef()` is changed to return the `const WasmEdge_FunctionInstanceContext *`.
 
 3. Supported multiple anonymous WASM module instantiation.
 
-   In the version before `0.9.1`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced.
-   After the `0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed.
-   For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
+    In the version before `0.9.1`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced. After the `0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed. For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
 
 4. Behavior changed of `WasmEdge_StoreContext`.
 
-   The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `0.10.0` version.
+    The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `0.10.0` version.
 
-   * `WasmEdge_StoreListFunctionLength()` and `WasmEdge_StoreListFunctionRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListFunctionLength()`.
-   * `WasmEdge_StoreListTableLength()` and `WasmEdge_StoreListTableRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListTableLength()`.
-   * `WasmEdge_StoreListMemoryLength()` and `WasmEdge_StoreListMemoryRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListMemoryLength()`.
-   * `WasmEdge_StoreListGlobalLength()` and `WasmEdge_StoreListGlobalRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListGlobalLength()`.
-   * `WasmEdge_StoreListFunction()` and `WasmEdge_StoreListFunctionRegistered()` is replaced by `WasmEdge_ModuleInstanceListFunction()`.
-   * `WasmEdge_StoreListTable()` and `WasmEdge_StoreListTableRegistered()` is replaced by `WasmEdge_ModuleInstanceListTable()`.
-   * `WasmEdge_StoreListMemory()` and `WasmEdge_StoreListMemoryRegistered()` is replaced by `WasmEdge_ModuleInstanceListMemory()`.
-   * `WasmEdge_StoreListGlobal()` and `WasmEdge_StoreListGlobalRegistered()` is replaced by `WasmEdge_ModuleInstanceListGlobal()`.
-   * `WasmEdge_StoreFindFunction()` and `WasmEdge_StoreFindFunctionRegistered()` is replaced by `WasmEdge_ModuleInstanceFindFunction()`.
-   * `WasmEdge_StoreFindTable()` and `WasmEdge_StoreFindTableRegistered()` is replaced by `WasmEdge_ModuleInstanceFindTable()`.
-   * `WasmEdge_StoreFindMemory()` and `WasmEdge_StoreFindMemoryRegistered()` is replaced by `WasmEdge_ModuleInstanceFindMemory()`.
-   * `WasmEdge_StoreFindGlobal()` and `WasmEdge_StoreFindGlobalRegistered()` is replaced by `WasmEdge_ModuleInstanceFindGlobal()`.
+    - `WasmEdge_StoreListFunctionLength()` and `WasmEdge_StoreListFunctionRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListFunctionLength()`.
+    - `WasmEdge_StoreListTableLength()` and `WasmEdge_StoreListTableRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListTableLength()`.
+    - `WasmEdge_StoreListMemoryLength()` and `WasmEdge_StoreListMemoryRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListMemoryLength()`.
+    - `WasmEdge_StoreListGlobalLength()` and `WasmEdge_StoreListGlobalRegisteredLength()` is replaced by `WasmEdge_ModuleInstanceListGlobalLength()`.
+    - `WasmEdge_StoreListFunction()` and `WasmEdge_StoreListFunctionRegistered()` is replaced by `WasmEdge_ModuleInstanceListFunction()`.
+    - `WasmEdge_StoreListTable()` and `WasmEdge_StoreListTableRegistered()` is replaced by `WasmEdge_ModuleInstanceListTable()`.
+    - `WasmEdge_StoreListMemory()` and `WasmEdge_StoreListMemoryRegistered()` is replaced by `WasmEdge_ModuleInstanceListMemory()`.
+    - `WasmEdge_StoreListGlobal()` and `WasmEdge_StoreListGlobalRegistered()` is replaced by `WasmEdge_ModuleInstanceListGlobal()`.
+    - `WasmEdge_StoreFindFunction()` and `WasmEdge_StoreFindFunctionRegistered()` is replaced by `WasmEdge_ModuleInstanceFindFunction()`.
+    - `WasmEdge_StoreFindTable()` and `WasmEdge_StoreFindTableRegistered()` is replaced by `WasmEdge_ModuleInstanceFindTable()`.
+    - `WasmEdge_StoreFindMemory()` and `WasmEdge_StoreFindMemoryRegistered()` is replaced by `WasmEdge_ModuleInstanceFindMemory()`.
+    - `WasmEdge_StoreFindGlobal()` and `WasmEdge_StoreFindGlobalRegistered()` is replaced by `WasmEdge_ModuleInstanceFindGlobal()`.
 
-   For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
+    For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
 
 5. The `WasmEdge_ModuleInstanceContext`-based resource management.
 
-   Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `WasmEdge_ModuleInstanceDelete()` API.
-   The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
+    Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `WasmEdge_ModuleInstanceDelete()` API. The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
 
 ## WasmEdge VM changes
 
@@ -105,8 +101,7 @@ WasmEdge_VMDelete(VMCxt);
 WasmEdge_ConfigureDelete(ConfCxt);
 ```
 
-The `VM` provides a new API for getting the current instantiated anonymous `Module` instance.
-For example, if developer want to get the exported `Global` instance:
+The `VM` provides a new API for getting the current instantiated anonymous `Module` instance. For example, if developer want to get the exported `Global` instance:
 
 ```c
 /* Assume that a WASM module is instantiated in `VMCxt`, and exports the "global_i32". */
@@ -148,10 +143,7 @@ WasmEdge_StringDelete(GlobName);
     }
     ```
 
-    Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`.
-    If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned.
-    After the WasmEdge `0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated.
-    Developers have the responsibility to destroy the outputted module instances.
+    Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`. If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned. After the WasmEdge `0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated. Developers have the responsibility to destroy the outputted module instances.
 
     ```c
     WasmEdge_ASTModuleContext *ASTCxt1, *ASTCxt2;
@@ -259,8 +251,7 @@ WasmEdge_StringDelete(GlobName);
 
 4. WASM function invocation
 
-    This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
-    In WasmEdge `0.9.1` version, developers can invoke a WASM function with the export function name:
+    This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat). In WasmEdge `0.9.1` version, developers can invoke a WASM function with the export function name:
 
     ```c
     /* Create the store context. The store context holds the instances. */
@@ -507,7 +498,7 @@ WasmEdge_StringDelete(ExportName);
 /* Create and add a function instance into the import object. */
 enum WasmEdge_ValType ParamList[2] = { WasmEdge_ValType_I32, WasmEdge_ValType_I32 };
 enum WasmEdge_ValType ReturnList[1] = { WasmEdge_ValType_I32 };
-WasmEdge_FunctionTypeContext *HostFType = 
+WasmEdge_FunctionTypeContext *HostFType =
     WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
 WasmEdge_FunctionInstanceContext *HostFunc =
     WasmEdge_FunctionInstanceCreate(HostFType, Add, NULL, 0);
@@ -548,7 +539,7 @@ WasmEdge_StringDelete(ExportName);
 /* Create and add a function instance into the module instance. */
 enum WasmEdge_ValType ParamList[2] = { WasmEdge_ValType_I32, WasmEdge_ValType_I32 };
 enum WasmEdge_ValType ReturnList[1] = { WasmEdge_ValType_I32 };
-WasmEdge_FunctionTypeContext *HostFType = 
+WasmEdge_FunctionTypeContext *HostFType =
     WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
 WasmEdge_FunctionInstanceContext *HostFunc =
     WasmEdge_FunctionInstanceCreate(HostFType, Add, NULL, 0);

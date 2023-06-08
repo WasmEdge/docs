@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 4.6.3 OpenVINO
+# OpenVINO
 
 We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) to show how to do AI inference with an OpenVINO model in WasmEdge and Rust.
 
@@ -43,7 +43,6 @@ Executed graph inference
    5.) [942](0.0005)butternut squash
 ```
 
-
 ## Build and Run the example from Rust source code
 
 Let's build the wasm file from the rust source code.
@@ -70,7 +69,7 @@ Next, download the OpenVINO model files and use WasmEdge to classify your own im
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
 
-You can replace `input.jpg` with your own image file. 
+You can replace `input.jpg` with your own image file.
 
 ## Improve performance
 

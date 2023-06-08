@@ -1,6 +1,4 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import ReleaseNotes from '@theme/ReleaseNotes';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import ReleaseNotes from '@theme/ReleaseNotes';
 
 # Releases
 

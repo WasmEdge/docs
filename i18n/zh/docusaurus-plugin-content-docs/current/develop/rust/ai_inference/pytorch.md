@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.7.1 PyTorch
+# PyTorch
 
 We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) to show how to do AI inference with a PyTorch model in WasmEdge and Rust.
 
@@ -44,7 +44,6 @@ Executed graph inference
    5.) [953](9.4834)pineapple, ananas
 ```
 
-
 ## Build and Run the example from Rust source code
 
 Let's build the wasm file from the rust source code.
@@ -69,7 +68,8 @@ Next let's use WasmEdge to identify your own images.
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
 ```
-You can replace `input.jpg` with your own image file. 
+
+You can replace `input.jpg` with your own image file.
 
 ## Improve performance
 
@@ -191,4 +191,3 @@ for i in 0..5 {
   );
 }
 ```
-

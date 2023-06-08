@@ -6,6 +6,7 @@ sidebar_position: 3
 
 WasmEdge provides a Redis driver for Rust developer, enabling developers to build database applications in Rust and then running in WasmEdge.
 
+<!-- prettier-ignore -->
 :::note
 Before we started, make sure [you have Rust and WasmEdge installed](../setup).
 :::

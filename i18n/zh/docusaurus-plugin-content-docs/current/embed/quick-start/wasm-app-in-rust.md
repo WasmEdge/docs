@@ -13,14 +13,15 @@ In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK.
 We need to install [Rust and add `wasm32-wasi` target for Rust](/develop/rust/setup.md)
 
 We also need to install `wasmedge-bindgen`.
+
 ```
 # Install the WasmEdge-bindgen tool, which help us handle complex data passing
 $ go get github.com/second-state/wasmedge-bindgen@v0.4.1
 ```
+
 ## Rust function
 
 The full source code for the demo in this chapter is [available here](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs).
-
 
 In the [Rust project](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs), all you need is to annotate [your functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs/src/lib.rs) with a `[wasmedge_bindgen]` macro.
 
@@ -106,6 +107,7 @@ First，fork or git clone the demo project to get the source code.
 ```bash
 git clone https://github.com/second-state/WasmEdge-go-examples.git
 ```
+
 Next, build the WebAssembly bytecode file using standard `Cargo` commands.
 
 ```bash
@@ -117,4 +119,3 @@ cd ../
 ```
 
 Now we have a Wasm function, next let's see how to embed the Wasm function to a Go Host application.
-
