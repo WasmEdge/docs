@@ -16,7 +16,7 @@ In current, developers can follow the guides to implement the plug-ins in [C API
 
 Loadable plugins are standalone shared libraries (`.so`/`.dylib`/`.dll` files) that can be loaded by the WasmEdge runtime environment at runtime. These plugins can provide additional functionality to the WasmEdge runtime environment, such as new modules that can be imported by WebAssembly modules.
 
-To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of C/C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string.
+To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of Rust or C/C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string.
 
 Once a loadable plugin has been created, it can be loaded by the WasmEdge runtime environment using the WasmEdge_LoadWasmFromFile or WasmEdge_LoadWasmFromBuffer API. The plugin can then be used to provide functionality to WebAssembly modules, such as access to system resources or specialized hardware.
 
@@ -47,6 +47,7 @@ This flowchart shows the basic steps involved in creating and using a loadable p
 Once the plugin has been compiled, it can be loaded by the WasmEdge runtime environment using the `WasmEdge_LoadWasmFromFile` or `WasmEdge_LoadWasmFromBuffer` API. The plugin can then be registered with the runtime environment using the `WasmEdge_RegisterImport` API.
 
 After the plugin has been registered, a WebAssembly module can be loaded using the `WasmEdge_LoadWasmFromFile` or `WasmEdge_LoadWasmFromBuffer` API. The module can then import the plugin module using the `WasmEdge_VMRegisterModule` API.
+
 Finally, the WebAssembly module can execute its functions, which may call the functions provided by the plugin module. The plugin functions can then perform their specific tasks, such as accessing system resources or specialized hardware.
 
 ## WasmEdge Currently Released Plug-ins
