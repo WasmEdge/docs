@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# 4.9 Command interface
+# Command interface
 
 WASI enables WebAssembly programs to call standard library functions in the host operating system. It does so through a fine-grained security model known as “capability-based security”. The WebAssembly VM owner can grant access to host system resources when the VM starts up. The program cannot access any resources (e.g., file folders) that are not explicitly allowed.
 
@@ -10,8 +10,8 @@ Now, why limit ourselves to standard library functions? The same approach can be
 
 The command line program can
 
-* Take input via command line arguments, as well as the `STDIN` stream.
-* Return value and data via the `STDOUT` stream.
+-   Take input via command line arguments, as well as the `STDIN` stream.
+-   Return value and data via the `STDOUT` stream.
 
 Application developers for WasmEdge can use our Rust interface crate to access this functionality. In `Cargo.toml`, make sure that you have this dependency.
 
@@ -27,7 +27,7 @@ let mut cmd = Command::new("http_proxy");
 
 cmd.arg("post")
    .arg("https://api.sendgrid.com/v3/mail/send")
-   .arg(auth_header);  
+   .arg(auth_header);
 cmd.stdin_u8vec(payload.to_string().as_bytes());
 
 let out = cmd.output();

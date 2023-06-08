@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# 5.8 Native JS API in Rust
+# Native JS API in Rust
 
 For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" and yet still take advantage of the high performance Rust functions. With the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge), you can do exactly that.
 
@@ -10,12 +10,12 @@ For JavaScript developers, incorporating Rust functions into JavaScript APIs is 
 
 ## Prerequisites
 
-* [WasmEdge installed](../build-and-run/install)
-* Download the WasmEdge QuickJS Runtime
-    * Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download 
-* [Rust](https://www.rust-lang.org/tools/install) installed
-* `wasm32-wasi` target of the Rust toolchain added
-    * Run `rustup target add wasm32-wasi` after installed Rust. 
+-   [WasmEdge installed](../build-and-run/install)
+-   Download the WasmEdge QuickJS Runtime
+    -   Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+-   [Rust](https://www.rust-lang.org/tools/install) installed
+-   `wasm32-wasi` target of the Rust toolchain added
+    -   Run `rustup target add wasm32-wasi` after installed Rust.
 
 ## A simple example
 
@@ -28,7 +28,6 @@ git clone https://github.com/second-state/wasmedge-quickjs
 cd examples/embed_js
 ```
 
-
 The `embed_js` demo showcases several different examples on how to embed JavaScript inside Rust. You can build and run all the examples as follows.
 
 ```bash
@@ -38,7 +37,7 @@ wasmedge --dir .:. target/wasm32-wasi/release/embed_js.wasm
 
 > Note: The `--dir .:.` on the command line is to give wasmedge permission to read the local directory in the file system.
 
-### Code explanation: create a JavaScript function API 
+### Code explanation: create a JavaScript function API
 
 The following code snippet defines a Rust function that can be incorporate into the JavaScript interpreter as an API.
 
@@ -53,7 +52,7 @@ fn run_rust_function(ctx: &mut Context) {
       JsValue::UnDefined
     }
   }
-  
+
   ...
 }
 ```
@@ -63,7 +62,7 @@ The following code snippet shows how to add this Rust function into the JavaScri
 ```rust
 fn run_rust_function(ctx: &mut Context) {
   ...
-  
+
   let f = ctx.new_function::<HelloFn>("hello");
   ctx.get_global().set("hi", f.into());
   let code = r#"hi(1,2,3)"#;
@@ -183,6 +182,7 @@ wasmedge --dir .:. target/wasm32-wasi/release/embed_rust_module.wasm
 ```
 
 ### Code Explanation
+
 The Rust implementation of the object is a module as follows. It has data fields, constructor, getters and setters, and functions.
 
 ```rust
@@ -297,7 +297,7 @@ fn main() {
     } catch(e) {
       print("An error has been caught");
       print(e)
-    }  
+    }
     })
   "#;
 

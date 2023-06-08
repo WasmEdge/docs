@@ -1,3 +1,4 @@
+---
 name: CodeQL Analysis
 
 on:
@@ -22,19 +23,18 @@ jobs:
       contents: read
       security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ['javascript']
+  strategy:
+    fail-fast: false
+    matrix:
+      language: ['javascript']
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+        - name: Initialize CodeQL
+          uses: github/codeql-action/init@v2.3.3
+          with:
+            languages: ${{ matrix.language }}
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2.3.3
-        with:
-          languages: ${{ matrix.language }}
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2.3.3
+        - name: Perform CodeQL Analysis
+          uses: github/codeql-action/analyze@v2.3.3

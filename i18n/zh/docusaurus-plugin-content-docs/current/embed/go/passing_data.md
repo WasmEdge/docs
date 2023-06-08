@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 6.4 Pass complex parameters to Wasm functions
+# Pass complex parameters to Wasm functions
 
 An issue with the WebAssembly spec is that it only supports a very limited number of data types. If you want to embed a WebAssembly function with complex call parameters or return values, you will need to manage memory pointers both on Go SDK and WebAssembly function sides.
 
@@ -10,15 +10,14 @@ Such complex call parameters and return values include dynamic memory structures
 
 In this section, we will discuss several examples.
 
-* [Pass strings to Rust functions](#pass-strings-to-rust-functions)
-* [Pass strings to TinyGo functions](#pass-strings-to-tinygo-functions)
-* [Pass bytes to Rust functions](#pass-bytes-to-rust-functions)
-* [Pass bytes to TinyGo functions](#pass-bytes-to-tinygo-functions)
+-   [Pass strings to Rust functions](#pass-strings-to-rust-functions)
+-   [Pass strings to TinyGo functions](#pass-strings-to-tinygo-functions)
+-   [Pass bytes to Rust functions](#pass-bytes-to-rust-functions)
+-   [Pass bytes to TinyGo functions](#pass-bytes-to-tinygo-functions)
 
 ## Pass strings to Rust functions
 
-In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_MemoryGreet), we will demonstrate how to call [a Rust-based WebAssembly function](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreet/rust_memory_greet/src/lib.rs) from a Go app.
-Specially, we will discuss how to pass string data.
+In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_MemoryGreet), we will demonstrate how to call [a Rust-based WebAssembly function](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreet/rust_memory_greet/src/lib.rs) from a Go app. Specially, we will discuss how to pass string data.
 
 > An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](bindgen.md).
 
@@ -64,9 +63,7 @@ cargo build --target wasm32-wasi
 # The output WASM will be `target/wasm32-wasi/debug/rust_memory_greet_lib.wasm`.
 ```
 
-The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreet/greet_memory.go) must call `allocate` from the WasmEdge VM to get a pointer to the string parameter.
-It will then call the `greet` function in Rust with the pointer.
-After the function returns, the Go application will call `deallocate` to free the memory space.
+The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreet/greet_memory.go) must call `allocate` from the WasmEdge VM to get a pointer to the string parameter. It will then call the `greet` function in Rust with the pointer. After the function returns, the Go application will call `deallocate` to free the memory space.
 
 ```go
 package main
@@ -210,9 +207,7 @@ Use the TinyGo compiler tools to compile the Go source code into a WebAssembly b
 tinygo build -o greet.wasm -target wasi greet.go
 ```
 
-The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreetTinyGo/greet_memory.go) must call `malloc` from the WasmEdge VM to get a pointer to the string parameter.
-It will then call the `greet` function in TinyGo with the pointer.
-After the function returns, the Go application will call `free` to free the memory space.
+The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreetTinyGo/greet_memory.go) must call `malloc` from the WasmEdge VM to get a pointer to the string parameter. It will then call the `greet` function in TinyGo with the pointer. After the function returns, the Go application will call `free` to free the memory space.
 
 ```go
 package main
@@ -366,10 +361,7 @@ cargo build --target wasm32-wasi
 # The output WASM will be target/wasm32-wasi/debug/rust_access_memory_lib.wasm.
 ```
 
-The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemory/run.go) must call `allocate` from the WasmEdge VM to get a pointer to the array.
-It will then call the `fib_array()` function in Rust and pass in the pointer.
-After the functions return, the Go application will use the WasmEdge `store` API to construct an array from the pointer in the call parameter (`fib_array()`) or in the return value (`fib_array_return_memory()`).
-The Go app will eventually call `deallocate` to free the memory space.
+The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemory/run.go) must call `allocate` from the WasmEdge VM to get a pointer to the array. It will then call the `fib_array()` function in Rust and pass in the pointer. After the functions return, the Go application will use the WasmEdge `store` API to construct an array from the pointer in the call parameter (`fib_array()`) or in the return value (`fib_array_return_memory()`). The Go app will eventually call `deallocate` to free the memory space.
 
 ```go
 package main
@@ -479,9 +471,7 @@ fibArrayReturnMemory: [0 0 0 0 1 0 0 0 1 0 0 0 2 0 0 0 3 0 0 0 5 0 0 0 8 0 0 0 1
 
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_AccessMemoryTinyGo), we will demonstrate how to call [TinyGo-based WebAssembly functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemoryTinyGo/fib.go) and pass arrays to and from a Go app.
 
-The `fibArray` function takes a array as a call parameter and fill it with
-a fibonacci sequence of numbers. Alternatively, the `fibArrayReturnMemory` function returns
-a array of fibonacci sequence of numbers.
+The `fibArray` function takes a array as a call parameter and fill it with a fibonacci sequence of numbers. Alternatively, the `fibArrayReturnMemory` function returns a array of fibonacci sequence of numbers.
 
 ```go
 package main
@@ -535,10 +525,7 @@ Use the TinyGo compiler tools to compile the Go source code into a WebAssembly b
 tinygo build -o fib.wasm -target wasi fib.go
 ```
 
-The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemoryTinyGo/run.go) must call `malloc` from the WasmEdge VM to get a pointer to the array.
-It will then call the `fibArray()` function in TinyGo with the pointer.
-After the functions return, the Go app uses the WasmEdge SDK's `store` API to construct an array from the pointer in the call parameter (`fibArray()`) or in the return value (`fibArrayReturnMemory()`).
-The Go application will eventually call `free` to free the memory space.
+The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemoryTinyGo/run.go) must call `malloc` from the WasmEdge VM to get a pointer to the array. It will then call the `fibArray()` function in TinyGo with the pointer. After the functions return, the Go app uses the WasmEdge SDK's `store` API to construct an array from the pointer in the call parameter (`fibArray()`) or in the return value (`fibArrayReturnMemory()`). The Go application will eventually call `free` to free the memory space.
 
 ```go
 package main

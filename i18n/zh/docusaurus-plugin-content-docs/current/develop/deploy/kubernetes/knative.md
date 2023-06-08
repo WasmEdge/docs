@@ -2,8 +2,7 @@
 sidebar_position: 8
 ---
 
-# 8.6.8 Knative
-
+# Knative
 
 # Knative
 
@@ -37,8 +36,7 @@ $ sudo make install
 
 ## Install and setup Containerd
 
-To make things easy, we use apt to install containerd. Here is the [document for ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-Once you have installed the containerd, edit the configuration `/etc/containerd/config.toml`.
+To make things easy, we use apt to install containerd. Here is the [document for ubuntu](https://docs.docker.com/engine/install/ubuntu/) Once you have installed the containerd, edit the configuration `/etc/containerd/config.toml`.
 
 ```bash
 $ cat /etc/containerd/config.toml
@@ -203,4 +201,3 @@ $ kubectl get pods
 NAME                                           READY   STATUS    RESTARTS   AGE
 http-wasm-00001-deployment-748bdc7cf-96l4r     2/2     Running   0          19s
 ```
-

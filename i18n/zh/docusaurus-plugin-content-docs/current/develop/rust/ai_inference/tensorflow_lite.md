@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.7.2 TensorFlow Lite
+# TensorFlow Lite
 
 We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) to show how to do AI inference with a TensorFlow Lite model in WasmEdge and Rust.
 
@@ -64,7 +64,8 @@ Next let's use WasmEdge to identify your own images.
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
-You can replace `input.jpg` with your own image file. 
+
+You can replace `input.jpg` with your own image file.
 
 ## Improve performance
 
@@ -167,5 +168,3 @@ for i in 0..5 {
   );
 }
 ```
-
-

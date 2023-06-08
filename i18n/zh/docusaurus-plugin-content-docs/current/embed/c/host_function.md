@@ -2,10 +2,9 @@
 sidebar_position: 3
 ---
 
-# 4.3 Host Functions
+# Host Functions
 
-[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are the functions outside WebAssembly and passed to WASM modules as imports.
-The following steps give an example of implementing host functions and registering a `host module` into the WasmEdge runtime.
+[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are the functions outside WebAssembly and passed to WASM modules as imports. The following steps give an example of implementing host functions and registering a `host module` into the WasmEdge runtime.
 
 ## Host Instances
 
@@ -33,7 +32,7 @@ WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
   * Params: {i32, i32}
   * Returns: {i32}
   */
- 
+
   /* Retrieve the value 1. */
   int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
   /* Retrieve the value 2. */
@@ -99,8 +98,7 @@ WasmEdge_GlobalTypeDelete(HostGType);
 
 ## Host Modules
 
-The host module is a module instance that contains `host functions`, `tables`, `memories`, and `globals`, the same as the WASM modules. Developers can use APIs to add the instances into a host module.
-After registering the host modules into a `VM` or `Store` context, the exported instances in that modules can be imported by WASM modules when instantiating.
+The host module is a module instance that contains `host functions`, `tables`, `memories`, and `globals`, the same as the WASM modules. Developers can use APIs to add the instances into a host module. After registering the host modules into a `VM` or `Store` context, the exported instances in that modules can be imported by WASM modules when instantiating.
 
 ### Module Instance Creation
 
@@ -115,8 +113,7 @@ WasmEdge_StringDelete(HostName);
 
 ### Add Instances
 
-Developers can add the `host functions`, `tables`, `memories`, and `globals` into the module instance with the export name.
-After adding to the module, the ownership of the instances is moved into the module. Developers should __NOT__ access or destroy them.
+Developers can add the `host functions`, `tables`, `memories`, and `globals` into the module instance with the export name. After adding to the module, the ownership of the instances is moved into the module. Developers should **NOT** access or destroy them.
 
 ```c
 /* Add the host function created above with the export name "add". */
@@ -177,9 +174,7 @@ There are some tips about implementing the host functions.
 
 ### Calling Frame Context
 
-The `WasmEdge_CallingFrameContext` is the context to provide developers to access the module instance of the [frame on the top of the calling stack](https://webassembly.github.io/spec/core/exec/runtime.html#activations-and-frames).
-According to the [WASM spec](https://webassembly.github.io/spec/core/exec/instructions.html#function-calls), a frame with the module instance to which the caller function belonging is pushed into the stack when invoking a function.
-Therefore, the host functions can access the module instance of the top frame to retrieve the memory instances to read/write data.
+The `WasmEdge_CallingFrameContext` is the context to provide developers to access the module instance of the [frame on the top of the calling stack](https://webassembly.github.io/spec/core/exec/runtime.html#activations-and-frames). According to the [WASM spec](https://webassembly.github.io/spec/core/exec/instructions.html#function-calls), a frame with the module instance to which the caller function belonging is pushed into the stack when invoking a function. Therefore, the host functions can access the module instance of the top frame to retrieve the memory instances to read/write data.
 
 ```c
 /* Host function body definition. */
@@ -208,18 +203,13 @@ WasmEdge_Result LoadOffset(void *Data,
 }
 ```
 
-The `WasmEdge_CallingFrameGetModuleInstance()` API can help developers to get the module instance of the top frame on the stack.
-With the module instance context, developers can use the module instance-related APIs to get its contents.
-The `WasmEdge_CallingFrameGetExecutor()` API can help developers to get the currently used executor context.
-Therefore developers can use the executor to recursively invoke other WASM functions without creating a new executor context.
+The `WasmEdge_CallingFrameGetModuleInstance()` API can help developers to get the module instance of the top frame on the stack. With the module instance context, developers can use the module instance-related APIs to get its contents. The `WasmEdge_CallingFrameGetExecutor()` API can help developers to get the currently used executor context. Therefore developers can use the executor to recursively invoke other WASM functions without creating a new executor context.
 
 ### Return Error Codes
 
-Usually, the host function in WasmEdge can return the `WasmEdge_Result_Success` to present the successful execution.
-For presenting the host function execution failed, one way is to return a trap with the error code.
-Then the WasmEdge runtime will cause the trap in WASM and return that error.
+Usually, the host function in WasmEdge can return the `WasmEdge_Result_Success` to present the successful execution. For presenting the host function execution failed, one way is to return a trap with the error code. Then the WasmEdge runtime will cause the trap in WASM and return that error.
 
-*Note: We don't recommend using system calls such as `exit()`. That will shut down the whole WasmEdge runtime.*
+_Note: We don't recommend using system calls such as `exit()`. That will shut down the whole WasmEdge runtime._
 
 For simply generating the trap, developers can return the `WasmEdge_Result_Fail`. If developers call the `WasmEdge_ResultOK()` with the returned result, they will get `false`. If developers call the `WasmEdge_ResultGetCode()` with the returned result, they will always get `2`.
 
@@ -235,14 +225,11 @@ WasmEdge_Result FaildFunc(void *Data,
 }
 ```
 
-Therefore when developers call the `WasmEdge_ResultGetCode()` with the returned result, they will get the error code `12345678`.
-Noticed that if developers call the `WasmEdge_ResultGetMessage()`, they will always get the C string `"user defined error code"`.
+Therefore when developers call the `WasmEdge_ResultGetCode()` with the returned result, they will get the error code `12345678`. Noticed that if developers call the `WasmEdge_ResultGetMessage()`, they will always get the C string `"user defined error code"`.
 
 ### Host Data
 
-The third parameter of the `WasmEdge_FunctionInstanceCreate()` API is for the host data as the type `void *`.
-Developers can pass the data into the host functions when creating. Then in the host function body, developers can access the data from the first argument.
-Developers should guarantee that the availability of the host data should be longer than the host functions.
+The third parameter of the `WasmEdge_FunctionInstanceCreate()` API is for the host data as the type `void *`. Developers can pass the data into the host functions when creating. Then in the host function body, developers can access the data from the first argument. Developers should guarantee that the availability of the host data should be longer than the host functions.
 
 ```c
 /* Host function body definition. */
@@ -268,7 +255,4 @@ WasmEdge_FunctionTypeDelete(HostType);
 
 ### Forcing Termination
 
-Sometimes developers may want to terminate the WASM execution with the success status.
-WasmEdge provides a method for terminating WASM execution in host functions.
-Developers can return `WasmEdge_Result_Terminate` to trigger the forcing termination of the current execution.
-If developers call the `WasmEdge_ResultOK()` with the returned result, they will get `true`. If developers call the `WasmEdge_ResultGetCode()` with the returned result, they will always get `1`.
+Sometimes developers may want to terminate the WASM execution with the success status. WasmEdge provides a method for terminating WASM execution in host functions. Developers can return `WasmEdge_Result_Terminate` to trigger the forcing termination of the current execution. If developers call the `WasmEdge_ResultOK()` with the returned result, they will get `true`. If developers call the `WasmEdge_ResultGetCode()` with the returned result, they will always get `1`.

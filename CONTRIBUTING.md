@@ -8,12 +8,12 @@ If you are ready to contribute, please search for open issues labeled "help-want
 
 **Contents**
 
-- <a name="contributing-flow">Contribution Flow</a>
-  - <a href="#commit-signoff">Developer Certificate of Origin</a>
-- WasmEdge Contribution Flow
-  - <a href="#contributing-docs">WasmEdge Docs</a> 
-  - <a href="https://wasmedge.org/book/en/contribute/contribute.html">WasmEdge Runtime</a>
-  - <a href="https://github.com/WasmEdge/WasmEdge/blob/master/SECURITY.md">Reporting a vulnerability</a>
+-   <a name="contributing-flow">Contribution Flow</a>
+    -   <a href="#commit-signoff">Developer Certificate of Origin</a>
+-   WasmEdge Contribution Flow
+    -   <a href="#contributing-docs">WasmEdge Docs</a>
+    -   <a href="https://wasmedge.org/docs/contribute/" target="_blank">WasmEdge Runtime</a>
+    -   <a href="https://github.com/WasmEdge/WasmEdge/blob/master/SECURITY.md" target="_blank">Reporting a vulnerability</a>
 
 # <a name="contributing-flow">Contribution Flow</a>
 
@@ -21,22 +21,15 @@ To contribute to WasmEdge Docs
 
 ## <a name="commit-signoff">Signing-off on Commits (Developer Certificate of Origin)</a>
 
-To contribute to this project, you must agree to the Developer Certificate of
-Origin (DCO) for each commit you make. The DCO is a simple statement that you,
-as a contributor, have the legal right to make the contribution.
+To contribute to this project, you must agree to the Developer Certificate of Origin (DCO) for each commit you make. The DCO is a simple statement that you, as a contributor, have the legal right to make the contribution.
 
-See the [DCO](https://developercertificate.org) file for the full text of what you must agree to
-and how it works [here](https://github.com/probot/dco#how-it-works).
-To signify that you agree to the DCO for contributions, you simply add a line to each of your
-git commit messages:
+See the [DCO](https://developercertificate.org) file for the full text of what you must agree to and how it works [here](https://github.com/probot/dco#how-it-works). To signify that you agree to the DCO for contributions, you simply add a line to each of your git commit messages:
 
 ```
 Signed-off-by: John Doe <john.doe@example.com>
 ```
 
-In most cases, you can add this signoff to your commit automatically with the
-`-s` or `--signoff` flag to `git commit`. You must use your real name and a reachable email
-address (sorry, no pseudonyms or anonymous contributions). An example of signing off on a commit:
+In most cases, you can add this signoff to your commit automatically with the `-s` or `--signoff` flag to `git commit`. You must use your real name and a reachable email address (sorry, no pseudonyms or anonymous contributions). An example of signing off on a commit:
 
 ```bash
 $ git commit -s -m “my commit message w/signoff”
@@ -57,7 +50,7 @@ Or you may configure your IDE, for example, Visual Studio Code to automatically 
 
 <a href="https://user-images.githubusercontent.com/7570704/64490167-98906400-d25a-11e9-8b8a-5f465b854d49.png" ><img src="https://user-images.githubusercontent.com/7570704/64490167-98906400-d25a-11e9-8b8a-5f465b854d49.png" width="50%"><a>
 
-## <a name="contributing-docs">WasmEdge Docs</a> 
+## <a name="contributing-docs">WasmEdge Docs</a>
 
 If you want to contribute to the WasmEdge Docs, you can follow these steps:
 

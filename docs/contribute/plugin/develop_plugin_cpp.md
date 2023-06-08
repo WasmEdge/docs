@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
 ---
-# 3.3 Develop WasmEdge Plug-in in C++ API
 
+# Develop WasmEdge Plug-in in C++ API
 
 > We recommend developers to [develop plug-ins in WasmEdge C API](develop_plugin_c.md).
 
@@ -16,9 +16,7 @@ Assume that the plug-in example is in the file `testplugin.h` and `testplugin.cp
 
 ### Host Functions and Modules
 
-The goal of the plug-in is to provide the host functions which can be imported when instantiating WASM.
-Therefore, developers should implement their plug-in host functions in WasmEdge internal C++ first.
-Assume that the host function implementations are in the `testplugin.h`.
+The goal of the plug-in is to provide the host functions which can be imported when instantiating WASM. Therefore, developers should implement their plug-in host functions in WasmEdge internal C++ first. Assume that the host function implementations are in the `testplugin.h`.
 
 ```cpp
 #pragma once
@@ -94,8 +92,7 @@ private:
 
 ### Creation Functions for Modules
 
-Then developers should implement the module creation functions.
-Assume that the following implementations are all in the `testplugin.cpp`.
+Then developers should implement the module creation functions. Assume that the following implementations are all in the `testplugin.cpp`.
 
 ```cpp
 #include "testplugin.h"

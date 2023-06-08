@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 6.5 Bpf
+# Bpf
 
 # Bpf userspace program example with wasm_bpf plugin
 
@@ -23,12 +23,12 @@ For simplicity, we will just reuse the `Makefile` of [wasm-bpf](https://github.c
 
 ## The bootstrap example
 
-`bootstrap` is a simple eBPF program to track the entry and exit of all processes. It will print a line of message when there is an entry of exiting event of a process. 
+`bootstrap` is a simple eBPF program to track the entry and exit of all processes. It will print a line of message when there is an entry of exiting event of a process.
 
 Run `make` in `wasm-bpf/examples/bootstrap`, and you will find the `bootstrap.wasm`, which can be executed by `WasmEdge`.
 
 ```bash
-WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/ wasmedge bootstrap.wasm 
+WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/ wasmedge bootstrap.wasm
 ```
 
 `WASMEDGE_PLUGIN_PATH` should be changed due to your build directory of the plugin.
@@ -53,11 +53,7 @@ TIME     EVENT COMM             PID     PPID    FILENAME/EXIT CODE
 
 `bootstrap` was created in the similar spirit as libbpf-tools from BCC package, but is designed to be more stand-alone and with simpler Makefile to simplify adoption to user's particular needs. It demonstrates the use of typical BPF features:
 
-cooperating BPF programs (tracepoint handlers for process `exec` and `exit` events, in this particular case);
-BPF map for maintaining the state;
-BPF ring buffer for sending data to user-space;
-global variables for application behavior parameterization.
-it utilizes BPF CO-RE and vmlinux.h to read extra process information from kernel's struct task_struct.
+cooperating BPF programs (tracepoint handlers for process `exec` and `exit` events, in this particular case); BPF map for maintaining the state; BPF ring buffer for sending data to user-space; global variables for application behavior parameterization. it utilizes BPF CO-RE and vmlinux.h to read extra process information from kernel's struct task_struct.
 
 #### Some code snippets
 

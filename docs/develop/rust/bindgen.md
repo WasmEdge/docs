@@ -2,11 +2,9 @@
 sidebar_position: 10
 ---
 
-# 4.10 Bindgen of Rust Functions
-
+# Bindgen of Rust Functions
 
 If your Rust program has a `main()` function, you could compile it into WebAssembly, and run it using the `wasmedge` CLI tool as a standalone application. However, a far more common use case is to compile a Rust function into WebAssembly, and then call it from a host application. That is known as an embedded WASM function. The host application uses WasmEdge language SDKs (e.g., [Go](/category/go-sdk-for-embedding-wasm-functions), [Rust](/category/rust-sdk-for-embedding-wasm-functions), [C](/category/c-sdk-for-embedding-wasm-functions), Python (WIP) and Java (WIP)) to call those WASM functions compiled from Rust source code. In this chapter, we will cover a little about WasmEdge-bindgen and you can find more information [here](/category/passing-complex-data)
-
 
 All the WasmEdge host language SDKs support simple function calls. However, the WASM spec only supports a few simple data types as call parameters and return values, such as `i32`, `i64`, `f32`, `f64`, and `v128`. The `wasmedge-bindgen` crate would transform parameters and return values of Rust functions into simple integer types when the Rust function is compiled into WASM. For example, a string is automatically converted into two integers, a memory address and a length, which can be handled by the standard WASM spec. It is very easy to do this in Rust source code. Just annotate your function with the `#[wasmedge-bindgen]` macro. You can compile the annotated Rust code using the standard Rust compiler toolchain (e.g., the latest `Cargo`).
 

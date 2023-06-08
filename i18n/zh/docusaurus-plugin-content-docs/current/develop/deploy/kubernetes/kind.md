@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# 8.6.7 Kind
+# Kind
 
 KinD is a Kubernetes distribution that runs inside Docker and is well suited for local development or integration testing. It runs containerd as CRI and crun as OCI Runtime.
 
@@ -39,7 +39,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update \
     && cd crun \
     && ./autogen.sh \
     && ./configure --with-wasmedge --enable-embedded-yajl\
-    && make 
+    && make
 
 ...
 ```

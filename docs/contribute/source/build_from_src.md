@@ -6,37 +6,35 @@ sidebar_position: 1
 
 Please follow this guide to build and test WasmEdge from the source code.
 
-- [Linux](../source/os/linux.md)
-- [MacOS](../source/os/macos.md)
-- [Windows](../source/os/windows.md)
-- [Android](../../category/build-and-run-wasmedge-on-android)
-- [OpenWrt](../source/os/openwrt.md)
-- [RISC-V](../source/os/riscv64.md)
-- [OpenHarmony](../source/os/openharmony.md)
-- [seL4](../source/os/sel4)
-- [Raspberry Pi](../source/os/raspberrypi.md)
-
+-   [Linux](../source/os/linux.md)
+-   [MacOS](../source/os/macos.md)
+-   [Windows](../source/os/windows.md)
+-   [Android](../../category/build-and-run-wasmedge-on-android)
+-   [OpenWrt](../source/os/openwrt.md)
+-   [RISC-V](../source/os/riscv64.md)
+-   [OpenHarmony](../source/os/openharmony.md)
+-   [seL4](../source/os/sel4)
+-   [Raspberry Pi](../source/os/raspberrypi.md)
 
 > If you just want the latest builds from the `HEAD` of the `master` branch, and do not want to build it yourself, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/1521549504#artifacts).
 
 ## What Will Be Built
 
-WasmEdge provides various tools for enabling different runtime environments for optimal performance.
-You can find that there are several wasmedge related tools:
+WasmEdge provides various tools for enabling different runtime environments for optimal performance. You can find that there are several wasmedge related tools:
 
 1. `wasmedge` is the general wasm runtime.
-   - `wasmedge` executes a `WASM` file in the interpreter mode or a compiled `WASM` file in the ahead-of-time compilation mode.
-   - To disable building all tools, you can set the CMake option `WASMEDGE_BUILD_TOOLS` to `OFF`.
+    - `wasmedge` executes a `WASM` file in the interpreter mode or a compiled `WASM` file in the ahead-of-time compilation mode.
+    - To disable building all tools, you can set the CMake option `WASMEDGE_BUILD_TOOLS` to `OFF`.
 2. `wasmedgec` is the ahead-of-time `WASM` compiler.
-   - `wasmedgec` compiles a general `WASM` file into a compiled `WASM` file.
-   - To disable building the ahead-of-time compiler only, you can set the CMake option `WASMEDGE_BUILD_AOT_RUNTIME` to `OFF`.
+    - `wasmedgec` compiles a general `WASM` file into a compiled `WASM` file.
+    - To disable building the ahead-of-time compiler only, you can set the CMake option `WASMEDGE_BUILD_AOT_RUNTIME` to `OFF`.
 3. `libwasmedge.so` is the WasmEdge C API shared library. (`libwasmedge.dylib` on MacOS and `wasmedge.dll` on Windows)
-   - `libwasmedge.so`, `libwasmedge.dylib`, or `wasmedge.dll` provides the C API for the ahead-of-time compiler and the WASM runtime.
-   - The APIs related to the ahead-of-time compiler will always fail if the CMake option `WASMEDGE_BUILD_AOT_RUNTIME` is set as `OFF`.
-   - To disable building just the shared library, you can set the CMake option `WASMEDGE_BUILD_SHARED_LIB` to `OFF`.
+    - `libwasmedge.so`, `libwasmedge.dylib`, or `wasmedge.dll` provides the C API for the ahead-of-time compiler and the WASM runtime.
+    - The APIs related to the ahead-of-time compiler will always fail if the CMake option `WASMEDGE_BUILD_AOT_RUNTIME` is set as `OFF`.
+    - To disable building just the shared library, you can set the CMake option `WASMEDGE_BUILD_SHARED_LIB` to `OFF`.
 4. `ssvm-qitc` is for AI applications and supports the ONNC runtime for AI models in the ONNX format.
-   - If you want to try `ssvm-qitc`, please refer to [ONNC-Wasm](https://github.com/ONNC/onnc-wasm) project to set up the working environment and tryout several examples.
-   - And here is our [tutorial for ONNC-Wasm project(YouTube Video)](https://www.youtube.com/watch?v=cbiPuHMS-iQ).
+    - If you want to try `ssvm-qitc`, please refer to [ONNC-Wasm](https://github.com/ONNC/onnc-wasm) project to set up the working environment and tryout several examples.
+    - And here is our [tutorial for ONNC-Wasm project(YouTube Video)](https://www.youtube.com/watch?v=cbiPuHMS-iQ).
 
 ## CMake Building Options
 
@@ -72,9 +70,9 @@ Developers can set the CMake options to customize the WasmEdge building.
 
 Developers can follow the steps to build WasmEdge with plug-ins from source.
 
-- [WASI-NN (OpenVINO and PyTorch backends)](../source/plugin/was_nn.md)
-- [WASI-Crypto](../source/plugin/wasi_crypto.md)
-- [WasmEdge-HttpsReq](../source/plugin/httpsreq.md)
+-   [WASI-NN (OpenVINO and PyTorch backends)](../source/plugin/was_nn.md)
+-   [WASI-Crypto](../source/plugin/wasi_crypto.md)
+-   [WasmEdge-HttpsReq](../source/plugin/httpsreq.md)
 
 ## Run Tests
 

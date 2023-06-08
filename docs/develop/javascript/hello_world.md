@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 5.2 Quickstart for JavaScript
+# Quickstart for JavaScript
 
 ## Prerequisites
 
@@ -22,6 +22,7 @@ curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5
 wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 ```
 
+<!-- prettier-ignore -->
 :::note
 The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo is required for the QuickJS runtime.
 :::
@@ -35,6 +36,7 @@ $ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
 Hello WasmEdge Runtime
 ```
 
+<!-- prettier-ignore -->
 :::note
 The `--dir .:.` on the command line is to give `wasmedge` permission to read the local directory in the file system for the `hello.js` file.
 :::
@@ -48,14 +50,13 @@ import * as std from 'std';
 args = args.slice(1);
 print('Hello', ...args);
 setTimeout(() => {
-  print('timeout 2s');
+    print('timeout 2s');
 }, 2000);
 ```
 
-## Build it yourself 
+## Build it yourself
 
 This section is optional. Read on if you are interested in [adding custom built-in JavaScript APIs](rust) to the runtime.
-
 
 Following the instructions, you will be able to build a JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
 
@@ -64,6 +65,7 @@ Following the instructions, you will be able to build a JavaScript interpreter f
 sudo apt update
 sudo apt install build-essential
 ```
+
 Then, we could build the WasmEdge-Quickjs runtime.
 
 Fork or clone [the wasmedge-quickjs Github repository](https://github.com/second-state/wasmedge-quickjs).

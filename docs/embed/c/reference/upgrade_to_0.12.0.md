@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 4.6.2 Upgrade to WasmEdge 0.12.0
+# Upgrade to WasmEdge 0.12.0
 
 Due to the WasmEdge C API breaking changes, this document shows the guideline for programming with WasmEdge C API to upgrade from the `0.11.2` to the `0.12.0` version.
 
@@ -12,35 +12,34 @@ Due to the WasmEdge C API breaking changes, this document shows the guideline fo
 
     The following members of the `WasmEdge_HostRegistration` enumeration are removed:
 
-    * `WasmEdge_HostRegistration_WasmEdge_Process`
-    * `WasmEdge_HostRegistration_WasiNN`
-    * `WasmEdge_HostRegistration_WasiCrypto_Common`
-    * `WasmEdge_HostRegistration_WasiCrypto_AsymmetricCommon`
-    * `WasmEdge_HostRegistration_WasiCrypto_Kx`
-    * `WasmEdge_HostRegistration_WasiCrypto_Signatures`
-    * `WasmEdge_HostRegistration_WasiCrypto_Symmetric`
+    - `WasmEdge_HostRegistration_WasmEdge_Process`
+    - `WasmEdge_HostRegistration_WasiNN`
+    - `WasmEdge_HostRegistration_WasiCrypto_Common`
+    - `WasmEdge_HostRegistration_WasiCrypto_AsymmetricCommon`
+    - `WasmEdge_HostRegistration_WasiCrypto_Kx`
+    - `WasmEdge_HostRegistration_WasiCrypto_Signatures`
+    - `WasmEdge_HostRegistration_WasiCrypto_Symmetric`
 
-    The `WasmEdge_VMContext` will create and register the host modules automatically now.
-    If the plug-ins are not loaded, the `WasmEdge_VMContext` will create and register the mock modules to prevent from import failed.
+    The `WasmEdge_VMContext` will create and register the host modules automatically now. If the plug-ins are not loaded, the `WasmEdge_VMContext` will create and register the mock modules to prevent from import failed.
 
 2. Removed the module instance creation functions of the plug-ins.
 
     The following APIs are removed:
 
-    * `WasmEdge_ModuleInstanceCreateWasiNN()`
-    * `WasmEdge_ModuleInstanceCreateWasiCryptoCommon()`
-    * `WasmEdge_ModuleInstanceCreateWasiCryptoAsymmetricCommon()`
-    * `WasmEdge_ModuleInstanceCreateWasiCryptoKx()`
-    * `WasmEdge_ModuleInstanceCreateWasiCryptoSignatures()`
-    * `WasmEdge_ModuleInstanceCreateWasiCryptoSymmetric()`
-    * `WasmEdge_ModuleInstanceCreateWasmEdgeProcess()`
+    - `WasmEdge_ModuleInstanceCreateWasiNN()`
+    - `WasmEdge_ModuleInstanceCreateWasiCryptoCommon()`
+    - `WasmEdge_ModuleInstanceCreateWasiCryptoAsymmetricCommon()`
+    - `WasmEdge_ModuleInstanceCreateWasiCryptoKx()`
+    - `WasmEdge_ModuleInstanceCreateWasiCryptoSignatures()`
+    - `WasmEdge_ModuleInstanceCreateWasiCryptoSymmetric()`
+    - `WasmEdge_ModuleInstanceCreateWasmEdgeProcess()`
 
     For the new examples for creating the module instances from plug-ins, please refer to [the example below](#creating-the-module-instance-from-a-plug-in).
 
 3. New module instance retrieving API of `VM` context.
 
-    * Added `WasmEdge_VMGetRegisteredModule()` for retrieving registered named module in VM context quickly.
-    * Added `WasmEdge_VMListRegisteredModuleLength()` and `WasmEdge_VMListRegisteredModule()` for listing registered named modules in VM context quickly.
+    - Added `WasmEdge_VMGetRegisteredModule()` for retrieving registered named module in VM context quickly.
+    - Added `WasmEdge_VMListRegisteredModuleLength()` and `WasmEdge_VMListRegisteredModule()` for listing registered named modules in VM context quickly.
 
 ## The `WasmEdge_HostRegistration` for plug-ins is not necessary in VM contexts
 

@@ -1,8 +1,8 @@
 {
-  "label": "Build WasmEdge from source",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "we will learn how to the WasmEdge Plugin System."
-  }
+    "label": "Build WasmEdge from source",
+    "position": 2,
+    "link": {
+        "type": "generated-index",
+        "description": "we will learn how to the WasmEdge Plugin System."
+    }
 }

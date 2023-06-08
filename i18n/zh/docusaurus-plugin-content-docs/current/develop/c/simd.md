@@ -2,17 +2,15 @@
 sidebar_position: 4
 ---
 
-# 6.4 SIMD
+# SIMD
 
 # WebAssembly SIMD Example in C
 
 [128-bit packed Single Instruction Multiple Data (SIMD)](https://webassembly.github.io/simd/core/syntax/instructions.html#simd-instructions) instructions provide simultaneous computations over packed data in just one instruction. It's commonly used to improve performance for multimedia applications. With the SIMD proposal, the modules can benefit from using these commonly used instructions in modern hardware to gain more speedup.
 
-If you are interested in enabling the SIMD proposal will improve how much performance of the applications, please refer to our [wasm32-wasi benchmark](https://github.com/second-state/wasm32-wasi-benchmark) for more information.
-In our benchmark, the Mandelbrot Set application can have **2.65x** speedup.
+If you are interested in enabling the SIMD proposal will improve how much performance of the applications, please refer to our [wasm32-wasi benchmark](https://github.com/second-state/wasm32-wasi-benchmark) for more information. In our benchmark, the Mandelbrot Set application can have **2.65x** speedup.
 
 We modified the Mandelbrot Set example from our [wasm32-wasi benchmark project](https://github.com/second-state/wasm32-wasi-benchmark/blob/master/src/mandelbrot.c). We will use this as an example in this article.
-
 
 ## Prerequisites
 
@@ -32,7 +30,6 @@ source ./emsdk_env.sh
 
 ## Compile the C-SIMD application to Wasm-SIMD binary with emcc
 
-
 ```bash
 emcc -g -Oz --llvm-lto 1 -s STANDALONE_WASM -s INITIAL_MEMORY=32MB -s MAXIMUM_MEMORY=4GB \
   -mmutable-globals \
@@ -42,7 +39,6 @@ emcc -g -Oz --llvm-lto 1 -s STANDALONE_WASM -s INITIAL_MEMORY=32MB -s MAXIMUM_ME
 ```
 
 ## Run with WasmEdge
-
 
 ```bash
 wasmedge mandelbrot-simd.wasm 15000

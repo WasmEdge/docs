@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.1 WasmEdge C SDK Introduction
+# WasmEdge C SDK Introduction
 
 The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](/embed/c/reference/0.12.0.md). Before programming with the WasmEdge C API, please [install WasmEdge](/develop/build-and-run/install) first.
 
@@ -10,8 +10,7 @@ The WasmEdge C API is also the fundamental API for other languages' SDK.
 
 ## Quick Start Guide for the WasmEdge runner
 
-The following is an example for running a WASM file.
-Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as following:
+The following is an example for running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as following:
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -95,8 +94,7 @@ $ ./test_wasmedge_compiler fibonacci.wasm fibonacci_aot.wasm
 [2021-07-02 11:08:08.706] [info] compile done
 ```
 
-The compiled-WASM file can be used as a WASM input for the WasmEdge runner.
-The following is the comparison of the interpreter mode and the AOT mode:
+The compiled-WASM file can be used as a WASM input for the WasmEdge runner. The following is the comparison of the interpreter mode and the AOT mode:
 
 ```bash
 $ time ./test_wasmedge fibonacci.wasm
@@ -116,15 +114,14 @@ sys 0m0.011s
 
 ## API References
 
-- [0.12.0](/embed/c/reference/0.12.0)
-- [0.11.2](/embed/c/reference/0.11.2)
-- [0.10.1](/embed/c/reference/0.10.1)
-- [0.9.1](/embed/c/reference/0.9.1)
-
+-   [0.12.0](/embed/c/reference/0.12.0)
+-   [0.11.2](/embed/c/reference/0.11.2)
+-   [0.10.1](/embed/c/reference/0.10.1)
+-   [0.9.1](/embed/c/reference/0.9.1)
 
 ## Examples
 
-- Link with the [WasmEdge library](/embed/c/library)
-- Use the [external reference](/embed/c/externref) of WebAssembly input and output in C/C++
-- Implement the [host functions](/embed/c/host_function) in C/C++
-- [Multiple WASM Module Example](/embed/c/multiple_modules.md)
+-   Link with the [WasmEdge library](/embed/c/library)
+-   Use the [external reference](/embed/c/externref) of WebAssembly input and output in C/C++
+-   Implement the [host functions](/embed/c/host_function) in C/C++
+-   [Multiple WASM Module Example](/embed/c/multiple_modules.md)

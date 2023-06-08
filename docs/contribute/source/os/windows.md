@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2.2.3 Build on Windows 10
+# Build on Windows 10
 
 You can also find the details [here](https://github.com/WasmEdge/WasmEdge/blob/master/.github/workflows/reusable-build-on-windows.yml#L37-L48).
 
@@ -17,9 +17,9 @@ cd WasmEdge
 
 WasmEdge requires LLVM 13 and you may need to install these following dependencies by yourself.
 
-- [Chocolatey](https://chocolatey.org/install), we use it to install `cmake`, `ninja`, and `vswhere`.
-- [Windows SDK 19041](https://blogs.windows.com/windowsdeveloper/2020/05/12/start-developing-on-windows-10-version-2004-today/)
-- LLVM 13.0.1, you can find the pre-built files [here](https://github.com/WasmEdge/llvm-windows/releases) or you can just follow the `instructions/commands` to download automatically.
+-   [Chocolatey](https://chocolatey.org/install), we use it to install `cmake`, `ninja`, and `vswhere`.
+-   [Windows SDK 19041](https://blogs.windows.com/windowsdeveloper/2020/05/12/start-developing-on-windows-10-version-2004-today/)
+-   LLVM 13.0.1, you can find the pre-built files [here](https://github.com/WasmEdge/llvm-windows/releases) or you can just follow the `instructions/commands` to download automatically.
 
 ```powershell
 # Install the required tools
