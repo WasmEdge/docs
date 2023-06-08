@@ -24,17 +24,17 @@ WasmEdge plugins can be used in a variety of ways, depending on the specific nee
 
 WasmEdge plugins are designed to extend the functionality of the WasmEdge runtime, and can be useful for developers and end-users in several ways:
 
-* Versatility: WasmEdge plugins can be developed in multiple programming languages that can compile to WebAssembly, allowing developers to write plugins in the language they're most comfortable with.
+* **Versatility:** WasmEdge plugins can be developed in multiple programming languages that can compile to WebAssembly, allowing developers to write plugins in the language they're most comfortable with.
 
-* Customization: WasmEdge plugins can be customized to suit the specific needs of a project. Developers can create plugins that integrate with other systems or tools, or that provide unique functionality that's not available in the core WasmEdge runtime.
+* **Customization:** WasmEdge plugins can be customized to suit the specific needs of a project. Developers can create plugins that integrate with other systems or tools, or that provide unique functionality that's not available in the core WasmEdge runtime.
 
-* Performance: WasmEdge plugins are designed to work seamlessly with the core runtime, minimizing overhead and maximizing performance. This means that they can provide additional functionality without sacrificing performance.
+* **Performance:** WasmEdge plugins are designed to work seamlessly with the core runtime, minimizing overhead and maximizing performance. This means that they can provide additional functionality without sacrificing performance.
 
-* Ease of use: WasmEdge plugins are easy to use and integrate with the WasmEdge runtime. Developers can simply load the plugin into the runtime and use its functions as if they were part of the core runtime.
+* **Ease of use:** WasmEdge plugins are easy to use and integrate with the WasmEdge runtime. Developers can simply load the plugin into the runtime and use its functions as if they were part of the core runtime.
 
-* Scalability: WasmEdge plugins can be used to scale applications by offloading compute-intensive tasks to edge devices. This can reduce the load on central servers and improve performance.
+* **Scalability:** WasmEdge plugins can be used to scale applications by offloading compute-intensive tasks to edge devices. This can reduce the load on central servers and improve performance.
 
-* Security: WasmEdge plugins run in a sandboxed environment, which helps to reduce the risk of security vulnerabilities. Additionally, plugins can be digitally signed to ensure authenticity and integrity.
+* **Security:** WasmEdge plugins run in a sandboxed environment, which helps to reduce the risk of security vulnerabilities. Additionally, plugins can be digitally signed to ensure authenticity and integrity.
 
 WasmEdge plugins can provide developers and users with a versatile, customizable, high-performance, and secure way to extend the functionality of the WasmEdge runtime. WasmEdge plugins can also improve scalability and ease of use, making it easier to build and deploy complex applications on edge devices.
 
