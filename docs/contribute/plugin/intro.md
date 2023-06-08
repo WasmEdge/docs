@@ -32,7 +32,6 @@ Here's a flowchart that shows the basic steps involved in creating and using a l
     E[Load WebAssembly Module]
     F[Import Plugin Module]
     G[Execute WebAssembly Module]
-
     A --> B
     B --> C
     C --> D
