@@ -13,16 +13,16 @@ If you are not using OpenShift / Podman, [get started here](quick_start).
 
 We will cover the following examples.
 
--   [Run a standalone Wasm app](#run-a-standalone-wasm-app)
--   [Run an HTTP server](#run-an-http-server)
--   [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
+- [Run a standalone Wasm app](#run-a-standalone-wasm-app)
+- [Run an HTTP server](#run-an-http-server)
+- [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
 
 ## Install
 
 You can use an one-liner `dnf` command to install WasmEdge, [crun](https://github.com/containers/crun) and [Podman](https://www.redhat.com/en/topics/containers/what-is-podman) on your Fedora / CentOS / Red Hat Linux system. The WasmEdge Runtime is available as an [officially maintained upstream package](https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html) for Fedora 37 and Red Hat REPL 8 and 9.
 
 ```bash
-$ dnf install wasmedge crun-wasm podman
+dnf install wasmedge crun-wasm podman
 ```
 
 ## Run a standalone Wasm app
@@ -38,13 +38,13 @@ Hello WasmEdge!
 
 To learn more about how to create Wasm apps in Rust
 
--   [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
--   [Rust developer guides](../../category/develop-wasm-apps-in-rust)
-    -   AI inference with PyTorch and Tensorflow
-    -   HTTP and HTTPS client
-    -   MySQL database client
-    -   Redis client
-    -   Kafka client
+- [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
+- [Rust developer guides](../../category/develop-wasm-apps-in-rust)
+  - AI inference with PyTorch and Tensorflow
+  - HTTP and HTTPS client
+  - MySQL database client
+  - Redis client
+  - Kafka client
 
 ## Run an HTTP server
 
@@ -69,13 +69,13 @@ Hello WasmEdge
 
 To learn more about how to create Wasm services in Rust
 
--   [Rust developer guides](../../category/develop-wasm-apps-in-rust)
--   [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
--   [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
--   Lightweight microservices in Rust and WasmEdge
-    -   [WasmEdge + Nginx + MySQL](https://github.com/second-state/microservice-rust-mysql)
-    -   [WasmEdge + Kafka + MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
-    -   [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
+- [Rust developer guides](../../category/develop-wasm-apps-in-rust)
+- [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
+- [Database application examples](https://github.com/WasmEdge/wasmedge-db-examples)
+- Lightweight microservices in Rust and WasmEdge
+  - [WasmEdge + Nginx + MySQL](https://github.com/second-state/microservice-rust-mysql)
+  - [WasmEdge + Kafka + MySQL](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
+  - [Dapr + WasmEdge](https://github.com/second-state/dapr-wasm)
 
 ## Run a JavaScript-based server
 
@@ -95,12 +95,12 @@ Hello WasmEdge
 
 To learn more about how to run JavaScript apps in WasmEdge.
 
--   [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
--   [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
--   [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
+- [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
+- [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+- [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
 
 ## Next steps
 
--   [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
--   [Rust developer guides](../../category/develop-wasm-apps-in-rust)
--   Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/develop-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.
+- [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
+- [Rust developer guides](../../category/develop-wasm-apps-in-rust)
+- Write Wasm apps in your favorite languages, like [Rust](../../category/develop-wasm-apps-in-rust), [C/C++](../../category/develop-wasm-apps-in-cc), [JavaScript](../../category/develop-wasm-apps-in-javascript), [Go](../../category/develop-wasm-apps-in-go), and many other languages.

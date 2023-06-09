@@ -12,17 +12,17 @@ WasmEdge Rust SDK consists of four crates. In the diagram below, the blue rectan
   <img src="image/arch-rust-sdk.jpg" width="50%"/>
 </div>
 
--   `wasmedge-sdk` crate defines a group of safe, ergonomic high-level APIs, which are used by developers to build up their own business applications.
+- `wasmedge-sdk` crate defines a group of safe, ergonomic high-level APIs, which are used by developers to build up their own business applications.
 
--   `wasmedge-sys` crate is a wrapper of WasmEdge C-API and provides the safe counterparts. It is not recommended to use it directly by application developers. `wasmedge-sys`, `wasmedge-types` and `wasmedge-macro` constitute the low-level layer of WasmEdge Rust SDK.
+- `wasmedge-sys` crate is a wrapper of WasmEdge C-API and provides the safe counterparts. It is not recommended to use it directly by application developers. `wasmedge-sys`, `wasmedge-types` and `wasmedge-macro` constitute the low-level layer of WasmEdge Rust SDK.
 
--   `wasmedge-types` crate defines the data structures that are commonly used in `wasmedge-sdk` and `wasmedge-sys`.
+- `wasmedge-types` crate defines the data structures that are commonly used in `wasmedge-sdk` and `wasmedge-sys`.
 
--   `wasmedge-macro` crate defines the macros that are commonly used in `wasmedge-sdk` and `wasmedge-sys` to declare [host functions](https://webassembly.github.io/spec/core/exec/runtime.html#:~:text=A%20host%20function%20is%20a,a%20module%20as%20an%20import.).
+- `wasmedge-macro` crate defines the macros that are commonly used in `wasmedge-sdk` and `wasmedge-sys` to declare [host functions](https://webassembly.github.io/spec/core/exec/runtime.html#:~:text=A%20host%20function%20is%20a,a%20module%20as%20an%20import.).
 
 ## Usage
 
--   Deploy WasmEdge library in your local environment.
+- Deploy WasmEdge library in your local environment.
 
     Since this crate depends on the WasmEdge C API, it needs to be installed in your system first. Please refer to [WasmEdge Installation and Uninstallation](https://wasmedge.org/book/en/quick_start/install.html) to install the WasmEdge library. The versioning table below shows the version of the WasmEdge library required by each version of the `wasmedge-sdk` crate.
 
@@ -40,12 +40,12 @@ WasmEdge Rust SDK consists of four crates. In the diagram below, the blue rectan
 
     WasmEdge Rust SDK can automatically search the following paths for the WasmEdge library:
 
-    -   `/usr/local` (Linux/macOS)
-    -   `$HOME/.wasmedge` (Linux/macOS)
+  - `/usr/local` (Linux/macOS)
+  - `$HOME/.wasmedge` (Linux/macOS)
 
     Note that if you have installed the WasmEdge library in a different path, you can set the `WASMEDGE_INCLUDE_DIR` and `WASMEDGE_LIB_DIR` environment variables to the path of the WasmEdge library.
 
--   Add `wasmedge-sdk` crate to your `Cargo.toml` file. Note that, according to the version table, the version of `wasmedge-sdk` matching `WasmEdge v0.12.0` is `0.8.0`.
+- Add `wasmedge-sdk` crate to your `Cargo.toml` file. Note that, according to the version table, the version of `wasmedge-sdk` matching `WasmEdge v0.12.0` is `0.8.0`.
 
     ```toml
     wasmedge-sdk = "0.8.0"

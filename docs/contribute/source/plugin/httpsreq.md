@@ -4,8 +4,6 @@ sidebar_position: 3
 
 # Build with WasmEdge-httpsReq Plugin
 
-# Build WasmEdge With WasmEdge-HttpsReq Plug-in
-
 ## Prerequisites
 
 Currently, WasmEdge used `OpenSSL 1.1` or `3.0` for the the dependency of WasmEdge-HttpsReq.

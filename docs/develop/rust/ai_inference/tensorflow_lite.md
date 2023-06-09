@@ -16,7 +16,7 @@ Because the example already includes a compiled Wasm file from the Rust code, we
 
 First, git clone the `WasmEdge-WASINN-examples`.
 
-```
+```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
 cd WasmEdge-WASINN-examples
 ```
@@ -46,14 +46,14 @@ Let's build the wasm file from the rust source code.
 
 First, git clone the `WasmEdge-WASINN-examples`.
 
-```
+```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
 cd tflite-birds_v1-image/rust/
 ```
 
 Second, use `cargo` to build the template project.
 
-```
+```bash
 cargo build --target wasm32-wasi --release
 ```
 
@@ -72,8 +72,8 @@ You can replace `input.jpg` with your own image file.
 For the AOT mode which is much more quickly, you can compile the WASM first:
 
 ```bash
-$ wasmedgec rust/tflite-bird/target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm wasmedge-wasinn-example-tflite-bird-image.wasm
-$ wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
+wasmedgec rust/tflite-bird/target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm wasmedge-wasinn-example-tflite-bird-image.wasm
+wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
 ```
 
 ## Understand the code

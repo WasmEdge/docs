@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 6.7.6 Upgrade to WasmEdge-Go 0.10.0
+# Upgrade to WasmEdge-Go v0.10.0
 
 Due to the WasmEdge-Go API breaking changes, this document shows the guideline of programming with WasmEdge-Go API to upgrade from the `v0.9.2` to the `v0.10.0` version.
 

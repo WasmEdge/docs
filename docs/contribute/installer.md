@@ -48,115 +48,115 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 
 ### Help Msg
 
--   Short Option: `-h`
--   Full Option: `--help`
--   Description: Show this help message and exit.
+- Short Option: `-h`
+- Full Option: `--help`
+- Description: Show this help message and exit.
 
 ### Verbose
 
--   Short Option: `-D`
--   Full Option: `--debug`
--   Description: Enable verbosity debug
+- Short Option: `-D`
+- Full Option: `--debug`
+- Description: Enable verbosity debug
 
 ### Specify the version of WasmEdge to install
 
--   Short Option: `-v VERSION`
--   Full Option: `--version VERSION`
--   Description: Install the given VERSION of WasmEdge
--   Available Value: VERSION `0.11.2` or other valid release versions.
--   Note - In the case of supplied an invalid or nonexistent version, the installer exists with an error.
+- Short Option: `-v VERSION`
+- Full Option: `--version VERSION`
+- Description: Install the given VERSION of WasmEdge
+- Available Value: VERSION `0.11.2` or other valid release versions.
+- Note - In the case of supplied an invalid or nonexistent version, the installer exists with an error.
 
 ### Installation path
 
--   Short Option: `-p PATH`
--   Full Option: `--path PATH`
--   Description: Install WasmEdge into the given PATH. The default Path is `$HOME/.wasmedge`.
--   Note - In any path other than the ones starting with `/usr` are treated as non system paths in the internals of the installer. The consequences are different directory structures for both.
--   Note - If the path not exists, the folder will be created.
+- Short Option: `-p PATH`
+- Full Option: `--path PATH`
+- Description: Install WasmEdge into the given PATH. The default Path is `$HOME/.wasmedge`.
+- Note - In any path other than the ones starting with `/usr` are treated as non system paths in the internals of the installer. The consequences are different directory structures for both.
+- Note - If the path not exists, the folder will be created.
 
 ### Uninstallation
 
 #### Run uninstaller before installing
 
--   Short Option: `-r {yes,no}`
--   Full Option: `--remove-old {yes, no}`
--   Description: Run the uninstaller script before installing. Default `yes`.
+- Short Option: `-r {yes,no}`
+- Full Option: `--remove-old {yes, no}`
+- Description: Run the uninstaller script before installing. Default `yes`.
 
 #### Use a specific version of the uninstaller
 
--   Short Option: `-u UNINSTALL_SCRIPT_TAG`
--   Full Option: `--uninstall-script-tag UNINSTALL_SCRIPT_TAG`
--   Description: Use the given GitHub tag to uninstall the script
+- Short Option: `-u UNINSTALL_SCRIPT_TAG`
+- Full Option: `--uninstall-script-tag UNINSTALL_SCRIPT_TAG`
+- Description: Use the given GitHub tag to uninstall the script
 
 ### Install Extensions
 
--   Short Option: `-e [EXTENSIONS [EXTENSIONS ...]]`
--   Full Option: `--extension [EXTENSIONS [EXTENSIONS ...]]`
--   Description: Install wasmedge-extension tools.
--   Available Value (case sensitive): Supported Extensions `'tensorflow', 'image', 'all'`.
+- Short Option: `-e [EXTENSIONS [EXTENSIONS ...]]`
+- Full Option: `--extension [EXTENSIONS [EXTENSIONS ...]]`
+- Description: Install wasmedge-extension tools.
+- Available Value (case sensitive): Supported Extensions `'tensorflow', 'image', 'all'`.
 
 #### Tensorflow Extensions Library Version
 
--   Full Option: `--tf-version TF_VERSION`
--   Description: Install the given VERSION of the library of the Tensorflow and Tensorflow lite extension. Only available when the `Extensions` is set to `all` or `tensorflow`.
--   Note - It's the same as the WasmEdge version if not specified.
+- Full Option: `--tf-version TF_VERSION`
+- Description: Install the given VERSION of the library of the Tensorflow and Tensorflow lite extension. Only available when the `Extensions` is set to `all` or `tensorflow`.
+- Note - It's the same as the WasmEdge version if not specified.
 
 #### Tensorflow Extensions Dependencies Version
 
--   Full Option: `--tf-deps-version TF_DEPS_VERSION`
--   Description: Install the given VERSION of the dependencies of the Tensorflow and Tensorflow lite extension. Only available when the `Extensions` is set to `all` or `tensorflow`.
--   Note - It's the same as the WasmEdge version if not specified.
+- Full Option: `--tf-deps-version TF_DEPS_VERSION`
+- Description: Install the given VERSION of the dependencies of the Tensorflow and Tensorflow lite extension. Only available when the `Extensions` is set to `all` or `tensorflow`.
+- Note - It's the same as the WasmEdge version if not specified.
 
 #### Tensorflow Extensions Tools Version
 
--   Full Option: `--tf-tools-version TF_TOOLS_VERSION`
--   Description: Install the given VERSION of the tools of the Tensorflow and Tensorflow lite extension. Only available when the `Extensions` is set to `all` or `tensorflow`.
--   Note - It's the same as the WasmEdge version if not specified.
+- Full Option: `--tf-tools-version TF_TOOLS_VERSION`
+- Description: Install the given VERSION of the tools of the Tensorflow and Tensorflow lite extension. Only available when the `Extensions` is set to `all` or `tensorflow`.
+- Note - It's the same as the WasmEdge version if not specified.
 
 #### Image Extensions Version
 
--   Full Option: `--image-version IMAGE_VERSION`
--   Description: Install the given VERSION of the Image extension. Only available when the `Extensions` is set to `all` or `image`.
--   Note - It's the same as the WasmEdge version if not specified.
+- Full Option: `--image-version IMAGE_VERSION`
+- Description: Install the given VERSION of the Image extension. Only available when the `Extensions` is set to `all` or `image`.
+- Note - It's the same as the WasmEdge version if not specified.
 
 ### Plugins
 
--   Note - Currently `--plugins` is an experimental option.
+- Note - Currently `--plugins` is an experimental option.
 
--   Full Option: `--plugins wasi_crypto:0.11.0`
+- Full Option: `--plugins wasi_crypto:0.11.0`
 
--   Note - The format for this argument is `<plugin_name>:<version_number>`. `<version_number>` is not compulsory. For example `--plugins wasi_crypto` is a valid option.
--   Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](https://wasmedge.org/docs/contribute/plugin/intro) in the `Rust Crate` column. The logic is that the release name should be the same.
--   Note - It's the same as the WasmEdge version if not specified.
+- Note - The format for this argument is `<plugin_name>:<version_number>`. `<version_number>` is not compulsory. For example `--plugins wasi_crypto` is a valid option.
+- Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](https://wasmedge.org/docs/contribute/plugin/intro) in the `Rust Crate` column. The logic is that the release name should be the same.
+- Note - It's the same as the WasmEdge version if not specified.
 
 ### DIST
 
--   Full Option: `--dist ubuntu20.04` or `--dist manylinux2014`
--   Note - the `ubuntu20.04` and `manylinux2014` values are case insensitive and only these two are currently supported.
--   Note - Specifying `--dist` value for `Darwin` has no effect.
--   Note - For `Linux` platform if the distribution matches exactly as `Ubuntu 20.04` which is checked using `lsb_release` and python's `platform.dist()` functionality then it is set to `ubuntu20.04` if not specified, else it is used without questioning. However different release packages for WasmEdge are available only after `0.11.1` release below which there is no effect of specifying this option.
+- Full Option: `--dist ubuntu20.04` or `--dist manylinux2014`
+- Note - the `ubuntu20.04` and `manylinux2014` values are case insensitive and only these two are currently supported.
+- Note - Specifying `--dist` value for `Darwin` has no effect.
+- Note - For `Linux` platform if the distribution matches exactly as `Ubuntu 20.04` which is checked using `lsb_release` and python's `platform.dist()` functionality then it is set to `ubuntu20.04` if not specified, else it is used without questioning. However different release packages for WasmEdge are available only after `0.11.1` release below which there is no effect of specifying this option.
 
 ### Platform and OS
 
--   Full Option: `--platform PLATFORM` or `--os OS`
--   Description: Install the given `PLATFORM` or `OS` version of WasmEdge. This value should be case insensitive to make the maximum compatibility.
--   Available Value (case insensitive): "Linux", "Darwin", "Windows".
+- Full Option: `--platform PLATFORM` or `--os OS`
+- Description: Install the given `PLATFORM` or `OS` version of WasmEdge. This value should be case insensitive to make the maximum compatibility.
+- Available Value (case insensitive): "Linux", "Darwin", "Windows".
 
 ### Machine and Arch
 
--   Full Option: `--machine MACHINE` or `--arch ARCH`
--   Description: Install the given `MACHINE` or `ARCH` version of WasmEdge.
--   Available Value: "x86_64", "aarch64".
+- Full Option: `--machine MACHINE` or `--arch ARCH`
+- Description: Install the given `MACHINE` or `ARCH` version of WasmEdge.
+- Available Value: "x86_64", "aarch64".
 
 ## Behavior
 
--   If there exists an installation at `$HOME/.wasmedge` which is to be noted as the default installation path, it is removed with or without uninstaller's invocation.
--   WasmEdge installation appends all the files it installs to a file which is located in the installer directory named `env` with it's path as `$INSTALLATION_PATH/env`
+- If there exists an installation at `$HOME/.wasmedge` which is to be noted as the default installation path, it is removed with or without uninstaller's invocation.
+- WasmEdge installation appends all the files it installs to a file which is located in the installer directory named `env` with it's path as `$INSTALLATION_PATH/env`
 
 ### Shell and it's configuration
 
--   Source string in shell configuration is given as `. $INSTALLATION_PATH/env` so that it exports the necessary environment variables for WasmEdge.
--   Shell configuration file is appended with source string if it cannot find the source string in that file.
--   Currently it detects only `Bash` and `zsh` shells.
--   If the above shells are found, then their respective configuration files `$HOME/.bashrc` and `$HOME/.zshrc` are updated along with `$HOME/.zprofile` and `$HOME/.bash_profile` in case of Linux.
--   In case of `Darwin`, only `$HOME/.zprofile` is updated with the source string.
+- Source string in shell configuration is given as `. $INSTALLATION_PATH/env` so that it exports the necessary environment variables for WasmEdge.
+- Shell configuration file is appended with source string if it cannot find the source string in that file.
+- Currently it detects only `Bash` and `zsh` shells.
+- If the above shells are found, then their respective configuration files `$HOME/.bashrc` and `$HOME/.zshrc` are updated along with `$HOME/.zprofile` and `$HOME/.bash_profile` in case of Linux.
+- In case of `Darwin`, only `$HOME/.zprofile` is updated with the source string.

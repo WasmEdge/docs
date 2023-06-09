@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Server
 
-As we described in the [client](client) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. In this chapter, we will discuss[an HTTP server example](#an-http-server) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
+As we described in the [client](client) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. In this chapter, we will discuss[an HTTP server example](#an-http-server-example) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
 
 <!-- prettier-ignore -->
 :::note
@@ -15,7 +15,7 @@ Before we started, make sure [you have Rust and WasmEdge installed](../setup).
 
 Build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server) in WasmEdge as follows.
 
-```
+```bash
 git clone https://github.com/second-state/wasmedge_wasi_socket
 cd wasmedge_wasi_socket/http_server
 
@@ -109,7 +109,7 @@ fn main() -> std::io::Result<()> {
 
 Build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/) in WasmEdge as follows.
 
-```
+```bash
 git clone https://github.com/second-state/wasmedge_wasi_socket
 cd wasmedge_wasi_socket
 

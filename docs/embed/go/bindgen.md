@@ -190,7 +190,7 @@ func main() {
 }
 ```
 
-## Build and run the Wasm app from your go host.
+## Build and run the Wasm app from your go host
 
 ::note Make sure you have installed [Go, WasmEdge, and WasmEdge Go SDK](intro.md). ::
 
