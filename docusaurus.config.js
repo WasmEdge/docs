@@ -82,7 +82,7 @@ const config = {
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
-            image: './static/img/wasm_logo.png',
+            image: './static/img/wasm_logo.png', //metaimage
             announcementBar: {
                 id: "start",
                 content:
