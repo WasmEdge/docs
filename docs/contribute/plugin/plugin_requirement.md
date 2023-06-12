@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Requirements for developing WasmEdge plugin
+# Requirements for Developing WasmEdge Plugin
 
 By developing a plugin, one can extend the functionality of WasmEdge and customize it to suit the specific needs. There are some steps needs to be followed for developing WasmEdge Plugin: 
 
@@ -125,7 +125,10 @@ This will launch a debugger for the WasmEdge binary file, and allow you to step 
 
 Finally, compile the WasmEdge plugin.
 
+Here is a flowchart describing all the steps mentioned above - 
+
 ```mermaid
+
 graph TD;
     A[Choose a Programming Language] --> B[Set Up Development Environment]
     B --> C[Create WasmEdge Plugin Project]
@@ -145,23 +148,25 @@ graph TD;
         L --> K
     end
 
-    style A fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style B fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style C fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style D fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style E fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style F fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style G fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style H fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style I fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style J fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style K fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style L fill:#F6D55C,stroke:#000000,stroke-width:2px;
-    style M fill:#F6D55C,stroke:#000000,stroke-width:2px;
+    style A fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style B fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style C fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style D fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style E fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style F fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style G fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style H fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style I fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style J fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style K fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style L fill:#9B5DE5,stroke:#000000,stroke-width:2px;
+    style M fill:#9B5DE5,stroke:#000000,stroke-width:2px;
 
     M[Test and Debug the Plugin] --> J
 
 ```
+
+This flowchart illustrates the process of developing a WasmEdge plugin, showcasing the steps involved from choosing a programming language to finalizing and releasing the plugin.
 
 > For existing plugins, please refer to their respective [documentation pages](/contribute/source/plugin) for specific instructions.
 
