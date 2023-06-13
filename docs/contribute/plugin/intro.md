@@ -41,4 +41,3 @@ The following table lists the plug-ins currently released with the WasmEdge offi
 [wasi-crypto]: https://crates.io/crates/wasi-crypto
 [wasi-nn]: https://crates.io/crates/wasi-nn
 [wasmedge_http_req]: https://crates.io/crates/wasmedge_http_req
-
