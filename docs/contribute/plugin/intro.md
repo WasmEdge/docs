@@ -18,7 +18,9 @@ In this diagram, the *Host Application* represents the application or environmen
 
 ## Usages of WasmEdge Plugin
 
-WasmEdge plugins can be used in a variety of ways, depending on the specific needs of a project. Plugins can be used to add new functionality to the WasmEdge runtime, or to customize the runtime to suit the specific needs of a project. Plugins can also be used to improve performance by offloading compute-intensive tasks to edge devices, or to improve security by running code in a sandboxed environment.
+WasmEdge plugins can be used in various scenarios, such as high-performance domain-specific languages, cloud-native JavaScript runtime, edge computing, serverless, SaaS, service mesh, and blockchain applications. Moreover, WasmEdge plugins can be used in microservices, providing a lightweight, secure, and high-performance runtime compatible with frameworks like Dapr and Kubernetes.
+
+In addition, WasmEdge plugins can support serverless functions for SaaS applications, allowing users to extend and customize their experience without operating their own API callback servers. They can also be embedded into smart device applications as middleware runtime, rendering interactive content on the UI, connecting to native device drivers, and accessing specialized hardware feature. WasmEdge plugins can be used for managing application state, exchanging dynamic data (e.g., strings and arrays) with Wasm programs, and providing native host functions to manipulate data.
 
 ## Benefits of Using WasmEdge Plugin
 
