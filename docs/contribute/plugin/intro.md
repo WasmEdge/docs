@@ -16,58 +16,46 @@ In current, developers can follow the guides to implement the plug-ins in [C API
 
 Loadable plugins are standalone shared libraries (`.so`/`.dylib`/`.dll` files) that can be loaded by the WasmEdge runtime environment at runtime. These plugins can provide additional functionality to the WasmEdge runtime environment, such as new modules that can be imported by WebAssembly modules.
 
-To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of Rust, C and C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string.
+### Creating Loadable Plug-in
 
-Once a loadable plugin has been created, it can be loaded by the WasmEdge runtime environment using the `WasmEdge_LoadWasmFromFile` or `WasmEdge_LoadWasmFromBuffer` API. The plugin can then be used to provide functionality to WebAssembly modules, such as access to system resources or specialized hardware.
+To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of Rust, C and C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string. By following the provided examples and leveraging the SDK's APIs, developers can easily build custom plugins tailored to their specific needs.
 
-### Load plug-ins from paths
+### Loading plug-in from paths
 
-To make use of the plug-ins, developers should first load them from specific paths.
+To make use of the loadable plugins, developers need to load them from specific paths into the WasmEdge runtime environment. The loading process involves the following steps:
 
-```c
-WasmEdge_PluginLoadWithDefaultPaths();
-```
+- Loadable plugins can be loaded from default paths by calling the `WasmEdge_PluginLoadWithDefaultPaths()` API. The default paths include:
+  
+  - The path specified in the environment variable `WASMEDGE_PLUGIN_PATH`.
+  - The `../plugin/` directory relative to the WasmEdge installation path.
+  - The `./wasmedge/` directory located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
+- If the plugins are located in a specific path or directory, developers can use the `WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plugin.so")` API to load the plugins from that particular location.
 
-After calling this API, the plug-ins located in the default paths will be loaded. The default paths include:
+The WasmEdge runtime environment will search for the loadable plugins in the specified paths and load them if found.
 
-1. The path given in the environment variable `WASMEDGE_PLUGIN_PATH`.
-2. The `../plugin/` directory related to the WasmEdge installation path.
-3. The `./wasmedge/` directory under the library path if the WasmEdge is installed in the system directory (such as `/usr` and `/usr/local`).
+### Plugin Loading Flowchart
 
-To load the plug-ins from a specific path or under a specific directory, developers can use the following API:
+The following flowchart depicts the process of loading loadable plugins into the WasmEdge runtime environment from specific paths:
 
-```c
-WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plugin.so");
-```
-
-Here's a flowchart that shows the basic steps involved in creating and using a loadable plugin in WasmEdge:
-
-<div style="text-align: center;">
-  <div class="mermaid">
-    graph TD
-    A[Create Plugin]
-    B[Compile Plugin]
-    C[Load Plugin]
-    D[Register Plugin]
-    E[Load WebAssembly Module]
-    F[Import Plugin Module]
-    G[Execute WebAssembly Module]
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
+```mermaid
+graph LR
+    A((Start)) --> B(Loadable Plugins)
+    B --> C{Load Plugins}
+    C --> D[Load from Default Paths]
+    C --> E[Load from Specific Path]
+    C --> F[Load from Specific Directory]
+    D --> G{Is Plugin Found?}
+    E --> G
     F --> G
-  </div>
-</div>
+    G -- Yes --> H(Load Plugin)
+    H --> I(End)
+    G -- No --> I
 
-This flowchart shows the basic steps involved in creating and using a loadable plugin in WasmEdge. The first step is to create the plugin, which involves writing the code for the plugin functions and compiling the code into a shared library.
+```
 
-The WasmEdge runtime loads the plugin from specific paths, including the environment variable *WASMEDGE_PLUGIN_PATH*, the  `../plugin/` directory related to the WasmEdge installation path, and the `./wasmedge/` directory if WasmEdge is installed in a system directory. The plugin can then be registered with the runtime environment for subsequent usage using the `WasmEdge_RegisterImport` API.
+The flowchart shows the process of loading loadable plugins into the WasmEdge runtime environment. The process involves searching for plugins in default paths, a specific path, or a specific directory. If a plugin is found in any of these locations, it is loaded into the runtime environment. The flowchart enables developers to easily load plugins and extend the capabilities of the WasmEdge runtime.
 
-After the plugin has been registered, a WebAssembly module can be loaded using the `WasmEdge_LoadWasmFromFile` or `WasmEdge_LoadWasmFromBuffer` API. The module can then import the plugin module using the `WasmEdge_VMRegisterModule` API.
-
-Finally, the WebAssembly module can execute its functions, which may call the functions provided by the plugin module. The plugin functions can then perform their specific tasks, such as accessing system resources or specialized hardware.
+By following this flowchart, developers can effectively load loadable plugins into the WasmEdge runtime environment from specific paths, expanding the runtime's functionality according to their requirements.
 
 ## WasmEdge Currently Released Plug-ins
 
