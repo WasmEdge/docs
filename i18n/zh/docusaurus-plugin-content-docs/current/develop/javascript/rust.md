@@ -10,12 +10,12 @@ For JavaScript developers, incorporating Rust functions into JavaScript APIs is 
 
 ## Prerequisites
 
--   [WasmEdge installed](../build-and-run/install)
--   Download the WasmEdge QuickJS Runtime
-    -   Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
--   [Rust](https://www.rust-lang.org/tools/install) installed
--   `wasm32-wasi` target of the Rust toolchain added
-    -   Run `rustup target add wasm32-wasi` after installed Rust.
+- [WasmEdge installed](../build-and-run/install)
+- Download the WasmEdge QuickJS Runtime
+  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+- [Rust](https://www.rust-lang.org/tools/install) installed
+- `wasm32-wasi` target of the Rust toolchain added
+  - Run `rustup target add wasm32-wasi` after installed Rust.
 
 ## A simple example
 

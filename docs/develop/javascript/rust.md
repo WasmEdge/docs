@@ -13,8 +13,8 @@ The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main
 
 ## Prerequisites
 
--   [Install the Rust toolchain](../rust/setup)
--   [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
+- [Install the Rust toolchain](../rust/setup)
+- [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
 
 ## Run the examples
 

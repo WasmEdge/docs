@@ -34,8 +34,8 @@ In this section, we will show how to manage Wasm App in the three different ways
 
 We will cover two different demos in most cases. We have build them from Rust source code, build OCI images around them, and then publish the images to Docker Hub. You can find the more container example [here](https://github.com/second-state/wasmedge-containers-examples).
 
--   [A simple WASI example](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md)
--   [A HTTP server example](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md)
+- [A simple WASI example](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md)
+- [A HTTP server example](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md)
 
 Since we have already built and published those demo apps on Docker Hub, you could also pull the images from Docker Hub. If you want to build your own Wasm image, please refer to this article.
 

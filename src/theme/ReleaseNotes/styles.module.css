@@ -1,12 +1,12 @@
 .summary {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .summary > * {
-    display: inline;
+  display: inline;
 }
 
 .summary:hover > * {
-    text-decoration: underline;
-    color: var(--ifm-link-hover-color);
+  text-decoration: underline;
+  color: var(--ifm-link-hover-color);
 }

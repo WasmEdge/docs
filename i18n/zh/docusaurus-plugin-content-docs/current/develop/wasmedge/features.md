@@ -10,32 +10,32 @@ WasmEdge ([a sandbox project under CNCF](https://www.cncf.io/projects/wasmedge/)
 
 Taking advantage of [the LLVM-based AoT compiler](../build-and-run/aot), WasmEdge is the fastest WebAssembly runtime on the market.
 
--   [A Lightweight Design for High-performance Serverless Computing](https://arxiv.org/abs/2010.07115), published on IEEE Software, Jan 2021. [https://arxiv.org/abs/2010.07115](https://arxiv.org/abs/2010.07115)
--   [Performance Analysis for Arm vs. x86 CPUs in the Cloud](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/), published on infoQ.com, Jan 2021. [https://www.infoq.com/articles/arm-vs-x86-cloud-performance/](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/)
--   [WasmEdge is the fastest WebAssembly Runtime in Suborbital Reactr test suite](https://blog.suborbital.dev/suborbital-wasmedge), Dec 2021
+- [A Lightweight Design for High-performance Serverless Computing](https://arxiv.org/abs/2010.07115), published on IEEE Software, Jan 2021. [https://arxiv.org/abs/2010.07115](https://arxiv.org/abs/2010.07115)
+- [Performance Analysis for Arm vs. x86 CPUs in the Cloud](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/), published on infoQ.com, Jan 2021. [https://www.infoq.com/articles/arm-vs-x86-cloud-performance/](https://www.infoq.com/articles/arm-vs-x86-cloud-performance/)
+- [WasmEdge is the fastest WebAssembly Runtime in Suborbital Reactr test suite](https://blog.suborbital.dev/suborbital-wasmedge), Dec 2021
 
 ## Cloud-native Extensions
 
 Besides WASI and the standard WebAssembly proposal, WasmEdge has some cloud-native extensions.
 
--   non-blocking network sockets and web services with Rust, C, and JavaScript SDK
--   MySQL-based database driver
--   Key value store
--   Gas meter for resource limitation
--   WasmEdge-bindgen for complex para passing
--   AI inference with TensorFlow Lite, Pytorch, and OpenVINO
+- non-blocking network sockets and web services with Rust, C, and JavaScript SDK
+- MySQL-based database driver
+- Key value store
+- Gas meter for resource limitation
+- WasmEdge-bindgen for complex para passing
+- AI inference with TensorFlow Lite, Pytorch, and OpenVINO
 
 ## JavaScript Support
 
 Through the [WasmEdge-Quickjs](https://github.com/second-state/wasmedge-quickjs) project, WasmEdge could run a JavaScript program, lowering the bar for developing a Wasm app.
 
--   ES6 module and std API support
--   NPM module support
--   Native JS API in Rust
--   Node.js API Support
--   Async networking
--   Fetch API
--   React SSR
+- ES6 module and std API support
+- NPM module support
+- Native JS API in Rust
+- Node.js API Support
+- Async networking
+- Fetch API
+- React SSR
 
 ## Cloud native orchestration
 
@@ -55,15 +55,15 @@ WasmEdge supports a wide range of operating systems and hardware platforms. It a
 
 WasmEdge now supports:
 
--   Linux (x86_64 and aarch64)
--   MacOS (x86_64 and M1)
--   Windows
--   Android
--   seL4
--   OpenWrt
--   OpenHarmony
--   Raspberry Pi
--   RISC-V (WIP)
+- Linux (x86_64 and aarch64)
+- MacOS (x86_64 and M1)
+- Windows
+- Android
+- seL4
+- OpenWrt
+- OpenHarmony
+- Raspberry Pi
+- RISC-V (WIP)
 
 ## Easy extensible
 

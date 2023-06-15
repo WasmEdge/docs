@@ -8,8 +8,8 @@ sidebar_position: 2
 
 The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + CRI-O + crun.
 
--   Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
--   WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
+- Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
+- WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
 
 In the rest of this section, we will explain the steps in detail. We will assume that you have already [installed and configured CRI-O](../oci-runtime/crun.md) to work with WasmEdge container images.
 
@@ -107,24 +107,24 @@ pod "wasi-demo-2" deleted
 apiVersion: v1
 kind: Pod
 metadata:
-    name: http-server
-    namespace: default
-    annotations:
-        module.wasm.image/variant: compat-smart
+  name: http-server
+  namespace: default
+  annotations:
+    module.wasm.image/variant: compat-smart
 spec:
-    hostNetwork: true
-    containers:
-        - name: http-server
-          image: wasmedge/example-wasi-http:latest
-          command: ['/http_server.wasm']
-          ports:
-              - containerPort: 1234
-                protocol: TCP
-          livenessProbe:
-              tcpSocket:
-                  port: 1234
-              initialDelaySeconds: 3
-              periodSeconds: 30
+  hostNetwork: true
+  containers:
+    - name: http-server
+      image: wasmedge/example-wasi-http:latest
+      command: ['/http_server.wasm']
+      ports:
+        - containerPort: 1234
+          protocol: TCP
+      livenessProbe:
+        tcpSocket:
+          port: 1234
+        initialDelaySeconds: 3
+        periodSeconds: 30
 ```
 
 Run the WebAssembly-based image from Docker Hub using the above `k8s-http_server.yaml` file in the Kubernetes cluster as follows.

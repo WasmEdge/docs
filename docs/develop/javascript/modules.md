@@ -32,7 +32,7 @@ The two JavaScript files in the `modules` directory provide two simple functions
 
 ```javascript
 export function hello_mod_1() {
-    console.log('hello from "my_mod_1.js"');
+  console.log('hello from "my_mod_1.js"');
 }
 ```
 
@@ -40,7 +40,7 @@ And the [modules/my_mod_2.js](https://github.com/second-state/wasmedge-quickjs/b
 
 ```javascript
 export function hello_mod_2() {
-    console.log('hello from "my_mod_2.js"');
+  console.log('hello from "my_mod_2.js"');
 }
 ```
 

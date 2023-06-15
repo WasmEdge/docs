@@ -10,8 +10,8 @@ Now, why limit ourselves to standard library functions? The same approach can be
 
 The command line program can
 
--   Take input via command line arguments, as well as the `STDIN` stream.
--   Return value and data via the `STDOUT` stream.
+- Take input via command line arguments, as well as the `STDIN` stream.
+- Return value and data via the `STDOUT` stream.
 
 Application developers for WasmEdge can use our Rust interface crate to access this functionality. In `Cargo.toml`, make sure that you have this dependency.
 

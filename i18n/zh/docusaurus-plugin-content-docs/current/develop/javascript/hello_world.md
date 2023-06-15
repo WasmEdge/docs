@@ -6,12 +6,12 @@ sidebar_position: 2
 
 ## Prerequisites
 
--   [WasmEdge installed](../build-and-run/install)
--   Download the WasmEdge QuickJS Runtime
-    -   Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
--   Optional: [Rust](https://www.rust-lang.org/tools/install) installed, if you want to build the program yourself
--   Optional: `wasm32-wasi` target of the Rust toolchain added, if you want to build the program yourself
-    -   Run `rustup target add wasm32-wasi` after installed Rust.
+- [WasmEdge installed](../build-and-run/install)
+- Download the WasmEdge QuickJS Runtime
+  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+- Optional: [Rust](https://www.rust-lang.org/tools/install) installed, if you want to build the program yourself
+- Optional: `wasm32-wasi` target of the Rust toolchain added, if you want to build the program yourself
+  - Run `rustup target add wasm32-wasi` after installed Rust.
 
 ## Quick start
 
@@ -30,7 +30,7 @@ import * as std from 'std';
 args = args.slice(1);
 print('Hello', ...args);
 setTimeout(() => {
-    print('timeout 2s');
+  print('timeout 2s');
 }, 2000);
 ```
 

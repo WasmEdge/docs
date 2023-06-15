@@ -8,5 +8,5 @@ Passing complex data like string is difficult for WebAssembly since Wasm does no
 
 Now WasmEdge-bindgen supports WasmEdge Go SDK and Rust SDK. I will walk you through how to pass complex data from GO and Rust host to an embedded Wasm functions.
 
--   [Passing complex data from WasmEdge Go SDK](go.md)
--   [Passing complex data from WasmEdge Rust SDK](rust.md)
+- [Passing complex data from WasmEdge Go SDK](go.md)
+- [Passing complex data from WasmEdge Rust SDK](rust.md)

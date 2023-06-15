@@ -71,8 +71,8 @@ $ wasmedge --reactor target/wasm32-wasi/debug/add.wasm add 2 2
 
 Of course, in most cases, you will not call functions using CLI arguments. Instead, you will probably need to use a [language SDK from WasmEdge] to call the function, pass call parameters, and receive return values. Below are some SDK examples for complex call parameters and return values.
 
--   [Use wasmedge-bindgen in a Go host app]
--   [Use direct memory passing in a Go host app]
+- [Use wasmedge-bindgen in a Go host app]
+- [Use direct memory passing in a Go host app]
 
 ## Improve the Performance
 

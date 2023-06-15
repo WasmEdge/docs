@@ -10,10 +10,10 @@ Everyone is welcome to join the WasmEdge community.
 
 If you have any questions, feel free to open a GitHub issue on a related project or to join the following channels:
 
--   Mailing list: Send an email to [WasmEdge@googlegroups.com](https://groups.google.com/g/wasmedge/)
--   Discord: Join the [WasmEdge Discord server](https://discord.gg/h4KDyB8XTt)!
--   Slack: Join the #WasmEdge channel on the [CNCF Slack](https://slack.cncf.io/)
--   Twitter: Follow @realwasmedge on [Twitter](https://twitter.com/realwasmedge)
+- Mailing list: Send an email to [WasmEdge@googlegroups.com](https://groups.google.com/g/wasmedge/)
+- Discord: Join the [WasmEdge Discord server](https://discord.gg/h4KDyB8XTt)!
+- Slack: Join the #WasmEdge channel on the [CNCF Slack](https://slack.cncf.io/)
+- Twitter: Follow @realwasmedge on [Twitter](https://twitter.com/realwasmedge)
 
 ## Community Meeting
 
