@@ -10,36 +10,36 @@ Due to the WasmEdge-Go API breaking changes, this document shows the guideline o
 
 1. Removed the members of the `wasmedge.HostRegistration` related const values.
 
-    The following const values are removed:
+   The following const values are removed:
 
-    - `wasmedge.WasmEdge_Process`
-    - `wasmedge.WasiNN`
-    - `wasmedge.WasiCrypto_Common`
-    - `wasmedge.WasiCrypto_AsymmetricCommon`
-    - `wasmedge.WasiCrypto_Kx`
-    - `wasmedge.WasiCrypto_Signatures`
-    - `wasmedge.WasiCrypto_Symmetric`
+   - `wasmedge.WasmEdge_Process`
+   - `wasmedge.WasiNN`
+   - `wasmedge.WasiCrypto_Common`
+   - `wasmedge.WasiCrypto_AsymmetricCommon`
+   - `wasmedge.WasiCrypto_Kx`
+   - `wasmedge.WasiCrypto_Signatures`
+   - `wasmedge.WasiCrypto_Symmetric`
 
-    The `wasmedge.VM` objects will create and register the host modules automatically now. If the plug-ins are not loaded, the `VM` objects will create and register the mock modules to prevent from import failed.
+   The `wasmedge.VM` objects will create and register the host modules automatically now. If the plug-ins are not loaded, the `VM` objects will create and register the mock modules to prevent from import failed.
 
 2. Removed the module instance creation functions of the plug-ins.
 
-    The following APIs are removed:
+   The following APIs are removed:
 
-    - `wasmedge.NewWasiNNModule()`
-    - `wasmedge.NewWasiCryptoCommonModule()`
-    - `wasmedge.NewWasiCryptoAsymmetricCommonModule()`
-    - `wasmedge.NewWasiCryptoKxModule()`
-    - `wasmedge.NewWasiCryptoSignaturesModule()`
-    - `wasmedge.NewWasiCryptoSymmetricModule()`
-    - `wasmedge.NewWasmEdgeProcessModule()`
+   - `wasmedge.NewWasiNNModule()`
+   - `wasmedge.NewWasiCryptoCommonModule()`
+   - `wasmedge.NewWasiCryptoAsymmetricCommonModule()`
+   - `wasmedge.NewWasiCryptoKxModule()`
+   - `wasmedge.NewWasiCryptoSignaturesModule()`
+   - `wasmedge.NewWasiCryptoSymmetricModule()`
+   - `wasmedge.NewWasmEdgeProcessModule()`
 
-    For the new examples for creating the module instances from plug-ins, please refer to [the example below](#creating-the-module-instance-from-a-plug-in).
+   For the new examples for creating the module instances from plug-ins, please refer to [the example below](#creating-the-module-instance-from-a-plug-in).
 
 3. New module instance retrieving API of `VM` objects.
 
-    - Added `(*wasmedge.VM).GetRegisteredModule()` for retrieving registered named module in `VM` objects quickly.
-    - Added `(*wasmedge.VM).ListRegisteredModule()` for listing registered named modules in `VM` objects quickly.
+   - Added `(*wasmedge.VM).GetRegisteredModule()` for retrieving registered named module in `VM` objects quickly.
+   - Added `(*wasmedge.VM).ListRegisteredModule()` for listing registered named modules in `VM` objects quickly.
 
 ## The `wasmedge.HostRegistration` const values for plug-ins are not necessary in VM objects
 

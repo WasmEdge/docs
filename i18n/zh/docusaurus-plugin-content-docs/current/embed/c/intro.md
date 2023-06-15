@@ -114,14 +114,14 @@ sys 0m0.011s
 
 ## API References
 
--   [0.12.0](/embed/c/reference/0.12.0)
--   [0.11.2](/embed/c/reference/0.11.2)
--   [0.10.1](/embed/c/reference/0.10.1)
--   [0.9.1](/embed/c/reference/0.9.1)
+- [0.12.0](/embed/c/reference/0.12.0)
+- [0.11.2](/embed/c/reference/0.11.2)
+- [0.10.1](/embed/c/reference/0.10.1)
+- [0.9.1](/embed/c/reference/0.9.1)
 
 ## Examples
 
--   Link with the [WasmEdge library](/embed/c/library)
--   Use the [external reference](/embed/c/externref) of WebAssembly input and output in C/C++
--   Implement the [host functions](/embed/c/host_function) in C/C++
--   [Multiple WASM Module Example](/embed/c/multiple_modules.md)
+- Link with the [WasmEdge library](/embed/c/library)
+- Use the [external reference](/embed/c/externref) of WebAssembly input and output in C/C++
+- Implement the [host functions](/embed/c/host_function) in C/C++
+- [Multiple WASM Module Example](/embed/c/multiple_modules.md)

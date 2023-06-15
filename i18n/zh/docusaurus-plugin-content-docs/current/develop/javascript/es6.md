@@ -8,9 +8,9 @@ The WasmEdge QuickJS runtime supports ES6 modules. In fact, the rollup commands 
 
 ## Prerequisites
 
--   [WasmEdge installed](../build-and-run/install)
--   Download the WasmEdge QuickJS Runtime
-    -   Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+- [WasmEdge installed](../build-and-run/install)
+- Download the WasmEdge QuickJS Runtime
+  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
 
 ## Run the example
 
@@ -37,7 +37,7 @@ The [module_def.js](https://github.com/second-state/wasmedge-quickjs/blob/main/e
 
 ```javascript
 function hello() {
-    console.log('hello from module_def.js');
+  console.log('hello from module_def.js');
 }
 
 export { hello };
@@ -47,8 +47,8 @@ The [module_def_async.js](https://github.com/second-state/wasmedge-quickjs/blob/
 
 ```javascript
 export async function hello() {
-    console.log('hello from module_def_async.js');
-    return 'module_def_async.js : return value';
+  console.log('hello from module_def_async.js');
+  return 'module_def_async.js : return value';
 }
 
 export var something = 'async thing';
@@ -62,9 +62,9 @@ import { hello as module_def_hello } from './module_def.js';
 module_def_hello();
 
 var f = async () => {
-    let { hello, something } = await import('./module_def_async.js');
-    await hello();
-    console.log('./module_def_async.js `something` is ', something);
+  let { hello, something } = await import('./module_def_async.js');
+  await hello();
+  console.log('./module_def_async.js `something` is ', something);
 };
 
 f();

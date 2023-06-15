@@ -1,8 +1,8 @@
 {
-    "label": "Build and Run WasmEdge on Android",
-    "position": 4,
-    "link": {
-        "type": "generated-index",
-        "description": "we will learn how to build and run WasmEdge on Android."
-    }
+  "label": "Build and Run WasmEdge on Android",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "we will learn how to build and run WasmEdge on Android."
+  }
 }

@@ -1,35 +1,35 @@
 .features {
-    display: flex;
-    align-items: center;
-    padding: 2rem 0;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
 }
 
 .featureSvg {
-    height: 200px;
-    width: 200px;
+  height: 200px;
+  width: 200px;
 }
 
 .linkSvg {
-    margin-top: 4px;
-    margin-left: 6px;
-    height: 20px;
-    width: 20px;
+  margin-top: 4px;
+  margin-left: 6px;
+  height: 20px;
+  width: 20px;
 }
 
 .hoverStyle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hoverStyle:hover h3 {
-    text-shadow: #fc0 1px 0 10px;
+  text-shadow: #fc0 1px 0 10px;
 }
 
 .hoverStyle:hover .linkSvg {
-    margin-top: 2px;
-    margin-left: 5px;
-    height: 22px;
-    width: 22px;
+  margin-top: 2px;
+  margin-left: 5px;
+  height: 22px;
+  width: 22px;
 }

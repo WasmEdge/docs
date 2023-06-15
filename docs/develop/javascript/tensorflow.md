@@ -41,7 +41,7 @@ let img_rgb = img.to_rgb().resize(192, 192);
 let rgb_pix = img_rgb.pixels();
 
 let data = fs.readFileSync(
-    __dirname + '/lite-model_aiy_vision_classifier_food_V1_1.tflite',
+  __dirname + '/lite-model_aiy_vision_classifier_food_V1_1.tflite',
 );
 let graph = new NnGraph([data.buffer], 'tensorflowlite', 'cpu');
 let context = new NnContext(graph);
@@ -54,16 +54,16 @@ context.getOutput(0, output_view.buffer);
 let max = 0;
 let max_idx = 0;
 for (var i in output_view) {
-    let v = output_view[i];
-    if (v > max) {
-        max = v;
-        max_idx = i;
-    }
+  let v = output_view[i];
+  if (v > max) {
+    max = v;
+    max_idx = i;
+  }
 }
 
 let label_file = fs.readFileSync(
-    __dirname + '/aiy_food_V1_labelmap.txt',
-    'utf-8',
+  __dirname + '/aiy_food_V1_labelmap.txt',
+  'utf-8',
 );
 let lables = label_file.split(/\r?\n/);
 

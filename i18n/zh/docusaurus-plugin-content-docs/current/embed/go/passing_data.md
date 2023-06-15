@@ -10,10 +10,10 @@ Such complex call parameters and return values include dynamic memory structures
 
 In this section, we will discuss several examples.
 
--   [Pass strings to Rust functions](#pass-strings-to-rust-functions)
--   [Pass strings to TinyGo functions](#pass-strings-to-tinygo-functions)
--   [Pass bytes to Rust functions](#pass-bytes-to-rust-functions)
--   [Pass bytes to TinyGo functions](#pass-bytes-to-tinygo-functions)
+- [Pass strings to Rust functions](#pass-strings-to-rust-functions)
+- [Pass strings to TinyGo functions](#pass-strings-to-tinygo-functions)
+- [Pass bytes to Rust functions](#pass-bytes-to-rust-functions)
+- [Pass bytes to TinyGo functions](#pass-bytes-to-tinygo-functions)
 
 ## Pass strings to Rust functions
 

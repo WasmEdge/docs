@@ -23,8 +23,8 @@ This demo is based on the seL4 simulator on Linux.
 
 Hardware:
 
--   at least 4GB of RAM
--   at least 20GB of disk storage (the wasmedge_sel4 directory will contain over 11 GB of data after the following installation completes)
+- at least 4GB of RAM
+- at least 20GB of disk storage (the wasmedge_sel4 directory will contain over 11 GB of data after the following installation completes)
 
 Software: Ubuntu 20.04 with dev tools packages (ep. Python) installed. We recommend the [GitHub Actions Ubuntu 20.04 VM](https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md) (See a list of [installed apt packages](https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#installed-apt-packages)). Or, you could use our Docker image (see the [Dockerfile](https://github.com/second-state/wasmedge-seL4/blob/main/docs/Dockerfile.sel4_build)).
 

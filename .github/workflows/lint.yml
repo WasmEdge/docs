@@ -1,10 +1,11 @@
-name: Lint Check
+name: Lint
 
 on:
+  workflow_dispatch:
+  push:
   pull_request:
     branches:
       - main
-      - docusaurus-v**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -14,18 +15,25 @@ permissions:
   contents: read
 
 jobs:
-  lint-markdown:
-    name: Lint markdown
+  lint:
+    name: Lint
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Lint markdown format
-        uses: github/super-linter/slim@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: main
-          FILTER_REGEX_INCLUDE: .*docs/.*md$
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_MARKDOWN: true
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.0
+          cache: npm
+
+      - name: Installation
+        run: npm install
+
+      - name: Lint
+        run: npm run lint:ci
+
+      - name: Prettier Code
+        run: npm run format:diff

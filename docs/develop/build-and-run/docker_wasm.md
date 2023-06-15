@@ -196,28 +196,28 @@ There is a [docker-compose.yml](https://github.com/second-state/microservice-rus
 
 ```yaml
 services:
-    client:
-        image: nginx:alpine
-        ports:
-            - 8090:80
-        volumes:
-            - ./client:/usr/share/nginx/html
-    server:
-        image: demo-microservice
-        platform: wasi/wasm
-        build:
-            context: .
-        ports:
-            - 8080:8080
-        environment:
-            DATABASE_URL: mysql://root:whalehello@db:3306/mysql
-            RUST_BACKTRACE: full
-        restart: unless-stopped
-        runtime: io.containerd.wasmedge.v1
-    db:
-        image: mariadb:10.9
-        environment:
-            MYSQL_ROOT_PASSWORD: whalehello
+  client:
+    image: nginx:alpine
+    ports:
+      - 8090:80
+    volumes:
+      - ./client:/usr/share/nginx/html
+  server:
+    image: demo-microservice
+    platform: wasi/wasm
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_URL: mysql://root:whalehello@db:3306/mysql
+      RUST_BACKTRACE: full
+    restart: unless-stopped
+    runtime: io.containerd.wasmedge.v1
+  db:
+    image: mariadb:10.9
+    environment:
+      MYSQL_ROOT_PASSWORD: whalehello
 ```
 
 - The `client` container is an Nginx web server

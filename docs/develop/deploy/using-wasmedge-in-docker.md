@@ -104,12 +104,12 @@ With WasmEdge QuickJS support for the Node.js API, we can run a lightweight and 
 import { createServer, request, fetch } from 'http';
 
 createServer((req, resp) => {
-    req.on('data', (body) => {
-        resp.write('echo:');
-        resp.end(body);
-    });
+  req.on('data', (body) => {
+    resp.write('echo:');
+    resp.end(body);
+  });
 }).listen(8001, () => {
-    print('listen 8001 ...\n');
+  print('listen 8001 ...\n');
 });
 ```
 

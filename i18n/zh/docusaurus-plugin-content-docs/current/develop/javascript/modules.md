@@ -10,9 +10,9 @@ In this article, we will use the [wasmedge-quickjs/modules](https://github.com/s
 
 Before we started, you also need
 
--   [WasmEdge installed](../build-and-run/install)
--   Download the WasmEdge QuickJS Runtime
-    -   Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+- [WasmEdge installed](../build-and-run/install)
+- Download the WasmEdge QuickJS Runtime
+  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
 
 Then, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
 
@@ -41,7 +41,7 @@ The two JavaScript files in the `modules` directory provide two simple functions
 
 ```javascript
 export function hello_mod_1() {
-    console.log('hello from "my_mod_1.js"');
+  console.log('hello from "my_mod_1.js"');
 }
 ```
 
@@ -49,7 +49,7 @@ And the [modules/my_mod_2.js](https://github.com/second-state/wasmedge-quickjs/b
 
 ```javascript
 export function hello_mod_2() {
-    console.log('hello from "my_mod_2.js"');
+  console.log('hello from "my_mod_2.js"');
 }
 ```
 
