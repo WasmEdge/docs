@@ -24,7 +24,7 @@ export default function App(props) {
             [...contents] = version.split('\n');
             const joinedContents = contents.join('\n');
             return {
-              number: number.replace('\\[', '').replace(']', ''),
+              number: number.replace(/\\\[|\]/g, ''),
               notes: joinedContents,
             };
           })
