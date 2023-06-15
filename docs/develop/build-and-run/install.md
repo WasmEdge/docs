@@ -97,14 +97,14 @@ To install plugins, you can download plugin binary modules from the WasmEdge rel
 
 If you installed into the `$HOME/.wasmedge` directory, you will have the following directories and files after installation:
 
-- The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
-  - The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
-    - Execute a WASM file: `wasmedge --dir .:. app.wasm`
-  - The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
-    - Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
-    - Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
-- The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
-- The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
+-   The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
+    -   The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
+        -   Execute a WASM file: `wasmedge --dir .:. app.wasm`
+    -   The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
+        -   Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
+        -   Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
+-   The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
+-   The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
 
 <!-- prettier-ignore -->
 :::note

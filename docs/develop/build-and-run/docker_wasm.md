@@ -10,9 +10,9 @@ Together with Docker's capability to containerize developer and deployment envir
 
 In this guide, we will cover how to:
 
-- [Create and run a Rust program](#create-and-run-a-rust-program)
-- [Create and run a node.js server](#create-and-run-a-nodejs-server)
-- [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
+-   [Create and run a Rust program](#create-and-run-a-rust-program)
+-   [Create and run a node.js server](#create-and-run-a-nodejs-server)
+-   [Create and deploy a database driven microservice in Rust](#create-and-deploy-a-database-driven-microservice-in-rust)
 
 ## Prerequisite
 
@@ -90,8 +90,8 @@ That's it.
 
 To see more Dockerized Rust example apps for WasmEdge, check out the following.
 
-- [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
-- [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
+-   [Use Rust standard libraries](https://github.com/second-state/rust-examples/tree/main/wasi)
+-   [Create a HTTP server in hyper and tokio](https://github.com/second-state/rust-examples/tree/main/server)
 
 ## Create and run a node.js server
 
@@ -170,8 +170,8 @@ That's it.
 
 ### Further reading for the node.js example
 
-- [Use the fetch() API](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
-- [Image classification using Tensorflow Lite](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
+-   [Use the fetch() API](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
+-   [Image classification using Tensorflow Lite](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
 
 ## Create and deploy a database driven microservice in Rust
 
@@ -220,13 +220,13 @@ services:
             MYSQL_ROOT_PASSWORD: whalehello
 ```
 
-- The `client` container is an Nginx web server
-  - Linux container with mapped HTTP port and volume for the static HTML/JS files
-- The `server` container is a Rust container for the business logic
-  - The Wasm container is built from [Rust source code](https://github.com/second-state/microservice-rust-mysql/blob/main/src/main.rs) using this [Dockerfile](https://github.com/second-state/microservice-rust-mysql/blob/main/Dockerfile)
-  - Wasm container with mapped web service port and an environment variable for the database connection string
-- The `db` container is a MySQL database
-  - Linux container with a pre-set database password
+-   The `client` container is an Nginx web server
+    -   Linux container with mapped HTTP port and volume for the static HTML/JS files
+-   The `server` container is a Rust container for the business logic
+    -   The Wasm container is built from [Rust source code](https://github.com/second-state/microservice-rust-mysql/blob/main/src/main.rs) using this [Dockerfile](https://github.com/second-state/microservice-rust-mysql/blob/main/Dockerfile)
+    -   Wasm container with mapped web service port and an environment variable for the database connection string
+-   The `db` container is a MySQL database
+    -   Linux container with a pre-set database password
 
 ### Deploy the microservice example
 

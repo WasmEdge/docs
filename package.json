@@ -13,7 +13,7 @@
         "serve": "docusaurus serve",
         "prepare": "husky install",
         "format": "prettier --write .",
-        "format:diff": "prettier --list-different .",
+        "format:diff": "prettier --check .",
         "write-translations": "docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids",
         "lint": "npm run lint:js && npm run lint:style",
