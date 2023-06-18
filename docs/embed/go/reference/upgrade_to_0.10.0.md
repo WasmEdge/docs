@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 6.7.6 Upgrade to WasmEdge-Go 0.10.0
+# Upgrade to WasmEdge-Go v0.10.0
 
 Due to the WasmEdge-Go API breaking changes, this document shows the guideline of programming with WasmEdge-Go API to upgrade from the `v0.9.2` to the `v0.10.0` version.
 
@@ -12,53 +12,53 @@ Due to the WasmEdge-Go API breaking changes, this document shows the guideline o
 
 1. Merged the `ImportObject` into the `Module`.
 
-    The `ImportObject` struct which is for the host functions is merged into `Module`. Developers can use the related APIs to construct host modules.
+   The `ImportObject` struct which is for the host functions is merged into `Module`. Developers can use the related APIs to construct host modules.
 
-    - `wasmedge.NewImportObject()` is changed to `wasmedge.NewModule()`.
-    - `(*wasmedge.ImportObject).Release()` is changed to `(*wasmedge.Module).Release()`.
-    - `(*wasmedge.ImportObject).AddFunction()` is changed to `(*wasmedge.Module).AddFunction()`.
-    - `(*wasmedge.ImportObject).AddTable()` is changed to `(*wasmedge.Module).AddTable()`.
-    - `(*wasmedge.ImportObject).AddMemory()` is changed to `(*wasmedge.Module).AddMemory()`.
-    - `(*wasmedge.ImportObject).AddGlobal()` is changed to `(*wasmedge.Module).AddGlobal()`.
-    - `(*wasmedge.ImportObject).NewWasiImportObject()` is changed to `(*wasmedge.Module).NewWasiModule()`.
-    - `(*wasmedge.ImportObject).NewWasmEdgeProcessImportObject()` is changed to `(*wasmedge.Module).NewWasmEdgeProcessModule()`.
-    - `(*wasmedge.ImportObject).InitWASI()` is changed to `(*wasmedge.Module).InitWASI()`.
-    - `(*wasmedge.ImportObject).InitWasmEdgeProcess()` is changed to `(*wasmedge.Module).InitWasmEdgeProcess()`.
-    - `(*wasmedge.ImportObject).WasiGetExitCode()` is changed to `(*wasmedge.Module).WasiGetExitCode`.
-    - `(*wasmedge.VM).RegisterImport()` is changed to `(*wasmedge.VM).RegisterModule()`.
-    - `(*wasmedge.VM).GetImportObject()` is changed to `(*wasmedge.VM).GetImportModule()`.
+   - `wasmedge.NewImportObject()` is changed to `wasmedge.NewModule()`.
+   - `(*wasmedge.ImportObject).Release()` is changed to `(*wasmedge.Module).Release()`.
+   - `(*wasmedge.ImportObject).AddFunction()` is changed to `(*wasmedge.Module).AddFunction()`.
+   - `(*wasmedge.ImportObject).AddTable()` is changed to `(*wasmedge.Module).AddTable()`.
+   - `(*wasmedge.ImportObject).AddMemory()` is changed to `(*wasmedge.Module).AddMemory()`.
+   - `(*wasmedge.ImportObject).AddGlobal()` is changed to `(*wasmedge.Module).AddGlobal()`.
+   - `(*wasmedge.ImportObject).NewWasiImportObject()` is changed to `(*wasmedge.Module).NewWasiModule()`.
+   - `(*wasmedge.ImportObject).NewWasmEdgeProcessImportObject()` is changed to `(*wasmedge.Module).NewWasmEdgeProcessModule()`.
+   - `(*wasmedge.ImportObject).InitWASI()` is changed to `(*wasmedge.Module).InitWASI()`.
+   - `(*wasmedge.ImportObject).InitWasmEdgeProcess()` is changed to `(*wasmedge.Module).InitWasmEdgeProcess()`.
+   - `(*wasmedge.ImportObject).WasiGetExitCode()` is changed to `(*wasmedge.Module).WasiGetExitCode`.
+   - `(*wasmedge.VM).RegisterImport()` is changed to `(*wasmedge.VM).RegisterModule()`.
+   - `(*wasmedge.VM).GetImportObject()` is changed to `(*wasmedge.VM).GetImportModule()`.
 
-    For the new host function examples, please refer to [the example below](#host-functions).
+   For the new host function examples, please refer to [the example below](#host-functions).
 
 2. Used the pointer to `Function` instead of the index in the `FuncRef` value type.
 
-    For the better performance and security, the `FuncRef` related APIs used the `*wasmedge.Function` for the parameters and returns.
+   For the better performance and security, the `FuncRef` related APIs used the `*wasmedge.Function` for the parameters and returns.
 
-    - `wasmedge.NewFuncRef()` is changed to use the `*Function` as it's argument.
-    - Added `(wasmedge.FuncRef).GetRef()` to retrieve the `*Function`.
+   - `wasmedge.NewFuncRef()` is changed to use the `*Function` as it's argument.
+   - Added `(wasmedge.FuncRef).GetRef()` to retrieve the `*Function`.
 
 3. Supported multiple anonymous WASM module instantiation.
 
-    In the version before `v0.9.2`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced. After the `v0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed. For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
+   In the version before `v0.9.2`, WasmEdge only supports 1 anonymous WASM module to be instantiated at one time. If developers instantiate a new WASM module, the old one will be replaced. After the `v0.10.0` version, developers can instantiate multiple anonymous WASM module by `Executor` and get the `Module` instance. But for the source code using the `VM` APIs, the behavior is not changed. For the new examples of instantiating multiple anonymous WASM modules, please refer to [the example below](#wasmedge-executor-changes).
 
 4. Behavior changed of `Store`.
 
-    The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `v0.10.0` version.
+   The `Function`, `Table`, `Memory`, and `Global` instances retrievement from the `Store` is moved to the `Module` instance. The `Store` only manage the module linking when instantiation and the named module searching after the `v0.10.0` version.
 
-    - `(*wasmedge.Store).ListFunction()` and `(*wasmedge.Store).ListFunctionRegistered()` is replaced by `(*wasmedge.Module).ListFunction()`.
-    - `(*wasmedge.Store).ListTable()` and `(*wasmedge.Store).ListTableRegistered()` is replaced by `(*wasmedge.Module).ListTable()`.
-    - `(*wasmedge.Store).ListMemory()` and `(*wasmedge.Store).ListMemoryRegistered()` is replaced by `(*wasmedge.Module).ListMemory()`.
-    - `(*wasmedge.Store).ListGlobal()` and `(*wasmedge.Store).ListGlobalRegistered()` is replaced by `(*wasmedge.Module).ListGlobal()`.
-    - `(*wasmedge.Store).FindFunction()` and `(*wasmedge.Store).FindFunctionRegistered()` is replaced by `(*wasmedge.Module).FindFunction()`.
-    - `(*wasmedge.Store).FindTable()` and `(*wasmedge.Store).FindTableRegistered()` is replaced by `(*wasmedge.Module).FindTable()`.
-    - `(*wasmedge.Store).FindMemory()` and `(*wasmedge.Store).FindMemoryRegistered()` is replaced by `(*wasmedge.Module).FindMemory()`.
-    - `(*wasmedge.Store).FindGlobal()` and `(*wasmedge.Store).FindGlobalRegistered()` is replaced by `(*wasmedge.Module).FindGlobal()`.
+   - `(*wasmedge.Store).ListFunction()` and `(*wasmedge.Store).ListFunctionRegistered()` is replaced by `(*wasmedge.Module).ListFunction()`.
+   - `(*wasmedge.Store).ListTable()` and `(*wasmedge.Store).ListTableRegistered()` is replaced by `(*wasmedge.Module).ListTable()`.
+   - `(*wasmedge.Store).ListMemory()` and `(*wasmedge.Store).ListMemoryRegistered()` is replaced by `(*wasmedge.Module).ListMemory()`.
+   - `(*wasmedge.Store).ListGlobal()` and `(*wasmedge.Store).ListGlobalRegistered()` is replaced by `(*wasmedge.Module).ListGlobal()`.
+   - `(*wasmedge.Store).FindFunction()` and `(*wasmedge.Store).FindFunctionRegistered()` is replaced by `(*wasmedge.Module).FindFunction()`.
+   - `(*wasmedge.Store).FindTable()` and `(*wasmedge.Store).FindTableRegistered()` is replaced by `(*wasmedge.Module).FindTable()`.
+   - `(*wasmedge.Store).FindMemory()` and `(*wasmedge.Store).FindMemoryRegistered()` is replaced by `(*wasmedge.Module).FindMemory()`.
+   - `(*wasmedge.Store).FindGlobal()` and `(*wasmedge.Store).FindGlobalRegistered()` is replaced by `(*wasmedge.Module).FindGlobal()`.
 
-    For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
+   For the new examples of retrieving instances, please refer to [the example below](#instances-retrievement).
 
 5. The `Module`-based resource management.
 
-    Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `(*wasmedge.Module).Release()` API. The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
+   Except the creation of `Module` instance for the host functions, the `Executor` will output a `Module` instance after instantiation. No matter the anonymous or named modules, developers have the responsibility to destroy them by `(*wasmedge.Module).Release()` API. The `Store` will link to the named `Module` instance after registering. After the destroyment of a `Module` instance, the `Store` will unlink to that automatically; after the destroyment of the `Store`, the all `Module` instances the `Store` linked to will unlink to that `Store` automatically.
 
 ## WasmEdge-Go VM changes
 
@@ -133,198 +133,198 @@ globinst := mod.FindGlobal("global_i32")
 
 1. WASM module instantiation
 
-    In WasmEdge-Go `v0.9.2` version, developers can instantiate a WASM module by the `Executor` API:
+   In WasmEdge-Go `v0.9.2` version, developers can instantiate a WASM module by the `Executor` API:
 
-    ```go
-    var ast *wasmedge.AST
-    // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
-    // Assume that `executor` is a `*wasmedge.Executor`.
-    // Assume that `store` is a `*wasmedge.Store`.
-    err := executor.Instantiate(store, ast)
-    if err != nil {
-      fmt.Println("Instantiation FAILED:", err.Error())
-    }
-    ```
+   ```go
+   var ast *wasmedge.AST
+   // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
+   // Assume that `executor` is a `*wasmedge.Executor`.
+   // Assume that `store` is a `*wasmedge.Store`.
+   err := executor.Instantiate(store, ast)
+   if err != nil {
+     fmt.Println("Instantiation FAILED:", err.Error())
+   }
+   ```
 
-    Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`. If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned. After the WasmEdge-Go `v0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated. Developers have the responsibility to release the outputted module instances.
+   Then the WASM module is instantiated into an anonymous module instance and handled by the `Store`. If a new WASM module is instantiated by this API, the old instantiated module instance will be cleaned. After the WasmEdge-Go `v0.10.0` version, the instantiated anonymous module will be outputted and handled by caller, and not only 1 anonymous module instance can be instantiated. Developers have the responsibility to release the outputted module instances.
 
-    ```go
-    var ast1 *wasmedge.AST
-    var ast2 *wasmedge.AST
-    // Assume that `ast1` and `ast2` are loaded WASMs from different files or buffers,
-    // and have both passed the validation.
-    // Assume that `executor` is a `*wasmedge.Executor`.
-    // Assume that `store` is a `*wasmedge.Store`.
-    mod1, err1 := executor.Instantiate(store, ast1)
-    if err1 != nil {
-      fmt.Println("Instantiation FAILED:", err1.Error())
-    }
-    mod2, err2 := executor.Instantiate(store, ast2)
-    if err2 != nil {
-      fmt.Println("Instantiation FAILED:", err2.Error())
-    }
-    mod1.Release()
-    mod2.Release()
-    ```
+   ```go
+   var ast1 *wasmedge.AST
+   var ast2 *wasmedge.AST
+   // Assume that `ast1` and `ast2` are loaded WASMs from different files or buffers,
+   // and have both passed the validation.
+   // Assume that `executor` is a `*wasmedge.Executor`.
+   // Assume that `store` is a `*wasmedge.Store`.
+   mod1, err1 := executor.Instantiate(store, ast1)
+   if err1 != nil {
+     fmt.Println("Instantiation FAILED:", err1.Error())
+   }
+   mod2, err2 := executor.Instantiate(store, ast2)
+   if err2 != nil {
+     fmt.Println("Instantiation FAILED:", err2.Error())
+   }
+   mod1.Release()
+   mod2.Release()
+   ```
 
 2. WASM module registration with module name
 
-    When instantiating and registering a WASM module with module name, developers can use the `(*wasmedge.Executor).RegisterModule()` API before WasmEdge-Go `v0.9.2`.
+   When instantiating and registering a WASM module with module name, developers can use the `(*wasmedge.Executor).RegisterModule()` API before WasmEdge-Go `v0.9.2`.
 
-    ```go
-    var ast *wasmedge.AST
-    // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
-    // Assume that `executor` is a `*wasmedge.Executor`.
-    // Assume that `store` is a `*wasmedge.Store`.
+   ```go
+   var ast *wasmedge.AST
+   // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
+   // Assume that `executor` is a `*wasmedge.Executor`.
+   // Assume that `store` is a `*wasmedge.Store`.
 
-    // Register the WASM module into store with the export module name "mod".
-    err := executor.RegisterModule(store, ast, "mod")
-    if err != nil {
-      fmt.Println("WASM registration FAILED:", err.Error())
-    }
-    ```
+   // Register the WASM module into store with the export module name "mod".
+   err := executor.RegisterModule(store, ast, "mod")
+   if err != nil {
+     fmt.Println("WASM registration FAILED:", err.Error())
+   }
+   ```
 
-    The same feature is implemented in WasmEdge-Go `v0.10.0`, but in different API `(*wasmedge.Executor).Register()`:
+   The same feature is implemented in WasmEdge-Go `v0.10.0`, but in different API `(*wasmedge.Executor).Register()`:
 
-    ```go
-    var ast *wasmedge.AST
-    // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
-    // Assume that `executor` is a `*wasmedge.Executor`.
-    // Assume that `store` is a `*wasmedge.Store`.
+   ```go
+   var ast *wasmedge.AST
+   // Assume that `ast` is a loaded WASM from file or buffer and has passed the validation.
+   // Assume that `executor` is a `*wasmedge.Executor`.
+   // Assume that `store` is a `*wasmedge.Store`.
 
-    // Register the WASM module into store with the export module name "mod".
-    mod, err := executor.Register(store, ast, "mod")
-    if err != nil {
-      fmt.Println("WASM registration FAILED:", err.Error())
-    }
-    mod.Release()
-    ```
+   // Register the WASM module into store with the export module name "mod".
+   mod, err := executor.Register(store, ast, "mod")
+   if err != nil {
+     fmt.Println("WASM registration FAILED:", err.Error())
+   }
+   mod.Release()
+   ```
 
-    Developers have the responsibility to release the outputted module instances.
+   Developers have the responsibility to release the outputted module instances.
 
 3. Host module registration
 
-    In WasmEdge-Go `v0.9.2`, developers can create an `ImportObject` and register into `Store`.
+   In WasmEdge-Go `v0.9.2`, developers can create an `ImportObject` and register into `Store`.
 
-    ```go
-    // Create the import object with the export module name.
-    impobj := wasmedge.NewImportObject("module")
+   ```go
+   // Create the import object with the export module name.
+   impobj := wasmedge.NewImportObject("module")
 
-    // ...
-    // Add the host functions, tables, memories, and globals into the import object.
+   // ...
+   // Add the host functions, tables, memories, and globals into the import object.
 
-    // The import object has already contained the export module name.
-    err := executor.RegisterImport(store, impobj)
-    if err != nil {
-      fmt.Println("Import object registration FAILED:", err.Error())
-    }
-    ```
+   // The import object has already contained the export module name.
+   err := executor.RegisterImport(store, impobj)
+   if err != nil {
+     fmt.Println("Import object registration FAILED:", err.Error())
+   }
+   ```
 
-    After WasmEdge-Go `v0.10.0`, developers should use the `Module` instance instead:
+   After WasmEdge-Go `v0.10.0`, developers should use the `Module` instance instead:
 
-    ```go
-    // Create the module instance with the export module name.
-    impmod := wasmedge.NewModule("module")
+   ```go
+   // Create the module instance with the export module name.
+   impmod := wasmedge.NewModule("module")
 
-    // ...
-    // Add the host functions, tables, memories, and globals into the module instance.
+   // ...
+   // Add the host functions, tables, memories, and globals into the module instance.
 
-    // The module instance has already contained the export module name.
-    err := executor.RegisterImport(store, impmod)
-    if err != nil {
-      fmt.Println("Module instance registration FAILED:", err.Error())
-    }
-    ```
+   // The module instance has already contained the export module name.
+   err := executor.RegisterImport(store, impmod)
+   if err != nil {
+     fmt.Println("Module instance registration FAILED:", err.Error())
+   }
+   ```
 
-    Developers have the responsibility to release the created module instances.
+   Developers have the responsibility to release the created module instances.
 
 4. WASM function invocation
 
-    This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat). In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
+   This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat). In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
 
-    ```go
-    // Create the store object. The store object holds the instances.
-    store := wasmedge.NewStore()
-    // Error.
-    var err error
-    // AST object.
-    var ast *wasmedge.AST
-    // Return values.
-    var res []interface{}
+   ```go
+   // Create the store object. The store object holds the instances.
+   store := wasmedge.NewStore()
+   // Error.
+   var err error
+   // AST object.
+   var ast *wasmedge.AST
+   // Return values.
+   var res []interface{}
 
-    // Create the loader object.
-    loader := wasmedge.NewLoader()
-    // Create the validator object.
-    validator := wasmedge.NewValidator()
-    // Create the executor object.
-    executor := wasmedge.NewExecutor()
+   // Create the loader object.
+   loader := wasmedge.NewLoader()
+   // Create the validator object.
+   validator := wasmedge.NewValidator()
+   // Create the executor object.
+   executor := wasmedge.NewExecutor()
 
-    // Load the WASM file or the compiled-WASM file and convert into the AST object.
-    ast, err = loader.LoadFile("fibonacci.wasm")
-    if err != nil {
-      fmt.Println("Load WASM from file FAILED:", err.Error())
-      return
-    }
-    // Validate the WASM module.
-    err = validator.Validate(ast)
-    if err != nil {
-      fmt.Println("Validation FAILED:", err.Error())
-      return
-    }
-    // Instantiate the WASM module into the Store object.
-    err = executor.Instantiate(store, ast)
-    if err != nil {
-      fmt.Println("Instantiation FAILED:", err.Error())
-      return
-    }
-    // Invoke the function which is exported with the function name "fib".
-    res, err = executor.Invoke(store, "fib", int32(30))
-    if err == nil {
-      fmt.Println("Get fibonacci[30]:", res[0].(int32))
-    } else {
-      fmt.Println("Run failed:", err.Error())
-    }
+   // Load the WASM file or the compiled-WASM file and convert into the AST object.
+   ast, err = loader.LoadFile("fibonacci.wasm")
+   if err != nil {
+     fmt.Println("Load WASM from file FAILED:", err.Error())
+     return
+   }
+   // Validate the WASM module.
+   err = validator.Validate(ast)
+   if err != nil {
+     fmt.Println("Validation FAILED:", err.Error())
+     return
+   }
+   // Instantiate the WASM module into the Store object.
+   err = executor.Instantiate(store, ast)
+   if err != nil {
+     fmt.Println("Instantiation FAILED:", err.Error())
+     return
+   }
+   // Invoke the function which is exported with the function name "fib".
+   res, err = executor.Invoke(store, "fib", int32(30))
+   if err == nil {
+     fmt.Println("Get fibonacci[30]:", res[0].(int32))
+   } else {
+     fmt.Println("Run failed:", err.Error())
+   }
 
-    ast.Release()
-    loader.Release()
-    validator.Release()
-    executor.Release()
-    store.Release()
-    ```
+   ast.Release()
+   loader.Release()
+   validator.Release()
+   executor.Release()
+   store.Release()
+   ```
 
-    After the WasmEdge-Go `v0.10.0`, developers should retrieve the `Function` instance by function name first.
+   After the WasmEdge-Go `v0.10.0`, developers should retrieve the `Function` instance by function name first.
 
-    ```go
-    // ...
-    // Ignore the unchanged steps before validation. Please refer to the sample code above.
+   ```go
+   // ...
+   // Ignore the unchanged steps before validation. Please refer to the sample code above.
 
-    var mod *wasmedge.Module
-    // Instantiate the WASM module and get the output module instance.
-    mod, err = executor.Instantiate(store, ast)
-    if err != nil {
-      fmt.Println("Instantiation FAILED:", err.Error())
-      return
-    }
-    // Retrieve the function instance by name.
-    funcinst := mod.FindFunction("fib")
-    if funcinst == nil {
-      fmt.Println("Run FAILED: Function name `fib` not found")
-      return
-    }
-    res, err = executor.Invoke(store, funcinst, int32(30))
-    if err == nil {
-      fmt.Println("Get fibonacci[30]:", res[0].(int32))
-    } else {
-      fmt.Println("Run FAILED:", err.Error())
-    }
+   var mod *wasmedge.Module
+   // Instantiate the WASM module and get the output module instance.
+   mod, err = executor.Instantiate(store, ast)
+   if err != nil {
+     fmt.Println("Instantiation FAILED:", err.Error())
+     return
+   }
+   // Retrieve the function instance by name.
+   funcinst := mod.FindFunction("fib")
+   if funcinst == nil {
+     fmt.Println("Run FAILED: Function name `fib` not found")
+     return
+   }
+   res, err = executor.Invoke(store, funcinst, int32(30))
+   if err == nil {
+     fmt.Println("Get fibonacci[30]:", res[0].(int32))
+   } else {
+     fmt.Println("Run FAILED:", err.Error())
+   }
 
-    ast.Release()
-    mod.Release()
-    loader.Release()
-    validator.Release()
-    executor.Release()
-    store.Release()
-    ```
+   ast.Release()
+   mod.Release()
+   loader.Release()
+   validator.Release()
+   executor.Release()
+   store.Release()
+   ```
 
 ## Instances retrievement
 

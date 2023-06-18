@@ -24,10 +24,10 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 
 The following proposals are under development and may be supported in the future:
 
--   [Component Model][]
--   [Exception handling][]
--   [Garbage collection][]
--   [WebAssembly C and C++ API][]
+- [Component Model][]
+- [Exception handling][]
+- [Garbage collection][]
+- [WebAssembly C and C++ API][]
 
 [Import/Export of Mutable Globals]: https://github.com/WebAssembly/mutable-global
 [Non-trapping float-to-int conversions]: https://github.com/WebAssembly/nontrapping-float-to-int-conversions
@@ -58,7 +58,7 @@ WasmEdge implements the following [WASI proposals](https://github.com/WebAssembl
 
 The following proposals is under development and may be supported in the future:
 
--   WebAssembly GC Proposal
+- WebAssembly GC Proposal
 
 [Sockets]: https://github.com/WebAssembly/wasi-sockets
 [Crypto]: https://github.com/WebAssembly/wasi-crypto

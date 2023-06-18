@@ -6,13 +6,13 @@ sidebar_position: 2
 
 Currently, WasmEdge project on MacOS supports both Intel and M1 models. However, we only test and develop on `Catalina`, `Big Sur`, and `Monterey`.
 
--   Model:
-    -   Intel
-    -   M1
--   Operating System
-    -   Monterey
-    -   Big Sur
-    -   Catalina
+- Model:
+  - Intel
+  - M1
+- Operating System
+  - Monterey
+  - Big Sur
+  - Catalina
 
 If you would like to develop WasmEdge on MacOS, please follow this guide to build and test from source code.
 
@@ -27,7 +27,7 @@ cd WasmEdge
 
 WasmEdge will try to use the latest LLVM release to create our nightly build. If you want to build from source, you may need to install these dependencies by yourself.
 
--   LLVM 14.0.1 (>= 10.0.0)
+- LLVM 14.0.1 (>= 10.0.0)
 
 ```bash
 # Tools and libraries
@@ -63,6 +63,6 @@ DYLD_LIBRARY_PATH=$(pwd)/lib/api ctest
 
 The following tests can not pass on macos, we are investigating these issues:
 
--   wasmedgeWasiSocketTests
+- wasmedgeWasiSocketTests
 
 But we have an open issue working on it. Don't hesitate to leave your feedback for [this issue](https://github.com/WasmEdge/WasmEdge/issues/2438).

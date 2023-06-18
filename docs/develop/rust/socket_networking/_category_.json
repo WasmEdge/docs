@@ -1,8 +1,8 @@
 {
-    "label": "Socket networking",
-    "position": 5,
-    "link": {
-        "type": "generated-index",
-        "description": "Run Tokio-based async Rust applications in WasmEdge."
-    }
+  "label": "Socket networking",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Run Tokio-based async Rust applications in WasmEdge."
+  }
 }

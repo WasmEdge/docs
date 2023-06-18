@@ -8,7 +8,7 @@ We will use [this example project](https://github.com/second-state/WasmEdge-WASI
 
 ## Prerequisite
 
-Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with TensorFlow Lite installed](../../build-and-run/install#wasi-nn-plugin-with-openvino-backend).
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup), please make sure that you have the [Wasi-NN plugin with TensorFlow Lite installed](../../build-and-run/install#wasi-nn-plugin-with-openvino™-backend).
 
 ## Quick Start
 
@@ -16,7 +16,7 @@ Because the example already includes a compiled Wasm file from the Rust code, we
 
 First, git clone the `WasmEdge-WASINN-examples`.
 
-```
+```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
 cd WasmEdge-WASINN-examples
 ```
@@ -49,14 +49,14 @@ Let's build the wasm file from the rust source code.
 
 First, git clone the `WasmEdge-WASINN-examples`.
 
-```
+```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
 cd openvino-mobilenet-image/rust/
 ```
 
 Second, use `cargo` to build the template project.
 
-```
+```bash
 cargo build --target wasm32-wasi --release
 ```
 

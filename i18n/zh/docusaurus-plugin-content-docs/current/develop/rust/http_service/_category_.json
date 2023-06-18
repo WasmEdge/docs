@@ -1,8 +1,8 @@
 {
-    "label": "4.3 HTTP services",
-    "position": 4,
-    "link": {
-        "type": "generated-index",
-        "description": "Create HTTP request with your familiar Rust framework and running in WasmEdge."
-    }
+  "label": "4.3 HTTP services",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Create HTTP request with your familiar Rust framework and running in WasmEdge."
+  }
 }

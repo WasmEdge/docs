@@ -8,8 +8,8 @@ After intalling WasmEdge, you can use the `wasmedge` CLI to execute a compiled w
 
 The `wasmedge` binary is a command line interface (CLI) program that runs WebAssembly programs.
 
--   If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
--   If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
+- If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
+- If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
 
 By default, the `wasmedge` will execute WebAssembly programs in interpreter mode, and [execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode](aot.md). If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first.
 
@@ -30,12 +30,12 @@ USAGE
 
 If users install the WasmEdge from the install script with the option `-e tf,image`, the WasmEdge CLI tools with TensorFlow and TensorFlow-Lite extensions will be installed.
 
--   `wasmedge-tensorflow` CLI tool
-    -   The `wasmedge` tool with TensorFlow, TensorFlow-Lite, and `wasmedge-image` extensions.
-    -   Only on `x86_64` and `aarch64` Linux platforms and `x86_64` MacOS.
--   `wasmedge-tensorflow-lite` CLI tool
-    -   The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
-    -   Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
+- `wasmedge-tensorflow` CLI tool
+  - The `wasmedge` tool with TensorFlow, TensorFlow-Lite, and `wasmedge-image` extensions.
+  - Only on `x86_64` and `aarch64` Linux platforms and `x86_64` MacOS.
+- `wasmedge-tensorflow-lite` CLI tool
+  - The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
+  - Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
 
 The `wasmedge` CLI tool will execute the WebAssembly in ahead-of-time(AOT) mode and interpreter mode. It depends on if you use `wasmedgec` to AoT compile the wasm file.
 
@@ -46,35 +46,35 @@ The options of the `wasmedge` CLI tool are as follows.
 1. `-v|--version`: Show the version information. Will ignore other arguments below.
 2. `-h|--help`: Show the help messages. Will ignore other arguments below.
 3. (Optional) `--reactor`: Enable the reactor mode.
-    - In the reactor mode, `wasmedge` runs a specified function exported by the WebAssembly program.
-    - WasmEdge will execute the function which name should be given in `ARG[0]`.
-    - If there's exported function which names `_initialize`, the function will be executed with the empty parameter at first.
+   - In the reactor mode, `wasmedge` runs a specified function exported by the WebAssembly program.
+   - WasmEdge will execute the function which name should be given in `ARG[0]`.
+   - If there's exported function which names `_initialize`, the function will be executed with the empty parameter at first.
 4. (Optional) `--dir`: Bind directories into WASI virtual filesystem.
-    - Use `--dir guest_path:host_path` to bind the host path into the guest path in WASI virtual system.
+   - Use `--dir guest_path:host_path` to bind the host path into the guest path in WASI virtual system.
 5. (Optional) `--env`: Assign the environment variables in WASI.
-    - Use `--env ENV_NAME=VALUE` to assign the environment variable.
+   - Use `--env ENV_NAME=VALUE` to assign the environment variable.
 6. (Optional) Statistics information:
-    - Use `--enable-time-measuring` to show the execution time.
-    - Use `--enable-gas-measuring` to show the amount of used gas.
-    - Use `--enable-instruction-count` to display the number of executed instructions.
-    - Or use `--enable-all-statistics` to enable all of the statistics options.
+   - Use `--enable-time-measuring` to show the execution time.
+   - Use `--enable-gas-measuring` to show the amount of used gas.
+   - Use `--enable-instruction-count` to display the number of executed instructions.
+   - Or use `--enable-all-statistics` to enable all of the statistics options.
 7. (Optional) Resource limitations:
-    - Use `--time-limit MILLISECOND_TIME` to limit the execution time. Default value is `0` as no limitation.
-    - Use `--gas-limit GAS_LIMIT` to limit the execution cost.
-    - Use `--memory-page-limit PAGE_COUNT` to set the limitation of pages(as size of 64 KiB) in every memory instance.
+   - Use `--time-limit MILLISECOND_TIME` to limit the execution time. Default value is `0` as no limitation.
+   - Use `--gas-limit GAS_LIMIT` to limit the execution cost.
+   - Use `--memory-page-limit PAGE_COUNT` to set the limitation of pages(as size of 64 KiB) in every memory instance.
 8. (Optional) WebAssembly proposals:
-    - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
-    - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
-    - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
-    - Use `--disable-multi-value` to disable the [Multi-value](https://github.com/WebAssembly/multi-value) proposal (Default `ON`).
-    - Use `--disable-bulk-memory` to disable the [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations) proposal (Default `ON`).
-    - Use `--disable-reference-types` to disable the [Reference Types](https://github.com/WebAssembly/reference-types) proposal (Default `ON`).
-    - Use `--disable-simd` to disable the [Fixed-width SIMD](https://github.com/webassembly/simd) proposal (Default `ON`).
-    - Use `--enable-multi-memory` to enable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `OFF`).
-    - Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `OFF`).
-    - Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `OFF`).
-    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
-    - Use `--enable-all` to enable ALL proposals above.
+   - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
+   - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
+   - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
+   - Use `--disable-multi-value` to disable the [Multi-value](https://github.com/WebAssembly/multi-value) proposal (Default `ON`).
+   - Use `--disable-bulk-memory` to disable the [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations) proposal (Default `ON`).
+   - Use `--disable-reference-types` to disable the [Reference Types](https://github.com/WebAssembly/reference-types) proposal (Default `ON`).
+   - Use `--disable-simd` to disable the [Fixed-width SIMD](https://github.com/webassembly/simd) proposal (Default `ON`).
+   - Use `--enable-multi-memory` to enable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `OFF`).
+   - Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `OFF`).
+   - Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `OFF`).
+   - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
+   - Use `--enable-all` to enable ALL proposals above.
 9. WASM file (`/path/to/wasm/file`).
 10. (Optional) `ARG` command line arguments array.
     - In reactor mode, the first argument will be the function name, and the arguments after `ARG[0]` will be parameters of wasm function `ARG[0]`.
@@ -213,8 +213,8 @@ The output will be:
 
 It is possible to use WasmEdge as a high-performance, secure, extensible, easy to deploy, and [Kubernetes-compliant](https://github.com/second-state/wasmedge-containers-examples) JavaScript runtime. There is no need to build a JavaScript app. You just need to download the WasmEdge JavaScript runtime for Node.js.
 
--   [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
--   [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
+- [Download the wasmedge_quickjs.wasm file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm)
+- [Download the modules.zip file here](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip) and then unzip it into the current folder as `./modules/`
 
 ```bash
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
@@ -254,17 +254,17 @@ The Docker images in this section are mostly used for development purposes. They
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 
--   Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
--   Image `wasmedge/slim:{version}` includes the following command line utilities:
-    -   `wasmedge`
-    -   `wasmedgec`
--   Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
-    -   `wasmedge`
-    -   `wasmedgec`
-    -   `wasmedge-tensorflow-lite`
-    -   `wasmedge-tensorflow`
-    -   `show-tflite-tensor`
--   The working directory of the release docker image is `/app`.
+- Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
+- Image `wasmedge/slim:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedgec`
+- Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedgec`
+  - `wasmedge-tensorflow-lite`
+  - `wasmedge-tensorflow`
+  - `show-tflite-tensor`
+- The working directory of the release docker image is `/app`.
 
 ### Examples
 

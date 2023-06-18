@@ -8,15 +8,15 @@ sidebar_position: 3
 
 The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on CRI-O.
 
--   Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio.yml)
--   HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio-server.yml)
+- Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio.yml)
+- HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio-server.yml)
 
 In the sections below, we will explain the steps in the quick start scripts.
 
--   [Install CRI-O](#install-cri-o)
--   [Configure CRI-O and crun](#configure-cri-o-to-use-crun)
--   [Example 1: Simple WebAssembly](#run-a-simple-webassembly-app)
--   [Example 2: HTTP server in WebAssembly](#run-a-http-server-app)
+- [Install CRI-O](#install-cri-o)
+- [Configure CRI-O and crun](#configure-cri-o-to-use-crun)
+- [Example 1: Simple WebAssembly](#run-a-simple-webassembly-app)
+- [Example 2: HTTP server in WebAssembly](#run-a-http-server-app)
 
 ## Install CRI-O
 

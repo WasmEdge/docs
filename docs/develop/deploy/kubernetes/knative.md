@@ -4,8 +4,6 @@ sidebar_position: 8
 
 # Knative
 
-# Knative
-
 Knative is a platform-agnostic solution for running serverless deployments.
 
 ## Quick start

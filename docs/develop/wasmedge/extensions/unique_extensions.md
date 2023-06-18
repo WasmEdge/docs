@@ -8,12 +8,12 @@ A challenge for running Wasm apps on the server side is the lack of support for 
 
 Through its support for networking socket and related APIs, WasmEdge can run Rust applications that
 
--   [provide HTTP services](https://github.com/WasmEdge/wasmedge_hyper_demo)
--   [access external web services](https://github.com/WasmEdge/wasmedge_reqwest_demo)
--   [connect to databases](https://github.com/WasmEdge/wasmedge-db-examples)
--   [connect to messging queues](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
--   [support database driven microservices](https://github.com/second-state/microservice-rust-mysql)
--   [support microservices with Dapr sidecars](https://github.com/second-state/dapr-wasm)
+- [provide HTTP services](https://github.com/WasmEdge/wasmedge_hyper_demo)
+- [access external web services](https://github.com/WasmEdge/wasmedge_reqwest_demo)
+- [connect to databases](https://github.com/WasmEdge/wasmedge-db-examples)
+- [connect to messging queues](https://github.com/docker/awesome-compose/tree/master/wasmedge-kafka-mysql)
+- [support database driven microservices](https://github.com/second-state/microservice-rust-mysql)
+- [support microservices with Dapr sidecars](https://github.com/second-state/dapr-wasm)
 
 Furthermore, the networking socket APIs also allow us to support the node.js API, including both the `server` and `fetch()`, in WasmEdge's JavaScript runtime.
 

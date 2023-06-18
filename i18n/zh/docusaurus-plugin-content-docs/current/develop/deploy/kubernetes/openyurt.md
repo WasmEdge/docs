@@ -31,7 +31,7 @@ Find the difference between `yurtctl convert/revert` and `yurtctl init/join`, yo
 
 [Conversion between OpenYurt and Kubernetes:`yurtctl convert/revert`](https://openyurt.io/docs/v0.6.0/installation/yurtctl-convert-revert)
 
--   Close the swap space of the master and node firstly.
+- Close the swap space of the master and node firstly.
 
 ```bash
 sudo swapoff -a
@@ -39,7 +39,7 @@ sudo swapoff -a
 free -m
 ```
 
--   Configure the file /etc/hosts of two nodes as the following.
+- Configure the file /etc/hosts of two nodes as the following.
 
 ```bash
 192.168.3.169  oy-master
@@ -48,7 +48,7 @@ free -m
 121.43.113.152 oy-node
 ```
 
--   Load the br_netfilter Kernel module and modify the Kernel parameter.
+- Load the br_netfilter Kernel module and modify the Kernel parameter.
 
 ```bash
 //load the module
@@ -63,7 +63,7 @@ EOF
 sudo sysctl --system
 ```
 
--   Setup the value of rp-filter (adjusting the value of two parameters in `/etc/sysctl.d/10-network-security.conf` from 2 to 1 and setting up the value of /proc/sys/net/ipv4/ip_forward to 1)
+- Setup the value of rp-filter (adjusting the value of two parameters in `/etc/sysctl.d/10-network-security.conf` from 2 to 1 and setting up the value of /proc/sys/net/ipv4/ip_forward to 1)
 
 ```bash
 sudo vi /etc/sysctl.d/10-network-security.conf
@@ -118,7 +118,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 We need a crun binary that supports WasmEdge on the edge node. For now, the most straightforward approach is to build it yourself from the source. First, let's ensure that crun dependencies are installed on your Ubuntu 20.04. For other Linux distributions, please see [here](https://github.com/containers/crun#readme).
 
--   Dependencies are required for the build
+- Dependencies are required for the build
 
 ```bash
 sudo apt update
@@ -127,7 +127,7 @@ sudo apt install -y make git gcc build-essential pkgconf libtool \
   go-md2man libtool autoconf python3 automake
 ```
 
--   Configure, build, and install a crun binary with WasmEdge support.
+- Configure, build, and install a crun binary with WasmEdge support.
 
 ```bash
 git clone https://github.com/containers/crun
