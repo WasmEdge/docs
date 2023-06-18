@@ -8,9 +8,9 @@ By developing a plugin, one can extend the functionality of WasmEdge and customi
 
 ```mermaid
 graph TD;
-A(Choose programming language) --> B(Install WasmEdge)
-A --> C(Build WasmEdge from source)
-A --> D(Install Rust)
+A(Choose programming language) --> B(C API)
+A --> C(C++ API)
+A --> D(Rust API)
 B --> E(Set up development environment)
 C --> E
 D --> E
@@ -33,17 +33,29 @@ This flowchart illustrates the process of developing a WasmEdge plugin, showcasi
 
 ## Choose programming language
 
-The first step in developing a WasmEdge plugin is to choose the programming language one wants to use. Currently, C, C++, and Rust are supported by the WasmEdge runtime.
+The first step in developing a WasmEdge plugin is to choose the programming language one wants to use. Currently, C, C++, and Rust are supported by the WasmEdge runtime. Depending on your preferred language, you can follow the specific instructions provided on separate pages:
 
-- **C:** Developers who choose to develop WasmEdge plugins using the C API need to install WasmEdge before starting the development process. Detailed instructions on installing WasmEdge can be found in the [install WasmEdge](/develop/build-and-run/install.md) guide.
+- **C:**
+
+  - **Install WasmEdge**: Developers using the C API should install WasmEdge before starting the development process. Follow the  [install WasmEdge](/develop/build-and-run/install.md) guide for detailed instructions.
+
+  - **Develop the plugin**: Once WasmEdge is installed, you can proceed with developing your plugin using the WasmEdge [C API](develop_plugin_c.md).
+
+- **C++**:
   
-- **C++:** For developers interested in developing WasmEdge plugins using the internal C++ API, they should first build WasmEdge from source. The process for building WasmEdge from source is outlined in th [build WasmEdge from source](../source/build_from_src.md) before starting.Once WasmEdge is successfully built, they can proceed with developing plugins using the internal C++ API.
+  - **Build WasmEdge from source**: Developers interested in using the internal C++ API should build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions.
 
-- **Rust:** To develop WasmEdge plugins using Rust, developers need to have Rust installed on their system. Instructions for installing Rust can be found in the [e Rust Setup Guide](/develop/rust/setup.md). Once Rust is installed, developers can start developing WasmEdge plugins using the Rust programming language.
+  - **Develop the plugin**: After building WasmEdge, you can develop your plugin using the internal [C++ API](develop_plugin_cpp.md).
+
+- **Rust**:
+  
+  - **Install Rust**: To develop WasmEdge plugins using Rust, you need to have Rust installed on your system. You can refer to the [Rust Setup Guide](/develop/rust/setup.md) for instructions on installing Rust.
+  
+  - **Develop the plugin**: Once Rust is installed, you can start developing WasmEdge plugins using the Rust programming language.
+
+> It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plugin development because of the support, compatibility and flexibility provided by the WasmEdge runtime.
 
 The choice of programming language depends on the developer's familiarity and skill with the language. C and C++ are commonly chosen for their low-level control over system resources and the ability to create high-performance plugins. Rust, on the other hand, is known for its safety features and performance.
-
-> It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plugin development.
 
 ## Set up the development environment
 
