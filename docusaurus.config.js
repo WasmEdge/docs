@@ -213,4 +213,10 @@ const config = {
         }),
 };
 
-module.exports = config;
+module.exports = {
+    ...config,
+    markdown: {
+        mermaid: true,
+      },
+      themes: ['@docusaurus/theme-mermaid'],
+    };
