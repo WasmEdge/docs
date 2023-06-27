@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # ES6 Modules
@@ -8,28 +8,23 @@ The WasmEdge QuickJS runtime supports ES6 modules. In fact, the rollup commands 
 
 ## Prerequisites
 
-- [WasmEdge installed](../build-and-run/install)
-- Download the WasmEdge QuickJS Runtime
-  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+[See here](./hello_world#prerequisites)
 
 ## Run the example
 
-We will take the example in [example_js/es6_module_demo](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/es6_module_demo) folder as an example.
-
-First, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
+We will take the example in [example_js/es6_module_demo](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/es6_module_demo) folder as an example. To run the example, you can do the following on the CLI.
 
 ```bash
-git clone https://github.com/second-state/wasmedge-quickjs.git
-```
-
-To run the example, you can do the following on the CLI.
-
-```bash
-$ wasmedge --dir .:. /path/to/wasmedge_quickjs.wasm example_js/es6_module_demo/demo.js
+$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/es6_module_demo/demo.js
 hello from module_def.js
 hello from module_def_async.js
 ./module_def_async.js `something` is  async thing
 ```
+
+<!-- prettier-ignore -->
+:::note
+Make sure that run those commands from the `wasmedge-quickjs` directory. [Here is why](./hello_world#prerequisites)
+:::
 
 ## Code Explanation
 

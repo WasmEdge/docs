@@ -1,43 +1,53 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Native JS API in Rust
 
 For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" and yet still take advantage of the high performance Rust functions. With the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge), you can do exactly that.
 
-> The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules).
+<!-- prettier-ignore -->
+:::note
+The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules).
+:::
 
 ## Prerequisites
 
-- [WasmEdge installed](../build-and-run/install)
-- Download the WasmEdge QuickJS Runtime
-  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
-- [Rust](https://www.rust-lang.org/tools/install) installed
-- `wasm32-wasi` target of the Rust toolchain added
-  - Run `rustup target add wasm32-wasi` after installed Rust.
+- [Install the Rust toolchain](../rust/setup)
+- [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
 
-## A simple example
+## Run the examples
 
-### Run the example
-
-First, git clone or fork the [wasmedge-quickjs](https://github.com/second-state/wasmedge-quickjs/) Github repo and change to the `examples/embed_js` folder to follow along.
+The examples are in the `examples/embed_js` folder in the `wasmedge-quickjs` repo. You can build and run all the examples as follows.
 
 ```bash
-git clone https://github.com/second-state/wasmedge-quickjs
 cd examples/embed_js
-```
-
-The `embed_js` demo showcases several different examples on how to embed JavaScript inside Rust. You can build and run all the examples as follows.
-
-```bash
 cargo build --target wasm32-wasi --release
 wasmedge --dir .:. target/wasm32-wasi/release/embed_js.wasm
 ```
 
-> Note: The `--dir .:.` on the command line is to give wasmedge permission to read the local directory in the file system.
+## Code explanation: embed JavaScript into a Rust program
 
-### Code explanation: create a JavaScript function API
+The following Rust snippet evaluates the JavaScript code in the `code` variable.
+
+```rust
+fn js_hello(ctx: &mut Context) {
+    println!("\n<----run_simple_js---->");
+    let code = r#"print('hello quickjs')"#;
+    let r = ctx.eval_global_str(code);
+    println!("return value:{:?}", r);
+}
+
+... ...
+
+fn main() {
+    let mut ctx = Context::new();
+    js_hello(&mut ctx);
+    ... ...
+}
+```
+
+## Code explanation: create a JavaScript function API
 
 The following code snippet defines a Rust function that can be incorporate into the JavaScript interpreter as an API.
 
@@ -68,6 +78,14 @@ fn run_rust_function(ctx: &mut Context) {
   let code = r#"hi(1,2,3)"#;
   let r = ctx.eval_global_str(code);
   println!("return value:{:?}", r);
+}
+
+... ...
+
+fn main() {
+    let mut ctx = Context::new();
+    run_rust_function(&mut ctx);
+    ... ...
 }
 ```
 
@@ -165,23 +183,19 @@ this=Ok(
 
 ## A complete JavaScript object API
 
-In the previous example, we demonstrated simple examples to create JavaScript APIs from Rust. In this example, we will create a complete Rust module and make it available as a JavaScript object API. The project is in the [examples/embed_rust_module](https://github.com/second-state/wasmedge-quickjs/tree/main/examples/embed_rust_module) folder. You can build and run it as a standard Rust application in WasmEdge.
+In the previous example, we demonstrated simple examples to create JavaScript APIs from Rust. In this example, we will create a complete Rust module and make it available as a JavaScript object API.
 
 ### Run the example
 
-First, git clone or fork the [wasmedge-quickjs](https://github.com/second-state/wasmedge-quickjs/) Github repo and change to the `examples/embed_rust_module` folder to follow along.
+The project is in the [examples/embed_rust_module](https://github.com/second-state/wasmedge-quickjs/tree/main/examples/embed_rust_module) folder. You can build and run it as a standard Rust application in WasmEdge.
 
 ```bash
-git clone https://github.com/second-state/wasmedge-quickjs
 cd examples/embed_rust_module
-```
-
-```bash
 cargo build --target wasm32-wasi --release
 wasmedge --dir .:. target/wasm32-wasi/release/embed_rust_module.wasm
 ```
 
-### Code Explanation
+### Code explanation
 
 The Rust implementation of the object is a module as follows. It has data fields, constructor, getters and setters, and functions.
 

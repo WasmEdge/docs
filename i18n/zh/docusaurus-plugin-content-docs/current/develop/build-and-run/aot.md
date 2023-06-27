@@ -4,9 +4,9 @@ sidebar_position: 3
 
 # The AoT Compiler
 
-One of the most important features of WasmEdge is the AoT compiler. The `wasmedgec` can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedgec` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
+One of the most important features of WasmEdge is the AoT compiler. The `wasmedgec` tool can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedgec` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
 
-Use `wasmedgec -v` or `wasmedgec --version` line to check out the version.
+Use the `wasmedgec -v` or `wasmedgec --version` command to check the version of `wasmedgec` installed.
 
 ```bash
 $ wasmedgec -v
@@ -29,7 +29,10 @@ By default, the `wasmedgec` AOT compiler tool could wrap the AOT-compiled native
 
 This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime, WasmEdge will extract the native binary from the custom section and execute it in AOT mode.
 
-> Note: On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedgec` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+<!-- prettier-ignore -->
+:::note
+On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedgec` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+:::
 
 ```bash
 wasmedgec app.wasm app_aot.wasm
@@ -76,7 +79,7 @@ The output will be:
 [2022-09-09 14:22:10.600] [info] compile done
 ```
 
-Then you can execute the output file with `wasmedge` and measure the execution time:
+Next, you can execute the output file with `wasmedge` and measure the execution time:
 
 ```bash
 time wasmedge --reactor fibonacci_aot.wasm fib 30

@@ -7,9 +7,10 @@ sidebar_position: 2
 Currently, WasmEdge project on MacOS supports both Intel and M1 models. However, we only test and develop on `Catalina`, `Big Sur`, and `Monterey`.
 
 - Model:
-  - Intel
-  - M1
+  - Intel (x86_64)
+  - M1, M2 (arm64)
 - Operating System
+  - Ventura
   - Monterey
   - Big Sur
   - Catalina
@@ -27,11 +28,11 @@ cd WasmEdge
 
 WasmEdge will try to use the latest LLVM release to create our nightly build. If you want to build from source, you may need to install these dependencies by yourself.
 
-- LLVM 14.0.1 (>= 10.0.0)
+- LLVM 16.0.4 (>= 10.0.0)
 
 ```bash
 # Tools and libraries
-brew install boost cmake ninja llvm
+brew install cmake ninja llvm
 export LLVM_DIR="$(brew --prefix)/opt/llvm/lib/cmake"
 export CC=clang
 export CXX=clang++

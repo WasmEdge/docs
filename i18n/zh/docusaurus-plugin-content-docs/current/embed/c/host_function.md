@@ -209,7 +209,10 @@ The `WasmEdge_CallingFrameGetModuleInstance()` API can help developers to get th
 
 Usually, the host function in WasmEdge can return the `WasmEdge_Result_Success` to present the successful execution. For presenting the host function execution failed, one way is to return a trap with the error code. Then the WasmEdge runtime will cause the trap in WASM and return that error.
 
-_Note: We don't recommend using system calls such as `exit()`. That will shut down the whole WasmEdge runtime._
+<!-- prettier-ignore -->
+:::note
+We don't recommend using system calls such as `exit()`. That will shut down the whole WasmEdge runtime._
+:::
 
 For simply generating the trap, developers can return the `WasmEdge_Result_Fail`. If developers call the `WasmEdge_ResultOK()` with the returned result, they will get `false`. If developers call the `WasmEdge_ResultGetCode()` with the returned result, they will always get `2`.
 

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## WebAssembly features
 
-WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAssembly/proposals). Those proposals are likely to become official WebAssembly specifications in the future.
+WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAssembly/proposals). These proposals are likely to become official WebAssembly specifications in the future.
 
 | Proposal | WasmEdge CLI flag | WasmEdge C API enumeration | Default turning on | Interpreter mode | AOT mode |
 | --- | --- | --- | --- | --- | --- |
@@ -22,7 +22,7 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 | [Extended Constant Expressions][] | `--enable-extended-const` | `WasmEdge_Proposal_ExtendedConst` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
 | [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
 
-The following proposals is under development and may be supported in the future:
+The following proposals are under development and may be supported in the future:
 
 - [Component Model][]
 - [Exception handling][]
@@ -47,7 +47,7 @@ The following proposals is under development and may be supported in the future:
 
 ## WASI proposals
 
-WasmEdge implements the following [WASI proposals](https://github.com/WebAssembly/WASI/blob/main/Proposals.md).
+WasmEdge implements the following [WASI proposals](https://github.com/WebAssembly/WASI/blob/main/Proposals.md):
 
 | Proposal | Platforms |
 | --- | --- |

@@ -14,7 +14,7 @@ We need to install [Rust and add `wasm32-wasi` target for Rust](/develop/rust/se
 
 We also need to install `wasmedge-bindgen`.
 
-```
+```bash
 # Install the WasmEdge-bindgen tool, which help us handle complex data passing
 $ go get github.com/second-state/wasmedge-bindgen@v0.4.1
 ```
