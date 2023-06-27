@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # Built-in modules
@@ -8,28 +8,19 @@ The WasmEdge QuickJS runtime supports [ES6](es6) and [NPM](npm) modules for appl
 
 In this article, we will use the [wasmedge-quickjs/modules](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) as an example to showcase how to import NodeJS API or a third-party modules.
 
-Before we started, you also need
+## Prerequisites
 
-- [WasmEdge installed](../build-and-run/install)
-- Download the WasmEdge QuickJS Runtime
-  - Run `curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm` to download
+[See here](./hello_world#prerequisites)
 
-Then, git clone of fork [the example repo](https://github.com/second-state/wasmedge-quickjs).
+## The modules system
 
-```bash
-git clone https://github.com/second-state/wasmedge-quickjs.git
-```
-
-The module system is just a collection of JavaScript files in the `modules` directory in the WasmEdge QuickJS distribution. To use the JavaScript functions and APIs defined in those modules, you just need to map this directory to the `/modules` directory inside the WasmEdge Runtime instance. The following example shows how to do this on the WasmEdge CLI. You can do this with any of the host language SDKs that support embedded use of WasmEdge.
+The modules system is just a collection of JavaScript files in the `modules` directory in the WasmEdge QuickJS distribution. To use the JavaScript functions and APIs defined in those modules, you just need to map this directory to the `/modules` directory inside the WasmEdge Runtime instance. The following example shows how to do this on the WasmEdge CLI. You can do this with any of the host language SDKs that support embedded use of WasmEdge.
 
 ```bash
-$ ls modules
-
-    buffer.js encoding.js events.js http.js
-    ... JavaScript files for the modules ...
-
-$ wasmedge --dir .:. target/wasm32-wasi/release/wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
+wasmedge --dir /host/os/path/to/modules:/modules wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
 ```
+
+## Add your own JavaScript modules
 
 The [module_demo](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/module_demo) shows how you can use the modules system to add your own JavaScript APIs. To run the demo, first copy the two files in the demo's [modules](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/module_demo/modules) directory to your WasmEdge QuickJS's `modules` directory.
 
@@ -66,8 +57,7 @@ hello_mod_2();
 Here is the command to run the demo and the output.
 
 ```bash
-$ wasmedge --dir .:. target/wasm32-wasi/release/wasmedge_quickjs.wasm example_js/module_demo/demo.js
-
+$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/module_demo/demo.js
 hello from "my_mod_1.js"
 hello from "my_mod_2.js"
 ```

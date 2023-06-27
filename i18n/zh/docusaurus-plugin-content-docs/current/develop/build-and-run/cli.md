@@ -28,7 +28,7 @@ USAGE
 ...
 ```
 
-If users install the WasmEdge from the install script with the option `-e tf,image`, the WasmEdge CLI tools with TensorFlow and TensorFlow-Lite extensions will be installed.
+If users install WasmEdge from the install script with the option `-e tf,image`, the WasmEdge CLI tools with TensorFlow and TensorFlow-Lite extensions will be installed alongside.
 
 - `wasmedge-tensorflow` CLI tool
   - The `wasmedge` tool with TensorFlow, TensorFlow-Lite, and `wasmedge-image` extensions.
@@ -37,18 +37,18 @@ If users install the WasmEdge from the install script with the option `-e tf,ima
   - The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
   - Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
 
-The `wasmedge` CLI tool will execute the WebAssembly in ahead-of-time(AOT) mode and interpreter mode. It depends on if you use `wasmedgec` to AoT compile the wasm file.
+The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedgec`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
 
 ## Options
 
-The options of the `wasmedge` CLI tool are as follows.
+The options of the `wasmedge` CLI tool are as follows:
 
 1. `-v|--version`: Show the version information. Will ignore other arguments below.
 2. `-h|--help`: Show the help messages. Will ignore other arguments below.
 3. (Optional) `--reactor`: Enable the reactor mode.
    - In the reactor mode, `wasmedge` runs a specified function exported by the WebAssembly program.
    - WasmEdge will execute the function which name should be given in `ARG[0]`.
-   - If there's exported function which names `_initialize`, the function will be executed with the empty parameter at first.
+   - If there's an exported function which names `_initialize`, the function will be executed with the empty parameter at first.
 4. (Optional) `--dir`: Bind directories into WASI virtual filesystem.
    - Use `--dir guest_path:host_path` to bind the host path into the guest path in WASI virtual system.
 5. (Optional) `--env`: Assign the environment variables in WASI.
@@ -59,7 +59,7 @@ The options of the `wasmedge` CLI tool are as follows.
    - Use `--enable-instruction-count` to display the number of executed instructions.
    - Or use `--enable-all-statistics` to enable all of the statistics options.
 7. (Optional) Resource limitations:
-   - Use `--time-limit MILLISECOND_TIME` to limit the execution time. Default value is `0` as no limitation.
+   - Use `--time-limit MILLISECOND_TIME` to limit the execution time. Default value is `0` which specifies no limitation.
    - Use `--gas-limit GAS_LIMIT` to limit the execution cost.
    - Use `--memory-page-limit PAGE_COUNT` to set the limitation of pages(as size of 64 KiB) in every memory instance.
 8. (Optional) WebAssembly proposals:
@@ -175,7 +175,7 @@ Hello WasmEdge!
 
 The [add](https://github.com/second-state/wasm-learning/tree/master/cli/add) program is written in Rust and contains an exported `add()` function. You can compile it into WebAssembly and use `wasmedge` to call the `add()` function. In this example, you will see how it is done from the CLI. It is often used when you embed WasmEdge into another host application, and need to call a Wasm function from the host.
 
-You will need to have the [Rust compiler installed](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites), and then use the following command to build the Wasm bytecode file from the Rust source code.
+You will need to have the [Rust compiler](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites) installed, and then use the following command to build the Wasm bytecode file from the Rust source code.
 
 ```bash
 cargo build --target wasm32-wasi --release
@@ -250,7 +250,7 @@ confidence: 0.8941176470588236
 
 ## Docker images for the CLI tools
 
-The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize Wasm apps, [check out this](../getting-started/quick_start_docker).
+The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize Wasm apps, check out [this](../getting-started/quick_start_docker) section.
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 
@@ -266,7 +266,7 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
   - `show-tflite-tensor`
 - The working directory of the release docker image is `/app`.
 
-### Examples
+### Dockerslim Examples
 
 Afer pulling the docker iamge successfully, you could use `wasmedgec` and `wasmedge` to aot compile the wasm file and run the wasm app.
 

@@ -14,7 +14,7 @@ Option #1 is to use a containerd-shim to start Wasm "containers" via runwasi. Ba
 
 The following image shows how it works.
 
-![](containerd.png)
+![Containerd](containerd.png)
 
 ## With crun
 
@@ -26,7 +26,7 @@ Option #3 is to use an OCI runtime called youki (the Rust version of runc). Simi
 
 Both crun and youki could use the following image to show how it works.
 
-![](kubernetes.png)
+![Kubernetes](kubernetes.png)
 
 ## Examples we covered
 

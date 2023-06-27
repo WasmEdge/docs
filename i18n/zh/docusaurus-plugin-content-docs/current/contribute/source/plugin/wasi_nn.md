@@ -29,13 +29,16 @@ Then build and install WasmEdge from source:
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
-mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="OpenVINO" .. && make -j
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="OpenVINO"
+cmake --build build
 # For the WASI-NN plugin, you should install this project.
-cmake --install .
+cmake --install build
 ```
 
-> If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (`/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with OpenVINO backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
 
@@ -69,48 +72,58 @@ Then build and install WasmEdge from source:
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
-mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="PyTorch" .. && make -j
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="PyTorch"
+cmake --build build
 # For the WASI-NN plugin, you should install this project.
-cmake --install .
+cmake --install build
 ```
 
-> If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (`/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with OpenVINO backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
 
 ## Build WasmEdge with WASI-NN TensorFlow-Lite Backend
 
-You can build and install WasmEdge from source directly:
+You can build and install WasmEdge from source directly (on `Linux x86_64`, `Linux aarch64`, `MacOS x86_64`, or `MacOS arm64` platforms):
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
-mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="TensorflowLite" .. && make -j
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="TensorflowLite"
+cmake --build build
 # For the WASI-NN plugin, you should install this project.
-cmake --install .
+cmake --install build
 ```
 
-> If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (`/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with OpenVINO backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
 
-Installing the necessary `libtensorflowlite_c.so` on both `Ubuntu 20.04` and `manylinux2014` for the backend, we recommend the following commands:
+Installing the necessary `libtensorflowlite_c.so` and `libtensorflowlite_flex.so` on both `Ubuntu 20.04` and `manylinux2014` for the backend, we recommend the following commands:
 
 ```bash
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/{{ wasmedge_version }}/WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-manylinux2014_x86_64.tar.gz
-tar -zxf WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-manylinux2014_x86_64.tar.gz
-rm -f WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-manylinux2014_x86_64.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.12.0-CC/WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
+tar -zxf WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
+rm -f WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
 ```
 
-The shared library will be extracted in the current directory `./libtensorflowlite_c.so`.
+The shared library will be extracted in the current directory `./libtensorflowlite_c.so` and `./libtensorflowlite_flex.so`.
 
 Then you can move the library to the installation path:
 
 ```bash
 mv libtensorflowlite_c.so /usr/local/lib
+mv libtensorflowlite_flex.so /usr/local/lib
 ```
 
 Or set the environment variable `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH}`.
 
-> We also provided the `MacOS` and `manylinux_aarch64` version of the TensorFlow-Lite pre-built shared library.
+<!-- prettier-ignore -->
+:::note
+We also provided the `darwin_x86_64`, `darwin_arm64`, and `manylinux_aarch64` versions of the TensorFlow-Lite pre-built shared libraries.
+:::

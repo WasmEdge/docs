@@ -18,7 +18,7 @@ First, make sure you have installed [Go](https://go.dev/dl/) first. The Golang v
 
 Next, let's install WasmEdge and WasmEdge Go SDK. Again, The WasmEdge and WasmEdge Go SDK should be the same version.
 
-```
+```bash
 $ go version
 go version go1.16.5 linux/amd64
 
@@ -39,7 +39,7 @@ Before we start, make sure you have installed [Go first](https://go.dev/dl/). Th
 
 First, let's install WasmEdge and WasmEdge Go SDK. **They should be in the same version**.
 
-```
+```bash
 $ go version
 go version go1.16.5 linux/amd64
 
@@ -61,7 +61,7 @@ Since the demo app includes [a compiled Wasm file](https://github.com/second-sta
 
 Now we have set up the basic environment, let's run the example.
 
-```
+```bash
 # Get the source code of this example
 $ git clone https://github.com/second-state/WasmEdge-go-examples.git
 $ cd WasmEdge-go-examples//wasmedge-bindgen/go_BindgenFuncs/

@@ -44,7 +44,16 @@ cd ..
 # Then you can use the `-DOPENSSL_ROOT_DIR=` option of cmake to assign the directory.
 ```
 
-> We'll soon update this chapter to use `OpenSSL 3.0`.
+For MacOS platforms, you should install the `openssl`:
+
+```bash
+brew install openssl
+```
+
+<!-- prettier-ignore -->
+:::note
+We'll soon update this chapter to use `OpenSSL 3.0`.
+:::
 
 ## Build WasmEdge with WASI-Crypto Plug-in
 
@@ -52,13 +61,17 @@ To enable the WasmEdge WASI-Crypto, developers need to [building the WasmEdge fr
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
-mkdir -p build && cd build
 # For using self-get OpenSSL, you can assign the cmake option `-DOPENSSL_ROOT_DIR=<path/to/openssl>`.
-cmake -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_CRYPTO=On .. && make -j
+# On MacOS, it may be: `-DOPENSSL_ROOT_DIR=$(brew --prefix)/opt/openssl`
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_CRYPTO=On
+cmake --build build
 # For the WASI-Crypto plugin, you should install this project.
-cmake --install .
+cmake --install build
 ```
 
-> If the built `wasmedge` CLI tool cannot find the WASI-Crypto plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (`/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_crypto/`) to try to fix this issue.
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-Crypto plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_crypto/`) to try to fix this issue.
+:::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-Crypto plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiCrypto.so` after installation.
