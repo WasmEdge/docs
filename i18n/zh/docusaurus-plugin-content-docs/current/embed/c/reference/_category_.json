@@ -3,6 +3,6 @@
   "position": 6,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will discuss the WasmEdge C API Reference ."
+    "description": "In this chapter, we will discuss the WasmEdge C API Reference."
   }
 }

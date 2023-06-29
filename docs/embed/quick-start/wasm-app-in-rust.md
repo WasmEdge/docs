@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 2 Create a Wasm app using Rust and wasmedge-bindgen
+# Create a Wasm app using Rust and wasmedge-bindgen
 
 In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK. In this chapter, we will learn how to create a Wasm app using Rust and `wasmedge-bindgen` tool.
 

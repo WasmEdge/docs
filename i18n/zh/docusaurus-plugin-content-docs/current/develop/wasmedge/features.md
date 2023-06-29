@@ -23,7 +23,7 @@ Besides WASI and the standard WebAssembly proposal, WasmEdge has some cloud-nati
 - Key value store
 - Gas meter for resource limitation
 - WasmEdge-bindgen for complex para passing
-- AI inference with TensorFlow Lite, Pytorch, and OpenVINO
+- AI inference with TensorFlow, TensorFlow Lite, Pytorch, and OpenVINO
 
 ## JavaScript Support
 
@@ -56,7 +56,7 @@ WasmEdge supports a wide range of operating systems and hardware platforms. It a
 WasmEdge now supports:
 
 - Linux (x86_64 and aarch64)
-- MacOS (x86_64 and M1)
+- MacOS (x86_64 and Apple Silicon)
 - Windows
 - Android
 - seL4
