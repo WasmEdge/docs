@@ -306,7 +306,7 @@ npm install -g wasmedge-extensions # Append --unsafe-perm if permission denied
 
 The [Second State Functions](https://www.secondstate.io/faas/) is a WasmEdge-based FaaS service build on Node.js.
 
-To install certificates in your (MacOS) environment,  
+To install certificates in your (MacOS) environment,
 
 1. Find out which Python version you're using with `python --version`
 2. Open the folder /Applications/Python 3.x
