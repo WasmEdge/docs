@@ -15,7 +15,7 @@ By default, the `wasmedge` will execute WebAssembly programs in interpreter mode
 
 <!-- prettier-ignore -->
 :::note
-The original `wasmedgec` tool is changed to `wasmedge compile`. The [`wasmedge compile` CLI tool](cli/wasmedge_compile.md) is the ahead-of-time compiler to compile the WebAssembly file into native code.
+The original `wasmedgec` tool is changed to `wasmedge compile`. The [`wasmedge compile` CLI tool](aot.md) is the ahead-of-time compiler to compile the WebAssembly file into native code.
 :::
 
 ```bash

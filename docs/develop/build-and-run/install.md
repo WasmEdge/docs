@@ -290,6 +290,28 @@ If you used `winget` to install WasmEdge on Windows, run the following command t
 winget uninstall wasmedge
 ```
 
+## Install WasmEdge for Node.js
+
+WasmEdge can run [WebAssembly functions emebedded in Node.js](https://www.secondstate.io/articles/getting-started-with-rust-function/) applications. To install the WasmEdge module in your Node.js environment is easy. Just use the `npm` tool.
+
+```bash
+npm install -g wasmedge-core # Append --unsafe-perm if permission denied
+```
+
+To install WasmEdge with [Tensorflow and other extensions](https://www.secondstate.io/articles/wasi-tensorflow/).
+
+```bash
+npm install -g wasmedge-extensions # Append --unsafe-perm if permission denied
+```
+
+The [Second State Functions](https://www.secondstate.io/faas/) is a WasmEdge-based FaaS service build on Node.js.
+
+To install certificates in your (MacOS) environment,  
+
+1. Find out which Python version you're using with `python --version`
+2. Open the folder /Applications/Python 3.x
+3. Double click the `Install Certificates.command`.
+
 ## Troubleshooting
 
 Some users, especially in China, reported that they had encountered the Connection refused error when trying to download the `install.sh` from the `githubusercontent.com`.
