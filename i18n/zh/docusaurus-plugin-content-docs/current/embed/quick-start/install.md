@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 1 Install Notes
+# Install Notes
 
 To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted,he version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK 0.11.2, then your WasmEdge version must be 0.11.2 as well.
 

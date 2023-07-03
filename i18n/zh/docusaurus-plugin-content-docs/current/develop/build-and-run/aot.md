@@ -4,38 +4,38 @@ sidebar_position: 3
 
 # The AoT Compiler
 
-One of the most important features of WasmEdge is the AoT compiler. The `wasmedgec` tool can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedgec` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
+One of the most important features of WasmEdge is the AoT compiler. The `wasmedge compile` tool can compile any wasm file into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedge compile` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
 
-Use the `wasmedgec -v` or `wasmedgec --version` command to check the version of `wasmedgec` installed.
+Use the `wasmedge compile -v` or `wasmedge compile --version` command to check the version of `wasmedge compile` installed.
 
 ```bash
-$ wasmedgec -v
+$ wasmedge compile -v
 wasmedge version {{ wasmedge_version }}
 ```
 
-Use `wasmedgec -h` or `wasmedgec --help` to show the help message.
+Use `wasmedge compile -h` or `wasmedge compile --help` to show the help message.
 
 ```bash
 $ wasmedge -h
 USAGE
-   wasmedgec [OPTIONS] [--] WASM WASM_SO
+   wasmedge compile [OPTIONS] [--] WASM WASM_SO
 
 ...
 ```
 
 ## Output Format: Universal WASM
 
-By default, the `wasmedgec` AOT compiler tool could wrap the AOT-compiled native binary into a custom section in the origin WASM file. We call this the universal WASM binary format.
+By default, the `wasmedge compile` AOT compiler tool could wrap the AOT-compiled native binary into a custom section in the origin WASM file. We call this the universal WASM binary format.
 
 This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime, WasmEdge will extract the native binary from the custom section and execute it in AOT mode.
 
 <!-- prettier-ignore -->
 :::note
-On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedgec` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedge compile` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
 :::
 
 ```bash
-wasmedgec app.wasm app_aot.wasm
+wasmedge compile app.wasm app_aot.wasm
 wasmedge app_aot.wasm
 ```
 
@@ -46,26 +46,26 @@ Users can assign the shared library extension for the output files (`.so` on Lin
 This AOT-compiled WASM file is only for WasmEdge use, and cannot be used by other WebAssembly runtimes.
 
 ```bash
-wasmedgec app.wasm app_aot.so
+wasmedge compile app.wasm app_aot.so
 wasmedge app_aot.so
 ```
 
 ## Example for the AoT compiler
 
-Use `wasmedgec XYZ.wasm XYZ.wasm` to compile WebAssembly into native machine code.
+Use `wasmedge compile XYZ.wasm XYZ.wasm` to compile WebAssembly into native machine code.
 
 Take the [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) for example. It exported a `fib()` function which takes a single `i32` integer as the input parameter.
 
 You can run:
 
 ```bash
-wasmedgec fibonacci.wasm fibonacci_aot.wasm
+wasmedge compile fibonacci.wasm fibonacci_aot.wasm
 ```
 
 or:
 
 ```bash
-wasmedgec fibonacci.wasm fibonacci_aot.so # On Linux.
+wasmedge compile fibonacci.wasm fibonacci_aot.so # On Linux.
 ```
 
 The output will be:
@@ -113,7 +113,7 @@ sys     0m0.012s
 
 ## All options for the AoT compiler
 
-The options of the `wasmedgec` CLI tool are as follows.
+The options of the `wasmedge compile` CLI tool are as follows.
 
 1. `-v|--version`: Show the version information. Will ignore other arguments below.
 2. `-h|--help`: Show the help messages. Will ignore other arguments below.
@@ -145,5 +145,5 @@ The options of the `wasmedgec` CLI tool are as follows.
    - The default value will be `2`, which means `O2`.
 9. Input WASM file (`/path/to/wasm/file`).
 10. Output path (`/path/to/output/file`).
-    - By default, the `wasmedgec` tool will output the universal Wasm format, which embeds a native code section into the Wasm file.
-    - If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedgec` tool will output the [shared library format](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).
+    - By default, the `wasmedge compile` tool will output the universal Wasm format, which embeds a native code section into the Wasm file.
+    - If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedge compile` tool will output the [shared library format](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).

@@ -11,7 +11,7 @@ The `wasmedge` binary is a command line interface (CLI) program that runs WebAss
 - If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
 - If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
 
-By default, the `wasmedge` will execute WebAssembly programs in interpreter mode, and [execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode](aot.md). If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first.
+By default, the `wasmedge` will execute WebAssembly programs in interpreter mode, and [execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode](run_in_aot_mode.md). If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](#wasmedge-compile-cli) first.
 
 ```bash
 $ wasmedge -v
@@ -37,7 +37,7 @@ If users install WasmEdge from the install script with the option `-e tf,image`,
   - The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
   - Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
 
-The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedgec`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
+The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedge compile`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
 
 ## Options
 
@@ -257,10 +257,10 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 - Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
 - Image `wasmedge/slim:{version}` includes the following command line utilities:
   - `wasmedge`
-  - `wasmedgec`
+  - `wasmedge compile`
 - Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
   - `wasmedge`
-  - `wasmedgec`
+  - `wasmedge compile`
   - `wasmedge-tensorflow-lite`
   - `wasmedge-tensorflow`
   - `show-tflite-tensor`
@@ -268,12 +268,12 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 
 ### Dockerslim Examples
 
-Afer pulling the docker iamge successfully, you could use `wasmedgec` and `wasmedge` to aot compile the wasm file and run the wasm app.
+Afer pulling the docker iamge successfully, you could use `wasmedge compile` and `wasmedge` to aot compile the wasm file and run the wasm app.
 
 ```bash
 $ docker pull wasmedge/slim:{{ wasmedge_version }}
 
-$ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedgec hello.wasm hello.aot.wasm
+$ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedge compile hello.wasm hello.aot.wasm
 [2022-07-07 08:15:49.154] [info] compile start
 [2022-07-07 08:15:49.163] [info] verify start
 [2022-07-07 08:15:49.169] [info] optimize start

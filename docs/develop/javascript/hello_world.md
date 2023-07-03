@@ -84,7 +84,7 @@ The WebAssembly-based JavaScript interpreter program is located in the build `ta
 WasmEdge provides a `wasmedgec` utility to compile and add a native machine code section to the `wasm` file. You can use `wasmedge` to run the natively instrumented `wasm` file to get much faster performance.
 
 ```bash
-wasmedgec target/wasm32-wasi/release/wasmedge_quickjs.wasm wasmedge_quickjs.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js
 ```
 

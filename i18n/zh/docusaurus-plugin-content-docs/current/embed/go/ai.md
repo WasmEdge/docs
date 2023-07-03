@@ -43,10 +43,10 @@ cp target/wasm32-wasi/release/rust_tflite_food_lib.wasm ../
 cd ../
 ```
 
-You can use our AOT compiler `wasmedgec` to instrument the WebAssembly file to make it run much faster. [Learn more](/develop/build-and-run/aot).
+You can use our AOT compiler `wasmedge compile` to instrument the WebAssembly file to make it run much faster. [Learn more](/develop/build-and-run/aot).
 
 ```bash
-wasmedgec rust_tflite_food_lib.wasm rust_tflite_food_lib.wasm
+wasmedge compile rust_tflite_food_lib.wasm rust_tflite_food_lib.wasm
 ```
 
 ## Go host app

@@ -115,7 +115,7 @@ Hello TinyGo from WasmEdge!
 For the `--reactor` mode,
 
 ```bash
-$ wasmedgec fib.wasm fib.wasm
+$ wasmedge compile fib.wasm fib.wasm
 
 $ wasmedge --reactor fib.wasm fibArray 10
 34

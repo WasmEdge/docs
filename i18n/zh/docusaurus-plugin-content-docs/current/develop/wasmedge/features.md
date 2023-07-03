@@ -37,7 +37,7 @@ Through the [WasmEdge-Quickjs](https://github.com/second-state/wasmedge-quickjs)
 - Fetch API
 - React SSR
 
-## Cloud native orchestration
+## Cloud Native orchestration
 
 WasmEdge could be seamlessly integrated with the existing cloud-native infra.
 
@@ -55,15 +55,15 @@ WasmEdge supports a wide range of operating systems and hardware platforms. It a
 
 WasmEdge now supports:
 
-- Linux (x86_64 and aarch64)
-- MacOS (x86_64 and M1)
-- Windows
-- Android
-- seL4
-- OpenWrt
-- OpenHarmony
-- Raspberry Pi
-- RISC-V (WIP)
+- [Linux (x86_64 and aarch64)](/docs/contribute/source/os/linux)
+- [MacOS (x86_64 and M1)](/docs/contribute/source/os/macos)
+- [Windows 10](/docs/contribute/source/os/windows)
+- [Android](/docs/category/build-and-run-wasmedge-on-android)
+- [seL4 RTOS](/docs/contribute/source/os/sel4)
+- [OpenWrt](/docs/contribute/source/os/openwrt)
+- [OpenHarmony](/docs/contribute/source/os/openharmony)
+- [Raspberry Pi](/docs/contribute/source/os/raspberrypi)
+- [RISC-V (WIP)](/docs/contribute/source/os/riscv64)
 
 ## Easy extensible
 
