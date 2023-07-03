@@ -58,7 +58,7 @@ WasmEdge implements the following [WASI proposals](https://github.com/WebAssembl
 
 The following proposals is under development and may be supported in the future:
 
-- WebAssembly GC Proposal
+- TensorFlow backend of WASI-NN
 
 [Sockets]: https://github.com/WebAssembly/wasi-sockets
 [Crypto]: https://github.com/WebAssembly/wasi-crypto
