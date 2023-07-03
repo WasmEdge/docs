@@ -41,7 +41,7 @@ jobs:
         run: npm run format:diff
 
       - name: Lint markdown format
-        uses: github/super-linter/slim@v5
+        uses: super-linter/super-linter/slim@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
