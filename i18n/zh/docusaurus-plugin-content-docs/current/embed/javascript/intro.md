@@ -6,8 +6,8 @@ sidebar_position: 1
 
 In this tutorial, we will show you how to incorporate the WebAssembly functions written in Rust into Node.js applications on the server via the WasmEdge Node.js SDK. This approach combines Rust's **performance**, WebAssembly's **security and portability**, and JavaScript's **ease-of-use**. A typical application works like this.
 
-* The host application is a Node.js web application written in JavaScript. It makes WebAssembly function calls.
-* The WebAssembly application is written in Rust. It runs inside the WasmEdge Runtime, and is called from the Node.js web application.
+- The host application is a Node.js web application written in JavaScript. It makes WebAssembly function calls.
+- The WebAssembly application is written in Rust. It runs inside the WasmEdge Runtime, and is called from the Node.js web application.
 
 > [Fork this Github repository](https://github.com/second-state/wasmedge-nodejs-starter/fork) to start coding!
 
@@ -15,11 +15,11 @@ In this tutorial, we will show you how to incorporate the WebAssembly functions 
 
 To set up a high-performance Node.js environment with Rust and WebAssembly, you will need the following:
 
-* A modern Linux distribution, such as Ubuntu Server 20.04 LTS
-* [Rust language](https://www.rust-lang.org/tools/install)
-* [Node.js](https://nodejs.org/en/download/package-manager/)
-* [The WasmEdge Runtime](../quick_start/install.md#install-wasmedge-for-nodejs) for Node.js
-* [The rustwasmc compiler toolchain](../write_wasm/rust/bindgen.md)
+- A modern Linux distribution, such as Ubuntu Server 20.04 LTS
+- [Rust language](https://www.rust-lang.org/tools/install)
+- [Node.js](https://nodejs.org/en/download/package-manager/)
+- [The WasmEdge Runtime](../quick_start/install.md#install-wasmedge-for-nodejs) for Node.js
+- [The rustwasmc compiler toolchain](../write_wasm/rust/bindgen.md)
 
 ### Docker
 
@@ -115,7 +115,7 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  const queryObject = url.parse(req.url,true).query;
+  const queryObject = url.parse(req.url, true).query;
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   res.end(say(queryObject['name']));
@@ -157,11 +157,11 @@ The roots for `X` are displayed in the area below the input form.
 The [HTML file](https://github.com/second-state/wasm-learning/blob/master/nodejs/quadratic/node/public/index.html) contains the client side JavaScript to submit the web form to `/solve`, and put result into the `#roots` HTML element on the page.
 
 ```javascript
-$(function() {
+$(function () {
   var options = {
     target: '#roots',
-    url: "/solve",
-    type: "post"
+    url: '/solve',
+    type: 'post',
   };
   $('#solve').ajaxForm(options);
 });
@@ -174,8 +174,8 @@ app.post('/solve', function (req, res) {
   var a = parseFloat(req.body.a);
   var b = parseFloat(req.body.b);
   var c = parseFloat(req.body.c);
-  res.send(solve([a, b, c]))
-})
+  res.send(solve([a, b, c]));
+});
 ```
 
 The [`solve` function is written in Rust](https://github.com/second-state/wasm-learning/blob/master/nodejs/quadratic/src/lib.rs) and runs inside the WasmEdge Runtime. While the call arguments in the JavaScript side is an array of values, the Rust function receives a JSON object that encapsulates the array. In the Rust code, we first decode the JSON, perform the computation, and return the result values in a JSON string.
@@ -213,13 +213,13 @@ That’s it for the quadratic equation example.
 
 Besides passing string values between Rust and JavaScript, the `rustwasmc` tool supports the following data types.
 
-* Rust call parameters can be any combo of `i32`, `String`, `&str`, `Vec<u8>`, and `&[u8]`
-* Return value can be `i32` or `String` or `Vec<u8>` or void
-* For complex data types, such as structs, you could use JSON strings to pass data.
+- Rust call parameters can be any combo of `i32`, `String`, `&str`, `Vec<u8>`, and `&[u8]`
+- Return value can be `i32` or `String` or `Vec<u8>` or void
+- For complex data types, such as structs, you could use JSON strings to pass data.
 
 > With JSON support, you can call Rust functions with any number of input parameters and return any number of return values of any type.
 
-The Rust program `src/lib.rs` in the [functions example](https://github.com/second-state/wasm-learning/tree/master/nodejs/functions) demonstrates  how to pass in call arguments in various supported types, and return values.
+The Rust program `src/lib.rs` in the [functions example](https://github.com/second-state/wasm-learning/tree/master/nodejs/functions) demonstrates how to pass in call arguments in various supported types, and return values.
 
 ```rust
 #[wasm_bindgen]
@@ -258,7 +258,7 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Point {
-  x: f32, 
+  x: f32,
   y: f32
 }
 
@@ -291,22 +291,59 @@ pub fn say(s: &str) -> String {
 Next, let's examine the JavaScript program [`app.js`](https://github.com/second-state/wasm-learning/blob/master/nodejs/functions/node/app.js). It shows how to call the Rust functions. As you can see `String` and `&str` are simply strings in JavaScript, `i32` are numbers, and `Vec<u8>` or `&[8]` are JavaScript `Uint8Array`. JavaScript objects need to go through `JSON.stringify()` or `JSON.parse()` before being passed into or returned from Rust functions.
 
 ```javascript
-const { say, obfusticate, lowest_common_denominator, sha3_digest, keccak_digest, create_line } = require('./functions_lib.js');
+const {
+  say,
+  obfusticate,
+  lowest_common_denominator,
+  sha3_digest,
+  keccak_digest,
+  create_line,
+} = require('./functions_lib.js');
 
 var util = require('util');
 const encoder = new util.TextEncoder();
-console.hex = (d) => console.log((Object(d).buffer instanceof ArrayBuffer ? new Uint8Array(d.buffer) : typeof d === 'string' ? (new util.TextEncoder('utf-8')).encode(d) : new Uint8ClampedArray(d)).reduce((p, c, i, a) => p + (i % 16 === 0 ? i.toString(16).padStart(6, 0) + '  ' : ' ') + c.toString(16).padStart(2, 0) + (i === a.length - 1 || i % 16 === 15 ?  ' '.repeat((15 - i % 16) * 3) + Array.from(a).splice(i - i % 16, 16).reduce((r, v) => r + (v > 31 && v < 127 || v > 159 ? String.fromCharCode(v) : '.'), '  ') + '\n' : ''), ''));
+console.hex = (d) =>
+  console.log(
+    (Object(d).buffer instanceof ArrayBuffer
+      ? new Uint8Array(d.buffer)
+      : typeof d === 'string'
+      ? new util.TextEncoder('utf-8').encode(d)
+      : new Uint8ClampedArray(d)
+    ).reduce(
+      (p, c, i, a) =>
+        p +
+        (i % 16 === 0 ? i.toString(16).padStart(6, 0) + '  ' : ' ') +
+        c.toString(16).padStart(2, 0) +
+        (i === a.length - 1 || i % 16 === 15
+          ? ' '.repeat((15 - (i % 16)) * 3) +
+            Array.from(a)
+              .splice(i - (i % 16), 16)
+              .reduce(
+                (r, v) =>
+                  r +
+                  ((v > 31 && v < 127) || v > 159
+                    ? String.fromCharCode(v)
+                    : '.'),
+                '  ',
+              ) +
+            '\n'
+          : ''),
+      '',
+    ),
+  );
 
-console.log( say("WasmEdge") );
-console.log( obfusticate("A quick brown fox jumps over the lazy dog") );
-console.log( lowest_common_denominator(123, 2) );
-console.hex( sha3_digest(encoder.encode("This is an important message")) );
-console.hex( keccak_digest(encoder.encode("This is an important message")) );
+console.log(say('WasmEdge'));
+console.log(obfusticate('A quick brown fox jumps over the lazy dog'));
+console.log(lowest_common_denominator(123, 2));
+console.hex(sha3_digest(encoder.encode('This is an important message')));
+console.hex(keccak_digest(encoder.encode('This is an important message')));
 
-var p1 = {x:1.5, y:3.8};
-var p2 = {x:2.5, y:5.8};
-var line = JSON.parse(create_line(JSON.stringify(p1), JSON.stringify(p2), "A thin red line"));
-console.log( line );
+var p1 = { x: 1.5, y: 3.8 };
+var p2 = { x: 2.5, y: 5.8 };
+var line = JSON.parse(
+  create_line(JSON.stringify(p1), JSON.stringify(p2), 'A thin red line'),
+);
+console.log(line);
 ```
 
 After running `rustwasmc` to build the Rust library, running `app.js` in Node.js environment produces the following output.
@@ -328,5 +365,5 @@ N dhvpx oebja sbk whzcf bire gur ynml qbt
 { points: [ { x: 1.5, y: 3.8 }, { x: 2.5, y: 5.8 } ],
   valid: true,
   length: 2.2360682,
-  desc: 'A thin red line' }  
+  desc: 'A thin red line' }
 ```

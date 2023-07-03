@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# WasmEdge C++ SDK 
+# WasmEdge C++ SDK
 
 ## Introduction
 
@@ -48,8 +48,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-You can use the -I flag to specify the include directories and the -L and -l flags to specify the library directories and library names, respectively.
-Then you can compile the code and run: ( the 40th fibonacci number is 102334155)
+You can use the -I flag to specify the include directories and the -L and -l flags to specify the library directories and library names, respectively. Then you can compile the code and run: ( the 40th fibonacci number is 102334155)
 
 ```bash
 gcc example.cpp -x c++ -I/path/to/wasmedge/include -L/path/to/wasmedge/lib -lwasmedge -o example

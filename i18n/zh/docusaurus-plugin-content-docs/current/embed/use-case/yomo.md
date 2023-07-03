@@ -8,7 +8,7 @@ sidebar_position: 2
 
 > YoMo is written in the Go language. For streaming Serverless, Golang plugins and shared libraries are used to load users' code dynamically, which also have certain limitations for developers. Coupled with Serverless architecture's rigid demand for isolation, this makes WebAssembly an excellent choice for running user-defined functions.
 
-For example, in the process of real-time AI inference in AR/VR devices or smart factories, the camera sends real-time unstructured data to the computing node in the near-field MEC (multi-access edge computing) device through YoMo. YoMo sends the AI computing result to the end device in real-time when the AI inference is completed. Thus, the hosted AI inference function will be automatically executed.  
+For example, in the process of real-time AI inference in AR/VR devices or smart factories, the camera sends real-time unstructured data to the computing node in the near-field MEC (multi-access edge computing) device through YoMo. YoMo sends the AI computing result to the end device in real-time when the AI inference is completed. Thus, the hosted AI inference function will be automatically executed.
 
 However, a challenge for YoMo is to incorporate and manage handler functions written by multiple outside developers in an edge computing node. It requires runtime isolation for those functions without sacrificing performance. Traditional software container solutions, such as Docker, are not up to the task. They are too heavy and slow to handle real-time tasks.
 
