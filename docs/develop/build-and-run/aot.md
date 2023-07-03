@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # `wasmedge compile` CLI
 
-After [installation](../quick_start/install.md), users can execute the `wasmedge compile` command.
+After [installation](../build-and-run/install.md), users can execute the `wasmedge compile` command.
 
 The usage of the `wasmedge compile` command will be:
 
@@ -25,7 +25,7 @@ The options of the `wasmedge compile` command are as follows.
 1. `-h|--help`: Show the help messages. Will ignore other arguments below.
 2. (Optional) `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
 3. (Optional) `--interruptible`: Generate the binary which supports interruptible execution.
-   - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../sdk/c/ref.md#async).
+   - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.0#async).
 4. (Optional) Statistics information:
    - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
    - Use `--enable-time-measuring` to generate code for enabling the statistics of time measuring in execution.
@@ -51,8 +51,8 @@ The options of the `wasmedge compile` command are as follows.
    - The default value will be `2`, which means `O2`.
 8. Input WASM file (`/path/to/wasm/file`).
 9. Output path (`/path/to/output/file`).
-   - By default, the `wasmedge compile` command will output the [universal WASM format](../quick_start/run_in_aot_mode.md#output-format-universal-wasm).
-   - If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedge compile` command will output the [shared library format](../quick_start/run_in_aot_mode.md#output-format-shared-library).
+   - By default, the `wasmedge compile` command will output the [universal WASM format](#output-format-universal-wasm).
+   - If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedge compile` command will output the [shared library format](#output-format-shared-library).
 
 ## Example
 
@@ -111,4 +111,31 @@ The output shows that the AOT-compiled WASM is much faster than the interpreter 
 real    0m0.442s
 user    0m0.427s
 sys     0m0.012s
+```
+
+## Output Format: Universal WASM
+
+By default, the `wasmedge compile` AOT compiler tool could wrap the AOT-compiled native binary into a custom section in the origin WASM file. We call this the universal WASM binary format.
+
+This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime, WasmEdge will extract the native binary from the custom section and execute it in AOT mode.
+
+<!-- prettier-ignore -->
+:::note
+On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedge compile` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+:::
+
+```bash
+wasmedge compile app.wasm app_aot.wasm
+wasmedge app_aot.wasm
+```
+
+## Output Format: Shared Library
+
+Users can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
+
+This AOT-compiled WASM file is only for WasmEdge use, and cannot be used by other WebAssembly runtimes.
+
+```bash
+wasmedge compile app.wasm app_aot.so
+wasmedge app_aot.so
 ```
