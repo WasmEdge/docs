@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Python
 
 There are already several different language implementations of the Python runtime, and some of them support WebAssembly. This document will describe how to run [RustPython](https://github.com/RustPython/RustPython) on WasmEdge to execute Python programs.
