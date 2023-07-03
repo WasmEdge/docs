@@ -25,6 +25,7 @@ cargo build --target wasm32-wasi --release
 
 We will use the `wasmedge` command to run the program.
 
+
 ```bash
 $ wasmedge target/wasm32-wasi/release/hello.wasm
 Hello WasmEdge

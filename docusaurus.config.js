@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
+const lightCodeTheme = require('prism-react-renderer/themes/nightOwlLight');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 require('dotenv').config();
@@ -210,6 +210,7 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
+                additionalLanguages: ['rust', 'bash', 'typescript', 'csharp', 'lua', 'protobuf', 'powershell', 'toml', 'yaml'],
             },
         }),
 };
