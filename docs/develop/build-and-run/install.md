@@ -102,6 +102,7 @@ If you installed into the `$HOME/.wasmedge` directory, you will have the followi
   - The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
     - Execute a WASM file: `wasmedge --dir .:. app.wasm`
   - The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
+
     - Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
     - Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
 
