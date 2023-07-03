@@ -105,17 +105,17 @@ To learn more about how to run JavaScript apps in WasmEdge.
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 
-* Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
-* Image `wasmedge/slim:{version}` includes the following command line utilities:
-  * `wasmedge`
-  * `wasmedge compile`
-* Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
-  * `wasmedge`
-  * `wasmedge compile`
-  * `wasmedge-tensorflow-lite`
-  * `wasmedge-tensorflow`
-  * `show-tflite-tensor`
-* The working directory of the release docker image is `/app`.
+- Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
+- Image `wasmedge/slim:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedge compile`
+- Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
+  - `wasmedge`
+  - `wasmedge compile`
+  - `wasmedge-tensorflow-lite`
+  - `wasmedge-tensorflow`
+  - `show-tflite-tensor`
+- The working directory of the release docker image is `/app`.
 
 <!-- prettier-ignore -->
 :::note
