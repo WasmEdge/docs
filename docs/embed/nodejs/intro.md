@@ -18,8 +18,8 @@ To set up a high-performance Node.js environment with Rust and WebAssembly, you 
 - A modern Linux distribution, such as Ubuntu Server 20.04 LTS
 - [Rust language](https://www.rust-lang.org/tools/install)
 - [Node.js](https://nodejs.org/en/download/package-manager/)
-- [The WasmEdge Runtime](../quick_start/install.md#install-wasmedge-for-nodejs) for Node.js
-- [The rustwasmc compiler toolchain](../write_wasm/rust/bindgen.md)
+- [The WasmEdge Runtime](../../develop/build-and-run/install#install-wasmedge-for-nodejs) for Node.js
+- [The rustwasmc compiler toolchain](../../develop/rust/bindgen.md)
 
 ### Docker
 
@@ -67,7 +67,7 @@ npm install wasmedge-core
 npm install wasmedge-extensions
 ```
 
-> The WasmEdge Runtime depends on the latest version of `libstdc++`. Ubuntu 20.04 LTS already has the latest libraries. If you are running an older Linux distribution, you have [several options to upgrade](/articles/ubuntu-req-ssvm-20200715/).
+> The WasmEdge Runtime depends on the latest version of `libstdc++`. Ubuntu 20.04 LTS already has the latest libraries. If you are running an older Linux distribution, you have [several options to upgrade](https://www.secondstate.io/articles/ubuntu-req-ssvm-20200715/).
 
 Next, clone the example source code repository.
 
