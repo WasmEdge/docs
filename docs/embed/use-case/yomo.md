@@ -2,19 +2,19 @@
 sidebar_position: 2
 ---
 
-# YoMo framework
+# YoMo Framework
 
 [YoMo](https://yomo.run/) is a programming framework enabling developers to build a distributed cloud system (Geo-Distributed Cloud System). YoMo's communication layer is made on top of the QUIC protocol, which brings high-speed data transmission. In addition, it has a built-in Streaming Serverless "streaming function", which significantly improves the development experience of distributed cloud systems. The distributed cloud system built by YoMo provides an ultra-high-speed communication mechanism between near-field computing power and terminals. It has a wide range of use cases in Metaverse, VR/AR, IoT, etc.
 
 > YoMo is written in the Go language. For streaming Serverless, Golang plugins and shared libraries are used to load users' code dynamically, which also have certain limitations for developers. Coupled with Serverless architecture's rigid demand for isolation, this makes WebAssembly an excellent choice for running user-defined functions.
 
-For example, in the process of real-time AI inference in AR/VR devices or smart factories, the camera sends real-time unstructured data to the computing node in the near-field MEC (multi-access edge computing) device through YoMo. YoMo sends the AI computing result to the end device in real-time when the AI inference is completed. Thus, the hosted AI inference function will be automatically executed.
+For example, in the process of real-time AI inference in AR/VR devices or smart factories, the camera sends real-time unstructured data to the computing node in the near-field MEC (multi-access edge computing) device through YoMo. YoMo sends the AI computing result to the end device in real-time when the AI inference is completed. Thus, the hosted AI inference function will be automatically executed.  
 
 However, a challenge for YoMo is to incorporate and manage handler functions written by multiple outside developers in an edge computing node. It requires runtime isolation for those functions without sacrificing performance. Traditional software container solutions, such as Docker, are not up to the task. They are too heavy and slow to handle real-time tasks.
 
 WebAssembly provides a lightweight and high-performance software container. It is ideally suited as a runtime for YoMo’s data processing handler functions.
 
-In this article, we will show you how to create a Rust function for Tensorflow-based image classification, compile it into WebAssembly, and then use YoMo to run it as a stream data handler. We use [WasmEdge](https://wasmedge.org/) as our WebAssembly runtime because it offers the highest performance and flexibility compared with other WebAssembly runtimes. It is the only WebAssembly VM that reliably supports Tensorflow. YoMo manages WasmEdge VM instances and the contained WebAssembly bytecode apps through [WasmEdge’s Golang API](https://pkg.go.dev/github.com/second-state/WasmEdge-go/wasmedge).
+In this article, we will show you how to create a Rust function for Tensorflow-based image classification, compile it into WebAssembly, and then use YoMo to run it as a stream data handler. We use [WasmEdge](https://wasmedge.org/) as our WebAssembly runtime because it offers the highest performance and flexibility compared with other WebAssembly runtimes. It is the only WebAssembly VM that reliably supports Tensorflow. YoMo manages WasmEdge VM instances and the contained WebAssembly bytecode apps through [WasmEdge’s Golang API](../go/intro.md).
 
 > Source code: <https://github.com/yomorun/yomo-wasmedge-tensorflow>
 
