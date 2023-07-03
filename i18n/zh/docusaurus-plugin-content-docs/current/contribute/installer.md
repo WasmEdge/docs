@@ -2,11 +2,11 @@
 sidebar_position: 7
 ---
 
-# Installer System explanation
+# Installer Guide
 
 ## Overview
 
-WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasmedgec`), the Libraries (`libwasmedge`), the Extensions(`wasmedge-tensorflow`), and the Plugins(`wasi-nn`, `wasi-crytpo`).
+WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasmedge compile`), the Libraries (`libwasmedge`), the Extensions(`wasmedge-tensorflow`), and the Plugins(`wasi-nn`, `wasi-crytpo`).
 
 ## Dependencies
 
