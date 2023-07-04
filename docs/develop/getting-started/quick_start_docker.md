@@ -99,7 +99,6 @@ To learn more about how to run JavaScript apps in WasmEdge.
 - [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
 - [Web service client examples with fetch()](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/wasi_http_fetch.js)
 
-
 ## Next steps
 
 - [Learn more about building and managing Wasm containers in Docker](../build-and-run/docker_wasm)
