@@ -25,7 +25,7 @@ The options of the `wasmedge compile` command are as follows.
 1. `-h|--help`: Show the help messages. Will ignore other arguments below.
 2. (Optional) `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
 3. (Optional) `--interruptible`: Generate the binary which supports interruptible execution.
-   - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.0#async).
+   - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.x#async).
 4. (Optional) Statistics information:
    - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
    - Use `--enable-time-measuring` to generate code for enabling the statistics of time measuring in execution.
