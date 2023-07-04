@@ -30,10 +30,11 @@ The extensions can be easily installed by the WasmEdge installer. They can also 
 | Domain sockets | Supports high-performance data exchange between processes | Linux | Rust, JavaScript, C |  |
 | TLS | Supports TLS and HTTPS connections from the networking sockets | Linux | Rust, JavaScript, C |  |
 | WASI-NN for Pytorch | AI inference using Pytorch models | Linux | Rust, JavaScript | GPU supported |
-| WASI-NN for TensorFlow | AI inference using Tensorflow and TFLite models | Linux | Rust, JavaScript | GPU and TPU supported |
+| WASI-NN for TensorFlow-Lite | AI inference using TensorFlow-Lite models | Linux | Rust, JavaScript | GPU and TPU supported |
 | WASI-NN for OpenVINO | AI inference using OpenVINO models | Linux | Rust, JavaScript | GPU supported |
 | OpenCV | Very popular utility functions to process images and videos for AI input / output | Linux | Rust |  |
-| [Image processing](https://github.com/second-state/WasmEdge-image) | A native libraries to manipulate images for computer vision tasks | Linux | Rust |  |
+| [Image processing](https://github.com/second-state/WasmEdge-image) | A native library to manipulate images for AI inference tasks | Linux, MacOS | Rust | Migrated into the plug-in after WasmEdge `0.13.0`. |
+| [TensorFlow and Tensorflow-Lite](https://github.com/second-state/WasmEdge-tensorflow) | A native library to inferring TensorFlow and TensorFlow-Lite models. | Linux, MacOS | Rust | Migrated into the plug-in after WasmEdge `0.13.0`. |
 | KV Storage | Allows WebAssembly programs to read and write a key value store | Linux | Rust |  |
 | Command interface | Allows WebAssembly programs to execute native commands in the host operating system | Linux | Rust | It supports passing arguments, environment variables, `STDIN`/`STDOUT` pipes, and security policies for host access. |
 | [Ethereum](https://github.com/second-state/wasmedge-evmc) | supports Ethereum smart contracts compiled to WebAssembly. | none | It is a leading implementation for Ethereum flavored WebAssembly (Ewasm). |

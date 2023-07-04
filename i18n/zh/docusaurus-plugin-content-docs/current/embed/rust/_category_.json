@@ -1,5 +1,5 @@
 {
-  "label": "Rust SDK for Embedding Wasm Functions",
+  "label": "Rust SDK for Embedding WasmEdge",
   "position": 5,
   "link": {
     "type": "generated-index",
