@@ -2,53 +2,9 @@
 sidebar_position: 1
 ---
 
-# 0.12.0 API Documentation
+# C API 0.13.0 Documentation (WORK IN PROGRESS)
 
-[WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime. The following are the guides to working with the C APIs of WasmEdge.
-
-**This document is for the `0.12.0` version. For the older `0.11.2` version, please refer to the [0.11.2](0.11.2.md), [0.10.1](0.10.1.md), [0.9.1](0.9.1.md)**
-
-**Developers can refer to [here to upgrade to 0.12.0](upgrade_to_0.12.0.md).**
-
-## Table of Contents
-
-- [WasmEdge Installation](#wasmedge-installation)
-  - [Download And Install](#download-and-install)
-  - [Compile Sources](#compile-sources)
-  - [ABI Compatibility](#abi-compatibility)
-- [WasmEdge Basics](#wasmedge-basics)
-  - [Version](#version)
-  - [Logging Settings](#logging-settings)
-  - [Value Types](#value-types)
-  - [Strings](#strings)
-  - [Results](#results)
-  - [Contexts](#contexts)
-  - [WASM data structures](#wasm-data-structures)
-  - [Async](#async)
-  - [Configurations](#configurations)
-  - [Statistics](#statistics)
-  - [Tools driver](#tools-driver)
-- [WasmEdge VM](#wasmedge-vm)
-  - [WASM Execution Example With VM Context](#wasm-execution-example-with-vm-context)
-  - [VM Creations](#vm-creations)
-  - [Built-in Host Modules and Plug-in Preregistrations](#built-in-host-modules-and-plug-in-preregistrations)
-  - [Host Module Registrations](#host-module-registrations)
-  - [WASM Registrations And Executions](#wasm-registrations-and-executions)
-  - [Asynchronous execution](#asynchronous-execution)
-  - [Instance Tracing](#instance-tracing)
-- [WasmEdge Runtime](#wasmedge-runtime)
-  - [WASM Execution Example Step-By-Step](#wasm-execution-example-step-by-step)
-  - [Loader](#loader)
-  - [Validator](#validator)
-  - [Executor](#executor)
-  - [AST Module](#ast-module)
-  - [Store](#store)
-  - [Instances](#instances)
-  - [Host Functions](#host-functions)
-  - [Plug-ins](#plug-ins)
-- [WasmEdge AOT Compiler](#wasmedge-aot-compiler)
-  - [Compilation Example](#compilation-example)
-  - [Compiler Options](#compiler-options)
+[WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `0.13.0`. The following are the guides to working with the C APIs of WasmEdge.
 
 ## WasmEdge Installation
 
@@ -57,7 +13,7 @@ sidebar_position: 1
 The easiest way to install WasmEdge is to run the following command. Your system should have `git` and `wget` as prerequisites.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.12.0
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.13.0
 ```
 
 For more details, please refer to the [Installation Guide](/develop/build-and-run/install.md) for the WasmEdge installation.
@@ -87,12 +43,12 @@ After the installation of WasmEdge, the following guide can help you to test for
 
    ```bash
    $ ./a.out
-   WasmEdge version: 0.12.0
+   WasmEdge version: 0.13.0
    ```
 
 ### ABI Compatibility
 
-WasmEdge C API introduces SONAME and SOVERSION since the 0.11.0 release to present the compatibility between different C API versions.
+WasmEdge C API introduces SONAME and SOVERSION since the `0.11.0` release to present the compatibility between different C API versions.
 
 The releases before 0.11.0 are all unversioned. Please make sure the library version is the same as the corresponding C API version you used.
 
@@ -101,7 +57,8 @@ The releases before 0.11.0 are all unversioned. Please make sure the library ver
 | < 0.11.0 | libwasmedge_c.so | Unversioned | Unversioned |
 | 0.11.0 to 0.11.1 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.0 |
 | 0.11.2 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.1 |
-| Since 0.12.0 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.2 |
+| 0.12.0 to 0.12.1 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.2 |
+| Since 0.13.0 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.3 |
 
 ## WasmEdge Basics
 
@@ -1066,7 +1023,6 @@ WasmEdge provides the following built-in host modules and plug-in pre-registrati
    - `wasi_snapshot_preview1`
    - `wasmedge_httpsreq`
    - `wasmedge_process`
-   - `wasi:logging/logging` (for the `WASI-Logging`)
 
    When the WASM want to invoke these host functions but the corresponding plug-in not installed, WasmEdge will print the error message and return an error.
 

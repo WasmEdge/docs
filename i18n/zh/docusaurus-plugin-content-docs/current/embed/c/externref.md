@@ -276,7 +276,7 @@ The host function "`extern_module::func_mul`" takes `externref` as a function po
 
 ### Host Functions
 
-To instantiate the above example Wasm, the host functions must be registered into WasmEdge. See [Host Functions](/embed/c/reference/0.12.0.md#host-functions) for more details. The host functions which take `externref`s must know the original objects' types. We take the function pointer case for example.
+To instantiate the above example Wasm, the host functions must be registered into WasmEdge. See [Host Functions](/embed/c/reference/latest.md#host-functions) for more details. The host functions which take `externref`s must know the original objects' types. We take the function pointer case for example.
 
 ```c
 /* Function to pass as function pointer. */

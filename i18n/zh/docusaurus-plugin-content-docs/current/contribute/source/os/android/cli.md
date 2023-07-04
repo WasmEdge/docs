@@ -6,6 +6,11 @@ sidebar_position: 2
 
 In this section, we will show you how to use WasmEdge CLI tools on Android devices. We will showcase a full WasmEdge demo to perform image classification (Tensorflow-based AI inference) on an Android device.
 
+<!-- prettier-ignore -->
+:::note
+The `WasmEdge-tensorflow-tools` has been deprecated after the 0.12.1 version. We'll update to use the WasmEdge plug-in in the future.
+:::
+
 ## Install Android version of WasmEdge-TensorFlow-Tools
 
 First, install WasmEdge-TensorFlow-Tools pre-release on your Android device. It works with the Android version of TensorFlow-Lite dynamic shared library.
@@ -36,8 +41,8 @@ sirius:/ $
 Use the following commands on your Ubuntu dev machine to download the WasmEdge-TensorFlow-Tools pre-release packages.
 
 ```bash
-$ wget https://github.com/second-state/WasmEdge-tensorflow-tools/releases/download/{{ wasmedge_version }}/WasmEdge-tensorflow-tools-{{ wasmedge_version }}-android_aarch64.tar.gz
-$ mkdir WasmEdge-tensorflow-tools && tar zxvf WasmEdge-tensorflow-tools-{{ wasmedge_version }}-android_aarch64.tar.gz -C WasmEdge-tensorflow-tools
+$ wget https://github.com/second-state/WasmEdge-tensorflow-tools/releases/download/0.12.1/WasmEdge-tensorflow-tools-0.12.1-android_aarch64.tar.gz
+$ mkdir WasmEdge-tensorflow-tools && tar zxvf WasmEdge-tensorflow-tools-0.12.1-android_aarch64.tar.gz -C WasmEdge-tensorflow-tools
 show-tflite-tensor
 wasmedge-tensorflow-lite
 ```
@@ -47,8 +52,8 @@ wasmedge-tensorflow-lite
 We provide an Android compatible version of TensorFlow-Lite dynamic shared library in the WasmEdge-Tensorflow-deps package. Download the package to your Ubuntu dev machine as follows.
 
 ```bash
-$ wget https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/{{ wasmedge_version }}/WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-android_aarch64.tar.gz
-$ tar zxvf WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-android_aarch64.tar.gz -C WasmEdge-tensorflow-tools
+$ wget https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/0.12.1/WasmEdge-tensorflow-deps-TFLite-0.12.1-android_aarch64.tar.gz
+$ tar zxvf WasmEdge-tensorflow-deps-TFLite-0.12.1-android_aarch64.tar.gz -C WasmEdge-tensorflow-tools
 libtensorflowlite_c.so
 ```
 

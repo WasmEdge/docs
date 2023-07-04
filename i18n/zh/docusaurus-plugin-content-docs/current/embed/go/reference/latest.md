@@ -1,14 +1,10 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
-# Go API v0.11.2 Documentation
+# Go API v0.13.0 Documentation (WORK IN PROGRESS)
 
-The following are the guides to develop with the WasmEdge-Go SDK.
-
-**This document is for the `v0.11.2` version. For the older `v0.10.1` version, please refer to the [document here](0.10.1.md).**
-
-**Developers can refer to [here to upgrade to v0.11.0](upgrade_to_0.11.0).**
+The following are the guides to working with the WasmEdge-Go SDK.
 
 ## Table of Contents
 
@@ -31,7 +27,7 @@ The following are the guides to develop with the WasmEdge-Go SDK.
 - [WasmEdge VM](#wasmedge-vm)
   - [WASM Execution Example With VM Object](#wasm-execution-example-with-vm-object)
   - [VM Creations](#vm-creations)
-  - [Preregistrations](#preregistrations)
+  - [Built-in Host Modules and Plug-in Preregistrations](#built-in-host-modules-and-plug-in-preregistrations)
   - [Host Module Registrations](#host-module-registrations)
   - [WASM Registrations And Executions](#wasm-registrations-and-executions)
   - [Asynchronous execution](#asynchronous-execution)
@@ -45,6 +41,7 @@ The following are the guides to develop with the WasmEdge-Go SDK.
   - [Store](#store)
   - [Instances](#instances)
   - [Host Functions](#host-functions)
+  - [Plug-ins](#plug-ins)
 - [WasmEdge AOT Compiler](#wasmedge-aot-compiler)
   - [Compilation Example](#compilation-example)
   - [Compiler Options](#compiler-options)
@@ -63,23 +60,23 @@ go version go1.16.5 linux/amd64
 Developers must [install the WasmEdge shared library](/develop/build-and-run/install) with the same `WasmEdge-go` release or pre-release version.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.11.2
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.12.0
 ```
 
 For the developers need the `TensorFlow` or `Image` extension for `WasmEdge-go`, please install the `WasmEdge` with extensions:
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v 0.11.2
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v 0.12.0
 ```
 
-Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` and `Darwin x86_64` platforms. After installation, developers can use the `source` command to update the include and linking searching path.
+Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` platforms. After installation, developers can use the `source` command to update the include and linking searching path.
 
 ### Get WasmEdge-go
 
 After the WasmEdge installation, developers can get the `WasmEdge-go` package and build it in your Go project directory.
 
 ```bash
-go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
 go build
 ```
 
@@ -153,7 +150,7 @@ verpatch := wasmedge.GetVersionPatch() // Will be `uint` of WasmEdge patch versi
 
 The `wasmedge.SetLogErrorLevel()` and `wasmedge.SetLogDebugLevel()` APIs can set the logging system to debug level or error level. By default, the error level is set, and the debug info is hidden.
 
-Developers can also use the `wasmedge.SetLogOff()` API to disable all logging. (`v0.11.2` or upper only)
+Developers can also use the `wasmedge.SetLogOff()` API to disable all logging.
 
 ### Value Types
 
@@ -494,22 +491,17 @@ The configuration object, `wasmedge.Configure`, manages the configurations for `
 
 2. Host registrations
 
-   This configuration is used for the `VM` context to turn on the `WASI` or `wasmedge_process` supports and only effective in `VM` objects.
+   This configuration is used for the `VM` context to turn on the `WASI` supports and only effective in `VM` contexts.
+
+   The element of this enum is reserved for the other built-in host functions (such as `wasi-socket`) in the future.
 
    ```go
    const (
-     WASI                        = HostRegistration(C.WasmEdge_HostRegistration_Wasi)
-     WasmEdge_PROCESS            = HostRegistration(C.WasmEdge_HostRegistration_WasmEdge_Process)
-     WasiNN                      = HostRegistration(C.WasmEdge_HostRegistration_WasiNN)
-     WasiCrypto_Common           = HostRegistration(C.WasmEdge_HostRegistration_WasiCrypto_Common)
-     WasiCrypto_AsymmetricCommon = HostRegistration(C.WasmEdge_HostRegistration_WasiCrypto_AsymmetricCommon)
-     WasiCrypto_Kx               = HostRegistration(C.WasmEdge_HostRegistration_WasiCrypto_Kx)
-     WasiCrypto_Signatures       = HostRegistration(C.WasmEdge_HostRegistration_WasiCrypto_Signatures)
-     WasiCrypto_Symmetric        = HostRegistration(C.WasmEdge_HostRegistration_WasiCrypto_Symmetric)
+     WASI = HostRegistration(C.WasmEdge_HostRegistration_Wasi)
    )
    ```
 
-   The details will be introduced in the [preregistrations of VM context](#preregistrations).
+   The details will be introduced in the [preregistrations of VM context](#built-in-host-modules-and-plug-in-preregistrations).
 
    ```go
    conf := wasmedge.NewConfigure()
@@ -535,7 +527,7 @@ The configuration object, `wasmedge.Configure`, manages the configurations for `
    conf.Release()
    ```
 
-4. Forcibly interpreter mode (`v0.11.2` or upper only)
+4. Forcibly interpreter mode
 
    If developers want to execute the WASM file or the AOT compiled WASM in interpreter mode forcibly, they can turn on the configuration.
 
@@ -763,7 +755,7 @@ The following shows the example of running the WASM for getting the Fibonacci. T
    Then you can build and run the Golang application with the WasmEdge Golang SDK: (the 21 Fibonacci number is 17711 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Get fibonacci[21]: 17711
@@ -900,9 +892,9 @@ conf.Release()
 store.Release()
 ```
 
-### Preregistrations
+### Built-in Host Modules and Plug-in Preregistrations
 
-WasmEdge provides the following built-in pre-registrations.
+WasmEdge provides the following built-in host modules and plug-in pre-registrations.
 
 1. [WASI (WebAssembly System Interface)](https://github.com/WebAssembly/WASI)
 
@@ -914,74 +906,58 @@ WasmEdge provides the following built-in pre-registrations.
    vm := wasmedge.NewVMWithConfig(conf)
    conf.Release()
 
-   // The following API can retrieve the pre-registration import objects from the VM object.
-   // This API will return `nil` if the corresponding pre-registration is not set into the configuration.
-   wasimodule := vm.GetImportModule(wasmedge.WASI)
+   // The following API can retrieve the built-in registered module instances from the VM object.
+   // This API will return `nil` if the corresponding configuration is not set when creating the VM object.
+   wasiconf := vm.GetImportModule(wasmedge.WASI)
    // Initialize the WASI.
-   wasimodule.InitWasi(/* ... ignored */)
+   wasiconf.InitWasi(/* ... ignored */)
 
    vm.Release()
    ```
 
    And also can create the WASI import object from API. The details will be introduced in the [Host Functions](#host-functions) and the [Host Module Registrations](#host-module-registrations).
 
-2. [WasmEdge_Process](https://crates.io/crates/wasmedge_process_interface)
+2. Plug-ins
 
-   This pre-registration is for the process interface for WasmEdge on `Rust` sources. After turning on this pre-registration, the VM will support the `wasmedge_process` plugin.
+   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](/contribute/internal.md#plugins).
+
+   Before using the plug-ins, developers should [load the plug-ins from paths](#load-plug-ins-from-paths).
+
+   The `VM` object will automatically create and register the module of the loaded plug-ins when creation. Furthermore, the following host modules will be mocked if the plug-in not loaded:
+
+   - `wasi_ephemeral_crypto_asymmetric_common` (for the `WASI-Crypto`)
+   - `wasi_ephemeral_crypto_common` (for the `WASI-Crypto`)
+   - `wasi_ephemeral_crypto_kx` (for the `WASI-Crypto`)
+   - `wasi_ephemeral_crypto_signatures` (for the `WASI-Crypto`)
+   - `wasi_ephemeral_crypto_symmetric` (for the `WASI-Crypto`)
+   - `wasi_ephemeral_nn`
+   - `wasi_snapshot_preview1`
+   - `wasmedge_httpsreq`
+   - `wasmedge_process`
+   - `wasi:logging/logging` (for the `WASI-Logging`)
+
+   When the WASM want to invoke these host functions but the corresponding plug-in not installed, WasmEdge will print the error message and return an error.
 
    ```go
-   conf := wasmedge.NewConfigure(wasmedge.WasmEdge_PROCESS)
+   // Load the plug-ins in the default paths first.
+   wasmedge.LoadPluginDefaultPaths()
+
+   // Create the VM object with the WASI configuration.
+   conf := wasmedge.NewConfigure(wasmedge.WASI)
    vm := wasmedge.NewVMWithConfig(conf)
    conf.Release()
 
-   // The following API can retrieve the pre-registration import objects from the VM object.
-   // This API will return `nil` if the corresponding pre-registration is not set into the configuration.
-   procmodule := vm.GetImportModule(wasmedge.WasmEdge_PROCESS)
-   // Initialize the WasmEdge_Process.
-   procmodule.InitWasmEdgeProcess(/* ... ignored */)
+   // The following API can retrieve the registered modules in the VM objects, includes the built-in WASI and the plug-ins.
+   // This API will return `NULL` if the module instance not found.
+
+   // The `wasimodule` will not be `nil` because the configuration was set.
+   wasimodule := vm.GetRegisteredModule("wasi_snapshot_preview1")
+
+   // The `wasinnmodule` will not be `nil` even if the wasi_nn plug-in is not installed, because the VM context will mock and register the host modules.
+   wasinnmodule := vm.GetRegisteredModule("wasi_ephemeral_nn")
 
    vm.Release()
    ```
-
-   And also can create the WasmEdge_Process import object from API. The details will be introduced in the [Host Functions](#host-functions) and the [Host Module Registrations](#host-module-registrations).
-
-3. [WASI-NN proposal](https://github.com/WebAssembly/wasi-nn)
-
-   Developers can turn on the WASI-NN proposal support for VM in the `Configure` object.
-
-   > Note: Please check that the [dependencies and prerequests](/develop/build-and-run/install.md#wasi-nn-plugin-with-openvino™-backend) are satisfied.
-
-   ```go
-   conf := wasmedge.NewConfigure(wasmedge.WasiNN)
-   vm := wasmedge.NewVMWithConfig(conf)
-   conf.Release()
-
-   // The following API can retrieve the pre-registration import objects from the VM object.
-   // This API will return `nil` if the corresponding pre-registration is not set into the configuration.
-   nnmodule := vm.GetImportModule(wasmedge.WasiNN)
-   vm.Release()
-   ```
-
-   And also can create the WASI-NN module instance from API. The details will be introduced in the [Host Functions](#host-functions) and the [Host Module Registrations](#host-module-registrations).
-
-4. [WASI-Crypto proposal](https://github.com/WebAssembly/wasi-crypto)
-
-   Developers can turn on the WASI-Crypto proposal support for VM in the `Configure` object.
-
-   > Note: Please check that the [dependencies and prerequests](/develop/build-and-run/install.md#wasi-crypto-plugin) are satisfied.
-
-   ```go
-   conf := wasmedge.NewConfigure(wasmedge.WasiCrypto_Common, wasmedge.WasiCrypto_AsymmetricCommon, wasmedge.WasiCrypto_Kx, wasmedge.WasiCrypto_Signatures, wasmedge.WasiCrypto_Symmetric)
-   vm := wasmedge.NewVMWithConfig(conf)
-   conf.Release()
-
-   // The following API can retrieve the pre-registration import objects from the VM object.
-   // This API will return `nil` if the corresponding pre-registration is not set into the configuration.
-   nnmodule := vm.GetImportModule(wasmedge.WasiCrypto_Common)
-   vm.Release()
-   ```
-
-   And also can create the WASI-Crypto module instance from API. The details will be introduced in the [Host Functions](#host-functions) and the [Host Module Registrations](#host-module-registrations).
 
 ### Host Module Registrations
 
@@ -1089,7 +1065,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 25th Fibonacci number is 121393 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Get fibonacci[25]: 121393
@@ -1139,7 +1115,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 20th Fibonacci number is 10946 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Get the result: 10946
@@ -1206,7 +1182,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 25th Fibonacci number is 121393 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Get the result: 121393
@@ -1304,7 +1280,7 @@ Sometimes the developers may have requirements to get the instances of the WASM 
    Then you can build and run: (the only exported function in `fibonacci.wasm` is `fib`)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Exported function name: fib
@@ -1336,7 +1312,19 @@ Sometimes the developers may have requirements to get the instances of the WASM 
    // Developers should __NOT__ call the `(*Module).Release` function of the returned module instance.
    ```
 
-5. Get the components
+5. List and get the registered modules
+
+   To list and retrieve the registered modules in the `VM` object, besides accessing the `store` object of the `VM`, developers can use the following APIs.
+
+   ```go
+   // Assume that the `vm` is the created `wasmedge.VM` object.
+   modnames := vm.ListRegisteredModule()
+   for _, name := range modnames {
+     fmt.Println("Registered module name: ", name)
+   }
+   ```
+
+6. Get the components
 
    The `VM` object is composed by the `Loader`, `Validator`, and `Executor` objects. For the developers who want to use these objects without creating another instances, these APIs can help developers to get them from the `VM` object. The get objects are owned by the `VM` object, and developers should not call their release functions.
 
@@ -1456,7 +1444,7 @@ func main() {
 Then you can build and run: (the 18th Fibonacci number is 1346269 in 30-based index)
 
 ```bash
-$ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
 $ go build
 $ ./wasmedge_test
 Exported function name: fib
@@ -2037,7 +2025,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    [2022-08-26 15:06:40.384] [error] user defined failed: user defined error code, Code: 0x15be
@@ -2252,7 +2240,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Get the result: 6912
@@ -2355,12 +2343,81 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.11.2
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
    $ go build
    $ ./wasmedge_test
    Get the result: 6912
    Data value: 6912
    ```
+
+### Plug-ins
+
+The WasmEdge plug-ins are the shared libraries to provide the WasmEdge runtime to load and create host module instances. With the plug-ins, the WasmEdge runtime can be extended more easily.
+
+#### Load plug-ins from paths
+
+To use the plug-ins, developers should load the plug-ins from paths first.
+
+```go
+wasmedge.LoadPluginDefaultPaths()
+```
+
+After calling this API, the plug-ins in the default paths will be loaded. The default paths are:
+
+1. The path given in the environment variable `WASMEDGE_PLUGIN_PATH`.
+2. The `../plugin/` directory related to the WasmEdge installation path.
+3. The `./wasmedge/` directory under the library path if the WasmEdge is installed under the system directory (such as `/usr` and `/usr/local`).
+
+To load the plug-ins from a specific path or under a specific directory, developers can use this API:
+
+```go
+wasmedge.LoadPluginFromPath("PATH_TO_PLUGIN/plugin.so")
+```
+
+#### Get the plug-in by name
+
+After loading the plug-ins, developers can list the loaded plug-in names.
+
+```go
+wasmedge.LoadPluginDefaultPaths()
+pluginnames := wasmedge.ListPlugins()
+for _, name := range pluginnames {
+  fmt.Println("Loaded plug-in name: ", name)
+}
+```
+
+And developers can retrieve the plug-in object by its name.
+
+```go
+// Assume that wasi_crypto plug-in is installed in the default plug-in path.
+wasmedge.LoadPluginDefaultPaths()
+plugincrypto := wasmedge.FindPlugin("wasi_crypto")
+```
+
+#### Create the module instance from a plug-in
+
+With the plug-in object, developers can create the module instances by the module name.
+
+```go
+// Assume that the `plugincrypto` is the object to the wasi_crypto plug-in.
+
+// List the available host modules in the plug-in.
+modules := plugincrypto.ListModule()
+for _, name := range modules {
+  fmt.Println("Available module: ", name)
+}
+// Will print here for the WASI-Crypto plug-in here:
+//   wasi_ephemeral_crypto_asymmetric_common
+//   wasi_ephemeral_crypto_common
+//   wasi_ephemeral_crypto_kx
+//   wasi_ephemeral_crypto_signatures
+//   wasi_ephemeral_crypto_symmetric
+
+// Create a module instance from the plug-in by the module name.
+modinst := plugincrypto.CreateModule("wasi_ephemeral_crypto_common")
+
+modinst.Release()
+```
 
 ## WasmEdge AOT Compiler
 

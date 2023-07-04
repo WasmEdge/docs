@@ -23,7 +23,7 @@ Besides WASI and the standard WebAssembly proposal, WasmEdge has some cloud-nati
 - Key value store
 - Gas meter for resource limitation
 - WasmEdge-bindgen for complex para passing
-- AI inference with TensorFlow Lite, Pytorch, and OpenVINO
+- AI inference with TensorFlow, TensorFlow Lite, Pytorch, and OpenVINO
 
 ## JavaScript Support
 

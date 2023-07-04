@@ -6,6 +6,11 @@ sidebar_position: 3
 
 In this section, we will demonstrate how to build an Android native application using C and the Android SDK. The native application uses the WasmEdge C SDK to embed the WasmEdge Runtime, and call WASM functions through WasmEdge.
 
+<!-- prettier-ignore -->
+:::note
+The `WasmEdge-Image`, `WasmEdge-Tensorflow`, and `WasmEdge-tensorflow-tools` have been deprecated after the 0.12.1 version. We'll update to use the WasmEdge plug-in in the future.
+:::
+
 ## Prerequisite
 
 ### Android
@@ -92,14 +97,14 @@ int main(int argc, char *argv[]) {
 Use the following commands to download WasmEdge for Android on your Ubuntu dev machine.
 
 ```bash
-wget https://github.com/WasmEdge/WasmEdge/releases/download/{{ wasmedge_version }}/WasmEdge-{{ wasmedge_version }}-android_aarch64.tar.gz
-wget https://github.com/second-state/WasmEdge-image/releases/download/{{ wasmedge_version }}/WasmEdge-image-{{ wasmedge_version }}-android_aarch64.tar.gz
-wget https://github.com/second-state/WasmEdge-tensorflow/releases/download/{{ wasmedge_version }}/WasmEdge-tensorflowlite-{{ wasmedge_version }}-android_aarch64.tar.gz
-wget https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/{{ wasmedge_version }}/WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-android_aarch64.tar.gz
-tar -zxf WasmEdge-{{ wasmedge_version }}-android_aarch64.tar.gz
-tar -zxf WasmEdge-image-{{ wasmedge_version }}-android_aarch64.tar.gz -C WasmEdge-{{ wasmedge_version }}-Android/
-tar -zxf WasmEdge-tensorflowlite-{{ wasmedge_version }}-android_aarch64.tar.gz -C WasmEdge-{{ wasmedge_version }}-Android/
-tar -zxf WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-android_aarch64.tar.gz -C WasmEdge-{{ wasmedge_version }}-Android/lib/
+wget https://github.com/WasmEdge/WasmEdge/releases/download/0.12.1/WasmEdge-0.12.1-android_aarch64.tar.gz
+wget https://github.com/second-state/WasmEdge-image/releases/download/0.12.1/WasmEdge-image-0.12.1-android_aarch64.tar.gz
+wget https://github.com/second-state/WasmEdge-tensorflow/releases/download/0.12.1/WasmEdge-tensorflowlite-0.12.1-android_aarch64.tar.gz
+wget https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/0.12.1/WasmEdge-tensorflow-deps-TFLite-0.12.1-android_aarch64.tar.gz
+tar -zxf WasmEdge-0.12.1-android_aarch64.tar.gz
+tar -zxf WasmEdge-image-0.12.1-android_aarch64.tar.gz -C WasmEdge-0.12.1-Android/
+tar -zxf WasmEdge-tensorflowlite-0.12.1-android_aarch64.tar.gz -C WasmEdge-0.12.1-Android/
+tar -zxf WasmEdge-tensorflow-deps-TFLite-0.12.1-android_aarch64.tar.gz -C WasmEdge-0.12.1-Android/lib/
 ```
 
 ### Compile
@@ -107,7 +112,7 @@ tar -zxf WasmEdge-tensorflow-deps-TFLite-{{ wasmedge_version }}-android_aarch64.
 The following command compiles the C program to `a.out` on your Ubunu dev machine.
 
 ```bash
-(/path/to/ndk)/toolchains/llvm/prebuilt/(HostPlatform)/bin/aarch64-linux-(AndroidApiVersion)-clang test.c -I./WasmEdge-{{ wasmedge_version }}-Android/include -L./WasmEdge-{{ wasmedge_version }}-Android/lib -lwasmedge-image_c -lwasmedge-tensorflowlite_c -ltensorflowlite_c -lwasmedge
+(/path/to/ndk)/toolchains/llvm/prebuilt/(HostPlatform)/bin/aarch64-linux-(AndroidApiVersion)-clang test.c -I./WasmEdge-0.12.1-Android/include -L./WasmEdge-0.12.1-Android/lib -lwasmedge-image_c -lwasmedge-tensorflowlite_c -ltensorflowlite_c -lwasmedge
 ```
 
 ## Run
@@ -121,7 +126,7 @@ adb push a.out /data/local/tmp
 adb push birds_v1.wasm /data/local/tmp
 adb push lite-model_aiy_vision_classifier_birds_V1_3.tflite /data/local/tmp
 adb push bird.jpg /data/local/tmp
-adb push ./WasmEdge-{{ wasmedge_version }}-Android/lib /data/local/tmp
+adb push ./WasmEdge-0.12.1-Android/lib /data/local/tmp
 ```
 
 ### Run the example
