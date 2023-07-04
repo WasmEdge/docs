@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# The AoT Compiler
+# `wasmedge run` CLI
 
 After [installation](../quick_start/install.md), users can execute the `wasmedge run` command.
 

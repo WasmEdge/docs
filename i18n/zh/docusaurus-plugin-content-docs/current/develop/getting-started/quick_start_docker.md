@@ -16,7 +16,6 @@ We will cover the following examples.
 - [Run a standalone Wasm app](#run-a-standalone-wasm-app)
 - [Run an HTTP server](#run-an-http-server)
 - [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
-- [Docker Images for Building WasmEdge](../../contribute/source/docker)
 
 In this quick start guide, we cover how to run Wasm container apps using Docker commands. If you are interested in how to build, publish, and compose Wasm container apps from source code, check out the [Docker + wasm chapter](../build-and-run/docker_wasm).
 
