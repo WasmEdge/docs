@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# `wasmedge compile` CLI
+# The AoT Compiler
 
 After [installation](../build-and-run/install.md), users can execute the `wasmedge compile` command.
 
