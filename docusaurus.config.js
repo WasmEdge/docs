@@ -210,7 +210,7 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
-                additionalLanguages: ['rust', 'bash', 'typescript', 'csharp', 'lua', 'protobuf', 'powershell', 'toml', 'yaml'],
+                additionalLanguages: ['rust', 'bash', 'typescript', 'csharp', 'lua', 'protobuf', 'powershell', 'toml', 'yaml', 'wasm', 'javascript', 'go'],
             },
         }),
 };
