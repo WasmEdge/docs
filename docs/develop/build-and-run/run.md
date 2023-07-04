@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # `wasmedge run` CLI
 
-After [installation](../quick_start/install.md), users can execute the `wasmedge run` command.
+After [installation](../../develop/build-and-run/install#install), users can execute the `wasmedge run` command.
 
 `wasmedge run` is an alias of `wasmedge` without `-v|--version` option. The usage of the `wasmedge run` tool will be:
 
