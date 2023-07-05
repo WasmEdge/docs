@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["bytecode", "CNCF", "Emscripten", "wasmedge"]
+  "cSpell.words": [
+    "bytecode",
+    "CNCF",
+    "Emscripten",
+    "wasmedge"
+  ],
+  "docwriter.style": "Auto-detect"
 }

@@ -98,7 +98,7 @@ To create a plug-in with host functions and modules, follow these steps:
 
   Therefore, developers can implement their plug-in host functions first, as the same as the [host functions in WasmEdge C API](/embed/c/reference/0.12.0.md#host-functions).
 
-> For the more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
+  > For the more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
 
   Here's an example of two host functions, `HostFuncAdd` and `HostFuncSub`, that add and subtract two `int32_t` numbers respectively:
 
@@ -235,6 +235,8 @@ To create a plug-in with host functions and modules, follow these steps:
 Remember to implement any additional functions or structures that your plugin requires to fulfill its functionality.
 
 By following these steps and implementing the necessary functions and descriptors, you can create a plug-in with host functions and modules in WasmEdge C API. You can continue developing your plugin by adding functionality and implementing the desired behavior.
+
+- **Plugin option** - *WORK IN PROGRESS. This section is reserved for the feature in the future.*
 
 ## Build your plugin
 
