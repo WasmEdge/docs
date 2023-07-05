@@ -34,7 +34,10 @@ $ docker run --rm -v $(pwd):/app -it wasmedge/sel4_build
 (docker) root#
 ```
 
-> If you do not want to build the seL4 system simulator yourself, you can download the [build artifact](https://github.com/second-state/wasmedge-seL4/actions/runs/1374510169) from our GitHub Actions, and skip directly to [Boot wasmedge-seL4](#boot-wasmedge-sel4)
+<!-- prettier-ignore -->
+:::note
+If you do not want to build the seL4 system simulator yourself, you can download the [build artifact](https://github.com/second-state/wasmedge-seL4/actions/runs/1374510169) from our GitHub Actions, and skip directly to [Boot wasmedge-seL4](#boot-wasmedge-sel4)
+:::
 
 ### Automatic installation: all-in-one script
 

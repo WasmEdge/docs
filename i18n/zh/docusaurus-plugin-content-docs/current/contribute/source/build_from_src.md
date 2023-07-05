@@ -96,6 +96,7 @@ Developers can follow the steps to build WasmEdge with plug-ins from source.
 - [WasmEdge-Image](../source/plugin/image.md)
 - [WasmEdge-TensorFlow](../source/plugin/tensorflow.md)
 - [WasmEdge-TensorFlowLite](../source/plugin/tensorflowlite.md)
+- [WASI-Logging](../source/plugin/wasi_logging.md)
 
 ## Run Tests
 

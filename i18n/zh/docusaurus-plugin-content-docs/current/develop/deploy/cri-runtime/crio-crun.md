@@ -43,7 +43,10 @@ systemctl start crio
 
 CRI-O uses the `runc` runtime by default and we need to configure it to use `crun` instead. That is done by adding to two configuration files.
 
-> Make sure that you have [built and installed the `crun` binary with WasmEdge support](../oci-runtime/crun.md) before starting the following steps.
+<!-- prettier-ignore -->
+:::note
+Make sure that you have [built and installed the `crun` binary with WasmEdge support](../oci-runtime/crun.md) before starting the following steps.
+:::
 
 First, create a `/etc/crio/crio.conf` file and add the following lines as its content. It tells CRI-O to use `crun` by default.
 
@@ -170,7 +173,10 @@ sudo crictl pull docker.io/avengermojo/http_server:with-wasm-annotation
 
 Next, we need to create two simple configuration files that specifies how CRI-O should run this WebAssembly image in a sandbox. We already have those two files [container_http_server.json](https://raw.githubusercontent.com/second-state/wasmedge-containers-examples/main/crio/http_server/container_http_server.json) and [sandbox_config.json](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/sandbox_config.json). You can just download them to your local directory as follows.
 
-> The `sandbox_config.json` file is the same for the simple WASI example and the HTTP server example. The other `container_*.json` file is application specific as it contains the application's Docker Hub URL.
+<!-- prettier-ignore -->
+:::note
+The `sandbox_config.json` file is the same for the simple WASI example and the HTTP server example. The other `container_*.json` file is application specific as it contains the application's Docker Hub URL.
+:::
 
 ```bash
 wget https://raw.githubusercontent.com/second-state/wasmedge-containers-examples/main/crio/sandbox_config.json

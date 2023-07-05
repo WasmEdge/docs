@@ -21,7 +21,10 @@ However, the WasmEdge installer does not support Android. The user must download
 
 Please follow this guide to build and test WasmEdge from source code with Android NDK.
 
-> In current state, we only support the runtime for the interpreter mode.
+<!-- prettier-ignore -->
+:::note
+In current state, we only support the runtime for the interpreter mode.
+:::
 
 ## Prepare the Environment
 

@@ -20,13 +20,14 @@ Pull requests are always welcome, even if they only contain small fixes like typ
 
 Please submit a pull request broken down into small changes bit by bit. A pull request consisting of a lot features and code changes may be hard to review. It is recommended to submit pull requests in an incremental fashion.
 
-> If you split your pull request into small changes, please make sure any of the changes that goes to master will not break anything. Otherwise, it can not be merged until this feature is complete.
+<!-- prettier-ignore -->
+:::note
+If you split your pull request into small changes, please make sure any of the changes that goes to master will not break anything. Otherwise, it can not be merged until this feature is complete.
+:::
 
 ### Fork and Clone the Repository
 
 Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace
-
-> The WasmEdge team builds lots of extensions of Server-side WebAssembly, like [TensorFlow](https://github.com/second-state/WasmEdge-tensorflow), [Storage](https://github.com/second-state/WasmEdge-storage), [Command interface] and so on. If you want to contribute to the extensions, please check out [the details here](../develop/wasmedge/extensions/unique_extensions).
 
 ### Branches and Commits
 

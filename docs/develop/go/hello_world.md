@@ -36,7 +36,10 @@ func main() {
 }
 ```
 
-> Inside the `main()` function, you can use Go standard API to read / write files, and access command line arguments and `env` variables.
+<!-- prettier-ignore -->
+:::note
+Inside the `main()` function, you can use Go standard API to read / write files, and access command line arguments and `env` variables.
+:::
 
 ### Hello world: Compile and build
 

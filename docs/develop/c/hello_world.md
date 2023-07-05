@@ -44,7 +44,10 @@ Save it in any file and then compile it to WebAssembly with emscripten .
 emcc hello.c -o hello.wasm
 ```
 
-> Note: Make sure you either supply `-s STANDALONE_WASM` flag or specify output as wasm `-o your_file_name.wasm`
+<!-- prettier-ignore -->
+:::note
+Make sure you either supply `-s STANDALONE_WASM` flag or specify output as wasm `-o your_file_name.wasm`
+:::
 
 Then run the wasm in wasmedge runtime
 

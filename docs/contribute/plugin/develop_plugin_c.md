@@ -20,7 +20,10 @@ The goal of the plug-in is to provide the host functions which can be imported w
 
 Therefore, developers can implement their plug-in host functions first, as the same as the [host functions in WasmEdge C API](/embed/c/reference/latest.md#host-functions).
 
-> For the more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
+<!-- prettier-ignore -->
+:::note
+For the more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
+:::
 
 ```c
 #include <wasmedge/wasmedge.h>

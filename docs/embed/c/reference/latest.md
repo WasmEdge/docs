@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# C API 0.13.0 Documentation (WORK IN PROGRESS)
+# C API {{ wasmedge_version }} Documentation
 
-[WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `0.13.0`. The following are the guides to working with the C APIs of WasmEdge.
+[WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
 ## WasmEdge Installation
 
@@ -13,7 +13,7 @@ sidebar_position: 1
 The easiest way to install WasmEdge is to run the following command. Your system should have `git` and `wget` as prerequisites.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.13.0
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
 ```
 
 For more details, please refer to the [Installation Guide](/develop/build-and-run/install.md) for the WasmEdge installation.
@@ -43,7 +43,7 @@ After the installation of WasmEdge, the following guide can help you to test for
 
    ```bash
    $ ./a.out
-   WasmEdge version: 0.13.0
+   WasmEdge version: {{ wasmedge_version }}
    ```
 
 ### ABI Compatibility
@@ -492,7 +492,7 @@ After calling the [asynchronous execution APIs](#asynchronous-execution), develo
 
 ### Configurations
 
-The configuration context, `WasmEdge_ConfigureContext`, manages the configurations for `Loader`, `Validator`, `Executor`, `VM`, and `Compiler`. Developers can adjust the settings about the proposals, VM host pre-registrations (such as `WASI`), and AOT compiler options, and then apply the `Configure` context to create other runtime contexts.
+The configuration context, `WasmEdge_ConfigureContext`, manages the configurations for `Loader`, `Validator`, `Executor`, `VM`, and `Compiler` contexts. Developers can adjust the settings about the proposals, VM host pre-registrations (such as `WASI`), and AOT compiler options, and then apply the `Configure` context to create the runtime contexts.
 
 1. Proposals
 
@@ -733,28 +733,6 @@ Before using statistics, the statistics configuration must be set. Otherwise, th
    uint64_t Cost = WasmEdge_StatisticsGetTotalCost(StatCxt);
    WasmEdge_StatisticsDelete(StatCxt);
    ```
-
-### Tools Driver
-
-Besides executing the `wasmedge` and `wasmedgec` CLI tools, developers can trigger the WasmEdge CLI tools by WasmEdge C API. The API arguments are the same as the command line arguments of the CLI tools.
-
-```c
-#include <wasmedge/wasmedge.h>
-#include <stdio.h>
-int main(int argc, const char *argv[]) {
-  /* Run the WasmEdge AOT compiler. */
-  return WasmEdge_Driver_Compiler(argc, argv);
-}
-```
-
-```c
-#include <wasmedge/wasmedge.h>
-#include <stdio.h>
-int main(int argc, const char *argv[]) {
-  /* Run the WasmEdge runtime tool. */
-  return WasmEdge_Driver_Tool(argc, argv);
-}
-```
 
 ## WasmEdge VM
 
@@ -1064,7 +1042,9 @@ WasmEdge provides the following built-in host modules and plug-in pre-registrati
 
 ### Host Module Registrations
 
-[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are functions outside WebAssembly and passed to WASM modules as imports. In WasmEdge, the host functions are composed into host modules as `WasmEdge_ModuleInstanceContext` objects with module names. Please refer to the [Host Functions in WasmEdge Runtime](#host-functions) for the details. In this chapter, we show the example for registering the host modules into a `VM` context.
+[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are functions outside WebAssembly and passed to WASM modules as imports. In WasmEdge, the host functions are composed into host modules as `WasmEdge_ModuleInstanceContext` objects with module names. Please refer to the [Host Functions in WasmEdge Runtime](#host-functions) for the details.
+
+In this chapter, we show the example for registering the host modules into a `VM` context. Noticed that the developers should guarantee the availability of the registered module instance, and should delete the module instance when it will not be used.
 
 ```c
 WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
@@ -1076,12 +1056,12 @@ WasmEdge_Result Res = WasmEdge_VMRegisterModuleFromImport(VMCxt, WasiModule);
 
 /* ... */
 
+WasmEdge_VMDelete(VMCxt);
 WasmEdge_ModuleInstanceDelete(WasiModule);
 /*
  * The created module instances should be deleted by the developers when the VM
  * deallocation.
  */
-WasmEdge_VMDelete(VMCxt);
 ```
 
 ### WASM Registrations And Executions
@@ -1680,7 +1660,9 @@ The `Executor` context is the executor for both WASM and compiled-WASM. This obj
 
 1. Instantiate and register an `AST module` as a named `Module` instance
 
-   As the same of [registering host modules](#host-module-registrations) or [importing WASM modules](#wasm-registrations-and-executions) in `VM` contexts, developers can instantiate and register an `AST module` contexts into the `Store` context as a named `Module` instance by the `Executor` APIs. After the registration, the result `Module` instance is exported with the given module name and can be linked when instantiating another module. For the details about the `Module` instances APIs, please refer to the [Instances](#instances).
+   As the same of [registering host modules](#host-module-registrations) or [importing WASM modules](#wasm-registrations-and-executions) in `VM` contexts, developers can instantiate an `AST module` contexts into a named `Module` instance, and register it into the `Store` context. After the registration, the result `Module` instance is exported to the `Store` with the given module name and can be linked when instantiating another module.
+
+   For the details about the `Module` instances APIs, please refer to the [Instances](#instances). The `Store` context is only the linker for searching and linking the exported modules when instantiation. Developers should delete the output `Module` instance when it will no longer be used. When the `Module` instance being deleted, it will automatically unlink to all linked `Store` contexts.
 
    ```c
    /*
@@ -1832,6 +1814,12 @@ The `Executor` context is the executor for both WASM and compiled-WASM. This obj
 
    After registering or instantiating and get the result `Module` instance, developers can retrieve the exported `Function` instances from the `Module` instance for invocation. For the details about the `Module` instances APIs, please refer to the [Instances](#instances). Please refer to the [example above](#wasm-execution-example-step-by-step) for the `Function` instance invocation with the `WasmEdge_ExecutorInvoke()` API.
 
+5. Asynchronously invoke functions
+
+   Such as [executing WASM functions in VM asynchronously](#asynchronous-execution), developers can also invoke a function asynchronously by `Executor` contexts API.
+
+   After getting the `Function` instance, developers will get the `Async` context by calling the `WasmEdge_ExecutorAsyncInvoke()` API. Please refer to the [Async](#async) chapter to work with this context for getting the results.
+
 ### AST Module
 
 The `AST Module` context presents the loaded structure from a WASM file or buffer. Developer will get this object after loading a WASM file or buffer from [Loader](#loader). Before instantiation, developers can also query the imports and exports of an `AST Module` context.
@@ -1876,7 +1864,9 @@ WasmEdge_ASTModuleDelete(ASTCxt);
 
 ### Store
 
-[Store](https://webassembly.github.io/spec/core/exec/runtime.html#store) is the runtime structure for the representation of all global state that can be manipulated by WebAssembly programs. The `Store` context in WasmEdge is an object to provide the instance exporting and importing when instantiating WASM modules. Developers can retrieve the named modules from the `Store` context.
+[Store](https://webassembly.github.io/spec/core/exec/runtime.html#store) is the runtime structure for the representation of all global state that can be manipulated by WebAssembly programs. The `Store` context in WasmEdge is an object which present the linker to provide the instance exporting and importing when instantiating WASM modules. Developers can retrieve the named modules from the `Store` context, and should delete the `Module` instances registered into the `Store` context if they will not be used anymore.
+
+When the `Store` context being deleted, the linked `Module` instances will automatically unlink to this `Store` context. When a `Module` instance being deleted, it will automatically unlink to all the linked `Store` contexts.
 
 ```c
 WasmEdge_StoreContext *StoreCxt = WasmEdge_StoreCreate();
@@ -2345,6 +2335,11 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_String ExportName = WasmEdge_StringCreateByCString("module");
    WasmEdge_ModuleInstanceContext *HostModCxt =
        WasmEdge_ModuleInstanceCreate(ExportName);
+   /*
+    * Developers can also use the WasmEdge_ModuleInstanceCreateWithData() to
+    * create the module instance with the data and its finalizer. It will be
+    * introduced later.
+    */
    WasmEdge_StringDelete(ExportName);
 
    /* Create and add a function instance into the module instance. */
@@ -2411,33 +2406,14 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
    `WasmEdge_ModuleInstanceCreateWASI()` API can create and initialize the `WASI` module instance.
 
-   `WasmEdge_ModuleInstanceCreateWasiNN()` API can create and initialize the `wasi_ephemeral_nn` module instance for `WASI-NN` plugin.
-
-   `WasmEdge_ModuleInstanceCreateWasiCryptoCommon()` API can create and initialize the `wasi_ephemeral_crypto_common` module instance for `WASI-Crypto` plugin.
-
-   `WasmEdge_ModuleInstanceCreateWasiCryptoAsymmetricCommon()` API can create and initialize the `wasi_ephemeral_crypto_asymmetric_common` module instance for `WASI-Crypto` plugin.
-
-   `WasmEdge_ModuleInstanceCreateWasiCryptoKx()` API can create and initialize the `wasi_ephemeral_crypto_kx` module instance for `WASI-Crypto` plugin.
-
-   `WasmEdge_ModuleInstanceCreateWasiCryptoSignatures()` API can create and initialize the `wasi_ephemeral_crypto_signatures` module instance for `WASI-Crypto` plugin.
-
-   `WasmEdge_ModuleInstanceCreateWasiCryptoSymmetric()` API can create and initialize the `wasi_ephemeral_crypto_symmetric` module instance for `WASI-Crypto` plugin.
-
-   `WasmEdge_ModuleInstanceCreateWasmEdgeProcess()` API can create and initialize the `wasmedge_process` module instance for `wasmedge_process` plugin.
-
    Developers can create these module instance contexts and register them into the `Store` or `VM` contexts rather than adjust the settings in the `Configure` contexts.
-
-   > Note: For the `WASI-NN` plugin, please check that the [dependencies and prerequisites](/develop/build-and-run/install.md#wasi-nn-plugin-with-openvino™-backend) are satisfied. Note: For the `WASI-Crypto` plugin, please check that the [dependencies and prerequisites](/develop/build-and-run/install.md#wasi-crypto-plugin) are satisfied. And the 5 modules are recommended to all be created and registered together.
 
    ```c
    WasmEdge_ModuleInstanceContext *WasiModCxt =
        WasmEdge_ModuleInstanceCreateWASI(/* ... ignored */);
-   WasmEdge_ModuleInstanceContext *ProcModCxt =
-       WasmEdge_ModuleInstanceCreateWasmEdgeProcess(/* ... ignored */);
    WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
    /* Register the WASI and WasmEdge_Process into the VM context. */
    WasmEdge_VMRegisterModuleFromImport(VMCxt, WasiModCxt);
-   WasmEdge_VMRegisterModuleFromImport(VMCxt, ProcModCxt);
    /* Get the WASI exit code. */
    uint32_t ExitCode = WasmEdge_ModuleInstanceWASIGetExitCode(WasiModCxt);
    /*
@@ -2447,7 +2423,6 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_VMDelete(VMCxt);
    /* The module instances should be deleted. */
    WasmEdge_ModuleInstanceDelete(WasiModCxt);
-   WasmEdge_ModuleInstanceDelete(ProcModCxt);
    ```
 
 6. Example
@@ -2688,6 +2663,47 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Data value: 6912
    ```
 
+8. Host Data in Module Instance with Finalizer
+
+   Besides setting host data into a host function, developers can set and move ownership of host data into a `Module` instance context with its finalizer. This may be useful when implementing the plug-ins.
+
+   ```c
+   /* Struct definition. */
+   typedef struct Point {
+     int X;
+     int Y;
+   } Point;
+
+   /* Host function body definition. */
+   WasmEdge_Result Print(void *Data,
+                         const WasmEdge_CallingFrameContext *CallFrameCxt,
+                         const WasmEdge_Value *In, WasmEdge_Value *Out) {
+     Point *P = (Point *)In;
+     printf("Point: (%d, %d)\n", P->X, P->Y);
+     return WasmEdge_Result_Success;
+   }
+
+   /* Finalizer definition. */
+   void PointFinalizer(void *Data) {
+     if (Data) {
+       free((Point *)Data);
+     }
+   }
+
+   /* Create a module instance with host data and its finalizer. */
+   WasmEdge_String ExportName = WasmEdge_StringCreateByCString("module");
+   Point *Data = (Point *)malloc(sizeof(Point));
+   Data->X = 5;
+   Data->Y = -5;
+   WasmEdge_ModuleInstanceContext *HostModCxt =
+       WasmEdge_ModuleInstanceCreateWithData(ExportName, Data, PointFinalizer);
+   /*
+   * When the `HostModCxt` being destroyed, the finalizer will be invoked and the
+   * `Data` will be its argument.
+   */
+   WasmEdge_StringDelete(ExportName);
+   ```
+
 ### Plug-ins
 
 The WasmEdge plug-ins are the shared libraries to provide the WasmEdge runtime to load and create host module instances. With the plug-ins, the WasmEdge runtime can be extended more easily.
@@ -2853,3 +2869,57 @@ enum WasmEdge_CompilerOutputFormat {
 ```
 
 Please refer to the [AOT compiler options configuration](#configurations) for details.
+
+## WasmEdge CLI Tools
+
+In this partition, we will introduce the C API for triggering the WasmEdge CLI tools.
+
+Besides executing the `wasmedge` and `wasmedgec` CLI tools, developers can trigger the WasmEdge CLI tools by WasmEdge C API. The API arguments are the same as the command line arguments of the CLI tools.
+
+### Runtime CLI
+
+The `WasmEdge_Driver_Tool()` API presents the same function as running the [`wasmedge run` command](/develop/build-and-run/cli).
+
+Noticed that this API presents the old `wasmedge` CLI tool, which is the same as the `wasmedge run` command. For the current unified `wasmedge` CLI, please refer to the [API below](#unified-cli).
+
+```c
+#include <wasmedge/wasmedge.h>
+#include <stdio.h>
+int main(int argc, const char *argv[]) {
+  /* Run the WasmEdge runtime tool. */
+  return WasmEdge_Driver_Tool(argc, argv);
+}
+```
+
+### Compiler CLI
+
+The `WasmEdge_Driver_Compiler()` API presents the same function as running the [`wasmedge compile` tool](/develop/build-and-run/aot).
+
+Noticed that this API presents the old `wasmedgec` CLI tool, which is the same as the `wasmedge compile` command. For the current unified `wasmedge` CLI, please refer to the [API below](#unified-cli).
+
+```c
+#include <wasmedge/wasmedge.h>
+#include <stdio.h>
+int main(int argc, const char *argv[]) {
+  /* Run the WasmEdge AOT compiler. */
+  return WasmEdge_Driver_Compiler(argc, argv);
+}
+```
+
+### Unified CLI
+
+The `WasmEdge_Driver_UniTool()` API presents the same function as running the [`wasmedge` tool](/develop/build-and-run/cli).
+
+```c
+#include <wasmedge/wasmedge.h>
+#include <stdio.h>
+int main(int argc, const char *argv[]) {
+  /* Run the WasmEdge unified tool. */
+  /* (Within both runtime and AOT compiler) */
+  return WasmEdge_Driver_UniTool(argc, argv);
+}
+```
+
+### CLI Helpers for Windows
+
+On Windows platforms, developers can use the `WasmEdge_Driver_ArgvCreate()` and `WasmEdge_Driver_ArgvDelete()` APIs to convert and handle the `UTF-8` command line arguments, or use the `WasmEdge_Driver_SetConsoleOutputCPtoUTF8()` API to set the console output code page to `UTF-8`.

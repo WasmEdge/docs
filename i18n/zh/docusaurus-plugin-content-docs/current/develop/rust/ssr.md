@@ -34,7 +34,10 @@ With the file open, put these two lines in the bottom:
 wasm-bindgen = { git = "https://github.com/KernelErr/wasm-bindgen.git", branch = "wasi-compat" }
 ```
 
-> Why do we need a forked `wasm-bindgen`? That is because `wasm-bindgen` is the required glue between Rust and HTML in the browser. On the server, however, we need to build the Rust code to the `wasm32-wasi` target, which is incompatible with `wasm-bindgen`. Our forked `wasm-bindgen` has conditional configs that removes browser-specific code in the generated `.wasm` file for the `wasm32-wasi` target.
+<!-- prettier-ignore -->
+:::note
+Why do we need a forked `wasm-bindgen`? That is because `wasm-bindgen` is the required glue between Rust and HTML in the browser. On the server, however, we need to build the Rust code to the `wasm32-wasi` target, which is incompatible with `wasm-bindgen`. Our forked `wasm-bindgen` has conditional configs that removes browser-specific code in the generated `.wasm` file for the `wasm32-wasi` target.
+:::
 
 Then replace the crate's `Cargo.toml` with following content.
 

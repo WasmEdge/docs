@@ -25,7 +25,7 @@ The easiest way to install WasmEdge is to run the following command. You should 
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | sudo bash -s -- -p /usr/local
 ```
 
-> If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory:
+If you do not have root or `sudo` rights, use the following line to install WasmEdge in your `$HOME/.wasmedge` directory:
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
