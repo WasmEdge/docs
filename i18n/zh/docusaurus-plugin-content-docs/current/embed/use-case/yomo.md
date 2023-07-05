@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# YoMo framework
+# YoMo Framework
 
 [YoMo](https://yomo.run/) is a programming framework enabling developers to build a distributed cloud system (Geo-Distributed Cloud System). YoMo's communication layer is made on top of the QUIC protocol, which brings high-speed data transmission. In addition, it has a built-in Streaming Serverless "streaming function", which significantly improves the development experience of distributed cloud systems. The distributed cloud system built by YoMo provides an ultra-high-speed communication mechanism between near-field computing power and terminals. It has a wide range of use cases in Metaverse, VR/AR, IoT, etc.
 
@@ -14,7 +14,7 @@ However, a challenge for YoMo is to incorporate and manage handler functions wri
 
 WebAssembly provides a lightweight and high-performance software container. It is ideally suited as a runtime for YoMo’s data processing handler functions.
 
-In this article, we will show you how to create a Rust function for Tensorflow-based image classification, compile it into WebAssembly, and then use YoMo to run it as a stream data handler. We use [WasmEdge](https://wasmedge.org/) as our WebAssembly runtime because it offers the highest performance and flexibility compared with other WebAssembly runtimes. It is the only WebAssembly VM that reliably supports Tensorflow. YoMo manages WasmEdge VM instances and the contained WebAssembly bytecode apps through [WasmEdge’s Golang API](https://pkg.go.dev/github.com/second-state/WasmEdge-go/wasmedge).
+In this article, we will show you how to create a Rust function for Tensorflow-based image classification, compile it into WebAssembly, and then use YoMo to run it as a stream data handler. We use [WasmEdge](https://wasmedge.org/) as our WebAssembly runtime because it offers the highest performance and flexibility compared with other WebAssembly runtimes. It is the only WebAssembly VM that reliably supports Tensorflow. YoMo manages WasmEdge VM instances and the contained WebAssembly bytecode apps through [WasmEdge’s Golang API](../go/intro.md).
 
 > Source code: <https://github.com/yomorun/yomo-wasmedge-tensorflow>
 
@@ -135,7 +135,7 @@ cp target/wasm32-wasi/release/rust_mobilenet_food_lib.wasm ../
 To release the best performance of WasmEdge, you should enable the AOT mode by compiling the `.wasm` file to the `.so`.
 
 ```bash
-wasmedgec rust_mobilenet_food_lib.wasm rust_mobilenet_food_lib.so
+wasmedge compile rust_mobilenet_food_lib.wasm rust_mobilenet_food_lib.so
 ```
 
 ## Integration with YoMo

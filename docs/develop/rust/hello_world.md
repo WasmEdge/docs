@@ -69,10 +69,10 @@ Of course, in most cases, you will not call functions using CLI arguments. Inste
 
 ## Improve the performance
 
-If we don't have extra notes for AoT, all the Wasm file will be executed in the intepreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedgec` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
+If we don't have extra notes for AoT, all the Wasm file will be executed in the intepreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
 
 ```bash
-$ wasmedgec hello.wasm hello_aot.wasm
+$ wasmedge compile hello.wasm hello_aot.wasm
 
 $ wasmedge hello_aot.wasm second state
 hello
@@ -83,7 +83,7 @@ state
 For the `--reactor` mode,
 
 ```bash
-$ wasmedgec add.wasm add_aot.wasm
+$ wasmedge compile add.wasm add_aot.wasm
 
 $ wasmedge --reactor add_aot.wasm add 2 2
 4
