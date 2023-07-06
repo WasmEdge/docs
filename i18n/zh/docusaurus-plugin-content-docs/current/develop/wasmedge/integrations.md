@@ -16,9 +16,7 @@ A major use case of WasmEdge is to start a VM instance from a host application. 
 - Embed WasmEdge functions into a `Node.js` application using the `NAPI`. Here is a [tutorial](https://www.secondstate.io/articles/getting-started-with-rust-function/).
 - Embed WasmEdge functions into any application by spawning a new process. See examples for [Vercel Serverless Functions](https://www.secondstate.io/articles/vercel-wasmedge-webassembly-rust/) and [AWS Lambda](https://www.cncf.io/blog/2021/08/25/webassembly-serverless-functions-in-aws-lambda/).
 
-However, the WebAssembly spec only supports very limited data types as input parameters and return values for the WebAssembly bytecode functions.
-In order to pass complex data types, such as a string of an array, as call arguments into WebAssembly compiled from Rust, you should use the `bindgen` solution provided by the [`wasmedge-bindgen`](https://crates.io/crates/wasmedge-bindgen).
-We currently support the `wasmedge-bindgen` in the [Rust](/develop/rust/bindgen) and in [Go](/embed/go/bindgen).
+However, the WebAssembly spec only supports very limited data types as input parameters and return values for the WebAssembly bytecode functions. In order to pass complex data types, such as a string of an array, as call arguments into WebAssembly compiled from Rust, you should use the `bindgen` solution provided by the [`wasmedge-bindgen`](https://crates.io/crates/wasmedge-bindgen). We currently support the `wasmedge-bindgen` in the [Rust](/develop/rust/bindgen) and in [Go](/embed/go/bindgen).
 
 ## Use WasmEdge As A Docker-Like Container
 

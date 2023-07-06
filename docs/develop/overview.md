@@ -36,4 +36,3 @@ If you find some issues or have any feedback, you could reach out to us via the 
 - [Create a GitHub issue for technical support](https://github.com/WasmEdge/WasmEdge/issues)
 - [Submit a GitHub discussion](https://github.com/WasmEdge/WasmEdge/discussions)
 - [Follow @realwasmedge on Twitter](https://twitter.com/realwasmedge)
-
