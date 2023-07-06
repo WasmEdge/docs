@@ -44,34 +44,34 @@ const FeatureList = [
     },
 ];
 
-function Feature({Svg, LinkUrl, title, description}) {
-    return (
-        <div className={clsx('col col--4')}>
-            <div className="text--center">
-                <Svg className={styles.featureSvg} role="img"/>
-            </div>
-            <div className={`${styles.hoverStyle} text--center padding-horiz--md`}>
-                <div style={{display: 'flex'}}>
-                    <Link to={LinkUrl}>
-                        <h3>{title}</h3>
-                    </Link>
-                </div>
-                <p>{description}</p>
-            </div>
+function Feature({ Svg, LinkUrl, title, description }) {
+  return (
+    <div className={clsx('col col--4')}>
+      <div className="text--center">
+        <Svg className={styles.featureSvg} role="img" />
+      </div>
+      <div className={`${styles.hoverStyle} text--center padding-horiz--md`}>
+        <div style={{display: 'flex' }}>
+          <Link to={LinkUrl}>
+            <h3>{title}</h3>
+          </Link>
         </div>
-    );
+        <p>{description}</p>
+      </div>
+    </div>
+  );
 }
 
 export default function HomepageFeatures() {
-    return (
-        <section className={styles.features}>
-            <div className="container">
-                <div className="row">
-                    {FeatureList.map((feature) => (
-                        <Feature key={feature.id} {...feature} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className={styles.features}>
+      <div className="container">
+        <div className="row">
+          {FeatureList.map((feature) => (
+            <Feature key={feature.id} {...feature} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
