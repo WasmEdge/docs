@@ -4,7 +4,10 @@ sidebar_position: 3
 
 # Develop WasmEdge Plug-in in C++ API
 
-> We recommend developers to [develop plug-ins in WasmEdge C API](develop_plugin_c.md).
+<!-- prettier-ignore -->
+:::note
+We recommend developers to [develop plug-ins in WasmEdge C API](develop_plugin_c.md).
+:::
 
 ## Prerequisites
 

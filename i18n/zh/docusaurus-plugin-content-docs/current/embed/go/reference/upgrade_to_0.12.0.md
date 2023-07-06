@@ -100,7 +100,10 @@ for _, name := range modulelist {
 vm.Release()
 ```
 
-> Note: The `wasmedge.WASI` configuration is still needed if developers want to use the WASI.
+<!-- prettier-ignore -->
+:::note
+The `wasmedge.WASI` configuration is still needed if developers want to use the WASI.
+:::
 
 ## Creating the module instance from a plug-in
 

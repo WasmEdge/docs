@@ -111,7 +111,10 @@ for (uint32_t I = 0; I < ModuleLen; I++) {
 WasmEdge_VMDelete(VMCxt);
 ```
 
-> Note: The `WasmEdge_HostRegistration_Wasi` configuration is still needed if developers want to use the WASI.
+<!-- prettier-ignore -->
+:::note
+The `WasmEdge_HostRegistration_Wasi` configuration is still needed if developers want to use the WASI.
+:::
 
 ## Creating the module instance from a plug-in
 

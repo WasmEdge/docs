@@ -20,7 +20,10 @@ cp -r /path/to/my_node_app .
 wasmedge --dir .:. wasmedge_quickjs.wasm my_node_app/index.js
 ```
 
-> If you want to run `wasmedge` from a directory outside of the repo, you will need to tell it where to find the `modules` directory using the `--dir` option. A typical command will look like this: `wasmedge --dir .:. --dir ./modules:/path/to/modules wasmedge_quickjs.wasm app.js`
+<!-- prettier-ignore -->
+:::note
+If you want to run `wasmedge` from a directory outside of the repo, you will need to tell it where to find the `modules` directory using the `--dir` option. A typical command will look like this: `wasmedge --dir .:. --dir ./modules:/path/to/modules wasmedge_quickjs.wasm app.js`
+:::
 
 The progress of Node.js support in WasmEdge QuickJS is **[tracked in this issue](https://github.com/WasmEdge/WasmEdge/issues/1535).** There are two approaches for supporting Node.js APIs in WasmEdge QuickJS.
 

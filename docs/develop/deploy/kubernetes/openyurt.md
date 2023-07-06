@@ -8,7 +8,10 @@ OpenYurt is the intelligent edge computing platform which aims to extend the Clo
 
 In this article, we will introduce how to run a WasmEdge simple demo app with Containerd over [OpenYurt](https://github.com/openyurtio/openyurt).
 
-> This demo is based on containerd + crun.
+<!-- prettier-ignore -->
+:::note
+This demo is based on containerd + crun.
+:::
 
 ## Set up an OpenYurt Cluster
 
