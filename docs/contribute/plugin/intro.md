@@ -24,12 +24,13 @@ To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin
 
 To make use of the loadable plugins, developers need to load them from specific paths into the WasmEdge runtime environment. The loading process involves the following steps:
 
-- Loadable plugins can be loaded from default paths by calling the `WasmEdge_PluginLoadWithDefaultPaths()` API. The default paths include:
-  
-  - The path specified in the environment variable `WASMEDGE_PLUGIN_PATH`.
-  - The `../plugin/` directory relative to the WasmEdge installation path.
-  - The `./wasmedge/` directory located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
-- If the plugins are located in a specific path or directory, developers can use the `WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plugin.so")` API to load the plugins from that particular location.
+-   Loadable plugins can be loaded from default paths by calling the `WasmEdge_PluginLoadWithDefaultPaths()` API. The default paths include:
+
+    -   The path specified in the environment variable `WASMEDGE_PLUGIN_PATH`.
+    -   The `../plugin/` directory relative to the WasmEdge installation path.
+    -   The `./wasmedge/` directory located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
+
+-   If the plugins are located in a specific path or directory, developers can use the `WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plugin.so")` API to load the plugins from that particular location.
 
 The WasmEdge runtime environment will search for the loadable plugins in the specified paths and load them if found.
 
