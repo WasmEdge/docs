@@ -8,7 +8,7 @@ KubeEdge is an open source system for extending native containerized application
 
 <!-- prettier-ignore -->
 :::note
-This demo is based on [crun's support](../../deploy/oci-runtime/crun)
+This demo is based on [crun's support](../../../develop/deploy/oci-runtime/crun)
 :::
 
 ## 1. Setup Cloud Side (KubeEdge Master Node)
