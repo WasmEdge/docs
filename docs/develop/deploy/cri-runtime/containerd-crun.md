@@ -83,7 +83,7 @@ The args are as follows.
 File content is This is in a file
 ```
 
-Next, you can try to run it in [Kubernetes](../../../embed/use-case/kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app))!
+Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app))!
 
 ## Run a HTTP server app
 
@@ -109,4 +109,4 @@ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
 echo: name=WasmEdge
 ```
 
-Next, you can try to run it in [Kubernetes](../../../embed/use-case/kubernetes/kubernetes-containerd-crun.md#a-webassembly-based-http-service)!
+Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-webassembly-based-http-service)!
