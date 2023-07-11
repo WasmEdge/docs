@@ -56,17 +56,17 @@ WasmEdge plugins are pre-build native modules that provide additional functional
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite
 ```
 
-To install multiple plugins, you can pass a list of plugins seperated by commas. For example, the following command installs both the HTTPS request and Tensorflow Lite plugins.
+To install multiple plugins, you can pass a list of plugins with the `--plugins` option. For example, the following command installs both the `wasi-nn TensorFlow-Lite backend` and the `wasmedge_tensorflow` plugins.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite,wasmedge_tensorflow
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite wasmedge_tensorflow
 ```
 
 The installer downloads the plugin files from the WasmEdge release on GitHub, unzips them, and then copies them over to the `~/.wasmedge/plugin/` folder (for user install) and to the `/usr/local/lib/wasmedge/` folder (for system install).
 
 <!-- prettier-ignore -->
 :::note
-AI plugins for WasmEdge, such as the Tensorflow Lite or PyTorch plugins, have additional dependencies on the Tensorflow or PyTorch runtime libraries. See the next section for commands to install plugin dependencies.
+AI plugins for WasmEdge, such as the OpenVINO or PyTorch plugins, have additional dependencies on the OpenVINO or PyTorch runtime libraries. See the next section for commands to install plugin dependencies.
 :::
 
 To see a list of supported plugins and their specific install commands, [see the next section](#install-wasmedge-plugins-and-dependencies).
@@ -91,7 +91,7 @@ dnf install wasmedge
 
 For more usages, please check out Fedora docs.
 
-To install plugins, you can download plugin binary modules from the WasmEdge release page, unzip them, and then copy them over to `/usr/local/lib\wasmedge\`.
+To install plugins, you can download plugin binary modules from the WasmEdge release page, unzip them, and then copy them over to `/usr/local/lib/wasmedge/`.
 
 ## What's installed
 
@@ -218,7 +218,7 @@ Then, go to [TensorFlow-lite in Rust chapter](../rust/ai_inference/tensorflow_li
 
 ### WASI-NN plugin with OpenVINO™ backend
 
-WASI-NN plugin for OpenVINO allows WasmEdge applications to perform OpenVINO model inference. To use OpenVINO, the WasmEdge version should be at least `0.10.1`. To install WasmEdge with OpenVINO plugin on Linux, run the following installer command.
+WASI-NN plugin for OpenVINO allows WasmEdge applications to perform OpenVINO model inference. To use it, the WasmEdge version should be at least `0.10.1`. To install WasmEdge with the WASI-NN OpenVINO backend plugin on Linux, run the following installer command.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-openvino
@@ -226,7 +226,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Run `source $HOME/.wasmedge/env` to make the installed binary available in the current session.
 
-Now, the WasmEdge OpenVINO plugin depends on the OpenVINO C library to perform AI/ML computations. You need to install the [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021) dependencies. The following instructions are for Ubuntu 20.04 and above.
+Now, the WASI-NN OpenVINO backend plugin depends on the OpenVINO C library to perform AI/ML computations. You need to install the [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021) dependencies. The following instructions are for Ubuntu 20.04 and above.
 
 ```bash
 export OPENVINO_VERSION="2021.4.582"
