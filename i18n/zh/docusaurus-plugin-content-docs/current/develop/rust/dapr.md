@@ -1,14 +1,14 @@
 ---
-sidebar_position: 9
+sidebar_position: 8
 ---
 
-# Use WasmEdge's Dapr SDK to Connect Dapr Sidecar
+# Dapr services
 
 Second State launched a new [WebAssembly-based SDK for the Dapr API](https://github.com/second-state/dapr-sdk-wasi), which provides an easy way for Rust-based microservices in WasmEdge to interact with Dapr APIs and sidecar services.
 
 The figure below shows a Dapr-enabled microservice running inside the WasmEdge sandbox.
 
-![](dapr_wasm_rust_api.png)
+![Dapr WASM rust API](dapr_wasm_rust_api.png)
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Before we started, make sure [you have Rust and WasmEdge installed](setup).
 You also need to install the following tools.
 
 - [Dapr CLI installed](https://docs.dapr.io/getting-started/install-dapr-cli/)
-- the [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) or [MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/) or [TiDB](https://docs.pingcap.com/tidb/dev/quick-start-with-tidb) databases installed
+- An [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) or [MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/) or [TiDB](https://docs.pingcap.com/tidb/dev/quick-start-with-tidb) database installed
 
 ## The template project explanation
 
@@ -25,7 +25,7 @@ The template application showcases how [Dapr](https://dapr.io/) and [WasmEdge](h
 
 This application consists of three microservices and a standalone web page that enables users to interact with the microservices using a HTML+JavaScript UI. It is a very typical JAMstack setup. Each microservice is attached to a Dapr sidecar, which provides a suite of useful services commonly required by cloud-native microservices.
 
-![](dapr-wasmedge.png)
+![Dapr and WasmEdge](dapr-wasmedge.png)
 
 The WasmEdge's Dapr SDK is used to access Dapr sidecars from the microservice apps. Specifically, the [grayscale](https://github.com/second-state/dapr-wasm/tree/main/image-api-grayscale) microservice takes an image from an HTTP POST, turns it into grayscale, and returns the result image data in the HTTP response.
 
@@ -45,7 +45,7 @@ Ok, enough concepts for the template project. Let's go ahead.
 
 ## Build and deploy these microservices in Dapr
 
-First, start the database and place the connection string in the [config/secrets.json](chttps://github.com/second-state/dapr-wasm/blob/main/config/secrets.json) file under `DB_URL:MYSQL`.
+First, start the database and place the connection string in the [config/secrets.json](https://github.com/second-state/dapr-wasm/blob/main/config/secrets.json) file under `DB_URL:MYSQL`.
 
 Next, start Dapr with the following commands.
 
@@ -72,7 +72,7 @@ dapr run --app-id image-api-grayscale \
         --dapr-http-port 3503 \
         --components-path ../config \
         --log-level debug \
-	wasmedge image-api-grayscale.wasm
+ wasmedge image-api-grayscale.wasm
 ```
 
 ### The image classification microservice

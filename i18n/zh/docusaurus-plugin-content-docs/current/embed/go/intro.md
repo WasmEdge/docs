@@ -23,14 +23,6 @@ Meantime, please make sure you have installed [WasmEdge](/develop/build-and-run/
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
 ```
 
-If you need the `TensorFlow` or `Image` extension for `WasmEdge-go`, please install the `WasmEdge` with extensions:
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }} -e tensorflow,image
-```
-
-Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` platforms.
-
 Install the `WasmEdge-go` package and build in your Go project directory:
 
 ```bash
@@ -39,6 +31,11 @@ go build
 ```
 
 ### Build WasmEdge-go Extensions
+
+<!-- prettier-ignore -->
+:::note
+The WasmEdge extensions have been deprecated after the 0.12.1 version. We'll update to use the WasmEdge plug-in in the future.
+:::
 
 By default, the `WasmEdge-go` only turns on the basic runtime.
 
@@ -98,7 +95,8 @@ To embed WasmEdge into your go application and run the Wasm function, we still n
 
 ## API References
 
-- [0.12.0](/embed/go/reference/0.12.0)
-- [v0.11.2](/embed/go/reference/0.11.2)
-- [v0.10.1](/embed/go/reference/0.10.1)
-- [v0.9.1](/embed/go/reference/0.9.1)
+- [v0.13.0](/embed/go/reference/latest)
+- [v0.12.1](/embed/go/reference/0.12.x)
+- [v0.11.2](/embed/go/reference/0.11.x)
+- [v0.10.1](/embed/go/reference/0.10.x)
+- [v0.9.1](/embed/go/reference/0.9.x)

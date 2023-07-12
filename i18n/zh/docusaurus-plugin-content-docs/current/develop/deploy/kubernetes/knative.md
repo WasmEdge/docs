@@ -4,8 +4,6 @@ sidebar_position: 8
 
 # Knative
 
-# Knative
-
 Knative is a platform-agnostic solution for running serverless deployments.
 
 ## Quick start
@@ -16,7 +14,7 @@ Here we setup crun as a runtimeClass in kubernetes cluster, **rather than replac
 
 ## Compile crun
 
-Please refer to the document [crun](../../deploy/oci-runtime/crun) to build and compile crun with WasmEdge support.
+Please refer to the document [crun](../../../develop/deploy/oci-runtime/crun) to build and compile crun with WasmEdge support.
 
 ```bash
 # Install dependencies

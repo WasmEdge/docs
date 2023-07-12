@@ -4,6 +4,11 @@ sidebar_position: 5
 
 # AI Inference with TensorFlow
 
+<!-- prettier-ignore -->
+:::note
+The WasmEdge extensions have been deprecated after the v0.12.1 version. We'll update to use the WasmEdge plug-in in the future.
+:::
+
 In this section, we will show you how to create a Tensorflow inference function in Rust for image classification, and then embed it into a Go application. The project source code is [available here](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_TfliteFood).
 
 ## The Wasm app in Rust
@@ -43,10 +48,10 @@ cp target/wasm32-wasi/release/rust_tflite_food_lib.wasm ../
 cd ../
 ```
 
-You can use our AOT compiler `wasmedgec` to instrument the WebAssembly file to make it run much faster. [Learn more](/develop/build-and-run/aot).
+You can use our AOT compiler `wasmedge compile` to instrument the WebAssembly file to make it run much faster. [Learn more](/develop/build-and-run/aot).
 
 ```bash
-wasmedgec rust_tflite_food_lib.wasm rust_tflite_food_lib.wasm
+wasmedge compile rust_tflite_food_lib.wasm rust_tflite_food_lib.wasm
 ```
 
 ## Go host app

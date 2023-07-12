@@ -23,7 +23,7 @@ Besides WASI and the standard WebAssembly proposal, WasmEdge has some cloud-nati
 - Key value store
 - Gas meter for resource limitation
 - WasmEdge-bindgen for complex para passing
-- AI inference with TensorFlow Lite, Pytorch, and OpenVINO
+- AI inference with TensorFlow, TensorFlow Lite, Pytorch, and OpenVINO
 
 ## JavaScript Support
 
@@ -37,7 +37,7 @@ Through the [WasmEdge-Quickjs](https://github.com/second-state/wasmedge-quickjs)
 - Fetch API
 - React SSR
 
-## Cloud native orchestration
+## Cloud Native orchestration
 
 WasmEdge could be seamlessly integrated with the existing cloud-native infra.
 
@@ -55,15 +55,15 @@ WasmEdge supports a wide range of operating systems and hardware platforms. It a
 
 WasmEdge now supports:
 
-- Linux (x86_64 and aarch64)
-- MacOS (x86_64 and M1)
-- Windows
-- Android
-- seL4
-- OpenWrt
-- OpenHarmony
-- Raspberry Pi
-- RISC-V (WIP)
+- [Linux (x86_64 and aarch64)](../../contribute/source/os/linux)
+- [MacOS (x86_64 and M1)](../../contribute/source/os/macos)
+- [Windows 10](../../contribute/source/os/windows)
+- [Android](../../category/build-and-run-wasmedge-on-android)
+- [seL4 RTOS](../../contribute/source/os/sel4)
+- [OpenWrt](../../contribute/source/os/openwrt)
+- [OpenHarmony](../../contribute/source/os/openharmony)
+- [Raspberry Pi](../../contribute/source/os/raspberrypi)
+- [RISC-V (WIP)](../../contribute/source/os/riscv64)
 
 ## Easy extensible
 

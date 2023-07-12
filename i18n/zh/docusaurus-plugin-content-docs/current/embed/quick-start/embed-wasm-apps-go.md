@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2 Embed the Wasm app into your Go Host app
+# Embed the Wasm app into your Go Host app
 
 In the previous chapter, we learned how to create a Wasm app using Rust and `wasmedge-bindgen` tool. In this chapter, I will walk you through how to embed the compiled Wasm app into your Go Host app.
 

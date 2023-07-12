@@ -8,7 +8,10 @@ OpenYurt is the intelligent edge computing platform which aims to extend the Clo
 
 In this article, we will introduce how to run a WasmEdge simple demo app with Containerd over [OpenYurt](https://github.com/openyurtio/openyurt).
 
-> This demo is based on containerd + crun.
+<!-- prettier-ignore -->
+:::note
+This demo is based on containerd + crun.
+:::
 
 ## Set up an OpenYurt Cluster
 
@@ -108,7 +111,7 @@ systemctl start containerd
 
 #### Install WasmEdge
 
-Use the [simple install script](../../build-and-run/install) to install WasmEdge on your edge node.
+Use the [simple install script](../../../develop/build-and-run/install) to install WasmEdge on your edge node.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash

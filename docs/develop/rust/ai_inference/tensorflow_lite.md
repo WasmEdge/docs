@@ -116,7 +116,7 @@ Now we can start our inference with WASI-NN:
 let graph = unsafe {
   wasi_nn::load(
     &[&weights],
-    4, //wasi_nn::GRAPH_ENCODING_TENSORFLOWLITE
+    wasi_nn::GRAPH_ENCODING_PYTORCH,
     wasi_nn::EXECUTION_TARGET_CPU,
   )
   .unwrap()
@@ -150,9 +150,7 @@ unsafe {
 }
 ```
 
-Where the `wasi_nn::GRAPH_ENCODING_TENSORFLOWLITE` means using the PyTorch backend (now use the value `4` instead), and `wasi_nn::EXECUTION_TARGET_CPU` means running the computation on CPU.
-
-> Note: Here we use the `wasi-nn 0.1.0` in current. After the `TENSORFLOWLITE` added into the graph encoding, we'll update this example to use the newer version.
+Where the `wasi_nn::GRAPH_ENCODING_TENSORFLOWLITE` means using the TensorFlow-Lite backend and `wasi_nn::EXECUTION_TARGET_CPU` means running the computation on CPU.
 
 Finally, we sort the output and then print the top-5 classification result:
 

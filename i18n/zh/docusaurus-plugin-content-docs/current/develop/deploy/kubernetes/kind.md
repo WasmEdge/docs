@@ -6,7 +6,10 @@ sidebar_position: 7
 
 KinD is a Kubernetes distribution that runs inside Docker and is well suited for local development or integration testing. It runs containerd as CRI and crun as OCI Runtime.
 
-> This demo is based on containerd + crun.
+<!-- prettier-ignore -->
+:::note
+This demo is based on containerd + crun.
+:::
 
 ## Quick start
 

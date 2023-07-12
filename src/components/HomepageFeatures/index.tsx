@@ -43,7 +43,8 @@ const FeatureList = [
     ),
   },
 ];
-function Feature({ Svg, LinkSvg, LinkUrl, title, description }) {
+
+function Feature({ Svg, LinkUrl, title, description }) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -51,9 +52,8 @@ function Feature({ Svg, LinkSvg, LinkUrl, title, description }) {
       </div>
       <div className={`${styles.hoverStyle} text--center padding-horiz--md`}>
         <div style={{ display: 'flex' }}>
-          <h3>{title}</h3>
           <Link to={LinkUrl}>
-            <LinkSvg className={styles.linkSvg} role="img" />
+            <h3>{title}</h3>
           </Link>
         </div>
         <p>{description}</p>
@@ -63,13 +63,12 @@ function Feature({ Svg, LinkSvg, LinkUrl, title, description }) {
 }
 
 export default function HomepageFeatures() {
-  const LinkSvg = require('@site/static/img/Click.svg').default;
   return (
     <section className={styles.features}>
       <div className="container">
         <div className="row">
           {FeatureList.map((feature) => (
-            <Feature key={feature.id} {...feature} LinkSvg={LinkSvg} />
+            <Feature key={feature.id} {...feature} />
           ))}
         </div>
       </div>

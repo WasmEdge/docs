@@ -6,7 +6,10 @@ sidebar_position: 5
 
 Please follow this tutorial to build and test WasmEdge in OpenWrt(x86_64) from source code.
 
-> Currently, we only support the runtime for the interpreter mode.
+<!-- prettier-ignore -->
+:::note
+Currently, we only support the runtime for the interpreter mode.
+:::
 
 ## Prepare the Environment
 

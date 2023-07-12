@@ -6,13 +6,19 @@ sidebar_position: 5
 
 SuperEdge is an open-source container management system for edge computing. It extends native Kubernetes to the edge in a non-intrusive way.
 
-> This demo is based on containerd + crun.
+<!-- prettier-ignore -->
+:::note
+This demo is based on containerd + crun.
+:::
 
 ## Install Superedge
 
 - Download the installation package
 
-> Choose installation package according to your installation node CPU architecture [amd64, arm64]
+<!-- prettier-ignore -->
+:::note
+Choose installation package according to your installation node CPU architecture (amd64 or arm64).
+:::
 
 ```bash
 arch=amd64 version=v0.6.0 && rm -rf edgeadm-linux-* && wget https://superedge-1253687700.cos.ap-guangzhou.myqcloud.com/$version/$arch/edgeadm-linux-containerd-$arch-$version.tgz && tar -xzvf edgeadm-linux-* && cd edgeadm-linux-$arch-$version && ./edgeadm

@@ -2,11 +2,11 @@
 sidebar_position: 7
 ---
 
-# Installer System explanation
+# Installer Guide
 
 ## Overview
 
-WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasmedgec`), the Libraries (`libwasmedge`), the Extensions(`wasmedge-tensorflow`), and the Plugins(`wasi-nn`, `wasi-crytpo`).
+WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasmedge compile`), the Libraries (`libwasmedge`), the Extensions(`wasmedge-tensorflow`), and the Plugins(`wasi-nn`, `wasi-crytpo`).
 
 ## Dependencies
 
@@ -63,7 +63,7 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 - Short Option: `-v VERSION`
 - Full Option: `--version VERSION`
 - Description: Install the given VERSION of WasmEdge
-- Available Value: VERSION `0.11.2` or other valid release versions.
+- Available Value: VERSION `{{ wasmedge_version }}` or other valid release versions.
 - Note - In the case of supplied an invalid or nonexistent version, the installer exists with an error.
 
 ### Installation path
@@ -123,7 +123,7 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 
 - Note - Currently `--plugins` is an experimental option.
 
-- Full Option: `--plugins wasi_crypto:0.11.0`
+- Full Option: `--plugins wasi_crypto:0.12.0`
 
 - Note - The format for this argument is `<plugin_name>:<version_number>`. `<version_number>` is not compulsory. For example `--plugins wasi_crypto` is a valid option.
 - Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](https://wasmedge.org/docs/contribute/plugin/intro) in the `Rust Crate` column. The logic is that the release name should be the same.

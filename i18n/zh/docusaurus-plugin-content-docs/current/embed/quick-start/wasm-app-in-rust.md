@@ -2,11 +2,14 @@
 sidebar_position: 2
 ---
 
-# 2 Create a Wasm app using Rust and wasmedge-bindgen
+# Create a Wasm app using Rust and wasmedge-bindgen
 
 In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK. In this chapter, we will learn how to create a Wasm app using Rust and `wasmedge-bindgen` tool.
 
-> The [wasmedge-bindgen](https://github.com/second-state/wasmedge-bindgen) project provides Rust macros for functions to accept and return complex data types, and then for Go functions to call such Rust functions running in WasmEdge.
+<!-- prettier-ignore -->
+:::note
+The [wasmedge-bindgen](https://github.com/second-state/wasmedge-bindgen) project provides Rust macros for functions to accept and return complex data types, and then for Go functions to call such Rust functions running in WasmEdge.
+:::
 
 ## Prerequisites
 
@@ -14,7 +17,7 @@ We need to install [Rust and add `wasm32-wasi` target for Rust](/develop/rust/se
 
 We also need to install `wasmedge-bindgen`.
 
-```
+```bash
 # Install the WasmEdge-bindgen tool, which help us handle complex data passing
 $ go get github.com/second-state/wasmedge-bindgen@v0.4.1
 ```

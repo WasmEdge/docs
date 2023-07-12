@@ -13,6 +13,11 @@ The `wasmedge` binary is a command line interface (CLI) program that runs WebAss
 
 By default, the `wasmedge` will execute WebAssembly programs in interpreter mode, and [execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode](aot.md). If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first.
 
+<!-- prettier-ignore -->
+:::note
+The original `wasmedgec` tool is changed to `wasmedge compile`. The [`wasmedge compile` CLI tool](aot.md) is the ahead-of-time compiler to compile the WebAssembly file into native code.
+:::
+
 ```bash
 $ wasmedge -v
 wasmedge version {{ wasmedge_version }}
@@ -37,7 +42,7 @@ If users install WasmEdge from the install script with the option `-e tf,image`,
   - The `wasmedge` tool with TensorFlow-Lite, and `wasmedge-image` extensions.
   - Only on `x86_64` and `aarch64` Linux platforms, Android, and `x86_64` MacOS.
 
-The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedgec`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
+The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedge compile`, then WasmEdge will execute it in AOT mode, otherwise WasmEdge will execute it in interpreter mode.
 
 ## Options
 
@@ -257,10 +262,10 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 - Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
 - Image `wasmedge/slim:{version}` includes the following command line utilities:
   - `wasmedge`
-  - `wasmedgec`
+  - `wasmedge compile`
 - Image `wasmedge/slim-tf:{version}` includes the following command line utilities:
   - `wasmedge`
-  - `wasmedgec`
+  - `wasmedge compile`
   - `wasmedge-tensorflow-lite`
   - `wasmedge-tensorflow`
   - `show-tflite-tensor`
@@ -268,12 +273,12 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 
 ### Dockerslim Examples
 
-Afer pulling the docker iamge successfully, you could use `wasmedgec` and `wasmedge` to aot compile the wasm file and run the wasm app.
+Afer pulling the docker iamge successfully, you could use `wasmedge compile` and `wasmedge` to aot compile the wasm file and run the wasm app.
 
 ```bash
 $ docker pull wasmedge/slim:{{ wasmedge_version }}
 
-$ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedgec hello.wasm hello.aot.wasm
+$ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedge compile hello.wasm hello.aot.wasm
 [2022-07-07 08:15:49.154] [info] compile start
 [2022-07-07 08:15:49.163] [info] verify start
 [2022-07-07 08:15:49.169] [info] optimize start
@@ -289,14 +294,19 @@ world
 
 Use `wasmedge-tensorflow-lite` ([link](https://github.com/WasmEdge/WasmEdge/tree/master/examples/js)):
 
+<!-- prettier-ignore -->
+:::note
+The `WasmEdge-tensorflow-tools` has been deprecated after the 0.12.1 version. We'll update to use the WasmEdge plug-in in the future.
+:::
+
 ```bash
-$ docker pull wasmedge/slim-tf:{{ wasmedge_version }}
+$ docker pull wasmedge/slim-tf:0.12.1
 $ wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/tensorflow_lite_demo/aiy_food_V1_labelmap.txt
 $ wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/tensorflow_lite_demo/food.jpg
 $ wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/tensorflow_lite_demo/lite-model_aiy_vision_classifier_food_V1_1.tflite
 $ wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/tensorflow_lite_demo/main.js
 
-$ docker run -it --rm -v $PWD:/app wasmedge/slim-tf:{{ wasmedge_version }} wasmedge-tensorflow-lite --dir .:. qjs_tf.wasm main.js
+$ docker run -it --rm -v $PWD:/app wasmedge/slim-tf:0.12.1 wasmedge-tensorflow-lite --dir .:. qjs_tf.wasm main.js
 label:
 Hot dog
 confidence:

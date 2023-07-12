@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 # Upgrade to WasmEdge-Go v0.12.0
@@ -100,7 +100,10 @@ for _, name := range modulelist {
 vm.Release()
 ```
 
-> Note: The `wasmedge.WASI` configuration is still needed if developers want to use the WASI.
+<!-- prettier-ignore -->
+:::note
+The `wasmedge.WASI` configuration is still needed if developers want to use the WASI.
+:::
 
 ## Creating the module instance from a plug-in
 

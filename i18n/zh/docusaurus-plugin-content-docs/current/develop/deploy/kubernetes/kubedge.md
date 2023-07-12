@@ -6,7 +6,10 @@ sidebar_position: 6
 
 KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.
 
-> This demo is based on [crun's support](../../deploy/oci-runtime/crun)
+<!-- prettier-ignore -->
+:::note
+This demo is based on [crun's support](../../../develop/deploy/oci-runtime/crun)
+:::
 
 ## 1. Setup Cloud Side (KubeEdge Master Node)
 
