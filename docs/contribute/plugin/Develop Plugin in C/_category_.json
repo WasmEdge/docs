@@ -1,8 +1,0 @@
-{
-    "label": "WasmEdge Plugin in C",
-    "position": 2,
-    "link": {
-        "type": "generated-index",
-        "description": "We will learn how to develop the WasmEdge Plugin System in C Language."
-    }
-}

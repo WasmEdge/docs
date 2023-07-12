@@ -1,8 +1,8 @@
 {
-    "label": "WasmEdge Plugin System",
-    "position": 3,
-    "link": {
-        "type": "generated-index",
-        "description": "we will learn how to develop the WasmEdge Plugin System."
-    }
-}    
+  "label": "WasmEdge Plugin System",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "we will learn how to develop the WasmEdge Plugin System."
+  }
+}
