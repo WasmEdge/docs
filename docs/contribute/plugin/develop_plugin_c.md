@@ -30,19 +30,6 @@ To start developing WasmEdge plugins, it is essential to set up the development 
 
   To see a list of supported plugins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plugins and dependencies section.
 
-- **Install a compatible compiler**: The following compilers can be used to compile C code into WebAssembly bytecode:
-
-  - LLVM: `sudo apt-get install llvm`
-  - GCC: `sudo apt-get install gcc`
-
-- **Install necessary tools and dependencies**: You can use any text editor or IDE of your choice to write code. Here are some popular options:
-
-  - [Visual Studio Code](https://code.visualstudio.com/)
-  - [Atom](https://atom.io/)
-  - [Sublime Text](https://www.sublimetext.com/)
-
-  For debugging, you can use GDB, LLDB, or other debuggers that support WebAssembly. To install GDB, run `sudo apt-get install gdb`.
-
 - **Enable specific backends or additional components (if applicable):** Some plugins may require enabling specific backends or additional components to extend their functionality. The following links provide instructions for enabling specific backends in WasmEdge:
 
   - [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021)
@@ -80,33 +67,33 @@ To create a plug-in with host functions and modules, follow these steps:
 For the more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
 :::
 
-Here's an example of two host functions, `HostFuncAdd` and `HostFuncSub`, that add and subtract two `int32_t` numbers respectively:
+  Here's an example of two host functions, `HostFuncAdd` and `HostFuncSub`, that add and subtract two `int32_t` numbers respectively:
 
-```c
-#include <wasmedge/wasmedge.h>
+  ```c
+  #include <wasmedge/wasmedge.h>
 
-/* The host function definitions. */
+  /* The host function definitions. */
 
-/* The host function to add 2 int32_t numbers. */
-WasmEdge_Result HostFuncAdd(void *Data,
-                            const WasmEdge_CallingFrameContext *CallFrameCxt,
-                            const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
-  int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
-  Out[0] = WasmEdge_ValueGenI32(Val1 + Val2);
-  return WasmEdge_Result_Success;
-}
+  /* The host function to add 2 int32_t numbers. */
+  WasmEdge_Result HostFuncAdd(void *Data,
+                              const WasmEdge_CallingFrameContext *CallFrameCxt,
+                              const WasmEdge_Value *In, WasmEdge_Value *Out) {
+    int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
+    int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
+    Out[0] = WasmEdge_ValueGenI32(Val1 + Val2);
+    return WasmEdge_Result_Success;
+  }
 
-/* The host function to sub 2 int32_t numbers. */
-WasmEdge_Result HostFuncSub(void *Data,
-                            const WasmEdge_CallingFrameContext *CallFrameCxt,
-                            const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
-  int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
-  Out[0] = WasmEdge_ValueGenI32(Val1 - Val2);
-  return WasmEdge_Result_Success;
-}
-```
+  /* The host function to sub 2 int32_t numbers. */
+  WasmEdge_Result HostFuncSub(void *Data,
+                              const WasmEdge_CallingFrameContext *CallFrameCxt,
+                              const WasmEdge_Value *In, WasmEdge_Value *Out) {
+    int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
+    int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
+    Out[0] = WasmEdge_ValueGenI32(Val1 - Val2);
+    return WasmEdge_Result_Success;
+  }
+  ```
 
 - **Implement the module creation functions**: In this step, you need to implement the module creation function that creates an instance of the module. This function will be called when the plugin is loaded.
 

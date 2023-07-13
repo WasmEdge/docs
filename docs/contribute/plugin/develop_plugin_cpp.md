@@ -36,22 +36,10 @@ This flowchart illustrates the process of developing a WasmEdge plugin, showcasi
 To start developing WasmEdge plugins, it is essential to set up the development environment properly. This section provides step-by-step instructions for WasmEdge plugin development -
 
 - **Build WasmEdge from source**: For developing WasmEdge plugin in C++ language, you will need to build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions.
+
 - **Install WasmEdge with plugins (optional)**: Installing WasmEdge with existing plugins can provide you with additional functionality and serve as a reference for your own plugin development. If you want to utilize or test the compatibility of your new plugin with existing plugins, you can install them using the provided installer script. The installed plugins will be available for your development environment.
 
   To see a list of supported plugins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plugins and dependencies section.
-
-- **Install a compatible compiler**: The following compilers can be used to compile C++ code into WebAssembly bytecode:
-
-  - LLVM: `sudo apt-get install llvm`
-  - GCC: `sudo apt-get install gcc`
-
-- **Install necessary tools and dependencies**: You can use any text editor or IDE of your choice to write code. Here are some popular options:
-
-  - [Visual Studio Code](https://code.visualstudio.com/)
-  - [Atom](https://atom.io/)
-  - [Sublime Text](https://www.sublimetext.com/)
-
-  For debugging, you can use GDB, LLDB, or other debuggers that support WebAssembly. To install GDB, run `sudo apt-get install gdb`.
 
 - **Enable specific backends or additional components (if applicable):** Some plugins may require enabling specific backends or additional components to extend their functionality. The following links provide instructions for enabling specific backends in WasmEdge:
 
@@ -73,24 +61,7 @@ To create a WasmEdge plugin project, follow these steps:
   mkdir src include build
   ```
 
-- **Add configuration files**: Add configuration files specifying the plugin name, version, and dependencies. The specific files and their content depend on the chosen programming language and build system.
-
-  Create a `CMakeLists.txt` file in the root directory with the necessary configuration to specify the plugin name, version, and dependencies. The `find_package(WasmEdge REQUIRED)` line locates the WasmEdge runtime library and makes it available for the project.
-
-  ```cmake
-  cmake_minimum_required(VERSION 3.14)
-  project(testplugin VERSION 0.1.0)
-
-  find_package(WasmEdge REQUIRED)
-
-  add_library(testplugin SHARED src/testplugin.cpp)
-  target_compile_features(testplugin PUBLIC cxx_std_11)
-  target_include_directories(testplugin PUBLIC include)
-  target_link_libraries(testplugin PRIVATE ${WASMEDGE_LIBRARIES})
-  set_target_properties(testplugin PROPERTIES PREFIX "")
-  ```
-
-- **Add necessary libraries or dependencies**: Include any required libraries or dependencies for your plugin. Modify the configuration files created in the previous step to include the necessary dependencies. For example, in the `CMakeLists.txt` file, use the `find_package` command to locate the WasmEdge runtime library and link it to your plugin.
+- **Add necessary libraries or dependencies**: Include any required libraries or dependencies for your plugin. Modify the configuration files created in the previous step to include the necessary dependencies.
 
 ## Write plugin code
 
@@ -98,141 +69,141 @@ To create a plug-in with host functions and modules, follow these steps:
 
 - **Host Functions and Modules**: The goal of the plug-in is to provide the host functions which can be imported when instantiating WASM. Therefore, developers should implement their plug-in host functions in WasmEdge internal C++ first. Assume that the host function implementations are in the `testplugin.h`.
 
-```cpp
-#pragma once
+  ```cpp
+  #pragma once
 
-#include "plugin/plugin.h"
+  #include "plugin/plugin.h"
 
-#include <cstdint>
-#include <string>
+  #include <cstdint>
+  #include <string>
 
-namespace WasmEdge {
-namespace Host {
+  namespace WasmEdge {
+  namespace Host {
 
-// The environment class. For the register object.
-class WasmEdgePluginTestEnv {
-public:
-  WasmEdgePluginTestEnv() noexcept = default;
+  // The environment class. For the register object.
+  class WasmEdgePluginTestEnv {
+  public:
+    WasmEdgePluginTestEnv() noexcept = default;
 
-  static Plugin::PluginRegister Register;
-};
+    static Plugin::PluginRegister Register;
+  };
 
-// The host function base template class. For inheriting the environment class
-// reference.
-template <typename T>
-class WasmEdgePluginTestFunc : public Runtime::HostFunction<T> {
-public:
-  WasmEdgePluginTestFunc(WasmEdgePluginTestEnv &HostEnv)
-      : Runtime::HostFunction<T>(0), Env(HostEnv) {}
+  // The host function base template class. For inheriting the environment class
+  // reference.
+  template <typename T>
+  class WasmEdgePluginTestFunc : public Runtime::HostFunction<T> {
+  public:
+    WasmEdgePluginTestFunc(WasmEdgePluginTestEnv &HostEnv)
+        : Runtime::HostFunction<T>(0), Env(HostEnv) {}
 
-protected:
-  WasmEdgePluginTestEnv &Env;
-};
+  protected:
+    WasmEdgePluginTestEnv &Env;
+  };
 
-// The host function to add 2 int32_t numbers.
-class WasmEdgePluginTestFuncAdd
-    : public WasmEdgePluginTestFunc<WasmEdgePluginTestFuncAdd> {
-public:
-  WasmEdgePluginTestFuncAdd(WasmEdgePluginTestEnv &HostEnv)
-      : WasmEdgePluginTestFunc(HostEnv) {}
-  Expect<uint32_t> body(const Runtime::CallingFrame &, uint32_t A, uint32_t B) {
-    return A + B;
-  }
-};
+  // The host function to add 2 int32_t numbers.
+  class WasmEdgePluginTestFuncAdd
+      : public WasmEdgePluginTestFunc<WasmEdgePluginTestFuncAdd> {
+  public:
+    WasmEdgePluginTestFuncAdd(WasmEdgePluginTestEnv &HostEnv)
+        : WasmEdgePluginTestFunc(HostEnv) {}
+    Expect<uint32_t> body(const Runtime::CallingFrame &, uint32_t A, uint32_t B) {
+      return A + B;
+    }
+  };
 
-// The host function to sub 2 int32_t numbers.
-class WasmEdgePluginTestFuncSub
-    : public WasmEdgePluginTestFunc<WasmEdgePluginTestFuncSub> {
-public:
-  WasmEdgePluginTestFuncSub(WasmEdgePluginTestEnv &HostEnv)
-      : WasmEdgePluginTestFunc(HostEnv) {}
-  Expect<uint32_t> body(const Runtime::CallingFrame &, uint32_t A, uint32_t B) {
-    return A - B;
-  }
-};
+  // The host function to sub 2 int32_t numbers.
+  class WasmEdgePluginTestFuncSub
+      : public WasmEdgePluginTestFunc<WasmEdgePluginTestFuncSub> {
+  public:
+    WasmEdgePluginTestFuncSub(WasmEdgePluginTestEnv &HostEnv)
+        : WasmEdgePluginTestFunc(HostEnv) {}
+    Expect<uint32_t> body(const Runtime::CallingFrame &, uint32_t A, uint32_t B) {
+      return A - B;
+    }
+  };
 
-// The host module class. There can be several modules in a plug-in.
-class WasmEdgePluginTestModule : public Runtime::Instance::ModuleInstance {
-public:
-  WasmEdgePluginTestModule()
-      : Runtime::Instance::ModuleInstance("wasmedge_plugintest_cpp_module") {
-    addHostFunc("add", std::make_unique<WasmEdgePluginTestFuncAdd>(Env));
-    addHostFunc("sub", std::make_unique<WasmEdgePluginTestFuncSub>(Env));
-  }
+  // The host module class. There can be several modules in a plug-in.
+  class WasmEdgePluginTestModule : public Runtime::Instance::ModuleInstance {
+  public:
+    WasmEdgePluginTestModule()
+        : Runtime::Instance::ModuleInstance("wasmedge_plugintest_cpp_module") {
+      addHostFunc("add", std::make_unique<WasmEdgePluginTestFuncAdd>(Env));
+      addHostFunc("sub", std::make_unique<WasmEdgePluginTestFuncSub>(Env));
+    }
 
-  WasmEdgePluginTestEnv &getEnv() { return Env; }
+    WasmEdgePluginTestEnv &getEnv() { return Env; }
 
-private:
-  WasmEdgePluginTestEnv Env;
-};
+  private:
+    WasmEdgePluginTestEnv Env;
+  };
 
-} // namespace Host
-} // namespace WasmEdge
-```
+  } // namespace Host
+  } // namespace WasmEdge
+  ```
 
 - **Creation Functions for Modules**: Then developers should implement the module creation functions. Assume that the following implementations are all in the `testplugin.cpp`.
 
-```cpp
-#include "testplugin.h"
+  ```cpp
+  #include "testplugin.h"
 
-namespace WasmEdge {
-namespace Host {
-namespace {
+  namespace WasmEdge {
+  namespace Host {
+  namespace {
 
-Runtime::Instance::ModuleInstance *
-create(const Plugin::PluginModule::ModuleDescriptor *) noexcept {
-  // There can be several modules in a plug-in. For that, developers should
-  // implement several `create` functions for each module.
-  return new WasmEdgePluginTestModule;
-}
+  Runtime::Instance::ModuleInstance *
+  create(const Plugin::PluginModule::ModuleDescriptor *) noexcept {
+    // There can be several modules in a plug-in. For that, developers should
+    // implement several `create` functions for each module.
+    return new WasmEdgePluginTestModule;
+  }
 
-} // namespace
-} // namespace Host
-} // namespace WasmEdge
-```
+  } // namespace
+  } // namespace Host
+  } // namespace WasmEdge
+  ```
 
 - **Plug-in Descriptions**: For constructing the plug-in, developers should supply the descriptions of this plug-in and the modules.
 
-```cpp
-namespace WasmEdge {
-namespace Host {
-namespace {
+  ```cpp
+  namespace WasmEdge {
+  namespace Host {
+  namespace {
 
-Plugin::Plugin::PluginDescriptor Descriptor{
-    // Plug-in name. This is the name for searching the plug-in context by the
-    // `WasmEdge_PluginFind()` C API.
-    .Name = "wasmedge_plugintest_cpp",
-    // Plug-in description.
-    .Description = "",
-    // Plug-in API version.
-    .APIVersion = Plugin::Plugin::CurrentAPIVersion,
-    // Plug-in version.
-    .Version = {0, 10, 0, 0},
-    // Module count in this plug-in.
-    .ModuleCount = 1,
-    // Pointer to module description array.
-    .ModuleDescriptions =
-        // The module descriptor array.
-        (Plugin::PluginModule::ModuleDescriptor[]){
-            {
-                // Module name. This is the name for searching and creating the
-                // module instance context by the
-                // `WasmEdge_PluginCreateModule()` C API.
-                .Name = "wasmedge_plugintest_cpp_module",
-                // Module description.
-                .Description = "This is for the plugin tests in WasmEdge.",
-                // Creation function pointer.
-                .Create = create,
-            },
-        },
-    // Plug-in options (Work in progress).
-    .AddOptions = nullptr,
-};
+  Plugin::Plugin::PluginDescriptor Descriptor{
+      // Plug-in name. This is the name for searching the plug-in context by the
+      // `WasmEdge_PluginFind()` C API.
+      .Name = "wasmedge_plugintest_cpp",
+      // Plug-in description.
+      .Description = "",
+      // Plug-in API version.
+      .APIVersion = Plugin::Plugin::CurrentAPIVersion,
+      // Plug-in version.
+      .Version = {0, 10, 0, 0},
+      // Module count in this plug-in.
+      .ModuleCount = 1,
+      // Pointer to module description array.
+      .ModuleDescriptions =
+          // The module descriptor array.
+          (Plugin::PluginModule::ModuleDescriptor[]){
+              {
+                  // Module name. This is the name for searching and creating the
+                  // module instance context by the
+                  // `WasmEdge_PluginCreateModule()` C API.
+                  .Name = "wasmedge_plugintest_cpp_module",
+                  // Module description.
+                  .Description = "This is for the plugin tests in WasmEdge.",
+                  // Creation function pointer.
+                  .Create = create,
+              },
+          },
+      // Plug-in options (Work in progress).
+      .AddOptions = nullptr,
+  };
 
-} // namespace
-} // namespace Host
-} // namespace WasmEdge
-```
+  } // namespace
+  } // namespace Host
+  } // namespace WasmEdge
+  ```
 
 - **Plug-in Options**: WORK IN PROGRESS. This section is reserved for the feature in the future.
 
@@ -256,54 +227,50 @@ By following these steps and implementing the necessary functions and descriptor
 
 To build the plug-in shared library, developers should build in cmake with the WasmEdge source.
 
-Assume that the folder `test` is created under the `<PATH_TO_WASMEDGE_SOURCE>/plugins`.
+- Assume that the folder named `test` is created under the `<PATH_TO_WASMEDGE_SOURCE>/plugins`. Add this line in the `<PATH_TO_WASMEDGE_SOURCE>/plugins/CMakeLists.txt`:
 
-Add this line in the `<PATH_TO_WASMEDGE_SOURCE>/plugins/CMakeLists.txt`:
+  ```cmake
+  add_subdirectory(test)
+  ```
 
-```cmake
-add_subdirectory(test)
-```
+- Copy the `testplugin.h` and `testplugin.cpp` into the `<PATH_TO_WASMEDGE_SOURCE>/plugins/test` directory. And then edit the file `<PATH_TO_WASMEDGE_SOURCE>/plugins/test/CMakeLists.txt`:
 
-Copy the `testplugin.h` and `testplugin.cpp` into the `<PATH_TO_WASMEDGE_SOURCE>/plugins/test` directory.
+  ```cmake
+  wasmedge_add_library(wasmedgePluginTest
+    SHARED
+    testplugin.cpp
+  )
 
-And then edit the file `<PATH_TO_WASMEDGE_SOURCE>/plugins/test/CMakeLists.txt`:
-
-```cmake
-wasmedge_add_library(wasmedgePluginTest
-  SHARED
-  testplugin.cpp
-)
-
-target_compile_options(wasmedgePluginTest
-  PUBLIC
-  -DWASMEDGE_PLUGIN
-)
-
-if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-  target_link_options(wasmedgePluginTest
+  target_compile_options(wasmedgePluginTest
     PUBLIC
-    -Wl,-U,__ZN8WasmEdge6Plugin14PluginRegisterC1EPKNS0_6Plugin16PluginDescriptorE
-    -Wl,-U,__ZN8WasmEdge6Plugin14PluginRegisterD1Ev
+    -DWASMEDGE_PLUGIN
   )
-endif()
 
-target_include_directories(wasmedgePluginTest
-  PUBLIC
-  $<TARGET_PROPERTY:wasmedgePlugin,INCLUDE_DIRECTORIES>
-  ${CMAKE_CURRENT_SOURCE_DIR}
-)
+  if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    target_link_options(wasmedgePluginTest
+      PUBLIC
+      -Wl,-U,__ZN8WasmEdge6Plugin14PluginRegisterC1EPKNS0_6Plugin16PluginDescriptorE
+      -Wl,-U,__ZN8WasmEdge6Plugin14PluginRegisterD1Ev
+    )
+  endif()
 
-if(WASMEDGE_LINK_PLUGINS_STATIC)
-  target_link_libraries(wasmedgePluginTest
-    PRIVATE
-    wasmedgeCAPI
+  target_include_directories(wasmedgePluginTest
+    PUBLIC
+    $<TARGET_PROPERTY:wasmedgePlugin,INCLUDE_DIRECTORIES>
+    ${CMAKE_CURRENT_SOURCE_DIR}
   )
-else()
-  target_link_libraries(wasmedgePluginTest
-    PRIVATE
-    wasmedge_shared
-  )
-endif()
-```
+
+  if(WASMEDGE_LINK_PLUGINS_STATIC)
+    target_link_libraries(wasmedgePluginTest
+      PRIVATE
+      wasmedgeCAPI
+    )
+  else()
+    target_link_libraries(wasmedgePluginTest
+      PRIVATE
+      wasmedge_shared
+    )
+  endif()
+  ```
 
 Follow the guide to [build WasmEdge from source](../source/os/linux.md), according to your specific operating system (e.g., Linux). This will include building the plug-in shared library along with WasmEdge.
