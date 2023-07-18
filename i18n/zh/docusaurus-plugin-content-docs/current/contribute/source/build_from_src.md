@@ -6,15 +6,15 @@ sidebar_position: 1
 
 Please follow this guide to build and test WasmEdge from the source code.
 
-- [Linux](../source/os/linux.md)
-- [MacOS](../source/os/macos.md)
-- [Windows](../source/os/windows.md)
-- [Android](../../category/build-and-run-wasmedge-on-android)
-- [OpenWrt](../source/os/openwrt.md)
-- [RISC-V](../source/os/riscv64.md)
-- [OpenHarmony](../source/os/openharmony.md)
-- [seL4](../source/os/sel4)
-- [Raspberry Pi](../source/os/raspberrypi.md)
+- [Linux](os/linux.md)
+- [MacOS](os/macos.md)
+- [Windows](os/windows.md)
+- [Android](/category/build-and-run-wasmedge-on-android)
+- [OpenWrt](os/openwrt.md)
+- [RISC-V](os/riscv64.md)
+- [OpenHarmony](os/openharmony.md)
+- [seL4](os/sel4)
+- [Raspberry Pi](os/raspberrypi.md)
 
 <!-- prettier-ignore -->
 :::note
@@ -34,7 +34,7 @@ WasmEdge provides various tools for enabling different runtime environments for 
    - To disable building the ahead-of-time compiler only, you can set the CMake option `WASMEDGE_BUILD_AOT_RUNTIME` to `OFF`.
 
    <!-- prettier-ignore -->
-   :::note 
+   :::note
    The usage of `wasmedgec` is equal to `wasmedge compile`. We decide to deprecate `wasmedgec` in the future.
    :::
 
@@ -44,7 +44,7 @@ WasmEdge provides various tools for enabling different runtime environments for 
    - To disable building just the shared library, you can set the CMake option `WASMEDGE_BUILD_SHARED_LIB` to `OFF`.
 4. `ssvm-qitc` is for AI applications and supports the ONNC runtime for AI models in the ONNX format.
    - If you want to try `ssvm-qitc`, please refer to [ONNC-Wasm](https://github.com/ONNC/onnc-wasm) project to set up the working environment and tryout several examples.
-   - And here is our [tutorial for ONNC-Wasm project(YouTube Video)](https://www.youtube.com/watch?v=cbiPuHMS-iQ).
+   - And here is our [tutorial for ONNC-WASM project(YouTube Video)](https://www.youtube.com/watch?v=cbiPuHMS-iQ).
 
 ## CMake Building Options
 
@@ -91,12 +91,12 @@ Developers can set the CMake options to customize the WasmEdge building.
 
 Developers can follow the steps to build WasmEdge with plug-ins from source.
 
-- [WASI-NN (OpenVINO, PyTorch, or TensorFlow-Lite backends)](../source/plugin/wasi_nn.md)
-- [WASI-Crypto](../source/plugin/wasi_crypto.md)
-- [WasmEdge-Image](../source/plugin/image.md)
-- [WasmEdge-TensorFlow](../source/plugin/tensorflow.md)
-- [WasmEdge-TensorFlowLite](../source/plugin/tensorflowlite.md)
-- [WASI-Logging](../source/plugin/wasi_logging.md)
+- [WASI-NN (OpenVINO, PyTorch, or TensorFlow-Lite backends)](plugin/wasi_nn.md)
+- [WASI-Crypto](plugin/wasi_crypto.md)
+- [WasmEdge-Image](plugin/image.md)
+- [WasmEdge-TensorFlow](plugin/tensorflow.md)
+- [WasmEdge-TensorFlowLite](plugin/tensorflowlite.md)
+- [WASI-Logging](plugin/wasi_logging.md)
 
 ## Run Tests
 

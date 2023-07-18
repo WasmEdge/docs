@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/category/getting-started-with-wasmedge">
+            to="/start/overview">
             Getting Started with WasmEdge in 5min ⏱️
           </Link>
         </div>

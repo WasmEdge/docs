@@ -3,6 +3,6 @@
   "position": 1,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will introduce how to install and run the Wasm app quickly with WasmEdge runtime."
+    "description": "In this chapter, we will introduce how to install and run the WASM app quickly with WasmEdge runtime."
   }
 }

@@ -23,7 +23,7 @@ You can use the following commands to get our latest docker image [from dockerhu
 docker pull wasmedge/wasmedge # Pulls the latest - wasmedge/wasmedge:latest
 ```
 
-Or you can pull with the [available tags](/contribute/source/docker.md#docker-images-for-building-wasmedge).
+Or you can pull with the [available tags](../docker.md#docker-images-for-building-wasmedge).
 
 ### Install Dependencies on Ubuntu Manually
 

@@ -15,21 +15,14 @@ WasmEdge provides SDKs for various programming languages. The WasmEdge library a
 
 In this section, we will walk you through how to embed WasmEdge in different languages. We will cover the following content:
 
-- [Quick Start](../category/quick-start)
-- [Passing complex data](../category/passing-complex-data)
-- [Developing components using witc](./witc)
-- [Embed WasmEdge in C/C++](../category/c-sdk-for-embedding-wasmedge)
-- [Embed WasmEdge in Rust](../category/rust-sdk-for-embedding-wasmedge)
-- [Embed WasmEdge in Go](../category/go-sdk-for-embedding-wasmedge)
-- [Embed WasmEdge in Java](../category/java-sdk-for-embedding-wasmedge)
-- [Embed WasmEdge in Python](../category/python-sdk-for-embedding-wasmedge)
-- [Use cases](../category/use-cases)
+- [Quick Start](/category/quick-start)
+- [Passing complex data](/category/passing-complex-data)
+- [Developing components using witc](witc.md)
+- [Embed WasmEdge in C/C++](/category/c-sdk-for-embedding-wasmedge)
+- [Embed WasmEdge in Rust](/category/rust-sdk-for-embedding-wasmedge)
+- [Embed WasmEdge in Go](/category/go-sdk-for-embedding-wasmedge)
+- [Embed WasmEdge in Java](/category/java-sdk-for-embedding-wasmedge)
+- [Embed WasmEdge in Python](/category/python-sdk-for-embedding-wasmedge)
+- [Use cases](/category/use-cases)
 
-Besides this, we also have two more guides for [developing Wasm apps](/develop/overview) and [contributing to WasmEdge](/contribute/overview).
-
-If you find some issues or have any feedback, you could reach out to us via the following ways.
-
-- [Discord Chat](https://discord.gg/U4B5sFTkFc)
-- [Create a GitHub issue for technical support](https://github.com/WasmEdge/WasmEdge/issues)
-- [Submit a GitHub discussion](https://github.com/WasmEdge/WasmEdge/discussions)
-- [Follow @realwasmedge on Twitter](https://twitter.com/realwasmedge)
+Besides this, we also have two more guides for [developing WASM apps](../develop/overview.md) and [contributing to WasmEdge](../contribute/overview.md).

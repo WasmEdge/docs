@@ -11,7 +11,7 @@ The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-conta
 - Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
 - WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
 
-In the rest of this section, we will explain the steps in detail. We will assume that you have already [installed and configured CRI-O](../../../develop/deploy/oci-runtime/crun) to work with WasmEdge container images.
+In the rest of this section, we will explain the steps in detail. We will assume that you have already [installed and configured CRI-O](../../deploy/oci-runtime/crun.md) to work with WasmEdge container images.
 
 ## Install and start Kubernetes
 

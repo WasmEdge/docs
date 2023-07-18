@@ -83,7 +83,7 @@ The args are as follows.
 File content is This is in a file
 ```
 
-Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app)!
+Next, you can try to run it in [Kubernetes](../kubernetes/kubernetes-containerd-crun.md#a-simple-webassembly-app))!
 
 ## Run a HTTP server app
 
