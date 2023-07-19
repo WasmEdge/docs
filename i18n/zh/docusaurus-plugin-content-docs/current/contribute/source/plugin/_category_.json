@@ -1,8 +1,8 @@
 {
-  "label": "WasmEdge Plugin",
+  "label": "Build Plug-ins",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will learn how to build WasmEdge Plugins from source"
+    "description": "In this chapter, we will learn how to build WasmEdge plug-ins from source."
   }
 }
