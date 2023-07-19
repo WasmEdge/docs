@@ -184,13 +184,11 @@ Then, go to the [WASI-NN PyTorch backend in Rust chapter](../develop/rust/wasinn
 The `WASI-NN` plug-in with `OpenVINO™` backend depends on the `OpenVINO™` C library to perform AI/ML computations. [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021) dependencies. The following instructions are for Ubuntu 20.04 and above.
 
 ```bash
-export OPENVINO_VERSION="2021.4.582"
-export OPENVINO_YEAR="2021"
-curl -sSL https://apt.repos.intel.com/openvino/$OPENVINO_YEAR/GPG-PUB-KEY-INTEL-OPENVINO-$OPENVINO_YEAR | sudo gpg --dearmor > /usr/share/keyrings/GPG-PUB-KEY-INTEL-OPENVINO-$OPENVINO_YEAR.gpg
-echo "deb [signed-by=/usr/share/keyrings/GPG-PUB-KEY-INTEL-OPENVINO-$OPENVINO_YEAR.gpg] https://apt.repos.intel.com/openvino/$OPENVINO_YEAR all main" | sudo tee /etc/apt/sources.list.d/intel-openvino-$OPENVINO_YEAR.list
+wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+echo "deb https://apt.repos.intel.com/openvino/2023 ubuntu20 main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2023.list
 sudo apt update
-sudo apt install -y intel-openvino-runtime-ubuntu20-$OPENVINO_VERSION
-source /opt/intel/openvino_2021/bin/setupvars.sh
+sudo apt-get -y install openvino
 ldconfig
 ```
 
