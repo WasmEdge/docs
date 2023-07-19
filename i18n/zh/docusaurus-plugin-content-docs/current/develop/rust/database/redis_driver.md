@@ -8,7 +8,7 @@ WasmEdge provides a Redis driver for Rust developer, enabling developers to buil
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+Before we started, make sure [you have Rust and WasmEdge installed](../setup.md).
 :::
 
 ## Run the example
@@ -19,7 +19,7 @@ The [wasmedge-db-example/redis](https://github.com/WasmEdge/wasmedge-db-examples
 git clone https://github.com/WasmEdge/wasmedge-db-examples
 cd wasmedge-db-examples/redis
 
-# Compile the rust code into Wasm bytecode
+# Compile the rust code into WASM
 cargo build --target wasm32-wasi --release
 
 # Execute Redis commend against a Redis instance at redis://localhost/

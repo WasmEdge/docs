@@ -14,7 +14,7 @@ We modified the Mandelbrot Set example from our [wasm32-wasi benchmark project](
 
 Before we started, make sure you have installed the following software:
 
-1. [Install WasmEdge](../build-and-run/install)
+1. [Install WasmEdge](../../start/install.md#install)
 
 2. Emscripten, a toolchain for compiling C/C++ to WebAssembly. Please refer to the [emcc official repository](https://github.com/emscripten-core/emsdk) for the detailed instructions.
 

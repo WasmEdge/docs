@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## Prerequisites
 
-First, you will need to [install WasmEdge runtime](/develop/build-and-run/install.md).
+First, you will need to [install WasmEdge runtime](../../start/install.md#install).
 
 Next, install the latest libSQL or build it from source.
 

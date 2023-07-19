@@ -8,7 +8,7 @@ Database connection is necessary for today's enterprise development. WasmEdge pr
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+Before we started, make sure [you have Rust and WasmEdge installed](../setup.md).
 :::
 
 ## Run the example
@@ -19,7 +19,7 @@ The [wasmedge-db-example/mysql_async](https://github.com/WasmEdge/wasmedge-db-ex
 git clone https://github.com/WasmEdge/wasmedge-db-examples
 cd wasmedge-db-examples/mysql_async
 
-# Compile the rust code into Wasm bytecode
+# Compile the rust code into WASM
 cargo build --target wasm32-wasi --release
 
 # Execute MySQL statements against a MySQL database at mysql://user:passwd@127.0.0.1:3306

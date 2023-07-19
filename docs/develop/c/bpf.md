@@ -8,7 +8,7 @@ Currently, there is a WasmEdge plugin called `wasm_bpf` which provided APIs to p
 
 The detailed description could be found at [https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md](https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md).
 
-Here we will provide several examples to demonstrate the `wasm_bpf` plugin
+Here we will provide several examples to demonstrate the `wasm_bpf` plugin.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ For simplicity, we will just reuse the `Makefile` of [wasm-bpf](https://github.c
 
 1. Clone the [`wasm-bpf`](https://github.com/eunomia-bpf/wasm-bpf) repo.
 2. Run `make install-deps` and `make /opt/wasi-sdk` at the root of the project. This will install the build prerequisites.
-3. [Install WasmEdge](../build-and-run/install)
+3. [Install WasmEdge](../../start/install.md#install)
 4. Build and install the `wasm_bpf` plugin. Currently, we have to build `wasm_bpf` plugin manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
 
 ## The bootstrap example
@@ -151,4 +151,4 @@ The core process of the userspace program (which is compiled to Wasm). It invoke
 
 ## Other examples
 
-Each directory under `wasm-bpf/examples` represents an example able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding Wasm with `WasmEdge`
+Each directory under `wasm-bpf/examples` represents an example able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding WASM with `WasmEdge`.

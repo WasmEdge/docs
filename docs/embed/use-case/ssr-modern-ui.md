@@ -8,12 +8,12 @@ Traditional web applications follows the client-server model. In the past era of
 
 That gives rise to the era of Jamstack. There is now a clear separation between frontend and backend services. The frontend is a static web site (HTML + JavaScript + WebAssembly) generated from UI frameworks such as React.js, Vue.js, Yew or Percy, and the backend consists of microservices. Yet, as Jamstack gains popularity, the diversity of clients (both browsers and apps) makes it very difficult to achieve great performance across all use cases.
 
-The solution is server-side rendering (SSR). That is to have edge servers run the "client side" UI code (ie the React generated JavaScript OR Percy generated WebAssembly), and send back the rendered HTML DOM objects to the browser. In this case, the edge server must execute the exact same code (i.e. [JavaScript](../../develop/javascript/hello_world) and WebAssembly) as the browser to render the UI. That is called isomorphic Jamstack applications. The WasmEdge runtime provides a lightweight, high performance, OCI complaint, and polyglot container to run all kinds of SSR functions on edge servers.
+The solution is server-side rendering (SSR). That is to have edge servers run the "client side" UI code (ie the React generated JavaScript OR Percy generated WebAssembly), and send back the rendered HTML DOM objects to the browser. In this case, the edge server must execute the exact same code (i.e. [JavaScript](../../develop/javascript/hello_world.md) and WebAssembly) as the browser to render the UI. That is called isomorphic Jamstack applications. The WasmEdge runtime provides a lightweight, high performance, OCI complaint, and polyglot container to run all kinds of SSR functions on edge servers.
 
-- [React JS SSR function](../../develop/javascript/ssr)
+- [React JS SSR function](../../develop/javascript/ssr.md)
 - Vue JS SSR function (coming soon)
 - Yew Rust compiled to WebAssembly SSR function (coming soon)
-- [Percy Rust compiled to WebAssembly SSR function](../../develop/rust/ssr)
+- [Percy Rust compiled to WebAssembly SSR function](../../develop/rust/ssr.md)
 
 We also exploring ways to render more complex UI and interactions on WasmEdge-based edge servers, and then stream the rendered results to the client application. Potential examples include
 

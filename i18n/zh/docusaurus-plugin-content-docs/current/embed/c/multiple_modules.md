@@ -65,9 +65,9 @@ Users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.
 
 ### Prerequisites
 
-For executing these examples, developers should [install WasmEdge](/develop/build-and-run/install.md).
+For executing these examples, developers should [install WasmEdge](../../start/install.md#install).
 
-To improve the performance of executing WASM, developers can also use the [AOT compiler](/develop/build-and-run/aot.md) to compile the above WASM files.
+To improve the performance of executing WASM, developers can also use the [AOT compiler](../../start/build-and-run/aot.md) to compile the above WASM files.
 
 ## Linking WASM Modules With the VM Context
 

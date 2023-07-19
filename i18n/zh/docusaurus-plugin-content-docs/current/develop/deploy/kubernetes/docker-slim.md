@@ -2,7 +2,7 @@
 sidebar_position: 11
 ---
 
-## WasmEdge DockerSlim
+# WasmEdge DockerSlim
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 
@@ -23,7 +23,7 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 The usage of `wasmedgec` is equal to `wasmedge compile`. We decide to deprecate `wasmedgec` in the future.
 :::
 
-### Examples
+## Examples
 
 Use `wasmedge compile` and `wasmedge` ([link](https://github.com/WasmEdge/WasmEdge/tree/master/examples/wasm)):
 

@@ -8,7 +8,7 @@ WasmEdge allows Rust developers to use APIs they are already familiar with to ac
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup). In order to make HTTPS requests, you need to install the [WasmEdge TLS plugin](../../build-and-run/install#tls-plugin).
+Before we started, make sure [you have Rust and WasmEdge installed](../setup.md). In order to make HTTPS requests, you need to install the [WasmEdge TLS plugin](../../../start/install.md#tls-plug-in).
 :::
 
 We will discuss HTTP and HTTPS asynchronous clients with hyper, synchronous clients with http_req, and simple clients with reqwest. All of them are popular Rust crates for networking.
@@ -145,7 +145,7 @@ fn main() {
 
 <!-- prettier-ignore -->
 :::note
-In order to make HTTPS requests, you need to [install the wasmedge_TLS plugin](../../build-and-run/install#wtls-plugin). You can then run the HTTPS [GET](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) and [POST](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) examples in the example repo.
+In order to make HTTPS requests, you need to [install the wasmedge_TLS plugin](../../../start/install.md#tls-plug-in). You can then run the HTTPS [GET](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) and [POST](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) examples in the example repo.
 :::
 
 ## reqwest client

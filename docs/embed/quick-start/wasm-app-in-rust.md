@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Create a Wasm app using Rust and wasmedge-bindgen
+# Create a WASM app using Rust and wasmedge-bindgen
 
-In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK. In this chapter, we will learn how to create a Wasm app using Rust and `wasmedge-bindgen` tool.
+In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK. In this chapter, we will learn how to create a WASM app using Rust and `wasmedge-bindgen` tool.
 
 <!-- prettier-ignore -->
 :::note
@@ -13,7 +13,7 @@ The [wasmedge-bindgen](https://github.com/second-state/wasmedge-bindgen) project
 
 ## Prerequisites
 
-We need to install [Rust and add `wasm32-wasi` target for Rust](/develop/rust/setup.md)
+We need to install [Rust and add `wasm32-wasi` target for Rust](../../develop/rust/setup.md)
 
 We also need to install `wasmedge-bindgen`.
 
@@ -103,7 +103,7 @@ pub fn keccak_digest(s: Vec<u8>) -> Result<Vec<u8>, String> {
 
 ## Compile the Rust code into Wasm
 
-Now the rust function is ready. Let's compile the Rust code to Wasm bytecode.
+Now the rust function is ready. Let's compile the Rust code to WASM.
 
 First，fork or git clone the demo project to get the source code.
 
@@ -121,4 +121,4 @@ cp target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm ../
 cd ../
 ```
 
-Now we have a Wasm function, next let's see how to embed the Wasm function to a Go Host application.
+Now we have a WASM function, next let's see how to embed the WASM function to a Go Host application.

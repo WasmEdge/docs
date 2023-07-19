@@ -57,7 +57,7 @@ go version go1.16.5 linux/amd64
 
 ### WasmEdge Installation
 
-Developers must [install the WasmEdge shared library](/develop/build-and-run/install) with the same `WasmEdge-go` release or pre-release version.
+Developers must [install the WasmEdge shared library](../../../start/install.md#install) with the same `WasmEdge-go` release or pre-release version.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.12.0
@@ -922,7 +922,7 @@ WasmEdge provides the following built-in host modules and plug-in pre-registrati
 
 2. Plug-ins
 
-   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](/contribute/internal.md#plugins).
+   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](../../../start/install.md#install-wasmedge-plug-ins-and-dependencies).
 
    Before using the plug-ins, developers should [load the plug-ins from paths](#load-plug-ins-from-paths).
 
@@ -2093,39 +2093,16 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
    `wasmedge.NewWasiModule()` API can create and initialize the `WASI` module instance.
 
-   `wasmedge.NewWasiNNModule()` API can create and initialize the `wasi_ephemeral_nn` module instance for `WASI-NN` plugin.
-
-   `wasmedge.NewWasiCryptoCommonModule()` API can create and initialize the `wasi_ephemeral_crypto_common` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoAsymmetricCommonModule()` API can create and initialize the `wasi_ephemeral_crypto_asymmetric_common` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoKxModule()` API can create and initialize the `wasi_ephemeral_crypto_kx` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoSignaturesModule()` API can create and initialize the `wasi_ephemeral_crypto_signatures` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoSymmetricModule()` API can create and initialize the `wasi_ephemeral_crypto_symmetric` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasmEdgeProcessModule()` API can create and initialize the `wasmedge_process` module instance for `wasmedge_process` plugin.
-
-   Developers can create these module instance objects and register them into the `Store` or `VM` objects rather than adjust the settings in the `Configure` objects.
-
-   > Note: For the `WASI-NN` plugin, please check that the [dependencies and prerequests](/develop/build-and-run/install.md#wasi-nn-plugin-with-openvino™-backend) are satisfied. Note: For the `WASI-Crypto` plugin, please check that the [dependencies and prerequests](/develop/build-and-run/install.md#wasi-crypto-plugin) are satisfied. And the 5 modules are recommended to all be created and registered together.
-
    ```go
    wasiobj := wasmedge.NewWasiModule(
      os.Args[1:],     // The args
      os.Environ(),    // The envs
      []string{".:."}, // The mapping preopens
    )
-   procobj := wasmedge.NewWasmEdgeProcessModule(
-     []string{"ls", "echo"}, // The allowed commands
-     false,                  // Not to allow all commands
-   )
 
-   // Register the WASI and WasmEdge_Process into the VM object.
+   // Register the WASI into the VM object.
    vm := wasmedge.NewVM()
    vm.RegisterImport(wasiobj)
-   vm.RegisterImport(procobj)
 
    // ... Execute some WASM functions.
 
@@ -2137,7 +2114,6 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    vm.Release()
    // The import objects should be deleted.
    wasiobj.Release()
-   procobj.Release()
    ```
 
 6. Example
