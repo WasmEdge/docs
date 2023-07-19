@@ -181,7 +181,7 @@ Then, go to the [WASI-NN PyTorch backend in Rust chapter](../develop/rust/wasinn
 
 `WASI-NN` plug-in with `OpenVINO™` backend allows WasmEdge applications to perform `OpenVINO™` model inference. To install WasmEdge with `WASI-NN OpenVINO™ backend` plug-in on Linux, please use the `--plugins wasi_nn-openvino` parameter when [running the installer command](#generic-linux-and-macos).
 
-The `WASI-NN` plug-in with `OpenVINO™` backend depends on the `OpenVINO™` C library to perform AI/ML computations. [OpenVINO™](https://docs.openvino.ai/2023.0/openvino_docs_install_guides_overview.html?ENVIRONMENT=DEV_TOOLS&OP_SYSTEM=WINDOWS&VERSION=v_2023_0_1&DISTRIBUTION=PIP)(2023) dependencies. The following instructions are for Ubuntu 20.04 and above.
+The `WASI-NN` plug-in with `OpenVINO™` backend depends on the `OpenVINO™` C library to perform AI/ML computations. [OpenVINO™](https://docs.openvino.ai/2023.0/openvino_docs_install_guides_installing_openvino_apt.html)(2023) dependencies. The following instructions are for Ubuntu 20.04 and above.
 
 ```bash
 wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
