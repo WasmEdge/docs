@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # The `wasmedge` CLI
 
-After intalling WasmEdge, you can use the `wasmedge` CLI to execute a WASM files. We will cover how to run WASM files with WasmEdge on your own machine and Docker images.
+After installing WasmEdge, you can use the `wasmedge` CLI to execute a WASM files. We will cover how to run WASM files with WasmEdge on your own machine and Docker images.
 
 The `wasmedge` binary is a command line interface (CLI) program that runs WebAssembly programs.
 
@@ -269,7 +269,7 @@ confidence: 0.8941176470588236
 
 ## Docker images for the CLI tools
 
-The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize WASM apps, check out [this](../getting-started/quick_start_docker) section.
+The Docker images in this section are mostly used for development purposes. They allow you to use WasmEdge tools in containerized Linux environments. If you want to containerize WASM apps, check out [this](../getting-started/quick_start_docker.md) section.
 
 The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
 

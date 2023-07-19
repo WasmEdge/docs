@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Build WasmEdge from source
+# Build Guide
 
 Please follow this guide to build and test WasmEdge from the source code.
 
