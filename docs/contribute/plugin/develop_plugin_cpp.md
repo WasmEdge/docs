@@ -4,11 +4,11 @@ sidebar_position: 3
 
 # Develop WasmEdge Plug-in in C++ API
 
-By developing a plugin, one can extend the functionality of WasmEdge and customize it to suit the specific needs. WasmEdge provides a C++ based API for registering extension modules and host functions. While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, the plugin API allows such extensions to be incorporated into WasmEdge's own building and releasing process.
+By developing a plugin, one can extend the functionality of WasmEdge and customize it to suit specific needs. WasmEdge provides a C++ based API for registering extension modules and host functions. While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, the plugin API allows such extensions to be incorporated into WasmEdge's building and releasing process.
 
 <!-- prettier-ignore -->
 :::note
-It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plugin development because of the support, compatibility and flexibility provided by the WasmEdge runtime.
+It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plugin development because of the support, compatibility, and flexibility provided by the WasmEdge runtime.
 :::
 
 Here is a flowchart showing all the steps needed for developing WasmEdge Plugin -
@@ -31,13 +31,13 @@ J --> K(Test and debug plugin)
 
 This flowchart illustrates the process of developing a WasmEdge plugin, showcasing the steps involved from choosing a programming language to finalizing and releasing the plugin.
 
-## Set up development environment
+## Set up a development environment
 
 To start developing WasmEdge plugins, it is essential to set up the development environment properly. This section provides step-by-step instructions for WasmEdge plugin development -
 
 - **Build WasmEdge from source**: For developing WasmEdge plugin in C++ language, you will need to build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions.
 
-- **Install WasmEdge with plugins (optional)**: Installing WasmEdge with existing plugins can provide you with additional functionality and serve as a reference for your own plugin development. If you want to utilize or test the compatibility of your new plugin with existing plugins, you can install them using the provided installer script. The installed plugins will be available for your development environment.
+- **Install WasmEdge with plugins (optional)**: Installing WasmEdge with existing plugins can provide you with additional functionality and serve as a reference for your plugin development. If you want to utilize or test the compatibility of your new plugin with existing plugins, you can install them using the provided installer script. The installed plugins will be available for your development environment.
 
   To see a list of supported plugins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plugins and dependencies section.
 
@@ -53,7 +53,7 @@ By following these steps, you can set up the development environment for creatin
 
 To create a WasmEdge plugin project, follow these steps:
 
-- **Set up the project directory**: Create a directory structure for your plugin project. You can use a standard structure for the chosen language, or create your own structure. To create a project directory structure, use the following commands:
+- **Set up the project directory**: Create a directory structure for your plugin project. You can use a standard structure for the chosen language, or create your structure. To create a project directory structure, use the following commands:
 
   ```bash
   mkdir testplugin
@@ -141,7 +141,7 @@ To create a plug-in with host functions and modules, follow these steps:
   } // namespace WasmEdge
   ```
 
-- **Creation Functions for Modules**: Then developers should implement the module creation functions. Assume that the following implementations are all in the `testplugin.cpp`.
+- **Creation Functions for Modules**: Then developers should implement the module creation functions. Assume the following implementations are all in the `testplugin.cpp`.
 
   ```cpp
   #include "testplugin.h"
@@ -225,7 +225,7 @@ By following these steps and implementing the necessary functions and descriptor
 
 ## Build plugin
 
-To build the plug-in shared library, developers should build in cmake with the WasmEdge source.
+To build the plug-in shared library, developers should build in CMake with the WasmEdge source.
 
 - Assume that the folder named `test` is created under the `<PATH_TO_WASMEDGE_SOURCE>/plugins`. Add this line in the `<PATH_TO_WASMEDGE_SOURCE>/plugins/CMakeLists.txt`:
 

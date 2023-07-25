@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # WasmEdge Plug-in System Introduction
 
-While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, developers should implement the host functions before compilation. However, for more flexible and dynamic extension of the host functions, WasmEdge provides a plug-in architecture to load the plug-in shared library.
+While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, developers should implement the host functions before compilation. However, for a more flexible and dynamic extension of the host functions, WasmEdge provides a plug-in architecture to load the plug-in shared library.
 
 A WasmEdge plugin is a software component that extends the functionality of the WasmEdge runtime. Currently, developers can follow the guides to implement the plug-ins in [C API](develop_plugin_c.md) (recommended) or [C++](develop_plugin_cpp.md). With the help of the WasmEdge SDKs in the supported languages, developers can load and register the host functions from the plug-in shared libraries, allowing them to seamlessly integrate the plugins into the WasmEdge runtime as if they were part of the core runtime.
 
@@ -20,7 +20,7 @@ In this diagram, the _Host Application_ represents the application or environmen
 
 WasmEdge plugins can be used in various scenarios, such as high-performance domain-specific languages, cloud-native JavaScript runtime, edge computing, serverless, SaaS, service mesh, and blockchain applications. Moreover, WasmEdge plugins can be used in microservices, providing a lightweight, secure, and high-performance runtime compatible with frameworks like Dapr and Kubernetes.
 
-In addition, WasmEdge plugins can support serverless functions for SaaS applications, allowing users to extend and customize their experience without operating their own API callback servers. They can also be embedded into smart device applications as middleware runtime, rendering interactive content on the UI, connecting to native device drivers, and accessing specialized hardware feature. WasmEdge plugins can be used for managing application state, exchanging dynamic data (e.g., strings and arrays) with Wasm programs, and providing native host functions to manipulate data.
+In addition, WasmEdge plugins can support serverless functions for SaaS applications, allowing users to extend and customize their experience without operating their API callback servers. They can also be embedded into smart device applications as middleware runtime, rendering interactive content on the UI, connecting to native device drivers, and accessing specialized hardware features. WasmEdge plugins can be used for managing application state, exchanging dynamic data (e.g., strings and arrays) with Wasm programs, and providing native host functions to manipulate data.
 
 ## Benefits of Using WasmEdge Plugin
 
@@ -46,7 +46,7 @@ Loadable plugins are standalone shared libraries (`.so`/`.dylib`/`.dll` files) t
 
 ### Creating Loadable Plug-in
 
-To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of Rust, C and C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string. By following the provided examples and leveraging the SDK's APIs, developers can easily build custom plugins tailored to their specific needs.
+To create a loadable plugin for WasmEdge, developers can use the WasmEdge Plugin SDK, which provides a set of Rust, C, and C++ APIs for creating and registering plugins. The SDK also includes [example code](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/get-string) that demonstrates how to create a simple plugin that returns a string. By following the provided examples and leveraging the SDK's APIs, developers can easily build custom plugins tailored to their specific needs.
 
 ### Loading plug-in from paths
 
@@ -56,7 +56,7 @@ To make use of the loadable plugins, developers need to load them from specific 
 
   - The path specified in the environment variable `WASMEDGE_PLUGIN_PATH`.
   - The `../plugin/` directory relative to the WasmEdge installation path.
-  - The `./wasmedge/` directory located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
+  - The `./wasmedge/` directory is located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
 
 - If the plugins are located in a specific path or directory, developers can use the `WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plugin.so")` API to load the plugins from that particular location.
 
@@ -85,11 +85,11 @@ By following this flowchart, developers can effectively load loadable plugins in
 
 ## WasmEdge Currently Released Plug-ins
 
-There are several plug-in releases with the WasmEdge official releases. Please check the following table to check the release status and how to build from source with the plug-ins.
+There are several plug-in releases with the WasmEdge official releases. Please check the following table to check the release status and how to build from the source with the plug-ins.
 
 | Plug-in | Rust Crate | Description | Released Platforms | Build Steps |
 | --- | --- | --- | --- | --- |
-| WasmEdge-Process | [wasmedge_process_interface][] | WasmEdge-Process is a utility plugin for the WasmEdge Runtime, providing functionality related to process handling. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.0`) | [Build Wtih WasmEdge-Process](/contribute/source/plugin/process) |
+| WasmEdge-Process | [wasmedge_process_interface][] | WasmEdge-Process is a utility plugin for the WasmEdge Runtime, providing functionality related to process handling. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.0`) | [Build With WasmEdge-Process](/contribute/source/plugin/process) |
 | [WASI-Crypto][] | [wasi-crypto][] | WASI-Crypto is a module that provides a set of APIs for cryptographic operations and key management. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-Crypto](/contribute/source/plugin/wasi_crypto) |
 | [WASI-NN with OpenVINO backend](/develop/rust/ai_inference/openvino) | [wasi-nn][] | WASI-NN with OpenVINO backend is a machine learning-oriented module for WebAssembly. | `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-NN](/contribute/source/plugin/wasi_nn#get-wasmedge-with-wasi-nn-plug-in-openvino-backend) |
 | [WASI-NN with PyTorch backend](/develop/rust/ai_inference/pytorch) | [wasi-nn][] | WASI-NN with PyTorch backend allows running of PyTorch models in WebAssembly. | `ubuntu 20.04 x86_64` (since `0.11.1`) | [Build With WASI-NN](/contribute/source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-pytorch-backend) |

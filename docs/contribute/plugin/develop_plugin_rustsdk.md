@@ -4,20 +4,20 @@ sidebar_position: 4
 
 # Develop WasmEdge Plug-in in Rust SDK with witc
 
-By developing a plugin, one can extend the functionality of WasmEdge and customize it to suit the specific needs. WasmEdge provides a Rust based API for registering extension modules and host functions.
+By developing a plugin, one can extend the functionality of WasmEdge and customize it to suit specific needs. WasmEdge provides a Rust-based API for registering extension modules and host functions.
 
 <!-- prettier-ignore -->
 :::note
-It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plugin development because of the support, compatibility and flexibility provided by the WasmEdge runtime.
+It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plugin development because of the support, compatibility, and flexibility provided by the WasmEdge runtime.
 :::
 
 ## Set up the development environment
 
 To start developing WasmEdge plugins, it is essential to set up the development environment properly. This section provides step-by-step instructions for WasmEdge plugin development -
 
-- **Build WasmEdge from source**: For developing WasmEdge plugin in C++ language, you will need to build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions. Once you complete C++ plugin code, you can use witc[^1] to generate Rust Plugin SDK.
+- **Build WasmEdge from source**: For developing WasmEdge plugin in C++ language, you will need to build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions. Once you complete the C++ plugin code, you can use witc[^1] to generate Rust Plugin SDK.
   
-- **Install WasmEdge with plugins (optional)**: Installing WasmEdge with existing plugins can provide you with additional functionality and serve as a reference for your own plugin development. If you want to utilize or test the compatibility of your new plugin with existing plugins, you can install them using the provided installer script. The installed plugins will be available for your development environment.
+- **Install WasmEdge with plugins (optional)**: Installing WasmEdge with existing plugins can provide you with additional functionality and serve as a reference for your plugin development. If you want to utilize or test the compatibility of your new plugin with existing plugins, you can install them using the provided installer script. The installed plugins will be available for your development environment.
 
   To see a list of supported plugins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plugins and dependencies section.
 
