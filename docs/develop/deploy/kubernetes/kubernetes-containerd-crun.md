@@ -13,7 +13,7 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 
 In the rest of this section, we will explain the steps in detail.
 
-We will assume that you have already [installed and configured containerd](../../../develop/deploy/cri-runtime/containerd-crun) to work with WasmEdge container images.
+We will assume that you have already [installed and configured containerd](../../deploy/cri-runtime/containerd-crun.md) to work with WasmEdge container images.
 
 ## Install and start Kubernetes
 

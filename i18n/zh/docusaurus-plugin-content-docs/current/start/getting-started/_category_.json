@@ -1,0 +1,8 @@
+{
+  "label": "Getting Started with WasmEdge",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "In this chapter, we will show you how to get WasmEdge up and running quickly."
+  }
+}

@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ## Fedora Platform
 
-The easiest platform to run Wasm app with container is Fedora, because the crun fedora package has supported WasmEdge as a default runtime. We don't need to make any changes to run WasmEdge apps on fedora platform. If you use other Linux distributions, go to [next section](#other-linux-distributions).
+The easiest platform to run WASM app with container is Fedora, because the crun fedora package has supported WasmEdge as a default runtime. We don't need to make any changes to run WasmEdge apps on fedora platform. If you use other Linux distributions, go to [next section](#other-linux-distributions).
 
 ### Install podman and WasmEdge
 
@@ -38,7 +38,7 @@ That's it.
    sudo apt-get -y install podman
    ```
 
-2. [Install WasmEdge](../build-and-run/install)
+2. [Install WasmEdge](../../start/install.md#install)
 
 3. Build and configure crun with WasmEdge support
 
@@ -75,4 +75,4 @@ podman run --rm --annotation module.wasm.image/variant=compat-smart docker.io/wa
 
 For more information, you could refered to [crun](../deploy/oci-runtime/crun) chapter.
 
-There is a great open source project introducing podman and Wasm from community called [Kwasm](https://github.com/KWasm/podman-wasm). Check it out!
+There is a great open source project introducing podman and WASM from community called [Kwasm](https://github.com/KWasm/podman-wasm). Check it out!

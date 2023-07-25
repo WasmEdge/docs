@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Deploy with crun
 
-The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. This chapter will walk you through deploying Wasm images with crun.
+The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. This chapter will walk you through deploying WASM images with crun.
 
 ## Fedora Platform
 
@@ -31,7 +31,7 @@ spec: 1.0.0
 
 You can see that crun has WasmEdge package already.
 
-Next, you can run Wasm apps on your [fedora machine](/develop/getting-started/quick_start_redhat.md).
+Next, you can run WASM apps on your [fedora machine](../../../start/getting-started/quick_start_redhat.md).
 
 ## Other Linux Platforms
 
@@ -44,7 +44,7 @@ The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/)
 
 ### Prerequisites
 
-1. Make sure you have installed [WasmEdge](../../build-and-run/install)
+1. Make sure you have installed [WasmEdge](../../../start/install.md#install)
 
 2. Build and configure crun with WasmEdge support
 

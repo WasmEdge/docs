@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 11
 ---
 
 # Bindgen of Rust Functions
@@ -21,6 +21,6 @@ pub fn say(s: String) -> Result<Vec<u8>, String> {
 
 Of course, once the above Rust code is compiled into WASM, the function `say()` no longer takes the `String` parameter nor returns the `Vec<u8>`. So, the caller (i.e., the host application) must also deconstruct the call parameter into the memory pointer first before the call, and assemble the return value from the memory pointer after the call. These actions can be handled automatically by the WasmEdge language SDKs. To see a complete example, including the Rust WASM function and the Go host application, check out our tutorial in the Go SDK documentation.
 
-[A complete wasmedge-bindgen example in Rust (WASM) and Go (host)](/embed/go/function)
+[A complete wasmedge-bindgen example in Rust (WASM) and Go (host)](../../embed/go/function.md)
 
-Of course, the developer could choose to do `wasmedge-bindgen`'s work by hand and pass a memory pointer directly. If you are interested in this approach to call Rust compiled WASM functions, check out our [examples in the Go SDK](/embed/go/passing_data).
+Of course, the developer could choose to do `wasmedge-bindgen`'s work by hand and pass a memory pointer directly. If you are interested in this approach to call Rust compiled WASM functions, check out our [examples in the Go SDK](../../embed/go/passing_data.md).

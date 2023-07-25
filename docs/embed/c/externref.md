@@ -4,15 +4,15 @@ sidebar_position: 4
 
 # Customized External References
 
-[External References](https://webassembly.github.io/spec/core/syntax/types.html#syntax-reftype) denotes an opaque and unforgettable reference to a host object. A new `externref` type can be passed into a Wasm module or returned from it. The Wasm module cannot reveal an `externref` value's bit pattern, nor create a fake host reference by an integer value.
+[External References](https://webassembly.github.io/spec/core/syntax/types.html#syntax-reftype) denotes an opaque and unforgettable reference to a host object. A new `externref` type can be passed into a WASM module or returned from it. The WASM module cannot reveal an `externref` value's bit pattern, nor create a fake host reference by an integer value.
 
 ## Tutorial
 
 The following tutorial is the summary of the `externref` example in WasmEdge.
 
-### Prepare Your Wasm File
+### Prepare Your WASM File
 
-The Wasm file should contain importing host functions that would take the `externref`. Take [the test WASM file](https://github.com/WasmEdge/WasmEdge/raw/master/test/externref/externrefTestData/funcs.wasm) ([this WAT](https://github.com/WasmEdge/WasmEdge/blob/master/test/externref/externrefTestData/funcs.wat) is the corresponding text format) as an example:
+The WASM file should contain importing host functions that would take the `externref`. Take [the test WASM file](https://github.com/WasmEdge/WasmEdge/raw/master/test/externref/externrefTestData/funcs.wasm) ([this WAT](https://github.com/WasmEdge/WasmEdge/blob/master/test/externref/externrefTestData/funcs.wat) is the corresponding text format) as an example:
 
 ```wasm
 (module
@@ -216,7 +216,7 @@ int main() {
 
 1. Install the WasmEdge shared library.
 
-   Please refer to the [Installation](/develop/build-and-run/install) for details.
+   Please refer to the [Installation](../../start/install.md#install) for details.
 
 2. Prepare the WASM file and the `main.c` source file as above.
 
@@ -236,7 +236,7 @@ int main() {
    Test 3 -- `call_mul` -- 8256 ^ 2 = 68161536
    ```
 
-## Wasm module with External References
+## WASM module with External References
 
 Take the following `wat` for example:
 
@@ -245,22 +245,22 @@ Take the following `wat` for example:
   (type $t0 (func (param externref i32) (result i32)))
   ;; Import a host function which type is {externref i32} -> {i32}
   (import "extern_module" "functor_square" (func $functor_square (type $t0)))
-  ;; Wasm function which type is {externref i32} -> {i32} and exported as "call_square"
+  ;; WASM function which type is {externref i32} -> {i32} and exported as "call_square"
   (func $call_square (export "call_square") (type $t0) (param $p0 externref) (param $p1 i32) (result i32)
     (call $functor_square (local.get $p0) (local.get $p1))
   )
   (memory $memory (export "memory") 1))
 ```
 
-The Wasm function "`call_square`" takes an `externref` parameter, and calls the imported host function `functor_square` with that `externref`. Therefore, the `functor_square` host function can get the object reference when users call "`call_square`" Wasm function and pass the object's reference.
+The WASM function "`call_square`" takes an `externref` parameter, and calls the imported host function `functor_square` with that `externref`. Therefore, the `functor_square` host function can get the object reference when users call "`call_square`" WASM function and pass the object's reference.
 
 ## WasmEdge ExternRef Example
 
-The following examples are how to use `externref` in Wasm with WasmEdge C API.
+The following examples are how to use `externref` in WASM with WasmEdge C API.
 
-### Wasm Code
+### WASM Code
 
-The Wasm code must pass the `externref` to host functions that want to access it. Take the following `wat` for example, which is a part of [the test WASM file](https://github.com/WasmEdge/WasmEdge/blob/master/test/externref/externrefTestData/funcs.wat):
+The WASM code must pass the `externref` to host functions that want to access it. Take the following `wat` for example, which is a part of [the test WASM file](https://github.com/WasmEdge/WasmEdge/blob/master/test/externref/externrefTestData/funcs.wat):
 
 ```wasm
 (module
@@ -272,11 +272,11 @@ The Wasm code must pass the `externref` to host functions that want to access it
   (memory $memory (export "memory") 1))
 ```
 
-The host function "`extern_module::func_mul`" takes `externref` as a function pointer to multiply parameters 1 and 2 and then returns the result. The exported Wasm function "`call_mul`" calls "`func_mul`" and passes the `externref` and 2 numbers as arguments.
+The host function "`extern_module::func_mul`" takes `externref` as a function pointer to multiply parameters 1 and 2 and then returns the result. The exported WASM function "`call_mul`" calls "`func_mul`" and passes the `externref` and 2 numbers as arguments.
 
 ### Host Functions
 
-To instantiate the above example Wasm, the host functions must be registered into WasmEdge. See [Host Functions](/embed/c/reference/latest.md#host-functions) for more details. The host functions which take `externref`s must know the original objects' types. We take the function pointer case for example.
+To instantiate the above example Wasm, the host functions must be registered into WasmEdge. See [Host Functions](reference/latest.md#host-functions) for more details. The host functions which take `externref`s must know the original objects' types. We take the function pointer case for example.
 
 ```c
 /* Function to pass as function pointer. */
@@ -299,7 +299,7 @@ WasmEdge_Result ExternMul(void *, const WasmEdge_CallingFrameContext *,
 }
 ```
 
-"`MulFunc`" is a function that will be passed into Wasm as `externref`. In the "`func_mul`" host function, users can use "`WasmEdge_ValueGetExternRef`" API to get the pointer from the `WasmEdge_Value` which contains a `externref`.
+"`MulFunc`" is a function that will be passed into WASM as `externref`. In the "`func_mul`" host function, users can use "`WasmEdge_ValueGetExternRef`" API to get the pointer from the `WasmEdge_Value` which contains a `externref`.
 
 Developers can add the host functions with names into a module instance.
 
@@ -481,7 +481,7 @@ WasmEdge_Result ExternSquare(void *, const WasmEdge_CallingFrameContext *,
 
 ### Passing STL Objects
 
-The [example Wasm binary](https://github.com/WasmEdge/WasmEdge/raw/master/test/externref/externrefTestData/stl.wasm) ([this WAT](https://github.com/WasmEdge/WasmEdge/blob/master/test/externref/externrefTestData/stl.wat) is the corresponding text format) provides functions to interact with host functions which can access C++ STL objects. Assume that the WASM file `stl.wasm` is copied into the current directory.
+The [example WASM binary](https://github.com/WasmEdge/WasmEdge/raw/master/test/externref/externrefTestData/stl.wasm) ([this WAT](https://github.com/WasmEdge/WasmEdge/blob/master/test/externref/externrefTestData/stl.wat) is the corresponding text format) provides functions to interact with host functions which can access C++ STL objects. Assume that the WASM file `stl.wasm` is copied into the current directory.
 
 Take the `std::ostream` and `std::string` objects for example. Assume that there's a host function accesses to a `std::ostream` and a `std::string` through `externref`s:
 
@@ -501,7 +501,7 @@ WasmEdge_Result ExternSTLOStreamStr(void *,
 }
 ```
 
-Assume that the above host function is added to the module instance `HostMod`, and the `HostMod` is registered into a VM context `VMCxt`. Then users can instantiate the Wasm module:
+Assume that the above host function is added to the module instance `HostMod`, and the `HostMod` is registered into a VM context `VMCxt`. Then users can instantiate the WASM module:
 
 ```cpp
 WasmEdge_Result Res = WasmEdge_VMLoadWasmFromFile(VMCxt, "stl.wasm");

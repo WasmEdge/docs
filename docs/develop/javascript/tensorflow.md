@@ -10,10 +10,10 @@ The WasmEdge-QuickJs supports the WasmEdge WASI-NN plugins so that your JavaScri
 
 Install WasmEdge with WASI-NN plugin
 
-- [with the Tensorflow Lite backend](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite)
-- [with the PyTorch backend](../build-and-run/install#wasi-nn-plugin-with-pytorch-backend)
+- [with the Tensorflow Lite backend](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend)
+- [with the PyTorch backend](../../start/install.md#wasi-nn-plug-in-with-pytorch-backend)
 
-Instead of a [standard](./hello_world#prerequisites) QuickJS setup, you need to get the WasmEdge QuickJS runtime with WASI NN support built-in. Clone the wasmedge-quickjs repo and use it as the current directory.
+Instead of a [standard](hello_world.md#prerequisites) QuickJS setup, you need to get the WasmEdge QuickJS runtime with WASI NN support built-in. Clone the wasmedge-quickjs repo and use it as the current directory.
 
 ```bash
 git clone https://github.com/second-state/wasmedge-quickjs
@@ -75,7 +75,7 @@ print('confidence:');
 print(max / 255);
 ```
 
-To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plugin and Tensorflow Lite dependency libraries installed with WasmEdge](../build-and-run/install#wasi-nn-plugin-with-tensorflow-lite). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
+To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plugin and Tensorflow Lite dependency libraries installed with WasmEdge](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs_nn.wasm example_js/tensorflow_lite_demo/wasi_nn_main.js

@@ -97,6 +97,11 @@ const config = {
                 items: [
                     {
                         type: 'doc',
+                        docId: 'start/overview',
+                        position: 'left',
+                        label: 'Getting Started',
+                    }, {
+                        type: 'doc',
                         docId: 'develop/overview',
                         position: 'left',
                         label: 'Develop',
@@ -110,15 +115,13 @@ const config = {
                         docId: 'contribute/overview',
                         position: 'left',
                         label: 'Extend',
-                    },
-                    {
+                    }, {
                         type: 'localeDropdown',
                         position: 'right',
                         dropdownItemsBefore: [],
                         dropdownItemsAfter: [],
                         className: 'icon-link language navbar__item',
-                    },
-                    {
+                    }, {
                         href: 'https://github.com/WasmEdge/WasmEdge',
                         className: "header-github-link",
                         position: 'right',
@@ -142,38 +145,35 @@ const config = {
                         title: 'Docs',
                         items: [
                             {
+                                label: 'Getting Started',
+                                to: '/start/overview',
+                            }, {
                                 label: 'Develop',
                                 to: '/develop/overview',
-                            },{
+                            }, {
                                 label: 'Embeds',
                                 to: '/embed/overview',
-                            },
-                             {
+                            }, {
                                 label: 'Contribute',
                                 to: '/contribute/overview',
                             }
                         ],
-                    },
-                    {
+                    }, {
                         title: 'Resources',
                         items: [
                             {
                                 label: 'Github',
                                 href: 'https://github.com/WasmEdge/WasmEdge',
-                            },
-                             {
+                            }, {
                                 label: 'Second State',
                                 href: 'https://www.secondstate.io/',
-                            },
-                            {
+                            }, {
                                 label: 'Articles & Blog',
                                 href: 'https://www.secondstate.io/articles/'
-                            },
-                            {
+                            }, {
                                 label: 'WasmEdge Talks',
                                 to: '/talks'
-                            },
-                            {
+                            }, {
                                 label: 'Releases',
                                 to: '/releases'
                             }
@@ -185,20 +185,16 @@ const config = {
                             {
                                 label: 'Mailing List',
                                 href: 'https://groups.google.com/g/wasmedge/'
-                            },
-                            {
+                            }, {
                                 label: 'Discord',
                                 href: 'https://discord.gg/U4B5sFTkFc',
-                            },
-                            {
+                            }, {
                                 label: 'Twitter',
                                 href: 'https://twitter.com/realwasmedge',
-                            },
-                            {
+                            }, {
                                 label: 'Slack #WasmEdge',
                                 href: 'https://cloud-native.slack.com/archives/C0215BBK248'
-                            },
-                            {
+                            }, {
                                 label: 'Community Meeting',
                                 href: 'https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing'
                             }

@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Server
 
-In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous. In this chapter, we will cover simple HTTP servers based on [the wrap API](#the-warp-api), as well as the [low level hyper API](#the-hyper-api). For HTTP clients in WasmEdge, please see [the previous chapter](client).
+In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous. In this chapter, we will cover simple HTTP servers based on [the wrap API](#the-warp-api), as well as the [low level hyper API](#the-hyper-api). For HTTP clients in WasmEdge, please see [the previous chapter](client.md).
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+Before we started, make sure [you have Rust and WasmEdge installed](../setup.md).
 :::
 
 ## The warp API

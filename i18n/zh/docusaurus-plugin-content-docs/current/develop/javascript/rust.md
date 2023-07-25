@@ -8,13 +8,13 @@ For JavaScript developers, incorporating Rust functions into JavaScript APIs is 
 
 <!-- prettier-ignore -->
 :::note
-The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules).
+The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules.md).
 :::
 
 ## Prerequisites
 
-- [Install the Rust toolchain](../rust/setup)
-- [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
+- [Install the Rust toolchain](../rust/setup.md)
+- [Install WasmEdge QuickJS and get ready](hello_world.md#prerequisites)
 
 ## Run the examples
 
@@ -338,4 +338,4 @@ TypeError: cannot read property 'x' of undefined
 
 Using the Rust API, we could create JavaScript classes that inherit (or extend) from existing classes. That allows developers to create complex JavaScript APIs using Rust by building on existing solutions. You can see [an example here](https://github.com/second-state/wasmedge-quickjs/blob/main/examples/js_extend.rs).
 
-Next, you can see the Rust code in the [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder for more examples on how to implement common JavaScript built-in functions including [Node.js](nodejs) APIs.
+Next, you can see the Rust code in the [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder for more examples on how to implement common JavaScript built-in functions including [Node.js](nodejs.md) APIs.

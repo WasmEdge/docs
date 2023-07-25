@@ -10,7 +10,7 @@ While there are many possibilities with sockets, we will demonstrate two familia
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+Before we started, make sure [you have Rust and WasmEdge installed](../setup.md).
 :::
 
 ## A Simple HTTP Client

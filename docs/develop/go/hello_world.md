@@ -53,7 +53,7 @@ You will see a file named `hello.wasm` in the same directory. This is a WebAssem
 
 ### Hello world: Run
 
-You can run it with the [WasmEdge CLI](../build-and-run/cli).
+You can run it with the [WasmEdge CLI](../../start/build-and-run/cli.md).
 
 ```bash
 $ wasmedge hello.wasm
@@ -97,7 +97,7 @@ You will see a file named `fib.wasm` in the same directory. This is a WebAssembl
 
 ### A simple function: Run
 
-You can run it with the [WasmEdge CLI](../build-and-run/cli) in its `--reactor` mode. The command line arguments that follow the `wasm` file are the function name and its call parameters.
+You can run it with the [WasmEdge CLI](../../start/build-and-run/cli.md) in its `--reactor` mode. The command line arguments that follow the `wasm` file are the function name and its call parameters.
 
 ```bash
 $ wasmedge --reactor fib.wasm fibArray 10
