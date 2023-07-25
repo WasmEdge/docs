@@ -23,17 +23,17 @@ The `wasmedge compile` command can compile WebAssembly into native machine code 
 The options of the `wasmedge compile` command are as follows.
 
 1. `-h|--help`: Show the help messages. Will ignore other arguments below.
-2. (Optional) `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
-3. (Optional) `--interruptible`: Generate the binary which supports interruptible execution.
+2. _(Optional)_ `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
+3. _(Optional)_ `--interruptible`: Generate the binary which supports interruptible execution.
    - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.x#async).
-4. (Optional) Statistics information:
+4. _(Optional)_ Statistics information:
    - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
    - Use `--enable-time-measuring` to generate code for enabling the statistics of time measuring in execution.
    - Use `--enable-gas-measuring` to generate code for enabling the statistics of gas measuring in execution.
    - Use `--enable-instruction-count` to generate code for enabling the statistics of counting WebAssembly instructions.
    - Or use `--enable-all-statistics` to generate code for enabling all of the statistics.
-5. (Optional) `--generic-binary`: Generate the generic binary of the current host CPU architecture.
-6. (Optional) WebAssembly proposals:
+5. _(Optional)_ `--generic-binary`: Generate the generic binary of the current host CPU architecture.
+6. _(Optional)_ WebAssembly proposals:
    - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
    - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
    - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
@@ -46,7 +46,7 @@ The options of the `wasmedge compile` command are as follows.
    - Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `OFF`).
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
    - Use `--enable-all` to enable ALL proposals above.
-7. (Optional) `--optimize`: Select the LLVM optimization level.
+7. _(Optional)_ `--optimize`: Select the LLVM optimization level.
    - Use `--optimize LEVEL` to set the optimization level. The `LEVEL` should be one of `0`, `1`, `2`, `3`, `s`, or `z`.
    - The default value will be `2`, which means `O2`.
 8. Input WASM file (`/path/to/wasm/file`).

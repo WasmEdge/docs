@@ -50,4 +50,7 @@ The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project su
 
 ## Run a simple Wasi app
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::

@@ -129,8 +129,16 @@ Please refer to [WasmEdge CLI](../../start/build-and-run/cli.md) for WASM execut
 
 ## Examples
 
-Work in progress. Will update soon.
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::
+
 
 ## Old WasmEdge TensorFlow extension
 
-Work in progress. Will update soon.
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::
+

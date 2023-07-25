@@ -10,7 +10,7 @@ Make sure [you have Rust and WasmEdge installed](setup.md) and [the WASI-crypto 
 
 ## Write WebAssembly Using WASI-Crypto
 
-### (Optional) Rust Installation
+### _(Optional)_ Rust Installation
 
 For importing WASI-Crypto in rust, you should use the [wasi-crypto binding](https://github.com/WebAssembly/wasi-crypto/tree/main/implementations/bindings/rust) in your cargo.toml
 
