@@ -14,8 +14,7 @@ on:
       - '.env'
       - '.gitignore'
   pull_request:
-    branches:
-      - main
+    types: [opened, synchronize, reopened, labeled, ready_for_review]
     paths-ignore:
       - 'README.md'
       - 'LICENSE'

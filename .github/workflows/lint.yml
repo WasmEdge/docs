@@ -39,3 +39,12 @@ jobs:
 
       - name: Prettier Code
         run: npm run format:diff
+
+      - name: Lint markdown format
+        uses: github/super-linter/slim@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          FILTER_REGEX_INCLUDE: .*docs/.*md$
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_MARKDOWN: true
