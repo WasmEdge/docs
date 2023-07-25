@@ -43,7 +43,7 @@ WasmEdge could be seamlessly integrated with the existing cloud-native infra.
 
 To integrate WasmEdge with your existing cloud-native infrastructure, there are several options available for managing WASM applications as "containers" under Kubernetes. These options enables you to run Linux containers and WASM containers side by side within a Kubernetes cluster.
 
-**Option #1:**  is to [use an OCI runtime crun](../../develop/deploy/oci-runtime/crun.md) (the C version of runc — mainly supported by Red Hat). crun decides whether an OCI image is WASM or Linux based on image annotations. If the image is annotated as wasm32, crun will bypass the Linux container setup and just use WasmEdge to run the image. By using crun, you can get the entire Kubernetes stack - including CRI-O, containerd, Podman, kind, micro k8s, and k8s - to work with WASM images.
+**Option #1:** is to [use an OCI runtime crun](../../develop/deploy/oci-runtime/crun.md) (the C version of runc — mainly supported by Red Hat). crun decides whether an OCI image is WASM or Linux based on image annotations. If the image is annotated as wasm32, crun will bypass the Linux container setup and just use WasmEdge to run the image. By using crun, you can get the entire Kubernetes stack - including CRI-O, containerd, Podman, kind, micro k8s, and k8s - to work with WASM images.
 
 Option #2 is to [use a containerd-shim to start WASM "containers" via runwasi](../../develop/deploy/cri-runtime/containerd.md). Basically, containerd could look at the image's target platform. It uses runwasi if the image is wasm32 and runc if it is x86 / arm. This is the approach used by Docker + Wasm.
 

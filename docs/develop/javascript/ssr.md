@@ -332,6 +332,7 @@ ReactDOM.hydrate(
   document.getElementById('root'),
 );
 ```
+
 <!-- prettier-ignore -->
 :::note
 You should import `React` redundantly in the `src/App.js`, so the server will recognize it.

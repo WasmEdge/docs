@@ -179,12 +179,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 Please see [Deploying using Keadm](https://kubeedge.io/en/docs/setup/keadm/).
 
-<!-- prettier-ignore -->
-:::note
 1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
 2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with --advertise-address flag.
-3. --advertise-address(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
-:::
+3. --advertise-address(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP
 
 ```bash
 wget https://github.com/kubeedge/kubeedge/releases/download/v1.8.0/keadm-v1.8.0-linux-amd64.tar.gz
