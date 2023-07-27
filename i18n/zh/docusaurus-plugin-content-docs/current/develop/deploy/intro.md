@@ -10,7 +10,7 @@ There are several options to manage WASM apps as “containers” under Kubernet
 
 ## With containerd-shim
 
-Option #1 is to use a containerd-shim to start WASM "containers" via runwasi. Basically containerd could look at the image’s target platform, it uses runwasi if the image is wasm32 and uses runc if the image is x86 / arm. Currently, Docker and Microsoft prefers this approach. This is also the basis for the [Docker + WASM preview](https://www.docker.com/blog/docker-wasm-technical-preview/). Based on containerd
+**Option #1:** is to use a containerd-shim to start WASM "containers" via runwasi. Basically containerd could look at the image’s target platform, it uses runwasi if the image is wasm32 and uses runc if the image is x86 / arm. Currently, Docker and Microsoft prefers this approach. This is also the basis for the [Docker + WASM preview](https://www.docker.com/blog/docker-wasm-technical-preview/). Based on containerd
 
 The following image shows how it works.
 

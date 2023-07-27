@@ -28,4 +28,7 @@ wasmedge --env "DATABASE_URL=postgres://user:passwd@localhost/testdb" target/was
 
 ## Code explanation
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::

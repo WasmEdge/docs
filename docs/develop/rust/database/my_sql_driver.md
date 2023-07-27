@@ -28,4 +28,7 @@ wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wa
 
 ## Code explanation
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::

@@ -28,4 +28,7 @@ wasmedge --env "REDIS_URL=redis://localhost/" target/wasm32-wasi/release/wasmedg
 
 ## Code explanation
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::

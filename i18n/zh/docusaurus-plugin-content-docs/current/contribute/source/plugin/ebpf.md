@@ -4,4 +4,7 @@ sidebar_position: 7
 
 # Build with eBPF Plugin
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::
