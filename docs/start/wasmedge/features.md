@@ -71,7 +71,7 @@ It is easy to build customized WasmEdge runtime with native host functions in C,
 
 Or you could build your own plug-ins for WasmEdge in,
 
-- [Rust](../../contribute/plugin/develop_plugin_rustsdk) - WIP
+- [Rust](../../contribute/plugin/develop_plugin_rustsdk)
 - [C](../../contribute/plugin/develop_plugin_c)
 - [C++](../../contribute/plugin/develop_plugin_cpp)
 
