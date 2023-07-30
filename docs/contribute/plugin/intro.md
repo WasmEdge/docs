@@ -14,7 +14,7 @@ graph LR
     B -- Registers --> C((Wasmedge Runtime))
 ```
 
-In this diagram, the _Host Application_ represents the application or environment where the Wasmedge runtime is embedded or used. The _Plug-in Shared Library_ refers to the library containing the plug-in code and functions that extend the functionality of the Wasmedge runtime. The _Wasmedge Runtime_ represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plug-ins.
+In this diagram, the *Host Application* represents the application or environment where the WasmEdge runtime is embedded or used. The *Plugin Shared Library* refers to the library that provides portable host modules and host functions for WASM extension. The *WasmEdge Runtime* represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
 
 ## Usages of WasmEdge Plug-in
 
@@ -26,17 +26,13 @@ In addition, WasmEdge plug-ins can support serverless functions for SaaS applica
 
 WasmEdge plug-ins are designed to extend the functionality of the WasmEdge runtime and can be helpful for developers and end-users in several ways:
 
-- **Versatility:** WasmEdge plug-ins can be developed in multiple programming languages that can compile to WebAssembly, allowing developers to write plug-ins in the most comfortable language.
-
 - **Customization:** WasmEdge plug-ins can be customized to suit the specific needs of a project. Developers can create plug-ins that integrate with other systems or tools or provide unique functionality unavailable in the core WasmEdge runtime.
 
 - **Performance:** WasmEdge plug-ins are designed to work seamlessly with the core runtime, minimizing overhead and maximizing performance, which means they can provide additional functionality without sacrificing performance.
 
 - **Ease of use:** WasmEdge plug-ins are easy to use and integrate with the WasmEdge runtime. Developers can load the plug-in into the runtime and use its functions as part of the core runtime.
 
-- **Scalability:** WasmEdge plug-ins can scale applications by offloading compute-intensive tasks to edge devices, reducing the load on central servers and improving performance.
-
-- **Security:** WasmEdge plug-ins run in a sandboxed environment, which helps to reduce the risk of security vulnerabilities. Additionally, plug-ins can be digitally signed to ensure authenticity and integrity.
+- **Scalability:** Developers can compile their compute-intensive functions into host functions and package them into a plug-in to provide the better performance as running in native code.
 
 WasmEdge plug-ins can provide developers and users with a versatile, customizable, high-performance, and secure way to extend the functionality of the WasmEdge runtime. WasmEdge plug-ins can also improve scalability and ease of use, making it easier to build and deploy complex applications on edge devices.
 
@@ -55,7 +51,7 @@ To use the loadable plug-ins, developers need to load them from specific paths i
 - Loadable plug-ins can be loaded from default paths by calling the `WasmEdge_PluginLoadWithDefaultPaths()` API. The default paths include:
 
   - The path specified in the environment variable `WASMEDGE_PLUGIN_PATH`.
-  - The `../plug-in/` directory relative to the WasmEdge installation path.
+  - The `./plug-in/` directory relative to the WasmEdge installation path.
   - The `./wasmedge/` directory is located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
 
 - If the plug-ins are located in a specific path or directory, developers can use the `WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plug-in.so")` API to load the plug-ins from that particular location.
@@ -87,16 +83,16 @@ By following this flowchart, developers can effectively load loadable plug-ins i
 
 There are several plug-in releases with the WasmEdge official releases. Please check the following table to check the release status and how to build from the source with the plug-ins.
 
-| Plug-in | Rust Crate | Description | Released Platforms | Build Steps |
-| --- | --- | --- | --- | --- |
-| WasmEdge-Process | [wasmedge_process_interface][] | WasmEdge-Process is a utility plug-in for the WasmEdge Runtime, providing functionality related to process handling. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.0`) | [Build With WasmEdge-Process](/contribute/source/plugin/process) |
-| [WASI-Crypto][] | [wasi-crypto][] | WASI-Crypto is a module that provides a set of APIs for cryptographic operations and key management. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-Crypto](/contribute/source/plug-in/wasi_crypto) |
-| [WASI-NN with OpenVINO backend](/develop/rust/ai_inference/openvino) | [wasi-nn][] | WASI-NN with OpenVINO backend is a machine learning-oriented module for WebAssembly. | `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-NN](/contribute/source/plugin/wasi_nn#get-wasmedge-with-wasi-nn-plug-in-openvino-backend) |
-| [WASI-NN with PyTorch backend](/develop/rust/ai_inference/pytorch) | [wasi-nn][] | WASI-NN with PyTorch backend allows running of PyTorch models in WebAssembly. | `ubuntu 20.04 x86_64` (since `0.11.1`) | [Build With WASI-NN](/contribute/source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-pytorch-backend) |
-| [WASI-NN with TensorFlow-Lite backend](/develop/rust/ai_inference/pytorch) | [wasi-nn][] | WASI-NN with TensorFlow-Lite backend allows running of TensorFlow-Lite models in WebAssembly. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.11.2`) | [Build With WASI-NN](/contribute/source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-tensorflow-lite-backend) |
-| WasmEdge-Image | [wasmedge_tensorflow_interface][] | WasmEdge-Image is a plug-in that provides image processing and manipulation capabilities in WasmEdge. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Image](/contribute/source/plugin/image) |
-| WasmEdge-Tensorflow | [wasmedge_tensorflow_interface][] | WasmEdge-Tensorflow integrates TensorFlow with WasmEdge for running machine learning models. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Tensorflow](/contribute/source/plugin/tensorflow) |
-| WasmEdge-TensorflowLite | [wasmedge_tensorflow_interface][] | WasmEdge-TensorflowLite is a plug-in for running TensorFlow Lite models in WasmEdge. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-TensorflowLite](/contribute/source/plugin/tensorflowlite) |
+| Plug-in | Rust Crate | Released Platforms | Build Steps |
+| --- | --- | --- | --- |
+| WasmEdge-Process | [wasmedge_process_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.0`) | [Build Wtih WasmEdge-Process](../source/plugin/process.md) |
+| [WASI-Crypto][] | [wasi-crypto][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-Crypto](../source/plugin/wasi_crypto.md) |
+| [WASI-NN with OpenVINO backend](../../develop/rust/wasinn/openvino.md) | [wasi-nn][] | `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-NN](../source/plugin/wasi_nn.md#build-wasmedge-with-wasi-nn-openvino-backend) |
+| [WASI-NN with PyTorch backend](../../develop/rust/wasinn/pytorch.md) | [wasi-nn][] | `ubuntu 20.04 x86_64` (since `0.11.1`) | [Build With WASI-NN](../source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-pytorch-backend) |
+| [WASI-NN with TensorFlow-Lite backend](../../develop/rust/wasinn/tensorflow_lite.md) | [wasi-nn][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.11.2`) | [Build With WASI-NN](../source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-tensorflow-lite-backend) |
+| WasmEdge-Image | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Image](../source/plugin/image.md) |
+| WasmEdge-Tensorflow | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Tensorflow](../source/plugin/tensorflow.md) |
+| WasmEdge-TensorflowLite | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-TensorflowLite](../source/plugin/tensorflowlite.md) |
 
 <!-- prettier-ignore -->
 :::note

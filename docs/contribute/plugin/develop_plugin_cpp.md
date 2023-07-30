@@ -35,19 +35,9 @@ This flowchart illustrates developing a WasmEdge plug-in, showcasing the steps f
 
 To start developing WasmEdge plug-ins, it is essential to correctly set up the development environment. This section provides step-by-step instructions for WasmEdge plug-in development -
 
-- **Build WasmEdge from source**: For developing the WasmEdge plug-in in C++, you must build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions.
+**Build WasmEdge from source**: For developing the WasmEdge plug-in in C++, you must build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions.
 
-- **Install WasmEdge with plug-ins (optional)**: Installing WasmEdge with existing plug-ins can provide additional functionality and be a reference for your plug-in development. If you want to utilize or test the compatibility of your new plug-in with existing plug-ins, you can install them using the provided installer script. The installed plug-ins will be available for your development environment.
-
-  To see a list of supported plug-ins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plug-ins and dependencies section.
-
-- **Enable specific backends or additional components (if applicable):** Some plug-ins may require enabling specific backends or other components to extend their functionality. The following links provide instructions for enabling specific backends in WasmEdge:
-
-  - [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021)
-  - [TensorFlow Lite](/contribute/source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-tensorflow-lite-backend)
-  - [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/)
-
-Following these steps, you can set up the development environment for effectively creating WasmEdge plug-ins, allowing you to develop, test, and debug your plug-ins in a Linux environment.
+After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).  
 
 ## Create a WasmEdge plug-in project
 
@@ -236,41 +226,38 @@ To build the plug-in shared library, developers should build in CMake with the W
 - Copy the `testplugin.h` and `testplugin.cpp` into the `<PATH_TO_WASMEDGE_SOURCE>/plugins/test` directory. And then edit the file `<PATH_TO_WASMEDGE_SOURCE>/plugins/test/CMakeLists.txt`:
 
   ```cmake
-  wasmedge_add_library(wasmedgePluginTest
+  wasmedge_add_library(wasmedgePluginWasiLogging
     SHARED
+    env.cpp
+    func.cpp
+    module.cpp
     testplugin.cpp
   )
 
-  target_compile_options(wasmedgePluginTest
+  target_compile_options(wasmedgePluginWasiLogging
     PUBLIC
     -DWASMEDGE_PLUGIN
   )
 
-  if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    target_link_options(wasmedgePluginTest
-      PUBLIC
-      -Wl,-U,__ZN8WasmEdge6Plugin14PluginRegisterC1EPKNS0_6Plugin16PluginDescriptorE
-      -Wl,-U,__ZN8WasmEdge6Plugin14PluginRegisterD1Ev
-    )
-  endif()
-
-  target_include_directories(wasmedgePluginTest
+  target_include_directories(wasmedgePluginWasiLogging
     PUBLIC
     $<TARGET_PROPERTY:wasmedgePlugin,INCLUDE_DIRECTORIES>
     ${CMAKE_CURRENT_SOURCE_DIR}
   )
 
   if(WASMEDGE_LINK_PLUGINS_STATIC)
-    target_link_libraries(wasmedgePluginTest
+    target_link_libraries(wasmedgePluginWasiLogging
       PRIVATE
       wasmedgeCAPI
     )
   else()
-    target_link_libraries(wasmedgePluginTest
+    target_link_libraries(wasmedgePluginWasiLogging
       PRIVATE
       wasmedge_shared
     )
   endif()
+
+  install(TARGETS wasmedgePluginWasiLogging DESTINATION ${CMAKE_INSTALL_LIBDIR}/wasmedge)
   ```
 
 Follow the guide to [build WasmEdge from source](../source/os/linux.md), according to your specific operating system (e.g., Linux), which will include building the plug-in shared library along with WasmEdge.

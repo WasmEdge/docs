@@ -17,17 +17,7 @@ To start developing WasmEdge plug-ins, it is essential to properly set up the de
 
 - **Build WasmEdge from source**: For developing the WasmEdge plug-in in C++, you must build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions. Once you complete the C++ plug-in code, you can use witc[^1] to generate Rust Plug-in SDK.
   
-- **Install WasmEdge with plug-ins (optional)**: Installing WasmEdge with existing plug-ins can provide additional functionality and be a reference for your plug-in development. If you want to utilize or test the compatibility of your new plug-in with existing plug-ins, you can install them using the provided installer script. The installed plug-ins will be available for your development environment.
-
-  To see a list of supported plug-ins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plug-ins and dependencies section.
-
-- **Enable specific backends or additional components (if applicable):** Some plug-ins may require enabling specific backends or other components to extend their functionality. The following links provide instructions for enabling specific backends in WasmEdge:
-
-  - [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021)
-  - [TensorFlow Lite](/contribute/source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-tensorflow-lite-backend)
-  - [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/)
-
-Following these steps, you can set up the development environment for effectively creating WasmEdge plug-ins, allowing you to develop, test, and debug your plug-ins in a Linux environment.
+After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).  
 
 ## Write the plug-in code
 

@@ -25,18 +25,9 @@ This flowchart illustrates developing a WasmEdge plug-in, showcasing the steps f
 
 To start developing WasmEdge plug-ins, it is essential to correctly set up the development environment. This section provides step-by-step instructions for WasmEdge plug-in development -
 
-- **Install a WasmEdge runtime**: You can download the latest version of WasmEdge from [GitHub repository](https://github.com/wasmEdge/wasmEdge). Here are the installation instructions for a different operating system for [installing WasmEdge](/develop/build-and-run/install.md).
-- **Install WasmEdge with plug-ins (optional)**: Installing WasmEdge with existing plug-ins can provide additional functionality and be a reference for your plug-in development. If you want to utilize or test the compatibility of your new plug-in with existing plug-ins, you can install them using the provided installer script. The installed plug-ins will be available for your development environment.
+**Install a WasmEdge runtime**: You can download the latest version of WasmEdge from [GitHub repository](https://github.com/wasmEdge/wasmEdge). Follow the instructions in the [installation guide](../../start/install.md) for your specific operating system.
 
-  To see a list of supported plug-ins and their specific install commands, see the [Install WasmEdge](develop/build-and-run/install) plug-ins and dependencies section.
-
-- **Enable specific backends or additional components (if applicable):** Some plug-ins may require enabling specific backends or other components to extend their functionality. The following links provide instructions for enabling specific backends in WasmEdge:
-
-  - [OpenVINO™](https://docs.openvino.ai/2021.4/openvino_docs_install_guides_installing_openvino_linux.html#)(2021)
-  - [TensorFlow Lite](/contribute/source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-tensorflow-lite-backend)
-  - [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/)
-
-Following these steps, you can set up the development environment for effectively creating WasmEdge plug-ins, allowing you to develop, test, and debug your plug-ins in a Linux environment.
+After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).  
 
 ## Create a WasmEdge plug-in project
 
