@@ -6,7 +6,7 @@ sidebar_position: 1
 
 While the WasmEdge language SDKs allow registering host functions from a host (wrapping) application, developers should implement the host functions before compilation. However, for a more flexible and dynamic extension of the host functions, WasmEdge provides a plug-in architecture to load the plug-in shared library.
 
-A WasmEdge plug-in is a software component that extends the functionality of the WasmEdge runtime. Currently, developers can follow the guides to implement the plug-ins in [C API](develop_plugin_c.md) (recommended) or [C++](develop_plugin_cpp.md). With the help of the WasmEdge SDKs in the supported languages, developers can load and register the host functions from the plug-in shared libraries, allowing them to seamlessly integrate the plug-ins into the WasmEdge runtime as if they were part of the core runtime.
+A WasmEdge plug-in is a software component that extends the functionality of the WasmEdge runtime. Currently, developers can follow the guides to implement the plug-ins in [C API](develop_plugin_c.md) (recommended), [C++](develop_plugin_cpp.md) and [Rust](develop_plugin_rustsdk.md). With the help of the WasmEdge SDKs in the supported languages, developers can load and register the host functions from the plug-in shared libraries, allowing them to seamlessly integrate the plug-ins into the WasmEdge runtime as if they were part of the core runtime.
 
 ```mermaid
 graph LR
