@@ -14,7 +14,7 @@ graph LR
     B -- Registers --> C((Wasmedge Runtime))
 ```
 
-In this diagram, the *Host Application* represents the application or environment where the WasmEdge runtime is embedded or used. The *Plugin Shared Library* refers to the library that provides portable host modules and host functions for WASM extension. The *WasmEdge Runtime* represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
+In this diagram, the _Host Application_ represents the application or environment where the WasmEdge runtime is embedded or used. The _Plugin Shared Library_ refers to the library that provides portable host modules and host functions for WASM extension. The _WasmEdge Runtime_ represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
 
 ## Usages of WasmEdge Plug-in
 

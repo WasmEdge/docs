@@ -27,7 +27,7 @@ To start developing WasmEdge plug-ins, it is essential to correctly set up the d
 
 **Install a WasmEdge runtime**: You can download the latest version of WasmEdge from [GitHub repository](https://github.com/wasmEdge/wasmEdge). Follow the instructions in the [installation guide](../../start/install.md) for your specific operating system.
 
-After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).  
+After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).
 
 ## Create a WasmEdge plug-in project
 
@@ -58,33 +58,33 @@ To create a plug-in with host functions and modules, follow these steps:
 For more details about the [external data](/embed/c/host_function.md#host-data) and [calling frame context](/embed/c/host_function.md#calling-frame-context), please refer to the host function guide.
 :::
 
-  Here's an example of two host functions, `HostFuncAdd` and `HostFuncSub`, that add and subtract two `int32_t` numbers, respectively:
+Here's an example of two host functions, `HostFuncAdd` and `HostFuncSub`, that add and subtract two `int32_t` numbers, respectively:
 
-  ```c
-  #include <wasmedge/wasmedge.h>
+```c
+#include <wasmedge/wasmedge.h>
 
-  /* The host function definitions. */
+/* The host function definitions. */
 
-  /* The host function to add 2 int32_t numbers. */
-  WasmEdge_Result HostFuncAdd(void *Data,
-                              const WasmEdge_CallingFrameContext *CallFrameCxt,
-                              const WasmEdge_Value *In, WasmEdge_Value *Out) {
-    int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
-    int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
-    Out[0] = WasmEdge_ValueGenI32(Val1 + Val2);
-    return WasmEdge_Result_Success;
-  }
+/* The host function to add 2 int32_t numbers. */
+WasmEdge_Result HostFuncAdd(void *Data,
+                            const WasmEdge_CallingFrameContext *CallFrameCxt,
+                            const WasmEdge_Value *In, WasmEdge_Value *Out) {
+  int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
+  int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
+  Out[0] = WasmEdge_ValueGenI32(Val1 + Val2);
+  return WasmEdge_Result_Success;
+}
 
-  /* The host function to sub 2 int32_t numbers. */
-  WasmEdge_Result HostFuncSub(void *Data,
-                              const WasmEdge_CallingFrameContext *CallFrameCxt,
-                              const WasmEdge_Value *In, WasmEdge_Value *Out) {
-    int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
-    int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
-    Out[0] = WasmEdge_ValueGenI32(Val1 - Val2);
-    return WasmEdge_Result_Success;
-  }
-  ```
+/* The host function to sub 2 int32_t numbers. */
+WasmEdge_Result HostFuncSub(void *Data,
+                            const WasmEdge_CallingFrameContext *CallFrameCxt,
+                            const WasmEdge_Value *In, WasmEdge_Value *Out) {
+  int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
+  int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
+  Out[0] = WasmEdge_ValueGenI32(Val1 - Val2);
+  return WasmEdge_Result_Success;
+}
+```
 
 - **Implement the module creation functions**: In this step, you need to implement the module creation function that creates an instance of the module. This function will be called when the plug-in is loaded.
 

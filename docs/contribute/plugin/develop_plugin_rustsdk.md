@@ -16,8 +16,8 @@ It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.m
 To start developing WasmEdge plug-ins, it is essential to properly set up the development environment. This section provides step-by-step instructions for WasmEdge plug-in development -
 
 - **Build WasmEdge from source**: For developing the WasmEdge plug-in in C++, you must build WasmEdge from source. Follow the[build WasmEdge from source](../source/build_from_src.md) for instructions. Once you complete the C++ plug-in code, you can use witc[^1] to generate Rust Plug-in SDK.
-  
-After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).  
+
+After installing WasmEdge, you need to set up the build environment. If you're using Linux or other platforms, you can follow the instructions in the [build environment setup guide](../source/os/linux.md).
 
 ## Write the plug-in code
 
