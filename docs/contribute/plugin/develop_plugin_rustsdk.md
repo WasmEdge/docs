@@ -6,6 +6,14 @@ sidebar_position: 4
 
 By developing a plug-in, one can extend the functionality of WasmEdge and customize it to suit specific needs. WasmEdge provides a Rust-based API for registering extension modules and host functions.
 
+```mermaid
+graph TD
+A[Build WasmEdge from source] -- witc --> B[Generate Rust Plugin Code]
+B -- SDK Crate --> C[Create SDK Crate]
+C -- Module File --> D[Create Module File]
+D -- Wrapper Functions --> E[Write Wrapper Functions in src/lib.rs]
+```
+
 <!-- prettier-ignore -->
 :::note
 It is recommended that developers choose the WasmEdge [C API](develop_plugin_c.md) for plug-in development because of the support, compatibility, and flexibility the WasmEdge runtime provides.
