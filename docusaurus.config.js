@@ -214,7 +214,8 @@ const config = {
 module.exports = {
     ...config,
     markdown: {
-        mermaid: true,
-      },
-      themes: ['@docusaurus/theme-mermaid'],
-    };
+      mermaid: true,
+    },
+    themes: ['@docusaurus/theme-mermaid'],
+  };
+  
