@@ -81,7 +81,7 @@ cmake --install build
 If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
 :::
 
-Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with OpenVINO backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with PyTorch backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
 
 ## Build WasmEdge with WASI-NN TensorFlow-Lite Backend
 
@@ -100,7 +100,7 @@ cmake --install build
 If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
 :::
 
-Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with OpenVINO backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with TensorFlow-lite backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
 
 Installing the necessary `libtensorflowlite_c.so` and `libtensorflowlite_flex.so` on both `Ubuntu 20.04` and `manylinux2014` for the backend, we recommend the following commands:
 

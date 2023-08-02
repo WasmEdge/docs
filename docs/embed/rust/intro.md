@@ -26,6 +26,10 @@ WasmEdge Rust SDK consists of five crates:
 
   | wasmedge-sdk | WasmEdge lib | wasmedge-sys | wasmedge-types | wasmedge-macro | async-wasi |
   | :-: | :-: | :-: | :-: | :-: | :-: |
+  | 0.11.0 | 0.13.3 | 0.16.0 | 0.4.3 | 0.6.0 | 0.0.3 |
+  | 0.10.1 | 0.13.3 | 0.15.1 | 0.4.2 | 0.5.0 | 0.0.2 |
+  | 0.10.0 | 0.13.2 | 0.15.0 | 0.4.2 | 0.5.0 | 0.0.2 |
+  | 0.9.0 | 0.13.1 | 0.14.0 | 0.4.2 | 0.4.0 | 0.0.1 |
   | 0.9.0 | 0.13.0 | 0.14.0 | 0.4.2 | 0.4.0 | 0.0.1 |
   | 0.8.1 | 0.12.1 | 0.13.1 | 0.4.1 | 0.3.0 | - |
   | 0.8.0 | 0.12.0 | 0.13.0 | 0.4.1 | 0.3.0 | - |
@@ -44,10 +48,10 @@ WasmEdge Rust SDK consists of five crates:
 
     Note that if you have installed the WasmEdge library in a different path, you can set the `WASMEDGE_INCLUDE_DIR` and `WASMEDGE_LIB_DIR` environment variables to the path of the WasmEdge library.
 
-- Add `wasmedge-sdk` crate to your `Cargo.toml` file. Note that, according to the versioning table, the version of `wasmedge-sdk` matching `WasmEdge v0.13.0` is `0.9.0`.
+- Add `wasmedge-sdk` crate to your `Cargo.toml` file. Note that, according to the versioning table, the version of `wasmedge-sdk` matching `WasmEdge v0.13.3` is `0.11.0`.
 
   ```toml
-  wasmedge-sdk = "0.9.0"
+  wasmedge-sdk = "0.11.0"
   ```
 
 **Notice:** The minimum supported Rust version is 1.68.
