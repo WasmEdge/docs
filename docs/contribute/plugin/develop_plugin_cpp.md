@@ -226,7 +226,7 @@ To build the plug-in shared library, developers should build in CMake with the W
 - Copy the `testplugin.h` and `testplugin.cpp` into the `<PATH_TO_WASMEDGE_SOURCE>/plugins/test` directory. And then edit the file `<PATH_TO_WASMEDGE_SOURCE>/plugins/test/CMakeLists.txt`:
 
   ```cmake
-  wasmedge_add_library(wasmedgePluginWasiLogging
+  wasmedge_add_library(wasmedgePluginTest
     SHARED
     env.cpp
     func.cpp
@@ -234,30 +234,30 @@ To build the plug-in shared library, developers should build in CMake with the W
     testplugin.cpp
   )
 
-  target_compile_options(wasmedgePluginWasiLogging
+  target_compile_options(wasmedgePluginTest
     PUBLIC
     -DWASMEDGE_PLUGIN
   )
 
-  target_include_directories(wasmedgePluginWasiLogging
+  target_include_directories(wasmedgePluginTest
     PUBLIC
     $<TARGET_PROPERTY:wasmedgePlugin,INCLUDE_DIRECTORIES>
     ${CMAKE_CURRENT_SOURCE_DIR}
   )
 
   if(WASMEDGE_LINK_PLUGINS_STATIC)
-    target_link_libraries(wasmedgePluginWasiLogging
+    target_link_libraries(wasmedgePluginTest
       PRIVATE
       wasmedgeCAPI
     )
   else()
-    target_link_libraries(wasmedgePluginWasiLogging
+    target_link_libraries(wasmedgePluginTest
       PRIVATE
       wasmedge_shared
     )
   endif()
 
-  install(TARGETS wasmedgePluginWasiLogging DESTINATION ${CMAKE_INSTALL_LIBDIR}/wasmedge)
+  install(TARGETS wasmedgePluginTest DESTINATION ${CMAKE_INSTALL_LIBDIR}/wasmedge)
   ```
 
 Follow the guide to [build WasmEdge from source](../source/os/linux.md), according to your specific operating system (e.g., Linux), which will include building the plug-in shared library along with WasmEdge.

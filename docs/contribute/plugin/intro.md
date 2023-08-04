@@ -14,8 +14,6 @@ graph LR
     B -- Registers --> C((Wasmedge Runtime))
 ```
 
-In this diagram, the _Host Application_ represents the application or environment where the WasmEdge runtime is embedded or used. The _Plugin Shared Library_ refers to the library that provides portable host modules and host functions for WASM extension. The _WasmEdge Runtime_ represents the runtime environment that executes WebAssembly modules, including the core runtime and any registered plugins.
-
 ## Usages of WasmEdge Plug-in
 
 WasmEdge plug-ins can be used in various scenarios, such as high-performance domain-specific languages, cloud-native JavaScript runtime, edge computing, serverless, SaaS, service mesh, and blockchain applications. Moreover, WasmEdge plug-ins can be used in microservices, providing a lightweight, secure, high-performance runtime compatible with frameworks like Dapr and Kubernetes.
@@ -51,7 +49,7 @@ To use the loadable plug-ins, developers need to load them from specific paths i
 - Loadable plug-ins can be loaded from default paths by calling the `WasmEdge_PluginLoadWithDefaultPaths()` API. The default paths include:
 
   - The path specified in the environment variable `WASMEDGE_PLUGIN_PATH`.
-  - The `./plug-in/` directory relative to the WasmEdge installation path.
+  - The `./plugin/` directory relative to the WasmEdge installation path.
   - The `./wasmedge/` directory is located under the library path if WasmEdge is installed in a system directory such as `/usr` and `/usr/local`.
 
 - If the plug-ins are located in a specific path or directory, developers can use the `WasmEdge_PluginLoadFromPath("PATH_TO_PLUGIN/plug-in.so")` API to load the plug-ins from that particular location.
