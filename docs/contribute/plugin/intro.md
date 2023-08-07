@@ -14,12 +14,6 @@ graph LR
     B -- Registers --> C((Wasmedge Runtime))
 ```
 
-## Usages of WasmEdge Plug-in
-
-WasmEdge plug-ins can be used in various scenarios, such as high-performance domain-specific languages, cloud-native JavaScript runtime, edge computing, serverless, SaaS, service mesh, and blockchain applications. Moreover, WasmEdge plug-ins can be used in microservices, providing a lightweight, secure, high-performance runtime compatible with frameworks like Dapr and Kubernetes.
-
-In addition, WasmEdge plug-ins can support serverless functions for SaaS applications, allowing users to extend and customize their experience without operating their API callback servers. They can also be embedded into innovative device applications as middleware runtime, rendering interactive content on the UI, connecting to native device drivers, and accessing specialized hardware features. WasmEdge plug-ins can manage application state, exchange dynamic data (e.g., strings and arrays) with Wasm programs, and provide native host functions to manipulate data.
-
 ## Benefits of Using WasmEdge Plug-in
 
 WasmEdge plug-ins are designed to extend the functionality of the WasmEdge runtime and can be helpful for developers and end-users in several ways:
