@@ -10,13 +10,13 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | --- | --- | --- |
 | WebAssembly Languages Runtime maintained by VMWare | Use WasmEdge to run PHP and python programs | <https://github.com/vmware-labs/webassembly-language-runtimes/pull/19> |
 | LF Edge eKuiper | Use WasmEdge to process data streamed from IoT devices | <https://github.com/lf-edge/ekuiper/pull/1449/> |
-| crun | Use WasmEdge to run Wasm containers | <https://github.com/containers/crun/pull/774> |
-| youki | Use WasmEdge to run Wasm containers | <https://github.com/containers/youki/pull/1320> |
-| containerd and runwasi | Use WasmEdge to run Wasm containers | <https://github.com/containerd/runwasi> |
-| Kuasar | Use WasmEdge to run Wasm containers | <https://github.com/kuasar-io/kuasar#wasm-sandboxer> |
-| Proxy-wasm | Use Wasm to process the proxy rules | <https://github.com/proxy-wasm/proxy-wasm-cpp-host/pull/193> |
-| OpenYurt | Use WasmEdge to run Wasm containers side by side with Linux containers in an OpenYurt network. | <https://www.cncf.io/blog/2022/02/07/wasmedge-and-openyurt-bring-cloud-computing-to-the-edge/> |
-| SuperEdge | Use WasmEdge to run Wasm containers side by side with Linux containers in a SuperEdge network. | <https://github.com/WasmEdge/WasmEdge/pull/1272> |
+| crun | Use WasmEdge to run WASM containers | <https://github.com/containers/crun/pull/774> |
+| youki | Use WasmEdge to run WASM containers | <https://github.com/containers/youki/pull/1320> |
+| containerd and runwasi | Use WasmEdge to run WASM containers | <https://github.com/containerd/runwasi> |
+| Kuasar | Use WasmEdge to run WASM containers | <https://github.com/kuasar-io/kuasar#wasm-sandboxer> |
+| Proxy-wasm | Use WASM to process the proxy rules | <https://github.com/proxy-wasm/proxy-wasm-cpp-host/pull/193> |
+| OpenYurt | Use WasmEdge to run WASM containers side by side with Linux containers in an OpenYurt network. | <https://www.cncf.io/blog/2022/02/07/wasmedge-and-openyurt-bring-cloud-computing-to-the-edge/> |
+| SuperEdge | Use WasmEdge to run WASM containers side by side with Linux containers in a SuperEdge network. | <https://github.com/WasmEdge/WasmEdge/pull/1272> |
 | OpenGauss | Use WasmEdge to support user-defined functions (UDF) in a database | <https://hub.docker.com/r/opengauss/wasmedge> |
 | Essa-ra | Use WasmEdge to execute serverless functions on the essa-rs platform. | <https://github.com/essa-project/essa-rs> |
 | Fedora Linux | Incorporated WasmEdge as an official RPM package since Fedora 37. | <https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html> |

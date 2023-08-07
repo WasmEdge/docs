@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Prerequisites
 
-[Install WasmEdge](../build-and-run/install)
+[Install WasmEdge](../../start/install.md#install)
 
 Clone the [wasmedge-quickjs](https://github.com/second-state/wasmedge-quickjs) repo and use it as the current directory.
 

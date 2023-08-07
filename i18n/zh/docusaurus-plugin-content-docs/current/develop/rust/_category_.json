@@ -1,8 +1,8 @@
 {
-  "label": "Develop Wasm Apps in Rust",
+  "label": "Develop WASM Apps in Rust",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Rust is the first class citizen in WebAssembly ecosystem. In this chapter, we will learn how to create Wasm apps in Rust."
+    "description": "Rust is the first class citizen in WebAssembly ecosystem. In this chapter, we will learn how to create WASM apps in Rust."
   }
 }

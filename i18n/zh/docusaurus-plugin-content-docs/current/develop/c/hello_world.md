@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # Hello World
 
-This chapter will take Hello World as an example to show how to compile a C program to Wasm bytecode and run in WasmEdge.
+This chapter will take Hello World as an example to show how to compile a C program to WASM bytecode and run in WasmEdge.
 
 ## Prerequisites
 
 Before we started, make sure you have installed the following software:
 
-1. [Install WasmEdge](../build-and-run/install)
+1. [Install WasmEdge](../../start/install.md#install)
 
 2. Emscripten, a toolchain for compiling C/C++ to WebAssembly. Please refer to the [emcc official repository](https://github.com/emscripten-core/emsdk) for the detailed instructions.
 
