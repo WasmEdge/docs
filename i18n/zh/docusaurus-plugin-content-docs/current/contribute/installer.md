@@ -6,11 +6,11 @@ sidebar_position: 7
 
 ## Overview
 
-WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasmedge compile`), the Libraries (`libwasmedge`), the Extensions(`wasmedge-tensorflow`), and the Plugins(`wasi-nn`, `wasi-crytpo`).
+WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasmedge compile`), the Libraries (`libwasmedge`), the Extensions(`wasmedge-tensorflow`), and the Plug-ins(`wasi-nn`, `wasi-crytpo`).
 
 ## Dependencies
 
-In the first version of the installer, WasmEdge provides a pure shell script implementation. However, it's not easy to maintain and is not suitable when we want to include the extensions and plugins matrix.
+In the first version of the installer, WasmEdge provides a pure shell script implementation. However, it's not easy to maintain and is not suitable when we want to include the extensions and plug-ins matrix.
 
 To reduce the cost of maintenance and improve the development performance, we decided to move forward to a brand new installer that is written in Python and is compatible with both Python 2 and 3.
 

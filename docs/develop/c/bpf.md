@@ -2,13 +2,13 @@
 sidebar_position: 5
 ---
 
-# Bpf userspace program example with wasm_bpf plugin
+# Bpf userspace program example with wasm_bpf plug-in
 
-Currently, there is a WasmEdge plugin called `wasm_bpf` which provided APIs to perform operations on eBPF program, such ad loading, attaching and polling.
+Currently, there is a WasmEdge plug-in called `wasm_bpf` which provided APIs to perform operations on eBPF program, such ad loading, attaching and polling.
 
 The detailed description could be found at [https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md](https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md).
 
-Here we will provide several examples to demonstrate the `wasm_bpf` plugin.
+Here we will provide several examples to demonstrate the `wasm_bpf` plug-in.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ For simplicity, we will just reuse the `Makefile` of [wasm-bpf](https://github.c
 1. Clone the [`wasm-bpf`](https://github.com/eunomia-bpf/wasm-bpf) repo.
 2. Run `make install-deps` and `make /opt/wasi-sdk` at the root of the project. This will install the build prerequisites.
 3. [Install WasmEdge](../../start/install.md#install)
-4. Build and install the `wasm_bpf` plugin. Currently, we have to build `wasm_bpf` plugin manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
+4. Build and install the `wasm_bpf` plug-in. Currently, we have to build `wasm_bpf` plug-in manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
 
 ## The bootstrap example
 
@@ -29,7 +29,7 @@ Run `make` in `wasm-bpf/examples/bootstrap`, and you will find the `bootstrap.wa
 WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/ wasmedge bootstrap.wasm
 ```
 
-`WASMEDGE_PLUGIN_PATH` should be changed due to your build directory of the plugin.
+`WASMEDGE_PLUGIN_PATH` should be changed due to your build directory of the plug-in.
 
 Example output:
 

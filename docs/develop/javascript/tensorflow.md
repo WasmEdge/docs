@@ -4,11 +4,11 @@ sidebar_position: 4
 
 # AI inference
 
-The WasmEdge-QuickJs supports the WasmEdge WASI-NN plugins so that your JavaScript can run inference on AI models.
+The WasmEdge-QuickJs supports the WasmEdge WASI-NN plug-ins so that your JavaScript can run inference on AI models.
 
 ## Prerequisites
 
-Install WasmEdge with WASI-NN plugin
+Install WasmEdge with WASI-NN plug-in
 
 - [with the Tensorflow Lite backend](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend)
 - [with the PyTorch backend](../../start/install.md#wasi-nn-plug-in-with-pytorch-backend)
@@ -75,7 +75,7 @@ print('confidence:');
 print(max / 255);
 ```
 
-To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plugin and Tensorflow Lite dependency libraries installed with WasmEdge](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
+To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plug-in and Tensorflow Lite dependency libraries installed with WasmEdge](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs_nn.wasm example_js/tensorflow_lite_demo/wasi_nn_main.js

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Build with WASI-nn Plugin
+# Build with WASI-nn Plug-in
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Then build and install WasmEdge from source:
 cd <path/to/your/wasmedge/source/folder>
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="OpenVINO"
 cmake --build build
-# For the WASI-NN plugin, you should install this project.
+# For the WASI-NN plug-in, you should install this project.
 cmake --install build
 ```
 
@@ -72,7 +72,7 @@ Then build and install WasmEdge from source:
 cd <path/to/your/wasmedge/source/folder>
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="PyTorch"
 cmake --build build
-# For the WASI-NN plugin, you should install this project.
+# For the WASI-NN plug-in, you should install this project.
 cmake --install build
 ```
 
@@ -91,7 +91,7 @@ You can build and install WasmEdge from source directly (on `Linux x86_64`, `Lin
 cd <path/to/your/wasmedge/source/folder>
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="TensorflowLite"
 cmake --build build
-# For the WASI-NN plugin, you should install this project.
+# For the WASI-NN plug-in, you should install this project.
 cmake --install build
 ```
 
