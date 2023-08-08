@@ -56,7 +56,7 @@ You can use Rust’s `cargo` tool to build the Rust program into WebAssembly byt
 
 ```bash
 cd api/functions/image-grayscale/
-cargo build --release --target wasm32-wasi 
+cargo build --release --target wasm32-wasi
 ```
 
 Copy the build artifacts to the `api` folder.
@@ -75,9 +75,9 @@ const { spawn } = require('child_process');
 const path = require('path');
 
 module.exports = (req, res) => {
-  const wasmedge = spawn(
-      path.join(__dirname, 'wasmedge'), 
-      [path.join(__dirname, 'grayscale.so')]);
+  const wasmedge = spawn(path.join(__dirname, 'wasmedge'), [
+    path.join(__dirname, 'grayscale.so'),
+  ]);
 
   let d = [];
   wasmedge.stdout.on('data', (data) => {
@@ -93,7 +93,7 @@ module.exports = (req, res) => {
 
   wasmedge.stdin.write(req.body);
   wasmedge.stdin.end('');
-}
+};
 ```
 
 That's it. [Deploy the repo to Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/) and you now have a Netlify Jamstack app with a high-performance Rust and WebAssembly based serverless backend.
@@ -102,7 +102,7 @@ That's it. [Deploy the repo to Netlify](https://www.netlify.com/blog/2016/09/29/
 
 The [second demo](https://60ff7e2d10fe590008db70a9--reverent-hodgkin-dc1f51.netlify.app/) application allows users to upload an image and then invoke a serverless function to classify the main subject on the image.
 
-It is in [the same GitHub repo](https://github.com/second-state/netlify-wasm-runtime/tree/tensorflow) as the previous example but in the `tensorflow` branch. The backend serverless function for image classification is in the [`api/functions/image-classification`](https://github.com/second-state/netlify-wasm-runtime/tree/tensorflow/api/functions/image-classification) folder in the `tensorflow` branch.  The [`src/main.rs`](https://github.com/second-state/netlify-wasm-runtime/blob/tensorflow/api/functions/image-classification/src/main.rs) file contains the Rust program’s source code. The Rust program reads image data from the `STDIN`, and then outputs the text output to the `STDOUT`. It utilizes the WasmEdge Tensorflow API to run the AI inference.
+It is in [the same GitHub repo](https://github.com/second-state/netlify-wasm-runtime/tree/tensorflow) as the previous example but in the `tensorflow` branch. The backend serverless function for image classification is in the [`api/functions/image-classification`](https://github.com/second-state/netlify-wasm-runtime/tree/tensorflow/api/functions/image-classification) folder in the `tensorflow` branch. The [`src/main.rs`](https://github.com/second-state/netlify-wasm-runtime/blob/tensorflow/api/functions/image-classification/src/main.rs) file contains the Rust program’s source code. The Rust program reads image data from the `STDIN`, and then outputs the text output to the `STDOUT`. It utilizes the WasmEdge Tensorflow API to run the AI inference.
 
 ```rust
 pub fn main() {
@@ -166,7 +166,7 @@ module.exports = (req, res) => {
   const wasmedge = spawn(
     path.join(__dirname, 'wasmedge-tensorflow-lite'),
     [path.join(__dirname, 'classify.so')],
-    {env: {'LD_LIBRARY_PATH': __dirname}}
+    { env: { LD_LIBRARY_PATH: __dirname } },
   );
 
   let d = [];
@@ -181,7 +181,7 @@ module.exports = (req, res) => {
 
   wasmedge.stdin.write(req.body);
   wasmedge.stdin.end('');
-}
+};
 ```
 
 You can now [deploy your forked repo to Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/) and have a web app for subject classification.

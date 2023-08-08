@@ -4,26 +4,21 @@ sidebar_position: 7
 
 # Reactr
 
-[Reactr](https://github.com/suborbital/reactr) is a fast, performant function scheduling library written in Go. Reactr is designed to be flexible, with the ability to run embedded in your Go applications and first-class support for WebAssembly.
-Taking advantage of Go's superior concurrency capabilities, Reactr can manage and execute hundreds of WebAssembly runtime instances all at once, making a great framework for server-side applications.
+[Reactr](https://github.com/suborbital/reactr) is a fast, performant function scheduling library written in Go. Reactr is designed to be flexible, with the ability to run embedded in your Go applications and first-class support for WebAssembly. Taking advantage of Go's superior concurrency capabilities, Reactr can manage and execute hundreds of WebAssembly runtime instances all at once, making a great framework for server-side applications.
 
-Reactr allows you to run WebAssembly functions in Go, so does the [WasmEdge Go SDK](../../../sdk/go.md).
-The unique feature of Reactr is that it provides a rich set of host functions in Go, which support access to networks and databases etc. Reactr then provides Rust (and Swift / AssemblyScript) APIs to call those host functions from within the WebAssembly function.
+Reactr allows you to run WebAssembly functions in Go, so does the [WasmEdge Go SDK](../../../sdk/go.md). The unique feature of Reactr is that it provides a rich set of host functions in Go, which support access to networks and databases etc. Reactr then provides Rust (and Swift / AssemblyScript) APIs to call those host functions from within the WebAssembly function.
 
-In this article, we will show you how to use WasmEdge together with Reactr to take advantage of the best of both worlds. WasmEdge is the [fastest and most extensible WebAssembly runtime](../../../features.md).
-It is also the fastest in [Reactr's official test suite](https://github.com/suborbital/reactr/runs/4476074960?check_suite_focus=true).
-We will show you how to run Rust functions compiled to WebAssembly as well as JavaScript programs in WasmEdge and Reactr.
+In this article, we will show you how to use WasmEdge together with Reactr to take advantage of the best of both worlds. WasmEdge is the [fastest and most extensible WebAssembly runtime](../../../features.md). It is also the fastest in [Reactr's official test suite](https://github.com/suborbital/reactr/runs/4476074960?check_suite_focus=true). We will show you how to run Rust functions compiled to WebAssembly as well as JavaScript programs in WasmEdge and Reactr.
 
 > WasmEdge provides [advanced support for JavaScript](../../../write_wasm/js.md) including [mixing Rust with JavaScript](../../../write_wasm/js/rust.md) for improved performance.
 
-* [Hello world](#hello-world)
-* [Database query](#database-query)
-* [Embed JavaScript in Go](#embed-javascript-in-go)
+- [Hello world](#hello-world)
+- [Database query](#database-query)
+- [Embed JavaScript in Go](#embed-javascript-in-go)
 
 ## Prerequisites
 
-You need have [Rust](https://www.rust-lang.org/tools/install), [Go](https://go.dev/doc/install), and [WasmEdge](../../../quick_start/install.md) installed on your system.
-The GCC compiler (installed via the `build-essential` package) is also needed for WasmEdge.
+You need have [Rust](https://www.rust-lang.org/tools/install), [Go](https://go.dev/doc/install), and [WasmEdge](../../../quick_start/install.md) installed on your system. The GCC compiler (installed via the `build-essential` package) is also needed for WasmEdge.
 
 ```bash
 sudo apt-get update
@@ -48,8 +43,7 @@ A simple `hello world` example for Reactr is [available here](https://github.com
 
 ### Hello world: Rust function compiled to WebAssembly
 
-Let's first create [a simple Rust function](https://github.com/second-state/wasm-learning/blob/master/reactr/hello/hello-echo/src/lib.rs) to echo hello.
-The Rust function `HelloEcho::run()` is as follows. It will be exposed to the Go host application through Reactr.
+Let's first create [a simple Rust function](https://github.com/second-state/wasm-learning/blob/master/reactr/hello/hello-echo/src/lib.rs) to echo hello. The Rust function `HelloEcho::run()` is as follows. It will be exposed to the Go host application through Reactr.
 
 ```rust
 use suborbital::runnable::*;
@@ -75,8 +69,7 @@ cd ..
 
 ### Hello world: Go host application
 
-Next, lets look into the [Go host app](https://github.com/second-state/wasm-learning/blob/master/reactr/hello/main.go) that executes the WebAssembly functions.
-The `runBundle()` function executes the `run()` function in the `Runnable` struct once.
+Next, lets look into the [Go host app](https://github.com/second-state/wasm-learning/blob/master/reactr/hello/main.go) that executes the WebAssembly functions. The `runBundle()` function executes the `run()` function in the `Runnable` struct once.
 
 ```go
 func runBundle() {
@@ -155,8 +148,7 @@ Leave this running and start another terminal window to interact with this Postg
 
 ### Database query: Rust function compiled to WebAssembly
 
-Let's create [a Rust function](https://github.com/second-state/wasm-learning/blob/master/reactr/db/rs-db/src/lib.rs) to access the PostgreSQL database.
-The Rust function `RsDbtest::run()` is as follows. It will be exposed to the Go host application through Reactr. It uses named queries such as `PGInsertUser` and `PGSelectUserWithUUID` to operate the database. Those queries are defined in the Go host application, and we will see them later.
+Let's create [a Rust function](https://github.com/second-state/wasm-learning/blob/master/reactr/db/rs-db/src/lib.rs) to access the PostgreSQL database. The Rust function `RsDbtest::run()` is as follows. It will be exposed to the Go host application through Reactr. It uses named queries such as `PGInsertUser` and `PGSelectUserWithUUID` to operate the database. Those queries are defined in the Go host application, and we will see them later.
 
 ```rust
 use suborbital::runnable::*;
@@ -223,8 +215,7 @@ cd ..
 
 ### Database query: Go host application
 
-The [Go host app](https://github.com/second-state/wasm-learning/blob/master/reactr/db/main.go) first defines the SQL queries and gives each of them a name.
-We will then pass those queries to the Reactr runtime as a configuration.
+The [Go host app](https://github.com/second-state/wasm-learning/blob/master/reactr/db/main.go) first defines the SQL queries and gives each of them a name. We will then pass those queries to the Reactr runtime as a configuration.
 
 ```go
 func main() {
@@ -310,8 +301,7 @@ go run -tags wasmedge main.go
 
 ## Embed JavaScript in Go
 
-As we mentioned, a key feature of the WasmEdge Runtime is its advanced [JavaScript support](../../../write_wasm/js.md), which allows JavaScript programs to run in lightweight, high-performance, safe, multi-language, and [Kubernetes-managed WasmEdge containers](../../kubernetes.md).
-A simple example of embedded JavaScript function in Reactr is [available here](https://github.com/second-state/wasm-learning/tree/master/reactr/quickjs).
+As we mentioned, a key feature of the WasmEdge Runtime is its advanced [JavaScript support](../../../write_wasm/js.md), which allows JavaScript programs to run in lightweight, high-performance, safe, multi-language, and [Kubernetes-managed WasmEdge containers](../../kubernetes.md). A simple example of embedded JavaScript function in Reactr is [available here](https://github.com/second-state/wasm-learning/tree/master/reactr/quickjs).
 
 ### JavaScript example
 
@@ -363,8 +353,7 @@ The printed result shows the type information of the string in Rust and Go APIs.
 
 ### JavaScript example: Feature examples
 
-WasmEdge supports many advanced JavaScript features. For the next step, you could try our [React SSR example](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react_ssr) to generate an HTML UI from a Reactr function!
-You can just build the `dist/main.js` from the React SSR example, and copy it over to this example folder to see it in action!
+WasmEdge supports many advanced JavaScript features. For the next step, you could try our [React SSR example](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react_ssr) to generate an HTML UI from a Reactr function! You can just build the `dist/main.js` from the React SSR example, and copy it over to this example folder to see it in action!
 
 ```bash
 $ cd quickjs

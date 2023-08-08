@@ -12,17 +12,17 @@ Check out our infographic [WebAssembly vs. Docker](https://wasmedge.org/wasm_doc
 
 We created a handy table for the comparison.
 
-|                               | NaCl  | Application runtimes (eg Node &amp; Python)   | Docker-like container | WebAssembly   |
-| ---                           | ---   | ---                                           | ---                   | ---           |
-| Performance                   | Great | Poor                                          | OK                    | Great         |
-| Resource footprint            | Great | Poor                                          | Poor                  | Great         |
-| Isolation                     | Poor  | OK                                            | OK                    | Great         |
-| Safety                        | Poor  | OK                                            | OK                    | Great         |
-| Portability                   | Poor  | Great                                         | OK                    | Great         |
-| Security                      | Poor  | OK                                            | OK                    | Great         |
-| Language and framework choice | N/A   | N/A                                           | Great                 | OK            |
-| Ease of use                   | OK    | Great                                         | Great                 | OK            |
-| Manageability                 | Poor  | Poor                                          | Great                 | Great         |
+|  | NaCl | Application runtimes (eg Node &amp; Python) | Docker-like container | WebAssembly |
+| --- | --- | --- | --- | --- |
+| Performance | Great | Poor | OK | Great |
+| Resource footprint | Great | Poor | Poor | Great |
+| Isolation | Poor | OK | OK | Great |
+| Safety | Poor | OK | OK | Great |
+| Portability | Poor | Great | OK | Great |
+| Security | Poor | OK | OK | Great |
+| Language and framework choice | N/A | N/A | Great | OK |
+| Ease of use | OK | Great | Great | OK |
+| Manageability | Poor | Poor | Great | Great |
 
 ## What's the difference between WebAssembly and eBPF?
 

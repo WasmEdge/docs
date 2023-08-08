@@ -58,7 +58,7 @@ You can use Rust’s `cargo` tool to build the Rust program into WebAssembly byt
 
 ```bash
 cd api/functions/image-grayscale/
-cargo build --release --target wasm32-wasi 
+cargo build --release --target wasm32-wasi
 ```
 
 Copy the build artifacts to the `api` folder.
@@ -78,8 +78,10 @@ const { spawn } = require('child_process');
 const path = require('path');
 
 function _runWasm(reqBody) {
-  return new Promise(resolve => {
-    const wasmedge = spawn(path.join(__dirname, 'wasmedge'), [path.join(__dirname, 'grayscale.so')]);
+  return new Promise((resolve) => {
+    const wasmedge = spawn(path.join(__dirname, 'wasmedge'), [
+      path.join(__dirname, 'grayscale.so'),
+    ]);
 
     let d = [];
     wasmedge.stdout.on('data', (data) => {
@@ -100,21 +102,25 @@ function _runWasm(reqBody) {
 The `exports.handler` part of `hello.js` exports an async function handler, used to handle different events every time the serverless function is called. In this example, we simply process the image by calling the function above and return the result, but more complicated event-handling behavior may be defined based on your need. We also need to return some `Access-Control-Allow` headers to avoid [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors when calling the serverless function from a browser. You can read more about CORS errors [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors) if you encounter them when replicating our example.
 
 ```javascript
-exports.handler = async function(event, context) {
-  var typedArray = new Uint8Array(event.body.match(/[\da-f]{2}/gi).map(function (h) {
-    return parseInt(h, 16);
-  }));
+exports.handler = async function (event, context) {
+  var typedArray = new Uint8Array(
+    event.body.match(/[\da-f]{2}/gi).map(function (h) {
+      return parseInt(h, 16);
+    }),
+  );
   let buf = await _runWasm(typedArray);
   return {
     statusCode: 200,
     headers: {
-      "Access-Control-Allow-Headers" : "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT"
+      'Access-Control-Allow-Headers':
+        'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods':
+        'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT',
     },
-    body: buf.toString('hex')
+    body: buf.toString('hex'),
   };
-}
+};
 ```
 
 ### Build the Docker image for Lambda deployment
@@ -156,7 +162,7 @@ Third, we need to define the default command when we start our container. `CMD [
 Docker images built from AWS Lambda's base images can be tested locally following [this guide](https://docs.aws.amazon.com/lambda/latest/dg/images-test.html). Local testing requires [AWS Lambda Runtime Interface Emulator (RIE)](https://github.com/aws/aws-lambda-runtime-interface-emulator), which is already installed in all of AWS Lambda's base images. To test your image, first, start the Docker container by running:
 
 ```bash
-docker run -p 9000:8080  myfunction:latest 
+docker run -p 9000:8080  myfunction:latest
 ```
 
 This command sets a function endpoint on your local machine at `http://localhost:9000/2015-03-31/functions/function/invocations`.
