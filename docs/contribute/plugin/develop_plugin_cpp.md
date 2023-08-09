@@ -15,18 +15,18 @@ Here is a flowchart showing all the steps needed for developing WasmEdge Plug-in
 
 ```mermaid
 graph TD;
-A[Develop WasmEdge Plugin in C++ API]
+A[Develop WasmEdge Plug-in in C++ API]
 A --> B(Set up development environment)
 B --> C(Create project directory)
 C --> D(Add configuration files)
 D --> E(Install necessary tools and dependencies)
 E --> F(Enable specific backends or components)
-F --> G(Write plugin code)
-G --> H(Build plugin)
-C --> I(Define plugin API)
+F --> G(Write plug-in code)
+G --> H(Build plug-in)
+C --> I(Define plug-in API)
 H --> I
-I --> J(Compile WasmEdge plugin)
-J --> K(Test and debug plugin)
+I --> J(Compile WasmEdge plug-in)
+J --> K(Test and debug plug-in)
 ```
 
 This flowchart illustrates developing a WasmEdge plug-in, showcasing the steps from choosing a programming language to finalizing and releasing the plug-in.

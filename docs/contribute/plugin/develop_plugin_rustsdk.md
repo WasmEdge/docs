@@ -8,7 +8,7 @@ By developing a plug-in, one can extend the functionality of WasmEdge and custom
 
 ```mermaid
 graph TD
-A[Build WasmEdge from source] -- witc --> B[Generate Rust Plugin Code]
+A[Build WasmEdge from source] -- witc --> B[Generate Rust Plug-in Code]
 B -- SDK Crate --> C[Create SDK Crate]
 C -- Module File --> D[Create Module File]
 D -- Wrapper Functions --> E[Write Wrapper Functions in src/lib.rs]
@@ -31,7 +31,7 @@ After installing WasmEdge, you need to set up the build environment. If you're u
 
 To develop a WasmEdge Plug-in in Rust using the witc tool, you can follow these steps:
 
-- **Generate Rust Plugin Code**: Consider you have a file named `wasmedge_opencvmini.wit` with the following content:
+- **Generate Rust Plug-in Code**: Consider you have a file named `wasmedge_opencvmini.wit` with the following content:
 
   ```wit
   imdecode: func(buf: list<u8>) -> u32

@@ -58,6 +58,10 @@ const config = {
             }),
         ],
     ],
+
+    markdown: {
+        mermaid: true,
+    },
     
     themes : [
         [
@@ -77,11 +81,13 @@ const config = {
               searchBarPosition: "right",
             },
           ],
+        ['@docusaurus/theme-mermaid'],
         ],
 
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            metadata: [{ name: 'keywords', content: 'wasmedge, wasm, web assembly, rust, cncf, edge devices, cloud, serverless' }, { name: 'twitter:card', content: 'summary' }],
             image: "./static/img/wasm_logo.png",
             announcementBar: {
                 id: "start",
@@ -211,11 +217,4 @@ const config = {
         }),
 };
 
-module.exports = {
-    ...config,
-    markdown: {
-      mermaid: true,
-    },
-    themes: ['@docusaurus/theme-mermaid'],
-  };
-  
+module.exports = config;

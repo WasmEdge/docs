@@ -10,7 +10,7 @@ A WasmEdge plug-in is a software component that extends the functionality of the
 
 ```mermaid
 graph LR
-    A((Host Application)) -- Loads --> B((Plugin Shared Library))
+    A((Host Application)) -- Loads --> B((Plug-in Shared Library))
     B -- Registers --> C((Wasmedge Runtime))
 ```
 
@@ -54,15 +54,15 @@ The following flowchart shows the process of loading loadable plug-ins into the 
 
 ```mermaid
 graph LR
-    A((Start)) --> B(Loadable Plugins)
-    B --> C{Load Plugins}
+    A((Start)) --> B(Loadable Plug-ins)
+    B --> C{Load Plug-ins}
     C --> D[Load from Default Paths]
     C --> E[Load from Specific Path]
     C --> F[Load from Specific Directory]
-    D --> G{Is Plugin Found?}
+    D --> G{Is Plug-in Found?}
     E --> G
     F --> G
-    G -- Yes --> H(Load Plugin)
+    G -- Yes --> H(Load Plug-in)
     H --> I(End)
     G -- No --> I
 ```

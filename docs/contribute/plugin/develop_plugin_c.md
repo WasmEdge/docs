@@ -11,8 +11,8 @@ graph LR;
 A[Developing WasmEdge Plug-in in C]
 A --> B(Set up the development environment)
 A --> C(Create a WasmEdge plug-in project)
-A --> D(Write the plugin code)
-A --> E(Build the plugin)
+A --> D(Write the plug-in code)
+A --> E(Build the plug-in)
 A --> F(Test and debug the plug-in)
 B --> E
 C --> D
@@ -194,7 +194,7 @@ Remember to implement any additional functions or structures your plug-in requir
 
 Following these steps and implementing the necessary functions and descriptors, you can create a plug-in with host functions and modules in WasmEdge C API. You can continue developing your plug-in by adding functionality and implementing the desired behavior.
 
-- **Plugin option** - _WORK IN PROGRESS. This section is reserved for the feature in the future._
+- **Plug-in option** - _WORK IN PROGRESS. This section is reserved for the feature in the future._
 
 ## Build your plug-in
 
