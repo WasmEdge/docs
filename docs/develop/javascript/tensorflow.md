@@ -4,11 +4,11 @@ sidebar_position: 4
 
 # AI inference
 
-The WasmEdge-QuickJs supports the WasmEdge WASI-NN plug-ins so that your JavaScript can run inference on AI models.
+The WasmEdge-QuickJs supports the WasmEdge WASI-NN plug-ins so your JavaScript can run inference on AI models.
 
 ## Prerequisites
 
-Install WasmEdge with WASI-NN plug-in
+Install WasmEdge with WASI-NN plug-in.
 
 - [with the Tensorflow Lite backend](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend)
 - [with the PyTorch backend](../../start/install.md#wasi-nn-plug-in-with-pytorch-backend)
@@ -20,7 +20,7 @@ git clone https://github.com/second-state/wasmedge-quickjs
 cd wasmedge-quickjs
 ```
 
-Then download the pre-built [WasmEdge QuickJS + WASI NN Runtime program](#build-it-yourself), and optionally, AOT compile it for better performance.
+Then download the pre-built [WasmEdge QuickJS + WASI NN Runtime program](#build-it-yourself), and optionally, AOT compiles it for better performance.
 
 ```bash
 curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs_nn.wasm
@@ -75,7 +75,7 @@ print('confidence:');
 print(max / 255);
 ```
 
-To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plug-in and Tensorflow Lite dependency libraries installed with WasmEdge](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend). You should see the name of the food item recognized by the TensorFlow lite ImageNet model.
+To run the JavaScript in the WasmEdge runtime, make sure that you have the [WASI-NN plug-in and Tensorflow Lite dependency libraries installed with WasmEdge](../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend). You should see the food item's name recognized by the TensorFlow lite ImageNet model.
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs_nn.wasm example_js/tensorflow_lite_demo/wasi_nn_main.js
@@ -87,7 +87,7 @@ confidence:
 
 ## Build it yourself
 
-Following the instructions, you will be able to build a WASI-NN enabled JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
+Following the instructions, you can build a WASI-NN enabled JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
 
 ```bash
 # Install GCC

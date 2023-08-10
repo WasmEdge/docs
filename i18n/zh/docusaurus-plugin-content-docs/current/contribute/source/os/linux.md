@@ -15,7 +15,7 @@ cd WasmEdge
 
 ### Docker Images
 
-The easiest way to setup the environment is using the WasmEdge docker images.
+The easiest way to set up the environment is using the WasmEdge docker images.
 
 You can use the following commands to get our latest docker image [from dockerhub](https://hub.docker.com/search?q=wasmedge):
 
@@ -27,7 +27,7 @@ Or you can pull with the [available tags](../docker.md#docker-images-for-buildin
 
 ### Install Dependencies on Ubuntu Manually
 
-For the developers who don't want to use docker, they can setup the environment on Ubuntu Manually.
+For the developers who don't want to use docker, they can set up the environment on Ubuntu Manually.
 
 Please check that these dependencies are satisfied.
 
@@ -82,7 +82,7 @@ sudo apt install -y clang-12
 
 Our development environment requires `libLLVM-12` and `>=GLIBCXX_3.4.33`.
 
-If users are using operating systems older than Ubuntu 20.04, please use our special docker image to build WasmEdge. If you are looking for the pre-built binaries for the older operating system, we also provide several pre-built binaries based on `manylinux*` distributions.
+If users use operating systems older than Ubuntu 20.04, please use our particular docker image to build WasmEdge. If you are looking for the pre-built binaries for the older operating system, we also provide several pre-built binaries based on `manylinux*` distributions.
 
 | Docker Image | Base Image | Provided Requirements |
 | --- | --- | --- |

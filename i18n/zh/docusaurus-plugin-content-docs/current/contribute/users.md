@@ -21,8 +21,8 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | Essa-ra | Use WasmEdge to execute serverless functions on the essa-rs platform. | <https://github.com/essa-project/essa-rs> |
 | Fedora Linux | Incorporated WasmEdge as an official RPM package since Fedora 37. | <https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html> |
 | Polkadot | Provide WasmEdge as a smart contract runtime for parachains, and support WasmEdge as an alternative runtime for substrate nodes. | <https://github.com/second-state/substrate-wasmedge> |
-| Apache Traffic Server | Use WasmEdge as a plugin to process the traffic flow | <https://github.com/apache/trafficserver/pull/9390> |
-| Enovy | Use WasmEdge as a plugin to process the traffic flow | <https://github.com/envoyproxy/envoy/pull/24817/files> |
+| Apache Traffic Server | Use WasmEdge as a plug-in to process the traffic flow | <https://github.com/apache/trafficserver/pull/9390> |
+| Enovy | Use WasmEdge as a plug-in to process the traffic flow | <https://github.com/envoyproxy/envoy/pull/24817/files> |
 | Liquid Reply |  | <https://kwasm.sh/> |
 | Docker | Use WasmEdge to support wasm containers in Docker Desktop tools | <https://www.docker.com/blog/docker-wasm-technical-preview/> |
 | ByteDance | Use WasmEdge to run custom logic in service mesh proxies and sidecars | Internal use case |
@@ -30,7 +30,7 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | ByteDance | Use WasmEdge as a Ray node | <https://github.com/ray-project/enhancements/blob/main/reps/2023-02-01-wasm-on-ray.md> |
 | Huawei Cloud | Use WasmEdge to run Serverless functions | Internal use case |
 | 5miles | Use WasmEdge to run internal microservices | Internal use case |
-| Bytetrade | Use WasmEdge to run microservices for automated crypto trading and marketing automations. | Internal use case |
+| Bytetrade | Use WasmEdge to run microservices for automated crypto trading and marketing automation. | Internal use case |
 | FutureWei | Use WasmEdge on automobile and OpenHarmony | <https://github.com/WasmEdge/WasmEdge/pull/902> |
 | WinSoft | Use WasmEdge to improve IDE’s user experience | <https://winsoft.sk/webassembly.htm> |
 | ParaState | Use WasmEdge to execute smart contracts on the ParaState blockchain | <https://www.parastate.io/> |

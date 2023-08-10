@@ -4,7 +4,7 @@ sidebar_position: 11
 
 # WasmEdge DockerSlim
 
-The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
+The `wasmedge/slim:{version}` Docker images provide slim WasmEdge images built with [DockerSlim](https://dockersl.im) every release.
 
 - Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
 - Image `wasmedge/slim:{version}` includes the following command line utilities:

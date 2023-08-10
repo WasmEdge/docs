@@ -10,9 +10,9 @@ youki is an OCI container runtime written in Rust. youki has WasmEdge baked in. 
 
 1. Build and configure youki with WasmEdge support
 
-   We will use ubuntu 20.04 as an example. For other OS, please [see here](https://containers.github.io/youki/user/basic_setup.html).
+   We will use Ubuntu 20.04 as an example. For other OS, please [see here](https://containers.github.io/youki/user/basic_setup.html).
 
-   Run the following command line to build and install youki on your machine
+   Run the following command line to build and install youki on your machine.
 
    ```bash
    $ sudo apt-get install   \
@@ -41,7 +41,7 @@ youki is an OCI container runtime written in Rust. youki has WasmEdge baked in. 
 
 3. Configure the `config.json` from youki to run WASM modules.
 
-   To run a webassembly module with youki, the `config.json` has to include either runc.oci.handler or module.wasm.image/variant=compat". It also needs you to specify a valid .wasm (webassembly binary) or .wat (webassembly test) module as entrypoint for the container.
+   To run a webassembly module with youki, the `config.json` has to include either runc.oci.handler or module.wasm.image/variant=compat". It also needs you to specify a valid .wasm (webassembly binary) or .wat (webassembly test) module as an entrypoint for the container.
 
    ```json
    "ociVersion": "1.0.2-dev",
