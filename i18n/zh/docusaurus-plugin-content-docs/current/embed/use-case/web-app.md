@@ -98,4 +98,5 @@ $ sudo buildah build --annotation "module.wasm.image/variant=compat-smart" -t wa
 $ sudo buildah push --authfile ~/.docker/config.json wasm-wasi-example docker://docker.io/wasmedge/example-wasi:latest
 ```
 
-That's it! Now you can try to run it in [CRI-O](../cri/crio.md#run-a-simple-webassembly-app) or [Kubernetes](../kubernetes/kubernetes-crio.md#a-simple-webassembly-app)!
+That's it! Now you can try to run it in [CRI-O](../../develop/deploy/cri-runtime/crio-crun.md) or [Kubernetes](../../develop/deploy/kubernetes/kubernetes-cri-o.md)!
+
