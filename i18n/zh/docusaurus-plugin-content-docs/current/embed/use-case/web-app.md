@@ -99,4 +99,3 @@ $ sudo buildah push --authfile ~/.docker/config.json wasm-wasi-example docker://
 ```
 
 That's it! Now you can try to run it in [CRI-O](../../develop/deploy/cri-runtime/crio-crun.md) or [Kubernetes](../../develop/deploy/kubernetes/kubernetes-cri-o.md)!
-
