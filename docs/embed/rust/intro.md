@@ -8,11 +8,11 @@ sidebar_position: 1
 
 WasmEdge Rust SDK consists of five crates:
 
-- `wasmedge-sdk` crate defines a group of safe, ergonomic high-level APIs, which are used by developers to build up their own business applications.
+- `wasmedge-sdk` crate defines a group of safe, ergonomic high-level APIs developers use to build up their own business applications.
 
-- `wasmedge-sys` crate is a wrapper of WasmEdge C-API and provides the safe counterparts. It is not recommended to use it directly by application developers. `wasmedge-sys`, `wasmedge-types` and `wasmedge-macro` constitute the low-level layer of WasmEdge Rust SDK.
+- `wasmedge-sys` crate is a wrapper of WasmEdge C-API and provides safe counterparts. It is not recommended to use it directly by application developers. `wasmedge-sys`, `wasmedge-types`, and `wasmedge-macro` constitute the low-level layer of WasmEdge Rust SDK.
 
-- `wasmedge-types` crate defines the data structures that are commonly used in `wasmedge-sdk` and `wasmedge-sys`.
+- `wasmedge-types` crate defines the data structures commonly used in `wasmedge-sdk` and `wasmedge-sys`.
 
 - `wasmedge-macro` crate defines the macros that are commonly used in `wasmedge-sdk` and `wasmedge-sys` to declare [host functions](https://webassembly.github.io/spec/core/exec/runtime.html#:~:text=A%20host%20function%20is%20a,a%20module%20as%20an%20import.).
 
@@ -58,4 +58,4 @@ WasmEdge Rust SDK consists of five crates:
 
 ## Examples
 
-[wasmedge-rustsdk-examples](https://github.com/second-state/wasmedge-rustsdk-examples/tree/main) provides a set of examples to demonstrate how to use `wasmedge-sdk` to, for example, create host functions, create WebAssembly libraries, create plug-ins, and etc.
+[wasmedge-rustsdk-examples](https://github.com/second-state/wasmedge-rustsdk-examples/tree/main) provides a set of examples to demonstrate how to use `wasmedge-sdk` to, for example, create host functions, create WebAssembly libraries, create plug-ins, etc.

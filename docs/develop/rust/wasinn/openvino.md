@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # OpenVINO Backend
 
-We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) to show how to do AI inference with an OpenVINO model in WasmEdge and Rust.
+We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image) to show how to make AI inference with an OpenVINO model in WasmEdge and Rust.
 
 ## Prerequisite
 
@@ -60,20 +60,20 @@ Second, use `cargo` to build the template project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
+The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
 
-Next, download the OpenVINO model files and use WasmEdge to classify your own images.
+Next, download the OpenVINO model files and use WasmEdge to classify your images.
 
 ```bash
 ./download_mobilenet.sh
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
 
-You can replace `input.jpg` with your own image file.
+You can replace `input.jpg` with your image file.
 
 ## Improve performance
 
-For the AOT mode which is much more quickly, you can compile the WASM first:
+For the AOT mode, which is much more quickly, you can compile the WASM first:
 
 ```bash
 wasmedgec wasmedge-wasinn-example-mobilenet.wasm out.wasm
@@ -122,7 +122,7 @@ fn image_to_tensor(path: String, height: u32, width: u32) -> Vec<u8> {
 }
 ```
 
-And use this helper funcion to convert the input image:
+And use this helper function to convert the input image:
 
 ```rust
 let tensor_data = image_to_tensor(image_name.to_string(), 224, 224);
@@ -171,7 +171,7 @@ unsafe {
 
 Where the `wasi_nn::GRAPH_ENCODING_OPENVINO` means using the OpenVINO™ backend, and `wasi_nn::EXECUTION_TARGET_CPU` means running the computation on CPU.
 
-Finally, we sort the output and then print the top-5 classification result:
+Finally, we sort the output and then print the top-5 classification results:
 
 ```rust
 let results = sort_results(&output_buffer);
@@ -188,4 +188,4 @@ for i in 0..5 {
 
 ## More Examples
 
-There are also an example that [using OpenVINO to do road segmentation ADAS](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-road-segmentation-adas/rust). Welcome to give it a try. You are also welcome to contribute your own examples.
+There is also an example that [using OpenVINO to do road segmentation ADAS](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-road-segmentation-adas/rust). Welcome to give it a try. You are also welcome to contribute your own examples.

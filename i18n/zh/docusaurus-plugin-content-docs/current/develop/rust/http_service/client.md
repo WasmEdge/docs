@@ -15,7 +15,7 @@ We will discuss HTTP and HTTPS asynchronous clients with hyper, synchronous clie
 
 - [Client](#client)
   - [Asynchronous client with hyper](#asynchronous-client-with-hyper)
-  - [Synchronous client with http\_req](#synchronous-client-with-http_req)
+  - [Synchronous client with http_req](#synchronous-client-with-http_req)
   - [reqwest client](#reqwest-client)
 
 ## Asynchronous client with hyper

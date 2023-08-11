@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Install and uninstall WasmEdge
 
-In this chapter, we will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms. We will cover how to install plug-ins to WasmEdge.
+This chapter will discuss ways to install and uninstall the WasmEdge Runtime on various OSes and platforms. We will cover how to install plug-ins to WasmEdge.
 
 <!-- prettier-ignore -->
 :::note
@@ -13,7 +13,7 @@ Docker Desktop 4.15+ already has WasmEdge bundled in its distribution binary. If
 
 ## Install
 
-You can install the WasmEdge Runtime on any generic Linux and MacOS platforms. If you are using Windows 10 or Fedora / Red Hat Linux systems, you can also install with their default package managers.
+You can install the WasmEdge Runtime on any generic Linux and MacOS platforms. If you use Windows 10 or Fedora / Red Hat Linux systems, you can install with their default package managers.
 
 ### Generic Linux and MacOS
 
@@ -31,7 +31,7 @@ source $HOME/.wasmedge/env
 
 #### Install for all users
 
-By default, WasmEdge is installed in the `$HOME/.wasmedge` directory. You can install it into a system directory, such as `/usr/local` to make it available to all users. To specify an install directory, you can run the `install.sh` script with the `-p` flag. You will need to run the following commands as the `root` user or `sudo` since they write into system directories.
+WasmEdge is installed in the `$HOME/.wasmedge` directory by default. You can install it into a system directory, such as `/usr/local` to make it available to all users. To specify an install directory, run the `install.sh` script with the `-p` flag. You will need to run the following commands as the `root` user or `sudo` since they are written write into system directories.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr/local
@@ -46,7 +46,7 @@ VERSION={{ wasmedge_version }}
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v $VERSION
 ```
 
-If you are interested in the latest builds from the `HEAD` of the `master` branch, which is basically WasmEdge's nightly builds, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/2969775464#artifacts).
+Suppose you are interested in the latest builds from the `HEAD` of the `master` branch, which is basically WasmEdge's nightly builds. In that case, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/2969775464#artifacts).
 
 #### Install WasmEdge with plug-ins
 
@@ -56,7 +56,7 @@ WasmEdge plug-ins are pre-built native modules that provide additional functiona
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite
 ```
 
-To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs both the `wasi-nn TensorFlow-Lite backend` and the `wasmedge_tensorflow` plug-ins.
+To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasi-nn TensorFlow-Lite backend` and the `wasmedge_tensorflow` plug-ins.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite wasmedge_tensorflow
@@ -77,11 +77,11 @@ For `Windows 10`, you could use Windows Package Manager Client (aka `winget.exe`
 winget install wasmedge
 ```
 
-To install plug-ins, you can download plug-in binary modules from the WasmEdge release page, unzip them, and then copy them over to `C:\Program Files\WasmEdge\lib`.
+To install plug-ins, you can download plug-in binary modules from the WasmEdge release page, unzip them, and then copy them to `C:\Program Files\WasmEdge\lib`.
 
 ### Fedora and Red Hat Linux
 
-WasmEdge now is an official package on Fedora 36, Fedora 37, Fedora 38, Fedora EPEL 8, and Fedora EPEL 9. Check out the stable version [here](https://src.fedoraproject.org/rpms/wasmedge). To install WasmEdge on Fedora, run the following command:
+WasmEdge is now an official package on Fedora 36, Fedora 37, Fedora 38, Fedora EPEL 8, and Fedora EPEL 9. Check out the stable version [here](https://src.fedoraproject.org/rpms/wasmedge). To install WasmEdge on Fedora, run the following command:
 
 ```bash
 dnf install wasmedge
@@ -93,7 +93,7 @@ To install plug-ins, you can download plug-in binary modules from the WasmEdge r
 
 ## What's installed
 
-If you installed into the `$HOME/.wasmedge` directory, you will have the following directories and files after installation:
+If you install into the `$HOME/.wasmedge` directory, you will have the following directories and files after installation:
 
 - The `$HOME/.wasmedge/bin` directory contains the WasmEdge Runtime CLI executable files. You can copy and move them around on your file system.
 
@@ -109,7 +109,7 @@ If you installed into the `$HOME/.wasmedge` directory, you will have the followi
     The usage of `wasmedgec` is equal to `wasmedge compile`. We decide to deprecate `wasmedgec` in the future.
     :::
 
-- The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries, as well as dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
+- The `$HOME/.wasmedge/lib` directory contains WasmEdge shared libraries and dependency libraries. They are useful for WasmEdge SDKs to launch WasmEdge programs and functions from host applications.
 - The `$HOME/.wasmedge/include` directory contains the WasmEdge header files. They are useful for WasmEdge SDKs.
 - The `$HOME/.wasmedge/plugin` directory contains the WasmEdge plug-ins. They are loadable extensions for WasmEdge SDKs and will automatically be loaded when running the WasmEdge CLI.
 
@@ -155,7 +155,7 @@ Noticed that the backends are exclusive. Developers can only choose and install 
 
 `WASI-NN` plug-in with `PyTorch` backend allows WasmEdge applications to perform `PyTorch` model inference. To install WasmEdge with `WASI-NN PyTorch backend` plug-in on Linux, please use the `--plugins wasi_nn-pytorch` parameter when [running the installer command](#generic-linux-and-macos).
 
-The `WASI-NN` plug-in with `PyTorch` backend depends on the `libtorch` C++ library to perform AI/ML computations. You need to install the [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependencies in order for it to work properly.
+The `WASI-NN` plug-in with `PyTorch` backend depends on the `libtorch` C++ library to perform AI/ML computations. You need to install the [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependencies for it to work properly.
 
 ```bash
 export PYTORCH_VERSION="1.8.2"
@@ -215,7 +215,7 @@ Then, go to [WASI-Crypto in Rust chapter](../develop/rust/wasicrypto.md) to see 
 
 ### WasmEdge Image Plug-in
 
-WasmEdge-Image plug-in can help developers to load and decode JPEG and PNG images and convert into tensors. To install this plug-in, please use the `--plugins wasmedge_image` parameter when [running the installer command](#generic-linux-and-macos).
+The wasmEdge-Image plug-in can help developers to load and decode JPEG and PNG images and convert into tensors. To install this plug-in, please use the `--plugins wasmedge_image` parameter when [running the installer command](#generic-linux-and-macos).
 
 Then, go to [TensorFlow interface (image part) in Rust chapter](../develop/rust/tensorflow.md) to see how to run `WasmEdge-Image` functions.
 
@@ -234,7 +234,7 @@ Then, go to [TensorFlow interface in Rust chapter](../develop/rust/tensorflow.md
 
 ### WasmEdge TensorFlow-Lite Plug-in
 
-WasmEdge-TensorFlowLite plug-in can help developers to perform `TensorFlow-Lite` model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflowlite` parameter when [running the installer command](#generic-linux-and-macos).
+The wasmEdge-TensorFlowLite plug-in can help developers to perform `TensorFlow-Lite` model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflowlite` parameter when [running the installer command](#generic-linux-and-macos).
 
 The WasmEdge-TensorflowLite plug-in depends on the `libtensorflowlite_c` shared library to perform AI/ML computations, and it will be installed by the installer automatically.
 
@@ -256,7 +256,7 @@ To install the WasmEdge extensions, please use the `-e` option and assign the Wa
 
 ### WasmEdge Image extension
 
-WasmEdge Image extension (replaced by the [WasmEdge-Image plug-in](#wasmedge-image-plug-in) after `0.13.0`) can help developers to load and decode JPEG and PNG images and convert into tensors. To install this extension, please use the `-e image` parameter when [running the installer command](#generic-linux-and-macos).
+WasmEdge Image extension (replaced by the [WasmEdge-Image plug-in](#wasmedge-image-plug-in) after `0.13.0`) can help developers to load and decode JPEG and PNG images and convert them into tensors. To install this extension, please use the `-e image` parameter when [running the installer command](#generic-linux-and-macos).
 
 ### WasmEdge Tensorflow and TensorFlow-Lite extension with CLI tool
 
@@ -284,7 +284,7 @@ bash <(curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/util
 
 <!-- prettier-ignore -->
 :::note
-If a parent folder of the `wasmedge` binary contains `.wasmedge`, the folder will be considered for removal. For example, the script removes the default `$HOME/.wasmedge` folder altogether.
+If a parent folder of the `wasmedge` binary contains `.wasmedge`, the folder will be considered for removal. For example, the script altogether removes the default `$HOME/.wasmedge` folder.
 :::
 
 If you used `dnf` to install WasmEdge on Fedora and Red Hat Linux, run the following command to uninstall it:
@@ -379,9 +379,9 @@ mv libtensorflowlite_flex.dylib ~/.wasmedge/lib
 
 ## Troubleshooting
 
-Some users, especially in China, reported that they had encountered the Connection refused error when trying to download the `install.sh` from the `githubusercontent.com`.
+Some users, especially in China, reported encountering the Connection refused error when trying to download the `install.sh` from the `githubusercontent.com`.
 
-Please make sure your network connection can access the `github.com` and `githubusercontent.com` via VPN.
+Please make sure your network connection can access `github.com` and `githubusercontent.com` via VPN.
 
 ```bash
 # The error message

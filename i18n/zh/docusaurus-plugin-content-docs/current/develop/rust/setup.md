@@ -10,7 +10,7 @@ Before we start, let's set up the software we need.
 
 ## Install WasmEdge
 
-Use the following command line to install WasmEdge on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation](../../start/install.md#install).
+Use the following command line to install WasmEdge on your machine. If you use Windows or other non-Unix-like platforms, please refer to the [WasmEdge installation](../../start/install.md#install).
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
@@ -18,7 +18,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 ## Install Rust
 
-Use the following command line to install Rust on your machine. If you are using Windows or other non-Unix-like platforms, please refer to the [Rust installation instruction](https://www.rust-lang.org/tools/install).
+Use the following command line to install Rust on your machine. If you use Windows or other non-Unix-like platforms, please refer to the [Rust installation instruction](https://www.rust-lang.org/tools/install).
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

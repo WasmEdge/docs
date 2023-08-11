@@ -4,16 +4,16 @@ sidebar_position: 2
 
 # Server
 
-As we described in the [client](client.md) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. In order for WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. In this chapter, we will discuss[an HTTP server example](#an-http-server-example) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
+As we described in the [client](client.md) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. For WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. In this chapter, we will discuss[an HTTP server example](#an-http-server-example) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup.md).
+Before we start, ensure [you have Rust and WasmEdge installed](../setup.md).
 :::
 
 ## An HTTP server example
 
-Build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server) in WasmEdge as follows.
+Build and run [the example](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server) in WasmEdge.
 
 ```bash
 git clone https://github.com/second-state/wasmedge_wasi_socket
@@ -21,7 +21,7 @@ cd wasmedge_wasi_socket/http_server
 
 # Build the Rust code
 cargo build --target wasm32-wasi --release
-# Use the AoT compiler to get better performance
+# Use the AoT compiler for better performance
 wasmedgec target/wasm32-wasi/release/http_server.wasm http_server.wasm
 
 # Run the example
@@ -29,7 +29,7 @@ $wasmedge http_server.wasm
 new connection at 1234
 ```
 
-To test the HTTP server, you can submit a HTTP request to it via `curl`.
+To test the HTTP server, you can submit an HTTP request via `curl`.
 
 ```bash
 $ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
@@ -115,21 +115,21 @@ cd wasmedge_wasi_socket
 
 # Build the Rust code
 cargo build --target wasm32-wasi --release
-# Use the AoT compiler to get better performance
+# Use the AoT compiler for better performance
 wasmedgec target/wasm32-wasi/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
 
 # Run the example
 wasmedge poll_tcp_listener.wasm
 ```
 
-To test the HTTP server, you can submit a HTTP request to it via `curl`.
+You can submit an HTTP request via `curl` to test the HTTP server.
 
 ```bash
 $ curl -d "name=WasmEdge" -X POST http://127.0.0.1:1234
 echo: name=WasmEdge
 ```
 
-The [source code](https://github.com/second-state/wasmedge_wasi_socket/blob/main/examples/poll_tcp_listener.rs) for a non-blocking HTTP server application is available. The following `main()` function starts an HTTP server. It receives events from multiple open connections, and processes those events as they are received by calling the async handler functions registered to each connection. This server can process events from multiple open connections concurrently.
+The [source code](https://github.com/second-state/wasmedge_wasi_socket/blob/main/examples/poll_tcp_listener.rs) for a non-blocking HTTP server application is available. The following `main()` function starts an HTTP server. It receives events from multiple open connections and processes them as they are received by calling the async handler functions registered to each connection. This server can process events from multiple open connections concurrently.
 
 ```rust
 fn main() -> std::io::Result<()> {
@@ -206,7 +206,7 @@ fn main() -> std::io::Result<()> {
 }
 ```
 
-The `handle_connection()` function processes the data from those open connections. In this case, it just writes the request body into the response. It is also done asynchronously -- meaning that the `handle_connection()` function creates an event for the response, and puts it in the queue. The main application loop processes the event and sends the response when it is waiting for data from other connections.
+The `handle_connection()` function processes the data from those open connections. In this case, it just writes the request body into the response. It is also done asynchronously -- meaning that the `handle_connection()` function creates an event for the response and puts it in the queue. The main application loop processes the event and sends the response while waiting for data from other connections.
 
 ```rust
 fn handle_connection_read(connection: &mut TcpStream) -> io::Result<bool> {

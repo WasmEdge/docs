@@ -97,7 +97,7 @@ int main() {
 }
 ```
 
-This example will execute a WASM which call into a host function to add 2 numbers.
+This example will execute a WASM, which calls into a host function to add 2 numbers.
 
 ## Link with WasmEdge Shared Library
 
@@ -127,7 +127,7 @@ The cmake option `-DWASMEDGE_LINK_LLVM_STATIC=ON` will turn on the static librar
 After installation, developers can compile the example file:
 
 ```bash
-# Note: only the Linux platforms need the `-lrt`. The MacOS platforms not need this linker flag.
+# Note: only the Linux platforms need the `-lrt`. The MacOS platforms do not need this linker flag.
 $ gcc test.c -lwasmedge -lrt -ldl -pthread -lm -lstdc++ -o test
 $ ./test
 Host function "Add": 1234 + 5678
