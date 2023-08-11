@@ -126,7 +126,7 @@ The actual installer handles all stuff. It supports python2.7 (not tested on ear
 - Full Option: `--plugins wasi_crypto:0.12.0`
 
 - Note - The format for this argument is `<plugin_name>:<version_number>`. `<version_number>` is not compulsory. For example, `--plugins wasi_crypto` is a valid option.
-- Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](https://wasmedge.org/docs/contribute/plugin/intro) in the `Rust Crate` column. The logic is that the release name should be the same.
+- Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](plugin/intro.md) in the `Rust Crate` column. The logic is that the release name should be the same.
 - Note - It's the same as the WasmEdge version if not specified.
 
 ### DIST
