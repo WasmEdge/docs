@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # PyTorch Backend
 
-We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) to show how to do AI inference with a PyTorch model in WasmEdge and Rust.
+We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image) to show how to make AI inference with a PyTorch model in WasmEdge and Rust.
 
 ## Prerequisite
 
@@ -22,7 +22,7 @@ cd WasmEdge-WASINN-examples
 ```
 
 ```bash
-# Please check that you've already install the libtorch and set the `LD_LIBRARY_PATH`.
+# Please check that you've installed the libtorch and set the `LD_LIBRARY_PATH`.
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
 # If you didn't install the project, you should give the `WASMEDGE_PLUGIN_PATH` environment variable for specifying the WASI-NN plugin path.
 ```
@@ -59,19 +59,19 @@ Second, use `cargo` to build the template project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
+The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
 
-Next let's use WasmEdge to identify your own images.
+Next, let's use WasmEdge to identify your images.
 
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
 ```
 
-You can replace `input.jpg` with your own image file.
+You can replace `input.jpg` with your image file.
 
 ## Improve performance
 
-For the AOT mode which is much more quickly, you can compile the WASM first:
+For the AOT mode, which is much more quickly, you can compile the WASM first:
 
 ```bash
 wasmedgec wasmedge-wasinn-example-mobilenet.wasm out.wasm
@@ -80,13 +80,13 @@ wasmedge --dir .:. out.wasm mobilenet.pt input.jpg
 
 ## Understand the code
 
-The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image/rust/src/main.rs) is the full example Rust source.
+The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image/rust/src/main.rs) is the complete example Rust source.
 
 First, read the model description and weights into memory:
 
 ```rust
 let args: Vec<String> = env::args().collect();
-let model_bin_name: &str = &args[1]; // File name for the pytorch model
+let model_bin_name: &str = &args[1]; // File name for the PyTorch model
 let image_name: &str = &args[2]; // File name for the input image
 
 let weights = fs::read(model_bin_name).unwrap();
@@ -175,7 +175,7 @@ unsafe {
 
 Where the `wasi_nn::GRAPH_ENCODING_PYTORCH` means using the PyTorch backend, and `wasi_nn::EXECUTION_TARGET_CPU` means running the computation on CPU.
 
-Finally, we sort the output and then print the top-5 classification result:
+Finally, we sort the output and then print the top-5 classification results:
 
 ```rust
 let results = sort_results(&output_buffer);

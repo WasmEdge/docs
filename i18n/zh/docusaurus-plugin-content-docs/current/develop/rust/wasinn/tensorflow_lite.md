@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # TensorFlow-Lite Backend
 
-We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) to show how to do AI inference with a TensorFlow Lite model in WasmEdge and Rust.
+We will use [this example project](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/tflite-birds_v1-image) to show how to make AI inference with a TensorFlow Lite model in WasmEdge and Rust.
 
 ## Prerequisite
 
@@ -57,19 +57,19 @@ Second, use `cargo` to build the template project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file lies in `target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm`.
+The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm`.
 
-Next let's use WasmEdge to identify your own images.
+Next, let's use WasmEdge to identify your images.
 
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
 
-You can replace `input.jpg` with your own image file.
+You can replace `input.jpg` with your image file.
 
 ## Improve performance
 
-For the AOT mode which is much more quickly, you can compile the WASM first:
+For the AOT mode, which is much more quickly, you can compile the WASM first:
 
 ```bash
 wasmedgec rust/tflite-bird/target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm wasmedge-wasinn-example-tflite-bird-image.wasm
@@ -78,7 +78,7 @@ wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy
 
 ## Understand the code
 
-The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/blob/master/tflite-birds_v1-image/rust/tflite-bird/src/main.rs) is the full example Rust source.
+The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/blob/master/tflite-birds_v1-image/rust/tflite-bird/src/main.rs) is the complete example Rust source.
 
 First, read the model description and weights into memory:
 
@@ -152,7 +152,7 @@ unsafe {
 
 Where the `wasi_nn::GRAPH_ENCODING_TENSORFLOWLITE` means using the TensorFlow-Lite backend and `wasi_nn::EXECUTION_TARGET_CPU` means running the computation on CPU.
 
-Finally, we sort the output and then print the top-5 classification result:
+Finally, we sort the output and then print the top-5 classification results:
 
 ```rust
 let results = sort_results(&output_buffer);

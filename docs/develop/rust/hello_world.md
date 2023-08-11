@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Hello world
 
-Before we start, make sure [you have Rust and WasmEdge installed](setup.md).
+Before we start, ensure [you have Rust and WasmEdge installed](setup.md).
 
 ## A simple main app
 
-The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../../start/build-and-run/cli.md). The full source code for the Rust [main.rs](https://github.com/second-state/rust-examples/tree/main/hello) file is as follows. It echoes the command line arguments passed to this program at runtime.
+The Hello World example is a standalone Rust application that can be executed by the [WasmEdge CLI](../../start/build-and-run/cli.md). The full source code for the Rust [main.rs](https://github.com/second-state/rust-examples/tree/main/hello) file is as follows. It echoes the command line arguments passed to this program at runtime.
 
 ```rust
 fn main() {
@@ -69,7 +69,7 @@ Of course, in most cases, you will not call functions using CLI arguments. Inste
 
 ## Improve the performance
 
-If we don't have extra notes for AoT, all the WASM file will be executed in the intepreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
+If we don't have extra notes for AoT, all the WASM file will be executed in the interpreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program and then run it with the `wasmedge` command.
 
 ```bash
 $ wasmedge compile hello.wasm hello_aot.wasm

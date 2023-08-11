@@ -4,20 +4,20 @@ sidebar_position: 1
 
 # WasmEdge Go SDK Introduction
 
-The following are the guide to work with the WasmEdge Go API. You can embed the WasmEdge into your go application through the WasmEdge Go API.
+The following is the guide to working with the WasmEdge Go API. You can embed the WasmEdge into your go application through the WasmEdge Go API.
 
-## Set up environment for embedding WASM functions into your go application
+## Set up Environment for embedding WASM functions into your go application
 
 ### Install and build WasmEdge and WasmEdge Go SDK
 
-The WasmEdge-go requires golang version >= 1.16. Please check your golang version before installation. You can [download golang here](https://golang.org/dl/).
+The WasmEdge-go requires Golang version >= 1.16. Please check your Golang version before installation. You can [download Golang here](https://golang.org/dl/).
 
 ```bash
 $ go version
 go version go1.16.5 linux/amd64
 ```
 
-Meantime, please make sure you have installed [WasmEdge](../../start/install.md#install) with the same `WasmEdge-go` release version.
+Meanwhile, please ensure you have installed [WasmEdge](../../start/install.md#install) with the same `WasmEdge-go` release version.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
@@ -73,17 +73,17 @@ For examples, please refer to the [example repository](https://github.com/second
 
 The [go_WasmAOT example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_WasmAOT) demonstrates how to compile a WASM file into a native binary (AOT compile) from within a Go application.
 
-### toolchain for compile the source code to WASM bytecode
+### Toolchain for Compile the Source Code to WASM Bytecode
 
 To embed WasmEdge into your go application and run the WASM function, we still need language toolchain to compile the source code to WASM bytecode.
 
-- For Rust, please refer to [the Rust set up guide](../../develop/rust/setup.md)
+- For Rust, please refer to [the Rust setup guide](../../develop/rust/setup.md)
 
-- For Tinygo, please refer to [the Tinygo set up guide](../../develop/go/hello_world.md)
+- For Tinygo, please refer to [the Tinygo setup guide](../../develop/go/hello_world.md)
 
-- For C, please refer to [the C set up guide](../../develop/c/hello_world.md)
+- For C, please refer to [the C setup guide](../../develop/c/hello_world.md)
 
-- For Javascript, you need to the [WasmEdge-QuickJS](https://github.com/second-state/wasmedge-quickjs) into your Go application. See a community example [here](https://github.com/Edgenesis/wasm-shifu-demo).
+- For Javascript, you need the [WasmEdge-QuickJS](https://github.com/second-state/wasmedge-quickjs) into your Go application. See a community example [here](https://github.com/Edgenesis/wasm-shifu-demo).
 
 ## Examples
 

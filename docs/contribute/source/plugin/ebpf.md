@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# Build with eBPF Plugin
+# Build with eBPF Plug-in
 
 <!-- prettier-ignore -->
 :::info

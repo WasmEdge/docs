@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # WasmEdge C SDK Introduction
 
-The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](reference/latest.md). Before programming with the WasmEdge C API, please [install WasmEdge](../../start/install.md#install) first.
+The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following is the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [complete documentation](reference/latest.md). Before programming with the WasmEdge C API, please [install WasmEdge](../../start/install.md#install) first.
 
 The WasmEdge C API is also the fundamental API for other languages' SDK.
 
-## Quick Start Guide for the WasmEdge runner
+## Quick Start Guide for the WasmEdge Runner
 
-The following is an example for running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as following:
+The following is an example of running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as follows:
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -55,7 +55,7 @@ Get result: 3524578
 
 ## Quick Start Guide for the WasmEdge AOT compiler
 
-Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as following:
+Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as follows:
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -94,7 +94,7 @@ $ ./test_wasmedge_compiler fibonacci.wasm fibonacci_aot.wasm
 [2021-07-02 11:08:08.706] [info] compile done
 ```
 
-The compiled-WASM file can be used as a WASM input for the WasmEdge runner. The following is the comparison of the interpreter mode and the AOT mode:
+The compiled WASM file can be used as a WASM input for the WasmEdge runner. The following is the comparison of the interpreter mode and the AOT mode:
 
 ```bash
 $ time ./test_wasmedge fibonacci.wasm

@@ -8,7 +8,7 @@ In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/mast
 
 ## The WASM app in Rust
 
-As we [described](../data/intro.md) here, the WebAssembly spec only supports a few simple data types out of the box. It [does not support](https://medium.com/wasm/strings-in-webassembly-wasm-57a05c1ea333) types such as string and array. In order to pass rich types in Go to WebAssembly, the compiler needs to convert them to simple integers. For example, it converts a string into an integer memory address and an integer length. The `wasmedge_bindgen` tool does this conversion automatically.
+As we [described](../data/intro.md) here, the WebAssembly spec only supports a few simple data types out of the box. It [does not support](https://medium.com/wasm/strings-in-webassembly-wasm-57a05c1ea333) types such as string and array. To pass rich types in Go to WebAssembly, the compiler needs to convert them to simple integers. For example, it converts a string into an integer memory address and an integer length. The `wasmedge_bindgen` tool does this conversion automatically.
 
 ```rust
 use num_integer::lcm;
@@ -200,7 +200,7 @@ Next, let's build the Go application with the WasmEdge Go SDK.
 go build
 ```
 
-Run the Go application and it will run the WebAssembly functions embedded in the WasmEdge runtime.
+Run the Go application, and it will run the WebAssembly functions embedded in the WasmEdge runtime.
 
 ```bash
 $ ./bindgen_funcs rust_bindgen_funcs/target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm

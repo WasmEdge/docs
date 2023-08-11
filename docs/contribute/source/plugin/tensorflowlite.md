@@ -16,7 +16,7 @@ To enable the WasmEdge WasmEdge-TensorflowLite, developers need to [building the
 cd <path/to/your/wasmedge/source/folder>
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_TENSORFLOWLITE=On
 cmake --build build
-# For the WasmEdge-TensorflowLite plugin, you should install this project.
+# For the WasmEdge-TensorflowLite plug-in, you should install this project.
 cmake --install build
 ```
 

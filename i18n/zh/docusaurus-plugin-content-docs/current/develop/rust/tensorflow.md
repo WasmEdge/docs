@@ -4,11 +4,11 @@ sidebar_position: 7
 
 # TensorFlow Interface
 
-Developers can use [WASI-NN](/category/neural-networks-for-wasi) to inference the models. However, for the TensorFlow and TensorFlow-Lite users, the WASI-NN APIs are not so friendly to retrieve the input and output tensors. Therefore WasmEdge provides the TensorFlow related plug-in and rust SDK for inferencing models in WASM.
+Developers can use [WASI-NN](/category/neural-networks-for-wasi) to inference the models. However, for the TensorFlow and TensorFlow-Lite users, the WASI-NN APIs could be more friendly to retrieve the input and output tensors. Therefore WasmEdge provides the TensorFlow-related plug-in and rust SDK for inferencing models in WASM.
 
 ## Prerequisite
 
-Please make sure that you [Rust and WasmEdge installed](setup.md).
+Please ensure that you [Rust and WasmEdge installed](setup.md).
 
 Developers will add the [`wasmedge_tensorflow_interface` crate](https://crates.io/crates/wasmedge_tensorflow_interface) as a dependency to their `Rust -> Wasm` applications. For example, add the following line to the application's `Cargo.toml` file.
 
@@ -17,7 +17,7 @@ Developers will add the [`wasmedge_tensorflow_interface` crate](https://crates.i
 wasmedge_tensorflow_interface = "0.3.0"
 ```
 
-Developers will bring the functions of `wasmedge_tensorflow_interface` into scope within their `Rust -> Wasm` application's code. For example, adding the following code to the top of their `main.rs`
+Developers will bring the functions of `wasmedge_tensorflow_interface` into scope within their `Rust -> Wasm` application's code. For example, adding the following code to the top of their `main.rs`.
 
 ```rust
 use wasmedge_tensorflow_interface;
@@ -25,9 +25,9 @@ use wasmedge_tensorflow_interface;
 
 ## Image Loading And Conversion
 
-In this crate, we provide several functions to decode and convert images into tensors by using the `WasmEdge-Image` host functions.
+In this crate, we provide several functions to decode and convert images into tensors using the `WasmEdge-Image` host functions.
 
-For using these funcions in WASM and executing in WasmEdge, users should [install WasmEdge with WasmEdge-Image plug-in](../../start/install.md#wasmedge-image-plug-in).
+To use these functions in WASM and execute in WasmEdge, users should [install WasmEdge with WasmEdge-Image plug-in](../../start/install.md#wasmedge-image-plug-in).
 
 For decoding the `JPEG` images, there are:
 
@@ -80,7 +80,7 @@ First, developers should create a session to load the TensorFlow or TensorFlow-L
 let mut session = wasmedge_tensorflow_interface::TFSession::new(&mod_buf);
 ```
 
-The above function is create the session for TensorFlow frozen models. Developers can use the `new_from_saved_model` function to create from saved-models:
+The above function creates the session for TensorFlow frozen models. Developers can use the `new_from_saved_model` function to create from saved-models:
 
 ```rust
 // The mod_path is a &str which is the path to saved-model directory.

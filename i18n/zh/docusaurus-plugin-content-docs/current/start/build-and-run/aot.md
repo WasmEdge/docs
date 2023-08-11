@@ -16,19 +16,19 @@ USAGE
 ...
 ```
 
-The `wasmedge compile` command can compile WebAssembly into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedge compile` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode which is much faster.
+The `wasmedge compile` command can compile WebAssembly into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedge compile` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode, which is much faster.
 
 ## Options
 
 The options of the `wasmedge compile` command are as follows.
 
-1. `-h|--help`: Show the help messages. Will ignore other arguments below.
+1. `-h|--help`: Show the help messages. Will ignore the other arguments below.
 2. _(Optional)_ `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
 3. _(Optional)_ `--interruptible`: Generate the binary which supports interruptible execution.
    - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.x#async).
 4. _(Optional)_ Statistics information:
    - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
-   - Use `--enable-time-measuring` to generate code for enabling the statistics of time measuring in execution.
+   - Use `--enable-time-measuring` to generate code for enabling time-measuring statistics in execution.
    - Use `--enable-gas-measuring` to generate code for enabling the statistics of gas measuring in execution.
    - Use `--enable-instruction-count` to generate code for enabling the statistics of counting WebAssembly instructions.
    - Or use `--enable-all-statistics` to generate code for enabling all of the statistics.
@@ -56,7 +56,7 @@ The options of the `wasmedge compile` command are as follows.
 
 ## Example
 
-We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the `fibonacci.wasm` WebAssembly program. Take it for example. It exported a `fib()` function which takes a single `i32` integer as the input parameter.
+We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the `fibonacci.wasm` WebAssembly program. Take it, for example. It exported a `fib()` function, which takes a single `i32` integer as the input parameter.
 
 You can run:
 
@@ -121,7 +121,7 @@ This AOT-compiled WASM file is compatible with any WebAssembly runtime. However,
 
 <!-- prettier-ignore -->
 :::note
-On MacOS platforms, the universal WASM format will `bus error` in execution. It's because the `wasmedge compile` tool optimizes the WASM in `O2` level by default. We are trying to fix this issue. For working around, please use the shared library output format instead.
+On MacOS platforms, the universal WASM format will `bus error` in execution. By default, the `wasmedge compile` tool optimizes the WASM in the `O2` level. We are trying to fix this issue. For working around, please use the shared library output format instead.
 :::
 
 ```bash
@@ -133,7 +133,7 @@ wasmedge app_aot.wasm
 
 Users can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
 
-This AOT-compiled WASM file is only for WasmEdge use, and cannot be used by other WebAssembly runtimes.
+This AOT-compiled WASM file is only for WasmEdge use and cannot be used by other WebAssembly runtimes.
 
 ```bash
 wasmedge compile app.wasm app_aot.so
