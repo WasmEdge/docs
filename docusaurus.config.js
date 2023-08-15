@@ -58,30 +58,32 @@ const config = {
             }),
         ],
     ],
-    
-    themes : [
+
+    themes: [
         [
             "@easyops-cn/docusaurus-search-local",
             /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
             // @ts-ignore
             {
-              docsRouteBasePath: '/',
-              hashed: true,
-              indexBlog: false,
-              indexPages: true,
-              language: ["en", "zh"],
-              highlightSearchTermsOnTargetPage: true,
-              explicitSearchResultPath: true,
-              searchBarShortcut: true,
-              searchBarShortcutHint: true,
-              searchBarPosition: "right",
+                docsRouteBasePath: '/',
+                hashed: true,
+                indexBlog: false,
+                indexPages: true,
+                language: ["en", "zh"],
+                highlightSearchTermsOnTargetPage: true,
+                explicitSearchResultPath: true,
+                searchBarShortcut: true,
+                searchBarShortcutHint: true,
+                searchBarPosition: "right",
             },
-          ],
         ],
+    ],
+    
 
     themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+        /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            metadata: [{ name: 'keywords', content: 'wasmedge, wasm, web assembly, rust, cncf, edge devices, cloud, serverless' }, { name: 'twitter:card', content: 'summary' }],
             image: "./static/img/wasm_logo.png",
             announcementBar: {
                 id: "start",
@@ -130,15 +132,15 @@ const config = {
             },
             docs: {
                 sidebar: {
-                  hideable: true,
+                    hideable: true,
                 },
-              },
+            },
             footer: {
                 logo: {
                     alt: 'WasmEdge logo',
                     src: '/img/wasmedge_logo.svg',
                     href: 'https://wasmedge.org/',
-                  },
+                },
                 style: 'dark',
                 links: [
                     {
@@ -211,4 +213,13 @@ const config = {
         }),
 };
 
-module.exports = config;
+// Extending config to inlcude mermaid also
+const extendedConfig = {
+    ...config,
+    markdown: {
+        mermaid: true,
+    },
+    themes: ['@docusaurus/theme-mermaid'],
+};
+
+module.exports = extendedConfig;
