@@ -1,0 +1,8 @@
+{
+  "label": "Service mesh and Runtimes",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "WasmEdge could be a lightweight runtime for sidecar microservices and the API proxy as the Docker alternative."
+  }
+}
