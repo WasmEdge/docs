@@ -219,6 +219,6 @@ const extendedConfig = {
     ...config,
     markdown: {
         mermaid: true,
-    },    
+    }    
 }
 module.exports = extendedConfig;
