@@ -60,6 +60,7 @@ const config = {
     ],
 
     themes: [
+        '@docusaurus/theme-mermaid',
         [
             "@easyops-cn/docusaurus-search-local",
             /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
@@ -218,8 +219,7 @@ const extendedConfig = {
     ...config,
     markdown: {
         mermaid: true,
-    },
-    themes: ['@docusaurus/theme-mermaid'],
+    }
 };
 
 module.exports = extendedConfig;
