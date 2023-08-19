@@ -7,7 +7,7 @@ sidebar_position: 2
 For WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous (non-blocking -- so that it can handle concurrent requests). This chapter will cover HTTP servers using popular Rust APIs.
 
 * [The warp API](#the-warp-api)
-* [The hyper API](#the-hyper-api). 
+* [The hyper API](#the-hyper-api)
 
 <!-- prettier-ignore -->
 :::note
