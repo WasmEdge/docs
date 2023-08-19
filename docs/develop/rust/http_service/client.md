@@ -35,7 +35,7 @@ cd wasmedge_hyper_demo/client
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
 
 # Run the example
 wasmedge wasmedge_hyper_client.wasm
@@ -96,7 +96,7 @@ cd http_req/
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/get.wasm get.wasm
+wasmedge compile target/wasm32-wasi/release/get.wasm get.wasm
 
 # Run the example
 wasmedge get.wasm
@@ -159,7 +159,7 @@ cd wasmedge_reqwest_demo
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm wasmedge_reqwest_demo.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm wasmedge_reqwest_demo.wasm
 
 # Run the example
 wasmedge wasmedge_reqwest_demo.wasm
