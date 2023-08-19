@@ -87,14 +87,7 @@ async fn post_url_return_str (url: hyper::Uri, post_body: &'static [u8]) -> Resu
 
 ## The http_req API
 
-If your WasmEdge application only needs to make sequential requests to external web services, a synchronous client is easier to work with. It allows you to make a request, wait for the response, and move on once the response is fully received. Use the `http_req` API to make simple synchronous HTTP requests.
-
-<!-- prettier-ignore -->
-:::note
-In order to make HTTPS requests, you need to [install the wasmedge_TLS plug-in](../../../start/install.md#tls-plug-in). You can then run the HTTPS [GET](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) and [POST](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) examples in the example repo.
-:::
-
-Build and run [the example](https://github.com/second-state/http_req/) in WasmEdge.
+If your WasmEdge application only needs to make sequential requests to external web services, a synchronous client is easier to work with. It allows you to make a request, wait for the response, and move on once the response is fully received. Use the `http_req` API to make simple synchronous HTTP requests. Build and run [the example](https://github.com/second-state/http_req/) in WasmEdge.
 
 ```bash
 git clone https://github.com/second-state/http_req
@@ -112,7 +105,7 @@ wasmedge get_https.wasm
 ... ...
 ```
 
-In your Rust application, import the [http_req_wasi](https://crates.io/crates/http_req_wasi) crate, which is compatible with [http_req](https://github.com/jayjamesjay/http_req) at the API level. Just add the following line to your Cargo.toml.
+In your Rust application, import the [http_req_wasi](https://crates.io/crates/http_req_wasi) crate, which is compatible with [http_req](https://github.com/jayjamesjay/http_req) at the API level. Just add the following line to your `Cargo.toml`.
 
 ```toml
 [dependencies]
@@ -172,7 +165,7 @@ wasmedgec target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm wasmedge_reqwest
 wasmedge wasmedge_reqwest_demo.wasm
 ```
 
-In your Rust application, import [the WasmEdge adapted reqwest crate](https://crates.io/crates/reqwest_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following line to your Cargo.toml.
+In your Rust application, import [the WasmEdge adapted reqwest crate](https://crates.io/crates/reqwest_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
 
 ```toml
 [dependencies]
