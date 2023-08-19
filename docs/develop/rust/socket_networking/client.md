@@ -2,11 +2,14 @@
 sidebar_position: 1
 ---
 
-# Client
+# Socket client
 
-The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket) crate enables Rust developers to create networking applications and compile them into WebAssembly for WasmEdge Runtime. One of the key features of WasmEdge is that it supports non-blocking sockets. That allows even a single-threaded WASM application to handle concurrent network requests. For example, while the program is waiting for data to stream in from one connection, it can start or handle another connection.
+It is possible for WasmEdge applications to open TCP/IP or UDP network sockets in the host system to communicate directly with external applications. One of the key features of WasmEdge is that it supports non-blocking sockets. That allows even a single-threaded WASM application to handle concurrent network requests. For example, while the program is waiting for data to stream in from one connection, it can start or handle another connection. The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket) crate enables Rust developers to work on the network socket level.
 
-While there are many possibilities with sockets, we will demonstrate two familiar use cases, [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example), in this chapter.
+In this chapter, we will show you how to build HTTP clients on TCP sockets. The reason is that the HTTP protocol is relatively simple and could be demonstrated easily. If you use HTTP clients in production, we recommend checking out the [HTTP client](../http_service/client.md) chapter in this book.
+
+- [A simple HTTP client based on TCP sockets](#a-simple-http-client)
+- [A non-blocking HTTP client based on TCP sockets](#a-non-blocking-http-client-example)
 
 <!-- prettier-ignore -->
 :::note
