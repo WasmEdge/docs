@@ -25,7 +25,7 @@ cd wasmedge_hyper_demo/server-warp
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler for better performance
-wasmedgec target/wasm32-wasi/release/wasmedge_warp_server.wasm wasmedge_warp_server.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_warp_server.wasm wasmedge_warp_server.wasm
 
 # Run the example
 wasmedge wasmedge_warp_server.wasm
@@ -80,7 +80,7 @@ cd wasmedge_hyper_demo/server
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/wasmedge_hyper_server.wasm wasmedge_hyper_server.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_server.wasm wasmedge_hyper_server.wasm
 
 # Run the example
 wasmedge wasmedge_hyper_server.wasm
