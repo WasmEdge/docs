@@ -27,7 +27,7 @@ cd wasmedge_wasi_socket/http_client/
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/http_client.wasm http_client.wasm
+wasmedge compile target/wasm32-wasi/release/http_client.wasm http_client.wasm
 
 # Run the example
 wasmedge http_client.wasm
@@ -71,7 +71,7 @@ cd wasmedge_wasi_socket/nonblock_http_client/
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler for better performance
-wasmedgec target/wasm32-wasi/release/nonblock_http_client.wasm nonblock_http_client.wasm
+wasmedge compile target/wasm32-wasi/release/nonblock_http_client.wasm nonblock_http_client.wasm
 
 # Run the example
 wasmedge nonblock_http_client.wasm
