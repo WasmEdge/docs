@@ -4,7 +4,10 @@ sidebar_position: 2
 
 # Server
 
-For WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous. In this chapter, we will cover simple HTTP servers based on [the wrap API](#the-warp-api), as well as the [low-level hyper API](#the-hyper-api). For HTTP clients in WasmEdge, please see [the previous chapter](client.md).
+For WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous (non-blocking -- so that it can handle concurrent requests). This chapter will cover HTTP servers using popular Rust APIs.
+
+* [The warp API](#the-warp-api)
+* [The hyper API](#the-hyper-api). 
 
 <!-- prettier-ignore -->
 :::note
@@ -35,7 +38,7 @@ $ curl http://localhost:8080/echo -X POST -d "WasmEdge"
 WasmEdge
 ```
 
-In your Rust application, import the WasmEdge-adapted warp crate, which uses a special version of single-threaded Tokio adapted for WebAssembly. Just add the following lines to your Cargo.toml.
+In your Rust application, import the WasmEdge-adapted `warp_wasi` crate, which uses a special version of single-threaded Tokio adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
 
 ```toml
 [dependencies]
@@ -68,7 +71,7 @@ async fn main() {
 
 ## The hyper API
 
-The warp crate is convenient to use. But oftentimes, developers need access to lower level APIs. The hyper crate is an excellent HTTP library for that. Build and run [the example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/server/) in WasmEdge as follows.
+The `warp` crate is convenient to use. But oftentimes, developers need access to lower-level APIs. The `hyper` crate is an excellent HTTP library for that. Build and run [the example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/server/) in WasmEdge as follows.
 
 ```bash
 git clone https://github.com/WasmEdge/wasmedge_hyper_demo
@@ -90,7 +93,7 @@ $ curl http://localhost:8080/echo -X POST -d "WasmEdge"
 WasmEdge
 ```
 
-In your Rust application, import the WasmEdge adapted hyper crate, which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following line to your Cargo.toml.
+In your Rust application, import the WasmEdge adapted `hyper_wasi` crate, which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
 
 ```toml
 [dependencies]
