@@ -16,8 +16,10 @@ Because the example already includes a compiled WASM file from the Rust code, we
 
 ```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
-cd WasmEdge-WASINN-examples
+cd WasmEdge-WASINN-examples/pytorch-mobilenet-image/
 ```
+
+Run the inference application in WasmEdge.
 
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
@@ -44,7 +46,7 @@ Let's build the wasm file from the rust source code. First, git clone the `WasmE
 
 ```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
-cd pytorch-mobilenet-image/rust
+cd WasmEdge-WASINN-examples/pytorch-mobilenet-image/rust
 ```
 
 Second, use `cargo` to build the example project.
