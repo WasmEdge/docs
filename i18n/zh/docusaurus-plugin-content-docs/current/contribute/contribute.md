@@ -53,7 +53,7 @@ When ready for review, push your branch to your fork repository on github.
 Please sign your commits before sending a PR. To sign off on a commit, you just add a line at the end of your commit message with your signature like:
 
 ```bash
-Signed-off-by: Sarrah Bastawala <sarrah.basta@gmail.com>
+Signed-off-by: Author Name <authoremail@example.com>
 ```
 
 This can be automatically added to your commit message by passing -s or --signoff to git commit.
@@ -87,7 +87,7 @@ Update the documentation if you are creating or changing features. Good document
 
 You can propose new designs for existing WasmEdge features. You can also design entirely new features, please submit a proposal via the GitHub issues.
 
-WasmEdge maintainers will review this proposal as soon as possible. This is necessary to ensure the overall architecture is consistent and to avoid duplicated work in the roadmap.
+WasmEdge maintainers will review this proposal as soon as possible. This is necessary to ensure the overall architecture is consistent and to avoid duplicated work in the [roadmap](https://github.com/mhmohona/WasmEdge/blob/coding-style/docs/ROADMAP.md).
 
 ## Code of Conduct
 
