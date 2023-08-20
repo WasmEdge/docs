@@ -14,7 +14,7 @@ With [rollup.js](https://rollupjs.org/guide/en/), we can run CommonJS (CJS) and 
 
 The [simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) demo shows how it works.
 
-First, you will need to use the NPM command to rollup the dependency modules into a single JavaScript file.
+First, you will need to use the NPM command to roll up the dependency modules into a single JavaScript file.
 
 ```bash
 cd example_js/simple_common_js_demo
@@ -24,7 +24,7 @@ npm run build
 cd ../../
 ```
 
-NPM rolls up and generates a new JavaScript file file at `example_js/simple_common_js_demo/dist/npm_main.mjs`. This is the file you can execute with the WasmEdge QuickJS runtime.
+NPM generates a new JavaScript file at `example_js/simple_common_js_demo/dist/npm_main.mjs`, which is the file you can execute with the WasmEdge QuickJS runtime.
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/simple_common_js_demo/dist/npm_main.mjs
@@ -44,7 +44,7 @@ const { sqrt } = require('mathjs');
 console.log('sqrt(-4)=', sqrt(-4).toString());
 ```
 
-In order to run it, we must first use the [rollup.js](https://rollupjs.org/guide/en/) tool to build all dependencies into a single file. In the process, `rollup.js` converts CommonJS modules into [WasmEdge-compatible ES6 modules](es6). The build script is [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/rollup.config.js).
+To run it, we must first use the [rollup.js](https://rollupjs.org/guide/en/) tool to build all dependencies into a single file. In the process, `rollup.js` converts CommonJS modules into [WasmEdge-compatible ES6 modules](es6). The build script is [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/rollup.config.js).
 
 ```javascript
 const { babel } = require('@rollup/plugin-babel');

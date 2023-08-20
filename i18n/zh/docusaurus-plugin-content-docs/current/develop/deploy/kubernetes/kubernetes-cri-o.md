@@ -6,12 +6,12 @@ sidebar_position: 2
 
 ## Quick start
 
-The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + CRI-O + crun.
+The [WasmEdge Containers Example](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and GitHub Actions for running our example apps on Kubernetes + CRI-O + crun.
 
 - Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio.yml)
 - WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-crio-server.yml)
 
-In the rest of this section, we will explain the steps in detail. We will assume that you have already [installed and configured CRI-O](../../../develop/deploy/oci-runtime/crun) to work with WasmEdge container images.
+In the rest of this section, we will explain the steps in detail. We assume you have already [installed and configured CRI-O](../../deploy/oci-runtime/crun.md) to work with WasmEdge container images.
 
 ## Install and start Kubernetes
 
@@ -133,7 +133,7 @@ Run the WebAssembly-based image from Docker Hub using the above `k8s-http_server
 sudo ./kubernetes/cluster/kubectl.sh apply -f k8s-http_server.yaml
 ```
 
-Use the following command to see the running container applications and their IP addresses. Since we are using `hostNetwork` in the yaml configuration, the HTTP server image is running on the local network with IP address `127.0.0.1`.
+The following command shows the running container applications and their IP addresses. Since we are using `hostNetwork` in the yaml configuration, the HTTP server image is running on the local network with IP address `127.0.0.1`.
 
 ```bash
 $ sudo cluster/kubectl.sh get pod --all-namespaces -o wide

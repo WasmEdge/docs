@@ -2,18 +2,19 @@
 sidebar_position: 4
 ---
 
-# Pass complex parameters to Wasm functions
+# Pass complex parameters to WASM functions
 
-An issue with the WebAssembly spec is that it only supports a very limited number of data types. If you want to embed a WebAssembly function with complex call parameters or return values, you will need to manage memory pointers both on Go SDK and WebAssembly function sides.
+An issue with the WebAssembly spec is that it only supports a very limited number of data types. If you want to embed a WebAssembly function with complex call parameters or return values, you must manage memory pointers on Go SDK and WebAssembly function sides.
 
-Such complex call parameters and return values include dynamic memory structures such as strings and byte arrays.
+Complex call parameters and return values include dynamic memory structures such as strings and byte arrays.
 
 In this section, we will discuss several examples.
 
-- [Pass strings to Rust functions](#pass-strings-to-rust-functions)
-- [Pass strings to TinyGo functions](#pass-strings-to-tinygo-functions)
-- [Pass bytes to Rust functions](#pass-bytes-to-rust-functions)
-- [Pass bytes to TinyGo functions](#pass-bytes-to-tinygo-functions)
+- [Pass complex parameters to WASM functions](#pass-complex-parameters-to-wasm-functions)
+  - [Pass strings to Rust functions](#pass-strings-to-rust-functions)
+  - [Pass strings to TinyGo functions](#pass-strings-to-tinygo-functions)
+  - [Pass bytes to Rust functions](#pass-bytes-to-rust-functions)
+  - [Pass bytes to TinyGo functions](#pass-bytes-to-tinygo-functions)
 
 ## Pass strings to Rust functions
 
@@ -24,7 +25,7 @@ In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/mast
 An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](bindgen.md).
 :::
 
-The Rust function takes a memory pointer for the string, and constructs the Rust string itself.
+The Rust function takes a memory pointer for the string and constructs the Rust string itself.
 
 ```rust
 use std::ffi::{CStr, CString};
@@ -169,7 +170,7 @@ The TinyGo function takes a memory pointer for the string, and constructs the Ti
 
 <!-- prettier-ignore -->
 :::note
-The empty `main()` is needed to the compiled WebAssembly program to set up WASI properly.
+The empty `main()` is needed for the compiled WebAssembly program to set up WASI properly.
 :::
 
 ```go
@@ -305,7 +306,7 @@ In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/mast
 An alternative approach to pass and return complex values to Rust functions in WebAssembly is to use the `wasmedge_bindgen` compiler tool. You can [learn more here](bindgen.md).
 :::
 
-The `fib_array()` function takes a array as a call parameter and fill it with a fibonacci sequence of numbers. Alternatively, the `fib_array_return_memory()` function returns a array of fibonacci sequence of numbers.
+The `fib_array()` function takes an array as a call parameter and fills it with a Fibonacci sequence of numbers. Alternatively, the `fib_array_return_memory()` function returns an array of Fibonacci sequences of numbers.
 
 For the array in the call parameter, the Rust function `fib_array()` takes a memory pointer and constructs the Rust `Vec` using `from_raw_parts`. For the array return value, the Rust function `fib_array_return_memory()` simply returns the pointer.
 
@@ -480,7 +481,7 @@ fibArrayReturnMemory: [0 0 0 0 1 0 0 0 1 0 0 0 2 0 0 0 3 0 0 0 5 0 0 0 8 0 0 0 1
 
 In [this example](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_AccessMemoryTinyGo), we will demonstrate how to call [TinyGo-based WebAssembly functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemoryTinyGo/fib.go) and pass arrays to and from a Go app.
 
-The `fibArray` function takes a array as a call parameter and fill it with a fibonacci sequence of numbers. Alternatively, the `fibArrayReturnMemory` function returns a array of fibonacci sequence of numbers.
+The `fibArray` function takes an array as a call parameter and fills it with a Fibonacci sequence of numbers. Alternatively, the `fibArrayReturnMemory` function returns an array of Fibonacci sequences of numbers.
 
 ```go
 package main

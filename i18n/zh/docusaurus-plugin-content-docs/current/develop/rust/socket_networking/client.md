@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # Client
 
-The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket) crate enables Rust developers to create networking applications and compile them into WebAssembly for WasmEdge Runtime. One of the key features of WasmEdge is that it supports non-blocking sockets. That allows even a single threaded WASM application to handle concurrent network requests. For example, while the program is waiting for data to stream in from one connection, it can start or handle another connection.
+The [wasmedge_wasi_socket](https://github.com/second-state/wasmedge_wasi_socket) crate enables Rust developers to create networking applications and compile them into WebAssembly for WasmEdge Runtime. One of the key features of WasmEdge is that it supports non-blocking sockets. That allows even a single-threaded WASM application to handle concurrent network requests. For example, while the program is waiting for data to stream in from one connection, it can start or handle another connection.
 
 While there are many possibilities with sockets, we will demonstrate two familiar use cases, [a simple HTTP client](#a-simple-http-client) and [a non-blocking HTTP client application](#a-non-blocking-http-client-example), in this chapter.
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup).
+Before we start, ensure [you have Rust and WasmEdge installed](../setup.md).
 :::
 
 ## A Simple HTTP Client
@@ -67,7 +67,7 @@ cd wasmedge_wasi_socket/nonblock_http_client/
 
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
-# Use the AoT compiler to get better performance
+# Use the AoT compiler for better performance
 wasmedgec target/wasm32-wasi/release/nonblock_http_client.wasm nonblock_http_client.wasm
 
 # Run the example
@@ -76,10 +76,10 @@ wasmedge nonblock_http_client.wasm
 
 <!-- prettier-ignore -->
 :::note
-Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment.
+Non-blocking I/O means that the application program can keep multiple connections open simultaneously, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run faster, even in a single-threaded environment.
 :::
 
-The [source code](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) for a non-blocking HTTP client application is available. The following `main()` function starts two HTTP connections. The program keeps both connections open, and alternatingly checks for incoming data from them. In another word, the two connections are not blocking each other. Their data are handled concurrently (or alternatingly) as the data comes in.
+The [source code](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/nonblock_http_client) for a non-blocking HTTP client application is available. The following `main()` function starts two HTTP connections. The program keeps both connections open and alternatingly checks for incoming data. In other words, the two connections are not blocking each other. Their data are handled concurrently (or alternatingly) as the data comes in.
 
 ```rust
 use httparse::{Response, EMPTY_HEADER};

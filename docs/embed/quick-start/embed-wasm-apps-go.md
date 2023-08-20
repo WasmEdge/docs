@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# Embed the Wasm app into your Go Host app
+# Embed the WASM app into your Go Host app
 
-In the previous chapter, we learned how to create a Wasm app using Rust and `wasmedge-bindgen` tool. In this chapter, I will walk you through how to embed the compiled Wasm app into your Go Host app.
+In the previous chapter, we learned how to create a WASM app using Rust and `wasmedge-bindgen` tool. In this chapter, I will walk you through how to embed the compiled WASM app into your Go Host app.
 
 ## The Go Host Application
 
@@ -91,9 +91,9 @@ Next, you can call any `[wasmedge_bindgen]` annotated functions in the VM via th
 }
 ```
 
-## Run the Wasm app from your Go Host
+## Run the WASM app from your Go Host
 
-Before that, maker sure you have [installed Go, WasmEdge, and WasmEdge Go SDK](install.md).
+Before that, make sure you have [installed Go, WasmEdge, and WasmEdge Go SDK](install.md).
 
 ```bash
 $ cd rust_bindgen_funcs
@@ -112,4 +112,4 @@ Run bindgen -- sha3_digest: [87 27 231 209 189 105 251 49 159 10 211 250 15 159 
 Run bindgen -- keccak_digest: [126 194 241 200 151 116 227 33 216 99 159 22 107 3 177 169 216 191 114 156 174 193 32 159 246 228 245 133 52 75 55 27]
 ```
 
-That's it. Next let's dive into how to pass complex data from host applications to the Wasm app.
+That's it. Next, let's dive into how to pass complex data from host applications to the WASM app.

@@ -4,22 +4,22 @@ sidebar_position: 5
 
 # Multiple WASM Module Example
 
-For those WASM modules export their functions, the other WASM modules can import them as a library.
+For those WASM modules that export their functions, the other WASM modules can import them as a library.
 
-This will cause a situation that linking multiple modules for the dependencies when in execution.
+This will cause a situation that links multiple modules for the dependencies in execution.
 
-This chapter will introduce the examples to linking and executing multiple WASM modules in WasmEdge.
+This chapter will introduce examples of linking and executing multiple WASM modules in WasmEdge.
 
 ## Example WASM file
 
 ### The Library WASM
 
-Assume that there's a WASM which exports it's function:
+Assume that there's a WASM that exports it's function:
 
 ```wasm
 (module
   (func (export "add") (param i32 i32) (result i32)
-    ;; Function to add 2 number and exported as "add".
+    ;; Function to add 2 numbers and exported as "add".
     (i32.add (local.get 0) (local.get 1))
   )
   (func (export "mul") (param i32 i32) (result i32)
@@ -65,15 +65,15 @@ Users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.
 
 ### Prerequisites
 
-For executing these examples, developers should [install WasmEdge](/develop/build-and-run/install.md).
+For executing these examples, developers should [install WasmEdge](../../start/install.md#install).
 
-To improve the performance of executing WASM, developers can also use the [AOT compiler](/develop/build-and-run/aot.md) to compile the above WASM files.
+To improve the performance of executing WASM, developers can also use the [AOT compiler](../../start/build-and-run/aot.md) to compile the above WASM files.
 
 ## Linking WASM Modules With the VM Context
 
-With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quickly. There's at least 4 ways to linking these multiple WASM modules with the VM context. For the example codes below, assume that the C code is saved as `example.c`.
+With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quickly. There are at least four ways to link these multiple WASM modules with the VM context. For the example codes below, assume that the C code is saved as `example.c`.
 
-1. Register and instantiate the `lib.wasm` from file directly
+1. Register and instantiate the `lib.wasm` from the file directly.
 
    ```c
    #include <stdio.h>
@@ -169,7 +169,7 @@ With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quick
    Get the '77^2 + 88^2' result: 13673
    ```
 
-2. Register and instantiate the `lib.wasm` from buffer
+2. Register and instantiate the `lib.wasm` from the buffer.
 
    ```c
    #include <stdio.h>
@@ -452,7 +452,7 @@ With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quick
      }
 
      /* Register the module instance with the module name "math". */
-     /* The module name has determined when instantiating the `lib.wasm`. */
+     /* The module name has been determined when instantiating the `lib.wasm`. */
      Res = WasmEdge_VMRegisterModuleFromImport(VMCxt, LibInstCxt);
      if (!WasmEdge_ResultOK(Res)) {
        WasmEdge_VMDelete(VMCxt);
@@ -538,7 +538,7 @@ With the `WasmEdge_VMContext`, developers can instantiate and execute WASM quick
 
 ## Linking WASM Modules By the Executor Context
 
-For linking multiple WASM modules, developers should instantiate them first with considering their dependencies.
+For linking multiple WASM modules, developers should instantiate them first by considering their dependencies.
 
 ```c
 #include <stdio.h>

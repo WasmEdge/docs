@@ -1,8 +1,8 @@
 {
-  "label": "Build WasmEdge",
+  "label": "Supported Platforms",
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "we will learn how to build WasmEdge from source on different OSes."
+    "description": "We will learn how to build WasmEdge from source on different platfroms."
   }
 }

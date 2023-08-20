@@ -1,8 +1,8 @@
 {
-  "label": "Develop Wasm Apps in C/C++",
+  "label": "Develop WASM Apps in C/C++",
   "position": 6,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will learn how to create Wasm apps in C/C++."
+    "description": "In this chapter, we will learn how to create WASM apps in C/C++."
   }
 }

@@ -4,17 +4,17 @@ sidebar_position: 2
 
 # YoMo Framework
 
-[YoMo](https://yomo.run/) is a programming framework enabling developers to build a distributed cloud system (Geo-Distributed Cloud System). YoMo's communication layer is made on top of the QUIC protocol, which brings high-speed data transmission. In addition, it has a built-in Streaming Serverless "streaming function", which significantly improves the development experience of distributed cloud systems. The distributed cloud system built by YoMo provides an ultra-high-speed communication mechanism between near-field computing power and terminals. It has a wide range of use cases in Metaverse, VR/AR, IoT, etc.
+[YoMo](https://yomo.run/) is a programming framework enabling developers to build a distributed cloud system (Geo-Distributed Cloud System). YoMo's communication layer is made on top of the QUIC protocol, which brings high-speed data transmission. In addition, it has a built-in Streaming Serverless "streaming function", which significantly improves the development experience of distributed cloud systems. The distributed cloud system built by YoMo provides an ultra-high-speed communication mechanism between near-field computing power and terminals. It has many use cases in Metaverse, VR/AR, IoT, etc.
 
-YoMo is written in the Go language. For streaming Serverless, Golang plugins and shared libraries are used to load users' code dynamically, which also have certain limitations for developers. Coupled with Serverless architecture's rigid demand for isolation, this makes WebAssembly an excellent choice for running user-defined functions.
+YoMo is written in the Go language. For streaming Serverless, Golang plug-ins and shared libraries are used to load users' code dynamically, which also has certain limitations for developers. With Serverless architecture's rigid demand for isolation, WebAssembly is an excellent choice for running user-defined functions.
 
-For example, in the process of real-time AI inference in AR/VR devices or smart factories, the camera sends real-time unstructured data to the computing node in the near-field MEC (multi-access edge computing) device through YoMo. YoMo sends the AI computing result to the end device in real-time when the AI inference is completed. Thus, the hosted AI inference function will be automatically executed.
+For example, in real-time AI inference in AR/VR devices or smart factories, the camera sends real-time unstructured data to the computing node in the near-field MEC (multi-access edge computing) device through YoMo. YoMo sends the AI computing result to the end device in real time when the AI inference is completed. Thus, the hosted AI inference function will be automatically executed.
 
-However, a challenge for YoMo is to incorporate and manage handler functions written by multiple outside developers in an edge computing node. It requires runtime isolation for those functions without sacrificing performance. Traditional software container solutions, such as Docker, are not up to the task. They are too heavy and slow to handle real-time tasks.
+However, a challenge for YoMo is incorporating and managing handler functions written by multiple outside developers in an edge computing node. It requires runtime isolation for those functions without sacrificing performance. Traditional software container solutions like Docker need to be updated to the task. They need to be lighter and faster to handle real-time tasks.
 
 WebAssembly provides a lightweight and high-performance software container. It is ideally suited as a runtime for YoMo’s data processing handler functions.
 
-In this article, we will show you how to create a Rust function for Tensorflow-based image classification, compile it into WebAssembly, and then use YoMo to run it as a stream data handler. We use [WasmEdge](https://wasmedge.org/) as our WebAssembly runtime because it offers the highest performance and flexibility compared with other WebAssembly runtimes. It is the only WebAssembly VM that reliably supports Tensorflow. YoMo manages WasmEdge VM instances and the contained WebAssembly bytecode apps through [WasmEdge’s Golang API](../go/intro.md).
+This article will show you how to create a Rust function for Tensorflow-based image classification, compile it into WebAssembly, and then use YoMo to run it as a stream data handler. We use [WasmEdge](https://wasmedge.org/) as our WebAssembly runtime because it offers the highest performance and flexibility compared with other WebAssembly runtimes. It is the only WebAssembly VM that reliably supports Tensorflow. YoMo manages WasmEdge VM instances and the contained WebAssembly bytecode apps through [WasmEdge’s Golang API](../go/intro.md).
 
 <!-- prettier-ignore -->
 :::note
@@ -25,7 +25,7 @@ Checkout [the WasmEdge image classification function in action in YoMo](https://
 
 ## Prerequisite
 
-Obviously, you will need to have [Golang installed](https://golang.org/doc/install), but I will assume you already did.
+You will need to have [Golang installed](https://golang.org/doc/install), but I assume you already did.
 
 <!-- prettier-ignore -->
 :::note
@@ -46,9 +46,9 @@ Next, please install the WasmEdge and its Tensorflow shared libraries. [WasmEdge
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
 ```
 
-Finally, since our demo WebAssembly functions are written in Rust, you will also need a [Rust compiler](https://www.rust-lang.org/tools/install).
+Finally, since our demo WebAssembly functions are written in Rust, you need a [Rust compiler](https://www.rust-lang.org/tools/install).
 
-For the rest of the demo, fork and clone the [source code repository](https://github.com/yomorun/yomo-wasmedge-tensorflow).
+For the rest of the demo, fork, and clone the [source code repository](https://github.com/yomorun/yomo-wasmedge-tensorflow).
 
 ```bash
 git clone https://github.com/yomorun/yomo-wasmedge-tensorflow.git
@@ -63,11 +63,11 @@ The [image classification function](https://github.com/yomorun/yomo-wasmedge-ten
 pub fn infer(image_data: Vec<u8>) -> Result<Vec<u8>, String> {
   let start = Instant::now();
 
-  // Load the TFLite model and its meta data (the text label for each recognized object number)
+  // Load the TFLite model and its metadata (the text label for each recognized object number)
   let model_data: &[u8] = include_bytes!("lite-model_aiy_vision_classifier_food_V1_1.tflite");
   let labels = include_str!("aiy_food_V1_labelmap.txt");
 
-  // Pre-process the image to a format that can be used by this model
+  // Pre-process the image to a format that this model can use
   let flat_img = wasmedge_tensorflow_interface::load_jpg_image_to_rgb8(&image_data[..], 192, 192);
   println!("RUST: Loaded image in ... {:?}", start.elapsed());
 
@@ -79,7 +79,7 @@ pub fn infer(image_data: Vec<u8>) -> Result<Vec<u8>, String> {
 
   // Find the object index in res_vec that has the greatest probability
   // Translate the probability into a confidence level
-  // Translate the object index into a label from the model meta data food_name
+  // Translate the object index into a label from the model metadata food_name
   let mut i = 0;
   let mut max_index: i32 = -1;
   let mut max_value: u8 = 0;
@@ -190,7 +190,7 @@ func main() {
   select {}
 }
 
-// Handler process the data in the stream
+// Handler processes the data in the stream
 func Handler(img []byte) (byte, []byte) {
   // Initialize WasmEdge's VM
   vmConf, vm := initVM()
@@ -260,7 +260,7 @@ func initVM() (*wasmedge.Configure, *wasmedge.VM) {
 
 ## In action
 
-Finally, we can start YoMo and see the entire data processing pipeline in action. Start the YoMo CLI application from the project folder. The [yaml file](https://github.com/yomorun/yomo-wasmedge-tensorflow/blob/main/zipper/workflow.yaml) defines port YoMo should listen on and the workflow handler to trigger for incoming data. Note that the flow name `image-recognition` matches the name in the aforementioned data handler [app.go](https://github.com/yomorun/yomo-wasmedge-tensorflow/blob/main/flow/app.go).
+Finally, we can start YoMo and see the entire data processing pipeline. Start the YoMo CLI application from the project folder. The [yaml file](https://github.com/yomorun/yomo-wasmedge-tensorflow/blob/main/zipper/workflow.yaml) defines port YoMo should listen on and the workflow handler to trigger for incoming data. Note that the flow name `image-recognition` matches the name in the aforementioned data handler [app.go](https://github.com/yomorun/yomo-wasmedge-tensorflow/blob/main/flow/app.go).
 
 ```bash
 yomo serve -c ./zipper/workflow.yaml
@@ -287,6 +287,6 @@ You can see the output from the WasmEdge handler function in the console. It pri
 
 ## What's next
 
-In this article, we have seen how to use the WasmEdge Tensorflow API and Golang SDK in YoMo framework to process an image stream in near real-time.
+This article shows how to use the WasmEdge Tensorflow API and Golang SDK in YoMo framework to process an image stream in near real-time.
 
-In collaboration with YoMo, we will soon deploy WasmEdge in production in smart factories for a variety of assembly line tasks. WasmEdge is the software runtime for edge computing!
+In collaboration with YoMo, we will soon deploy WasmEdge in production in smart factories for various assembly line tasks. WasmEdge is the software runtime for edge computing!

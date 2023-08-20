@@ -2,19 +2,19 @@
 sidebar_position: 1
 ---
 
-# Build WasmEdge from source
+# Build Guide
 
 Please follow this guide to build and test WasmEdge from the source code.
 
-- [Linux](../source/os/linux.md)
-- [MacOS](../source/os/macos.md)
-- [Windows](../source/os/windows.md)
-- [Android](../../category/build-and-run-wasmedge-on-android)
-- [OpenWrt](../source/os/openwrt.md)
-- [RISC-V](../source/os/riscv64.md)
-- [OpenHarmony](../source/os/openharmony.md)
-- [seL4](../source/os/sel4)
-- [Raspberry Pi](../source/os/raspberrypi.md)
+- [Linux](os/linux.md)
+- [MacOS](os/macos.md)
+- [Windows](os/windows.md)
+- [Android](/category/build-and-run-wasmedge-on-android)
+- [OpenWrt](os/openwrt.md)
+- [RISC-V](os/riscv64.md)
+- [OpenHarmony](os/openharmony.md)
+- [seL4](os/sel4)
+- [Raspberry Pi](os/raspberrypi.md)
 
 <!-- prettier-ignore -->
 :::note
@@ -34,7 +34,7 @@ WasmEdge provides various tools for enabling different runtime environments for 
    - To disable building the ahead-of-time compiler only, you can set the CMake option `WASMEDGE_BUILD_AOT_RUNTIME` to `OFF`.
 
    <!-- prettier-ignore -->
-   :::note 
+   :::note
    The usage of `wasmedgec` is equal to `wasmedge compile`. We decide to deprecate `wasmedgec` in the future.
    :::
 
@@ -44,7 +44,7 @@ WasmEdge provides various tools for enabling different runtime environments for 
    - To disable building just the shared library, you can set the CMake option `WASMEDGE_BUILD_SHARED_LIB` to `OFF`.
 4. `ssvm-qitc` is for AI applications and supports the ONNC runtime for AI models in the ONNX format.
    - If you want to try `ssvm-qitc`, please refer to [ONNC-Wasm](https://github.com/ONNC/onnc-wasm) project to set up the working environment and tryout several examples.
-   - And here is our [tutorial for ONNC-Wasm project(YouTube Video)](https://www.youtube.com/watch?v=cbiPuHMS-iQ).
+   - And here is our [tutorial for ONNC-WASM project(YouTube Video)](https://www.youtube.com/watch?v=cbiPuHMS-iQ).
 
 ## CMake Building Options
 
@@ -62,21 +62,21 @@ Developers can set the CMake options to customize the WasmEdge building.
    - The `wasmedge` and `wasmedgec` tools will link to the WasmEdge shared library by default.
    - If this option is set as `ON` and `WASMEDGE_BUILD_AOT_RUNTIME` is set as `OFF`, the `wasmedgec` tool for the AOT compiler will not be built.
    - If this option is set as `ON` but the option `WASMEDGE_LINK_TOOLS_STATIC` is set as `OFF`, the option `WASMEDGE_BUILD_SHARED_LIB` will forcefully be set as `ON`.
-   - If this option and the option `WASMEDGE_LINK_TOOLS_STATIC` are both set as `ON`, the `WASMEDGE_LINK_LLVM_STATIC` and `WASMEDGE_BUILD_STATIC_LIB` will both be set as `ON`, and the `wasmedge` and `wasmedgec` tools will link to the WasmEdge static library instead. In this case, the plugins will not work in tools.
-6. `WASMEDGE_BUILD_PLUGINS`: build the WasmEdge plugins. Default is `ON`.
+   - If this option and the option `WASMEDGE_LINK_TOOLS_STATIC` are both set as `ON`, the `WASMEDGE_LINK_LLVM_STATIC` and `WASMEDGE_BUILD_STATIC_LIB` will both be set as `ON`, and the `wasmedge` and `wasmedgec` tools will link to the WasmEdge static library instead. In this case, the plug-ins will not work in tools.
+6. `WASMEDGE_BUILD_PLUGINS`: build the WasmEdge plug-ins. Default is `ON`.
 7. `WASMEDGE_BUILD_EXAMPLE`: build the WasmEdge examples. Default is `OFF`.
 8. `WASMEDGE_FORCE_DISABLE_LTO`: forcefully turn off the link time optimization. Default is `OFF`.
 9. `WASMEDGE_LINK_LLVM_STATIC`: link the LLVM and lld libraries statically (Linux and MacOS platforms only). Default is `OFF`.
 10. `WASMEDGE_LINK_TOOLS_STATIC`: make the `wasmedge` and `wasmedgec` tools to link the WasmEdge library and LLVM libraries statically (Linux and MacOS platforms only). Default is `OFF`.
     - If the option `WASMEDGE_BUILD_TOOLS` and this option are both set as `ON`, the `WASMEDGE_LINK_LLVM_STATIC` will be set as `ON`.
 11. `WASMEDGE_ENABLE_UB_SANITIZER`: enable the undefined behavior sanitizer. Default is `OFF`.
-12. `WASMEDGE_PLUGIN_WASI_NN_BACKEND`: build the WasmEdge WASI-NN plugin (Linux platforms only). Default is empty.
+12. `WASMEDGE_PLUGIN_WASI_NN_BACKEND`: build the WasmEdge WASI-NN plug-in (Linux platforms only). Default is empty.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
-    - To build the WASI-NN plugin with backend, please use `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=<backend_name>`.
-    - To build the WASI-NN plugin with multiple backends, please use `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=<backend_name1>,<backend_name2>`.
-13. `WASMEDGE_PLUGIN_WASI_CRYPTO`: build the WasmEdge WASI-Crypto plugin (Linux and MacOS platforms only). Default is `OFF`.
+    - To build the WASI-NN plug-in with backend, please use `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=<backend_name>`.
+    - To build the WASI-NN plug-in with multiple backends, please use `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=<backend_name1>,<backend_name2>`.
+13. `WASMEDGE_PLUGIN_WASI_CRYPTO`: build the WasmEdge WASI-Crypto plug-in (Linux and MacOS platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
-14. `WASMEDGE_PLUGIN_WASI_LOGGING`: build the WasmEdge WASI-Logging plugin (Linux and MacOS platforms only). Default is `OFF`.
+14. `WASMEDGE_PLUGIN_WASI_LOGGING`: build the WasmEdge WASI-Logging plug-in (Linux and MacOS platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
 15. `WASMEDGE_PLUGIN_WASM_BPF`: build the WasmEdge wasm_bpf plugin (Linux platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
@@ -84,19 +84,19 @@ Developers can set the CMake options to customize the WasmEdge building.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
 17. `WASMEDGE_PLUGIN_TENSORFLOW`: build the WasmEdge TensorFlow plugin (Linux and MacOS platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
-18. `WASMEDGE_PLUGIN_TENSORFLOWLITE`: build the WasmEdge TensorFlow-Lite plugin (Linux and MacOS platforms only). Default is `OFF`.
+18. `WASMEDGE_PLUGIN_TENSORFLOWLITE`: build the WasmEdge TensorFlow-Lite plug-in (Linux and MacOS platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
 
 ## Build WasmEdge with Plug-ins
 
 Developers can follow the steps to build WasmEdge with plug-ins from source.
 
-- [WASI-NN (OpenVINO, PyTorch, or TensorFlow-Lite backends)](../source/plugin/wasi_nn.md)
-- [WASI-Crypto](../source/plugin/wasi_crypto.md)
-- [WasmEdge-Image](../source/plugin/image.md)
-- [WasmEdge-TensorFlow](../source/plugin/tensorflow.md)
-- [WasmEdge-TensorFlowLite](../source/plugin/tensorflowlite.md)
-- [WASI-Logging](../source/plugin/wasi_logging.md)
+- [WASI-NN (OpenVINO, PyTorch, or TensorFlow-Lite backends)](plugin/wasi_nn.md)
+- [WASI-Crypto](plugin/wasi_crypto.md)
+- [WasmEdge-Image](plugin/image.md)
+- [WasmEdge-TensorFlow](plugin/tensorflow.md)
+- [WasmEdge-TensorFlowLite](plugin/tensorflowlite.md)
+- [WASI-Logging](plugin/wasi_logging.md)
 
 ## Run Tests
 

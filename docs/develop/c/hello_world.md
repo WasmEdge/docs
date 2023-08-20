@@ -4,15 +4,15 @@ sidebar_position: 1
 
 # Hello World
 
-This chapter will take Hello World as an example to show how to compile a C program to Wasm bytecode and run in WasmEdge.
+This chapter will take Hello World as an example to show how to compile a C program to WASM bytecode and run it in WasmEdge.
 
 ## Prerequisites
 
-Before we started, make sure you have installed the following software:
+Before we start, make sure you have installed the following software:
 
-1. [Install WasmEdge](../build-and-run/install)
+1. [Install WasmEdge](../../start/install.md#install)
 
-2. Emscripten, a toolchain for compiling C/C++ to WebAssembly. Please refer to the [emcc official repository](https://github.com/emscripten-core/emsdk) for the detailed instructions.
+2. Emscripten, a toolchain for compiling C/C++ to WebAssembly. Please refer to the [emcc official repository](https://github.com/emscripten-core/emsdk) for detailed instructions.
 
 ```bash
 git clone --depth 1 https://github.com/emscripten-core/emsdk.git
@@ -26,7 +26,7 @@ source ./emsdk_env.sh
 
 ### Compile the C code into Wasm
 
-As the first step is always the "Hello World" program , given below is the C program implementation.
+As the first step is always the "Hello World" program, given below is the C program implementation.
 
 ```c
 // hello.c
@@ -38,7 +38,7 @@ int main(int argc,char **argv){
 }
 ```
 
-Save it in any file and then compile it to WebAssembly with emscripten .
+Save it in any file and then compile it to WebAssembly with emscripten.
 
 ```bash
 emcc hello.c -o hello.wasm
@@ -49,7 +49,7 @@ emcc hello.c -o hello.wasm
 Make sure you either supply `-s STANDALONE_WASM` flag or specify output as wasm `-o your_file_name.wasm`
 :::
 
-Then run the wasm in wasmedge runtime
+Then run the wasm in wasmedge runtime.
 
 ```bash
 $ wasmedge hello.wasm
@@ -58,7 +58,7 @@ Hello World
 
 ### Run in WasmEdge
 
-Run the compiled wasm with WasmEdge CLI and you will get the hello world output.
+Run the compiled wasm with WasmEdge CLI, and you will get the hello world output.
 
 ```bash
 $ wasmedge hello.wasm
@@ -78,7 +78,7 @@ $ wasmedge hello.wasm
 
 ## Example: Add function
 
-We can also pass cmd arguments , for example add function in this example takes two arguments and prints their sum
+We can also pass cmd arguments. For example, add function takes two arguments and prints their sum in this example.
 
 ```c
 // add.c

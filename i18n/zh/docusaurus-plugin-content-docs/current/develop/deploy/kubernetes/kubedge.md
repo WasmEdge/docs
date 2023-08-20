@@ -4,11 +4,11 @@ sidebar_position: 6
 
 # KubeEdge
 
-KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.
+KubeEdge is an open-source system for extending native containerized application orchestration capabilities to hosts at Edge.
 
 <!-- prettier-ignore -->
 :::note
-This demo is based on [crun's support](../../../develop/deploy/oci-runtime/crun)
+This demo is based on [crun's support](../../deploy/oci-runtime/crun.md)
 :::
 
 ## 1. Setup Cloud Side (KubeEdge Master Node)
@@ -38,7 +38,7 @@ EOF
 sudo modprobe overlay
 sudo modprobe br_netfilter
 
-# Set up required sysctl params, these persist across reboots.
+# Set up required sysctl params; these persist across reboots.
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
@@ -179,11 +179,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 Please see [Deploying using Keadm](https://kubeedge.io/en/docs/setup/keadm/).
 
-IMPORTANT NOTE:
-
-1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
-2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with --advertise-address flag.
-3. --advertise-address(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+1. At least one kubeconfig or master must be configured correctly so that it can be used to verify the version and other info of the k8s cluster.
+2. Please make sure the edge node can connect to the cloud node using the local IP of the cloud node, or you need to specify the public IP of the cloud node with the --advertise-address flag.
+3. --advertise-address(only worked since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate); the default value is the local IP.
 
 ```bash
 wget https://github.com/kubeedge/kubeedge/releases/download/v1.8.0/keadm-v1.8.0-linux-amd64.tar.gz
@@ -221,7 +219,7 @@ go version go1.17.3 linux/amd64
 
 ### Get Token From Cloud Side
 
-Run keadm gettoken in cloud side will return the token, which will be used when joining edge nodes.
+Run keadm gettoken on the cloud side will return the token, which will be used when joining edge nodes.
 
 ```bash
 $ sudo ./keadm gettoken --kube-config=/home/${user}/.kube/config
@@ -289,7 +287,7 @@ The args are as follows.
 File content is This is in a file
 ```
 
-The WebAssembly app of pod successfully deploy to edge node.
+The WebAssembly app of the pod successfully deploys to the edge node.
 
 ```bash
 $ kubectl describe pod wasi-demo

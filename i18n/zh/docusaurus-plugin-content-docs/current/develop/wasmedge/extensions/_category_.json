@@ -1,8 +1,0 @@
-{
-  "label": "WasmEdge Extensions",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "WasmEdge supports all standard WebAssembly and WASI specifications. In addition, it supports features and APIs that are crucial for the cloud-native use cases. WasmEdge is a superset of standard Wasm. Through its extension SDK, developers can easily add features they need to the WasmEdge Runtime as plugins."
-  }
-}
