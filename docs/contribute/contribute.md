@@ -27,7 +27,7 @@ If you split your pull request into small changes, please make sure any of the c
 
 ### Fork and Clone the Repository
 
-Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace
+Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace.
 
 ### Branches and Commits
 
@@ -50,7 +50,17 @@ LD_LIBRARY_PATH=$(pwd)/lib/api ctest
 
 When ready for review, push your branch to your fork repository on github.
 
+Please sign your commits before sending a PR. To sign off on a commit, you just add a line at the end of your commit message with your signature like:
+
+```bash
+Signed-off-by: Sarrah Bastawala <sarrah.basta@gmail.com>
+```
+
+This can be automatically added to your commit message by passing -s or --signoff to git commit.
+
 Then visit your fork at <https://github.com/$user/WasmEdge> and click the `Compare & Pull Request` button next to your branch to create a new pull request. Description of a pull request should refer to all the issues that it addresses. Remember to put a reference to issues (such as Closes #XXX and Fixes #XXX) in the comment so that the issues can be closed when the PR is merged. After creating a pull request, please check that the CI passes with your code changes.
+
+After creating a pull request, please ensure that the CI passes with your code and documentation changes.
 
 Once your pull request has been opened it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style.
 
@@ -78,3 +88,7 @@ Update the documentation if you are creating or changing features. Good document
 You can propose new designs for existing WasmEdge features. You can also design entirely new features, please submit a proposal via the GitHub issues.
 
 WasmEdge maintainers will review this proposal as soon as possible. This is necessary to ensure the overall architecture is consistent and to avoid duplicated work in the roadmap.
+
+## Code of Conduct
+
+We value the participation and collaboration of every member of our community. Therefore, we require all participants to adhere to our [Code of Conduct](https://github.com/WasmEdge/WasmEdge/blob/master/docs/CODE_OF_CONDUCT.md).
