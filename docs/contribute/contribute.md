@@ -63,14 +63,6 @@ LD_LIBRARY_PATH=$(pwd)/lib/api ctest
 
 When ready for review, push your branch to your fork repository on github.
 
-Please sign your commits before sending a PR. To sign off on a commit, you just add a line at the end of your commit message with your signature like:
-
-```bash
-Signed-off-by: Author Name <authoremail@example.com>
-```
-
-This can be automatically added to your commit message by passing -s or --signoff to git commit.
-
 Then visit your fork at <https://github.com/$user/WasmEdge> and click the `Compare & Pull Request` button next to your branch to create a new pull request. Description of a pull request should refer to all the issues that it addresses. Remember to put a reference to issues (such as Closes #XXX and Fixes #XXX) in the comment so that the issues can be closed when the PR is merged. After creating a pull request, please check that the CI passes with your code changes.
 
 After creating a pull request, please ensure that the CI passes with your code and documentation changes.
