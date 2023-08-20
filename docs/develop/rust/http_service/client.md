@@ -41,6 +41,18 @@ wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_
 wasmedge wasmedge_hyper_client.wasm
 ```
 
+The HTTPS version of the demo is as follows. Make sure that you install the [WasmEdge TLS plug-in](../../../start/install.md#tls-plug-in) first.
+
+```bash
+// Build
+cd wasmedge_hyper_demo/client-https
+cargo build --target wasm32-wasi --release
+wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client_https.wasm wasmedge_hyper_client_https.wasm
+
+// Run
+wasmedge wasmedge_hyper_client_https.wasm
+```
+
 In your Rust application, import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following line to your `Cargo.toml`.
 
 ```toml
@@ -48,7 +60,7 @@ In your Rust application, import [the WasmEdge adapted hyper crate](https://crat
 hyper_wasi = "0.15.0"
 ```
 
-The [Rust example code](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client/src/main.rs) below shows an HTTP or HTTPS GET request.
+The [Rust example code](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client/src/main.rs) below shows an HTTP GET request.
 
 ```rust
 async fn fetch_url_return_str (url: hyper::Uri) -> Result<()> {
@@ -63,7 +75,23 @@ async fn fetch_url_return_str (url: hyper::Uri) -> Result<()> {
     println!("{}", String::from_utf8_lossy(&resp_data));
 ```
 
-And here is an HTTP or HTTPS POST request.
+The [HTTPS example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client-https/src/main.rs) is slightly more complex.
+
+```rust
+async fn fetch_https_url(url: hyper::Uri) -> Result<()> {
+    let https = wasmedge_hyper_rustls::connector::new_https_connector(
+        wasmedge_rustls_api::ClientConfig::default(),
+    );
+    let client = Client::builder().build::<_, hyper::Body>(https);
+    let res = client.get(url).await?;
+
+    let body = hyper::body::to_bytes(res.into_body()).await.unwrap();
+    println!("{}", String::from_utf8(body.into()).unwrap());
+    Ok(())
+}
+```
+
+And here is an HTTP POST request.
 
 ```rust
 async fn post_url_return_str (url: hyper::Uri, post_body: &'static [u8]) -> Result<()> {
@@ -112,7 +140,7 @@ In your Rust application, import the [http_req_wasi](https://crates.io/crates/ht
 http_req_wasi  = "0.10"
 ```
 
-The example below shows an [HTTP GET request](https://github.com/second-state/http_req/blob/master/examples/get.rs).
+The example below shows an [HTTP GET request](https://github.com/second-state/http_req/blob/master/examples/get.rs). For HTTPS requests, you can [simply change](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) the `http` URL to `https`.
 
 ```rust
 use http_req::request;
@@ -127,7 +155,7 @@ fn main() {
 }
 ```
 
-And here is an [HTTP POST request](https://github.com/second-state/http_req/blob/master/examples/post.rs).
+And here is an [HTTP POST request](https://github.com/second-state/http_req/blob/master/examples/post.rs). For HTTPS requests, you can [simply change](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) the `http` URL to `https`.
 
 ```rust
 use http_req::request;
