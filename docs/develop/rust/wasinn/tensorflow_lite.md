@@ -10,7 +10,7 @@ We will use [this example project](https://github.com/second-state/WasmEdge-WASI
 
 Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [WASI-NN plugin with TensorFlow Lite installed](../../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend).
 
-## Quick Start
+## Quick start
 
 Because the example already includes a compiled WASM file from the Rust code, we could use WasmEdge CLI to execute the example directly. First, git clone the `WasmEdge-WASINN-examples` repo.
 
@@ -40,7 +40,7 @@ Executed graph inference
    5.) [819](1)Anas platyrhynchos
 ```
 
-## Build and Run the example from the Rust source code
+## Build and run
 
 Let's build the wasm file from the rust source code. First, git clone the `WasmEdge-WASINN-examples` repo.
 
