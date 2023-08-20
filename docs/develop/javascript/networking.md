@@ -15,7 +15,7 @@ The networking API in WasmEdge is non-blocking and hence supports asynchronous I
 
 ## Prerequisites
 
-[Install WasmEdge](../../../start/install.md). To make HTTPS requests, install the [WasmEdge TLS plug-in](../../../start/install.md#tls-plug-in).
+[Install WasmEdge](../../start/install.md). To make HTTPS requests, install the [WasmEdge TLS plug-in](../../start/install.md#tls-plug-in).
 
 [Install WasmEdge-QuickJS](./hello_world#prerequisites). Make sure that the `modules` directory is located in your local directory where you want to execute the `wasmedge` command.
 
