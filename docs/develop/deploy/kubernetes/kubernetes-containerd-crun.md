@@ -6,14 +6,14 @@ sidebar_position: 1
 
 ## Quick start
 
-The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on Kubernetes + containerd + crun.
+The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and GitHub Actions for running our example apps on Kubernetes + containerd + crun.
 
 - Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd.yml)
 - WebAssembly-based HTTP service [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/kubernetes_containerd/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/kubernetes-containerd-server.yml)
 
 In the rest of this section, we will explain the steps in detail.
 
-We will assume that you have already [installed and configured containerd](../../../develop/deploy/cri-runtime/containerd-crun) to work with WasmEdge container images.
+We assume you have already [installed and configured containerd](../../deploy/cri-runtime/containerd-crun.md) to work with WasmEdge container images.
 
 ## Install and start Kubernetes
 

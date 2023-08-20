@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Prerequisites
 
-[Install WasmEdge](../build-and-run/install)
+[Install WasmEdge](../../start/install.md#install)
 
 Clone the [wasmedge-quickjs](https://github.com/second-state/wasmedge-quickjs) repo and use it as the current directory.
 
@@ -24,7 +24,7 @@ wasmedgec wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 
 <!-- prettier-ignore -->
 :::note
-The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo is required for the QuickJS runtime.
+The reason to use `wasmedge-quickjs` as the current working directory is that `modules` in the repo are required for the QuickJS runtime.
 :::
 
 ## Quick start
@@ -58,7 +58,7 @@ setTimeout(() => {
 
 This section is optional. Read on if you are interested in [adding custom built-in JavaScript APIs](rust) to the runtime.
 
-Following the instructions, you will be able to build a JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
+Following the instructions, you can build a JavaScript interpreter for WasmEdge. Make sure you have installed GCC. If you don't, run the following command line.
 
 ```bash
 # Install GCC
@@ -81,11 +81,11 @@ cargo build --target wasm32-wasi --release
 
 The WebAssembly-based JavaScript interpreter program is located in the build `target` directory.
 
-WasmEdge provides a `wasmedgec` utility to compile and add a native machine code section to the `wasm` file. You can use `wasmedge` to run the natively instrumented `wasm` file to get much faster performance.
+WasmEdge provides a `wasmedgec` utility to compile and add a native machine code section to the `wasm` file. You can use `wasmedge` to run the natively instrumented `wasm` file to get a much faster performance.
 
 ```bash
 wasmedge compile target/wasm32-wasi/release/wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js
 ```
 
-Next, we will discuss more advanced use case for JavaScript in WasmEdge.
+Next, we will discuss more advanced use cases for JavaScript in WasmEdge.

@@ -4,9 +4,9 @@ sidebar_position: 7
 
 # Built-in modules
 
-The WasmEdge QuickJS runtime supports [ES6](es6) and [NPM](npm) modules for application developers. However, those approaches are too cumbersome for system developers. They need an easier way to add multiple JavaScript modules and APIs into the runtime without having to go through build tools like rollup.js. The WasmEdge QuickJS modules system allow developers to just drop JavaScript files into a `modules` folder, and have the JavaScript functions defined in the files immediately available to all JavaScript programs in the runtime. A good use case for this modules system is to support [Node.js](nodejs) APIs in WasmEdge.
+The WasmEdge QuickJS runtime supports [ES6](es6) and [NPM](npm) modules for application developers. However, those approaches could be more convenient for system developers. They need an easier way to add multiple JavaScript modules and APIs into the runtime without using build tools like rollup.js. The WasmEdge QuickJS modules system allows developers to drop JavaScript files into a `modules` folder and have the JavaScript functions defined in the files immediately available to all JavaScript programs in the runtime. A good use case for this module's system is to support [Node.js](nodejs) APIs in WasmEdge.
 
-In this article, we will use the [wasmedge-quickjs/modules](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) as an example to showcase how to import NodeJS API or a third-party modules.
+In this article, we will use the [wasmedge-quickjs/modules](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) as an example to showcase how to import NodeJS API or a third-party module.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ In this article, we will use the [wasmedge-quickjs/modules](https://github.com/s
 
 ## The modules system
 
-The modules system is just a collection of JavaScript files in the `modules` directory in the WasmEdge QuickJS distribution. To use the JavaScript functions and APIs defined in those modules, you just need to map this directory to the `/modules` directory inside the WasmEdge Runtime instance. The following example shows how to do this on the WasmEdge CLI. You can do this with any of the host language SDKs that support embedded use of WasmEdge.
+The modules system collects JavaScript files in the `modules` directory in the WasmEdge QuickJS distribution. To use the JavaScript functions and APIs defined in those modules, you need to map this directory to the `/modules` directory inside the WasmEdge Runtime instance. The following example shows how to do this on the WasmEdge CLI. You can do this with any of the host language SDKs that support the embedded use of WasmEdge.
 
 ```bash
 wasmedge --dir /host/os/path/to/modules:/modules wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
@@ -62,6 +62,6 @@ hello from "my_mod_1.js"
 hello from "my_mod_2.js"
 ```
 
-Following the above tutorials, you can easily add third-party JavaScript functions and APIs into your WasmEdge QuickJS runtime.
+Following the above tutorials, you can easily add third-party JavaScript functions and APIs to your WasmEdge QuickJS runtime.
 
-For the official distribution, we included JavaScript files to support [Node.js APIs](nodejs). You can use [those files](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) as further examples.
+We included JavaScript files to support [Node.js APIs](nodejs) for the official distribution. You can use [those files](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) as further examples.

@@ -17,7 +17,7 @@ wget https://github.com/tinygo-org/tinygo/releases/download/v0.21.0/tinygo_0.21.
 sudo dpkg -i tinygo_0.21.0_amd64.deb`
 ```
 
-Next, run the following command line to check out if the installation is successful.
+Next, run the following command line to check if the installation succeeds.
 
 ```bash
 $ tinygo version
@@ -49,11 +49,11 @@ Next, compile the `main.go` program to WebAssembly using TinyGo.
 tinygo build -o hello.wasm -target wasi main.go
 ```
 
-You will see a file named `hello.wasm` in the same directory. This is a WebAssembly bytecode file.
+You will see a `hello.wasm` file in the same directory, a WebAssembly bytecode file.
 
 ### Hello world: Run
 
-You can run it with the [WasmEdge CLI](../build-and-run/cli).
+You can run it with the [WasmEdge CLI](../../start/build-and-run/cli.md).
 
 ```bash
 $ wasmedge hello.wasm
@@ -62,7 +62,7 @@ Hello TinyGo from WasmEdge!
 
 ## A simple function
 
-The second example is a Go function that takes a call parameter to compute a fibonacci number. However, in order for the Go application to set up proper access to the OS (e.g., to access the command line arguments), you must include an empty `main()` function in the source code.
+The second example is a Go function that takes a call parameter to compute a fibonacci number. However, for the Go application to set up proper access to the OS (e.g., to access the command line arguments), you must include an empty `main()` function in the source code.
 
 ```go
 package main
@@ -93,11 +93,11 @@ Next, compile the `main.go` program to WebAssembly using TinyGo.
 tinygo build -o fib.wasm -target wasi main.go
 ```
 
-You will see a file named `fib.wasm` in the same directory. This is a WebAssembly bytecode file.
+You will see a file named `fib.wasm` in the same directory, a WebAssembly bytecode file.
 
 ### A simple function: Run
 
-You can run it with the [WasmEdge CLI](../build-and-run/cli) in its `--reactor` mode. The command line arguments that follow the `wasm` file are the function name and its call parameters.
+You can run it with the [WasmEdge CLI](../../start/build-and-run/cli.md) in its `--reactor` mode. The command line arguments following the `wasm` file are the function name and call parameters.
 
 ```bash
 $ wasmedge --reactor fib.wasm fibArray 10
@@ -106,7 +106,7 @@ $ wasmedge --reactor fib.wasm fibArray 10
 
 ## Improve performance
 
-To achieve native Go performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
+To achieve native Go performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program, then run it with the `wasmedge` command.
 
 ```bash
 $ wasmedge compile hello.wasm hello.wasm

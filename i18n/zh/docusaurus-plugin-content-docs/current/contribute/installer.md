@@ -10,9 +10,9 @@ WasmEdge installer is designed for installing the Core Tools (`wasmedge`, `wasme
 
 ## Dependencies
 
-In the first version of the installer, WasmEdge provides a pure shell script implementation. However, it's not easy to maintain and is not suitable when we want to include the extensions and plugins matrix.
+In the first version of the installer, WasmEdge provides a pure shell script implementation. However, it's not easy to maintain and unsuitable when we want to include the extensions and plugins matrix.
 
-To reduce the cost of maintenance and improve the development performance, we decided to move forward to a brand new installer that is written in Python and is compatible with both Python 2 and 3.
+To reduce the maintenance cost and improve the development performance, we decided to move forward to a brand new installer written in python and compatible with both Python 2 and 3.
 
 To be compatible with the old one, we use the same entry point, `install.sh`.
 
@@ -31,18 +31,18 @@ The installer entry point.
 #### Process
 
 1. Check if the `git` is installed; otherwise, exit with an error `Please install git`.
-2. If `PYTHON_EXECUTABLE` is given, then try to use `$PYTHON_EXECUTABLE` to execute the `install.py`. Otherwise, go to step 3.
-3. If `PYTHON_EXECUTABLE` is not set, `which` command is needed to determine the python-X executable. If it is not found installer exits else it moves on to the next step.
+2. If `PYTHON_EXECUTABLE` is given, try to use `$PYTHON_EXECUTABLE` to execute the `install.py`. Otherwise, go to step 3.
+3. If `PYTHON_EXECUTABLE` is not set, `which` command is needed to determine the python-X executable. If it is not found installer exits else, it moves on to the next step.
 4. Check if the `python3` is installed. If so, go to step 6. Otherwise, go to step 5.
 5. Check if the `python2` is installed. If so, go to step 6. Otherwise, go to step 6.
 6. Check if the `python` is installed. If so, go to step 7. Otherwise, exit with an error `Please install python or provide python path via $PYTHON_EXECUTABLE`.
 7. Print the detected python version `Using Python: $PYTHON_EXECUTABLE`.
-8. Download `install.py` with `curl` or `wget`. If the URL of `install.py` is unreachable due to a network issue, exit with an error `$INSTALL_PY_URL not reachable`. If the `curl` and `wget` are not available, exit with an error `curl or wget could not be found`.
+8. Download `install.py` with `curl` or `wget`. If the URL of `install.py` is unreachable due to a network issue, exit with an error `$INSTALL_PY_URL not reachable`. If the `curl` and `wget` are unavailable, exit with an error `curl or wget could not be found`.
 9. Execute the `install.py` with all received arguments.
 
 ### `install.py`
 
-The real installer handles all stuff. It supports python2.7 (not tested on earlier versions) as well as the latest python versions python3.x.
+The actual installer handles all stuff. It supports python2.7 (not tested on earlier versions) and the latest python versions python3.x.
 
 ## Options
 
@@ -64,14 +64,14 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 - Full Option: `--version VERSION`
 - Description: Install the given VERSION of WasmEdge
 - Available Value: VERSION `{{ wasmedge_version }}` or other valid release versions.
-- Note - In the case of supplied an invalid or nonexistent version, the installer exists with an error.
+- Note - If supplied an invalid or nonexistent version, the installer exists with an error.
 
 ### Installation path
 
 - Short Option: `-p PATH`
 - Full Option: `--path PATH`
 - Description: Install WasmEdge into the given PATH. The default Path is `$HOME/.wasmedge`.
-- Note - In any path other than the ones starting with `/usr` are treated as non system paths in the internals of the installer. The consequences are different directory structures for both.
+- Note - Any paths other than the ones starting with `/usr` are treated as non-system paths in the internals of the installer. The consequences are different directory structures for both.
 - Note - If the path not exists, the folder will be created.
 
 ### Uninstallation
@@ -121,12 +121,12 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 
 ### Plugins
 
-- Note - Currently `--plugins` is an experimental option.
+- Note - Currently, `--plugins` is an experimental option.
 
 - Full Option: `--plugins wasi_crypto:0.12.0`
 
-- Note - The format for this argument is `<plugin_name>:<version_number>`. `<version_number>` is not compulsory. For example `--plugins wasi_crypto` is a valid option.
-- Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](https://wasmedge.org/docs/contribute/plugin/intro) in the `Rust Crate` column. The logic is that the release name should be the same.
+- Note - The format for this argument is `<plugin_name>:<version_number>`. `<version_number>` is not compulsory. For example, `--plugins wasi_crypto` is a valid option.
+- Note - `<plugin_name>` is cases sensitive. Allowed values are stated [here](plugin/intro.md) in the `Rust Crate` column. The logic is that the release name should be the same.
 - Note - It's the same as the WasmEdge version if not specified.
 
 ### DIST
@@ -134,7 +134,7 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 - Full Option: `--dist ubuntu20.04` or `--dist manylinux2014`
 - Note - the `ubuntu20.04` and `manylinux2014` values are case insensitive and only these two are currently supported.
 - Note - Specifying `--dist` value for `Darwin` has no effect.
-- Note - For `Linux` platform if the distribution matches exactly as `Ubuntu 20.04` which is checked using `lsb_release` and python's `platform.dist()` functionality then it is set to `ubuntu20.04` if not specified, else it is used without questioning. However different release packages for WasmEdge are available only after `0.11.1` release below which there is no effect of specifying this option.
+- Note - For `Linux` platform if the distribution matches exactly as `Ubuntu 20.04`, which is checked using `lsb_release` and python's ` platform.dist()` functionality is then set to `ubuntu20.04` if not specified, or it is used without questioning. However different release packages for WasmEdge are available only after `0.11.1` release, below which there is no effect of specifying this option.
 
 ### Platform and OS
 
@@ -145,18 +145,18 @@ The real installer handles all stuff. It supports python2.7 (not tested on earli
 ### Machine and Arch
 
 - Full Option: `--machine MACHINE` or `--arch ARCH`
-- Description: Install the given `MACHINE` or `ARCH` version of WasmEdge.
+- Description: Install the `MACHINE` or `ARCH` version of WasmEdge.
 - Available Value: "x86_64", "aarch64".
 
 ## Behavior
 
-- If there exists an installation at `$HOME/.wasmedge` which is to be noted as the default installation path, it is removed with or without uninstaller's invocation.
-- WasmEdge installation appends all the files it installs to a file which is located in the installer directory named `env` with it's path as `$INSTALLATION_PATH/env`
+- If an installation exists at `$HOME/.wasmedge`, to be noted as the default installation path, it is removed with or without the uninstaller's invocation.
+- WasmEdge installation appends all the files it installs to a file which is located in the installer directory named `env` with its path as `$INSTALLATION_PATH/env`.
 
 ### Shell and it's configuration
 
 - Source string in shell configuration is given as `. $INSTALLATION_PATH/env` so that it exports the necessary environment variables for WasmEdge.
 - Shell configuration file is appended with source string if it cannot find the source string in that file.
-- Currently it detects only `Bash` and `zsh` shells.
-- If the above shells are found, then their respective configuration files `$HOME/.bashrc` and `$HOME/.zshrc` are updated along with `$HOME/.zprofile` and `$HOME/.bash_profile` in case of Linux.
-- In case of `Darwin`, only `$HOME/.zprofile` is updated with the source string.
+- Currently, it detects only `Bash` and `zsh` shells.
+- If the above shells are found, then their respective configuration files `$HOME/.bashrc` and `$HOME/.zshrc` are updated along with `$HOME/.zprofile` and `$HOME/.bash_profile` in the case of Linux.
+- In the case of `Darwin`, only `$HOME/.zprofile` is updated with the source string.

@@ -4,16 +4,16 @@ sidebar_position: 3
 
 # Access OS services
 
-The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssembly applications to access operating system services. The `wasm32-wasi` target in the Rust compiler supports WASI. In this section, we will use [an example project](https://github.com/second-state/rust-examples/tree/main/wasi) to show how to use Rust standard APIs to access operating system services.
+The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssembly applications to access operating system services. The `wasm32-wasi` target in the Rust compiler supports WASI. This section will use [an example project](https://github.com/second-state/rust-examples/tree/main/wasi) to show how to use Rust standard APIs to access operating system services.
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](setup).
+Before we start, ensure [you have Rust and WasmEdge installed](setup.md).
 :::
 
 ## Random numbers
 
-The WebAssembly VM is a pure software construct. It does not have a hardware entropy source for random numbers. That's why WASI defines a function for WebAssembly programs to call its host operating system to get a random seed. As a Rust developer, all you need is to use the popular (de facto standard) `rand` and/or `getrandom` crates. With the `wasm32-wasi` compiler backend, these crates generate the correct WASI calls in the WebAssembly bytecode. The `Cargo.toml` dependencies are as follows.
+The WebAssembly VM is a pure software construct. It does not have a hardware entropy source for random numbers. That's why WASI defines a function for WebAssembly programs to call its host operating system to get a random seed. As a Rust developer, you only need to use the popular (de facto standard) `rand` and/or `getrandom` crates. With the `wasm32-wasi` compiler backend, these crates generate the correct WASI calls in the WebAssembly bytecode. The `Cargo.toml` dependencies are as follows.
 
 ```toml
 [dependencies]
@@ -21,7 +21,7 @@ rand = "0.7.3"
 getrandom = "0.1.14"
 ```
 
-The Rust code to get random number from WebAssembly is this.
+The Rust code to get random numbers from WebAssembly is this.
 
 ```rust
 use rand::prelude::*;
@@ -41,7 +41,7 @@ pub fn get_random_bytes() -> Vec<u8> {
 
 ## Printing and debugging from Rust
 
-The Rust `println!` marco just works in WASI. The statements print to the `STDOUT` of the process that runs the WasmEdge.
+The Rust `println!` marco works in WASI. The statements print to the `STDOUT` of the process that runs the WasmEdge.
 
 ```rust
 pub fn echo(content: &str) -> String {
@@ -52,7 +52,7 @@ pub fn echo(content: &str) -> String {
 
 ## Arguments and environment variables
 
-It is possible to pass CLI arguments to and access OS environment variables in a WasmEdge application. They are just `env::args()` and `env::vars()` arrays in Rust.
+Passing CLI arguments to and accessing OS environment variables in a WasmEdge application is possible. They are just `env::args()` and `env::vars()` arrays in Rust.
 
 ```rust
 use std::env;
@@ -120,7 +120,7 @@ Use the command below to compile [the Rust project](https://github.com/second-st
 cargo build --target wasm32-wasi --release
 ```
 
-To run it in `wasmedge`, do the following. The `--dir` option maps the current directory of the command shell to the file system current directory inside the WebAssembly app.
+To run it in `wasmedge`, do the following. The `--dir` option maps the current directory of the command shell to the file system's current directory inside the WebAssembly app.
 
 ```bash
 $ wasmedge --dir .:. target/wasm32-wasi/release/wasi.wasm
@@ -136,9 +136,9 @@ File content is This is in a file
 
 ## Functions
 
-As [we have seen](hello_world#a-simple-function), you can create WebAssembly functions in a Rust `lib.rs` project. You can also use WASI functions in those functions. However, an important caveat is that, without a `main()` function, you will need to explicitly call a helper function to initialize environment for WASI functions to work properly.
+As [we have seen](hello_world.md#a-simple-function), you can create WebAssembly functions in a Rust `lib.rs` project. You can also use WASI functions in those functions. However, an important caveat is that, without a `main()` function, you will need to explicitly call a helper function to initialize the environment for WASI functions to work properly.
 
-In the Rust program, add a helper crate in Cargo.toml so that the WASI initialization code can be applied to your exported public library functions.
+Add a helper crate in Cargo.toml in the Rust program so that the WASI initialization code can be applied to your exported public library functions.
 
 ```toml
 [dependencies]

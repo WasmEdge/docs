@@ -46,19 +46,19 @@ cd WasmEdge
 
 ### Run the build script
 
-Run the build script `build_for_openwrt.sh` in WasmEdge source code, and input the path of the OpenWrt source code as parameter. This script will automatically add the WasmEdge into the packages list which will be built of OpenWrt, and build the OpenWrt firmware. The generated OpenWrt images are in the `openwrt/bin/targets/x86/64` folder.
+Run the build script `build_for_openwrt.sh` in WasmEdge source code and input the path of the OpenWrt source code as parameter. This script will automatically add the WasmEdge into the packages list which will be built of OpenWrt, and build the OpenWrt firmware. The generated OpenWrt images are in the `openwrt/bin/targets/x86/64` folder.
 
 ```bash
 ./utils/openwrt/build_for_openwrt.sh ~/openwrt
 ```
 
-When running the build script, the OpenWrt configuration interface will appear. In this interface, we need to set `Target System` to x86, `Target Profile` to Generic x86/64, and find `WasmEdge` in the `Runtime` column and check it . Once set up, the script automatically builds WasmEdge and compiles the OpenWrt system.
+When running the build script, the OpenWrt configuration interface will appear. In this interface, we need to set `Target System` to x86, `Target Profile` to Generic x86/64, and find `WasmEdge` in the `Runtime` column and check it. Once set up, the script automatically builds WasmEdge and compiles the OpenWrt system.
 
 ## Test
 
 ### Deploy OpenWrt in VMware
 
-In order to verify the availability of WasmEdge, we use a VMware virtual machine to install the compiled OpenWrt image. Before creating a virtual machine, we need to use the `QEMU` command to convert the OpenWrt image to vmdk format.
+To verify the availability of WasmEdge, we use a VMware virtual machine to install the compiled OpenWrt image. Before creating a virtual machine, we must use the `QEMU` command to convert the OpenWrt image to vmdk format.
 
 ```bash
 cd ~/openwrt/bin/targets/x86/64
@@ -69,18 +69,18 @@ qemu-img convert -f raw -O vmdk openwrt-x86-64-generic-squashfs-combined.img Ope
 
 After that, create a virtual machine in VMware and install the OpenWrt system.
 
-### upload the test files
+### Upload the test files
 
 After setting the IP address of OpenWrt according to the gateway of the host, use `scp` to transfer the wasm file on the host to the OpenWrt system.
 
-For example, we set the ip address of OpenWrt as 192.168.0.111, then we use the following commands to upload [hello.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/hello.wasm) and [add.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/add.wasm) these two test files to OpenWrt.
+For example, we set the IP address of OpenWrt as 192.168.0.111, then we use the following commands to upload [hello.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/hello.wasm) and [add.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/add.wasm) these two test files to OpenWrt.
 
 ```bash
 scp hello.wasm root@192.168.0.111:/
 scp add.wasm root@192.168.0.111:/
 ```
 
-### Test the wasmedge program
+### Test the Wasmedge program
 
 ```bash
 $ wasmedge hello.wasm second state

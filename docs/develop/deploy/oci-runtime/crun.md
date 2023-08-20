@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Deploy with crun
 
-The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. This chapter will walk you through deploying Wasm images with crun.
+The [crun project](https://github.com/containers/crun) has WasmEdge support baked in. This chapter will walk you through deploying WASM images with crun.
 
 ## Fedora Platform
 
-The crun fedora package has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun in on the Fedora Linux distributions. For the other Linux distributions, please refer to the [next section](#other-linux-platforms).
+The crun fedora package has WasmEdge as the default WebAssembly Runtime. So the easiest way to deploy WasmEdge with crun is on the Fedora Linux distribution. Please refer to the [next section](#other-linux-platforms) for the other Linux distributions.
 
 First, install crun and WasmEdge on your fedora machine.
 
@@ -31,24 +31,24 @@ spec: 1.0.0
 
 You can see that crun has WasmEdge package already.
 
-Next, you can run Wasm apps on your [fedora machine](/develop/getting-started/quick_start_redhat.md).
+Next, you can run WASM apps on your [fedora machine](../../../start/getting-started/quick_start_redhat.md).
 
 ## Other Linux Platforms
 
 ### Quick start
 
-The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and Github Actions for running our example apps on CRI-O.
+The [GitHub repo](https://github.com/second-state/wasmedge-containers-examples/) contains scripts and GitHub Actions for running our example apps on CRI-O.
 
 - Simple WebAssembly example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio.yml)
 - HTTP service example [Quick start](https://github.com/second-state/wasmedge-containers-examples/blob/main/crio/http_server/README.md) | [Github Actions](https://github.com/second-state/wasmedge-containers-examples/blob/main/.github/workflows/crio-server.yml)
 
 ### Prerequisites
 
-1. Make sure you have installed [WasmEdge](../../build-and-run/install)
+1. Make sure you have installed [WasmEdge](../../../start/install.md#install)
 
 2. Build and configure crun with WasmEdge support
 
-For now, the easiest approach is just built it yourself from source. First, let's make sure that `crun` dependencies are installed on your Ubuntu 20.04. For other Linux distributions, please [see here](https://github.com/containers/crun#readme).
+For now, the easiest approach is just built it yourself from source. First, let's ensure that `crun` dependencies are installed on your Ubuntu 20.04. For other Linux distributions, please [see here](https://github.com/containers/crun#readme).
 
 ```bash
 sudo apt update

@@ -1,6 +1,6 @@
 {
   "label": "Database drivers",
-  "position": 7,
+  "position": 8,
   "link": {
     "type": "generated-index",
     "description": "Connect to databases from Rust apps in WasmEdge."
