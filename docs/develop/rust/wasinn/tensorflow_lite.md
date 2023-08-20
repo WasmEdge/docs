@@ -74,7 +74,7 @@ wasmedge --dir .:. out.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite b
 
 ## Understand the code
 
-The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/blob/master/tflite-birds_v1-image/rust/tflite-bird/src/main.rs) is the complete example Rust source. First, read the image file and Tensorflow Lite (tflite) model file into the application memory. 
+The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/blob/master/tflite-birds_v1-image/rust/tflite-bird/src/main.rs) is the complete example Rust source. First, read the image file and Tensorflow Lite (tflite) model file names from the command line. 
 
 ```rust
 let args: Vec<String> = env::args().collect();
