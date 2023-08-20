@@ -118,3 +118,5 @@ for i in 0..5 {
   );
 }
 ```
+
+Next, try your own PyTorch models in WasmEdge and let us know!
