@@ -25,6 +25,19 @@ Please submit a pull request broken down into small changes bit by bit. A pull r
 If you split your pull request into small changes, please make sure any of the changes that goes to master will not break anything. Otherwise, it can not be merged until this feature is complete.
 :::
 
+## Understanding the WasmEdge Ecosystem
+
+Contributing to WasmEdge is more than just code. It's about understanding where WasmEdge fits into the broader ecosystem of WebAssembly and edge computing. Here are a few key aspects of the WasmEdge ecosystem:
+
+- **WasmEdge Runtime**: The high-performance, extensible WebAssembly runtime for cloud native infrastructure and edge IoT devices.
+- **WasmEdge Extensions**: A series of function-as-a-service extensions for the WasmEdge Runtime, such as Tensorflow Lite and Image Magick.
+- **Cargo-wasi**: A lightweight WebAssembly CDN service built on the WasmEdge Runtime.
+- **SSVM**: A server-side WebAssembly VM optimized for server-side applications. It powers server-side functions in Node.js, Rust, and Golang to provide high-performance execution of applications in a sandboxed environment.
+
+You can check out more [about the WasmEdge ecosystem](https://github.com/WasmEdge/WasmEdge/blob/master/docs/ecosystem.md) to understand how these parts work together.
+
+By understanding the ecosystem, you can make more impactful contributions and see how your work advances the overall goals of WasmEdge and WebAssembly in the cloud and edge computing.
+
 ### Fork and Clone the Repository
 
 Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace.
@@ -87,7 +100,7 @@ Update the documentation if you are creating or changing features. Good document
 
 You can propose new designs for existing WasmEdge features. You can also design entirely new features, please submit a proposal via the GitHub issues.
 
-WasmEdge maintainers will review this proposal as soon as possible. This is necessary to ensure the overall architecture is consistent and to avoid duplicated work in the [roadmap](https://github.com/mhmohona/WasmEdge/blob/coding-style/docs/ROADMAP.md).
+WasmEdge maintainers will review this proposal as soon as possible. This is necessary to ensure the overall architecture is consistent and to avoid duplicated work in the [roadmap](https://github.com/WasmEdge/WasmEdge/blob/master/docs/ROADMAP.md).
 
 ## Code of Conduct
 
