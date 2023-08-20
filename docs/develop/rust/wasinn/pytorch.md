@@ -55,7 +55,7 @@ Second, use `cargo` to build the example project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Next, let's use WasmEdge to load the PyTorch model and then use it to classify objects in your image.
+The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Next, use WasmEdge to load the PyTorch model and then use it to classify objects in your image.
 
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg
@@ -119,4 +119,3 @@ for i in 0..5 {
 }
 ```
 
-Next, try your own PyTorch models in WasmEdge and let us know!
