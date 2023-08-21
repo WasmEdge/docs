@@ -26,6 +26,9 @@ WasmEdge requires LLVM 13 and you may need to install these following dependenci
 choco install cmake ninja vswhere
 
 $vsPath = (vswhere -latest -property installationPath)
+# If vswhere.exe is not in PATH, try the following instead.
+# $vsPath = (&"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath)
+
 Import-Module (Join-Path $vsPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
 Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64 -winsdk=10.0.19041.0"
 
@@ -35,17 +38,27 @@ curl -sLO https://github.com/WasmEdge/llvm-windows/releases/download/llvmorg-13.
 Expand-Archive -Path $llvm
 
 # Set LLVM environment
-$llvm_dir = "$pwd\\LLVM-13.0.1-win64\\LLVM-13.0.1-win64\\lib\\cmake\\llvm"
-$Env:CC = "clang-cl"
-$Env:CXX = "clang-cl"
+$llvm_dir = "$pwd\LLVM-13.0.1-win64\LLVM-13.0.1-win64\lib\cmake\llvm"
 ```
 
 ## Build WasmEdge
 
-```bash
+On Windows, either Clang-cl or MSVC can be used to build WasmEdge. To use MSVC, simply comment out the two lines that set the environment variables `CC` and `CXX`.
+
+```powershell
 $vsPath = (vswhere -latest -property installationPath)
 Import-Module (Join-Path $vsPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
 Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64 -winsdk=10.0.19041.0"
+# If you would like to use MSVC, and want to use a specific version of MSVC, set the arg `vcvars_ver` like the following.
+# Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64 -winsdk=10.0.19041.0 -vcvars_ver=14.34.31933"
+
+# Set LLVM path according to the download location
+$llvm_dir = "$pwd\LLVM-13.0.1-win64\LLVM-13.0.1-win64\lib\cmake\llvm"
+
+# Use clang-cl as the compiler.
+# Comment out the following two lines to use MSVC.
+$Env:CC = "clang-cl"
+$Env:CXX = "clang-cl"
 
 cmake -Bbuild -GNinja -DCMAKE_SYSTEM_VERSION=10.0.19041.0 -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL "-DLLVM_DIR=$llvm_dir" -DWASMEDGE_BUILD_TESTS=ON -DWASMEDGE_BUILD_PACKAGE="ZIP" .
 cmake --build build
@@ -57,12 +70,8 @@ The following tests are available only when the build option `WASMEDGE_BUILD_TES
 
 Users can use these tests to verify the correctness of WasmEdge binaries.
 
-```bash
-$vsPath = (vswhere -latest -property installationPath)
-Import-Module (Join-Path $vsPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
-Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64 -winsdk=10.0.19041.0"
-
-$Env:PATH += ";$pwd\\build\\lib\\api"
+```powershell
+$Env:PATH += ";$pwd\build\lib\api"
 cd build
 ctest --output-on-failure
 cd -
