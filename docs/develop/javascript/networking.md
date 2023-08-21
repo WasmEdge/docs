@@ -8,15 +8,16 @@ The QuickJS WasmEdge Runtime supports Node.js's `http` and `fetch` APIs via the 
 
 The networking API in WasmEdge is non-blocking and hence supports asynchronous I/O-intensive applications. With this API, the JavaScript program can open multiple connections concurrently. It polls those connections or registers async callback functions to process data whenever data comes in, without waiting for any one connection to complete its data transfer. That allows the single-threaded application to handle multiple, multiple concurrent requests.
 
-- [Networking](#networking)
-  - [Prerequisites](#prerequisites)
-  - [Fetch client](#fetch-client)
-  - [HTTP server](#http-server)
-  - [TCP server and client](#tcp-server-and-client)
+- [Prerequisites](#prerequisites)
+- [Fetch client](#fetch-client)
+- [HTTP server](#http-server)
+- [TCP server and client](#tcp-server-and-client)
 
 ## Prerequisites
 
-[See here](./hello_world#prerequisites)
+[Install WasmEdge](../../start/install.md). To make HTTPS requests, install the [WasmEdge TLS plug-in](../../start/install.md#tls-plug-in).
+
+[Install WasmEdge-QuickJS](./hello_world#prerequisites). Make sure that the `modules` directory is located in your local directory where you want to execute the `wasmedge` command.
 
 ## Fetch client
 

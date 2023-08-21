@@ -2,9 +2,12 @@
 sidebar_position: 2
 ---
 
-# Server
+# Socket server
 
-As we described in the [client](client.md) chapter, with the WasmEdge socket API, it is also possible for Rust developers to work directly on the socket level. For WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. In this chapter, we will discuss[an HTTP server example](#an-http-server-example) and [a non-blocking HTTP server example](#a-non-blocking-http-server-example).
+As we described in the [client](client.md) chapter, with the WasmEdge socket API, it is possible for Rust developers to work directly on the TCP and UDP socket level. In this chapter, we will show how to create HTTP servers with the TCP socket API. We chose HTTP here for demonstration purposes due to the simplicity of the HTTP protocol. If you need a production-ready HTTP server, check out the [HTTP server](../http_service/server.md) chapter.
+
+- [An HTTP server example](#an-http-server-example)
+- [A non-blocking HTTP server example](#a-non-blocking-http-server-example)
 
 <!-- prettier-ignore -->
 :::note
@@ -22,7 +25,7 @@ cd wasmedge_wasi_socket/http_server
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler for better performance
-wasmedgec target/wasm32-wasi/release/http_server.wasm http_server.wasm
+wasmedge compile target/wasm32-wasi/release/http_server.wasm http_server.wasm
 
 # Run the example
 $wasmedge http_server.wasm
@@ -116,7 +119,7 @@ cd wasmedge_wasi_socket
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler for better performance
-wasmedgec target/wasm32-wasi/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
+wasmedge compile target/wasm32-wasi/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
 
 # Run the example
 wasmedge poll_tcp_listener.wasm

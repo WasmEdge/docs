@@ -128,15 +128,15 @@ WasmEdge uses plug-ins to extend its functionality. If you want to use more of W
 The WasmEdge TLS plug-in utilizes the native OpenSSL library to support HTTPS and TLS requests from WasmEdge sockets. To install the WasmEdge TLS plug-in on Linux, run the following commands after you have installed WasmEdge.
 
 ```bash
-wget https://github.com/second-state/wasmedge_rustls_plugin/releases/download/0.1.0/WasmEdge-plugin-wasmedge_rustls-0.1.0-alpha-ubuntu20.04_x86_64.tar
-tar -xf WasmEdge-plugin-wasmedge_rustls-*.tar
+wget https://github.com/second-state/wasmedge_rustls_plugin/releases/download/0.2.0/wasmedge_rustls_plugin_ubuntu-20.04.zip
+unzip wasmedge_rustls_plugin_ubuntu-20.04.zip
 
 # If you only installed WasmEdge for the local user
-cp *.so ~/.wasmedge/plugin/
+cp target/release/libwasmedge_rustls.so ~/.wasmedge/plugin/
 
 # If you installed Wasmedge at /usr/local for all users
 sudo mkdir -p /usr/local/lib/wasmedge/
-sudo cp *.so /usr/local/lib/wasmedge/
+sudo cp target/release/libwasmedge_rustls.so /usr/local/lib/wasmedge/
 ```
 
 Then, go to [HTTPS request in Rust chapter](../develop/rust/http_service/client.md) to see how to run HTTPs services with Rust.
