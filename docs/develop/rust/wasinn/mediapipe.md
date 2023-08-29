@@ -63,7 +63,7 @@ DetectionResult:
 
 ## Understand the code
 
-The [main.rs](https://github.com/juntao/demo-object-detection/blob/main/src/main.rs) is the complete example Rust source. 
+The [main.rs](https://github.com/juntao/demo-object-detection/blob/main/src/main.rs) is the complete example Rust source.
 All `mediapipe-rs` APIs follow a common pattern. A Rust struct is designed to work with a model. It contains functions
 required to pre- and post-process data for the model. For example, we can create an `detector` instance
 using the builder pattern, which can build from any "object detection" model in the Mediapipe model library.

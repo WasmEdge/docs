@@ -34,7 +34,7 @@ go build
 
 <!-- prettier-ignore -->
 :::note
-The WasmEdge extensions have been deprecated after the 0.12.1 version. We'll update to use the WasmEdge plug-in in the future.
+The WasmEdge extensions have been deprecated after the 0.12.1 version. Please use the corresponding plug-ins after the 0.13.0 version.
 :::
 
 By default, the `WasmEdge-go` only turns on the basic runtime.

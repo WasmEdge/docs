@@ -1,14 +1,19 @@
 ---
-sidebar_position: 7
+sidebar_position: 5
 ---
 
-# TensorFlow Interface
+# TensorFlow Plug-in For WasmEdge
 
-Developers can use [WASI-NN](/category/neural-networks-for-wasi) to inference the models. However, for the TensorFlow and TensorFlow-Lite users, the WASI-NN APIs could be more friendly to retrieve the input and output tensors. Therefore WasmEdge provides the TensorFlow-related plug-in and rust SDK for inferencing models in WASM.
+Developers can use [WASI-NN](https://github.com/WebAssembly/wasi-nn) to inference the models. However, for the TensorFlow and TensorFlow-Lite users, the WASI-NN APIs could be more friendly to retrieve the input and output tensors. Therefore WasmEdge provides the TensorFlow-related plug-in and rust SDK for inferencing models in WASM.
+
+<!-- prettier-ignore -->
+:::info
+This is not a WASI-NN compatible plug-in. If you are finding the plug-ins working with the [WASI-NN crate](https://crates.io/crates/wasi-nn), please follow the [tensorflow-lite backend](tensorflow_lite.md) instead.
+:::
 
 ## Prerequisite
 
-Please ensure that you [Rust and WasmEdge installed](setup.md).
+Please ensure that you [Rust and WasmEdge installed](../setup.md).
 
 Developers will add the [`wasmedge_tensorflow_interface` crate](https://crates.io/crates/wasmedge_tensorflow_interface) as a dependency to their `Rust -> Wasm` applications. For example, add the following line to the application's `Cargo.toml` file.
 
@@ -27,7 +32,7 @@ use wasmedge_tensorflow_interface;
 
 In this crate, we provide several functions to decode and convert images into tensors using the `WasmEdge-Image` host functions.
 
-To use these functions in WASM and execute in WasmEdge, users should [install WasmEdge with WasmEdge-Image plug-in](../../start/install.md#wasmedge-image-plug-in).
+To use these functions in WASM and execute in WasmEdge, users should [install WasmEdge with WasmEdge-Image plug-in](../../../start/install.md#wasmedge-image-plug-in).
 
 For decoding the `JPEG` images, there are:
 
@@ -67,9 +72,9 @@ let flat_img = wasmedge_tensorflow_interface::load_jpg_image_to_rgb32f(&img_buf,
 
 ## Inferring TensorFlow And TensorFlow-Lite Models
 
-For using the `TFSession` struct to inference the TensorFlow models and executing in WasmEdge, users should install the [WasmEdge-TensorFlow plug-in with dependencies](../../start/install.md#wasmedge-tensorflow-plug-in).
+For using the `TFSession` struct to inference the TensorFlow models and executing in WasmEdge, users should install the [WasmEdge-TensorFlow plug-in with dependencies](../../../start/install.md#wasmedge-tensorflow-plug-in).
 
-For using the `TFLiteSession` struct and to inference the TensorFlow-Lite models executing in WasmEdge, users should install the [WasmEdge-TensorFlowLite plug-in with dependencies](../../start/install.md#wasmedge-tensorflow-lite-plug-in).
+For using the `TFLiteSession` struct and to inference the TensorFlow-Lite models executing in WasmEdge, users should install the [WasmEdge-TensorFlowLite plug-in with dependencies](../../../start/install.md#wasmedge-tensorflow-lite-plug-in).
 
 ### Create Session
 
@@ -125,7 +130,7 @@ cargo build --target=wasm32-wasi
 
 The output WASM file will be at `target/wasm32-wasi/debug/` or `target/wasm32-wasi/release`.
 
-Please refer to [WasmEdge CLI](../../start/build-and-run/cli.md) for WASM execution.
+Please refer to [WasmEdge CLI](../../../start/build-and-run/cli.md) for WASM execution.
 
 ## Examples
 
