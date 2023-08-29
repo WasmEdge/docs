@@ -217,6 +217,34 @@ Then, go to [WASI-Crypto in Rust chapter](../develop/rust/wasicrypto.md) to see 
 
 The wasmEdge-Image plug-in can help developers to load and decode JPEG and PNG images and convert into tensors. To install this plug-in, please use the `--plugins wasmedge_image` parameter when [running the installer command](#generic-linux-and-macos).
 
+Then, go to [TensorFlow interface (image part) in Rust chapter](../develop/rust/wasinn/tf_plugin.md#image-loading-and-conversion) to see how to run `WasmEdge-Image` functions.
+
+### WasmEdge TensorFlow Plug-in
+
+WasmEdge-TensorFlow plug-in can help developers to perform `TensorFlow` model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflow` parameter when [running the installer command](#generic-linux-and-macos).
+
+The WasmEdge-Tensorflow plug-in depends on the `libtensorflow_cc` shared library.
+
+<!-- prettier-ignore -->
+:::note
+If you install this plug-in WITHOUT installer, you can [refer to here to install the dependency](#tensorflow-dependencies).
+:::note
+
+Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plugin.md) to see how to run `WasmEdge-TensorFlow` functions.
+
+### WasmEdge TensorFlow-Lite Plug-in
+
+The wasmEdge-TensorFlowLite plug-in can help developers to perform `TensorFlow-Lite` model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflowlite` parameter when [running the installer command](#generic-linux-and-macos).
+
+The WasmEdge-TensorflowLite plug-in depends on the `libtensorflowlite_c` shared library to perform AI/ML computations, and it will be installed by the installer automatically.
+
+<!-- prettier-ignore -->
+:::note
+If you install this plug-in WITHOUT installer, you can [refer to here to install the dependency](#tensorflow-lite-dependencies).
+:::note
+
+Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plugin.md) to see how to run `WasmEdge-TensorFlowLite` functions.
+
 ## Install WasmEdge extensions and dependencies
 
 <!-- prettier-ignore -->

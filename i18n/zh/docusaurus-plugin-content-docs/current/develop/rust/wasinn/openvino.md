@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # OpenVINO Backend
@@ -8,18 +8,18 @@ We will use [this example project](https://github.com/second-state/WasmEdge-WASI
 
 ## Prerequisite
 
-Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [Wasi-NN plugin with TensorFlow Lite installed](../../../start/install.md#wasi-nn-plug-in-with-openvino-backend).
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [Wasi-NN plugin with OpenVINO installed](../../../start/install.md#wasi-nn-plug-in-with-openvino-backend).
 
-## Quick Start
+## Quick start
 
-Because the example already includes a compiled WASM file from the Rust code, we could use WasmEdge CLI to execute the example directly.
-
-First, git clone the `WasmEdge-WASINN-examples`.
+Because the example already includes a compiled WASM file from the Rust code, we could use WasmEdge CLI to execute the example directly. First, git clone the `WasmEdge-WASINN-examples` repo.
 
 ```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
-cd WasmEdge-WASINN-examples
+cd WasmEdge-WASINN-examples/openvino-mobilenet-image/
 ```
+
+Download the model files in OpenVINO format and then run the inference application in WasmEdge.
 
 ```bash
 # download the fixture files (OpenVINO model files)
@@ -43,15 +43,13 @@ Executed graph inference
    5.) [942](0.0005)butternut squash
 ```
 
-## Build and Run the example from Rust source code
+## Build and run
 
-Let's build the wasm file from the rust source code.
-
-First, git clone the `WasmEdge-WASINN-examples`.
+Let's build the wasm file from the rust source code. First, git clone the `WasmEdge-WASINN-examples` repo.
 
 ```bash
 git clone https://github.com/second-state/WasmEdge-WASINN-examples.git
-cd openvino-mobilenet-image/rust/
+cd WasmEdge-WASINN-examples/openvino-mobilenet-image/rust/
 ```
 
 Second, use `cargo` to build the template project.
@@ -60,9 +58,7 @@ Second, use `cargo` to build the template project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`.
-
-Next, download the OpenVINO model files and use WasmEdge to classify your images.
+The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Download the OpenVINO model files. Next, use WasmEdge to load the OpenVINO model and then use it to classify objects in your image.
 
 ```bash
 ./download_mobilenet.sh
@@ -73,116 +69,59 @@ You can replace `input.jpg` with your image file.
 
 ## Improve performance
 
-For the AOT mode, which is much more quickly, you can compile the WASM first:
+You can make the inference program run faster by AOT compiling the `wasm` file first.
 
 ```bash
-wasmedgec wasmedge-wasinn-example-mobilenet.wasm out.wasm
+wasmedge compile wasmedge-wasinn-example-mobilenet.wasm out.wasm
 wasmedge --dir .:. out.wasm mobilenet.xml mobilenet.bin input.jpg
 ```
 
 ## Understand the code
 
-The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image/rust/src/main.rs) is the full example Rust source.
-
-First, read the model description and weights into memory:
+The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/openvino-mobilenet-image/rust/src/main.rs) is the full example Rust source. First, read the image file and OpenVINO model file names from the command line.
 
 ```rust
 let args: Vec<String> = env::args().collect();
 let model_xml_name: &str = &args[1]; // File name for the model xml
 let model_bin_name: &str = &args[2]; // File name for the weights
 let image_name: &str = &args[3]; // File name for the input image
-
-let xml = fs::read_to_string(model_xml_name).unwrap();
-let weights = fs::read(model_bin_name).unwrap();
 ```
 
-We should use a helper function to convert the input image into the tensor data (the tensor type is `F32`):
-
-```rust
-fn image_to_tensor(path: String, height: u32, width: u32) -> Vec<u8> {
-  let pixels = Reader::open(path).unwrap().decode().unwrap();
-  let dyn_img: DynamicImage = pixels.resize_exact(width, height, image::imageops::Triangle);
-  let bgr_img = dyn_img.to_bgr8();
-  // Get an array of the pixel values
-  let raw_u8_arr: &[u8] = &bgr_img.as_raw()[..];
-  // Create an array to hold the f32 value of those pixels
-  let bytes_required = raw_u8_arr.len() * 4;
-  let mut u8_f32_arr: Vec<u8> = vec![0; bytes_required];
-
-  for i in 0..raw_u8_arr.len() {
-    // Read the number as a f32 and break it into u8 bytes
-    let u8_f32: f32 = raw_u8_arr[i] as f32;
-    let u8_bytes = u8_f32.to_ne_bytes();
-
-    for j in 0..4 {
-      u8_f32_arr[(i * 4) + j] = u8_bytes[j];
-    }
-  }
-  return u8_f32_arr;
-}
-```
-
-And use this helper function to convert the input image:
-
-```rust
-let tensor_data = image_to_tensor(image_name.to_string(), 224, 224);
-```
-
-Now we can start our inference with WASI-NN:
+We use a helper function called `image_to_tensor()` to convert the input image into tensor data (the tensor type is `F32`). Now we can load the model, feed the tensor array from the image to the model, and get the inference output tensor array.
 
 ```rust
 // load model
-let graph = unsafe {
-  wasi_nn::load(
-    &[&xml.into_bytes(), &weights],
-    wasi_nn::GRAPH_ENCODING_OPENVINO,
-    wasi_nn::EXECUTION_TARGET_CPU,
-  )
-  .unwrap()
-};
-// initialize the computation context
-let context = unsafe { wasi_nn::init_execution_context(graph).unwrap() };
-// initialize the input tensor
-let tensor = wasi_nn::Tensor {
-  dimensions: &[1, 3, 224, 224],
-  type_: wasi_nn::TENSOR_TYPE_F32,
-  data: &tensor_data,
-};
-// set_input
-unsafe {
-  wasi_nn::set_input(context, 0, tensor).unwrap();
-}
+let graph = GraphBuilder::new(
+    GraphEncoding::Openvino,
+    ExecutionTarget::CPU
+).build_from_files([model_xml_path, model_bin_path])?;
+let mut context = graph.init_execution_context()?;
+
+// Load a tensor that precisely matches the graph input tensor
+let input_dims = vec![1, 3, 224, 224];
+let tensor_data = image_to_tensor(image_name.to_string(), 224, 224);
+context.set_input(0, TensorType::F32, &input_dims, tensor_data)?;
+
 // Execute the inference.
-unsafe {
-  wasi_nn::compute(context).unwrap();
-}
-// retrieve output
+context.compute()?;
+
+// Retrieve the output.
 let mut output_buffer = vec![0f32; 1001];
-unsafe {
-  wasi_nn::get_output(
-    context,
-    0,
-    &mut output_buffer[..] as *mut [f32] as *mut u8,
-    (output_buffer.len() * 4).try_into().unwrap(),
-  )
-  .unwrap();
-}
+let size_in_bytes = context.get_output(0, &mut output_buffer)?;
 ```
 
-Where the `wasi_nn::GRAPH_ENCODING_OPENVINO` means using the OpenVINO™ backend, and `wasi_nn::EXECUTION_TARGET_CPU` means running the computation on CPU.
-
-Finally, we sort the output and then print the top-5 classification results:
+In the above code, `GraphEncoding::Openvino` means using the OpenVINO backend, and `ExecutionTarget::CPU` means running the computation on the CPU. Finally, we sort the output and then print the top-5 classification results.
 
 ```rust
 let results = sort_results(&output_buffer);
 for i in 0..5 {
-  println!(
-    "   {}.) [{}]({:.4}){}",
-    i + 1,
-    results[i].0,
-    results[i].1,
-    imagenet_classes::IMAGENET_CLASSES[results[i].0]
-  );
+    println!(
+        "   {}.) [{}]({:.4}){}",
+        i + 1,
+        results[i].0,
+        results[i].1,
+        imagenet_classes::IMAGENET_CLASSES[results[i].0]
+    );
 }
 ```
 

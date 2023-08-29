@@ -62,7 +62,7 @@ To create a plug-in with host functions and modules, follow these steps:
   ```cpp
   #pragma once
 
-  #include "plug-in/plug-in.h"
+  #include "plugin/plugin.h"
 
   #include <cstdint>
   #include <string>
@@ -228,9 +228,6 @@ To build the plug-in shared library, developers should build in CMake with the W
   ```cmake
   wasmedge_add_library(wasmedgePluginTest
     SHARED
-    env.cpp
-    func.cpp
-    module.cpp
     testplugin.cpp
   )
 

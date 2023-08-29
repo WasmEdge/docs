@@ -74,7 +74,7 @@ wasmedge --dir .:. out.wasm mobilenet.pt input.jpg
 
 ## Understand the code
 
-The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image/rust/src/main.rs) is the complete example Rust source. First, read the image file and PyTorch model file names from the command line. 
+The [main.rs](https://github.com/second-state/WasmEdge-WASINN-examples/tree/master/pytorch-mobilenet-image/rust/src/main.rs) is the complete example Rust source. First, read the image file and PyTorch model file names from the command line.
 
 ```rust
 let args: Vec<String> = env::args().collect();
