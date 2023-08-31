@@ -1,8 +1,0 @@
-{
-  "label": "Serviceless Platforms",
-  "position": 9,
-  "link": {
-    "type": "generated-index",
-    "description": "Run WebAssembly as an alternative lightweight runtime side-by-side with Docker and microVMs in cloud native infrastructure"
-  }
-}
