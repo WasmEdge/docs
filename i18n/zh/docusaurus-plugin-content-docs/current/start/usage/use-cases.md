@@ -8,7 +8,7 @@ Featuring AOT compiler optimization, WasmEdge is one of the fastest WebAssembly 
 
 - WasmEdge provides a lightweight, secure and high-performance runtime for microservices. It is fully compatible with application service frameworks such as Dapr, and service orchestrators like Kubernetes. WasmEdge microservices can run on edge servers, and have access to distributed cache, to support both stateless and stateful business logic functions for modern web apps. Also related: Serverless function-as-a-service in public clouds.
 
-- [Serverless SaaS (Software-as-a-Service)](./serverless/serverless-platforms) functions enables users to extend and customize their SaaS experience without operating their own API callback servers. The serverless functions can be embedded into the SaaS or reside on edge servers next to the SaaS servers. Developers simply upload functions to respond to SaaS events or to connect SaaS APIs.
+- [Serverless SaaS (Software-as-a-Service)](./serverless/) functions enables users to extend and customize their SaaS experience without operating their own API callback servers. The serverless functions can be embedded into the SaaS or reside on edge servers next to the SaaS servers. Developers simply upload functions to respond to SaaS events or to connect SaaS APIs.
 
 - [Smart device apps](./wasm-smart-devices.md) could embed WasmEdge as a middleware runtime to render interactive content on the UI, connect to native device drivers, and access specialized hardware features (i.e, the GPU for AI inference). The benefits of the WasmEdge runtime over native-compiled machine code include security, safety, portability, manageability, and developer productivity. WasmEdge runs on Android, OpenHarmony, and seL4 RTOS devices.
 
