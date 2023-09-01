@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Quick start with Docker
 
+## Overview
+
 In this guide, we will walk you through how to quickly run WasmEdge apps in Docker Desktop. There is no additional dependencies as the entire development and runtime environments are managed by Docker Desktop.
 
 <!-- prettier-ignore -->
@@ -11,13 +13,17 @@ In this guide, we will walk you through how to quickly run WasmEdge apps in Dock
 If you are not using Docker Desktop, [get started here](quick_start.md).
 :::
 
-We will cover the following examples.
+We will cover the following examples:
 
-- [Run a standalone WASM app](#run-a-standalone-wasm-app)
-- [Run an HTTP server](#run-an-http-server)
-- [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
+- [Quick start with Docker](#quick-start-with-docker)
+  - [Overview](#overview)
+  - [Prerequisite](#prerequisite)
+  - [Run a standalone WASM app](#run-a-standalone-wasm-app)
+  - [Run an HTTP server](#run-an-http-server)
+  - [Run a JavaScript-based server](#run-a-javascript-based-server)
+  - [Next steps](#next-steps)
 
-In this quick start guide, we cover how to run WASM container apps using Docker commands. If you are interested in how to build, publish, and compose WASM container apps from source code, check out the [Docker + wasm chapter](../build-and-run/docker_wasm.md).
+In this quick start guide, you will learn how to run WASM container apps using Docker commands. If you are interested in how to build, publish, and compose WASM container apps from source code, check out the [Docker + wasm chapter](../build-and-run/docker_wasm.md).
 
 ## Prerequisite
 
@@ -36,7 +42,7 @@ $ docker run --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secon
 Hello WasmEdge!
 ```
 
-To learn more about how to create WASM apps in Rust
+To learn more about how to create WASM apps in Rust, see the following:
 
 - [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 - [Rust developer guides](/category/develop-wasm-apps-in-rust)
@@ -57,7 +63,7 @@ $ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=w
 Listening on http://0.0.0.0:8080
 ```
 
-From another terminal window, do the following.
+From another terminal window, do the following:
 
 ```bash
 $ curl http://localhost:8080/
@@ -67,7 +73,7 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to create WASM services in Rust
+To learn more about how to create WASM services in Rust, see the following:
 
 - [Rust developer guides](/category/develop-wasm-apps-in-rust)
 - [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
@@ -86,14 +92,14 @@ $ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=w
 ... ...
 ```
 
-From another terminal window, do the following.
+From another terminal window, do the following:
 
 ```bash
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to run JavaScript apps in WasmEdge.
+To learn more about how to run JavaScript apps in WasmEdge, read the following:
 
 - [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
 - [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)

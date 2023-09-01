@@ -6,11 +6,11 @@ sidebar_position: 2
 
 For those workloads which are too heavy to compile into WebAssembly, it would be more appropriate to build them into native host functions. To satisfy the portability of WebAssembly runtime, WasmEdge introduced the plug-in mechanism to make the host functions loadable and portable.
 
-The plug-in mechanism for WasmEdge is an easy way to extend the host modules from loadable shared libraries. With the plug-ins, users can load and instantiate the host functions from the shared libraries released by WasmEdge official or even by other developers.
+The plug-in mechanism for WasmEdge is an easy way to extend the host modules from loadable shared libraries. With the plug-ins, you can load and instantiate the host functions from the shared libraries released by WasmEdge official or even by other developers.
 
 ## Official Released Plug-ins
 
-The following lists are the WasmEdge official released plug-ins. Users can install them easily by the installer.
+The following lists are the WasmEdge official released plug-ins. You can install them easily by using the installer.
 
 | Plug-in | Description | Platform Support | Language support |
 | --- | --- | --- | --- |
@@ -26,7 +26,7 @@ The following lists are the WasmEdge official released plug-ins. Users can insta
 
 ## Old WasmEdge Extensions
 
-Besides the plug-ins, WasmEdge provides the extensions before the `0.13.0` versions. Noticed that the extensions are replaced by the corresponding plug-ins after the `0.13.0` version.
+Besides the plug-ins, WasmEdge provides the extensions before the `0.13.0` versions.The extensions are replaced by the corresponding plug-ins after the `0.13.0` version.
 
 The latest version supporting the extensions is `0.12.1`. This chapter will be deprecated when the `0.12.x` versions are no longer supported by the WasmEdge installer.
 

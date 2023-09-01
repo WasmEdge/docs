@@ -9,7 +9,7 @@ WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime 
 
 The WasmEdge Runtime provides a well-defined execution sandbox for its contained WebAssembly bytecode program. The runtime offers isolation and protection for operating system resources (e.g., file system, sockets, environment variables, processes) and memory space. The most important use case for WasmEdge is to safely execute user-defined or community-contributed code as plug-ins in a software product (e.g., SaaS, database, edge nodes, or even blockchain nodes). It enables third-party developers, vendors, suppliers, and community members to extend and customize the software product.
 
-This chapter will introduce how to install and get started with WasmEdge.
+This chapter will teach you how to install and get started with WasmEdge.
 
 You will learn the following:
 
@@ -18,9 +18,9 @@ You will learn the following:
 - Introduce the [WasmEdge Runtime](/category/what-is-wasmedge)
 - Usages of [Running WasmEdge](/category/running-with-wasmedge)
 
-For advanced programming with WasmEdge, please refer to the guides for [developing WASM apps](../develop/overview.md), [Embedding WasmEdge in your apps](../embed/overview.md), or [contributing](../contribute/overview.md) to WasmEdge.
+For advanced programming with WasmEdge, refer to the guides for [developing WASM apps](../develop/overview.md), [Embedding WasmEdge in your apps](../embed/overview.md), or [contributing](../contribute/overview.md) to WasmEdge.
 
-If you find any issues or have any feedback, please reach out to us via the following ways.
+If you find any issues or have any feedback,  reach out to us via the following ways:
 
 - [Discord Chat](https://discord.gg/U4B5sFTkFc)
 - [Create a GitHub issue for technical support](https://github.com/WasmEdge/WasmEdge/issues)

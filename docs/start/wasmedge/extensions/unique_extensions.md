@@ -5,8 +5,7 @@ sidebar_position: 3
 # Other Extensions
 
 A challenge for running WASM apps on the server side is the lack of support for Linux APIs and common application libraries. WasmEdge fixes this by adding support for many platform APIs for WASM apps. Developers can often simply compile their Linux apps to WASM and expect it run in WasmEdge. WasmEdge provides an easy extension mechanism for the community to add these APIs. For example,
-
-Through its support for networking socket and related APIs, WasmEdge can run Rust applications that
+through its support for networking socket and related APIs, WasmEdge can run Rust applications that:
 
 - [provide HTTP services](https://github.com/WasmEdge/wasmedge_hyper_demo)
 - [access external web services](https://github.com/WasmEdge/wasmedge_reqwest_demo)
@@ -21,7 +20,7 @@ Through its support for WASI-NN APIs, WasmEdge can support Rust and JavaScript a
 
 ## Available extensions
 
-The extensions can be easily installed by the WasmEdge installer. They can also be included in WASM container images for Docker, Podman, and Kubernetes applications.
+The extensions can be easily installed by the use of WasmEdge installer. They can also be included in WASM container images for Docker, Podman, and Kubernetes applications.
 
 | Name | Description | Platform Support | Language support | Note |
 | --- | --- | --- | --- | --- |

@@ -4,22 +4,28 @@ sidebar_position: 3
 
 # Quick start with Red Hat
 
-In this guide, we will walk you through how to quickly run WasmEdge apps in Fedora / CentOS / Red Hat Linux / OpenShift systems. There is no additional dependencies as the entire development and runtime environments are managed by OpenSift / Podman.
+## Overview
+
+In this guide, you will learn how to quickly run WasmEdge apps in Fedora / CentOS / Red Hat Linux / OpenShift systems. There is no additional dependencies as the entire development and runtime environments are managed by OpenSift / Podman.
 
 <!-- prettier-ignore -->
 :::note
 If you are not using OpenShift / Podman, [get started here](quick_start.md).
 :::
 
-We will cover the following examples.
+We will cover the following examples:
 
-- [Run a standalone WASM app](#run-a-standalone-wasm-app)
-- [Run an HTTP server](#run-an-http-server)
-- [Run a JavaScript server (node.js)](#run-a-javascript-based-server)
+- [Quick start with Red Hat](#quick-start-with-red-hat)
+  - [Overview](#overview)
+  - [Install](#install)
+  - [Run a standalone WASM app](#run-a-standalone-wasm-app)
+  - [Run an HTTP server](#run-an-http-server)
+  - [Run a JavaScript-based server](#run-a-javascript-based-server)
+  - [Next steps](#next-steps)
 
 ## Install
 
-You can use an one-liner `dnf` command to install WasmEdge, [crun](https://github.com/containers/crun) and [Podman](https://www.redhat.com/en/topics/containers/what-is-podman) on your Fedora / CentOS / Red Hat Linux system. The WasmEdge Runtime is available as an [officially maintained upstream package](https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html) for Fedora 37 and Red Hat REPL 8 and 9.
+Use this one-liner `dnf` command to install WasmEdge, [crun](https://github.com/containers/crun) and [Podman](https://www.redhat.com/en/topics/containers/what-is-podman) on your Fedora / CentOS / Red Hat Linux system. The WasmEdge Runtime is available as an [officially maintained upstream package](https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html) for Fedora 37 and Red Hat REPL 8 and 9.
 
 ```bash
 dnf install wasmedge crun-wasm podman
@@ -36,7 +42,7 @@ $ podman --runtime /usr/bin/crun-wasm run --platform=wasi/wasm -t --rm docker.io
 Hello WasmEdge!
 ```
 
-To learn more about how to create WASM apps in Rust
+To learn more about how to create WASM apps in Rust, see the following:
 
 - [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 - [Rust developer guides](/category/develop-wasm-apps-in-rust)
@@ -57,7 +63,7 @@ $ podman --runtime /usr/bin/crun-wasm run -dp 8080:8080 --platform=wasi/wasm -t 
 Listening on http://0.0.0.0:8080
 ```
 
-From another terminal window, do the following.
+From another terminal window, do the following:
 
 ```bash
 $ curl http://localhost:8080/
@@ -67,7 +73,7 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to create WASM services in Rust
+To learn more about how to create WASM services in Rust, see the following:
 
 - [Rust developer guides](/category/develop-wasm-apps-in-rust)
 - [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
@@ -86,14 +92,14 @@ $ podman --runtime /usr/bin/crun-wasm run -dp 8080:8080 --platform=wasi/wasm -t 
 ... ...
 ```
 
-From another terminal window, do the following.
+From another terminal window, do the following:
 
 ```bash
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to run JavaScript apps in WasmEdge.
+To learn more about how to run JavaScript apps in WasmEdge, see the following:
 
 - [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
 - [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)

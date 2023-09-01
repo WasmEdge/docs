@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # The AoT Compiler
 
-After [installation](../install.md#install), users can execute the `wasmedge compile` command.
+After [installation](../install.md#install), you can execute the `wasmedge compile` command.
 
 The usage of the `wasmedge compile` command will be:
 
@@ -20,14 +20,14 @@ The `wasmedge compile` command can compile WebAssembly into native machine code 
 
 ## Options
 
-The options of the `wasmedge compile` command are as follows.
+The options of the `wasmedge compile` command are as follows:
 
 1. `-h|--help`: Show the help messages. Will ignore the other arguments below.
 2. _(Optional)_ `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
 3. _(Optional)_ `--interruptible`: Generate the binary which supports interruptible execution.
    - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.x#async).
 4. _(Optional)_ Statistics information:
-   - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
+   - By default, the AOT-compiled WASM does not support all statistics even if the options are turned on when running the `wasmedge` tool.
    - Use `--enable-time-measuring` to generate code for enabling time-measuring statistics in execution.
    - Use `--enable-gas-measuring` to generate code for enabling the statistics of gas measuring in execution.
    - Use `--enable-instruction-count` to generate code for enabling the statistics of counting WebAssembly instructions.
@@ -81,7 +81,7 @@ The output will be:
 [2022-09-09 14:22:10.600] [info] compile done
 ```
 
-Then you can execute the output file with `wasmedge` and measure the execution time:
+You can execute the output file with `wasmedge` and measure the execution time:
 
 ```bash
 time wasmedge --reactor fibonacci_aot.wasm fib 30
@@ -121,7 +121,7 @@ This AOT-compiled WASM file is compatible with any WebAssembly runtime. However,
 
 <!-- prettier-ignore -->
 :::note
-On MacOS platforms, the universal WASM format will `bus error` in execution. By default, the `wasmedge compile` tool optimizes the WASM in the `O2` level. We are trying to fix this issue. For working around, please use the shared library output format instead.
+On MacOS platforms, the universal WASM format will `bus error` in execution. By default, the `wasmedge compile` tool optimizes the WASM in the `O2` level. We are trying to fix this issue. For working around, use the shared library output format instead.
 :::
 
 ```bash
@@ -131,7 +131,7 @@ wasmedge app_aot.wasm
 
 ## Output Format: Shared Library
 
-Users can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
+You can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
 
 This AOT-compiled WASM file is only for WasmEdge use and cannot be used by other WebAssembly runtimes.
 

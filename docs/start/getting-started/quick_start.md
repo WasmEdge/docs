@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # Quick start on Linux
 
-In this guide, we will walk you through how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be found [here](../install.md#install).
+## Overview
+
+In this guide, you will learn how to quickly install and run the WasmEdge Runtime on a generic Linux distribution (such as Ubuntu, Debian, Raspberry OS or WSL on Windows). Comprehensive and OS-specific installation instructions can be found [here](../install.md#install).
 
 <!-- prettier-ignore -->
 :::note
@@ -13,13 +15,17 @@ If you have Docker Desktop 4.15 and above, you can skip this and [get started he
 
 We will cover the following examples:
 
-- [How to run a standalone WASM app](#how-to-run-a-standalone-wasm-app)
-- [How to run an HTTP server](#how-to-run-an-http-server)
-- [How to run a JavaScript server (node.js)](#how-to-run-a-javascript-based-server)
+- [Quick start on Linux](#quick-start-on-linux)
+  - [Overview](#overview)
+  - [One-liner Installation of WasmEdge](#one-liner-installation-of-wasmedge)
+  - [How to run a standalone WASM app](#how-to-run-a-standalone-wasm-app)
+  - [How to run an HTTP server](#how-to-run-an-http-server)
+  - [How to run a JavaScript-based server](#how-to-run-a-javascript-based-server)
+  - [Next steps](#next-steps)
 
 ## One-liner Installation of WasmEdge
 
-The easiest way to install WasmEdge is to run the following command. You should have root or at least `sudo` privilege. Your system should have `git` and `curl` installed as prerequisites.
+You should have root or at least `sudo` privilege, and your system should have `git` and `curl` installed as prerequisites. The easiest way to install WasmEdge is to run the following command: 
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | sudo bash -s -- -p /usr/local
@@ -41,14 +47,14 @@ Download the hello.wasm file [here](https://github.com/second-state/rust-example
 wget https://github.com/second-state/rust-examples/releases/latest/download/hello.wasm
 ```
 
-Use the `wasmedge` command to run the program.
+Use the `wasmedge` command to run the program:
 
 ```bash
 $ wasmedge hello.wasm
 Hello WasmEdge!
 ```
 
-Use the AoT compiler `wasmedgec` to get much better performance.
+Use the AOT compiler `wasmedgec` to get much better performance:
 
 ```bash
 $ wasmedgec hello.wasm hello_aot.wasm
@@ -56,7 +62,7 @@ $ wasmedge hello_aot.wasm
 Hello WasmEdge!
 ```
 
-To learn more about how to create WASM apps in Rust
+To learn more about how to create WASM apps in Rust, see the following:
 
 - [Basic Rust examples for WasmEdge](https://github.com/second-state/rust-examples)
 - [Rust developer guides](/category/develop-wasm-apps-in-rust)
@@ -68,7 +74,7 @@ To learn more about how to create WASM apps in Rust
 
 ## How to run an HTTP server
 
-This example is a standalone HTTP server written in Rust. It demonstrates that Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
+This example is a standalone HTTP server written in Rust. It demonstrates Rust + WasmEdge as a lightweight stack for microservices. Its source code and build instructions are available [here](https://github.com/second-state/rust-examples/tree/main/server).
 
 Download the server.wasm file [here](https://github.com/second-state/rust-examples/releases/latest/download/server.wasm), or run the following command:
 
@@ -76,14 +82,14 @@ Download the server.wasm file [here](https://github.com/second-state/rust-exampl
 wget https://github.com/second-state/rust-examples/releases/latest/download/server.wasm
 ```
 
-Use the `wasmedge` command to run the program.
+Use the following `wasmedge` command to run the program:
 
 ```bash
 $ wasmedge server.wasm
 Listening on http://0.0.0.0:8080
 ```
 
-From another terminal window, do the following.
+From another terminal window, do the following:
 
 ```bash
 $ curl http://localhost:8080/
@@ -93,7 +99,7 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to create WASM services in Rust
+To learn more about how to create WASM services in Rust, see the following:
 
 - [Rust developer guides](/category/develop-wasm-apps-in-rust)
 - [HTTP application examples](https://github.com/WasmEdge/wasmedge_hyper_demo)
@@ -119,7 +125,7 @@ wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-a
 wget https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/modules.zip
 ```
 
-Unzip the modules.zip file into the current folder as `./modules/`.
+Unzip the modules.zip file into the current folder as `./modules/`:
 
 ```bash
 unzip modules.zip
@@ -131,21 +137,21 @@ unzip modules.zip
 wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/example_js/docker_wasm/server/server.js
 ```
 
-Use the `wasmedge` command to run the program.
+Use the following `wasmedge` command to run the program:
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs.wasm server.js
 listen 8080 ...
 ```
 
-From another terminal window, do the following.
+From another terminal window, do the following:
 
 ```bash
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to run JavaScript apps in WasmEdge.
+To learn more about how to run JavaScript apps in WasmEdge, see the following:
 
 - [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
 - [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)

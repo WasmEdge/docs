@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # The `wasmedge` CLI
 
-After installing WasmEdge, you can use the `wasmedge` CLI to execute WASM files. We will cover how to run WASM files with WasmEdge on your machine and Docker images.
+After installing WasmEdge, you can use the `wasmedge` CLI to execute WASM files. You will learn how to run WASM files with WasmEdge on your machine and Docker images.
 
 The `wasmedge` binary is a command line interface (CLI) program that runs WebAssembly programs.
 
@@ -104,7 +104,7 @@ You will need to have the [Rust compiler installed](https://github.com/second-st
 cargo build --target wasm32-wasi --release
 ```
 
-You can then use the `wasmedge` command to run the program.
+Use the `wasmedge` command to run the program.
 
 ```bash
 $ wasmedge target/wasm32-wasi/release/hello.wasm
@@ -187,13 +187,13 @@ Hello WasmEdge!
 
 The [add](https://github.com/second-state/wasm-learning/tree/master/cli/add) program is written in Rust and contains an exported `add()` function. You can compile it into WebAssembly and use `wasmedge` to call the `add()` function. In this example, you will see how it is done from the CLI. It is often used when you embed WasmEdge into another host application, and need to call a WASM function from the host.
 
-You will need to have the [Rust compiler](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites) installed, and then use the following command to build the WASM bytecode file from the Rust source code.
+You will need to have the [Rust compiler](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites) installed, and then use the following command to build the WASM bytecode file from the Rust source code:
 
 ```bash
 cargo build --target wasm32-wasi --release
 ```
 
-You can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters.
+You can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters:
 
 ```bash
 wasmedge --reactor add.wasm add 2 2
@@ -287,7 +287,7 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 
 ### Dockerslim Examples
 
-After pulling the docker image successfully, you could use `wasmedge compile` and `wasmedge` to aot compile the wasm file and run the wasm app.
+After pulling the docker image successfully, use `wasmedge compile` and `wasmedge` to AOT compile the WASM file and run the WASM app.
 
 ```bash
 $ docker pull wasmedge/slim:{{ wasmedge_version }}
