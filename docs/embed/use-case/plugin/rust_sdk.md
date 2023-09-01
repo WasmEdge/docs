@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-## Using Plug-ins to Extend the Runtime in C
+## Using Plug-ins to Extend the Runtime in Rust
 
 The WasmEdge plug-ins are the shared libraries to provide the WasmEdge runtime to load and create host module instances. With the plug-ins, the WasmEdge runtime can be extended more easily.
 
@@ -10,7 +10,7 @@ The WasmEdge plug-ins are the shared libraries to provide the WasmEdge runtime t
 
 Developers can start using WasmEdge plug-ins by loading them from specific paths. To load plug-ins from the default paths, the following API can be used:
 
-```toml
+```rust
 impl PluginManager
 pub fn load(path: Option<&Path>) -> WasmEdgeResult<()>
 ```
@@ -28,7 +28,7 @@ pub fn load(path: Option<&Path>) -> WasmEdgeResult<()>
 
 To get the names of all loaded plug-ins as returns -
 
-```toml
+```rust
 pub fn names() -> Vec<String>
 ```
 
@@ -41,7 +41,7 @@ pub fn names() -> Vec<String>
 
 Once plug-ins are loaded, developers can list the loaded plug-in names using the following approach:
 
-```toml
+```rust
 pub fn names() -> Vec<String>
 ```
 
@@ -49,7 +49,7 @@ pub fn names() -> Vec<String>
 
 Developers can get the plug-in context by its name using the following method:
 
-```toml
+```rust
 pub fn find(name: impl AsRef<str>) -> Option<Plugin>
 ```
 
@@ -59,7 +59,7 @@ Here `name` is the name of the target plug-in.
 
 With the plug-in context, developers can get module instances by providing the module name:
 
-```toml
+```rust
 pub fn mod_names(&self) -> Vec<String>
 ```
 
@@ -71,7 +71,7 @@ Before using the plug-ins, developers should [Loading Plug-ins from Paths](#load
 
 To initialize the `wasmedge_process` plug-in module instance with the parameters -
 
-```toml
+```rust
 pub fn init_wasmedge_process(allowed_cmds: Option<Vec<&str>>, allowed: bool)
 ```
 
