@@ -86,13 +86,13 @@ And here is an HTTP POST request.
 
 In order to make HTTPS requests from `reqwest`, you will need to install WasmEdge with [the TLS plug-in](../../../start/install.md#tls-plug-in).
 
-```
+```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_rustls
 ```
 
 Then, in `Cargo.toml`, you should enable the TLS feature.
 
-```
+```toml
 reqwest_wasi = { version = "0.11", features = ["wasmedge-tls"] }
 tokio_wasi = { version = "1", features = ["rt", "macros", "net", "time"] }
 ```
@@ -245,4 +245,3 @@ fn main() {
     println!("{}", String::from_utf8_lossy(&writer));
 }
 ```
-

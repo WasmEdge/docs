@@ -11,8 +11,9 @@ The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project su
 1. [Install Rust](https://www.rust-lang.org/tools/install) because we need to compile the runwasi project.
 
 2. Download the runwasi project
+
    ```bash
-   $ git clone https://github.com/containerd/runwasi.git
+   git clone https://github.com/containerd/runwasi.git
    ```
 
 3. Build and install the wasmedge-containerd-shim

@@ -47,9 +47,8 @@ WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
 For adding the host function into a host module instance, developers should first create the function instance with the function type context.
 
 ```c
-enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                      WasmEdge_ValType_I32};
-enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_I32};
+WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(), WasmEdge_ValTypeGenI32()};
+WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenI32()};
 /* Create a function type: {i32, i32} -> {i32}. */
 WasmEdge_FunctionTypeContext *HostFType =
     WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
@@ -76,7 +75,7 @@ To create a `host table`, `memory`, and `global` instance, developers can use si
 WasmEdge_Limit TabLimit = {
     .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
 WasmEdge_TableTypeContext *HostTType =
-    WasmEdge_TableTypeCreate(WasmEdge_RefType_FuncRef, TabLimit);
+    WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenFuncRef(), TabLimit);
 WasmEdge_TableInstanceContext *HostTable =
     WasmEdge_TableInstanceCreate(HostTType);
 WasmEdge_TableTypeDelete(HostTType);
@@ -90,7 +89,7 @@ WasmEdge_MemoryTypeDelete(HostMType);
 
 /* Create a host global exported as "global_i32" and initialized as `666`. */
 WasmEdge_GlobalTypeContext *HostGType =
-    WasmEdge_GlobalTypeCreate(WasmEdge_ValType_I32, WasmEdge_Mutability_Const);
+    WasmEdge_GlobalTypeCreate(WasmEdge_ValTypeGenI32(), WasmEdge_Mutability_Const);
 WasmEdge_GlobalInstanceContext *HostGlobal =
     WasmEdge_GlobalInstanceCreate(HostGType, WasmEdge_ValueGenI32(666));
 WasmEdge_GlobalTypeDelete(HostGType);

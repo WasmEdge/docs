@@ -30,13 +30,14 @@ If the built `wasmedge` CLI tool cannot find the WasmEdge-Process plug-in, you c
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WasmEdge-Process plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasmEdgeProcess.so` after installation.
 
 ## Usage
+
 To use the plug-in with WasmEdge, you need to specify it when starting the WasmEdge runtime:
 
 ```bash
 wasmedge --dir .:. --reactor --process_plugin target/release/libwasmedge_process.so your_wasm_file.wasm
 ```
 
-Replace `your_wasm_file.wasm` with the path to your WebAssembly file. The `--process_plugin `flag specifies the path to the Process plug-in.
+Replace `your_wasm_file.wasm` with the path to your WebAssembly file. The `--process_plugin`flag specifies the path to the Process plug-in.
 
 That's it! You have successfully built and installed the WasmEdge Process plug-in.
 

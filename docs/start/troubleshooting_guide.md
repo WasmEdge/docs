@@ -44,4 +44,4 @@ If you're having trouble contributing to WasmEdge, make sure to:
 
 3. **Test Your Changes**: Always test your changes before submitting a pull request. This can help catch issues early and make the review process smoother.
 
-If any of the above steps do not help you, you should ask about your problem in Wasmedge's [discord server](https://discord.gg/h4KDyB8XTt) for furthur help. 
+If any of the above steps do not help you, you should ask about your problem in Wasmedge's [discord server](https://discord.gg/h4KDyB8XTt) for furthur help.

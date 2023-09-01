@@ -78,4 +78,4 @@ If the built `wasmedge` CLI tool cannot find the WASI-Crypto plug-in, you can se
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-Crypto plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiCrypto.so` after installation.
 
-For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_process).
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasi_crypto).

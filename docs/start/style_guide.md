@@ -1,15 +1,15 @@
 # WasmEdge Style Guide
 
 - [Documentation Style Guide](#documentation-style-guide)
-    - [Language](#language)
-    - [Structure and Format](#structure-and-format)
-    - [Content](#content)
-    - [Other Considerations](#other-considerations)
+  - [Language](#language)
+  - [Structure and Format](#structure-and-format)
+  - [Content](#content)
+  - [Other Considerations](#other-considerations)
 - [Coding Style Guide](#coding-style-guide)
-    - [Code Formatting](#code-formatting)
-    - [Code Quality](#code-quality)
-    - [Testing](#testing)
-    - [Security](#security)
+  - [Code Formatting](#code-formatting)
+  - [Code Quality](#code-quality)
+  - [Testing](#testing)
+  - [Security](#security)
 
 ## Documentation Style Guide
 

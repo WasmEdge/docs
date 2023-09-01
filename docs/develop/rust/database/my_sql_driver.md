@@ -28,13 +28,13 @@ wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wa
 
 To use TLS, you will need to turn on the `default-rustls` feature in `Cargo.toml`.
 
-```
+```toml
 mysql_async_wasi = { version = "0.31", features = [ "default-rustls" ] }
 ```
 
 Then, run the application as follows.
 
-```
+```toml
 # Execute MySQL statements against an AWS RDS database that requires TLS
 wasmedge --env "DATABASE_SSL=1" --env "DATABASE_URL=mysql://user:passwd@mydb.123456789012.us-east-1.rds.amazonaws.com:3306/mysql" crud.wasm
 ```

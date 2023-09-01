@@ -45,6 +45,7 @@ The options of the `wasmedge compile` command are as follows.
    - Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `OFF`).
    - Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `OFF`).
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
+   - Use `--enable-function-reference` to enable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal (Default `OFF`).
    - Use `--enable-all` to enable ALL proposals above.
 7. _(Optional)_ `--optimize`: Select the LLVM optimization level.
    - Use `--optimize LEVEL` to set the optimization level. The `LEVEL` should be one of `0`, `1`, `2`, `3`, `s`, or `z`.
