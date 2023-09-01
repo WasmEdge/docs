@@ -8,9 +8,15 @@ The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C p
 
 The WasmEdge C API is also the fundamental API for other languages' SDK.
 
+<!-- prettier-ignore -->
+:::note
+For all WASM example codes used in this chapter, users can convert `wat` to `wasm` through [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) live tool.
+:::
+
 ## Quick Start Guide for the WasmEdge Runner
 
-The following is an example of running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as follows:
+The following is an example of running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test_wasmedge.c` is as follows:
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -55,7 +61,8 @@ Get result: 3524578
 
 ## Quick Start Guide for the WasmEdge AOT compiler
 
-Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as follows:
+Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as follows:
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
 
 ```c
 #include <wasmedge/wasmedge.h>

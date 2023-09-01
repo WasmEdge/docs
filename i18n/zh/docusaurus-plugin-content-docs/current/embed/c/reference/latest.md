@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.13.4 Documentation
+# C API 0.14.0 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
@@ -58,7 +58,8 @@ The releases before 0.11.0 are all unversioned. Please make sure the library ver
 | 0.11.0 to 0.11.1 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.0 |
 | 0.11.2 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.1 |
 | 0.12.0 to 0.12.1 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.2 |
-| Since 0.13.0 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.3 |
+| 0.13.0 to 0.13.5 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.3 |
+| Since 0.14.0 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.1.0 |
 
 ## WasmEdge Basics
 
@@ -84,37 +85,103 @@ Developers can also use the `WasmEdge_LogOff()` API to disable all logging.
 
 ### Value Types
 
-In WasmEdge, developers should convert the values to `WasmEdge_Value` objects through APIs for matching to the WASM value types.
+To describe the value types in WASM, WasmEdge uses the `WasmEdge_ValType` struct to encode the value types.
+
+1. Number types: `i32`, `i64`, `f32`, `f64`, and `v128` for the `SIMD` proposal
+
+   ```c
+   WasmEdge_ValType ValType;
+   ValType = WasmEdge_ValTypeGenI32();
+   bool IsTypeI32 = WasmEdge_ValTypeIsI32(ValType);
+   /* The `IsTypeI32` will be `TRUE`. */
+   ValType = WasmEdge_ValTypeGenI64();
+   bool IsTypeI64 = WasmEdge_ValTypeIsI64(ValType);
+   /* The `IsTypeI64` will be `TRUE`. */
+   ValType = WasmEdge_ValTypeGenF32();
+   bool IsTypeF32 = WasmEdge_ValTypeIsF32(ValType);
+   /* The `IsTypeF32` will be `TRUE`. */
+   ValType = WasmEdge_ValTypeGenF64();
+   bool IsTypeF64 = WasmEdge_ValTypeIsF64(ValType);
+   /* The `IsTypeF64` will be `TRUE`. */
+   ValType = WasmEdge_ValTypeGenV128();
+   bool IsTypeV128 = WasmEdge_ValTypeIsV128(ValType);
+   /* The `IsTypeV128` will be `TRUE`. */
+   ```
+
+2. Reference types: `funcref` and `externref` for the `Reference-Types` or `Typed-Function References` proposal
+
+   ```c
+   WasmEdge_ValType ValType;
+
+   ValType = WasmEdge_ValTypeGenFuncRef();
+   /* The nullable funcref type is generated. */
+   bool IsTypeFuncRef = WasmEdge_ValTypeIsFuncRef(ValType);
+   /* The `IsTypeFuncRef` will be `TRUE`. */
+   bool IsTypeRef = WasmEdge_ValTypeIsRef(ValType);
+   /* The `IsTypeRef` will be `TRUE`. */
+   bool IsTypeNullableRef = WasmEdge_ValTypeIsRefNull(ValType);
+   /* The `IsTypeNullableRef` will be `TRUE`. */
+
+   ValType = WasmEdge_ValTypeGenExternRef();
+   /* The nullable externref type is generated. */
+   bool IsTypeExternRef = WasmEdge_ValTypeIsExternRef(ValType);
+   /* The `IsTypeExternRef` will be `TRUE`. */
+   IsTypeRef = WasmEdge_ValTypeIsRef(ValType);
+   /* The `IsTypeRef` will be `TRUE`. */
+   IsTypeNullableRef = WasmEdge_ValTypeIsRefNull(ValType);
+   /* The `IsTypeNullableRef` will be `TRUE`. */
+   ```
+
+### Values
+
+In WasmEdge, developers should convert the values to `WasmEdge_Value` objects through APIs for matching to the WASM values for the arguments or returns. With the APIs, the output `WasmEdge_Value` objects will record the correct value types with values.
 
 1. Number types: `i32`, `i64`, `f32`, `f64`, and `v128` for the `SIMD` proposal
 
    ```c
    WasmEdge_Value Val;
+
    Val = WasmEdge_ValueGenI32(123456);
+   bool IsTypeI32 = WasmEdge_ValTypeIsI32(Val.Type);
+   /* The `IsTypeI32` will be `TRUE`. */
    printf("%d\n", WasmEdge_ValueGetI32(Val));
    /* Will print "123456" */
+
    Val = WasmEdge_ValueGenI64(1234567890123LL);
+   bool IsTypeI64 = WasmEdge_ValTypeIsI64(Val.Type);
+   /* The `IsTypeI64` will be `TRUE`. */
    printf("%ld\n", WasmEdge_ValueGetI64(Val));
    /* Will print "1234567890123" */
+
    Val = WasmEdge_ValueGenF32(123.456f);
+   bool IsTypeF32 = WasmEdge_ValTypeIsF32(Val.Type);
+   /* The `IsTypeF32` will be `TRUE`. */
    printf("%f\n", WasmEdge_ValueGetF32(Val));
    /* Will print "123.456001" */
+
    Val = WasmEdge_ValueGenF64(123456.123456789);
+   bool IsTypeF64 = WasmEdge_ValTypeIsF64(Val.Type);
+   /* The `IsTypeF64` will be `TRUE`. */
    printf("%.10f\n", WasmEdge_ValueGetF64(Val));
    /* Will print "123456.1234567890" */
    ```
 
-2. Reference types: `funcref` and `externref` for the `Reference-Types` proposal
+2. Reference types: `funcref` and `externref` for the `Reference-Types` or `Typed-Function References` proposal
 
    ```c
    WasmEdge_Value Val;
    void *Ptr;
-   bool IsNull;
    uint32_t Num = 10;
-   /* Generate a externref to NULL. */
-   Val = WasmEdge_ValueGenNullRef(WasmEdge_RefType_ExternRef);
-   IsNull = WasmEdge_ValueIsNullRef(Val);
+   /* Generate an externref to NULL. */
+   Val = WasmEdge_ValueGenExternRef(NULL);
+   bool IsNull = WasmEdge_ValueIsNullRef(Val);
    /* The `IsNull` will be `TRUE`. */
+   bool IsTypeExternRef = WasmEdge_ValTypeIsExternRef(Val.Type);
+   /* The `IsTypeExternRef` will be `TRUE`. */
+   bool IsTypeRef = WasmEdge_ValTypeIsRef(Val.Type);
+   /* The `IsTypeRef` will be `TRUE`. */
+   bool IsTypeNullableRef = WasmEdge_ValTypeIsRefNull(Val.Type);
+   /* The `IsTypeNullableRef` will be `TRUE`. */
    Ptr = WasmEdge_ValueGetExternRef(Val);
    /* The `Ptr` will be `NULL`. */
 
@@ -122,6 +189,12 @@ In WasmEdge, developers should convert the values to `WasmEdge_Value` objects th
    const WasmEdge_FunctionInstanceContext *FuncCxt = ...;
    /* Generate a funcref with the given function instance context. */
    Val = WasmEdge_ValueGenFuncRef(FuncCxt);
+   bool IsTypeFuncRef = WasmEdge_ValTypeIsFuncRef(Val.Type);
+   /* The `IsTypeFuncRef` will be `TRUE`. */
+   IsTypeRef = WasmEdge_ValTypeIsRef(Val.Type);
+   /* The `IsTypeRef` will be `TRUE`. */
+   IsTypeNullableRef = WasmEdge_ValTypeIsRefNull(Val.Type);
+   /* The `IsTypeNullableRef` will be `TRUE`. */
    const WasmEdge_FunctionInstanceContext *GotFuncCxt =
        WasmEdge_ValueGetFuncRef(Val);
    /* The `GotFuncCxt` will be the same as `FuncCxt`. */
@@ -135,6 +208,34 @@ In WasmEdge, developers should convert the values to `WasmEdge_Value` objects th
    Num += 55;
    printf("%u\n", *(uint32_t *)Ptr);
    /* Will print "65" */
+   ```
+
+### Buffers
+
+The `WasmEdge_Bytes` object is for the input buffer of loading or compiling module from memory, or the output buffer of serializing a module.
+
+<!-- prettier-ignore -->
+:::note
+This object is designed for replacing raw buffer as input and output of WasmEdge C API. We recommand developers to use the `WasmEdge_Bytes` related APIs than the raw buffer, such as using `WasmEdge_LoaderParseFromBytes()` instead of `WasmEdge_LoaderParseFromBuffer()`.
+:::
+
+1. Create a `WasmEdge_Bytes` from a buffer with length.
+
+   ```c
+   uint8_t Buf[4] = {1, 2, 3, 4};
+   WasmEdge_Bytes Bytes = WasmEdge_BytesCreate(Buf, 4);
+   /* The objects should be deleted by `WasmEdge_BytesDelete()`. */
+   WasmEdge_BytesDelete(Bytes);
+   ```
+
+2. Wrap a `WasmEdge_Bytes` to a buffer with length.
+
+   The content will not be copied, and the caller should guarantee the life cycle of the input buffer.
+
+   ```c
+   uint8_t Buf[4] = {1, 2, 3, 4};
+   WasmEdge_Bytes Bytes = WasmEdge_BytesWrap(Buf, 4);
+   /* The object should __NOT__ be deleted by `WasmEdge_BytesDelete()`. */
    ```
 
 ### Strings
@@ -253,24 +354,25 @@ The WASM data structures are used for creating instances or can be queried from 
    The `Function Type` context is used for the `Function` creation, checking the value types of a `Function` instance, or getting the function type with function name from VM. Developers can use the `Function Type` context APIs to get the parameter or return value types information.
 
    ```c
-   enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                         WasmEdge_ValType_I64};
-   enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_FuncRef};
+   WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(),
+                                    WasmEdge_ValTypeGenI64()};
+   WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenFuncRef()};
    WasmEdge_FunctionTypeContext *FuncTypeCxt =
        WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
 
-   enum WasmEdge_ValType Buf[16];
+   WasmEdge_ValType Buf[16];
    uint32_t ParamLen = WasmEdge_FunctionTypeGetParametersLength(FuncTypeCxt);
    /* `ParamLen` will be 2. */
-   uint32_t GotParamLen =
-       WasmEdge_FunctionTypeGetParameters(FuncTypeCxt, Buf, 16);
-   /* `GotParamLen` will be 2, and `Buf[0]` and `Buf[1]` will be the same as
-    * `ParamList`. */
+   uint32_t GotParamLen = WasmEdge_FunctionTypeGetParameters(FuncTypeCxt, Buf, 16);
+   /*
+    * `GotParamLen` will be 2, and `Buf[0]` and `Buf[1]` will be the same as
+    * `ParamList`.
+    */
    uint32_t ReturnLen = WasmEdge_FunctionTypeGetReturnsLength(FuncTypeCxt);
    /* `ReturnLen` will be 1. */
-   uint32_t GotReturnLen =
-       WasmEdge_FunctionTypeGetReturns(FuncTypeCxt, Buf, 16);
-   /* `GotReturnLen` will be 1, and `Buf[0]` will be the same as `ReturnList`.
+   uint32_t GotReturnLen = WasmEdge_FunctionTypeGetReturns(FuncTypeCxt, Buf, 16);
+   /*
+    * `GotReturnLen` will be 1, and `Buf[0]` will be the same as `ReturnList`.
     */
 
    WasmEdge_FunctionTypeDelete(FuncTypeCxt);
@@ -284,10 +386,15 @@ The WASM data structures are used for creating instances or can be queried from 
    WasmEdge_Limit TabLim = {
        .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
    WasmEdge_TableTypeContext *TabTypeCxt =
-       WasmEdge_TableTypeCreate(WasmEdge_RefType_ExternRef, TabLim);
+       WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenExternRef(), TabLim);
 
-   enum WasmEdge_RefType GotRefType = WasmEdge_TableTypeGetRefType(TabTypeCxt);
-   /* `GotRefType` will be WasmEdge_RefType_ExternRef. */
+   WasmEdge_ValType GotRefType = WasmEdge_TableTypeGetRefType(TabTypeCxt);
+   bool IsTypeExternRef = WasmEdge_ValTypeIsExternRef(GotRefType);
+   /* `IsTypeExternRef` will be `TRUE`. */
+   bool IsTypeRef = WasmEdge_ValTypeIsRef(GotRefType);
+   /* `IsTypeRef` will be `TRUE`. */
+   bool IsTypeNullableRef = WasmEdge_ValTypeIsRefNull(GotRefType);
+   /* `IsTypeNullableRef` will be `TRUE`. */
    WasmEdge_Limit GotTabLim = WasmEdge_TableTypeGetLimit(TabTypeCxt);
    /* `GotTabLim` will be the same value as `TabLim`. */
 
@@ -315,10 +422,11 @@ The WASM data structures are used for creating instances or can be queried from 
 
    ```c
    WasmEdge_GlobalTypeContext *GlobTypeCxt = WasmEdge_GlobalTypeCreate(
-       WasmEdge_ValType_F64, WasmEdge_Mutability_Var);
+       WasmEdge_ValTypeGenF64(), WasmEdge_Mutability_Var);
 
    WasmEdge_ValType GotValType = WasmEdge_GlobalTypeGetValType(GlobTypeCxt);
-   /* `GotValType` will be WasmEdge_ValType_F64. */
+   bool IsTypeF64 = WasmEdge_ValTypeIsF64(GotValType);
+   /* `IsTypeF64` will be `TRUE`. */
    WasmEdge_Mutability GotValMut =
        WasmEdge_GlobalTypeGetMutability(GlobTypeCxt);
    /* `GotValMut` will be WasmEdge_Mutability_Var. */
@@ -514,7 +622,9 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
      WasmEdge_Proposal_ExceptionHandling,
      WasmEdge_Proposal_ExtendedConst,
      WasmEdge_Proposal_Threads,
-     WasmEdge_Proposal_FunctionReferences
+     WasmEdge_Proposal_FunctionReferences,
+     WasmEdge_Proposal_Component,
+     WasmEdge_Proposal_GC,
    };
    ```
 
@@ -537,6 +647,9 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
     * * Multiple memories
     * * Extended-const
     * * Threads
+    * * Typed-function references
+    * * GC (interpreter only)
+    * * Component model (loader phase only)
     */
    WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
    WasmEdge_ConfigureAddProposal(ConfCxt, WasmEdge_Proposal_MultiMemories);
@@ -740,7 +853,12 @@ In this partition, we will introduce the functions of `WasmEdge_VMContext` objec
 
 ### WASM Execution Example With VM Context
 
-The following shows the example of running the WASM for getting the Fibonacci. This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
+The following shows the example of running the WASM for getting the Fibonacci. This example uses the [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
+
+<!-- prettier-ignore -->
+:::note
+`fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+:::
 
 ```wasm
 (module
@@ -762,7 +880,12 @@ The following shows the example of running the WASM for getting the Fibonacci. T
 
 1. Run WASM functions rapidly
 
-   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+
+   <!-- prettier-ignore -->
+   :::note
+   `fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+   :::
 
    ```c
    #include <stdio.h>
@@ -786,7 +909,7 @@ The following shows the example of running the WASM for getting the Fibonacci. T
          VMCxt, "fibonacci.wasm", FuncName, Params, 1, Returns, 1);
      /*
       * Developers can run the WASM binary from buffer with the
-      * `WasmEdge_VMRunWasmFromBuffer()` API, or from
+      * `WasmEdge_VMRunWasmFromBytes()` API, or from
       * `WasmEdge_ASTModuleContext` object with the
       * `WasmEdge_VMRunWasmFromASTModule()` API.
       */
@@ -841,7 +964,7 @@ The following shows the example of running the WASM for getting the Fibonacci. T
      Res = WasmEdge_VMLoadWasmFromFile(VMCxt, "fibonacci.wasm");
      /*
       * Developers can load the WASM binary from buffer with the
-      * `WasmEdge_VMLoadWasmFromBuffer()` API, or from
+      * `WasmEdge_VMLoadWasmFromBytes()` API, or from
       * `WasmEdge_ASTModuleContext` object with the
       * `WasmEdge_VMLoadWasmFromASTModule()` API.
       */
@@ -1070,7 +1193,14 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
 
 1. Register the WASM modules with exported module names
 
-   Unless the module instances have already contained the module names, every WASM module should be named uniquely when registering. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory.
+   Unless the module instances have already contained the module names, every WASM module should be named uniquely when registering.
+
+   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+
+   <!-- prettier-ignore -->
+   :::note
+   `fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+   :::
 
    ```c
    WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
@@ -1079,7 +1209,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
        WasmEdge_VMRegisterModuleFromFile(VMCxt, ModName, "fibonacci.wasm");
    /*
     * Developers can register the WASM module from buffer with the
-    * `WasmEdge_VMRegisterModuleFromBuffer()` API, or from
+    * `WasmEdge_VMRegisterModuleFromBytes()` API, or from
     * `WasmEdge_ASTModuleContext` object with the
     * `WasmEdge_VMRegisterModuleFromASTModule()` API.
     */
@@ -1115,7 +1245,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
      Res = WasmEdge_VMRegisterModuleFromFile(VMCxt, ModName, "fibonacci.wasm");
      /*
       * Developers can register the WASM module from buffer with the
-      * `WasmEdge_VMRegisterModuleFromBuffer()` API, or from
+      * `WasmEdge_VMRegisterModuleFromBytes()` API, or from
       * `WasmEdge_ASTModuleContext` object with the
       * `WasmEdge_VMRegisterModuleFromASTModule()` API.
       */
@@ -1163,7 +1293,12 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
 
 1. Asynchronously run WASM functions rapidly
 
-   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+
+   <!-- prettier-ignore -->
+   :::note
+   `fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+   :::
 
    ```c
    #include <wasmedge/wasmedge.h>
@@ -1183,7 +1318,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
          VMCxt, "fibonacci.wasm", FuncName, Params, 1);
      /*
       * Developers can run the WASM binary from buffer with the
-      * `WasmEdge_VMAsyncRunWasmFromBuffer()` API, or from
+      * `WasmEdge_VMAsyncRunWasmFromBytes()` API, or from
       * `WasmEdge_ASTModuleContext` object with the
       * `WasmEdge_VMAsyncRunWasmFromASTModule()` API.
       */
@@ -1249,9 +1384,8 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
      Res = WasmEdge_VMLoadWasmFromFile(VMCxt, "fibonacci.wasm");
      /*
       * Developers can load the WASM binary from buffer with the
-      * `WasmEdge_VMLoadWasmFromBuffer()` API, or from
-      * `WasmEdge_ASTModuleContext` object with the
-      * `WasmEdge_VMLoadWasmFromASTModule()` API.
+      * `WasmEdge_VMLoadWasmFromBytes()` API, or from `WasmEdge_ASTModuleContext`
+      * object with the `WasmEdge_VMLoadWasmFromASTModule()` API.
       */
      if (!WasmEdge_ResultOK(Res)) {
        printf("Loading phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
@@ -1341,7 +1475,14 @@ Sometimes the developers may have requirements to get the instances of the WASM 
 
 2. List exported functions
 
-   After the WASM module instantiation, developers can use the `WasmEdge_VMExecute()` API to invoke the exported WASM functions. For this purpose, developers may need information about the exported WASM function list. Please refer to the [Instances in runtime](#instances) for the details about the function types. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+   After the WASM module instantiation, developers can use the `WasmEdge_VMExecute()` API to invoke the exported WASM functions. For this purpose, developers may need information about the exported WASM function list. Please refer to the [Instances in runtime](#instances) for the details about the function types.
+
+   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+
+   <!-- prettier-ignore -->
+   :::note
+   `fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+   :::
 
    ```c
    #include <wasmedge/wasmedge.h>
@@ -1477,7 +1618,14 @@ In this partition, we will introduce the objects of WasmEdge runtime manually.
 
 ### WASM Execution Example Step-By-Step
 
-Besides the WASM execution through the [`VM` context](#wasmedge-vm), developers can execute the WASM functions or instantiate WASM modules step-by-step with the `Loader`, `Validator`, `Executor`, and `Store` contexts. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+Besides the WASM execution through the [`VM` context](#wasmedge-vm), developers can execute the WASM functions or instantiate WASM modules step-by-step with the `Loader`, `Validator`, `Executor`, and `Store` contexts.
+
+Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+
+<!-- prettier-ignore -->
+:::note
+`fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+:::
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -1623,7 +1771,12 @@ if (!WasmEdge_ResultOK(Res)) {
 WasmEdge_ASTModuleDelete(ASTCxt);
 
 /* Load WASM or compiled-WASM from the buffer. */
-Res = WasmEdge_LoaderParseFromBuffer(LoadCxt, &ASTCxt, Buf, FileSize);
+WasmEdge_Bytes Bytes = WasmEdge_BytesWrap(Buf, FileSize);
+Res = WasmEdge_LoaderParseFromBytes(LoadCxt, &ASTCxt, Bytes);
+/*
+ * Note: `WasmEdge_LoaderParseFromBuffer()` will be deprecated in the future.
+ * We recommand developers to use `WasmEdge_LoaderParseFromBytes()` instead.
+ */
 if (!WasmEdge_ResultOK(Res)) {
   printf("Loading phase failed: %s\n", WasmEdge_ResultGetMessage(Res));
 }
@@ -1862,6 +2015,28 @@ WasmEdge_ASTModuleDelete(ASTCxt);
  */
 ```
 
+### Serializer
+
+As the reversion of loading WASM file or buffer into a `AST Module`, the `Loader` context also provide the serializer to serialze the `AST Module` back into a WASM buffer.
+
+```c
+WasmEdge_ASTModuleContext *ASTCxt = ...;
+/* Assume that a WASM is loaded into an AST module context. */
+
+WasmEdge_LoaderContext *LoadCxt = ...;
+/* Assume that a loader context is created with configuration. */
+
+WasmEdbe_Bytes Bytes;
+/* Serialize the AST module back into WASM binary format. */
+Res = WasmEdge_LoaderSerializeASTModule(LoadCxt, ASTCxt, &Bytes);
+if (!WasmEdge_ResultOK(Res)) {
+  printf("Serialization failed: %s\n", WasmEdge_ResultGetMessage(Res));
+}
+
+/* The output WasmEdge_Bytes should be destroyed. */
+WasmEdge_BytesDelete(Bytes);
+```
+
 ### Store
 
 [Store](https://webassembly.github.io/spec/core/exec/runtime.html#store) is the runtime structure for the representation of all global state that can be manipulated by WebAssembly programs. The `Store` context in WasmEdge is an object which present the linker to provide the instance exporting and importing when instantiating WASM modules. Developers can retrieve the named modules from the `Store` context, and should delete the `Module` instances registered into the `Store` context if they will not be used anymore.
@@ -1974,8 +2149,12 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
        .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
    /* Create the table type with limit and the `FuncRef` element type. */
    WasmEdge_TableTypeContext *TabTypeCxt =
-       WasmEdge_TableTypeCreate(WasmEdge_RefType_FuncRef, TabLimit);
+       WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenFuncRef(), TabLimit);
    /* Create the table instance with table type. */
+   /* 
+    * Developers can also use the `WasmEdge_TableInstanceCreateWithInit()` API to
+    * create the table instance with default reference values.
+    */
    WasmEdge_TableInstanceContext *HostTable =
        WasmEdge_TableInstanceCreate(TabTypeCxt);
    /* Delete the table type. */
@@ -1983,13 +2162,15 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_Result Res;
    WasmEdge_Value Data;
 
-   TabTypeCxt = WasmEdge_TableInstanceGetTableType(HostTable);
+   const WasmEdge_TableTypeContext *GotTabTypeCxt =
+       WasmEdge_TableInstanceGetTableType(HostTable);
    /*
-    * The `TabTypeCxt` got from table instance is owned by the `HostTable` and
+    * The `GotTabTypeCxt` got from table instance is owned by the `HostTable` and
     * should __NOT__ be destroyed.
     */
-   enum WasmEdge_RefType RefType = WasmEdge_TableTypeGetRefType(TabTypeCxt);
-   /* `RefType` will be `WasmEdge_RefType_FuncRef`. */
+   WasmEdge_ValType RefType = WasmEdge_TableTypeGetRefType(GotGlobTypeCxt);
+   bool IsTypeFuncRef = WasmEdge_ValTypeIsFuncRef(RefType);
+   /* `IsTypeFuncRef` will be `TRUE`. */
    Data = WasmEdge_ValueGenFuncRef(5);
    Res = WasmEdge_TableInstanceSetData(HostTable, Data, 3);
    /* Set the function index 5 to the table[3]. */
@@ -2061,8 +2242,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    uint32_t PageSize = WasmEdge_MemoryInstanceGetPageSize(HostMemory);
    /* `PageSize` will be 1. */
    Res = WasmEdge_MemoryInstanceGrowPage(HostMemory, 2);
-   /* Grow the page size of 2, the page size of the memory instance will be 3.
-    */
+   /* Grow the page size of 2, the page size of the memory instance will be 3. */
    /*
     * This will get an "out of bounds memory access" error because
     * the page size (3 + 3) will reach the memory limit(5):
@@ -2080,7 +2260,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_Value Val = WasmEdge_ValueGenI64(1000);
    /* Create the global type with value type and mutation. */
    WasmEdge_GlobalTypeContext *GlobTypeCxt = WasmEdge_GlobalTypeCreate(
-       WasmEdge_ValType_I64, WasmEdge_Mutability_Var);
+       WasmEdge_ValTypeGenI64(), WasmEdge_Mutability_Var);
    /* Create the global instance with value and global type. */
    WasmEdge_GlobalInstanceContext *HostGlobal =
        WasmEdge_GlobalInstanceCreate(GlobTypeCxt, Val);
@@ -2088,19 +2268,23 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_GlobalTypeDelete(GlobTypeCxt);
    WasmEdge_Result Res;
 
-   GlobTypeCxt = WasmEdge_GlobalInstanceGetGlobalType(HostGlobal);
-   /* The `GlobTypeCxt` got from global instance is owned by the `HostGlobal`
-    * and should __NOT__ be destroyed. */
-   enum WasmEdge_ValType ValType = WasmEdge_GlobalTypeGetValType(GlobTypeCxt);
-   /* `ValType` will be `WasmEdge_ValType_I64`. */
+   const WasmEdge_GlobalTypeContext *GotGlobTypeCxt =
+       WasmEdge_GlobalInstanceGetGlobalType(HostGlobal);
+   /*
+    * The `GotGlobTypeCxt` got from global instance is owned by the `HostGlobal`
+    * and should __NOT__ be destroyed.
+    */
+   WasmEdge_ValType ValType = WasmEdge_GlobalTypeGetValType(GotGlobTypeCxt);
+   bool IsTypeF64 = WasmEdge_ValTypeIsI64(ValType);
+   /* `ValType` will be `TRUE`. */
    enum WasmEdge_Mutability ValMut =
-       WasmEdge_GlobalTypeGetMutability(GlobTypeCxt);
+       WasmEdge_GlobalTypeGetMutability(GotGlobTypeCxt);
    /* `ValMut` will be `WasmEdge_Mutability_Var`. */
 
-   WasmEdge_GlobalInstanceSetValue(HostGlobal, WasmEdge_ValueGenI64(888));
+   Res = WasmEdge_GlobalInstanceSetValue(HostGlobal, WasmEdge_ValueGenI64(888));
    /*
     * Set the value u64(888) to the global.
-    * This function will do nothing if the value type mismatched or
+    * This function will return error if the value type mismatched or
     * the global mutability is `WasmEdge_Mutability_Const`.
     */
    WasmEdge_Value GlobVal = WasmEdge_GlobalInstanceGetValue(HostGlobal);
@@ -2129,10 +2313,10 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
                        const WasmEdge_Value *In, WasmEdge_Value *Out) {
      /*
-     * Params: {i32, i32}
-     * Returns: {i32}
-     * Developers should take care about the function type.
-     */
+      * Params: {i32, i32}
+      * Returns: {i32}
+      * Developers should take care about the function type.
+      */
      /* Retrieve the value 1. */
      int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
      /* Retrieve the value 2. */
@@ -2147,9 +2331,9 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then developers can create `Function` context with the host function body and the function type:
 
    ```c
-   enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                         WasmEdge_ValType_I32};
-   enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_I32};
+   WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(),
+                                    WasmEdge_ValTypeGenI32()};
+   WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenI32()};
    /* Create a function type: {i32, i32} -> {i32}. */
    WasmEdge_FunctionTypeContext *HostFType =
        WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
@@ -2275,7 +2459,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      WasmEdge_String ExportName = WasmEdge_StringCreateByCString("extern");
      WasmEdge_ModuleInstanceContext *HostModCxt =
          WasmEdge_ModuleInstanceCreate(ExportName);
-     enum WasmEdge_ValType ParamList[1] = {WasmEdge_ValType_I32};
+     WasmEdge_ValType ParamList[1] = {WasmEdge_ValTypeGenI32()};
      WasmEdge_FunctionTypeContext *HostFType =
          WasmEdge_FunctionTypeCreate(ParamList, 1, NULL, 0);
      WasmEdge_FunctionInstanceContext *HostFunc =
@@ -2291,9 +2475,14 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      WasmEdge_Value Params[1] = {WasmEdge_ValueGenI32(5566)};
      /* Function name. */
      WasmEdge_String FuncName = WasmEdge_StringCreateByCString("trap");
-     /* Run the WASM function from file. */
-     WasmEdge_Result Res = WasmEdge_VMRunWasmFromBuffer(
-         VMCxt, WASM, sizeof(WASM), FuncName, Params, 1, NULL, 0);
+     /* Run the WASM function from memory. */
+     WasmEdge_Bytes Bytes = WasmEdge_BytesWrap(WASM, sizeof(WASM));
+     /*
+      * Note: `WasmEdge_VMRunWasmFromBuffer()` will be deprecated in the future.
+      * We recommand developers to use `WasmEdge_VMRunWasmFromBytes()` instead.
+      */
+     WasmEdge_Result Res =
+         WasmEdge_VMRunWasmFromBytes(VMCxt, Bytes, FuncName, Params, 1, NULL, 0);
 
      /* Get the result code and print. */
      printf("Get the error code: %u\n", WasmEdge_ResultGetCode(Res));
@@ -2343,9 +2532,9 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_StringDelete(ExportName);
 
    /* Create and add a function instance into the module instance. */
-   enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                         WasmEdge_ValType_I32};
-   enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_I32};
+   WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(),
+                                    WasmEdge_ValTypeGenI32()};
+   WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenI32()};
    WasmEdge_FunctionTypeContext *HostFType =
        WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
    WasmEdge_FunctionInstanceContext *HostFunc =
@@ -2364,7 +2553,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_Limit TableLimit = {
        .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
    WasmEdge_TableTypeContext *HostTType =
-       WasmEdge_TableTypeCreate(WasmEdge_RefType_FuncRef, TableLimit);
+       WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenFuncRef(), TableLimit);
    WasmEdge_TableInstanceContext *HostTable =
        WasmEdge_TableInstanceCreate(HostTType);
    WasmEdge_TableTypeDelete(HostTType);
@@ -2386,7 +2575,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
    /* Create and add a global instance into the module instance. */
    WasmEdge_GlobalTypeContext *HostGType = WasmEdge_GlobalTypeCreate(
-       WasmEdge_ValType_I32, WasmEdge_Mutability_Var);
+       WasmEdge_ValTypeGenI32(), WasmEdge_Mutability_Var);
    WasmEdge_GlobalInstanceContext *HostGlobal =
        WasmEdge_GlobalInstanceCreate(HostGType, WasmEdge_ValueGenI32(666));
    WasmEdge_GlobalTypeDelete(HostGType);
@@ -2493,9 +2682,9 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      WasmEdge_String ExportName = WasmEdge_StringCreateByCString("extern");
      WasmEdge_ModuleInstanceContext *HostModCxt =
          WasmEdge_ModuleInstanceCreate(ExportName);
-     enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                           WasmEdge_ValType_I32};
-     enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_I32};
+     WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(),
+                                      WasmEdge_ValTypeGenI32()};
+     WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenI32()};
      WasmEdge_FunctionTypeContext *HostFType =
          WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
      WasmEdge_FunctionInstanceContext *HostFunc =
@@ -2513,9 +2702,14 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      WasmEdge_Value Returns[1];
      /* Function name. */
      WasmEdge_String FuncName = WasmEdge_StringCreateByCString("addTwo");
-     /* Run the WASM function from file. */
-     WasmEdge_Result Res = WasmEdge_VMRunWasmFromBuffer(
-         VMCxt, WASM, sizeof(WASM), FuncName, Params, 2, Returns, 1);
+     /* Run the WASM function from memory. */
+     WasmEdge_Bytes Bytes = WasmEdge_BytesWrap(WASM, sizeof(WASM));
+     /*
+      * Note: `WasmEdge_VMRunWasmFromBuffer()` will be deprecated in the future.
+      * We recommand developers to use `WasmEdge_VMRunWasmFromBytes()` instead.
+      */
+     WasmEdge_Result Res = WasmEdge_VMRunWasmFromBytes(VMCxt, Bytes, FuncName,
+                                                       Params, 2, Returns, 1);
 
      if (WasmEdge_ResultOK(Res)) {
        printf("Get the result: %d\n", WasmEdge_ValueGetI32(Returns[0]));
@@ -2614,9 +2808,9 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      WasmEdge_String ExportName = WasmEdge_StringCreateByCString("extern");
      WasmEdge_ModuleInstanceContext *HostModCxt =
          WasmEdge_ModuleInstanceCreate(ExportName);
-     enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                           WasmEdge_ValType_I32};
-     enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_I32};
+     WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(),
+                                      WasmEdge_ValTypeGenI32()};
+     WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenI32()};
      WasmEdge_FunctionTypeContext *HostFType =
          WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
      WasmEdge_FunctionInstanceContext *HostFunc =
@@ -2634,9 +2828,14 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      WasmEdge_Value Returns[1];
      /* Function name. */
      WasmEdge_String FuncName = WasmEdge_StringCreateByCString("addTwo");
-     /* Run the WASM function from file. */
-     WasmEdge_Result Res = WasmEdge_VMRunWasmFromBuffer(
-         VMCxt, WASM, sizeof(WASM), FuncName, Params, 2, Returns, 1);
+     /* Run the WASM function from memory. */
+     WasmEdge_Bytes Bytes = WasmEdge_BytesWrap(WASM, sizeof(WASM));
+     /*
+      * Note: `WasmEdge_VMRunWasmFromBuffer()` will be deprecated in the future.
+      * We recommand developers to use `WasmEdge_VMRunWasmFromBytes()` instead.
+      */
+     WasmEdge_Result Res = WasmEdge_VMRunWasmFromBytes(VMCxt, Bytes, FuncName,
+                                                       Params, 2, Returns, 1);
 
      if (WasmEdge_ResultOK(Res)) {
        printf("Get the result: %d\n", WasmEdge_ValueGetI32(Returns[0]));
@@ -2796,7 +2995,12 @@ WasmEdge runs the WASM files in interpreter mode, and WasmEdge also supports the
 
 ### Compilation Example
 
-Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+
+<!-- prettier-ignore -->
+:::note
+`fibonacci.wat` file is provided in text format. Users should convert it into corresponding WASM binary format by using [WABT tool](https://github.com/WebAssembly/wabt).
+:::
 
 ```c
 #include <wasmedge/wasmedge.h>

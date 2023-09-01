@@ -205,7 +205,6 @@ wasmedge --reactor add.wasm add 2 2
 4
 ```
 
-
 ### 调用用 WAT 编写的 WebAssembly 函数
 
 我们创建了纯手工编写的 [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) 文件，并使用 [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) 工具将其转换为名为 `fibonacci.wasm` 的 WebAssembly 程序。它导出了一个 `fib()` 函数，该函数以单个 `i32` 整数作为输入参数。我们可以在反应器模式下执行 `wasmedge` 来调用导出的函数。

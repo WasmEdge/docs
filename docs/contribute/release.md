@@ -58,10 +58,6 @@ sidebar_position: 9
 
 Following projects will be updated with the `Alpha`, `Beta`, and `RC` pre-releases and the official release:
 
-- [ ] [WasmEdge-Image](https://github.com/second-state/WasmEdge-image)
-- [ ] [WasmEdge-TensorFlow-Deps](https://github.com/second-state/WasmEdge-tensorflow-deps)
-- [ ] [WasmEdge-TensorFlow](https://github.com/second-state/WasmEdge-tensorflow)
-- [ ] [WasmEdge-TensorFlow-Tools](https://github.com/second-state/WasmEdge-tensorflow-tools)
 - [ ] [WasmEdge-Go SDK](https://github.com/second-state/WasmEdge-go)
 - [ ] [WasmEdge-core NAPI package](https://github.com/second-state/wasmedge-core)
 - [ ] [WasmEdge-extensions NAPI package](https://github.com/second-state/wasmedge-extensions)
