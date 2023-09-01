@@ -11,7 +11,7 @@ The WasmEdge Runtime provides a well-defined execution sandbox for its contained
 
 This chapter will introduce how to install and get started with WasmEdge.
 
-We will cover the following content:
+You will learn the following:
 
 - [Install and Uninstall WasmEdge](install.md)
 - [Getting Started](/category/getting-started-with-wasmEdge)
