@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Install Notes
 
-To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted, he version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK v{{ wasmedge_version }}, then your WasmEdge version must be {{ wasmedge_version }} as well.
+To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted, he version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK v{{ wasmedge_go_version }}, then your WasmEdge version must be {{ wasmedge_go_version }} as well.
 
 <!-- prettier-ignore -->
 :::note
@@ -24,10 +24,10 @@ $ go version
 go version go1.16.5 linux/amd64
 
 # Install WasmEdge
-$ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
+$ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_go_version }}
 
 # Install WasmEdge-Go
-$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
 ```
 
 Now we have set up WasmEdge and WasmEdge Go SDK. Next, let's see how to create a WASM app using Rust and wasmedge-bindgen.
@@ -45,10 +45,10 @@ $ go version
 go version go1.16.5 linux/amd64
 
 # Install WasmEdge
-$ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
+$ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_go_version }}
 
 # Install WasmEdge-Go
-$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
 
 # Install the WasmEdge-bindgen tool, which helps us handle complex data passing
 $ go get github.com/second-state/wasmedge-bindgen@v0.4.1

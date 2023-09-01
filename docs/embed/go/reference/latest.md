@@ -20,13 +20,13 @@ go version go1.16.5 linux/amd64
 Developers must [install the WasmEdge shared library](../../../start/install.md#install) with the same `WasmEdge-go` release or pre-release version.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_go_version }}
 ```
 
 For the developers need the `TensorFlow` or `Image` extension for `WasmEdge-go`, please install the `WasmEdge` with extensions:
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v {{ wasmedge_version }}
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v {{ wasmedge_go_version }}
 ```
 
 Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` platforms. After installation, developers can use the `source` command to update the include and linking searching path.
@@ -36,7 +36,7 @@ Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` pl
 After the WasmEdge installation, developers can get the `WasmEdge-go` package and build it in your Go project directory.
 
 ```bash
-go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
 go build
 ```
 
@@ -580,7 +580,7 @@ In this partition, we will introduce the functions of `wasmedge.VM` object and s
 
 ### WASM Execution Example With VM Object
 
-The following shows the example of running the WASM for getting the Fibonacci. This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
+The following shows the example of running the WASM for getting the Fibonacci. This example uses the WASM file `fibonacci.wasm` converted from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
 
 ```wasm
 (module
@@ -609,7 +609,7 @@ The following shows the example of running the WASM for getting the Fibonacci. T
    go mod init wasmedge_test
    ```
 
-   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current `wasmedge_test` directory, and create and edit the Go file `main.go` as following:
+   Assume that the WASM file `fibonacci.wasm` from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current `wasmedge_test` directory, and create and edit the Go file `main.go` as following:
 
    ```go
    package main
@@ -645,7 +645,7 @@ The following shows the example of running the WASM for getting the Fibonacci. T
    Then you can build and run the Golang application with the WasmEdge Golang SDK: (the 21 Fibonacci number is 17711 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Get fibonacci[21]: 17711
@@ -881,7 +881,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    go mod init wasmedge_test
    ```
 
-   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory. Then create and edit the Go file `main.go` as following:
+   Assume that the WASM file `fibonacci.wasm` from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory. Then create and edit the Go file `main.go` as following:
 
    ```go
    package main
@@ -955,7 +955,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 25th Fibonacci number is 121393 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Get fibonacci[25]: 121393
@@ -972,7 +972,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    go mod init wasmedge_test
    ```
 
-   Then assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and create and edit a Go file `main.go`:
+   Then assume that the WASM file `fibonacci.wasm` from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and create and edit a Go file `main.go`:
 
    ```go
    package main
@@ -1005,7 +1005,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 20th Fibonacci number is 10946 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 10946
@@ -1072,7 +1072,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 25th Fibonacci number is 121393 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 121393
@@ -1117,7 +1117,7 @@ Sometimes the developers may have requirements to get the instances of the WASM 
    go mod init wasmedge_test
    ```
 
-   Then assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and create and edit a Go file `main.go`:
+   Then assume that the WASM file `fibonacci.wasm` from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and create and edit a Go file `main.go`:
 
    ```go
    package main
@@ -1170,7 +1170,7 @@ Sometimes the developers may have requirements to get the instances of the WASM 
    Then you can build and run: (the only exported function in `fibonacci.wasm` is `fib`)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Exported function name: fib
@@ -1242,7 +1242,7 @@ mkdir wasmedge_test && cd wasmedge_test
 go mod init wasmedge_test
 ```
 
-Then assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and create and edit a Go file `main.go`:
+Then assume that the WASM file `fibonacci.wasm` from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and create and edit a Go file `main.go`:
 
 ```go
 package main
@@ -1334,7 +1334,7 @@ func main() {
 Then you can build and run: (the 18th Fibonacci number is 1346269 in 30-based index)
 
 ```bash
-$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
 $ go build
 $ ./wasmedge_test
 Exported function name: fib
@@ -1927,7 +1927,7 @@ In this chapter, we show the example for registering the host modules into a `VM
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    [2022-08-26 15:06:40.384] [error] user defined failed: user defined error code, Code: 0x15be
@@ -2118,7 +2118,7 @@ In this chapter, we show the example for registering the host modules into a `VM
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 6912
@@ -2221,7 +2221,7 @@ In this chapter, we show the example for registering the host modules into a `VM
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 6912

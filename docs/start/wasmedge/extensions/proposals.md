@@ -18,15 +18,19 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 | [Bulk memory operations][] | `--disable-bulk-memory` | `WasmEdge_Proposal_BulkMemoryOperations` | ✓ (since `0.8.2`) | ✓ | ✓ |
 | [Fixed-width SIMD][] | `--disable-simd` | `WasmEdge_Proposal_SIMD` | ✓ (since `0.9.0`) | ✓ (since `0.8.2`) | ✓ (since `0.8.2`) |
 | [Tail call][] | `--enable-tail-call` | `WasmEdge_Proposal_TailCall` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
-| [Multiple memories][] | `--enable-multi-memory` | `WasmEdge_Proposal_MultiMemories` |  | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
 | [Extended Constant Expressions][] | `--enable-extended-const` | `WasmEdge_Proposal_ExtendedConst` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
+| [Typed Function References][] | `--enable-function-reference` | `WasmEdge_Proposal_FunctionReferences` |  | ✓ (since `0.14.0`) | ✓ (since `0.14.0`) |
+| [Garbage collection][] | `--enable-gc` | `WasmEdge_Proposal_GC` |  | ✓ (since `0.14.0`) |  |
+| [Multiple memories][] | `--enable-multi-memory` | `WasmEdge_Proposal_MultiMemories` |  | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
 | [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
+| [Exception handling][] | `--enable-exception-handling` | `WasmEdge_Proposal_ExceptionHandling` |  | ✓ (since `0.14.0`) |  |
+| [Component Model][] | `--enable-component` | `WasmEdge_Proposal_Component` |  | Loader only (since `0.14.0`) |  |
 
 The following proposals are under development and may be supported in the future:
 
-- [Component Model][]
 - [Exception handling][]
-- [Garbage collection][]
+- [Relaxed SIMD][]
+- [Memory64][]
 - [WebAssembly C and C++ API][]
 
 [Import/Export of Mutable Globals]: https://github.com/WebAssembly/mutable-global
@@ -42,19 +46,23 @@ The following proposals are under development and may be supported in the future
 [Threads]: https://github.com/webassembly/threads
 [Component Model]: https://github.com/WebAssembly/component-model
 [Exception handling]: https://github.com/WebAssembly/exception-handling
+[Typed Function References]: https://github.com/WebAssembly/function-references
 [Garbage collection]: https://github.com/WebAssembly/gc
+[Relaxed SIMD]: https://github.com/WebAssembly/relaxed-simd
+[Memory64]: https://github.com/WebAssembly/memory64
 [WebAssembly C and C++ API]: https://github.com/WebAssembly/wasm-c-api
 
 ## WASI proposals
 
 WasmEdge implements the following [WASI proposals](https://github.com/WebAssembly/WASI/blob/main/Proposals.md):
 
-| Proposal | Platforms |
-| --- | --- |
-| [Sockets][] | `x86_64 Linux`, `aarch64 Linux` (since `0.10.0`) |
-| [Crypto][] | `x86_64 Linux`, `aarch64 Linux` (since `0.10.1`) |
-| [Machine Learning (wasi-nn)][] | `x86_64 Linux`, OpenVINO (since `0.10.1`), PyTorch (since `0.11.1`), and TensorFlow-Lite (since `0.11.2`) backends |
-| [proxy-wasm][] | `x86_64 Linux (Interpreter only)` (since `0.8.2`) |
+| Proposal | Platform: `Linux x86_64` | Platform: `Linux aarch64` | Platform: `x86_64 MacOS` | Platform: `MacOS arm64` |
+| --- | --- | --- | --- | --- |
+| [Sockets][] | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
+| [Crypto][] | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) | ✓ (since `0.13.0`) | ✓ (since `0.13.0`) |
+| [Logging][] | ✓ (since `0.13.0`) | ✓ (since `0.13.0`) | ✓ (since `0.13.0`) | ✓ (since `0.13.0`) |
+| [Machine Learning (wasi-nn)][] | ✓ OpenVINO (since `0.10.1`)<br/>✓ PyTorch (since `0.11.1`)<br/>✓ TensorFlow-Lite (since `0.11.2`)<br/>✓ Ggml (since `0.13.4`) | ✓ Ggml (since `0.13.4`) | ✓ Ggml (since `0.13.4`) | ✓ Ggml (since `0.13.4`) |
+| [proxy-wasm][] | ✓ (since `0.8.2`, interpreter) | | ✓ (since `0.11.2`, interpreter) | |
 
 The following proposals is under development and may be supported in the future:
 
@@ -62,5 +70,6 @@ The following proposals is under development and may be supported in the future:
 
 [Sockets]: https://github.com/WebAssembly/wasi-sockets
 [Crypto]: https://github.com/WebAssembly/wasi-crypto
+[Logging]: https://github.com/WebAssembly/wasi-logging
 [Machine Learning (wasi-nn)]: https://github.com/WebAssembly/wasi-nn
 [proxy-wasm]: https://github.com/proxy-wasm/spec

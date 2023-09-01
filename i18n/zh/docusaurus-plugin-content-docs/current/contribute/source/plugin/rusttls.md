@@ -8,12 +8,6 @@ The WasmEdge Rustls plug-in is a replacement for the OpenSSL plug-in in WasmEdge
 
 Here's a step-by-step guide on how to build the WasmEdge Rustls plug-in:
 
-# Building the WasmEdge Rustls Plug-in
-
-The WasmEdge Rustls plug-in is a replacement for the OpenSSL plug-in in WasmEdge. It provides a Rust-friendly interface to the Rustls library, which is a modern, fast, and more secure alternative to OpenSSL.
-
-Here's a step-by-step guide on how to build the WasmEdge Rustls plug-in:
-
 ## Prerequisites
 
 Ensure the following dependencies are installed on your system:
@@ -67,6 +61,6 @@ wasmedge --dir .:. --reactor --rustls_plugin target/release/libwasmedge_rustls.s
 
 Replace `your_wasm_file.wasm` with the path to your WebAssembly file. The `--rustls_plugin` flag specifies the path to the Rustls plug-in.
 
-That's it! You have successfully built and installed the WasmEdge Rustls plug-in. Please ensure to replace the OpenSSL plug-in with the Rustls plug-in in your WasmEdge runtime configuration if you were previously using OpenSSL. 
+That's it! You have successfully built and installed the WasmEdge Rustls plug-in. Please ensure to replace the OpenSSL plug-in with the Rustls plug-in in your WasmEdge runtime configuration if you were previously using OpenSSL.
 
-For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasi_crypto).
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_rustls).

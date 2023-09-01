@@ -49,4 +49,3 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | CloudEvents | Support the Rust SDK to be compiled into Wasm so that a Wasm app can send and receive cloud events | <https://github.com/cloudevents/sdk-rust/pull/202> |
 | Kagome | A C++ implementation of Polkadot host which runs Wasm smart contracts on WasmEdge | <https://github.com/qdrvm/kagome/tree/master/core/runtime> |
 | Sealos | A Cloud Operating System designed for managing cloud-native applications. It uses WasmEdge to run LLMs locally in its cluster. | <https://github.com/labring-actions/cluster-image/blob/main/applications/runwasi-wasmedge/latest/install.sh> |
-
