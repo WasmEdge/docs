@@ -79,12 +79,24 @@ const config = {
             },
         ],
     ],
-    
+
 
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
-            metadata: [{ name: 'keywords', content: 'wasmedge, wasm, web assembly, rust, cncf, edge devices, cloud, serverless' }, { name: 'twitter:card', content: 'summary' }],
+            metadata: [
+                { name: 'keywords', content: 'wasmedge, wasm, web assembly, rust, cncf, edge devices, cloud, serverless' },
+                { name: 'description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' }, 
+                { name: 'og:title', content: 'WasmEdge' },
+                { name: 'og:description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' }, 
+                { name: 'og:url', content: 'https://wasmedge.org/' },
+                { name: 'og:type', content: 'Documentation' },
+                { name: 'twitter:card', content: 'summary' },
+                { name: 'twitter:image', content: 'summary_large_image' },
+                { name: 'twitter:url', content: 'https://wasmedge.org/' },
+                { name: 'twitter:site', content: '@realwasmedge' },
+                { name: 'twitter:title', content: 'WasmEdge' }
+            ],
             image: "./static/img/wasm_logo.png",
             announcementBar: {
                 id: "start",
@@ -128,6 +140,7 @@ const config = {
                         href: 'https://github.com/WasmEdge/WasmEdge',
                         className: "header-github-link",
                         position: 'right',
+                        alt: 'https://github.com/WasmEdge/WasmEdge'
                     },
                 ],
             },
