@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.13.1 Documentation
+# C API 0.13.4 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 

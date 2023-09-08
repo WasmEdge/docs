@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Go API v0.13.0 Documentation
+# Go API v0.13.4 Documentation
 
 The following are the guides to working with the WasmEdge-Go SDK.
 
