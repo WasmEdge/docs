@@ -114,7 +114,7 @@ sys 0m0.011s
 
 ## API References
 
-- [0.13.0](reference/latest.md)
+- [0.13.4](reference/latest.md)
 - [0.12.1](reference/0.12.x.md)
 - [0.11.2](reference/0.11.x.md)
 - [0.10.1](reference/0.10.x.md)
