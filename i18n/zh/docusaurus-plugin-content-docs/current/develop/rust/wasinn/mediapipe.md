@@ -4,10 +4,7 @@ sidebar_position: 1
 
 # Mediapipe solutions
 
-Mediapipe is a collection of highly popular AI models developed by Google. They focus on intelligent processing of media files
-and streams. The `mediapipe-rs` crate is a Rust library for data processing using the Mediapipe suite of models. The crate provides
-Rust APIs to pre-process the data in media files or streams, run AI model inference to analyze the data, and then post-process
-or manipulate the media data based on the AI output.
+Mediapipe is a collection of highly popular AI models developed by Google. They focus on intelligent processing of media files and streams. The `mediapipe-rs` crate is a Rust library for data processing using the Mediapipe suite of models. The crate provides Rust APIs to pre-process the data in media files or streams, run AI model inference to analyze the data, and then post-process or manipulate the media data based on the AI output.
 
 ## Prerequisite
 
@@ -63,10 +60,7 @@ DetectionResult:
 
 ## Understand the code
 
-The [main.rs](https://github.com/juntao/demo-object-detection/blob/main/src/main.rs) is the complete example Rust source.
-All `mediapipe-rs` APIs follow a common pattern. A Rust struct is designed to work with a model. It contains functions
-required to pre- and post-process data for the model. For example, we can create an `detector` instance
-using the builder pattern, which can build from any "object detection" model in the Mediapipe model library.
+The [main.rs](https://github.com/juntao/demo-object-detection/blob/main/src/main.rs) is the complete example Rust source. All `mediapipe-rs` APIs follow a common pattern. A Rust struct is designed to work with a model. It contains functions required to pre- and post-process data for the model. For example, we can create an `detector` instance using the builder pattern, which can build from any "object detection" model in the Mediapipe model library.
 
 ```rust
 let model_data: &[u8] = include_bytes!("mobilenetv2_ssd_256_uint8.tflite");
@@ -75,8 +69,7 @@ let detector = ObjectDetectorBuilder::new()
         .build_from_buffer(model_data)?;
 ```
 
-The `detect()` function takes in an image, pre-processes it into a tensor array, runs inference on the mediapipe object detection model,
-and the post-processes the returned tensor array into a human redable format stored in the `detection_result`.
+The `detect()` function takes in an image, pre-processes it into a tensor array, runs inference on the mediapipe object detection model, and the post-processes the returned tensor array into a human redable format stored in the `detection_result`.
 
 ```rust
 let mut input_img = image::open(img_path)?;
@@ -84,8 +77,7 @@ let detection_result = detector.detect(&input_img)?;
 println!("{}", detection_result);
 ```
 
-Furthermore, the `mediapipe-rs` crate provides additional utility functions to post-process the data. For example,
-the `draw_detection()` utility function draws the data in `detection_result` onto the input image.
+Furthermore, the `mediapipe-rs` crate provides additional utility functions to post-process the data. For example, the `draw_detection()` utility function draws the data in `detection_result` onto the input image.
 
 ```rust
 draw_detection(&mut input_img, &detection_result);
