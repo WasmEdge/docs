@@ -38,6 +38,15 @@ const config = {
         }
     },
 
+    plugins: [
+        [
+            '@docusaurus/plugin-google-gtag',
+            {
+                trackingID: 'G-Q77VSJHYQB',
+            },
+        ],
+    ],
+
     presets: [
         [
             'classic',
