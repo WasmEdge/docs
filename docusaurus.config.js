@@ -45,17 +45,6 @@ const config = {
                 trackingID: 'G-Q77VSJHYQB',
             },
         ],
-        [
-            '@docusaurus/preset-classic',
-            {
-                sitemap: {
-                    changefreq: 'weekly',
-                    priority: 0.5,
-                    ignorePatterns: ['/tags/**'],
-                    filename: 'sitemap.xml',
-                },
-            },
-        ],
     ],
 
     presets: [
@@ -74,6 +63,12 @@ const config = {
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
+                },
+                sitemap: {
+                    changefreq: 'weekly',
+                    priority: 0.5,
+                    ignorePatterns: ['/tags/**'],
+                    filename: 'sitemap.xml',
                 },
             }),
         ],
@@ -222,7 +217,7 @@ const config = {
                             },
                             {
                                 label: 'Sitemap',
-                                to: '/sitemap.xml'
+                                href: 'https://wasmedge.org/docs/sitemap.xml'
                             }
                         ],
                     },
