@@ -38,6 +38,15 @@ const config = {
         }
     },
 
+    plugins: [
+        [
+            '@docusaurus/plugin-google-gtag',
+            {
+                trackingID: 'G-Q77VSJHYQB',
+            },
+        ],
+    ],
+
     presets: [
         [
             'classic',
@@ -86,9 +95,9 @@ const config = {
         ({
             metadata: [
                 { name: 'keywords', content: 'wasmedge, wasm, web assembly, rust, cncf, edge devices, cloud, serverless' },
-                { name: 'description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' }, 
+                { name: 'description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' },
                 { name: 'og:title', content: 'WasmEdge' },
-                { name: 'og:description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' }, 
+                { name: 'og:description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' },
                 { name: 'og:url', content: 'https://wasmedge.org/' },
                 { name: 'og:type', content: 'Documentation' },
                 { name: 'twitter:card', content: 'summary' },
