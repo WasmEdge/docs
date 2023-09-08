@@ -4,17 +4,17 @@ sidebar_position: 9
 
 # Native JS API in Rust
 
-For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" and yet still take advantage of the high performance Rust functions. With the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge), you can do exactly that.
+For JavaScript developers, incorporating Rust functions into JavaScript APIs is useful. That enables developers to write programs in "pure JavaScript" yet still use the high-performance Rust functions. You can do precisely that with the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge).
 
 <!-- prettier-ignore -->
 :::note
-The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and tensorflow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules).
+The [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder in the official WasmEdge QuickJS distribution provides Rust-based implementations of some built-in JavaScript API functions. Those functions typically require interactions with host functions in the WasmEdge runtime (e.g., networking and TensorFlow), and hence cannot be accessed by pure JavaScript implementations in [modules](modules.md).
 :::
 
 ## Prerequisites
 
-- [Install the Rust toolchain](../rust/setup)
-- [Install WasmEdge QuickJS and get ready](./hello_world#prerequisites)
+- [Install the Rust toolchain](../rust/setup.md)
+- [Install WasmEdge QuickJS and get ready](hello_world.md#prerequisites)
 
 ## Run the examples
 
@@ -49,7 +49,7 @@ fn main() {
 
 ## Code explanation: create a JavaScript function API
 
-The following code snippet defines a Rust function that can be incorporate into the JavaScript interpreter as an API.
+The following code snippet defines a Rust function that can be incorporated into the JavaScript interpreter as an API.
 
 ```rust
 fn run_rust_function(ctx: &mut Context) {
@@ -67,7 +67,7 @@ fn run_rust_function(ctx: &mut Context) {
 }
 ```
 
-The following code snippet shows how to add this Rust function into the JavaScript interpreter, give a name `hi()` as its JavaScript API, and then call it from JavaScript code.
+The following code snippet shows how to add this Rust function into the JavaScript interpreter, give the name `hi()` as its JavaScript API, and then call it from JavaScript code.
 
 ```rust
 fn run_rust_function(ctx: &mut Context) {
@@ -97,11 +97,11 @@ argv=[Int(1), Int(2), Int(3)]
 return value:UnDefined
 ```
 
-Using this approach, you can create a JavaScript interpreter with customized API functions. The interpreter runs inside WasmEdge, and can execute JavaScript code, which calls such API functions, from CLI or the network.
+You can create a JavaScript interpreter with customized API functions using this approach. The interpreter runs inside WasmEdge, and can execute JavaScript code, which calls such API functions from CLI or the network.
 
 ## Code explanation: create a JavaScript object API
 
-In the JavaScript API design, we sometimes need to provide an object that encapsulates both data and function. In the following example, we define a Rust function for the JavaScript API.
+In the JavaScript API design, we sometimes need to provide an object that encapsulates data and function. The following example defines a Rust function for the JavaScript API.
 
 ```rust
 fn rust_new_object_and_js_call(ctx: &mut Context) {
@@ -133,13 +133,13 @@ let f = ctx.new_function::<ObjectFn>("anything");
 obj.set("f", f.into());
 ```
 
-Next, we make the Rust "object" available as JavaScript object `test_obj` in the JavaScript interpreter.
+Next, we make the Rust "object" available as a JavaScript object `test_obj` in the JavaScript interpreter.
 
 ```rust
 ctx.get_global().set("test_obj", obj.into());
 ```
 
-In the JavaScript code, you can now directly use `test_obj` as part of the API.
+You can now directly use `test_obj` in the JavaScript code as part of the API.
 
 ```rust
 let code = r#"
@@ -289,7 +289,7 @@ mod point {
 }
 ```
 
-In the interpreter implementation, we call `point::init_point_module` first to register the Rust module with the JavaScript context, and then we can run a JavaScript program that simply use the `point` object.
+In the interpreter implementation, we call `point::init_point_module` first to register the Rust module with the JavaScript context, and then we can run a JavaScript program that uses the `point` object.
 
 ```rust
 use wasmedge_quickjs::*;
@@ -336,6 +336,6 @@ TypeError: cannot read property 'x' of undefined
 
 ## Code reuse
 
-Using the Rust API, we could create JavaScript classes that inherit (or extend) from existing classes. That allows developers to create complex JavaScript APIs using Rust by building on existing solutions. You can see [an example here](https://github.com/second-state/wasmedge-quickjs/blob/main/examples/js_extend.rs).
+We could create JavaScript classes that inherit (or extend) existing classes using the Rust API. That allows developers to develop complex JavaScript APIs by building on existing solutions using Rust. You can see [an example here](https://github.com/second-state/wasmedge-quickjs/blob/main/examples/js_extend.rs).
 
-Next, you can see the Rust code in the [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder for more examples on how to implement common JavaScript built-in functions including [Node.js](nodejs) APIs.
+Next, you can see the Rust code in the [internal_module](https://github.com/second-state/wasmedge-quickjs/tree/main/src/internal_module) folder for more examples of how to implement common JavaScript built-in functions, including [Node.js](nodejs.md) APIs.

@@ -1,8 +1,8 @@
 {
-  "label": "Develop Wasm Apps in Go",
+  "label": "Develop WASM Apps in Go",
   "position": 7,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will learn how to create Wasm apps in Go."
+    "description": "In this chapter, we will learn how to create WASM apps in Go."
   }
 }

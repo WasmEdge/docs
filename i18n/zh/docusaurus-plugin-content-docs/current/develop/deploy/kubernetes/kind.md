@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # Kind
 
-KinD is a Kubernetes distribution that runs inside Docker and is well suited for local development or integration testing. It runs containerd as CRI and crun as OCI Runtime.
+KinD is a Kubernetes distribution that runs inside Docker and is well-suited for local development or integration testing. It runs containerd as CRI and crun as OCI Runtime.
 
 <!-- prettier-ignore -->
 :::note
@@ -13,9 +13,9 @@ This demo is based on containerd + crun.
 
 ## Quick start
 
-As prerequisite we need to install KinD first. To do that the [quick start guide](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries) and the [release page](https://github.com/kubernetes-sigs/kind/releases) can be used to install the latest version of the KinD CLI.
+As a prerequisite, we need to install KinD first. To do that, the [quick start guide](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries) and the [release page](https://github.com/kubernetes-sigs/kind/releases) can be used to install the latest version of the KinD CLI.
 
-If KinD is installed we can directly start with the example from [here](https://github.com/Liquid-Reply/kind-crun-wasm):
+If KinD is installed, we can directly start with the example from [here](https://github.com/Liquid-Reply/kind-crun-wasm):
 
 ```bash
 # Create a "WASM in KinD" Cluster
@@ -28,9 +28,9 @@ In the rest of this section, we will explain how to create a KinD node image wit
 
 ## Build crun
 
-KinD uses the `kindest/node` image for the control plane and worker nodes. The image contains containerd as CRI and runc as OCI Runtime. To enable WasmEdge support we replace `runc` with `crun`.
+KinD uses the `kindest/node` image for the control plane and worker nodes. The image contains containerd as CRI and runc as OCI Runtime. To enable WasmEdge support, we replace `runc` with `crun`.
 
-For the node image we only need the crun binary and not the entire build toolchain. Therefore we use a multistage dockerfile where we create crun in the first step and only copy the crun binary to the node image.
+We only need the crun binary for the node image and not the entire build toolchain. Therefore we use a multistage dockerfile where we create crun in the first step and only copy the crun binary to the node image.
 
 ```Dockerfile
 FROM ubuntu:21.10 AS builder
@@ -51,11 +51,11 @@ Now we have a fresh `crun` binary with wasmedge enabled under `/data/crun/crun` 
 
 ## Replace crun and configure containerd
 
-Both runc and crun implement the OCI runtime spec and they have the same CLI parameters. Therefore we can just replace the runc binary with our crun-wasmedge binary we created before.
+Both runc and crun implement the OCI runtime spec and have the same CLI parameters. Therefore we can replace the runc binary with our crun-wasmedge binary we created before.
 
-Since crun is using some shared libraries we need to install libyajl, wasmedge and criu to make our crun work.
+Since crun is using shared libraries we need to install libyajl, wasmedge and criu to make our crun work.
 
-Now we already have a KinD that uses crun instead of runc. Now we just need two config changes. The first one in the `/etc/containerd/config.toml` where we add the `pod_annotations`that can be passed to the runtime:
+Now we have a KinD that uses crun instead of runc. Now we need two config changes. The first one is in the `/etc/containerd/config.toml` where we add the `pod_annotations`that can be passed to the runtime:
 
 ```toml
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
@@ -82,7 +82,7 @@ RUN echo "Installing Packages ..." \
 
 ## Build and test
 
-Finally we can build a new `node-wasmedge` image. To test it, we create a kind cluster from that image and run the simple app example.
+Finally, we can build a new `node-wasmedge` image. We create a kind cluster from that image and run the simple app example to test it.
 
 ```bash
 docker build -t node-wasmedge .

@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Hello world
 
-Before we start, make sure [you have Rust and WasmEdge installed](setup).
+Before we start, ensure [you have Rust and WasmEdge installed](setup.md).
 
 ## A simple main app
 
-The Hello world example is a standalone Rust application that can be executed by the [WasmEdge CLI](../build-and-run/cli). The full source code for the Rust [main.rs](https://github.com/second-state/rust-examples/tree/main/hello) file is as follows. It echoes the command line arguments passed to this program at runtime.
+The Hello World example is a standalone Rust application that can be executed by the [WasmEdge CLI](../../start/build-and-run/cli.md). The full source code for the Rust [main.rs](https://github.com/second-state/rust-examples/tree/main/hello) file is as follows. It echoes the command line arguments passed to this program at runtime.
 
 ```rust
 fn main() {
@@ -34,7 +34,7 @@ Hello WasmEdge
 
 ### The code
 
-The [add example](https://github.com/second-state/wasm-learning/tree/master/cli/add) is a Rust library function that can be executed by the [WasmEdge CLI](../build-and-run/cli) in the reactor mode.
+The [add example](https://github.com/second-state/wasm-learning/tree/master/cli/add) is a Rust library function that can be executed by the [WasmEdge CLI](../../start/build-and-run/cli.md) in the reactor mode.
 
 The full source code for the Rust [lib.rs](https://github.com/second-state/wasm-learning/blob/master/cli/add/src/lib.rs) file is as follows. It provides a simple `add()` function.
 
@@ -64,12 +64,12 @@ $ wasmedge --reactor target/wasm32-wasi/release/add.wasm add 2 2
 
 Of course, in most cases, you will not call functions using CLI arguments. Instead, you will probably need to use a [language SDK from WasmEdge] to call the function, pass call parameters, and receive return values. Below are some SDK examples for complex call parameters and return values.
 
-- [Use wasmedge-bindgen in a Go host app](../../embed/go/bindgen)
-- [Use direct memory passing in a Go host app](../../embed/go/passing_data)
+- [Use wasmedge-bindgen in a Go host app](../../embed/go/bindgen.md)
+- [Use direct memory passing in a Go host app](../../embed/go/passing_data.md)
 
 ## Improve the performance
 
-If we don't have extra notes for AoT, all the Wasm file will be executed in the intepreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program, and then run it with the `wasmedge` command.
+If we don't have extra notes for AoT, all the WASM file will be executed in the interpreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program and then run it with the `wasmedge` command.
 
 ```bash
 $ wasmedge compile hello.wasm hello_aot.wasm
