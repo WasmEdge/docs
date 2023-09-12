@@ -69,8 +69,7 @@ for (uint32_t I = 0; I < ModuleLen; I++) {
   /* Will print the available host module names in the plug-in. */
   printf("%s\n", Names[I].Buf);
 }
-/*
- * Will print here for the WASI-Crypto plug-in here:
+/* Will print here for the WASI-Crypto plug-in here:
  * wasi_ephemeral_crypto_asymmetric_common
  * wasi_ephemeral_crypto_common
  * wasi_ephemeral_crypto_kx
@@ -119,8 +118,7 @@ WasmEdge_ConfigureAddHostRegistration(ConfCxt,
                                         WasmEdge_HostRegistration_Wasi);
 WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(ConfCxt, NULL);
 WasmEdge_ConfigureDelete(ConfCxt);
-/*
-* The following API can retrieve the registered modules in the VM context,
+/* The following API can retrieve the registered modules in the VM context,
 * includes the built-in WASI and the plug-ins.
 */
 /*
@@ -134,8 +132,7 @@ const WasmEdge_ModuleInstanceContext *WasiModule =
 WasmEdge_StringDelete(WasiName);
 WasmEdge_String WasiNNName =
     WasmEdge_StringCreateByCString("wasi_ephemeral_nn");
-/*
-* The `WasiNNModule` will not be `NULL` even if the wasi_nn plug-in is not
+/* The `WasiNNModule` will not be `NULL` even if the wasi_nn plug-in is not
 * installed, because the VM context will mock and register the host
 * modules.
 */
