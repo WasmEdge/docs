@@ -27,16 +27,17 @@ If you split your pull request into small changes, please ensure any changes tha
 
 ## Understanding the WasmEdge Ecosystem
 
-Contributing to WasmEdge is more than just code. It's about understanding where WasmEdge fits into the broader ecosystem of WebAssembly and edge computing. Here are a few key aspects of the WasmEdge ecosystem:
+The WasmEdge Ecosystem describes the architecture and components that make up the WasmEdge project. The ecosystem can be broken down into several key components:
 
-- **WasmEdge Runtime**: The high-performance, extensible WebAssembly runtime for cloud native infrastructure and edge IoT devices.
-- **WasmEdge Extensions**: A series of function-as-a-service extensions for the WasmEdge Runtime, such as Tensorflow Lite and Image Magick.
-- **Cargo-wasi**: A lightweight WebAssembly CDN service built on the WasmEdge Runtime.
-- **SSVM**: A server-side WebAssembly VM optimized for server-side applications. It powers server-side functions in Node.js, Rust, and Golang to provide high-performance execution of applications in a sandboxed environment.
+- **Core**: This is the central part of the WasmEdge project. The core functionality of the WasmEdge runtime resides here.
+
+- **Plugins**: These are extensions of WASM host functions along with their dependencies. They extend the functionality of the WasmEdge runtime.
+
+- **Tools**: These are runtime executables. For instance, WasmEdge-TensorFlow-Tools are released tools to execute WASM with access to TensorFlow or TensorFlow-Lite.
 
 You can check out more [about the WasmEdge ecosystem](https://github.com/WasmEdge/WasmEdge/blob/master/docs/ecosystem.md) to understand how these parts work together.
 
-By understanding the ecosystem, you can make more impactful contributions and see how your work advances the overall goals of WasmEdge and WebAssembly in the cloud and edge computing.
+By understanding the ecosystem, you can make more impactful contributions and see how your work advances the overall goals of WasmEdge.
 
 ### Fork and Clone the Repository
 
