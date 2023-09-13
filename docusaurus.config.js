@@ -64,6 +64,12 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                sitemap: {
+                    changefreq: 'weekly',
+                    priority: 0.5,
+                    ignorePatterns: ['/tags/**'],
+                    filename: 'sitemap.xml',
+                },
             }),
         ],
     ],
@@ -172,13 +178,16 @@ const config = {
                             {
                                 label: 'Getting Started',
                                 to: '/start/overview',
-                            }, {
+                            },
+                            {
                                 label: 'Develop',
                                 to: '/develop/overview',
-                            }, {
+                            },
+                            {
                                 label: 'Embeds',
                                 to: '/embed/overview',
-                            }, {
+                            },
+                            {
                                 label: 'Contribute',
                                 to: '/contribute/overview',
                             }
@@ -189,18 +198,26 @@ const config = {
                             {
                                 label: 'Github',
                                 href: 'https://github.com/WasmEdge/WasmEdge',
-                            }, {
+                            },
+                            {
                                 label: 'Second State',
                                 href: 'https://www.secondstate.io/',
-                            }, {
+                            },
+                            {
                                 label: 'Articles & Blog',
                                 href: 'https://www.secondstate.io/articles/'
-                            }, {
+                            },
+                            {
                                 label: 'WasmEdge Talks',
                                 to: '/talks'
-                            }, {
+                            },
+                            {
                                 label: 'Releases',
                                 to: '/releases'
+                            },
+                            {
+                                label: 'Sitemap',
+                                href: 'https://wasmedge.org/docs/sitemap.xml'
                             }
                         ],
                     },
@@ -210,16 +227,20 @@ const config = {
                             {
                                 label: 'Mailing List',
                                 href: 'https://groups.google.com/g/wasmedge/'
-                            }, {
+                            },
+                            {
                                 label: 'Discord',
                                 href: 'https://discord.gg/U4B5sFTkFc',
-                            }, {
+                            },
+                            {
                                 label: 'Twitter',
                                 href: 'https://twitter.com/realwasmedge',
-                            }, {
+                            },
+                            {
                                 label: 'Slack #WasmEdge',
                                 href: 'https://cloud-native.slack.com/archives/C0215BBK248'
-                            }, {
+                            },
+                            {
                                 label: 'Community Meeting',
                                 href: 'https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing'
                             }
