@@ -10,7 +10,7 @@ The WasmEdge C API is also the fundamental API for other languages' SDK.
 
 ## Quick Start Guide for the WasmEdge Runner
 
-The following is an example of running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as follows:
+The following is an example of running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/tree/master/examples/wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as follows:
 
 ```c
 #include <wasmedge/wasmedge.h>
