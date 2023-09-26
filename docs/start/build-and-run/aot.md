@@ -131,7 +131,7 @@ wasmedge app_aot.wasm
 
 ## Output Format: Shared Library
 
-You can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
+Users can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
 
 This AOT-compiled WASM file is only for WasmEdge use and cannot be used by other WebAssembly runtimes.
 
