@@ -31,7 +31,7 @@ source $HOME/.wasmedge/env
 
 #### Install for all users
 
-WasmEdge is installed in the `$HOME/.wasmedge` directory by default. You can install it into a system directory such as `/usr/local` to make it available to all users. To specify an install directory, run the `install.sh` script with the `-p` flag. You will need to run the following commands as the `root` user or `sudo` since they are written into the system directories:
+WasmEdge is installed in the `$HOME/.wasmedge` directory by default. You can install it into a system directory such as `/usr/local` to make it available to all users. To specify an install directory, run the `install.sh` script with the `-p` flag. You will need to run the following commands as the `root` user or `sudo` since they are written into the system directories,
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr/local
