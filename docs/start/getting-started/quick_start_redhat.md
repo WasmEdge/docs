@@ -99,7 +99,7 @@ $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
 ```
 
-To learn more about how to run JavaScript apps in WasmEdge, see the following:
+To learn more about how to run JavaScript apps in WasmEdge,
 
 - [The WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs)
 - [AI inference application examples](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo)
