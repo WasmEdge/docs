@@ -46,7 +46,7 @@ VERSION={{ wasmedge_version }}
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v $VERSION
 ```
 
-If you are interested in the latest builds from the `HEAD` of the `master` branch, which is basically WasmEdge's nightly builds,you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/2969775464#artifacts).
+Suppose you are interested in the latest builds from the `HEAD` of the `master` branch, which is basically WasmEdge's nightly builds. In that case, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/2969775464#artifacts).
 
 #### Install WasmEdge with plug-ins
 
