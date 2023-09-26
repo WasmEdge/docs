@@ -50,7 +50,7 @@ Suppose you are interested in the latest builds from the `HEAD` of the `master` 
 
 #### Install WasmEdge with plug-ins
 
-WasmEdge plug-ins are pre-built native modules that provide additional functionalities to the WasmEdge Runtime. To install plug-ins with the runtime, you can pass the `--plugins` parameter in the installer. For example, the command below installs the `WASI-NN TensorFlow-Lite backend` plug-in, which allows WasmEdge apps to run inference on Tensorflow-Lite models with the `WASI-NN` proposal:
+WasmEdge plug-ins are pre-built native modules that provide additional functionalities to the WasmEdge Runtime. To install plug-ins with the runtime, you can pass the `--plugins` parameter in the installer. For example, the command below installs the `WASI-NN TensorFlow-Lite backend` plug-in, which allows WasmEdge apps to run inference on Tensorflow-Lite models with the `WASI-NN` proposal,
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite
