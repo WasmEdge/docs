@@ -22,7 +22,9 @@
     "lint:fix": "npm run lint:eslint-fix && npm run lint:style-fix",
     "lint:eslint-fix": "eslint --fix --cache --report-unused-disable-directives \"**/*.{js,jsx,ts,tsx}\"",
     "lint:style-fix": "stylelint --fix \"**/*.css\"",
-    "lint:style": "stylelint \"**/*.css\""
+    "lint:style": "stylelint \"**/*.css\"",
+    "lint:md": "markdownlint-cli2 '**/*.md' '!node_modules'",
+    "lint:md-fix": "markdownlint-cli2-fix '**/*.md' '!node_modules'"
   },
   "engines": {
     "node": ">=16.14.0",
@@ -67,6 +69,7 @@
     "eslint-plugin-regexp": "^1.12.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
+    "markdownlint-cli2": "^0.7.1",
     "prettier": "^2.8.4",
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.5",
