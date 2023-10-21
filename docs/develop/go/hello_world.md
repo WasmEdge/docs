@@ -115,7 +115,7 @@ $ wasmedge hello.wasm
 Hello TinyGo from WasmEdge!
 ```
 
-For the `--reactor` mode:
+For the `--reactor` mode,
 
 ```bash
 $ wasmedge compile fib.wasm fib.wasm
