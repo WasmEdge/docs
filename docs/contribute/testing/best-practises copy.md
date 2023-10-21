@@ -22,15 +22,15 @@ Writing WasmEdge applications involves a blend of best practices from WebAssembl
 
 ## Tools and Frameworks
 
-1. **Google Test:** For C/C++ unit testing.
+- **Google Test:** For C/C++ unit testing.
 
-2. **WasmEdge API:** For testing WebAssembly modules directly.
+- **WasmEdge API:** For testing WebAssembly modules directly.
 
-3. **Selenium/Puppeteer:** For web-based end-to-end testing.
+- **Selenium/Puppeteer:** For web-based end-to-end testing.
 
-4. **Jenkins/GitHub Actions:** For continuous integration and automated testing.
+- **Jenkins/GitHub Actions:** For continuous integration and automated testing.
 
 ## Optional Packages and Third-Party Integrations
 
-1. **Code Coverage:** Tools like lcov for C/C++.
-2. **Static Analysis:** Tools like cppcheck for C/C++.
+- **Code Coverage:** Tools like lcov for C/C++.
+- **Static Analysis:** Tools like cppcheck for C/C++.
