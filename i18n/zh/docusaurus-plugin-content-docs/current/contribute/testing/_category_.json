@@ -1,0 +1,8 @@
+{
+  "label": "Testing",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "We will learn how to test WasmEdge applications"
+  }
+}
