@@ -136,7 +136,7 @@ cp libwasmedge_rustls.so ~/.wasmedge/plugin/
 
 # If you installed Wasmedge at /usr/local for all users
 sudo mkdir -p /usr/local/lib/wasmedge/
-sudo cp libwasmedge_rustls /usr/local/lib/wasmedge/
+sudo cp libwasmedge_rustls.so /usr/local/lib/wasmedge/
 ```
 
 Then, go to [HTTPS request in Rust chapter](../develop/rust/http_service/client.md) to see how to run HTTPs services with Rust.
