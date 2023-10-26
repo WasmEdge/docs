@@ -55,7 +55,7 @@ Get result: 3524578
 
 ## Quick Start Guide for the WasmEdge AOT compiler
 
-Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as follows:
+Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as follows :
 
 ```c
 #include <wasmedge/wasmedge.h>
