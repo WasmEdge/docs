@@ -77,14 +77,14 @@ There are several plug-in releases with the WasmEdge official releases. Please c
 
 | Plug-in | Rust Crate | Released Platforms | Build Steps |
 | --- | --- | --- | --- |
-| [WasmEdge-Process](https://wasmedge.org/docs/contribute/source/plugin/process) | [wasmedge_process_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.0`) | [Build Wtih WasmEdge-Process](../source/plugin/process.md) |
+| [WasmEdge-Process](../source/plugin/process.md) | [wasmedge_process_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.0`) | [Build Wtih WasmEdge-Process](../source/plugin/process.md) |
 | [WASI-Crypto][] | [wasi-crypto][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-Crypto](../source/plugin/wasi_crypto.md) |
 | [WASI-NN with OpenVINO backend](../../develop/rust/wasinn/openvino.md) | [wasi-nn][] | `ubuntu 20.04 x86_64` (since `0.10.1`) | [Build With WASI-NN](../source/plugin/wasi_nn.md#build-wasmedge-with-wasi-nn-openvino-backend) |
 | [WASI-NN with PyTorch backend](../../develop/rust/wasinn/pytorch.md) | [wasi-nn][] | `ubuntu 20.04 x86_64` (since `0.11.1`) | [Build With WASI-NN](../source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-pytorch-backend) |
 | [WASI-NN with TensorFlow-Lite backend](../../develop/rust/wasinn/tensorflow_lite.md) | [wasi-nn][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, and `ubuntu 20.04 x86_64` (since `0.11.2`) | [Build With WASI-NN](../source/plugin/wasi_nn#build-wasmedge-with-wasi-nn-tensorflow-lite-backend) |
-| [WasmEdge-Image](https://wasmedge.org/docs/contribute/source/plugin/image) | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Image](../source/plugin/image.md) |
-| [WasmEdge-Tensorflow](https://wasmedge.org/docs/develop/rust/wasinn/tf_plugin) | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Tensorflow](../source/plugin/tensorflow.md) |
-| [WasmEdge-TensorflowLite](https://wasmedge.org/docs/contribute/source/plugin/tensorflowlite) | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-TensorflowLite](../source/plugin/tensorflowlite.md) |
+| [WasmEdge-Image](../source/plugin/image.md) | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Image](../source/plugin/image.md) |
+| [WasmEdge-Tensorflow](../../develop/rust/wasinn/tf_plugin.md) | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-Tensorflow](../source/plugin/tensorflow.md) |
+| [WasmEdge-TensorflowLite](../source/plugin/tensorflowlite.md) | [wasmedge_tensorflow_interface][] | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Build With WasmEdge-TensorflowLite](../source/plugin/tensorflowlite.md) |
 
 <!-- prettier-ignore -->
 :::note
