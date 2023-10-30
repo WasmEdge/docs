@@ -23,14 +23,14 @@ cd chat
 Next, let's get the model. In this example, we are going to use the llama2 7b chat model in GGUF format. You can also use other kinds of llama2 models, check out [here](https://github.com/second-state/llama-utils/blob/main/chat/README.md#get-model).
 
 ```
-git clone curl -LO https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q5_K_M.gguf
+git clone curl -LO https://huggingface.co/wasmedge/llama2/blob/main/llama-2-7b-chat-q5_k_m.gguf
 ```
 
 Run the inference application in WasmEdge.
 
 ```
 wasmedge --dir .:. \
-  --nn-preload default:GGML:CPU:llama-2-7b-chat.Q5_K_M.gguf \
+  --nn-preload default:GGML:CPU:llama-2-7b-chat-q5_k_m.gguf \
   llama-chat.wasm --model-alias default --prompt-template llama-2-chat
 ```
 After executing the command, you may need to wait a moment for the input prompt to appear. You can enter your question once you see the `[USER]:` prompt:
@@ -72,13 +72,13 @@ The output WASM file is `target/wasm32-wasi/release/llama-chat.wasm`.
 We also need to get the model. Here we use the llama-2-13b model.
 
 ```
-curl -LO https://huggingface.co/TheBloke/Llama-2-13B-chat-GGUF/resolve/main/llama-2-13b-chat.Q5_K_M.gguf
+curl -LO https://huggingface.co/wasmedge/llama2/blob/main/llama-2-13b-q5_k_m.gguf
 ```
 Next, use WasmEdge to load the Codellama-instruct model and then ask the model to write code by chatting.
 
 ```
 wasmedge --dir .:. \
-  --nn-preload default:GGML:CPU:llama-2-13b-chat.Q5_K_M.gguf \
+  --nn-preload default:GGML:CPU:llama-2-13b-q5_k_m.gguf \
   llama-chat.wasm --model-alias default --prompt-template llama-2-chat
 ```
 After executing the command, you may need to wait a moment for the input prompt to appear. You can enter your question once you see the `[USER]:` prompt:
@@ -130,7 +130,7 @@ You can make the inference program run faster by AOT compiling the wasm file fir
 ```
 wasmedge compile llama-chat.wasm llama-chat.wasm
 wasmedge --dir .:. \
-  --nn-preload default:GGML:CPU:llama-2-13b-chat.Q5_K_M.gguf \
+  --nn-preload default:GGML:CPU:llama-2-13b-q5_k_m.gguf \
   llama-chat.wasm --model-alias default --prompt-template llama-2-chat
 ```
 
