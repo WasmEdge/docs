@@ -145,11 +145,17 @@ Then, go to [HTTPS request in Rust chapter](../develop/rust/http_service/client.
 
 WasmEdge supports various backends for `WASI-NN`.
 
+- [ggml backend](#wasi-nn-plug-in-with-ggml-backend): supported on `Ubuntu above 20.04` (x86_64) and macOS (M1 and M2)
 - [PyTorch backend](#wasi-nn-plug-in-with-pytorch-backend): supported on `Ubuntu above 20.04` and `manylinux2014_x86_64`.
 - [OpenVINO™ backend](#wasi-nn-plug-in-with-openvino-backend): supported on `Ubuntu above 20.04`.
 - [TensorFlow-Lite backend](#wasi-nn-plug-in-with-tensorflow-lite-backend): supported on `Ubuntu above 20.04`, `manylinux2014_x86_64`, and `manylinux2014_aarch64`.
 
 Noticed that the backends are exclusive. Developers can only choose and install one backend for the `WASI-NN` plug-in.
+
+#### WASI-NN plug-in with ggml backend
+`WASI-NN plug-in` with `ggml` backend allows WasmEdge to run llama2 inference. To install WasmEdge with WASI-NN ggml backend on, please use `--plugin wasi_nn-ggml` when running the installer command. 
+
+Then, go to the [ Llama2 inference in Rust chapter](../develop/rust/wasinn/llm-inference) to see how to run AI inference with llama2 series of models.
 
 #### WASI-NN plug-in with PyTorch backend
 
