@@ -31,7 +31,7 @@ Run the inference application in WasmEdge.
 ```
 wasmedge --dir .:. \
   --nn-preload default:GGML:CPU:llama-2-7b-chat.Q5_K_M.gguf \
-  chat.wasm --model-alias default --prompt-template llama-2-chat
+  llama-chat.wasm --model-alias default --prompt-template llama-2-chat
 ```
 After executing the command, you may need to wait a moment for the input prompt to appear. You can enter your question once you see the `[USER]:` prompt:
 
@@ -67,7 +67,7 @@ Second, use `cargo` to build the example project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/chat.wasm`. 
+The output WASM file is `target/wasm32-wasi/release/llama-chat.wasm`. 
 
 We also need to get the model. Here we use the llama-2-13b model.
 
@@ -79,7 +79,7 @@ Next, use WasmEdge to load the Codellama-instruct model and then ask the model t
 ```
 wasmedge --dir .:. \
   --nn-preload default:GGML:CPU:llama-2-13b-chat.Q5_K_M.gguf \
-  chat.wasm --model-alias default --prompt-template llama-2-chat
+  llama-chat.wasm --model-alias default --prompt-template llama-2-chat
 ```
 After executing the command, you may need to wait a moment for the input prompt to appear. You can enter your question once you see the `[USER]:` prompt:
 
@@ -106,7 +106,7 @@ For example, the following command specifies a context length of 4k tokens, whic
 ```
 LLAMA_LOG=1 LLAMA_N_CTX=4096 LLAMA_N_PREDICT=1024 wasmedge --dir .:. \
     --nn-preload default:GGML:CPU:llama-2-7b-chat.Q5_K_M.gguf \
-    wasmedge-ggml-llama-interactive.wasm default
+    llama-chat.wasm default
 
 llama_model_loader: loaded meta data with 19 key-value pairs and 291 tensors from llama-2-7b-chat.Q5_K_M.gguf (version GGUF V2 (latest))
 llama_model_loader: - tensor    0:                token_embd.weight q5_K     [  4096, 32000,     1,     1 ]
@@ -128,10 +128,10 @@ The "father of the atomic bomb" is a term commonly associated with physicist J. 
 You can make the inference program run faster by AOT compiling the wasm file first.
 
 ```
-wasmedge compile chat.wasm chat.wasm
+wasmedge compile llama-chat.wasm llama-chat.wasm
 wasmedge --dir .:. \
   --nn-preload default:GGML:CPU:llama-2-13b-chat.Q5_K_M.gguf \
-  chat.wasm --model-alias default --prompt-template llama-2-chat
+  llama-chat.wasm --model-alias default --prompt-template llama-2-chat
 ```
 
 ## Understand the code
