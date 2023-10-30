@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Mediapipe solutions
@@ -19,7 +19,7 @@ git clone https://github.com/juntao/demo-object-detection
 cd demo-object-detection/
 ```
 
-Build an inference application using the Mediapipe object dection model.
+Build an inference application using the Mediapipe object detection model.
 
 ```bash
 cargo build --target wasm32-wasi --release
