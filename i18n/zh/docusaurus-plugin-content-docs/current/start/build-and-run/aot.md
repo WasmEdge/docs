@@ -2,11 +2,11 @@
 sidebar_position: 3
 ---
 
-# The AoT Compiler
+# AoT 编译器
 
-After [installation](../install.md#install), users can execute the `wasmedge compile` command.
+安装完成后（请参阅[安装指南](../install.md#install)），用户可以执行 `wasmedge compile` 命令。
 
-The usage of the `wasmedge compile` command will be:
+`wasmedge compile` 命令的用法如下：
 
 ```bash
 $ wasmedge compile -h
@@ -16,61 +16,60 @@ USAGE
 ...
 ```
 
-The `wasmedge compile` command can compile WebAssembly into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedge compile` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode, which is much faster.
+`wasmedge compile` 命令可将 WebAssembly 编译为本机机器码（即，AOT 编译器）。对于纯 WebAssembly，`wasmedge` 工具将以解释器模式执行 WASM。通过 `wasmedge compile` AOT 编译器编译后，`wasmedge` 工具可以以 AOT 模式执行 WASM，速度要快得多。
 
-## Options
+## 选项
 
-The options of the `wasmedge compile` command are as follows.
+`wasmedge compile` 命令的选项如下。
 
-1. `-h|--help`: Show the help messages. Will ignore the other arguments below.
-2. _(Optional)_ `--dump`: Dump the LLVM IR to `wasm.ll` and `wasm-opt.ll`.
-3. _(Optional)_ `--interruptible`: Generate the binary which supports interruptible execution.
-   - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.x#async).
-4. _(Optional)_ Statistics information:
-   - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
-   - Use `--enable-time-measuring` to generate code for enabling time-measuring statistics in execution.
-   - Use `--enable-gas-measuring` to generate code for enabling the statistics of gas measuring in execution.
-   - Use `--enable-instruction-count` to generate code for enabling the statistics of counting WebAssembly instructions.
-   - Or use `--enable-all-statistics` to generate code for enabling all of the statistics.
-5. _(Optional)_ `--generic-binary`: Generate the generic binary of the current host CPU architecture.
-6. _(Optional)_ WebAssembly proposals:
-   - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
-   - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
-   - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
-   - Use `--disable-multi-value` to disable the [Multi-value](https://github.com/WebAssembly/multi-value) proposal (Default `ON`).
-   - Use `--disable-bulk-memory` to disable the [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations) proposal (Default `ON`).
-   - Use `--disable-reference-types` to disable the [Reference Types](https://github.com/WebAssembly/reference-types) proposal (Default `ON`).
-   - Use `--disable-simd` to disable the [Fixed-width SIMD](https://github.com/webassembly/simd) proposal (Default `ON`).
-   - Use `--enable-multi-memory` to enable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `OFF`).
-   - Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `OFF`).
-   - Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `OFF`).
-   - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
-   - Use `--enable-all` to enable ALL proposals above.
-7. _(Optional)_ `--optimize`: Select the LLVM optimization level.
-   - Use `--optimize LEVEL` to set the optimization level. The `LEVEL` should be one of `0`, `1`, `2`, `3`, `s`, or `z`.
-   - The default value will be `2`, which means `O2`.
-8. Input WASM file (`/path/to/wasm/file`).
-9. Output path (`/path/to/output/file`).
-   - By default, the `wasmedge compile` command will output the [universal WASM format](#output-format-universal-wasm).
-   - If the specific file extension (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) is assigned in the output path, the `wasmedge compile` command will output the [shared library format](#output-format-shared-library).
+1. `-h|--help`：显示帮助信息。将忽略下面的其他参数。
+2. （可选）`--dump`：将 LLVM IR 转储到 `wasm.ll` 和 `wasm-opt.ll`。
+3. （可选）`--interruptible`：生成支持可中断执行的二进制文件。
+   - 默认情况下，AOT 编译的 WASM 不支持[异步执行中的中断](../../embed/c/reference/0.12.x#async)。
+4. （可选）统计信息：
+   - 默认情况下，即使在运行 `wasmedge` 工具时打开选项，AOT 编译的 WASM 也不支持所有统计信息。
+   - 使用 `--enable-time-measuring` 生成用于启用执行时间测量统计的代码。
+   - 使用 `--enable-gas-measuring` 生成用于启用执行中的 gas 测量统计的代码。
+   - 使用 `--enable-instruction-count` 生成用于启用 WebAssembly 指令计数统计的代码。
+5. （可选）`--generic-binary`：生成通用二进制文件。
+6. （可选）WebAssembly 提案：
+   - 使用 `--disable-import-export-mut-globals` 禁用[可变全局变量的导入/导出](https://github.com/WebAssembly/mutable-global) 提案（默认为 `ON`）。
+   - 使用 `--disable-non-trap-float-to-int` 禁用[非陷阱浮点到整数转换](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) 提案（默认为 `ON`）。
+   - 使用 `--disable-sign-extension-operators` 禁用[符号扩展运算符](https://github.com/WebAssembly/sign-extension-ops) 提案（默认为 `ON`）。
+   - 使用 `--disable-multi-value` 禁用[多值](https://github.com/WebAssembly/multi-value) 提案（默认为 `ON`）。
+   - 使用 `--disable-bulk-memory` 禁用[批量内存操作](https://github.com/WebAssembly/bulk-memory-operations) 提案（默认为 `ON`）。
+   - 使用 `--disable-reference-types` 禁用[引用类型](https://github.com/WebAssembly/reference-types) 提案（默认为 `ON`）。
+   - 使用 `--disable-simd` 禁用[固定宽度 SIMD](https://github.com/webassembly/simd) 提案（默认为 `ON`）。
+   - 使用 `--enable-multi-memory` 启用[多内存](https://github.com/WebAssembly/multi-memory) 提案（默认为 `OFF`）。
+   - 使用 `--enable-tail-call` 启用[尾调用](https://github.com/WebAssembly/tail-call) 提案（默认为 `OFF`）。
+   - 使用 `--enable-extended-const` 启用[扩展常量表达式](https://github.com/WebAssembly/extended-const) 提案（默认为 `OFF`）。
+   - 使用 `--enable-threads` 启用[线程](https://github.com/webassembly/threads) 提案（默认为 `OFF`）。
+   - 使用 `--enable-all` 启用上述所有提案。
+7. （可选）`--optimize`：选择 LLVM 优化级别。
+   - 使用 `--optimize LEVEL` 来设置优化级别。`LEVEL` 应为 `0`、`1`、`2`、`3`、`s` 或 `z` 中的一个。
+   - 默认值为 `2`，即 `O2`。
+8. 输入的 WASM 文件（`/path/to/wasm/file`）。
+9. 输出路径（`/path/to/output/file`）。
+   - 默认情况下，`wasmedge compile` 命令将输出 [通用的 WASM 格式](#output-format-universal-wasm)。
+   - 如果在输出路径中指定了特定的文件扩展名（在 Linux 上为 `.so`，在 MacOS 上为 `.dylib`，在 Windows 上为 `.dll`），`wasmedge compile` 命令将输出 [共享库格式](#output-format-shared-library)。
 
-## Example
+## 示例
 
-We created the hand-written [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) and used the [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) tool to convert it into the `fibonacci.wasm` WebAssembly program. Take it, for example. It exported a `fib()` function, which takes a single `i32` integer as the input parameter.
+我们建立了一个纯手写的 [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) 并使用 [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) 工具将其转换为 `fibonacci.wasm` WebAssembly 程序。以此为例，将它导出为一个接收单个 `i32` 整数作为输入参数的 `fib()` 函数。
 
-You can run:
+你可以执行：
 
 ```bash
 wasmedge compile fibonacci.wasm fibonacci_aot.wasm
 ```
 
-or:
+或者：
 
 ```bash
-wasmedge compile fibonacci.wasm fibonacci_aot.so # On Linux.
+wasmedge compile fibonacci.wasm fibonacci_aot.so # 在 Linux 上
 ```
 
-The output will be:
+输出将会是：
 
 ```bash
 [2022-09-09 14:22:10.540] [info] compile start
@@ -81,13 +80,13 @@ The output will be:
 [2022-09-09 14:22:10.600] [info] compile done
 ```
 
-Then you can execute the output file with `wasmedge` and measure the execution time:
+然后，你可以使用 `wasmedge` 执行输出文件并测量执行时间：
 
 ```bash
 time wasmedge --reactor fibonacci_aot.wasm fib 30
 ```
 
-The output will be:
+输出将会是：
 
 ```bash
 1346269
@@ -97,13 +96,13 @@ user    0m0.012s
 sys     0m0.014s
 ```
 
-Then you can compare it with the interpreter mode:
+接着，你可以与解释器模式进行比较：
 
 ```bash
 time wasmedge --reactor fibonacci.wasm fib 30
 ```
 
-The output shows that the AOT-compiled WASM is much faster than the interpreter mode:
+输出显示，AOT 编译的 WASM 比解释器模式快得多：
 
 ```bash
 1346269
@@ -113,15 +112,15 @@ user    0m0.427s
 sys     0m0.012s
 ```
 
-## Output Format: Universal WASM
+## 输出格式：通用 WASM
 
-By default, the `wasmedge compile` AOT compiler tool could wrap the AOT-compiled native binary into a custom section in the origin WASM file. We call this the universal WASM binary format.
+默认情况下，`wasmedge compile` AOT 编译器工具可以将 AOT 编译的本机二进制文件包装为原始 WASM 文件中的自定义部分。我们称其为通用 WASM 二进制格式。
 
-This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime, WasmEdge will extract the native binary from the custom section and execute it in AOT mode.
+这个 AOT 编译的 WASM 文件与所有的 WebAssembly runtime 兼容。但是，当 WasmEdge runtime 执行此 WASM 文件时，WasmEdge 将从自定义部分提取本机二进制并以 AOT 模式执行它。
 
 <!-- prettier-ignore -->
 :::note
-On MacOS platforms, the universal WASM format will `bus error` in execution. By default, the `wasmedge compile` tool optimizes the WASM in the `O2` level. We are trying to fix this issue. For working around, please use the shared library output format instead.
+在 MacOS 平台上，通用 WASM 格式在执行时会产生 `bus error`。默认情况下，`wasmedge compile` 工具会以 `O2` 级别优化 WASM。我们正在尝试解决此问题。请使用共享库输出格式以暂时解决此问题。
 :::
 
 ```bash
@@ -129,11 +128,11 @@ wasmedge compile app.wasm app_aot.wasm
 wasmedge app_aot.wasm
 ```
 
-## Output Format: Shared Library
+## 输出格式：共享库
 
-Users can assign the shared library extension for the output files (`.so` on Linux, `.dylib` on MacOS, and `.dll` on Windows) to generate the shared library output format output.
+用户可以为输出文件指定共享库扩展名（在 Linux 上为 `.so`，在 MacOS 上为 `.dylib`，在 Windows 上为 `.dll`），以生成共享库格式的输出。
 
-This AOT-compiled WASM file is only for WasmEdge use and cannot be used by other WebAssembly runtimes.
+这个 AOT 编译的 WASM 文件仅供 WasmEdge 使用，其他 WebAssembly runtime 无法使用。
 
 ```bash
 wasmedge compile app.wasm app_aot.so

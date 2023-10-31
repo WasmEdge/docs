@@ -2,36 +2,36 @@
 sidebar_position: 2
 ---
 
-# WasmEdge Integrations
+# WasmEdge 集成
 
-WasmEdge is a "serverless" runtime for cloud-native and edge computing applications. It allows developers safely embed third-party or "native" functions into a host application or a distributed computing framework.
+WasmEdge 是云原生和边缘计算应用的“无服务器”运行时。它允许开发人员安全地将第三方或“本地”函数嵌入主机应用程序或分布式计算框架中。
 
-## Embed WasmEdge Into A Host Application
+## 将 WasmEdge 嵌入到主机应用程序中
 
-A major use case of WasmEdge is to start a VM instance from a host application. Depending on your host application's programming language, you can use WasmEdge SDKs to start and invoke WasmEdge functions.
+WasmEdge 的一个主要用例是从主机应用程序启动虚拟机实例。根据你的主机应用程序编程语言，您可以使用 WasmEdge SDK 来启动和调用 WasmEdge 函数。
 
-- Embed WasmEdge functions into a `C`-based application using the [WasmEdge C API](/category/c-sdk-for-embedding-wasmedge). Checkout the [quick start guide](../../embed/c/intro.md).
-- Embed WasmEdge functions into a `Go` application using the [WasmEdge Go API](/category/go-sdk-for-embedding-wasmedge). Here is a [tutorial](https://www.secondstate.io/articles/extend-golang-app-with-webassembly-rust/) and are some [examples](https://github.com/second-state/WasmEdge-go-examples)!
-- Embed WasmEdge functions into a `Rust` application using the [WasmEdge Rust crate](https://crates.io/crates/wasmedge-sdk).
-- Embed WasmEdge functions into a `Node.js` application using the `NAPI`. Here is a [tutorial](https://www.secondstate.io/articles/getting-started-with-rust-function/).
-- Embed WasmEdge functions into any application by spawning a new process. See examples for [Vercel Serverless Functions](https://www.secondstate.io/articles/vercel-wasmedge-webassembly-rust/) and [AWS Lambda](https://www.cncf.io/blog/2021/08/25/webassembly-serverless-functions-in-aws-lambda/).
+- 使用 [WasmEdge C API](/category/c-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到基于 `C` 的应用程序中。查看 [快速入门指南](../../embed/c/intro.md)。
+- 使用 [WasmEdge Go API](/category/go-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到 `Go` 应用程序中。这里有一个 [教程](https://www.secondstate.io/articles/extend-golang-app-with-webassembly-rust/) 和一些 [示例](https://github.com/second-state/WasmEdge-go-examples)！
+- 使用 [WasmEdge Rust crate](https://crates.io/crates/wasmedge-sdk) 将 WasmEdge 函数嵌入到 `Rust` 应用程序中。
+- 使用 `NAPI` 将 WasmEdge 函数嵌入到 `Node.js` 应用程序中。这里有一个 [教程](https://www.secondstate.io/articles/getting-started-with-rust-function/)。
+- 通过生成一个新进程将 WasmEdge 函数嵌入到任何应用程序。查看 [Vercel 无服务器函数](https://www.secondstate.io/articles/vercel-wasmedge-webassembly-rust/) 和 [AWS Lambda](https://www.cncf.io/blog/2021/08/25/webassembly-serverless-functions-in-aws-lambda/) 的示例。
 
-However, the WebAssembly spec only supports very limited data types as input parameters and return values for the WebAssembly bytecode functions. To pass complex data types, such as a string of an array, as call arguments into WebAssembly compiled from Rust, you should use the `bindgen` solution provided by the [`wasmedge-bindgen`](https://crates.io/crates/wasmedge-bindgen). We currently support the `wasmedge-bindgen` in the [Rust](../../develop/rust/bindgen.md) and in [Go](../../embed/go/bindgen.md).
+不过，WebAssembly 规范仅支持用于 WebAssembly 字节码函数的非常有限的输入参数和返回值的数据类型。要传递复杂数据类型（例如字符串或数组）作为来自 Rust 编译的 WebAssembly 的调用参数，你应该使用[`wasmedge-bindgen`](https://crates.io/crates/wasmedge-bindgen)提供的 `bindgen` 解决方案。我们目前在 [Rust](../../develop/rust/bindgen.md) 和 [Go](../../embed/go/bindgen.md) 中支持`wasmedge-bindgen`。
 
-## Use WasmEdge As A Docker-Like Container
+## 使用 WasmEdge 作为类似 Docker 的容器
 
-WasmEdge provides an OCI-compliant interface. You can use container tools like CRI-O, Docker Hub, and Kubernetes to orchestrate and manage WasmEdge runtimes.
+WasmEdge 提供符合 OCI 规范的接口。你可以使用诸如 CRI-O、Docker Hub 和 Kubernetes 之类的容器工具来编排和管理 WasmEdge 运行时。
 
-- [Manage WasmEdge with CRI-O and Docker Hub](https://www.secondstate.io/articles/manage-webassembly-apps-in-wasmedge-using-docker-tools/).
+- [使用 CRI-O 和 Docker Hub 管理 WasmEdge](https://www.secondstate.io/articles/manage-webassembly-apps-in-wasmedge-using-docker-tools/)。
 
-## Call Native Host Functions From WasmEdge
+## 从 WasmEdge 调用本机主机函数
 
-A key feature of WasmEdge is its extensibility. WasmEdge APIs allow developers to register "host functions" from the host programming languages into a WasmEdge instance and invoke these functions from the WebAssembly program.
+WasmEdge 的一个关键特性是其可扩展性。WasmEdge API 允许开发人员将来自主机编程语言的“主机函数”注册到 WasmEdge 实例中，并从 WebAssembly 程序中调用这些函数。
 
-- The WasmEdge C API supports the [C host functions](../../embed/c/host_function.md).
-- The WasmEdge Go API supports the [Go host functions](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_HostFunc#wasmedge-go-host-function-example).
-- The WasmEdge Rust API supports the [Rust host functions](https://github.com/second-state/wasmedge-rustsdk-examples/blob/main/README.md#host-functions).
+- WasmEdge C API 支持 [C 主机函数](../../embed/c/host_function.md)。
+- WasmEdge Go API 支持 [Go 主机函数](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_HostFunc#wasmedge-go-host-function-example)。
+- WasmEdge Rust API 支持 [Rust 主机函数](https://github.com/second-state/wasmedge-rustsdk-examples/blob/main/README.md#host-functions)。
 
-[Here is an example](https://www.secondstate.io/articles/call-native-functions-from-javascript/) of a JavaScript program in WasmEdge calling a C-based host function in the underlying OS.
+[这是一个示例](https://www.secondstate.io/articles/call-native-functions-from-javascript/)，演示了 WasmEdge 中的 JavaScript 程序调用底层操作系统中基于 C 的主机函数。
 
-The host functions break the WASM sandbox to access the underly OS or hardware. But the sandbox breaking is done with explicit permission from the system’s operator.
+主机函数打破了 WASM 沙箱，以便访问底层操作系统或硬件。但这种沙箱破坏是经过系统操作者明确许可的。

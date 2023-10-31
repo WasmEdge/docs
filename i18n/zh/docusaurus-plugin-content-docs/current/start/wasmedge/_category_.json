@@ -1,8 +1,8 @@
 {
-  "label": "What is WasmEdge",
+  "label": "WasmEdge 是什么",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "WasmEdge is a WebAssembly runtime optimized for cloud-native and edge-native applications. It is a safe, fast, lightweight, and portable alternative to Linux containers in the cloud. It is also an ideal runtime for serverless functions, user-defined functions, embedded functions in application platforms and data pipelines."
+    "description": "WasmEdge 是为云原生和边缘原生应用优化的 WebAssembly 运行时。它是云环境中安全、快速、轻量且可移植的替代方案，适合于 Linux 容器。它也是无服务器函数、用户自定义函数、应用平台和数据流水线中的嵌入式函数的理想运行时。"
   }
 }

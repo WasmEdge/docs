@@ -1,11 +1,11 @@
 ---
 sidebar_position: 4
 ---
+# 腾讯云上的 WebAssembly 无服务器函数
 
-# WebAssembly serverless functions on Tencent Cloud
+由于腾讯云的主要用户来自中国，所以本教程是[用中文撰写的](https://my.oschina.net/u/4532842/blog/5172639)。
 
-As the main users of Tencent Cloud are from China, so the tutorial is [written in Chinese](https://my.oschina.net/u/4532842/blog/5172639).
+我们还提供了一个代码模板，用于在腾讯云上部署无服务器的 WebAssembly 函数，请查看 [tencent-scf-wasm-runtime 存储库](https://github.com/second-state/tencent-scf-wasm-runtime)。
 
-We also provide a code template for deploying serverless WebAssembly functions on Tencent Cloud, please check out [the tencent-scf-wasm-runtime repo](https://github.com/second-state/tencent-scf-wasm-runtime).
+Fork 这个存储库并开始编写您自己的 Rust 函数。
 
-Fork the repo and start writing your own rust functions.

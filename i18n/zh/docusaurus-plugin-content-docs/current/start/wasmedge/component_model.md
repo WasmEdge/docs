@@ -2,10 +2,10 @@
 sidebar_position: 4
 ---
 
-# Component Model
+# 组件模型
 
-The component model for WASM would dramatically improve WASM module’s reusability and composability. It will allow better access from one WASM module to other modules and systems, including the operating system APIs (e.g., networking).
+WASM 的组件模型将大幅改善 WASM 模块的可重用性和可组合性。它将允许一个 WASM 模块更好地访问其他模块和系统，包括操作系统的 API（例如网络功能）。
 
-WasmEdge is already committed to supporting and implementing [the component model proposal](https://github.com/WebAssembly/component-model). See the related issue [here](https://github.com/WasmEdge/WasmEdge/issues/1892).
+WasmEdge 已经致力于支持和实现 [组件模型提案](https://github.com/WebAssembly/component-model)。请在[此处](https://github.com/WasmEdge/WasmEdge/issues/1892)查看相关问题。
 
-After the support for the component model is done, WasmEdge could be integrated by Spin and Spiderlightning.
+在支持组件模型之后，WasmEdge 将能够被 Spin 和 Spiderlightning 集成。
