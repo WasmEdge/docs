@@ -71,7 +71,7 @@ cp target/wasm32-wasi/release/grayscale.wasm ../../
 
 ### 创建服务脚本以加载函数
 
-[`api/hello.js`](https://github.com/second-state/aws-lambda-wasm-runtime/blob/main/api/hello.js) 脚本加载 WasmEdge 运行时，在 WasmEdge 中启动编译后的 WebAssembly 程序，并通过 `STDIN` 传递上传的图像数据。请注意，[`api/hello.js`](https://github.com/second-state/aws-lambda-wasm-runtime/blob/main/api/hello.js) 运行由 [`api/pre.sh`](https://github.com/second-state/aws-lambda-wasm-runtime/blob/main/api/pre.sh) 生成的编译后的 `grayscale.so` 文件，以实现更好的性能。
+[`api/hello.js`](https://github.com/second-state/aws-lambda-wasm-runtime/blob/main/api/hello.js) 脚本加载 WasmEdge 运行时，在 WasmEdge 中启动编译后的 WebAssembly 程序，并通过 `STDIN` 传递上传的图像数据。请注意，为了实现更好的性能，[`api/hello.js`](https://github.com/second-state/aws-lambda-wasm-runtime/blob/main/api/hello.js) 运行的由 [`api/pre.sh`](https://github.com/second-state/aws-lambda-wasm-runtime/blob/main/api/pre.sh) 生成的编译后的 `grayscale.so` 文件。
 
 ```javascript
 const { spawn } = require('child_process');

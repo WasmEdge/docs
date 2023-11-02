@@ -67,7 +67,7 @@ cp target/wasm32-wasi/release/grayscale.wasm ../../
 
 > 在设置无服务器环境时，Netlify 函数会运行 [`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/pre.sh)。该脚本安装 WasmEdge 运行时，然后将每个 WebAssembly 字节码程序编译为本机 `so` 库，以实现更快的执行。
 
-[`api/hello.js`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/hello.js) 脚本加载 WasmEdge 运行时，启动 WasmEdge 中编译的 WebAssembly 程序，并通过 `STDIN` 传递上传的图像数据。请注意 [`api/hello.js`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/hello.js) 运行由 [`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/pre.sh) 生成的编译后的 `grayscale.so` 文件，以实现更好的性能。
+[`api/hello.js`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/hello.js) 脚本加载 WasmEdge 运行时，启动 WasmEdge 中编译的 WebAssembly 程序，并通过 `STDIN` 传递上传的图像数据。请注意，为了获得更好的性能，[`api/hello.js`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/hello.js) 运行的是由 [`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/pre.sh) 生成的编译后的 `grayscale.so` 文件。
 
 ```javascript
 const fs = require('fs');
