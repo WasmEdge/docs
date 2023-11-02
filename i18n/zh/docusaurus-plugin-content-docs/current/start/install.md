@@ -8,7 +8,7 @@ sidebar_position: 2
 
 <!-- prettier-ignore -->
 :::note
-Docker Desktop 4.15+ 已经在其分发二进制文件中打包了 WasmEdge。如果你使用 Docker Desktop，则无需再单独安装 WasmEdge。详情请查看[如何在 Docker Desktop 中运行 WasmEdge 应用](https://chat.openai.com/c/build-and-run/docker_wasm.md)。
+Docker Desktop 4.15+ 已经在其分发二进制文件中打包了 WasmEdge。如果你使用 Docker Desktop，则无需再单独安装 WasmEdge。详情请查看[如何在 Docker Desktop 中运行 WasmEdge 应用](build-and-run/docker_wasm.md)。
 :::
 
 ## 安装
