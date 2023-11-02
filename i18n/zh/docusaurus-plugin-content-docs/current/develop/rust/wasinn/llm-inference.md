@@ -96,8 +96,7 @@ You can use environment variables to configure the model execution.
 
 | Option	|Default	|Function |
 | -------|-----------|----- |
-|                         |
-LLAMA_LOG|	0	|The backend will print diagnostic information when this value is set to 1|
+| LLAMA_LOG|	0	|The backend will print diagnostic information when this value is set to 1|
 |LLAMA_N_CTX	|512|	The context length is the max number of tokens in the entire conversation|
 |LLAMA_N_PREDICT |512|The number of tokens to generate in each response from the model|
 
