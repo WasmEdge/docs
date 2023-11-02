@@ -98,11 +98,11 @@ dnf install wasmedge
 - `$HOME/.wasmedge/bin` 目录中包含 WasmEdge 运行时可执行文件。你可以在文件系统中复制和移动它们。
 
   - `wasmedge` 工具是标准的 WasmEdge 运行时。你可以通过命令行界面 (CLI) 使用它。
-    - 执行一个 WASM 文件：`wasmedge --dir .:. app.wasm`
-  - `wasmedgec` 工具是提前（AOT）编译器，用于将 `.wasm` 文件编译成本机的 `.so` 文件（在 MacOS 上则是 `.dylib`，在 Windows 上则是 `.dll`，或者在所有平台上通用的 `.wasm` 格式）。然后 `wasmedge` 可以执行输出的文件。
+    - 运行一个 WASM 文件：`wasmedge --dir .:. app.wasm`
+  - `wasmedgec` 工具是提前（AOT）编译器，用于将 `.wasm` 文件编译成本机的 `.so` 文件（在 MacOS 上则编译成 `.dylib`，在 Windows 上则编译成 `.dll`，或编译成在各平台上通用的 `.wasm` 格式）。`wasmedge` 可以执行编译后的文件。
 
-    - 将 WASM 文件编译为 AOT 编译的 WASM：`wasmedgec app.wasm app.so`
-    - 以 AOT 模式执行 WASM：`wasmedge --dir .:. app.so`
+    - 使用 AOT 编译 WASM 文件：`wasmedgec app.wasm app.so`
+    - 以 AOT 模式运行 WASM：`wasmedge --dir .:. app.so`
 
     <!-- prettier-ignore -->
     :::note
