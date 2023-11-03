@@ -15,7 +15,7 @@ WasmEdge 运行时为其包含的 WebAssembly 字节码程序提供了良好定�
 
 - [安装和卸载 WasmEdge](install.md)
 - [入门指南](/category/getting-started-with-wasmEdge)
-- 介绍 [WasmEdge Runtime](/category/what-is-wasmedge)
+- 介绍 [WasmEdge 运行时](/category/what-is-wasmedge)
 - [运行 WasmEdge](/category/running-with-wasmedge)
 
 对于使用 WasmEdge 进行高级编程，请参考 [开发 WASM 应用程序](../develop/overview.md)，[在应用中嵌入 WasmEdge](../embed/overview.md)，或向 WasmEdge [进行贡献](../contribute/overview.md) 的指南。

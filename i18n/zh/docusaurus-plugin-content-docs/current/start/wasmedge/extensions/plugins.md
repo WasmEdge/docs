@@ -22,4 +22,17 @@ WasmEdge 的插件机制是一种扩展主机模块的简便方法，用户可�
 | WasmEdge-Image | 用于 AI 推理任务中处理图像的本机库。 | `manylinux2014 x86_64`，`manylinux2014 aarch64`，`ubuntu 20.04 x86_64`，`darwin x86_64` 和 `darwin arm64`（自`0.13.0`） | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface)（0.3.0） |
 | WasmEdge-Tensorflow | 用于推理 TensorFlow 模型的本机库。 | `manylinux2014 x86_64`，`manylinux2014 aarch64`，`ubuntu 20.04 x86_64`，`darwin x86_64` 和 `darwin arm64`（自`0.13.0`） | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface)（0.3.0） |
 | WasmEdge-TensorflowLite | 用于推理 TensorFlow-Lite 模型的本机库。 | `manylinux2014 x86_64`，`manylinux2014 aarch64`，`ubuntu 20.04 x86_64`，`darwin x86_64` 和 `darwin arm64`（自`0.13.0`） | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface) |
-| WasmEdge-OpenCV | 用于处理图像和视频以供 AI 输入/输出的非常流行的实用程序函数。 | 未发布 | Rust |
+| WasmEdge-OpenCV | 用于处理图像和视频以供 AI 输入/输出的非常流行的实用程序函数。      | 未发布                                       | Rust |
+| WasmEdge-eBPF                                                               | 一个用于进行 eBPF 应用推理的原生库                                                                                                                                                          | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | Rust                                                                   |
+| WasmEdge-rusttls                                                            | 一个用于进行 Rust 和 TLS 推理的原生库                                                                                                                                                        | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Rust](https://crates.io/crates/wasmedge_rustls_api) 
+
+## （过去的）WasmEdge 拓展
+
+除了插件，WasmEdge 在 `0.13.0` 版本之前还提供了扩展功能。请注意，在 `0.13.0` 版本之后，这些扩展已经被相应的插件所取代。
+
+支持这些扩展的最新版本是 `0.12.1`。当 WasmEdge 安装程序不再支持安装 `0.12.x` 版本时，本段将被废弃。
+
+| 扩展 | 描述 | 平台支持 | 语言支持 |
+| --- | --- | --- | --- |
+| [图像处理](https://github.com/second-state/WasmEdge-image) | 用于处理人工智能推推理任务中的图像的本地库。在 WasmEdge `0.13.0` 版本后迁移到插件中。 | `manylinux2014 x86_64`，`manylinux2014 aarch64`，`android aarch64`，`ubuntu 20.04 x86_64` 和 `darwin x86_64` | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface) (0.2.2) |
+| [TensorFlow 和 Tensorflow-Lite](https://github.com/second-state/WasmEdge-tensorflow) | 用于 TensorFlow 和 TensorFlow-Lite 模型推理的本地库。在 WasmEdge `0.13.0` 版本后迁移到插件中。 | `manylinux2014 x86_64`，`manylinux2014 aarch64`（仅限TensorFlow-Lite），`android aarch64`（仅限TensorFlow-Lite），`ubuntu 20.04 x86_64` 和 `darwin x86_64` | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface) (0.2.2) |
