@@ -24,6 +24,7 @@ The following lists are the WasmEdge official released plug-ins. Users can insta
 | [WasmEdge-TensorflowLite](../../../contribute/source/plugin/tensorflowlite.md) | A native library to inferring TensorFlow-Lite models. | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface) |
 | WasmEdge-OpenCV | Very popular utility functions to process images and videos for AI input / output. | Unreleased | Rust |
 
+
 ## Old WasmEdge Extensions
 
 Besides the plug-ins, WasmEdge provides the extensions before the `0.13.0` versions. Noticed that the extensions are replaced by the corresponding plug-ins after the `0.13.0` version.
