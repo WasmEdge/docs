@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Mediapipe solutions
@@ -19,7 +19,7 @@ git clone https://github.com/juntao/demo-object-detection
 cd demo-object-detection/
 ```
 
-Build an inference application using the Mediapipe object dection model.
+Build an inference application using the Mediapipe object detection model.
 
 ```bash
 cargo build --target wasm32-wasi --release
@@ -69,7 +69,7 @@ let detector = ObjectDetectorBuilder::new()
         .build_from_buffer(model_data)?;
 ```
 
-The `detect()` function takes in an image, pre-processes it into a tensor array, runs inference on the mediapipe object detection model, and the post-processes the returned tensor array into a human redable format stored in the `detection_result`.
+The `detect()` function takes in an image, pre-processes it into a tensor array, runs inference on the mediapipe object detection model, and the post-processes the returned tensor array into a human readable format stored in the `detection_result`.
 
 ```rust
 let mut input_img = image::open(img_path)?;
