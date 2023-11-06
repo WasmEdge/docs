@@ -164,7 +164,7 @@ If CPU is the only available hardware on your machine, the installer will instal
 apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.
 ```
 
-Then, go to the [Llama2 inference in Rust chapter](../develop/rust/wasinn/llm-inference) to see how to run AI inference with llama2 series of models.
+Then, go to the [Llama2 inference in Rust chapter](../develop/rust/wasinn/llm_inference) to see how to run AI inference with llama2 series of models.
 
 #### WASI-NN plug-in with PyTorch backend
 
