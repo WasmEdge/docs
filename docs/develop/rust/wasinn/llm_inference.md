@@ -65,7 +65,7 @@ The output WASM file is `target/wasm32-wasi/release/llama-chat.wasm`.
 We also need to get the model. Here we use the llama-2-13b model.
 
 ```bash
-curl -LO https://huggingface.co/wasmedge/llama2/blob/main/llama-2-13b-q5_k_m.gguf
+curl -LO https://huggingface.co/wasmedge/llama2/blob/main/llama-2-13b-chat-q5_k_m.gguf
 ```
 
 Next, use WasmEdge to load the llama-2-13b model and then ask the model to questions.
