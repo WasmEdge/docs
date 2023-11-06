@@ -145,11 +145,25 @@ sudo cp libwasmedge_rustls.so /usr/local/lib/wasmedge/
 
 WasmEdge 支持多种 `WASI-NN` 的后端。
 
+- [ggml 后端](#wasi-nn-plug-in-with-pytorch-backend)：支持 `Ubuntu 20.04 以上`、macOS (M1 和 M2) 和 `GPU (NVIDIA)`。
 - [PyTorch 后端](#wasi-nn-plug-in-with-pytorch-backend)：支持 `Ubuntu 20.04 以上` 和 `manylinux2014_x86_64`。
 - [OpenVINO™ 后端](#wasi-nn-plug-in-with-openvino-backend)：支持 `Ubuntu 20.04 以上`。
 - [TensorFlow-Lite 后端](#wasi-nn-plug-in-with-tensorflow-lite-backend)：支持 `Ubuntu 20.04 以上`，`manylinux2014_x86_64` 和 `manylinux2014_aarch64`。
 
 注意这些后端是互斥的。开发者只能选择并安装一个后端用于 `WASI-NN` 插件。
+
+#### 带有 ggml 后端的 WASI-NN 插件
+
+`WASI-NN` 插件与 `ggml` 后端允许 WasmEdge 应用执行 Llama 2 系列大模型的推理。要在 Linux 上安装带有 `WASI-NN ggml backend` 的 WasmEdge，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasi_nn-ggml` 参数。
+
+注意，WasmEdge 0.13.5 的安装程序将自动检测 CUDA。如果检测到 CUDA，安装程序将始终尝试安装支持 CUDA 的插件版本。
+
+如果您的机器上只有CPU可用，那么需要安装 OpenBLAS 版本的插件。
+
+```
+apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.
+```
+安装完成后，请在 [Rust 中的大模型推理](../develop/rust/wasinn/llm_inference) 章节中了解如何使用 `ggml` 运行 LLM 推理程序。
 
 #### 带有 PyTorch 后端的 WASI-NN 插件
 
@@ -175,11 +189,11 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$(pwd)/libtorch/lib
 对于其他系统，WasmEdge 安装程序将安装 `manylinux2014` 版本，并且你应该使用不带 `cxx11-abi` 的 `libtorch`。
 :::
 
-安装完成后，请在 [Rust 中的 WASI-NN PyTorch 后端](../develop/rust/wasinn/pytorch) 章节中了解如何使用 `PyTorch` 运行人工智能推断。
+安装完成后，请在 [Rust 中的 WASI-NN PyTorch 后端](../develop/rust/wasinn/pytorch) 章节中了解如何使用 `PyTorch` 运行人工智能推理。
 
 #### 带有 OpenVINO 后端的 WASI-NN 插件
 
-`WASI-NN` 插件与 `OpenVINO™` 后端允许 WasmEdge 应用执行 `OpenVINO™` 模型推断。要在 Linux 上安装带有 `WASI-NN OpenVINO™ 后端` 的 WasmEdge，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasi_nn-openvino` 参数。
+`WASI-NN` 插件与 `OpenVINO™` 后端允许 WasmEdge 应用执行 `OpenVINO™` 模型推理。要在 Linux 上安装带有 `WASI-NN OpenVINO™ 后端` 的 WasmEdge，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasi_nn-openvino` 参数。
 
 `WASI-NN` 插件带有 `OpenVINO™` 后端依赖于 `OpenVINO™` C 库来进行人工智能/机器学习计算。[OpenVINO™](https://docs.openvino.ai/2023.0/openvino_docs_install_guides_installing_openvino_apt.html)（2023）依赖项。以下说明适用于 Ubuntu 20.04 及以上版本。
 
@@ -192,11 +206,11 @@ sudo apt-get -y install openvino
 ldconfig
 ```
 
-安装完成后，请在 [Rust 中的 WASI-NN OpenVINO™ 后端](../develop/rust/wasinn/openvino) 章节查看如何使用 `OpenVINO™` 运行人工智能推断。
+安装完成后，请在 [Rust 中的 WASI-NN OpenVINO™ 后端](../develop/rust/wasinn/openvino) 章节查看如何使用 `OpenVINO™` 运行人工智能推理。
 
 #### 带有 TensorFlow-Lite 后端的 WASI-NN 插件
 
-`WASI-NN` 插件与 `Tensorflow-Lite` 后端允许 WasmEdge 应用执行 `Tensorflow-Lite` 模型推断。要在 Linux 上安装带有 `WASI-NN Tensorflow-Lite 后端` 的 WasmEdge，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasi_nn-tensorflowlite` 参数。
+`WASI-NN` 插件与 `Tensorflow-Lite` 后端允许 WasmEdge 应用执行 `Tensorflow-Lite` 模型推理。要在 Linux 上安装带有 `WASI-NN Tensorflow-Lite 后端` 的 WasmEdge，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasi_nn-tensorflowlite` 参数。
 
 `WASI-NN` 插件带有 `Tensorflow-Lite` 后端依赖于 `libtensorflowlite_c` 共享库来进行人工智能/机器学习计算，并将由安装程序自动安装。
 
@@ -205,7 +219,7 @@ ldconfig
 如果安装了该插件，但并非使用上面的方式，可以参考[此处](#tensorflow-lite-dependencies)安装依赖项。
 :::note
 
-安装完成后，查看 [Rust 中的 WASI-NN TensorFlow-Lite 后端](../develop/rust/wasinn/tensorflow_lite) 章节了解如何使用 `TensorFlow-Lite` 运行人工智能推断。
+安装完成后，查看 [Rust 中的 WASI-NN TensorFlow-Lite 后端](../develop/rust/wasinn/tensorflow_lite) 章节了解如何使用 `TensorFlow-Lite` 运行人工智能推理。
 
 ### WASI-Crypto 插件
 
@@ -221,7 +235,7 @@ wasmEdge-Image 插件可以帮助开发人员加载和解码 JPEG 和 PNG 图像
 
 ### WasmEdge TensorFlow 插件
 
-WasmEdge-TensorFlow 插件可以帮助开发人员执行与 Python 中相似的 `TensorFlow` 模型推断。要安装此插件，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasmedge_tensorflow` 参数。
+WasmEdge-TensorFlow 插件可以帮助开发人员执行与 Python 中相似的 `TensorFlow` 模型推理。要安装此插件，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasmedge_tensorflow` 参数。
 
 WasmEdge-TensorFlow 插件依赖于 `libtensorflow_cc` 共享库。
 
@@ -234,7 +248,7 @@ WasmEdge-TensorFlow 插件依赖于 `libtensorflow_cc` 共享库。
 
 ### WasmEdge TensorFlow-Lite 插件
 
-wasmEdge-TensorFlowLite 插件可以帮助开发人员执行与 Python 中类似的 `TensorFlow-Lite` 模型推断。要安装此插件，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasmedge_tensorflowlite` 参数。
+wasmEdge-TensorFlowLite 插件可以帮助开发人员执行与 Python 中类似的 `TensorFlow-Lite` 模型推理。要安装此插件，请在[运行安装命令](#generic-linux-and-macos)时使用 `--plugins wasmedge_tensorflowlite` 参数。
 
 WasmEdge-TensorflowLite 插件依赖于 `libtensorflowlite_c` 共享库来执行人工智能/机器学习计算（由安装程序自动安装）。
 
@@ -261,7 +275,7 @@ WasmEdge 图像扩展（在 `0.13.0 `后被 [WasmEdge-Image 插件](#wasmedge-im
 
 ### WasmEdge Tensorflow 和 TensorFlow-Lite 带有 CLI 工具的扩展
 
-WasmEdge Tensorflow 扩展和 CLI 工具（在 `0.13.0` 后被 [WasmEdge-Tensorflow 插件](#wasmedge-tensorflow-plug-in) 和 [WasmEdge-TensorflowLite 插件](#wasmedge-tensorflow-lite-plug-in) 取代）可以帮助开发者执行类似于 Python 中的 `TensorFlow` 和 `TensorFlow-Lite` 模型推断。要安装此扩展，请在[运行安装命令](#generic-linux-and-macos)时使用 `-e tensorflow` 参数。
+WasmEdge Tensorflow 扩展和 CLI 工具（在 `0.13.0` 后被 [WasmEdge-Tensorflow 插件](#wasmedge-tensorflow-plug-in) 和 [WasmEdge-TensorflowLite 插件](#wasmedge-tensorflow-lite-plug-in) 取代）可以帮助开发者执行类似于 Python 中的 `TensorFlow` 和 `TensorFlow-Lite` 模型推理。要安装此扩展，请在[运行安装命令](#generic-linux-and-macos)时使用 `-e tensorflow` 参数。
 
 ## 卸载
 
