@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Develop WasmEdge Plug-in in Rust SDK with witc
 
 Once you complete C++ plugin code, you can use witc[^1] to generate Rust Plugin SDK
