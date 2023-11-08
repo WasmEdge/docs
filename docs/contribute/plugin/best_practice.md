@@ -2,6 +2,8 @@
 sidebar_position: 5
 ---
 
+# Best Practice 
+
 When developing a WasmEdge plugin, it's important to follow certain best practices to ensure the plugin is robust, reliable, and efficient. Here are some key best practices to follow:
 
 1. **Choosing the Appropriate Programming Language:**
