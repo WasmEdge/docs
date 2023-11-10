@@ -14,7 +14,7 @@ WasmEdge 的插件机制是一种扩展主机模块的简便方法，用户可�
 
 | 插件 | 描述 | 平台支持 | 语言支持 |
 | --- | --- | --- | --- |
-| WasmEdge-Process((../../../contribute/source/plugin/process.md)) | 允许 WebAssembly 程序在主机操作系统中执行本机命令。它支持传递参数、环境变量、`STDIN`/`STDOUT` 管道以及主机访问的安全策略。 | `manylinux2014 x86_64`，`manylinux2014 aarch64` 和 `ubuntu 20.04 x86_64`（自`0.10.0`） | [Rust](https://crates.io/crates/wasmedge_process_interface) |
+| [WasmEdge-Process](../../../contribute/source/plugin/process.md) | 允许 WebAssembly 程序在主机操作系统中执行本机命令。它支持传递参数、环境变量、`STDIN`/`STDOUT` 管道以及主机访问的安全策略。 | `manylinux2014 x86_64`，`manylinux2014 aarch64` 和 `ubuntu 20.04 x86_64`（自`0.10.0`） | [Rust](https://crates.io/crates/wasmedge_process_interface) |
 | [WASI-Crypto](https://github.com/WebAssembly/wasi-crypto) | 用于运行时向 WebAssembly 模块公开的 API，以执行加密操作和密钥管理。 | `manylinux2014 x86_64`，`manylinux2014 aarch64` 和 `ubuntu 20.04 x86_64`（自`0.10.1`） | [Rust](https://crates.io/crates/wasi-crypto) |
 | [WASI-NN](https://github.com/WebAssembly/wasi-nn)[（OpenVINO 后端）](../../../develop/rust/wasinn/openvino.md) | 使用 OpenVINO 模型进行 AI 推理。 | `ubuntu 20.04 x86_64`（自`0.10.1`） | [Rust](https://crates.io/crates/wasi-nn)，JavaScript |
 | [WASI-NN](https://github.com/WebAssembly/wasi-nn)[（Pytorch 后端）](../../../develop/rust/wasinn/pytorch.md)   | 使用 Pytorch 模型进行 AI 推理。 | `manylinux2014 x86_64` 和 `ubuntu 20.04 x86_64`（自`0.11.1`） | [Rust](https://crates.io/crates/wasi-nn)，JavaScript |
