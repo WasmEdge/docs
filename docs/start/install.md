@@ -252,7 +252,7 @@ Then, go to [TensorFlow interface (image part) in Rust chapter](../develop/rust/
 
 ### WasmEdge TensorFlow Plug-in
 
-The WasmEdge-TensorFlow plug-in can help developers to perform `TensorFlow` model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflow` parameter when [running the installer command](#generic-linux-and-macos).
+The WasmEdge-TensorFlow plug-in can help developers to perform TensorFlow model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflow` parameter when [running the installer command](#generic-linux-and-macos).
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_tensorflow
@@ -269,20 +269,16 @@ Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plu
 
 ### WasmEdge TensorFlow-Lite Plug-in
 
-The wasmEdge-TensorFlowLite plug-in can help developers to perform `TensorFlow-Lite` model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflowlite` parameter when [running the installer command](#generic-linux-and-macos).
+<!-- prettier-ignore -->
+:::note
+The Tensorflow Lite plugin is being deprecated. Please use the [WASI NN TensorflowLite plugin](#wasi-nn-plug-in-with-tensorflow-lite-backend) instead.
+:::note
+
+The wasmEdge-TensorFlowLite plug-in can help developers to perform TensorFlow-Lite model inference. To install this plug-in, please use the `--plugins wasmedge_tensorflowlite` parameter when [running the installer command](#generic-linux-and-macos).
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_tensorflowlite
 ```
-
-The WasmEdge-TensorflowLite plug-in depends on the `libtensorflowlite_c` shared library to perform AI/ML computations, and it will be installed by the installer automatically.
-
-<!-- prettier-ignore -->
-:::note
-If you install this plug-in WITHOUT installer, you can [refer to here to install the dependency](#tensorflow-lite-dependencies).
-:::note
-
-Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plugin.md) to see how to run `WasmEdge-TensorFlowLite` functions.
 
 ## Install WasmEdge extensions and dependencies
 
@@ -340,6 +336,38 @@ winget uninstall wasmedge
 
 ## Appendix: Installing the TensorFlow Dependencies
 
+### TensorFlow-Lite Dependencies
+
+If you install the WASI NN TensorflowLite plug-in WITHOUT installer, you can download the shared libraries with the following commands:
+
+```bash
+VERSION=TF-2.12.0-CC
+# For the WasmEdge versions before 0.13.0, please use the `TF-2.6.0-CC` version.
+PLATFORM=manylinux2014_x86_64
+# For the Linux aarch64 platforms, please use the `manylinux2014_aarch64`.
+# For the MacOS x86_64 platforms, please use the `darwin_x86_64`.
+# For the MacOS arm64 platforms, please use the `darwin_arm64`.
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/$VERSION/WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
+tar -zxf WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
+rm -f WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
+```
+
+The shared library will be extracted in the current directory `./libtensorflowlite_c.so` (or `.dylib` for MacOS) and `./libtensorflowlite_flex.so` (after the `WasmEdge 0.13.0` version). You can move the library to the installation path:
+
+```bash
+# If you installed wasmedge locally as above
+mv libtensorflowlite_c.so ~/.wasmedge/lib
+mv libtensorflowlite_flex.so ~/.wasmedge/lib
+
+# Or, if you installed wasmedge for all users in /usr/local/
+mv libtensorflowlite_c.so /usr/local/lib
+mv libtensorflowlite_flex.so /usr/local/lib
+
+# Or on MacOS platforms
+mv libtensorflowlite_c.dylib ~/.wasmedge/lib
+mv libtensorflowlite_flex.dylib ~/.wasmedge/lib
+```
+
 ### TensorFlow Dependencies
 
 If you install the `WasmEdge-Tensorflow` plug-in WITHOUT installer, you can download the shared libraries with the following commands:
@@ -382,38 +410,6 @@ ln -s libtensorflow_cc.2.12.0.dylib ~/.wasmedge/lib/libtensorflow_cc.2.dylib
 ln -s libtensorflow_cc.2.dylib ~/.wasmedge/lib/libtensorflow_cc.dylib
 ln -s libtensorflow_framework.2.12.0.dylib ~/.wasmedge/lib/libtensorflow_framework.2.dylib
 ln -s libtensorflow_framework.2.dylib ~/.wasmedge/lib/libtensorflow_framework.dylib
-```
-
-### TensorFlow-Lite Dependencies
-
-If you install the `WasmEdge-TensorflowLite` plug-in WITHOUT installer, you can download the shared libraries with the following commands:
-
-```bash
-VERSION=TF-2.12.0-CC
-# For the WasmEdge versions before 0.13.0, please use the `TF-2.6.0-CC` version.
-PLATFORM=manylinux2014_x86_64
-# For the Linux aarch64 platforms, please use the `manylinux2014_aarch64`.
-# For the MacOS x86_64 platforms, please use the `darwin_x86_64`.
-# For the MacOS arm64 platforms, please use the `darwin_arm64`.
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/$VERSION/WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
-tar -zxf WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
-rm -f WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
-```
-
-The shared library will be extracted in the current directory `./libtensorflowlite_c.so` (or `.dylib` for MacOS) and `./libtensorflowlite_flex.so` (after the `WasmEdge 0.13.0` version). You can move the library to the installation path:
-
-```bash
-# If you installed wasmedge locally as above
-mv libtensorflowlite_c.so ~/.wasmedge/lib
-mv libtensorflowlite_flex.so ~/.wasmedge/lib
-
-# Or, if you installed wasmedge for all users in /usr/local/
-mv libtensorflowlite_c.so /usr/local/lib
-mv libtensorflowlite_flex.so /usr/local/lib
-
-# Or on MacOS platforms
-mv libtensorflowlite_c.dylib ~/.wasmedge/lib
-mv libtensorflowlite_flex.dylib ~/.wasmedge/lib
 ```
 
 ## Troubleshooting
