@@ -3,6 +3,6 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "在这一章节中，我们将讨论 WasmEdge CLIs（命令行界面）以及如何利用 Docker 和 WASM 来构建、分享和运行您的 WASM 应用程序。"
+    "description": "在这一章节中，我们将讨论 WasmEdge CLIs（命令行界面）以及如何利用 Docker 和 WASM 来构建、分享和运行你的 WASM 应用程序。"
   }
 }

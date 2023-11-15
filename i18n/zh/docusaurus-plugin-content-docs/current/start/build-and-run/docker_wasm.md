@@ -6,7 +6,7 @@ sidebar_position: 4
 
 Docker Desktop 分发了内置的 WasmEdge 运行时。这使开发人员可以通过 Docker 工具构建、分享和运行非常轻量的容器（即，只包含 `.wasm` 文件的 `scratch` 空容器，没有任何 Linux 操作系统库或文件）。这些“WASM 容器”完全符合 OCI 标准，因此可以由 Docker Hub 进行管理。它们是跨平台的，可以在 Docker 支持的任何操作系统/CPU 上运行（操作系统和 CPU 平台为 `wasi/wasm`）。但更重要的是，相较于 Linux 容器，它们的体积是其十分之一，因为 WASM 容器不需要捆绑和启动 Linux 库和服务，所以启动时间也是十分之一。
 
-结合 Docker 能够将开发环境和部署环境容器化的能力，你可以创建和部署复杂的应用程序，而无需安装任何依赖。例如，您可以在本地开发机器上设置完整的 Rust 和 WasmEdge 开发环境，而无需安装任何工具。您还可以部署一个复杂的 WasmEdge 应用，该应用需要连接到 MySQL 数据库，而无需在本地安装 MySQL。
+结合 Docker 能够将开发环境和部署环境容器化的能力，你可以创建和部署复杂的应用程序，而无需安装任何依赖。例如，你可以在本地开发机器上设置完整的 Rust 和 WasmEdge 开发环境，而无需安装任何工具。你还可以部署一个复杂的 WasmEdge 应用，该应用需要连接到 MySQL 数据库，而无需在本地安装 MySQL。
 
 在本指南中，我们将介绍如何：
 
@@ -77,7 +77,7 @@ docker push secondstate/rust-example-hello
 
 ### 运行 Rust 示例
 
-你可以使用常规的 Docker 的 `run` 命令来运行 WASM 容器应用程序。请注意，您确实需要指定 `runtime` 和 `platform` 标志，告知 Docker 这是一个非 Linux 容器，并且需要 WasmEdge 来运行它。
+你可以使用常规的 Docker 的 `run` 命令来运行 WASM 容器应用程序。请注意，你确实需要指定 `runtime` 和 `platform` 标志，告知 Docker 这是一个非 Linux 容器，并且需要 WasmEdge 来运行它。
 
 ```bash
 $ docker run --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/rust-example-hello:latest
@@ -152,7 +152,7 @@ docker push secondstate/node-example-hello
 
 ### 运行和测试 Node.js 示例
 
-你可以使用常规的 Docker 的 `run` 命令来运行 WASM 容器应用程序。请注意，您确实需要指定 `runtime` 和 `platform` 标志，告知 Docker 这是一个非 Linux 容器，并且需要 WasmEdge 来运行它。由于这是一个 HTTP 服务器应用，还需要将容器的端口 8080 映射到主机，以便您可以从主机访问服务器。
+你可以使用常规的 Docker 的 `run` 命令来运行 WASM 容器应用程序。请注意，你确实需要指定 `runtime` 和 `platform` 标志，告知 Docker 这是一个非 Linux 容器，并且需要 WasmEdge 来运行它。由于这是一个 HTTP 服务器应用，还需要将容器的端口 8080 映射到主机，以便你可以从主机访问服务器。
 
 ```bash
 $ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/node-example-server:latest

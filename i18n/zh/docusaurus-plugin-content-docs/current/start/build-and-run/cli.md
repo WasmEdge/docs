@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # `wasmedge` 命令行工具
 
-在安装了 WasmEdge 后，你可以使用 `wasmedge` 来执行 WASM 文件。我们将介绍如何在您的机器和 Docker 镜像上使用 WasmEdge 运行 WASM 文件。
+在安装了 WasmEdge 后，你可以使用 `wasmedge` 来执行 WASM 文件。我们将介绍如何在你的机器和 Docker 镜像上使用 WasmEdge 运行 WASM 文件。
 
 `wasmedge` 二进制文件是一个命令行界面（CLI）程序，用于运行 WebAssembly 程序。
 
@@ -187,7 +187,7 @@ Hello WasmEdge!
 
 ### 调用从 Rust 编译的 WebAssembly 函数
 
-[add](https://github.com/second-state/wasm-learning/tree/master/cli/add) 程序是用 Rust 编写的，包含一个导出的 `add()` 函数。你可以将其编译为 WebAssembly，并使用 `wasmedge` 调用 `add()` 函数。在这个示例中，您将看到如何从 CLI 进行此操作。通常在将 WasmEdge 嵌入到另一个主机应用程序中时，需要从主机调用 WASM 函数。
+[add](https://github.com/second-state/wasm-learning/tree/master/cli/add) 程序是用 Rust 编写的，包含一个导出的 `add()` 函数。你可以将其编译为 WebAssembly，并使用 `wasmedge` 调用 `add()` 函数。在这个示例中，你将看到如何从 CLI 进行此操作。通常在将 WasmEdge 嵌入到另一个主机应用程序中时，需要从主机调用 WASM 函数。
 
 你需要安装 [Rust 编译器](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites)，然后使用以下命令从 Rust 源代码构建 WASM 字节码文件。
 
@@ -256,7 +256,7 @@ wasmedge --dir .:. wasmedge_quickjs.wasm hello.js 1 2 3
 Hello 1 2 3
 ```
 
-[qjs_tf.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/js/qjs_tf.wasm) 是一个被贬意为 WebAssembly 的包含 [WasmEdge Tensorflow 扩展](https://www.secondstate.io/articles/wasi-tensorflow/) 的 JavaScript 解释器。要运行 [qjs_tf.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/js/qjs_tf.wasm)，你必须使用 `wasmedge-tensorflow-lite` CLI 工具，这是一个内置了 Tensorflow-Lite 扩展的 WasmEdge 构建版本。您可以下载一个完整的[基于 Tensorflow 的 JavaScript 示例](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo) 进行图像分类。
+[qjs_tf.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/js/qjs_tf.wasm) 是一个被贬意为 WebAssembly 的包含 [WasmEdge Tensorflow 扩展](https://www.secondstate.io/articles/wasi-tensorflow/) 的 JavaScript 解释器。要运行 [qjs_tf.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/js/qjs_tf.wasm)，你必须使用 `wasmedge-tensorflow-lite` CLI 工具，这是一个内置了 Tensorflow-Lite 扩展的 WasmEdge 构建版本。你可以下载一个完整的[基于 Tensorflow 的 JavaScript 示例](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/tensorflow_lite_demo) 进行图像分类。
 
 ```bash
 # Download the Tensorflow example
@@ -272,7 +272,7 @@ confidence: 0.8941176470588236
 
 ## CLI 工具的 Docker 镜像
 
-本节中的 Docker 镜像主要用于开发目的。它允许你在容器化的 Linux 环境中使用 WasmEdge 工具。如果您想要将 WASM 应用程序放入容器中，请查看[此处](../getting-started/quick_start_docker.md)的内容。
+本节中的 Docker 镜像主要用于开发目的。它允许你在容器化的 Linux 环境中使用 WasmEdge 工具。如果你想要容器化 WASM 应用程序，请查看[此处](../getting-started/quick_start_docker.md)的内容。
 
 `wasmedge/slim:{version}` Docker 镜像提供了使用 [DockerSlim](https://dockersl.im) 构建的精简 WasmEdge 镜像，每次发布都会更新。
 

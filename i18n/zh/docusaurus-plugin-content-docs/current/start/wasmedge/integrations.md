@@ -8,7 +8,7 @@ WasmEdge 是云原生和边缘计算应用的“无服务器”运行时。它�
 
 ## 将 WasmEdge 嵌入到主机应用程序中
 
-WasmEdge 的一个主要用例是从主机应用程序启动虚拟机实例。根据你的主机应用程序编程语言，您可以使用 WasmEdge SDK 来启动和调用 WasmEdge 函数。
+WasmEdge 的一个主要用例是从主机应用程序启动虚拟机实例。根据你的主机应用程序编程语言，你可以使用 WasmEdge SDK 来启动和调用 WasmEdge 函数。
 
 - 使用 [WasmEdge C API](/category/c-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到基于 `C` 的应用程序中。查看[快速入门指南](../../embed/c/intro.md)。
 - 使用 [WasmEdge Go API](/category/go-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到 `Go` 应用程序中。这里有一个[教程](https://www.secondstate.io/articles/extend-golang-app-with-webassembly-rust/) 和一些[示例](https://github.com/second-state/WasmEdge-go-examples)！

@@ -19,7 +19,7 @@ sidebar_position: 1
 
 ## 使用一行指令安装 WasmEdge
 
-安装 WasmEdge 的最简单方式是运行以下命令。你应该具有 root 或至少 `sudo` 权限。在运行此命令之前，您的系统应该已经安装了 `git` 和 `curl`。
+安装 WasmEdge 的最简单方式是运行以下命令。你应该具有 root 或至少 `sudo` 权限。在运行此命令之前，你的系统应该已经安装了 `git` 和 `curl`。
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | sudo bash -s -- -p /usr/local

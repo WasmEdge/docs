@@ -99,7 +99,7 @@ function _runWasm(reqBody) {
 }
 ```
 
-`hello.js` 中的 `exports.handler` 部分导出了一个异步函数处理程序，用于处理每次调用无服务器函数时的不同事件。在本例中，我们简单地通过调用上述函数处理图像并返回结果，但可以根据你的需求定义更复杂的事件处理行为。此外，我们还需要返回一些 `Access-Control-Allow` 标头以避免在从浏览器调用无服务器函数时出现 [跨源资源共享（CORS）](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS) 错误。如果您在复制我们的示例时遇到 CORS 错误，可以在[这里](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS/Errors)了解更多关于 CORS 错误的信息。
+`hello.js` 中的 `exports.handler` 部分导出了一个异步函数处理程序，用于处理每次调用无服务器函数时的不同事件。在本例中，我们简单地通过调用上述函数处理图像并返回结果，但可以根据你的需求定义更复杂的事件处理行为。此外，我们还需要返回一些 `Access-Control-Allow` 标头以避免在从浏览器调用无服务器函数时出现 [跨源资源共享（CORS）](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS) 错误。如果你在复制我们的示例时遇到 CORS 错误，可以在[这里](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS/Errors)了解更多关于 CORS 错误的信息。
 
 ```javascript
 exports.handler = async function (event, context) {
@@ -173,9 +173,9 @@ docker run -p 9000:8080  myfunction:latest
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
 ```
 
-你应该在终端中获得您期望的输出。
+你应该在终端中获得你期望的输出。
 
-如果你不想使用 AWS Lambda 的基础镜像，您也可以使用自己的基础镜像，并在构建 Docker 镜像时安装 RIC 和/或 RIE。只需按照[此指南](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)中的 **Create an image from an alternative base image** 部分进行操作。
+如果你不想使用 AWS Lambda 的基础镜像，你也可以使用自己的基础镜像，并在构建 Docker 镜像时安装 RIC 和/或 RIE。只需按照[此指南](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)中的 **Create an image from an alternative base image** 部分进行操作。
 
 准备就绪！在构建完 Docker 镜像后，可以参考存储库 [README](https://github.com/second-state/aws-lambda-wasm-runtime/blob/tensorflow/README.md#deploy)中简述的步骤将其部署到 AWS Lambda。然后你的无服务器函数就可以开始工作了！
 
@@ -267,6 +267,6 @@ function _runWasm(reqBody) {
 exports.handler = ... // _runWasm(reqBody) is called in the handler
 ```
 
-你可以按照之前的示例中概述的方式构建您的 Docker 镜像并部署函数。现在您已经创建了一个用于主题分类的 Web 应用！
+你可以按照之前的示例中概述的方式构建你的 Docker 镜像并部署函数。现在你已经创建了一个用于主题分类的 Web 应用！
 
-接下来，轮到你使用 [aws-lambda-wasm-runtime 存储库](https://github.com/second-state/aws-lambda-wasm-runtime/tree/main) 作为模板，在 AWS Lambda 上开发 Rust 无服务器函数了。期待着您的出色工作。
+接下来，轮到你使用 [aws-lambda-wasm-runtime 存储库](https://github.com/second-state/aws-lambda-wasm-runtime/tree/main) 作为模板，在 AWS Lambda 上开发 Rust 无服务器函数了。期待着你的出色工作。
