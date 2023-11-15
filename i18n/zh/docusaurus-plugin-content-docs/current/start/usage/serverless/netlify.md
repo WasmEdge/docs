@@ -59,7 +59,7 @@ cd api/functions/image-grayscale/
 cargo build --release --target wasm32-wasi
 ```
 
-将构建出结果复制到 `api` 文件夹。
+将构建产物复制到 `api` 文件夹。
 
 ```bash
 cp target/wasm32-wasi/release/grayscale.wasm ../../
@@ -147,7 +147,7 @@ cd api/functions/image-classification/
 cargo build --release --target wasm32-wasi
 ```
 
-将构建出的产物复制到 `api` 文件夹中。
+将构建产物复制到 `api` 文件夹中。
 
 ```bash
 cp target/wasm32-wasi/release/classify.wasm ../../
