@@ -10,10 +10,10 @@ WasmEdge 是云原生和边缘计算应用的“无服务器”运行时。它�
 
 WasmEdge 的一个主要用例是从主机应用程序启动虚拟机实例。根据你的主机应用程序编程语言，您可以使用 WasmEdge SDK 来启动和调用 WasmEdge 函数。
 
-- 使用 [WasmEdge C API](/category/c-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到基于 `C` 的应用程序中。查看 [快速入门指南](../../embed/c/intro.md)。
-- 使用 [WasmEdge Go API](/category/go-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到 `Go` 应用程序中。这里有一个 [教程](https://www.secondstate.io/articles/extend-golang-app-with-webassembly-rust/) 和一些 [示例](https://github.com/second-state/WasmEdge-go-examples)！
+- 使用 [WasmEdge C API](/category/c-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到基于 `C` 的应用程序中。查看[快速入门指南](../../embed/c/intro.md)。
+- 使用 [WasmEdge Go API](/category/go-sdk-for-embedding-wasmedge) 将 WasmEdge 函数嵌入到 `Go` 应用程序中。这里有一个[教程](https://www.secondstate.io/articles/extend-golang-app-with-webassembly-rust/) 和一些[示例](https://github.com/second-state/WasmEdge-go-examples)！
 - 使用 [WasmEdge Rust crate](https://crates.io/crates/wasmedge-sdk) 将 WasmEdge 函数嵌入到 `Rust` 应用程序中。
-- 使用 `NAPI` 将 WasmEdge 函数嵌入到 `Node.js` 应用程序中。这里有一个 [教程](https://www.secondstate.io/articles/getting-started-with-rust-function/)。
+- 使用 `NAPI` 将 WasmEdge 函数嵌入到 `Node.js` 应用程序中。这里有一个[教程](https://www.secondstate.io/articles/getting-started-with-rust-function/)。
 - 通过生成一个新进程将 WasmEdge 函数嵌入到任何应用程序。查看 [Vercel 无服务器函数](https://www.secondstate.io/articles/vercel-wasmedge-webassembly-rust/) 和 [AWS Lambda](https://www.cncf.io/blog/2021/08/25/webassembly-serverless-functions-in-aws-lambda/) 的示例。
 
 不过，WebAssembly 规范仅支持用于 WebAssembly 字节码函数的非常有限的输入参数和返回值的数据类型。要传递复杂数据类型（例如字符串或数组）作为来自 Rust 编译的 WebAssembly 的调用参数，你应该使用[`wasmedge-bindgen`](https://crates.io/crates/wasmedge-bindgen)提供的 `bindgen` 解决方案。我们目前在 [Rust](../../develop/rust/bindgen.md) 和 [Go](../../embed/go/bindgen.md) 中支持`wasmedge-bindgen`。

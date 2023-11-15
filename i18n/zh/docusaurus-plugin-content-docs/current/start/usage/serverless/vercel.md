@@ -189,6 +189,6 @@ module.exports = (req, res) => {
 };
 ```
 
-现在，你可以 [将你 Fork 的存储库部署到 Vercel](https://vercel.com/docs/git#deploying-a-git-repository)，获得一个用于主题分类的 Web 应用。
+现在，你可以[将你 Fork 的存储库部署到 Vercel](https://vercel.com/docs/git#deploying-a-git-repository)，获得一个用于主题分类的 Web 应用。
 
 接下来，轮到你使用 [vercel-wasm-runtime 存储库](https://github.com/second-state/vercel-wasm-runtime) 作为模板，在 Vercel 中开发你自己的 Rust 无服务器函数了。期待着您出色的工作。

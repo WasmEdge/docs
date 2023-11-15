@@ -102,4 +102,4 @@ Hello WasmEdge
 ## 下一步
 
 - [WasmEdge 的基本 Rust 示例](https://github.com/second-state/rust-examples)
-- 用你喜欢的语言编写 WASM 应用，如 [Rust](/category/develop-wasm-apps-in-rust), [C/C++](/category/develop-wasm-apps-in-cc), [JavaScript](/category/develop-wasm-apps-in-javascript), [Go](/category/develop-wasm-apps-in-go) 以及其他许多语言。
+- 用你喜欢的语言编写 WASM 应用，如 [Rust](/category/develop-wasm-apps-in-rust)、[C/C++](/category/develop-wasm-apps-in-cc)、[JavaScript](/category/develop-wasm-apps-in-javascript)、[Go](/category/develop-wasm-apps-in-go) 以及其他许多语言。

@@ -184,6 +184,6 @@ module.exports = (req, res) => {
 };
 ```
 
-现在，你可以 [将你 Fork 的存储库部署到 Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)，获得一个用于主题分类的 Web 应用程序。
+现在，你可以[将你 Fork 的存储库部署到 Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)，获得一个用于主题分类的 Web 应用程序。
 
 接下来，轮到你使用 [netlify-wasm-runtime 存储库](https://github.com/second-state/netlify-wasm-runtime) 作为模板在 Netlify 中开发 Rust 无服务器函数了。期待着你出色的工作。

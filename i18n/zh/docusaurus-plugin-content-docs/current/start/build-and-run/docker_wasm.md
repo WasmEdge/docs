@@ -97,7 +97,7 @@ Hello WasmEdge!
 
 WasmEdge 提供与 Node.js 兼容的 JavaScript 运行时。你可以创建轻量级的 WASM 容器镜像来运行 Node.js 应用程序。与标准的 Node.js Linux 容器镜像相比，WASM 镜像体积仅为其 1/100、完全可移植，并且启动时间是其 1/10。
 
-在本指南中，示例应用是一个用 Node.js 编写的 HTTP Web 服务器。其 [源代码和构建说明在此处](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server)。
+在本指南中，示例应用是一个用 Node.js 编写的 HTTP Web 服务器。其[源代码和构建说明在此处](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/docker_wasm/server)。
 
 ### 构建 Node.js 示例
 
@@ -177,7 +177,7 @@ Hello WasmEdge
 
 Docker + WASM 允许我们构建和运行 WASM 容器。然而，在大多数复杂应用中，WASM 容器只是应用的一部分。它需要与系统中的其他 Linux 容器协同工作。[Docker compose](https://docs.docker.com/compose/) 工具广泛用于组合和管理多容器部署，它与 Docker Desktop 一起安装。
 
-在我们的 [示例微服务应用程序](https://github.com/second-state/microservice-rust-mysql) 中，包括一个 Nginx Web 服务器和一个 MySQL 数据库。WASM 容器仅用于 Rust 应用，用于访问数据库和处理 HTTP 请求（即应用服务器）。
+在我们的[示例微服务应用程序](https://github.com/second-state/microservice-rust-mysql) 中，包括一个 Nginx Web 服务器和一个 MySQL 数据库。WASM 容器仅用于 Rust 应用，用于访问数据库和处理 HTTP 请求（即应用服务器）。
 
 <!-- prettier-ignore -->
 :::note

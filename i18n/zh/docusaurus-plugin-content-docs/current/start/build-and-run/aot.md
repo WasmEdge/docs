@@ -50,12 +50,12 @@ USAGE
    - 默认值为 `2`，即 `O2`。
 8. 输入的 WASM 文件（`/path/to/wasm/file`）。
 9. 输出路径（`/path/to/output/file`）。
-   - 默认情况下，`wasmedge compile` 命令将输出 [通用的 WASM 格式](#output-format-universal-wasm)。
-   - 如果在输出路径中指定了特定的文件扩展名（在 Linux 上为 `.so`，在 MacOS 上为 `.dylib`，在 Windows 上为 `.dll`），`wasmedge compile` 命令将输出 [共享库格式](#output-format-shared-library)。
+   - 默认情况下，`wasmedge compile` 命令将输出[通用的 WASM 格式](#output-format-universal-wasm)。
+   - 如果在输出路径中指定了特定的文件扩展名（在 Linux 上为 `.so`，在 MacOS 上为 `.dylib`，在 Windows 上为 `.dll`），`wasmedge compile` 命令将输出[共享库格式](#output-format-shared-library)。
 
 ## 示例
 
-我们建立了一个纯手写的 [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) 并使用 [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) 工具将其转换为 `fibonacci.wasm` WebAssembly 程序。以此为例，将它导出为一个接收单个 `i32` 整数作为输入参数的 `fib()` 函数。
+我们创建了纯手工编写的 [fibonacci.wat](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) 并使用 [wat2wasm](https://webassembly.github.io/wabt/demo/wat2wasm/) 工具将其转换为 `fibonacci.wasm` WebAssembly 程序。以此为例，将它导出为一个接收单个 `i32` 整数作为输入参数的 `fib()` 函数。
 
 你可以执行：
 
