@@ -96,7 +96,7 @@ module.exports = (req, res) => {
 };
 ```
 
-完成了。[将存储库部署到 Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)，你现在就拥有一个基于 Rust 和 WebAssembly 的高性能无服务器后端的 Netlify Jamstack 应用。
+准备就绪。现在[将存储库部署到 Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)，你就拥有了一个基于 Rust 和 WebAssembly 的高性能无服务器后端的 Netlify Jamstack 应用。
 
 ## 示例 2：AI 推理
 

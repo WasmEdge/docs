@@ -99,7 +99,7 @@ module.exports = (req, res) => {
 };
 ```
 
-如上所示。现在[将存储库部署到 Vercel](https://vercel.com/docs/git#deploying-a-git-repository)，你现在拥有了一个使用高性能 Rust 和 WebAssembly 构建的无服务器后端的 Vercel Jamstack 应用程序。
+准备就绪。现在[将存储库部署到 Vercel](https://vercel.com/docs/git#deploying-a-git-repository)上，你就拥有了一个使用高性能 Rust 和 WebAssembly 构建的无服务器后端的 Vercel Jamstack 应用程序。
 
 ## 示例 2：AI 推理
 

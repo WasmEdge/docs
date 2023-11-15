@@ -177,7 +177,7 @@ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d
 
 如果你不想使用 AWS Lambda 的基础镜像，您也可以使用自己的基础镜像，并在构建 Docker 镜像时安装 RIC 和/或 RIE。只需按照[此指南](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)中的 **Create an image from an alternative base image** 部分进行操作。
 
-就是这样！构建完你的 Docker 镜像后，可以按照存储库 [README](https://github.com/second-state/aws-lambda-wasm-runtime/blob/tensorflow/README.md#deploy)中概述的步骤将其部署到 AWS Lambda。现在您的无服务器函数已经准备就绪！
+准备就绪！在构建完 Docker 镜像后，可以参考存储库 [README](https://github.com/second-state/aws-lambda-wasm-runtime/blob/tensorflow/README.md#deploy)中简述的步骤将其部署到 AWS Lambda。然后你的无服务器函数就可以开始工作了！
 
 ## 示例 2：AI 推理
 
