@@ -4,7 +4,6 @@ displayed_sidebar: startSidebar
 ---
 
 # 开始使用 WasmEdge
-# 开始使用 WasmEdge
 
 WasmEdge 是一款轻量级、高性能、可扩展的 WebAssembly 运行时，适用于云原生、边缘和去中心化应用。它支持无服务器应用、嵌入式函数、微服务、UDF、智能合约和物联网设备。WasmEdge 目前是 CNCF（Cloud Native Computing Foundation）的沙盒项目。
 
