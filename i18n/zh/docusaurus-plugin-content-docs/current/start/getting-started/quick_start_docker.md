@@ -54,14 +54,14 @@ Hello WasmEdge!
 
 ```bash
 $ docker run -dp 8080:8080 --rm --runtime=io.containerd.wasmedge.v1 --platform=wasi/wasm secondstate/rust-example-server:latest
-正在监听 http://0.0.0.0:8080
+Listening on http://0.0.0.0:8080
 ```
 
 在另一个终端窗口中执行以下操作。
 
 ```bash
 $ curl http://localhost:8080/
-尝试对 /echo 发送数据，如: `curl localhost:8080/echo -XPOST -d 'hello world'`
+Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
 
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge

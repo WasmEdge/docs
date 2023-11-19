@@ -80,14 +80,14 @@ wget https://github.com/second-state/rust-examples/releases/latest/download/serv
 
 ```bash
 $ wasmedge server.wasm
-监听在 http://0.0.0.0:8080
+Listening on http://0.0.0.0:8080
 ```
 
 从另一个终端窗口执行以下步骤。
 
 ```bash
 $ curl http://localhost:8080/
-尝试将数据 POST 到 /echo，如: `curl localhost:8080/echo -XPOST -d 'hello world'`
+Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
 
 $ curl http://localhost:8080/echo -X POST -d "Hello WasmEdge"
 Hello WasmEdge
@@ -135,7 +135,7 @@ wget https://raw.githubusercontent.com/second-state/wasmedge-quickjs/main/exampl
 
 ```bash
 $ wasmedge --dir .:. wasmedge_quickjs.wasm server.js
-监听 8080 ...
+Listening on 8080 ...
 ```
 
 从另一个终端窗口执行以下步骤。

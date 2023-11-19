@@ -20,7 +20,7 @@ sidebar_position: 1
 
 ```bash
 $ wasmedge -v
-wasmedge 版本 {{ wasmedge_version }}
+wasmedge version {{ wasmedge_version }}
 ```
 
 用户可以运行 `wasmedge -h` 快速了解命令行选项，或者[在这里查看详细的 `wasmedge` CLI 选项](#选项)。`wasmedge` 工具的用法将是：
