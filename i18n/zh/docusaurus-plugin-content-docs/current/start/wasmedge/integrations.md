@@ -24,7 +24,7 @@ WasmEdge 提供符合 OCI 规范的接口。你可以使用诸如 CRI-O、Docker
 
 - [使用 CRI-O 和 Docker Hub 管理 WasmEdge](https://www.secondstate.io/articles/manage-webassembly-apps-in-wasmedge-using-docker-tools/)。
 
-## 从 WasmEdge 调用本机主机函数
+## 从 WasmEdge 调用原生宿主函数
 
 WasmEdge 的一个关键特性是其可扩展性。WasmEdge API 允许开发人员将来自主机编程语言的“主机函数”注册到 WasmEdge 实例中，并从 WebAssembly 程序中调用这些函数。
 

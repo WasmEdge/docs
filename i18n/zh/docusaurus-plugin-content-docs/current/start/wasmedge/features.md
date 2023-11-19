@@ -67,7 +67,7 @@ WasmEdge 目前支持：
 
 ## 易于扩展
 
-使用 C、Go 和 Rust 中的本地主机函数很容易构建自定义的 WasmEdge 运行时。
+使用 C、Go 和 Rust 中的原生宿主函数很容易构建自定义的 WasmEdge 运行时。
 
 或者，你可以为 WasmEdge 构建自己的插件，
 

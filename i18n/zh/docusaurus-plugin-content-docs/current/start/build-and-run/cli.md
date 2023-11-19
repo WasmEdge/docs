@@ -8,7 +8,7 @@ sidebar_position: 1
 
 `wasmedge` 二进制文件是一个命令行界面（CLI）程序，用于运行 WebAssembly 程序。
 
-- 如果 WebAssembly 程序包含 `main()` 函数，`wasmedge` 将以命令模式执行它作为独立程序。
+- 如果 WebAssembly 程序包含 `main()` 函数，`wasmedge` 将把它作为独立程序以命令模式执行。
 - 如果 WebAssembly 程序包含一个或多个导出的公共函数，`wasmedge` 可以在反应器模式中调用单个函数。
 
 默认情况下，`wasmedge` 将以解释器模式执行 WebAssembly 程序，并在 AOT 模式下执行 AOT 编译的 `.so`、`.dylib`、`.dll` 或 `.wasm`（通用输出格式）。如果要加速 WASM 执行，我们建议首先使用 [AOT 编译器对 WebAssembly 进行编译](aot.md)。
@@ -138,8 +138,6 @@ Hello WasmEdge!
 #### 开启 `gas-limit` 并执行
 
 命令行支持 `--gas-limit`参数，用于控制执行成本。
-
-For giving sufficient gas as the example, you can run:
 
 下面是提供足够的 Gas 的示例：
 
