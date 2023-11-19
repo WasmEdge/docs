@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Red Hat 快速入门
+# 在 Red Hat 下的快速入门
 
 在本指南中，我们将指导你如何在 Fedora / CentOS / Red Hat Linux / OpenShift 系统中快速运行 WasmEdge 应用程序。整个开发和运行环境由 OpenSift / Podman 管理，因此不需要额外的依赖。
 
