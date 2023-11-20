@@ -12,11 +12,27 @@ WasmEdge plugins can be developed in several languages including C, C++, and Rus
    
 ## Writing and Compiling the Plugin
 
-To create a plugin, you need to define a function in C or C++, and declare it with the `extern "C"` keyword to ensure that the function is exported using C-compatible naming conventions. Then, compile the function as a shared library.
+To create a plugin, you need to define a function in C or C++, and declare it with the `extern "C"` keyword to ensure that the function is exported using C-compatible naming conventions. 
 
-## Registering the Plugin with WasmEdge Runtime
+```ccp
+extern "C" void my_function() {
+    // Your plugin code goes here
+}
+```
 
-After compiling the shared library, you need to register the function with the WasmEdge runtime. 
+In this code, we define a function named my_function and use the extern "C" keyword to ensure that the function name is compatible with C naming conventions. This is necessary because the WasmEdge runtime uses C-style linking.
+
+Then compile the function as a shared library. You can compile this function into a shared library using a compiler such as g++. The specific command would depend on your operating system and setup, but here's a basic example for Linux:
+
+```bash
+g++ -shared -o my_plugin.so my_plugin.cpp
+```
+
+In this command, `g++` is the compiler, `-shared` tells the compiler to create a shared library, -`o my_plugin.so` specifies the output file name, and `my_plugin.cpp` is the source file containing your function.
+
+Remember to replace `my_plugin.cpp` and `my_plugin.so` with your actual source file name and desired output file name.
+
+Please note that this is a simplified example. In a real-world scenario, your plugin would likely contain more complex code, and you might need to include additional compiler flags or link against other libraries.
 
 ## Testing the Plugin
 
