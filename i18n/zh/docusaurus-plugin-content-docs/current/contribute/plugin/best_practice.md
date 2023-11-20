@@ -14,19 +14,19 @@ WasmEdge plugins can be developed in several languages including C, C++, and Rus
 
 To create a plugin, you need to define a function in C or C++, and declare it with the `extern "C"` keyword to ensure that the function is exported using C-compatible naming conventions. 
 
-```ccp
-extern "C" void my_function() {
-    // Your plugin code goes here
-}
-```
+   ```ccp
+   extern "C" void my_function() {
+      // Your plugin code goes here
+   }
+   ```
 
 In this code, we define a function named my_function and use the extern "C" keyword to ensure that the function name is compatible with C naming conventions. This is necessary because the WasmEdge runtime uses C-style linking.
 
 Then compile the function as a shared library. You can compile this function into a shared library using a compiler such as g++. The specific command would depend on your operating system and setup, but here's a basic example for Linux:
 
-```bash
-g++ -shared -o my_plugin.so my_plugin.cpp
-```
+   ```bash
+   g++ -shared -o my_plugin.so my_plugin.cpp
+   ```
 
 In this command, `g++` is the compiler, `-shared` tells the compiler to create a shared library, -`o my_plugin.so` specifies the output file name, and `my_plugin.cpp` is the source file containing your function.
 
@@ -84,12 +84,40 @@ By following these steps, you can effectively run tests for the `wasmedge-image`
 
 ## Securing the Plugin
 
-Security is a vital part of any software development process. You should follow best practices to ensure your plugin does not introduce any security vulnerabilities. This includes proper error handling, input validation, and following secure coding practices.
+Security is a vital part of any software development process. It involves several aspects, including securing the code, verifying inputs, handling errors properly, and using secure coding practices. When developing a WasmEdge plugin, it's essential to follow these best practices:
 
+   - **Validate Inputs:** Always validate the inputs to your functions. This can prevent many types of attacks, including buffer overflow attacks and code injection attacks.
+
+      ```cpp
+      WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
+                           const WasmEdge_Value *In, WasmEdge_Value *Out) {
+         if (In[0].Type != WasmEdge_ValType_I32 || In[1].Type != WasmEdge_ValType_I32) {
+         return WasmEdge_Result_Error;
+         }
+         // Rest of the function...
+      }
+      ```
+
+   - **Handle Errors:** Always handle errors properly. Don't ignore return values that indicate an error, and don't continue execution after an error occurs.
+
+      ```cpp
+      WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
+                           const WasmEdge_Value *In, WasmEdge_Value *Out) {
+         // Check the input types...
+         int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
+         int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
+         if (Val1 == INT32_MIN || Val2 == INT32_MIN) {
+         return WasmEdge_Result_Error;
+         }
+         // Rest of the function...
+      }
+      ```
+
+   - **Use Secure Coding Practices:** Follow secure coding practices in your chosen language. For example, avoid using unsafe functions, use strong types, and avoid using global variables.
 
 ## Publishing the Plugin
 
-Once you have developed, tested, and documented your WasmEdge plugin, it’s time to publish it for others to use. You can publish your plugin on the official WasmEdge plugin repository or any other repository of your choice.
+Once you have developed, tested, and documented your WasmEdge plugin, it’s time to publish it for others to use. You can publish your plugin on the official WasmEdge [plugin repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins) by creating a pull request into it or any other repository of your choice. Make sure to include the documentation and any other resources (like test files) with your plugin.
    
 ## Contributing to the WasmEdge Community
 
