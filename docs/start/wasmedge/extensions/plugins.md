@@ -26,8 +26,6 @@ The following lists are the WasmEdge official released plug-ins. Users can insta
 | WasmEdge-eBPF                                                                                                                    | A native library for inferring eBPF applications                                                                                                                                                          | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | Rust                                                                   |
 | WasmEdge-rusttls                                                                                                                 | A native library for inferring Rust and TLS Library                                                                                                                                                       | `manylinux2014 x86_64`, `manylinux2014 aarch64`, `ubuntu 20.04 x86_64`, `darwin x86_64`, and `darwin arm64` (since `0.13.0`) | [Rust](https://crates.io/crates/wasmedge_rustls_api)    
 
-    
-
 ## Old WasmEdge Extensions
 
 Besides the plug-ins, WasmEdge provides the extensions before the `0.13.0` versions. Noticed that the extensions are replaced by the corresponding plug-ins after the `0.13.0` version.
