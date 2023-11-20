@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Here's the guide for writing tests for WasmEdge plugins and the software itself"
+    "description": "Here's the guide focused on testing WasmEdge"
   }
 }

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Testing
 
-This module will teach you about writing tests for C++ Code targeting WebAssembly code. This is an important aspect if you want to submit plugins to the WasmEdge community and we would require you to write test suites to cater to the plugin functionalities.
+This module will teach you about writing tests for C++ Code for adding test suites for new plugins or modules for WasmEdge Software. This is an important aspect if you want to submit plugins to the WasmEdge community and we would require you to write test suites to cater to the plugin functionalities.
 
 ## Writing Tests for C++ Code Targeting WebAssembly
 
@@ -75,6 +75,14 @@ GTEST_API_ int main(int argc, char **argv) {
   return RUN_ALL_TESTS();
 }
 ```
+
+## Where to add the tests?
+
+After writing tests for your specific modules or plugins, you can add them under `https://github.com/WasmEdge/WasmEdge/tree/master/test` and for more specific placement of the tests, 
+
+For example,
+
+- You can add the tests for new plugins or update existing ones under `https://github.com/WasmEdge/WasmEdge/tree/master/test/plugins`
 
 ## Documenting the Tests in Markdown
 
