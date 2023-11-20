@@ -60,18 +60,10 @@ Second, use `cargo` to build the example project.
 cargo build --target wasm32-wasi --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/llama-chat.wasm`. 
-
-We also need to get the model. Here we use the llama-2-13b model.
+The output WASM file is `target/wasm32-wasi/release/llama-chat.wasm`. Next, use WasmEdge to load the llama-2-7b model and then ask the model to questions.
 
 ```bash
-curl -LO https://huggingface.co/wasmedge/llama2/blob/main/llama-2-13b-q5_k_m.gguf
-```
-
-Next, use WasmEdge to load the llama-2-13b model and then ask the model to questions.
-
-```bash
-wasmedge --dir .:. --nn-preload default:GGML:AUTO:llama-2-13b-chat-q5_k_m.gguf llama-chat.wasm
+wasmedge --dir .:. --nn-preload default:GGML:AUTO:llama-2-7b-chat-q5_k_m.gguf llama-chat.wasm
 ```
 
 After executing the command, you may need to wait a moment for the input prompt to appear. You can enter your question once you see the `[USER]:` prompt:
@@ -158,7 +150,7 @@ You can make the inference program run faster by AOT compiling the wasm file fir
 
 ```bash
 wasmedge compile llama-chat.wasm llama-chat.wasm
-wasmedge --dir .:.  --nn-preload default:GGML:AUTO:llama-2-13b-q5_k_m.gguf llama-chat.wasm
+wasmedge --dir .:.  --nn-preload default:GGML:AUTO:llama-2-7b-chat-q5_k_m.gguf llama-chat.wasm
 ```
 
 ## Understand the code
@@ -260,7 +252,7 @@ Next, execute the model inference.
     context.compute().expect("Failed to complete inference");
 ```
 
-After the inference is fiished, extract the result from the computation context and losing invalid UTF8 sequences handled by converting the output to a string using `String::from_utf8_lossy`.
+After the inference is finished, extract the result from the computation context and losing invalid UTF8 sequences handled by converting the output to a string using `String::from_utf8_lossy`.
 
 ```rust
   let mut output_buffer = vec![0u8; *CTX_SIZE.get().unwrap()];
@@ -283,3 +275,4 @@ println!("\noutput: {}", output);
 * If you're looking for multi-turn conversations with llama 2 models, please check out the above mentioned chat example source code [here](https://github.com/second-state/llama-utils/tree/main/chat).
 * If you want to construct OpenAI-compatible APIs specifically for your llama2 model, or the Llama2 model itself, please check out the source code [for the API server](https://github.com/second-state/llama-utils/tree/main/api-server).
 * To learn more, please check out [this article](https://medium.com/stackademic/fast-and-portable-llama2-inference-on-the-heterogeneous-edge-a62508e82359).
+
