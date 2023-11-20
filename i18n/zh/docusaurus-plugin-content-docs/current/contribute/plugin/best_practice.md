@@ -6,6 +6,35 @@ sidebar_position: 6
 
 When developing a WasmEdge plugin, it's important to follow certain best practices to ensure the plugin is robust, reliable, and efficient. Here are some key best practices to follow:
 
+## Using the Latest Version of WasmEdge
+
+Always use the latest version of WasmEdge to take advantage of the most recent features, improvements, and security updates. 
+
+### Checking for Updates
+
+Regularly check the [WasmEdge GitHub repository](https://github.com/WasmEdge/WasmEdge) for updates. The repository contains the latest version of WasmEdge, as well as release notes detailing what's new in each version.
+
+### Installing the Latest Version
+
+To install the latest version of WasmEdge, follow the installation instructions in the [WasmEdge documentation](https://wasmedge.org/docs/start/install/).
+
+### Verifying the Installation
+
+After installing the latest version, verify the installation by running the following command:
+
+```bash 
+wasmedgec --version
+```
+
+This command should output the version number of the installed WasmEdge compiler.
+
+### Updating Existing Plugins
+
+If you have existing plugins that were developed with an older version of WasmEdge, you may need to update them to work with the latest version. This could involve updating the plugin code to use new features or changes in the WasmEdge API, or updating the build process to use the latest version of WasmEdge.
+
+Remember, using the latest version of WasmEdge not only ensures that you're leveraging the most recent features, but also provides the latest security updates to protect your applications.
+
+
 ## Choosing the Appropriate Programming Language
 
 WasmEdge plugins can be developed in several languages including C, C++, and Rust. The choice of language depends on the specific requirements of the plugin and the developer's expertise. The C API is recommended for most use cases due to its simplicity and wide support. However, complex plugins might benefit from the enhanced features of C++ or Rust.
@@ -117,7 +146,90 @@ Security is a vital part of any software development process. It involves severa
 
 ## Publishing the Plugin
 
-Once you have developed, tested, and documented your WasmEdge plugin, it’s time to publish it for others to use. You can publish your plugin on the official WasmEdge [plugin repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins) by creating a pull request into it or any other repository of your choice. Make sure to include the documentation and any other resources (like test files) with your plugin.
+Once you have developed, tested, and documented your WasmEdge plugin, it’s time to publish it for others to use. You need to follow following steps for publishing your plugin:
+
+### Exporting the SDKs for C/C++
+
+After developing the plugin, it's not enough to just have the plugin. Developers need to export Software Development Kits (SDKs) for application developers to call. This involves packaging the necessary header files, libraries, and other tools needed to develop software that uses the plugin.
+
+#### Creating a Header File
+
+This file contains declarations for all the functions, variables, and data types in the plugin that you want to make available to other developers. Here's a simple example:
+
+   ```cpp 
+   // my_plugin.h
+   #ifndef MY_PLUGIN_H
+   #define MY_PLUGIN_H
+
+   // Function declarations
+   extern "C" void my_function();
+
+   #endif // MY_PLUGIN_H
+   ```
+
+#### Compiling the Plugin
+
+Compile your plugin into a shared library as you normally would.
+
+```bash 
+g++ -shared -o my_plugin.so my_plugin.cpp
+```
+
+#### Packaging the SDK
+
+Package the shared library and the header file into a tarball or a similar package format. This makes it easy for other developers to download and install your SDK.
+
+```bash 
+tar czvf my_plugin_sdk.tar.gz my_plugin.so my_plugin.h
+```
+
+With this package, other developers can easily use your plugin in their applications. They just need to include your header file in their code, and link against your shared library when they compile their application.
+
+## Exporting the SDKs in Rust
+
+In addition to C and C++ SDKs, you can also create an SDK for Rust developers. This involves creating a Rust library that provides a Rust interface to your plugin's functionality.
+
+### Creating a Rust Library
+
+You can create a Rust library that provides a Rust interface to your plugin's functionality. This involves writing Rust code that calls the functions in your plugin and provides a Rust-friendly API.
+
+Here's a simple example:
+
+```rust 
+// lib.rs
+pub fn hello() {
+  unsafe {
+      hello_plugin_hello();
+  }
+}
+
+extern "C" {
+  fn hello_plugin_hello();
+}
+```
+
+
+This Rust library provides a single `hello` function that calls the `hello` function in the `hello_plugin` plugin.
+
+### Building the Rust Library
+
+You can build your Rust library using Cargo, the Rust package manager. This will produce a `.so` file that can be loaded by the WasmEdge runtime.
+
+```bash 
+cargo build --release
+```
+
+### Packaging the Rust SDK
+
+Package the Rust library and the header file into a tarball or a similar package format. This makes it easy for other developers to download and install your SDK.
+
+```bash 
+tar czvf my_plugin_rust_sdk.tar.gz libmy_plugin.so my_plugin.h
+```
+
+With this package, other Rust developers can easily use your plugin in their applications. They just need to include your header file in their code, and link against your Rust library when they compile their application.
+
+Now, When you're ready to publish your plugin and the corresponding SDK, can publish your plugin on the official WasmEdge [plugin repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins) by creating a pull request into it or any other repository of your choice. Make sure to include the documentation and any other resources (like test files) with your plugin.
    
 ## Contributing to the WasmEdge Community
 
