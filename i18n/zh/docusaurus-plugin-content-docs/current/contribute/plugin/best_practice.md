@@ -109,7 +109,12 @@ To run tests for the WasmEdge plugin, you'll need to follow a few steps. In this
    - **Step 3: Analyze the Test Results**
    After running the tests, analyze the results to identify any issues or bugs. If any test fails, you should debug the issue, fix the problem, and then rerun the tests to ensure that the fix works as expected.
 
-By following these steps, you can effectively run tests for the `wasmedge-image` plugin or any other WasmEdge plugin. Also if you want to develop your own tests follow [Writing Tests for WasmEdge Plugins](test_plugin.md) for details.
+By following these steps, you can effectively run tests for the `wasmedge-image` plugin or any other WasmEdge plugin.
+
+<!-- prettier-ignore -->
+:::note
+If you want to develop your own tests follow [Writing Tests for WasmEdge Plugins](test_plugin.md) for details.
+::: 
 
 ## Securing the Plugin
 
