@@ -82,6 +82,11 @@ To run tests for the WasmEdge plugin, you'll need to follow a few steps. In this
 
 By following these steps, you can effectively run tests for the `wasmedge-image` plugin or any other WasmEdge plugin. Also if you want to develop your own tests follow [Writing Tests for WasmEdge Plugins](test_plugin.md) for details.
 
+## Securing the Plugin
+
+Security is a vital part of any software development process. You should follow best practices to ensure your plugin does not introduce any security vulnerabilities. This includes proper error handling, input validation, and following secure coding practices.
+
+
 ## Publishing the Plugin
 
 Once you have developed, tested, and documented your WasmEdge plugin, it’s time to publish it for others to use. You can publish your plugin on the official WasmEdge plugin repository or any other repository of your choice.
