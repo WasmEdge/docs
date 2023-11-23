@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # Build with WASI-Crypto Plugin
 
+WebAssembly System Interface (WASI) Crypto is a proposal for a set of APIs that provide cryptographic operations for WebAssembly modules. It aims to provide a consistent, portable, and secure interface for cryptographic operations across different platforms. The WasmEdge WASI-Crypto plugin is an implementation of this proposal, providing cryptographic functionalities to WebAssembly applications running on the WasmEdge runtime.
+
 ## Prerequisites
 
 Currently, WasmEdge used `OpenSSL 1.1` or `3.0` for the WASI-Crypto implementation.
@@ -75,3 +77,5 @@ If the built `wasmedge` CLI tool cannot find the WASI-Crypto plug-in, you can se
 :::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-Crypto plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiCrypto.so` after installation.
+
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_process).

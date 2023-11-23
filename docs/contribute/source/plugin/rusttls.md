@@ -4,4 +4,69 @@ sidebar_position: 8
 
 # Build with Rusttls Plugin
 
-WIP
+The WasmEdge Rustls plugin is a replacement for the OpenSSL plugin in WasmEdge. It provides a Rust-friendly interface to the Rustls library, which is a modern, fast, and more secure alternative to OpenSSL.
+
+Here's a step-by-step guide on how to build the WasmEdge Rustls plugin:
+
+# Building the WasmEdge Rustls Plugin
+
+The WasmEdge Rustls plugin is a replacement for the OpenSSL plugin in WasmEdge. It provides a Rust-friendly interface to the Rustls library, which is a modern, fast, and more secure alternative to OpenSSL.
+
+Here's a step-by-step guide on how to build the WasmEdge Rustls plugin:
+
+## Prerequisites
+
+Ensure the following dependencies are installed on your system:
+
+- Rust: You can install it from the [official website](https://www.rust-lang.org/tools/install).
+- CMake: Minimum version 3.12. Install it from the [official website](https://cmake.org/download/).
+
+## Clone the WasmEdge Repository
+
+First, clone the WasmEdge repository from GitHub:
+
+```bash
+git clone https://github.com/WasmEdge/WasmEdge.git
+```
+
+## Navigate to the Rustls Plugin Directory
+
+Navigate to the `wasmedge_rustls` directory within the cloned repository:
+
+```bash
+cd WasmEdge/plugins/wasmedge_rustls
+```
+
+## Build the Plugin
+
+Now you can build the Rustls plugin. Run the following command:
+
+```bash
+cargo build --release
+```
+
+This command builds the plugin in release mode. The compiled binary will be located in the `target/release` directory.
+
+## Install the Plugin
+
+To install the plugin, you can use the `cargo install` command:
+
+```bash
+cargo install --path .
+```
+
+This command will install the built plugin into your Rust binary directory.
+
+## Usage
+
+To use the plugin with WasmEdge, you need to specify it when starting the WasmEdge runtime:
+
+```bash
+wasmedge --dir .:. --reactor --rustls_plugin target/release/libwasmedge_rustls.so your_wasm_file.wasm
+```
+
+Replace `your_wasm_file.wasm` with the path to your WebAssembly file. The `--rustls_plugin` flag specifies the path to the Rustls plugin.
+
+That's it! You have successfully built and installed the WasmEdge Rustls plugin. Please ensure to replace the OpenSSL plugin with the Rustls plugin in your WasmEdge runtime configuration if you were previously using OpenSSL. 
+
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasi_crypto).
