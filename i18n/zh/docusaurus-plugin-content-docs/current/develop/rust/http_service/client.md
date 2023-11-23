@@ -2,28 +2,28 @@
 sidebar_position: 1
 ---
 
-# Client
+# HTTP client
 
-WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. In this chapter, we will cover HTTP client APIs and libraries to access external web services from your WasmEdge app. For HTTP servers in WasmEdge, please see [the next chapter](server).
+WasmEdge allows Rust developers to use APIs they are already familiar with to access the Internet via the HTTP or HTTPS protocols. This chapter will cover HTTP client APIs and libraries to access external web services from your WasmEdge app. For HTTP servers in WasmEdge, please see [the next chapter](server).
 
 <!-- prettier-ignore -->
 :::note
-Before we started, make sure [you have Rust and WasmEdge installed](../setup). In order to make HTTPS requests, you need to install the [WasmEdge TLS plugin](../../build-and-run/install#tls-plugin).
+Before we start, ensure [you have Rust and WasmEdge installed](../setup.md). To make HTTPS requests, install the [WasmEdge TLS plug-in](../../../start/install.md#tls-plug-in).
 :::
 
-We will discuss HTTP and HTTPS asynchronous clients with hyper, synchronous clients with http_req, and simple clients with reqwest. All of them are popular Rust crates for networking.
+We will discuss HTTP and HTTPS clients using popular Rust APIs.
 
-- [Async client with hyper](#asynchronous-client-with-hyper)
-- [Sync client with http_req](#synchronous-client-with-http_req)
-- [reqwest client](#reqwest-client)
+- [The hyper API (recommended)](#the-hyper-api)
+- [The http_req API](#the-http_req-api)
+- [The reqwest API](#the-reqwest-api)
 
-## Asynchronous client with hyper
+## The hyper API
 
-Asynchronous HTTP or HTTPS requests do not block the execution of the calling application. It allows an application to make multiple concurrent HTTP requests and to process responses as they are received. That enables high-performance networking applications in WasmEdge. The [hyper crate](https://crates.io/crates/hyper) is a widely used Rust library to create HTTP and HTTPS networking applications.
+The [hyper crate](https://crates.io/crates/hyper) is a widely used Rust library to create HTTP and HTTPS networking applications. We recommend you use it in WasmEdge applications. A key feature of the `hyper` crate is that it is based on the `tokio` runtime, which supports asynchronous network connections. Asynchronous HTTP or HTTPS requests do not block the execution of the calling application. It allows an application to make multiple concurrent HTTP requests and to process responses as they are received. That enables high-performance networking applications in WasmEdge.
 
 <!-- prettier-ignore -->
 :::note
-Non-blocking I/O means that the application program can keep multiple connections open at the same time, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster even in a single-threaded environment.
+Non-blocking I/O means that the application program can keep multiple connections open simultaneously, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster, even in a single-threaded environment.
 :::
 
 Build and run [the hyper example](https://github.com/WasmEdge/wasmedge_hyper_demo/) in WasmEdge as follows.
@@ -35,20 +35,32 @@ cd wasmedge_hyper_demo/client
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
 
 # Run the example
 wasmedge wasmedge_hyper_client.wasm
 ```
 
-In your Rust application, import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following line to your Cargo.toml.
+The HTTPS version of the demo is as follows. Make sure that you install the [WasmEdge TLS plug-in](../../../start/install.md#tls-plug-in) first.
+
+```bash
+// Build
+cd wasmedge_hyper_demo/client-https
+cargo build --target wasm32-wasi --release
+wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client_https.wasm wasmedge_hyper_client_https.wasm
+
+// Run
+wasmedge wasmedge_hyper_client_https.wasm
+```
+
+In your Rust application, import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following line to your `Cargo.toml`.
 
 ```toml
 [dependencies]
 hyper_wasi = "0.15.0"
 ```
 
-The [Rust example code](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client/src/main.rs) below shows an HTTP or HTTPS GET request.
+The [Rust example code](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client/src/main.rs) below shows an HTTP GET request.
 
 ```rust
 async fn fetch_url_return_str (url: hyper::Uri) -> Result<()> {
@@ -63,7 +75,23 @@ async fn fetch_url_return_str (url: hyper::Uri) -> Result<()> {
     println!("{}", String::from_utf8_lossy(&resp_data));
 ```
 
-And here is an HTTP or HTTPS POST request.
+The [HTTPS example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client-https/src/main.rs) is slightly more complex.
+
+```rust
+async fn fetch_https_url(url: hyper::Uri) -> Result<()> {
+    let https = wasmedge_hyper_rustls::connector::new_https_connector(
+        wasmedge_rustls_api::ClientConfig::default(),
+    );
+    let client = Client::builder().build::<_, hyper::Body>(https);
+    let res = client.get(url).await?;
+
+    let body = hyper::body::to_bytes(res.into_body()).await.unwrap();
+    println!("{}", String::from_utf8(body.into()).unwrap());
+    Ok(())
+}
+```
+
+And here is an HTTP POST request.
 
 ```rust
 async fn post_url_return_str (url: hyper::Uri, post_body: &'static [u8]) -> Result<()> {
@@ -85,9 +113,9 @@ async fn post_url_return_str (url: hyper::Uri, post_body: &'static [u8]) -> Resu
 }
 ```
 
-## Synchronous client with http_req
+## The http_req API
 
-If your WasmEdge application only needs to make sequential requests to external web services, a synchronous client is easier to work with. It allows you to make a request, wait for the response, and move on once the response is fully received. You could use the http_req API to make simple synchronous HTTP requests. Build and run [the example](https://github.com/second-state/http_req/) in WasmEdge as follows.
+If your WasmEdge application only needs to make sequential requests to external web services, a synchronous client is easier to work with. It allows you to make a request, wait for the response, and move on once the response is fully received. Use the `http_req` API to make simple synchronous HTTP requests. Build and run [the example](https://github.com/second-state/http_req/) in WasmEdge.
 
 ```bash
 git clone https://github.com/second-state/http_req
@@ -96,7 +124,7 @@ cd http_req/
 # Build the Rust Code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/get.wasm get.wasm
+wasmedge compile target/wasm32-wasi/release/get.wasm get.wasm
 
 # Run the example
 wasmedge get.wasm
@@ -105,14 +133,14 @@ wasmedge get_https.wasm
 ... ...
 ```
 
-In your Rust application, import the [http_req_wasi](https://crates.io/crates/http_req_wasi) crate, which is compatible with [http_req](https://github.com/jayjamesjay/http_req) at the API level. Just add the following line to your Cargo.toml.
+In your Rust application, import the [http_req_wasi](https://crates.io/crates/http_req_wasi) crate, which is compatible with [http_req](https://github.com/jayjamesjay/http_req) at the API level. Just add the following line to your `Cargo.toml`.
 
 ```toml
 [dependencies]
 http_req_wasi  = "0.10"
 ```
 
-The example below shows an [HTTP GET request](https://github.com/second-state/http_req/blob/master/examples/get.rs).
+The example below shows an [HTTP GET request](https://github.com/second-state/http_req/blob/master/examples/get.rs). For HTTPS requests, you can [simply change](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) the `http` URL to `https`.
 
 ```rust
 use http_req::request;
@@ -127,7 +155,7 @@ fn main() {
 }
 ```
 
-And here is an [HTTP POST request](https://github.com/second-state/http_req/blob/master/examples/post.rs).
+And here is an [HTTP POST request](https://github.com/second-state/http_req/blob/master/examples/post.rs). For HTTPS requests, you can [simply change](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) the `http` URL to `https`.
 
 ```rust
 use http_req::request;
@@ -143,14 +171,9 @@ fn main() {
 }
 ```
 
-<!-- prettier-ignore -->
-:::note
-In order to make HTTPS requests, you need to [install the wasmedge_TLS plugin](../../build-and-run/install#wtls-plugin). You can then run the HTTPS [GET](https://github.com/second-state/http_req/blob/master/examples/get_https.rs) and [POST](https://github.com/second-state/http_req/blob/master/examples/post_https.rs) examples in the example repo.
-:::
+## The reqwest API
 
-## reqwest client
-
-The reqwest crate is another popular Rust library to create asynchronous HTTP clients. It is built on top of the hyper API. Many developers find it easier to use. Build and run [the example](https://github.com/WasmEdge/wasmedge_reqwest_demo/) in WasmEdge as follows.
+The `reqwest` crate is another popular Rust library to create asynchronous HTTP clients. It is built on top of the `hyper` API. Many developers find it easier to use. But perhaps more importantly, many existing Rust applications use `reqwest`, and you can make them work in WasmEdge by simply replacing the `reqwest` crate with `reqwest_wasi`! Build and run [the example](https://github.com/WasmEdge/wasmedge_reqwest_demo/) in WasmEdge as follows.
 
 <!-- prettier-ignore -->
 :::note
@@ -164,13 +187,13 @@ cd wasmedge_reqwest_demo
 # Build the Rust code
 cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
-wasmedgec target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm wasmedge_reqwest_demo.wasm
+wasmedge compile target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm wasmedge_reqwest_demo.wasm
 
 # Run the example
 wasmedge wasmedge_reqwest_demo.wasm
 ```
 
-In your Rust application, import [the WasmEdge adapted hyper crate](https://crates.io/crates/hyper_wasi), which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following line to your Cargo.toml.
+In your Rust application, import [the WasmEdge adapted reqwest crate](https://crates.io/crates/reqwest_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
 
 ```toml
 [dependencies]

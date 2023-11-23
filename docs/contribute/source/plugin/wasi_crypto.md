@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Build with WASI-Crypto Plugin
+# Build with WASI-Crypto Plug-in
 
 WebAssembly System Interface (WASI) Crypto is a proposal for a set of APIs that provide cryptographic operations for WebAssembly modules. It aims to provide a consistent, portable, and secure interface for cryptographic operations across different platforms. The WasmEdge WASI-Crypto plugin is an implementation of this proposal, providing cryptographic functionalities to WebAssembly applications running on the WasmEdge runtime.
 
@@ -67,7 +67,7 @@ cd <path/to/your/wasmedge/source/folder>
 # On MacOS, it may be: `-DOPENSSL_ROOT_DIR=$(brew --prefix)/opt/openssl`
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_CRYPTO=On
 cmake --build build
-# For the WASI-Crypto plugin, you should install this project.
+# For the WASI-Crypto plug-in, you should install this project.
 cmake --install build
 ```
 

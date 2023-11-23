@@ -4,13 +4,13 @@ sidebar_position: 10
 
 # Example: SSR
 
-[React](https://reactjs.org/) is very popular JavaScript web UI framework. A React application is "compiled" into an HTML and JavaScript static web site. The web UI is rendered through the generated JavaScript code. However, it is often too slow and resource consuming to execute the complex generated JavaScript entirely in the browser to build the interactive HTML DOM objects. [React Server Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55) delegates the JavaScript UI rendering to a server, and have the server stream rendered HTML DOM objects to the browser. The WasmEdge JavaScript runtime provides a lightweight and high performance container to run React SSR functions on edge servers.
+[React](https://reactjs.org/) is a very popular JavaScript web UI framework. A React application is "compiled" into an HTML and JavaScript static website. The web UI is rendered through the generated JavaScript code. However, executing the complex generated JavaScript entirely in the browser is often too slow and resource consuming to build the interactive HTML DOM objects. [React Server Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55) delegates the JavaScript UI rendering to a server and has the server stream rendered HTML DOM objects to the browser. The WasmEdge JavaScript runtime provides a lightweight and high-performance container to run React SSR functions on edge servers.
 
-Server-side rendering (SSR) is a popular technique for rendering a client-side single page application (SPA) on the server and then sending a fully rendered page to the client. This allows for dynamic components to be served as static HTML markup. This approach can be useful for search engine optimization (SEO) when indexing does not handle JavaScript properly. It may also be beneficial in situations where downloading a large JavaScript bundle is impaired by a slow network. -- [from Digital Ocean](https://www.digitalocean.com/community/tutorials/react-server-side-rendering).
+Server-side rendering (SSR) is a popular technique for rendering a client-side single-page application (SPA) on the server and then sending a fully rendered page to the client, allowing dynamic components to be served as static HTML markup. This approach can be useful for search engine optimization (SEO) when indexing does not handle JavaScript properly. It may also be beneficial when downloading a large JavaScript bundle is impaired by a slow network. -- [from Digital Ocean](https://www.digitalocean.com/community/tutorials/react-server-side-rendering).
 
-In this article, we will show you how to use the WasmEdge QuickJS runtime to implement a React SSR function. Compared with the Docker + Linux + nodejs + v8 approach, WasmEdge is safer (suitable for multi-tenancy environments) and much lighter (1% of the footprint) with similar performance.
+This article will show you how to use the WasmEdge QuickJS runtime to implement a React SSR function. Compared with the Docker + Linux + nodejs + v8 approach, WasmEdge is safer (suitable for multi-tenancy environments) and much lighter (1% of the footprint) with similar performance.
 
-We will start from a complete tutorial to create and deploy a simple React Streaming SSR web application, and then move on to a full React 18 demo.
+We will start with a complete tutorial to create and deploy a simple React Streaming SSR web application and then move on to a full React 18 demo.
 
 - [Getting started with React streaming SSR](#getting-started)
 - [A full React 18 app](#a-full-react-18-app)
@@ -18,7 +18,7 @@ We will start from a complete tutorial to create and deploy a simple React Strea
 
 ## Getting started
 
-The [example_js/react_ssr_stream](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react_ssr_stream) folder in the GitHub repo contains the example's source code. It showcases how to streaming render an HTML string from templates in a JavaScript app running in WasmEdge.
+The [example_js/react_ssr_stream](https://github.com/second-state/wasmedge-quickjs/tree/main/example_js/react_ssr_stream) folder in the GitHub repo contains the example's source code. It showcases how to render an HTML string from templates in a JavaScript app in WasmEdge.
 
 The [component/LazyHome.jsx](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/component/LazyHome.jsx) file is the main page template in React. It "lazy" loads the inner page template after a 2s delay once the outer HTML is rendered and returned to the user.
 
@@ -80,7 +80,7 @@ class LazyPage extends React.Component {
 export default LazyPage;
 ```
 
-The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/main.mjs) file starts a non-blocking HTTP server using standard Node.js APIs, and then renders the HTML page in multiple chuncks to the response.
+The [main.mjs](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/react_ssr_stream/main.mjs) file starts a non-blocking HTTP server using standard Node.js APIs, and then renders the HTML page in multiple chunks to the response.
 
 ```javascript
 import * as React from 'react';
@@ -104,7 +104,7 @@ npm install
 npm run build
 ```
 
-Copy over the system's `modules` to the working directory for Node.js API support as [noted here](nodejs).
+Copy over the system's `modules` to the working directory for Node.js API support as [noted here](nodejs.md).
 
 ```bash
 cp -r ../../modules .
@@ -116,13 +116,13 @@ To run the example, do the following on the CLI to start the server.
 nohup wasmedge --dir .:. /path/to/wasmedge_quickjs.wasm dist/main.mjs &
 ```
 
-Send the server a HTTP request via `curl` or the browser.
+Send the server an HTTP request via `curl` or the browser.
 
 ```bash
 curl http://localhost:8001
 ```
 
-The results are as follows. The service first returns an HTML page with an empty inner section (i.e., the `loading` section), and then 2s later, the HTML content for the inner section and the JavaScript to display it.
+The results are as follows. The service returns an HTML page with an empty inner section (i.e., the `loading` section), then 2s later, the HTML content for the inner section and the JavaScript to display.
 
 ```bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -236,13 +236,13 @@ To run the example, do the following on the CLI to start the server.
 nohup wasmedge --dir .:. /path/to/wasmedge_quickjs.wasm dist/main.mjs &
 ```
 
-Send the server a HTTP request via `curl` or the browser.
+Send the server an HTTP request via `curl` or the browser.
 
 ```bash
 curl http://localhost:8002
 ```
 
-The results are as follows. The service first returns an HTML page with an empty inner section (i.e., the `loading` section), and then 2s later, the HTML content for the inner section and the JavaScript to display it.
+The results are as follows. The service returns an HTML page with an empty inner section (i.e., the `loading` section), and then 2s later, the HTML content for the inner section and the JavaScript to display it.
 
 ```bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -291,7 +291,7 @@ rshmallows</p></div><script>$RS("S:5","P:5")</script><script>$RC("B:2","S:2")</s
 cript>
 ```
 
-The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the rollup bundled JS file contains ES6 modules). You can learn more about [async networking](networking) and [ES6](es6) in this book.
+The streaming SSR examples make use of WasmEdge's unique asynchronous networking capabilities and ES6 module support (i.e., the roll-up bundled JS file contains ES6 modules). You can learn more about [async networking](networking.md) and [ES6](es6.md) in this book.
 
 ## Appendix the create-react-app template
 
@@ -311,7 +311,7 @@ Then, `cd` into the directory for the newly created app.
 cd react-ssr-example
 ```
 
-Start the new app in order to verify the installation.
+Start the new app to verify the installation.
 
 ```bash
 npm start
@@ -319,7 +319,7 @@ npm start
 
 You should see the example React app displayed in your browser window. At this stage, the app is rendered in the browser. The browser runs the generated React JavaScript to build the HTML DOM UI.
 
-Now in order to prepare for SSR, you will need to make some changes to the app's `index.js` file. Change ReactDOM's `render` method to `hydrate` to indicate to the DOM renderer that you intend to rehydrate the app after it is rendered on the server. Replace the contents of the `index.js` file with the following.
+Now to prepare for SSR, you will need to make some changes to the app's `index.js` file. Change ReactDOM's `render` method to `hydrate` to indicate to the DOM renderer that you intend to rehydrate the app after it is rendered on the server. Replace the contents of the `index.js` file with the following.
 
 ```javascript
 import React from 'react';
@@ -333,18 +333,21 @@ ReactDOM.hydrate(
 );
 ```
 
-Note: you should import `React` redundantly in the `src/App.js`, so the server will recognize it.
+<!-- prettier-ignore -->
+:::note
+You should import `React` redundantly in the `src/App.js`, so the server will recognize it.
+:::
 
 ```js
 import React from 'react';
 //...
 ```
 
-That concludes setting up the application, you can move on to setting up the server-side rendering functions.
+That concludes setting up the application. You can move on to setting up the server-side rendering functions.
 
 ### Step 2 — Create an WasmEdge QuickJS Server and Render the App Component
 
-Now that you have the app in place, let’s set up a server that will render the HTML DOM by running the React JavaScript and then send the rendered elements to the browser. We will use WasmEdge as a secure, high-performance and lightweight container to run React JavaScript.
+Now that you have the app in place let’s set up a server that will render the HTML DOM by running the React JavaScript and then send the rendered elements to the browser. We will use WasmEdge as a secure, high-performance, lightweight container to run React JavaScript.
 
 Create a new `server` directory in the project's root directory.
 
@@ -458,7 +461,7 @@ async function server_start() {
 server_start();
 ```
 
-The server renders the `<App>` component, and then sends the rendered HTML string back to the browser. Three important things are taking place here.
+The server renders the `<App>` component and then sends the rendered HTML string back to the browser. Three important things are taking place here.
 
 - ReactDOMServer's `renderToString` is used to render the `<App/>` to an HTML string.
 - The `index.html` file from the app's `build` output directory is loaded as a template. The app's content is injected into the `<div>` element with an id of `"root"`. It is then sent back as HTTP response.
@@ -466,7 +469,7 @@ The server renders the `<App>` component, and then sends the rendered HTML strin
 
 ### Step 3 — Build and deploy
 
-For the server code to work, you will need to bundle and transpile it. In this section, we will show you how to use webpack and Babel. In this next section, we will demonstrate an alternative (and potentially easier) approach using rollup.js.
+For the server code to work, you will need to bundle and transpile it. This section will show you how to use Webpack and Babel. This next section will demonstrate an alternative (and potentially easier) approach using rollup.js.
 
 Create a new Babel configuration file named `.babelrc.json` in the project's root directory and add the `env` and `react-app` presets.
 
@@ -476,7 +479,7 @@ Create a new Babel configuration file named `.babelrc.json` in the project's roo
 }
 ```
 
-Create a webpack config for the server that uses Babel Loader to transpile the code. Start by creating the `webpack.server.js` file in the project's root directory.
+Create a webpack config for the server that uses Babel Loader to transpile the code. Create the `webpack.server.js` file in the project's root directory.
 
 ```js
 const path = require('path');
@@ -517,7 +520,7 @@ module.exports = {
 };
 ```
 
-With this configuration, the transpiled server bundle will be output to the `server-build` folder in a file called `index.js`.
+With this configuration, the transpired server bundle will be output to the `server-build` folder in a file called `index.js`.
 
 Next, add the `svg-url-loader` package by entering the following commands in your terminal.
 
@@ -538,9 +541,9 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 ```
 
 - The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world.md)
 
-Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
+Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start the server on `:8002`.
 
 ```bash
 npm run build
@@ -566,9 +569,9 @@ Output
 
 ### Step 4 (alternative) -- build and deploy with rollup.js
 
-Alternatively, you could use the [rollup.js](https://rollupjs.org/guide/en/) tool to [package all application components and library modules](npm) into a single file for WasmEdge to execute.
+Alternatively, you could use the [rollup.js](https://rollupjs.org/guide/en/) tool to [package all application components and library modules](npm.md) into a single file for WasmEdge to execute.
 
-Create a rollup config for the server that uses Babel Loader to transpile the code. Start by creating the `rollup.config.js` file in the project's root directory.
+Create a rollup config for the server that uses Babel Loader to transpile the code. Create the `rollup.config.js` file in the project's root directory.
 
 ```js
 const { babel } = require('@rollup/plugin-babel');
@@ -652,9 +655,9 @@ Now, revisit `package.json` and add helper npm scripts. Add `dev:build-server`, 
 ```
 
 - The `dev:build-server` script sets the environment to `"development"` and invokes webpack with the configuration file you created earlier.
-- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world)
+- The `dev:start-server` script runs the WasmEdge server from the `wasmedge` CLI tool to serve the built output. The `wasmedge_quickjs.wasm` program contains the QuickJS runtime. [Learn more](hello_world.md)
 
-Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start up the server on `:8002`.
+Now you can run the following commands to build the client-side app, bundle and transpile the server code, and start the server on `:8002`.
 
 ```bash
 npm run build
@@ -664,7 +667,7 @@ npm run dev:start-server
 
 Open `http://localhost:8002/` in your web browser and observe your server-side rendered app.
 
-Previously, the HTML source in the browser is simply the template with SSR placeholders.
+Previously, the HTML source in the browser was simply the template with SSR placeholders.
 
 ```html
 Output

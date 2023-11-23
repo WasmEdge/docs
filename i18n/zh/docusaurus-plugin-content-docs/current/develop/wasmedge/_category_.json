@@ -1,8 +1,0 @@
-{
-  "label": "What is WasmEdge",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "WasmEdge is a WebAssembly runtime optimized for cloud-native and edge-native applications. It is a safe, fast, lightweight, and portable alternative to Linux containers in the cloud. It is also an ideal runtime for serverless functions, user-defined functions, embedded functions in application platforms and data pipelines."
-  }
-}

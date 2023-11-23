@@ -2,49 +2,9 @@
 sidebar_position: 1
 ---
 
-# Go API v0.13.0 Documentation (WORK IN PROGRESS)
+# Go API v0.13.4 Documentation
 
 The following are the guides to working with the WasmEdge-Go SDK.
-
-## Table of Contents
-
-- [Getting Started](#getting-started)
-  - [WasmEdge Installation](#wasmedge-installation)
-  - [Get WasmEdge-go](#get-wasmedge-go)
-  - [WasmEdge-go Extensions](#wasmedge-go-extensions)
-  - [Example repository](#example-repository)
-- [WasmEdge-go Basics](#wasmedge-go-basics)
-  - [Version](#version)
-  - [Logging Settings](#logging-settings)
-  - [Value Types](#value-types)
-  - [Results](#results)
-  - [Contexts And Their Life Cycles](#contexts-and-their-life-cycles)
-  - [WASM data structures](#wasm-data-structures)
-  - [Async](#async)
-  - [Configurations](#configurations)
-  - [Statistics](#statistics)
-  - [Tools driver](#tools-driver)
-- [WasmEdge VM](#wasmedge-vm)
-  - [WASM Execution Example With VM Object](#wasm-execution-example-with-vm-object)
-  - [VM Creations](#vm-creations)
-  - [Built-in Host Modules and Plug-in Preregistrations](#built-in-host-modules-and-plug-in-preregistrations)
-  - [Host Module Registrations](#host-module-registrations)
-  - [WASM Registrations And Executions](#wasm-registrations-and-executions)
-  - [Asynchronous execution](#asynchronous-execution)
-  - [Instance Tracing](#instance-tracing)
-- [WasmEdge Runtime](#wasmedge-runtime)
-  - [WASM Execution Example Step-By-Step](#wasm-execution-example-step-by-step)
-  - [Loader](#loader)
-  - [Validator](#validator)
-  - [Executor](#executor)
-  - [AST Module](#ast-module)
-  - [Store](#store)
-  - [Instances](#instances)
-  - [Host Functions](#host-functions)
-  - [Plug-ins](#plug-ins)
-- [WasmEdge AOT Compiler](#wasmedge-aot-compiler)
-  - [Compilation Example](#compilation-example)
-  - [Compiler Options](#compiler-options)
 
 ## Getting Started
 
@@ -57,16 +17,16 @@ go version go1.16.5 linux/amd64
 
 ### WasmEdge Installation
 
-Developers must [install the WasmEdge shared library](/develop/build-and-run/install) with the same `WasmEdge-go` release or pre-release version.
+Developers must [install the WasmEdge shared library](../../../start/install.md#install) with the same `WasmEdge-go` release or pre-release version.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.12.0
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
 ```
 
 For the developers need the `TensorFlow` or `Image` extension for `WasmEdge-go`, please install the `WasmEdge` with extensions:
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v 0.12.0
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v {{ wasmedge_version }}
 ```
 
 Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` platforms. After installation, developers can use the `source` command to update the include and linking searching path.
@@ -76,7 +36,7 @@ Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` pl
 After the WasmEdge installation, developers can get the `WasmEdge-go` package and build it in your Go project directory.
 
 ```bash
-go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
 go build
 ```
 
@@ -84,49 +44,6 @@ go build
 :::note
 The WasmEdge-Go version number should match the installed WasmEdge version.
 :::
-
-### WasmEdge-go Extensions
-
-By default, the `WasmEdge-go` only turns on the basic runtime.
-
-`WasmEdge-go` has the following extensions (on the Linux platforms only):
-
-- Tensorflow
-
-  - This extension supports the host functions in [WasmEdge-tensorflow](https://github.com/second-state/WasmEdge-tensorflow).
-  - The `TensorFlow` and `TensorFlow-Lite` extension when installing `WasmEdge` is required. Please install `WasmEdge` with the `-e tensorflow` command.
-  - For using this extension, the tag `tensorflow` when building is required:
-
-    ```bash
-    go build -tags tensorflow
-    ```
-
-- Tensorflow-Lite
-
-  - This extension supports the host functions in [WasmEdge-tensorflow](https://github.com/second-state/WasmEdge-tensorflow) with only `TensorFlow-Lite`.
-  - The `TensorFlow-Lite` extension when installing `WasmEdge` is required. Please install `WasmEdge` with the `-e tensorflow` command.
-  - **THIS TAG CANNOT BE USED WITH THE `tensorflow` TAG.**
-  - For using this extension, the tag `tensorflow` when building is required:
-
-    ```bash
-    go build -tags tensorflowlite
-    ```
-
-- Image
-
-  - This extension supports the host functions in [WasmEdge-image](https://github.com/second-state/WasmEdge-image).
-  - The `Image` extension when installing `WasmEdge` is required. Please install `WasmEdge` with the `-e image` command.
-  - For using this extension, the tag `image` when building is required:
-
-    ```bash
-    go build -tags image
-    ```
-
-Users can also turn on the multiple extensions when building:
-
-```bash
-go build -tags image,tensorflow
-```
 
 ### Example Repository
 
@@ -657,36 +574,6 @@ Before using statistics, the statistics configuration must be set. Otherwise, th
    stat.Release()
    ```
 
-### Tools Driver
-
-Besides executing the `wasmedge` and `wasmedgec` CLI tools, developers can trigger the WasmEdge CLI tools in WasmEdge-Go. The API arguments are the same as the command line arguments of the CLI tools.
-
-```go
-package main
-
-import (
-  "os"
-  "github.com/second-state/WasmEdge-go/wasmedge"
-)
-
-func main() {
-  wasmedge.RunWasmEdgeCLI(os.Args)
-}
-```
-
-```go
-package main
-
-import (
-  "os"
-  "github.com/second-state/WasmEdge-go/wasmedge"
-)
-
-func main() {
-  wasmedge.RunWasmEdgeAOTCompilerCLI(os.Args)
-}
-```
-
 ## WasmEdge VM
 
 In this partition, we will introduce the functions of `wasmedge.VM` object and show examples of executing WASM functions.
@@ -758,7 +645,7 @@ The following shows the example of running the WASM for getting the Fibonacci. T
    Then you can build and run the Golang application with the WasmEdge Golang SDK: (the 21 Fibonacci number is 17711 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Get fibonacci[21]: 17711
@@ -922,7 +809,7 @@ WasmEdge provides the following built-in host modules and plug-in pre-registrati
 
 2. Plug-ins
 
-   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](/contribute/internal.md#plugins).
+   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](../../../start/install.md#install-wasmedge-plug-ins-and-dependencies).
 
    Before using the plug-ins, developers should [load the plug-ins from paths](#load-plug-ins-from-paths).
 
@@ -1068,7 +955,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 25th Fibonacci number is 121393 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Get fibonacci[25]: 121393
@@ -1118,7 +1005,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 20th Fibonacci number is 10946 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 10946
@@ -1185,7 +1072,7 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Then you can build and run: (the 25th Fibonacci number is 121393 in 0-based index)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 121393
@@ -1283,7 +1170,7 @@ Sometimes the developers may have requirements to get the instances of the WASM 
    Then you can build and run: (the only exported function in `fibonacci.wasm` is `fib`)
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Exported function name: fib
@@ -1425,7 +1312,7 @@ func main() {
     fmt.Println("Run FAILED: Function name `fib` not found")
     return
   }
-  res, err = executor.Invoke(store, funcinst, int32(30))
+  res, err = executor.Invoke(funcinst, int32(30))
   if err == nil {
     fmt.Println("Get fibonacci[30]:", res[0].(int32))
   } else {
@@ -1447,7 +1334,7 @@ func main() {
 Then you can build and run: (the 18th Fibonacci number is 1346269 in 30-based index)
 
 ```bash
-$ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
 $ go build
 $ ./wasmedge_test
 Exported function name: fib
@@ -1526,7 +1413,9 @@ The `Executor` object is the executor for both WASM and compiled-WASM. This obje
 
 1. Instantiate and register an `AST` object as a named `Module` instance
 
-   As the same of [registering host modules](#host-module-registrations) or [importing WASM modules](#wasm-registrations-and-executions) in `VM` objects, developers can instantiate and register an `AST` objects into the `Store` context as a named `Module` instance by the `Executor` APIs. After the registration, the result `Module` instance is exported with the given module name and can be linked when instantiating another module. For the details about the `Module` instances APIs, please refer to the [Instances](#instances).
+   As the same of [registering host modules](#host-module-registrations) or [importing WASM modules](#wasm-registrations-and-executions) in `VM` objects, developers can instantiate an `AST module` object into a named `Module` instance, and register it into the `Store` object. After the registration, the result `Module` instance is exported to the `Store` with the given module name and can be linked when instantiating another module.
+
+   For the details about the `Module` instances APIs, please refer to the [Instances](#instances). The `Store` context is only the linker for searching and linking the exported modules when instantiation. Developers should release the output `Module` instance when it will no longer be used. When the `Module` instance being released, it will automatically unlink to all linked `Store` objects.
 
    ```go
    // ...
@@ -1640,6 +1529,12 @@ The `Executor` object is the executor for both WASM and compiled-WASM. This obje
 
    After registering or instantiating and get the result `Module` instance, developers can retrieve the exported `Function` instances from the `Module` instance for invocation. For the details about the `Module` instances APIs, please refer to the [Instances](#instances). Please refer to the [example above](#wasm-execution-example-step-by-step) for the `Function` instance invocation with the `(*Executor).Invoke` API.
 
+5. Asynchronously invoke functions
+
+   Such as [executing WASM functions in VM asynchronously](#asynchronous-execution), developers can also invoke a function asynchronously by `Executor` objects API.
+
+   After getting the `Function` instance, developers will get the `wasmedge.Async` object by calling the `(*wasmedge.executor).AsyncInvoke()` API. Please refer to the [Async](#async) chapter to work with this object for getting the results.
+
 ### AST Module
 
 The `AST` object presents the loaded structure from a WASM file or buffer. Developer will get this object after loading a WASM file or buffer from [Loader](#loader). Before instantiation, developers can also query the imports and exports of an `AST` object.
@@ -1665,7 +1560,9 @@ ast.Release()
 
 ### Store
 
-[Store](https://webassembly.github.io/spec/core/exec/runtime.html#store) is the runtime structure for the representation of all global state that can be manipulated by WebAssembly programs. The `Store` object in WasmEdge is an object to provide the instance exporting and importing when instantiating WASM modules. Developers can retrieve the named modules from the `Store` context.
+[Store](https://webassembly.github.io/spec/core/exec/runtime.html#store) is the runtime structure for the representation of all global state that can be manipulated by WebAssembly programs. The `Store` object in WasmEdge-Go is an object which present the linker to provide the instance exporting and importing when instantiating WASM modules. Developers can retrieve the named modules from the `Store` object, and should release the `Module` instances registered into the `Store` object if they will not be used anymore.
+
+When the `Store` object being released, the linked `Module` instances will automatically unlink to this `Store` object. When a `Module` instance being released, it will automatically unlink to all the linked `Store` objects.
 
 ```go
 store := wasmedge.NewStore()
@@ -1725,7 +1622,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
 3. Table instance
 
-   In WasmEdge, developers can create the `Table` objects and add them into an `ImportObject` object for registering into a `VM` or a `Store`. The `Table` objects supply APIs to control the data in table instances.
+   In WasmEdge, developers can create the `Table` objects and add them into an `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Table` objects supply APIs to control the data in table instances.
 
    ```go
    lim := wasmedge.NewLimitWithMax(10, 20)
@@ -1772,7 +1669,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
 4. Memory instance
 
-   In WasmEdge, developers can create the `Memory` objects and add them into an `ImportObject` object for registering into a `VM` or a `Store`. The `Memory` objects supply APIs to control the data in memory instances.
+   In WasmEdge, developers can create the `Memory` objects and add them into an `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Memory` objects supply APIs to control the data in memory instances.
 
    ```go
    lim := wasmedge.NewLimitWithMax(1, 5)
@@ -1812,7 +1709,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
 5. Global instance
 
-   In WasmEdge, developers can create the `Global` objects and add them into an `ImportObject` object for registering into a `VM` or a `Store`. The `Global` objects supply APIs to control the value in global instances.
+   In WasmEdge, developers can create the `Global` objects and add them into an `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Global` objects supply APIs to control the value in global instances.
 
    ```go
    // Create the global type with value type and mutation.
@@ -1843,7 +1740,9 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
 ### Host Functions
 
-[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are functions outside WebAssembly and passed to WASM modules as imports. In WasmEdge-go, developers can create the `Function`, `Memory`, `Table`, and `Global` objects and add them into an `ImportObject` object for registering into a `VM` or a `Store`.
+[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are functions outside WebAssembly and passed to WASM modules as imports. In WasmEdge, the host functions are composed into host modules as `wasmedge.Module` objects with module names. Please refer to the [Host Functions in WasmEdge Runtime](#host-functions) for the details.
+
+In this chapter, we show the example for registering the host modules into a `VM` object. Noticed that the developers should guarantee the availability of the registered module instances, and should release the module instances when they will not be used.
 
 1. Host function allocation
 
@@ -2028,7 +1927,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    [2022-08-26 15:06:40.384] [error] user defined failed: user defined error code, Code: 0x15be
@@ -2093,39 +1992,16 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
    `wasmedge.NewWasiModule()` API can create and initialize the `WASI` module instance.
 
-   `wasmedge.NewWasiNNModule()` API can create and initialize the `wasi_ephemeral_nn` module instance for `WASI-NN` plugin.
-
-   `wasmedge.NewWasiCryptoCommonModule()` API can create and initialize the `wasi_ephemeral_crypto_common` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoAsymmetricCommonModule()` API can create and initialize the `wasi_ephemeral_crypto_asymmetric_common` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoKxModule()` API can create and initialize the `wasi_ephemeral_crypto_kx` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoSignaturesModule()` API can create and initialize the `wasi_ephemeral_crypto_signatures` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasiCryptoSymmetricModule()` API can create and initialize the `wasi_ephemeral_crypto_symmetric` module instance for `WASI-Crypto` plugin.
-
-   `wasmedge.NewWasmEdgeProcessModule()` API can create and initialize the `wasmedge_process` module instance for `wasmedge_process` plugin.
-
-   Developers can create these module instance objects and register them into the `Store` or `VM` objects rather than adjust the settings in the `Configure` objects.
-
-   > Note: For the `WASI-NN` plugin, please check that the [dependencies and prerequests](/develop/build-and-run/install.md#wasi-nn-plugin-with-openvino™-backend) are satisfied. Note: For the `WASI-Crypto` plugin, please check that the [dependencies and prerequests](/develop/build-and-run/install.md#wasi-crypto-plugin) are satisfied. And the 5 modules are recommended to all be created and registered together.
-
    ```go
    wasiobj := wasmedge.NewWasiModule(
      os.Args[1:],     // The args
      os.Environ(),    // The envs
      []string{".:."}, // The mapping preopens
    )
-   procobj := wasmedge.NewWasmEdgeProcessModule(
-     []string{"ls", "echo"}, // The allowed commands
-     false,                  // Not to allow all commands
-   )
 
-   // Register the WASI and WasmEdge_Process into the VM object.
+   // Register the WASI into the VM object.
    vm := wasmedge.NewVM()
    vm.RegisterImport(wasiobj)
-   vm.RegisterImport(procobj)
 
    // ... Execute some WASM functions.
 
@@ -2137,7 +2013,6 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    vm.Release()
    // The import objects should be deleted.
    wasiobj.Release()
-   procobj.Release()
    ```
 
 6. Example
@@ -2243,7 +2118,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 6912
@@ -2316,7 +2191,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      var data int32 = 0
 
      // Create the module instance with the module name "extern".
-     impmod := wasmedge.NewImportObject("extern")
+     modinst := wasmedge.NewModule("extern")
 
      // Create and add a function instance into the module instance with export name "func-add".
      functype := wasmedge.NewFunctionType(
@@ -2325,10 +2200,10 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      )
      hostfunc := wasmedge.NewFunction(functype, host_add, &data, 0)
      functype.Release()
-     impmod.AddFunction("func-add", hostfunc)
+     modinst.AddFunction("func-add", hostfunc)
 
      // Register the module instance into VM.
-     vm.RegisterImport(impmod)
+     vm.RegisterImport(modinst)
 
      res, err := vm.RunWasmBuffer(wasmbuf, "addTwo", uint32(1234), uint32(5678))
      if err == nil {
@@ -2338,7 +2213,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
      }
      fmt.Println("Data value:", data)
 
-     impmod.Release()
+     modinst.Release()
      vm.Release()
    }
    ```
@@ -2346,7 +2221,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    Then you can build and run the Golang application with the WasmEdge Golang SDK:
 
    ```bash
-   $ go get github.com/second-state/WasmEdge-go/wasmedge@v0.12.0
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
    $ go build
    $ ./wasmedge_test
    Get the result: 6912
@@ -2459,3 +2334,62 @@ const (
 ```
 
 Please refer to the [AOT compiler options configuration](#configurations) for details.
+
+## WasmEdge CLI Tools
+
+Besides executing the `wasmedge` and `wasmedgec` CLI tools, developers can trigger the WasmEdge CLI tools in WasmEdge-Go. The API arguments are the same as the command line arguments of the CLI tools.
+
+### Runtime CLI
+
+The `wasmedge.RunWasmEdgeCLI()` API presents the same function as running the [`wasmedge run` command](../../../start/build-and-run/run.md).
+
+Noticed that this API presents the old `wasmedge` CLI tool, which is the same as the `wasmedge run` command. For the current unified `wasmedge` CLI, please refer to the [API below](#unified-cli).
+
+```go
+package main
+
+import (
+  "os"
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  wasmedge.RunWasmEdgeCLI(os.Args)
+}
+```
+
+### Compiler CLI
+
+The `wasmedge.RunWasmEdgeAOTCompilerCLI()` API presents the same function as running the [`wasmedge compile` tool](../../../start/build-and-run/aot.md).
+
+Noticed that this API presents the old `wasmedgec` CLI tool, which is the same as the `wasmedge compile` command. For the current unified `wasmedge` CLI, please refer to the [API below](#unified-cli).
+
+```go
+package main
+
+import (
+  "os"
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  wasmedge.RunWasmEdgeAOTCompilerCLI(os.Args)
+}
+```
+
+### Unified CLI
+
+The `wasmedge.RunWasmEdgeUnifiedCLI()` API presents the same function as running the [`wasmedge` tool](../../../start/build-and-run/cli.md).
+
+```go
+package main
+
+import (
+  "os"
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  wasmedge.RunWasmEdgeUnifiedCLI(os.Args)
+}
+```

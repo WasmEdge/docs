@@ -8,13 +8,13 @@ Knative is a platform-agnostic solution for running serverless deployments.
 
 ## Quick start
 
-You can refer to [Kubernetes + containerd] to build a kubernetes cluster. However, as the default runtime is replaced from runc to crun in this document, it is not suitable for existing k8s cluster.
+You can refer to [Kubernetes + containerd] to build a Kubernetes cluster. However, as the default runtime is replaced from runc to crun in this document, it is not suitable for the existing k8s cluster.
 
-Here we setup crun as a runtimeClass in kubernetes cluster, **rather than replace the default runtime**. Then deploy Knative serving service and run a WASM serverless service.
+Here we set up crun as a runtimeClass in the kubernetes cluster, **rather than replace the default runtime**. Then deploy Knative serving service and run a WASM serverless service.
 
 ## Compile crun
 
-Please refer to the document [crun](../../../develop/deploy/oci-runtime/crun) to build and compile crun with WasmEdge support.
+Please refer to the document [crun](../../deploy/oci-runtime/crun.md) to build and compile crun with WasmEdge support.
 
 ```bash
 # Install dependencies
@@ -109,7 +109,7 @@ handler: crun
 EOF
 $ kubectl apply runtime.yaml
 
-# Verify if configuration works
+# Verify if the configuration works
 $ kubectl run -it --rm --restart=Never wasi-demo --image=wasmedge/example-wasi:latest --annotations="module.wasm.image/variant=compat-smart" --overrides='{"kind":"Pod", "apiVersion":"v1", "spec": {"hostNetwork": true, "runtimeClassName": "crun"}}' /wasi_example_main.wasm 50000000
 Random number: 1534679888
 Random bytes: [88, 170, 82, 181, 231, 47, 31, 34, 195, 243, 134, 247, 211, 145, 28, 30, 162, 127, 234, 208, 213, 192, 205, 141, 83, 161, 121, 206, 214, 163, 196, 141, 158, 96, 137, 151, 49, 172, 88, 234, 195, 137, 44, 152, 7, 130, 41, 33, 85, 144, 197, 25, 104, 236, 201, 91, 210, 17, 59, 248, 80, 164, 19, 10, 46, 116, 182, 111, 112, 239, 140, 16, 6, 249, 89, 176, 55, 6, 41, 62, 236, 132, 72, 70, 170, 7, 248, 176, 209, 218, 214, 160, 110, 93, 232, 175, 124, 199, 33, 144, 2, 147, 219, 236, 255, 95, 47, 15, 95, 192, 239, 63, 157, 103, 250, 200, 85, 237, 44, 119, 98, 211, 163, 26, 157, 248, 24, 0]
@@ -149,11 +149,11 @@ $ kubectl patch configmap/config-features -n knative-serving --type merge --patc
 
 ## WASM cases in Knative Serving
 
-Now we can try to run a WASM serverless service.
+Now we can run a WASM serverless service.
 
 ```bash
 # apply the serverless service configuration
-# we need setup annotations, runtimeClassName and ports.
+# We need setup annotations, runtimeClassName, and ports.
 $ cat > http-wasm-serverless.yaml <<EOF
 apiVersion: serving.knative.dev/v1
 kind: Service
@@ -181,13 +181,13 @@ EOF
 
 $ kubectl apply http-wasm-serverless.yaml
 
-# wait for a while, check if the serverless service available
+# wait for a while, and check if the serverless service is available
 $ kubectl get ksvc http-wasm
 NAME          URL                                              LATESTCREATED       LATESTREADY         READY   REASON
 http-wasm     http://http-wasm.default.knative.example.com     http-wasm-00001     http-wasm-00001     True
 
-# try to call the service
-# As we do not setup DNS, so we can only call the service via Kourier, Knative Serving ingress port.
+# Try to call the service
+# As we do not set up DNS, we can only call the service via Kourier, Knative Serving ingress port.
 # get Kourier port which is 31997 in following example
 $ kubectl --namespace kourier-system get service kourier
 NAME      TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE

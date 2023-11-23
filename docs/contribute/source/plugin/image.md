@@ -29,7 +29,7 @@ To enable the WasmEdge WasmEdge-Image, developers need to [building the WasmEdge
 cd <path/to/your/wasmedge/source/folder>
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_IMAGE=On
 cmake --build build
-# For the WasmEdge-Image plugin, you should install this project.
+# For the WasmEdge-Image plug-in, you should install this project.
 cmake --install build
 ```
 

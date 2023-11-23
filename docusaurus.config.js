@@ -38,6 +38,15 @@ const config = {
         }
     },
 
+    plugins: [
+        [
+            '@docusaurus/plugin-google-gtag',
+            {
+                trackingID: 'G-Q77VSJHYQB',
+            },
+        ],
+    ],
+
     presets: [
         [
             'classic',
@@ -55,33 +64,54 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                sitemap: {
+                    changefreq: 'weekly',
+                    priority: 0.5,
+                    ignorePatterns: ['/tags/**'],
+                    filename: 'sitemap.xml',
+                },
             }),
         ],
     ],
-    
-    themes : [
+
+    themes: [
+        '@docusaurus/theme-mermaid',
         [
             "@easyops-cn/docusaurus-search-local",
             /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
             // @ts-ignore
             {
-              docsRouteBasePath: '/',
-              hashed: true,
-              indexBlog: false,
-              indexPages: true,
-              language: ["en", "zh"],
-              highlightSearchTermsOnTargetPage: true,
-              explicitSearchResultPath: true,
-              searchBarShortcut: true,
-              searchBarShortcutHint: true,
-              searchBarPosition: "right",
+                docsRouteBasePath: '/',
+                hashed: true,
+                indexBlog: false,
+                indexPages: true,
+                language: ["en", "zh"],
+                highlightSearchTermsOnTargetPage: true,
+                explicitSearchResultPath: true,
+                searchBarShortcut: true,
+                searchBarShortcutHint: true,
+                searchBarPosition: "right",
             },
-          ],
         ],
+    ],
+
 
     themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+        /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            metadata: [
+                { name: 'keywords', content: 'wasmedge, wasm, web assembly, rust, cncf, edge devices, cloud, serverless' },
+                { name: 'description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' },
+                { name: 'og:title', content: 'WasmEdge' },
+                { name: 'og:description', content: 'WasmEdge is a lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications. It powers serverless apps, embedded functions, microservices, smart contracts, and IoT devices.' },
+                { name: 'og:url', content: 'https://wasmedge.org/' },
+                { name: 'og:type', content: 'Documentation' },
+                { name: 'twitter:card', content: 'summary' },
+                { name: 'twitter:image', content: 'summary_large_image' },
+                { name: 'twitter:url', content: 'https://wasmedge.org/' },
+                { name: 'twitter:site', content: '@realwasmedge' },
+                { name: 'twitter:title', content: 'WasmEdge' }
+            ],
             image: "./static/img/wasm_logo.png",
             announcementBar: {
                 id: "start",
@@ -97,6 +127,11 @@ const config = {
                 items: [
                     {
                         type: 'doc',
+                        docId: 'start/overview',
+                        position: 'left',
+                        label: 'Getting Started',
+                    }, {
+                        type: 'doc',
                         docId: 'develop/overview',
                         position: 'left',
                         label: 'Develop',
@@ -110,58 +145,61 @@ const config = {
                         docId: 'contribute/overview',
                         position: 'left',
                         label: 'Extend',
-                    },
-                    {
+                    }, {
                         type: 'localeDropdown',
                         position: 'right',
                         dropdownItemsBefore: [],
                         dropdownItemsAfter: [],
                         className: 'icon-link language navbar__item',
-                    },
-                    {
+                    }, {
                         href: 'https://github.com/WasmEdge/WasmEdge',
                         className: "header-github-link",
                         position: 'right',
+                        alt: 'https://github.com/WasmEdge/WasmEdge'
                     },
                 ],
             },
             docs: {
                 sidebar: {
-                  hideable: true,
+                    hideable: true,
                 },
-              },
+            },
             footer: {
                 logo: {
                     alt: 'WasmEdge logo',
                     src: '/img/wasmedge_logo.svg',
                     href: 'https://wasmedge.org/',
-                  },
+                },
                 style: 'dark',
                 links: [
                     {
                         title: 'Docs',
                         items: [
                             {
+                                label: 'Getting Started',
+                                to: '/start/overview',
+                            },
+                            {
                                 label: 'Develop',
                                 to: '/develop/overview',
-                            },{
+                            },
+                            {
                                 label: 'Embeds',
                                 to: '/embed/overview',
                             },
-                             {
+                            {
                                 label: 'Contribute',
                                 to: '/contribute/overview',
                             }
                         ],
-                    },
-                    {
+                    }, {
                         title: 'Resources',
                         items: [
                             {
                                 label: 'Github',
                                 href: 'https://github.com/WasmEdge/WasmEdge',
                             },
-                             {
+                            {
                                 label: 'Second State',
                                 href: 'https://www.secondstate.io/',
                             },
@@ -176,6 +214,10 @@ const config = {
                             {
                                 label: 'Releases',
                                 to: '/releases'
+                            },
+                            {
+                                label: 'Sitemap',
+                                href: 'https://wasmedge.org/docs/sitemap.xml'
                             }
                         ],
                     },
@@ -215,4 +257,12 @@ const config = {
         }),
 };
 
-module.exports = config;
+// Extending config to inlcude mermaid also
+const extendedConfig = {
+    ...config,
+    markdown: {
+        mermaid: true,
+    }
+};
+
+module.exports = extendedConfig;

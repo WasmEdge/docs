@@ -4,4 +4,7 @@ sidebar_position: 2
 
 # Rust Host application with wasmedge-bindgen
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::

@@ -17,7 +17,7 @@ This demo is based on containerd + crun.
 
 <!-- prettier-ignore -->
 :::note
-Choose installation package according to your installation node CPU architecture (amd64 or arm64).
+Choose an installation package according to your installation node CPU architecture (amd64 or arm64).
 :::
 
 ```bash
@@ -36,7 +36,7 @@ arch=amd64 version=v0.6.0 && rm -rf edgeadm-linux-* && wget https://superedge-12
 ./edgeadm join <Master Public/Intranet IP Or Domain>:Port --token xxxx --discovery-token-ca-cert-hash sha256:xxxxxxxxxx --install-pkg-path <edgeadm kube-* install package address path> --enable-edge=true --runtime=containerd
 ```
 
-Other installation, deployment, and administration, see our [**Tutorial**](https://superedge.io/docs/installation/)
+For other installation, deployment, and administration, see our [**Tutorial**](https://superedge.io/docs/installation/)
 
 ## Install WasmEdge
 
@@ -48,7 +48,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 ## Build and install Crun with WasmEdge
 
-The [crun](https://github.com/containers/crun) project has WasmEdge support baked in. For now, the easiest approach is just to build it yourself from source. First, let's make sure that crun dependencies are installed on your Ubuntu 20.04. For other Linux distributions, please see [here](https://github.com/containers/crun#readme).
+The [crun](https://github.com/containers/crun) project has WasmEdge support baked in. For now, the easiest approach is to build it yourself from source. First, let's ensure crun dependencies are installed on your Ubuntu 20.04. For other Linux distributions, please see [here](https://github.com/containers/crun#readme).
 
 ```bash
 sudo apt update
@@ -70,7 +70,7 @@ sudo make install
 
 ## Reconfigure containerd with crun runtime
 
-Superedge containerd node has default config, we should modify the configuration file(/etc/containerd/config.toml) according to the following steps.
+Superedge containerd node has default config. We should modify the configuration file(/etc/containerd/config.toml) according to the following steps.
 
 Firstly, we generate `config.toml.diff` diff file and patch it.
 
@@ -117,7 +117,7 @@ sudo systemctl restart containerd
 
 ## Create Wasmedge application in Superedge
 
-We can run a wasm image which has been pushed to [dockerhub](https://hub.docker.com/r/hydai/wasm-wasi-example). If you want to learn how to compile, package, and publish the WebAssembly program as a container image to Docker hub, please refer to [here](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md).
+We can run a wasm image pushed to [dockerhub](https://hub.docker.com/r/hydai/wasm-wasi-example). If you want to learn how to compile, package, and publish the WebAssembly program as a container image to the Docker hub, please refer to [here](https://github.com/second-state/wasmedge-containers-examples/blob/main/simple_wasi_app.md).
 
 ```bash
 cat > wasmedge-app.yaml << EOF
