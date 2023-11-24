@@ -2,31 +2,31 @@
 sidebar_position: 7
 ---
 
-# Build with eBPF Plugin
+# Build with eBPF Plug-in
 
-The eBPF (extended Berkeley Packet Filter) plugin provides an interface to execute eBPF programs in WasmEdge. It allows WasmEdge to execute eBPF code that is compiled into WebAssembly format. This guide will walk you through the steps to build WasmEdge with the eBPF plugin.
+The eBPF (extended Berkeley Packet Filter) plug-in provides an interface to execute eBPF programs in WasmEdge. It allows WasmEdge to execute eBPF code that is compiled into WebAssembly format. This guide will walk you through the steps to build WasmEdge with the eBPF plug-in.
 
-## Build the eBPF Plugin
+## Build the eBPF Plug-in
 
 ### Prerequisites
 
-Before building the eBPF plugin, ensure that you have the following installed:
+Before building the eBPF plug-in, ensure that you have the following installed:
 
-* WasmEdge - If you haven't installed it, follow the [follow the guide to build from source](../source/os/linux.md).
-* libbpf - This plugin requires `libbpf >= 1.2`. See [Building libbpf](https://github.com/libbpf/libbpf#building-libbpf) for details.
+* WasmEdge - If you haven't installed it, follow the [follow the guide to build from source](../os/linux.md).
+* libbpf - This plug-in requires `libbpf >= 1.2`. See [Building libbpf](https://github.com/libbpf/libbpf#building-libbpf) for details.
 
 ### Build steps
 
-To build the eBPF plugin, run the following commands at the root of the WasmEdge project:
+To build the eBPF plug-in, run the following commands at the root of the WasmEdge project:
 
 ```bash
 cmake -DWASMEDGE_PLUGIN_WASM_BPF:BOOL=TRUE -B ./build -G "Unix Makefiles"
 cmake --build ./build
 ```
 
-Make sure to set `WASMEDGE_PLUGIN_WASM_BPF` to `TRUE` in the command line. This toggle controls the build of the `wasm_bpf` plugin.
+Make sure to set `WASMEDGE_PLUGIN_WASM_BPF` to `TRUE` in the command line. This toggle controls the build of the `wasm_bpf` plug-in.
 
-## Use the eBPF Plugin
+## Use the eBPF Plug-in
 
 ### Download Examples
 
@@ -67,7 +67,7 @@ bootstrap  execve  go-execve  go-lsm  lsm   opensnoop runqlat  rust-bootstrap  s
 
 ### Run Examples
 
-After building, you can find the plugin at `./build/plugins/wasm_bpf/libwasmedgePluginWasmBpf.so` and the WasmEdge CLI tool at `./build/tools/wasmedge/wasmedge`.
+After building, you can find the plug-in at `./build/plugins/wasm_bpf/libwasmedgePluginWasmBpf.so` and the WasmEdge CLI tool at `./build/tools/wasmedge/wasmedge`.
 
 To run the examples, set `WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/` and run wasmedge:
 
@@ -75,11 +75,11 @@ To run the examples, set `WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/` and ru
 WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/ ./build/tools/wasmedge/wasmedge execve.wasm
 ```
 
-Adjust `WASMEDGE_PLUGIN_PATH` according to your build directory of the plugin.
+Adjust `WASMEDGE_PLUGIN_PATH` according to your build directory of the plug-in.
 
 ## Host Functions
 
-This plugin adds six host functions that give your Wasm application access to eBPF. All of these functions are in the module `wasm_bpf`, if you loaded this plugin:
+This plug-in adds six host functions that give your Wasm application access to eBPF. All of these functions are in the module `wasm_bpf`, if you loaded this plug-in:
 
 ```c
 /// lookup a bpf map fd by name.
