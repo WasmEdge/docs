@@ -65,7 +65,7 @@ WasmEdge_StringDelete(ExportName);
 
 ## Unified WasmEdge CLI
 
-The `WasmEdge_Driver_UniTool()` API presents the same function as running the [`wasmedge` tool](/develop/build-and-run/cli).
+The `WasmEdge_Driver_UniTool()` API presents the same function as running the [`wasmedge` tool](../../../start/build-and-run/cli.md).
 
 ```c
 #include <wasmedge/wasmedge.h>

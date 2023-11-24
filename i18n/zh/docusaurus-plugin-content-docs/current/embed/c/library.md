@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Use WasmEdge Library
 
-When programming with WasmEdge C API, developers should include the required headers and link with the WasmEdge Library. Besides [install WasmEdge](/develop/build-and-run/install) with the WasmEdge shared library, developers can also [build WasmEdge](/contribute/source/build_from_src.md) to generate the WasmEdge static library.
+When programming with WasmEdge C API, developers should include the required headers and link with the WasmEdge Library. Besides [install WasmEdge](../../start/install.md#install) with the WasmEdge shared library, developers can also [build WasmEdge](../../contribute/source/build_from_src.md) to generate the WasmEdge static library.
 
 Assume the example `test.c`:
 
@@ -97,7 +97,7 @@ int main() {
 }
 ```
 
-This example will execute a WASM which call into a host function to add 2 numbers.
+This example will execute a WASM, which calls into a host function to add 2 numbers.
 
 ## Link with WasmEdge Shared Library
 
@@ -112,7 +112,7 @@ Get the result: 6912
 
 ## Link with WasmEdge Static Library
 
-For preparing the WasmEdge static library, developers should [build WasmEdge from source](/contribute/source/build_from_src#cmake-building-options) with the options:
+For preparing the WasmEdge static library, developers should [build WasmEdge from source](../../contribute/source/build_from_src#cmake-building-options) with the options:
 
 ```bash
 # Recommend to use the `wasmedge/wasmedge:latest` docker image. This will provide the required packages.
@@ -127,7 +127,7 @@ The cmake option `-DWASMEDGE_LINK_LLVM_STATIC=ON` will turn on the static librar
 After installation, developers can compile the example file:
 
 ```bash
-# Note: only the Linux platforms need the `-lrt`. The MacOS platforms not need this linker flag.
+# Note: only the Linux platforms need the `-lrt`. The MacOS platforms do not need this linker flag.
 $ gcc test.c -lwasmedge -lrt -ldl -pthread -lm -lstdc++ -o test
 $ ./test
 Host function "Add": 1234 + 5678

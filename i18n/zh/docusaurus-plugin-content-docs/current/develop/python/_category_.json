@@ -1,8 +1,8 @@
 {
-  "label": "Develop Wasm Apps in Python",
+  "label": "Develop WASM Apps in Python",
   "position": 9,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will learn how to create Wasm apps in Python."
+    "description": "In this chapter, we will learn how to create WASM apps in Python."
   }
 }

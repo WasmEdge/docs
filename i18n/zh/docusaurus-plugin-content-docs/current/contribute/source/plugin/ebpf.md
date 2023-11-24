@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# Build with eBPF Plugin
+# Build with eBPF Plug-in
 
 The eBPF (extended Berkeley Packet Filter) plugin provides an interface to execute eBPF programs in WasmEdge. It allows WasmEdge to execute eBPF code that is compiled into WebAssembly format. This guide will walk you through the steps to build WasmEdge with the eBPF plugin.
 

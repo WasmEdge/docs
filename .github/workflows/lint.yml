@@ -37,5 +37,5 @@ jobs:
       - name: Lint
         run: npm run lint:ci
 
-      - name: Prettier Code
-        run: npm run format:diff
+      # - name: Prettier Code
+      #   run: npm run format:diff

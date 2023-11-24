@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.13.1 Documentation
+# C API 0.13.4 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
@@ -16,7 +16,7 @@ The easiest way to install WasmEdge is to run the following command. Your system
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
 ```
 
-For more details, please refer to the [Installation Guide](/develop/build-and-run/install.md) for the WasmEdge installation.
+For more details, please refer to the [Installation Guide](../../../start/install.md#install) for the WasmEdge installation.
 
 ### Compile Sources
 
@@ -740,7 +740,8 @@ In this partition, we will introduce the functions of `WasmEdge_VMContext` objec
 
 ### WASM Execution Example With VM Context
 
-The following shows the example of running the WASM for getting the Fibonacci. This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
+The following shows the example of running the WASM for getting the Fibonacci. This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
 
 ```wasm
 (module
@@ -762,8 +763,9 @@ The following shows the example of running the WASM for getting the Fibonacci. T
 
 1. Run WASM functions rapidly
 
-   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
-
+   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+   Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
+   
    ```c
    #include <stdio.h>
    #include <wasmedge/wasmedge.h>
@@ -986,7 +988,7 @@ WasmEdge provides the following built-in host modules and plug-in pre-registrati
 
 2. Plug-ins
 
-   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](/contribute/installer.md#plugins).
+   There may be several plug-ins in the default plug-in paths if users [installed WasmEdge plug-ins by the installer](../../../start/install.md#install-wasmedge-plug-ins-and-dependencies).
 
    Before using the plug-ins, developers should [load the plug-ins from paths](#load-plug-ins-from-paths).
 
@@ -1070,7 +1072,9 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
 
 1. Register the WASM modules with exported module names
 
-   Unless the module instances have already contained the module names, every WASM module should be named uniquely when registering. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory.
+   Unless the module instances have already contained the module names, every WASM module should be named uniquely when registering. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory.
+   Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
+
 
    ```c
    WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
@@ -1163,7 +1167,9 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
 
 1. Asynchronously run WASM functions rapidly
 
-   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+   Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+   Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
+
 
    ```c
    #include <wasmedge/wasmedge.h>
@@ -1341,7 +1347,9 @@ Sometimes the developers may have requirements to get the instances of the WASM 
 
 2. List exported functions
 
-   After the WASM module instantiation, developers can use the `WasmEdge_VMExecute()` API to invoke the exported WASM functions. For this purpose, developers may need information about the exported WASM function list. Please refer to the [Instances in runtime](#instances) for the details about the function types. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+   After the WASM module instantiation, developers can use the `WasmEdge_VMExecute()` API to invoke the exported WASM functions. For this purpose, developers may need information about the exported WASM function list. Please refer to the [Instances in runtime](#instances) for the details about the function types. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+   Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
+
 
    ```c
    #include <wasmedge/wasmedge.h>
@@ -1477,7 +1485,9 @@ In this partition, we will introduce the objects of WasmEdge runtime manually.
 
 ### WASM Execution Example Step-By-Step
 
-Besides the WASM execution through the [`VM` context](#wasmedge-vm), developers can execute the WASM functions or instantiate WASM modules step-by-step with the `Loader`, `Validator`, `Executor`, and `Store` contexts. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+Besides the WASM execution through the [`VM` context](#wasmedge-vm), developers can execute the WASM functions or instantiate WASM modules step-by-step with the `Loader`, `Validator`, `Executor`, and `Store` contexts. Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
+
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -2796,7 +2806,9 @@ WasmEdge runs the WASM files in interpreter mode, and WasmEdge also supports the
 
 ### Compilation Example
 
-Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test.c` is as following:
+Assume that the WASM file [`fibonacci.wasm`](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test.c` is as following:
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
+
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -2878,7 +2890,7 @@ Besides executing the `wasmedge` and `wasmedgec` CLI tools, developers can trigg
 
 ### Runtime CLI
 
-The `WasmEdge_Driver_Tool()` API presents the same function as running the [`wasmedge run` command](/develop/build-and-run/cli).
+The `WasmEdge_Driver_Tool()` API presents the same function as running the [`wasmedge run` command](../../../start/build-and-run/run.md).
 
 Noticed that this API presents the old `wasmedge` CLI tool, which is the same as the `wasmedge run` command. For the current unified `wasmedge` CLI, please refer to the [API below](#unified-cli).
 
@@ -2893,7 +2905,7 @@ int main(int argc, const char *argv[]) {
 
 ### Compiler CLI
 
-The `WasmEdge_Driver_Compiler()` API presents the same function as running the [`wasmedge compile` tool](/develop/build-and-run/aot).
+The `WasmEdge_Driver_Compiler()` API presents the same function as running the [`wasmedge compile` tool](../../../start/build-and-run/aot.md).
 
 Noticed that this API presents the old `wasmedgec` CLI tool, which is the same as the `wasmedge compile` command. For the current unified `wasmedge` CLI, please refer to the [API below](#unified-cli).
 
@@ -2908,7 +2920,7 @@ int main(int argc, const char *argv[]) {
 
 ### Unified CLI
 
-The `WasmEdge_Driver_UniTool()` API presents the same function as running the [`wasmedge` tool](/develop/build-and-run/cli).
+The `WasmEdge_Driver_UniTool()` API presents the same function as running the [`wasmedge` tool](../../../start/build-and-run/cli.md).
 
 ```c
 #include <wasmedge/wasmedge.h>

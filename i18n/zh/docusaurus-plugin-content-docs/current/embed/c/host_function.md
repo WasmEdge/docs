@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Host Functions
 
-[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are the functions outside WebAssembly and passed to WASM modules as imports. The following steps give an example of implementing host functions and registering a `host module` into the WasmEdge runtime.
+[Host functions](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc) are the functions outside WebAssembly and are passed to WASM modules as imports. The following steps give an example of implementing host functions and registering a `host module` into the WasmEdge runtime.
 
 ## Host Instances
 
@@ -44,7 +44,7 @@ WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
 }
 ```
 
-For adding the host function into a host module instance, developers should create the function instance with the function type context first.
+For adding the host function into a host module instance, developers should first create the function instance with the function type context.
 
 ```c
 enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
@@ -228,7 +228,7 @@ WasmEdge_Result FaildFunc(void *Data,
 }
 ```
 
-Therefore when developers call the `WasmEdge_ResultGetCode()` with the returned result, they will get the error code `12345678`. Noticed that if developers call the `WasmEdge_ResultGetMessage()`, they will always get the C string `"user defined error code"`.
+Therefore when developers call the `WasmEdge_ResultGetCode()` with the returned result, they will get the error code `12345678`. If developers call the `WasmEdge_ResultGetMessage()`, they will always get the C string `"user defined error code"`.
 
 ### Host Data
 
