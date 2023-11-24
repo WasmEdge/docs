@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Build with WASI-Crypto Plug-in
 
-WebAssembly System Interface (WASI) Crypto is a proposal for a set of APIs that provide cryptographic operations for WebAssembly modules. It aims to provide a consistent, portable, and secure interface for cryptographic operations across different platforms. The WasmEdge WASI-Crypto plugin is an implementation of this proposal, providing cryptographic functionalities to WebAssembly applications running on the WasmEdge runtime.
+WebAssembly System Interface (WASI) Crypto is a proposal for a set of APIs that provide cryptographic operations for WebAssembly modules. It aims to provide a consistent, portable, and secure interface for cryptographic operations across different platforms. The WasmEdge WASI-Crypto plug-in is an implementation of this proposal, providing cryptographic functionalities to WebAssembly applications running on the WasmEdge runtime.
 
 ## Prerequisites
 

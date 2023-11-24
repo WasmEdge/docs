@@ -12,7 +12,7 @@ The eBPF (extended Berkeley Packet Filter) plug-in provides an interface to exec
 
 Before building the eBPF plug-in, ensure that you have the following installed:
 
-* WasmEdge - If you haven't installed it, follow the [follow the guide to build from source](../os/linux.md).
+* WasmEdge - If you haven't installed it, follow the [follow the guide to build from source](./os/linux.md).
 * libbpf - This plug-in requires `libbpf >= 1.2`. See [Building libbpf](https://github.com/libbpf/libbpf#building-libbpf) for details.
 
 ### Build steps
