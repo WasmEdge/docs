@@ -202,6 +202,10 @@ To build the WasmEdge plug-in shared library, you have two options: build it dir
 
 - **Build with Command**: if you choose to build the plug-in using the command line, run the following command in the terminal:
 
+  ```bash
+  gcc -std=c11 -DWASMEDGE_PLUGIN -shared -o libwasmedgePluginTest.so testplugin.c
+  ```
+
   This command compiles the `testplugin.c` file into a shared library named `libwasmedgePluginTest.so`. The `-std=c11` flag sets the C language standard to C11, and the `-DWASMEDGE_PLUGIN` flag defines the WASMEDGE_PLUGIN macro, which can be used in your code.
 
 - **Build with CMake**: If you prefer to use CMake to build the plug-in, create a `CMakeLists.txt` file in the root directory of your project and add the following content to the CMakeLists.txt file:
