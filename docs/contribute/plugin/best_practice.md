@@ -56,26 +56,7 @@ Testing is a crucial part of the plugin development process. It ensures that the
 To run tests for the WasmEdge plugin, you'll need to follow a few steps. In this case, we'll use the `wasmedge-image` plugin as an example.
 
    - **Step 1: Build the WasmEdge Runtime and WasmEdge-image Plugin** 
-   First, you need to build both the [build WasmEdge](../source/build_from_src.md) and the [wasmedge-image](../source/plugin/image.md) plugin. To do this, you can clone the WasmEdge repository and build it using the following commands:
-
-   ```bash
-   git clone https://github.com/WasmEdge/WasmEdge.git
-   cd WasmEdge
-   mkdir build && cd build
-   cmake ..
-   make
-   sudo make install
-   ```
-
-   You also need to build the `wasmedge-image` plugin. Use the following command:
-
-   ```bash
-   cd ../plugins/wasmedge_image
-   mkdir build && cd build
-   cmake ..
-   make
-   sudo make install
-   ```
+   First, you need to build both the [build WasmEdge](../source/build_from_src.md) and the [wasmedge-image](../source/plugin/image.md) plugin.
 
    - **Step 2: Run the Tests**
    The WasmEdge repository provides a set of tests for various plugins, including `wasmedge-image`. You can find the test cases in the `test/plugins/wasmedge_image` directory of the repository.
@@ -147,7 +128,7 @@ In addition to C and C++ SDKs, you can also create an SDK for Rust developers. T
 
 You can create a Rust library that provides a Rust interface to your plugin's functionality. This involves writing Rust code that calls the functions in your plugin and provides a Rust-friendly API.
 
-In the wasmedge-image plugin's case, you might have something like this:
+In the [wasmedge-image](../source/plugin/image.md) plugin's case, you might have something like this:
 
 ```rust 
 // lib.rs
