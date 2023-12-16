@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Build with WASI-nn Plug-in
 
+The WASI-NN plug-in is a proposed WebAssembly System Interface (WASI) API for machine learning. It allows WebAssembly programs to access host-provided machine learning functions.
+
 ## Prerequisites
 
 Currently, WasmEdge used OpenVINO™ or PyTorch as the WASI-NN backend implementation. For using WASI-NN on WasmEdge, you need to install [OpenVINO™](https://docs.openvino.ai/2023.0/openvino_docs_install_guides_installing_openvino_apt.html)(2023) or [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) for the backend.
@@ -125,3 +127,5 @@ Or set the environment variable `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH
 :::note
 We also provided the `darwin_x86_64`, `darwin_arm64`, and `manylinux_aarch64` versions of the TensorFlow-Lite pre-built shared libraries.
 :::
+
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasi_nn).

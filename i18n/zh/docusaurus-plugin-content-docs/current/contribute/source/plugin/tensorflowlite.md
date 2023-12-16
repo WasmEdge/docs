@@ -4,6 +4,8 @@ sidebar_position: 6
 
 # Build WasmEdge With WasmEdge-TensorflowLite Plug-in
 
+The WasmEdge-TensorflowLite plug-in is a software component that extends the functionality of the WasmEdge runtime to perform TensorFlow-Lite model inference. It allows WebAssembly applications to access TensorFlow-Lite functionality when executed on the WasmEdge runtime. The plugin provides a bridge between the WasmEdge runtime and the TensorFlow-Lite backend, allowing developers to execute machine learning models within WebAssembly applications.
+
 ## Prerequisites
 
 The prerequisites of the WasmEdge-TensorflowLite plug-in is the same as the WasmEdge building environment on the [Linux platforms](../os/linux.md) or [MacOS platforms](../os/macos.md).
@@ -62,3 +64,5 @@ mv libtensorflowlite_flex.dylib /usr/local/lib
 ```
 
 Or set the environment variable `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH}`.
+
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_tensorflowlite).

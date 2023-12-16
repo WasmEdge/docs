@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Build WasmEdge With WasmEdge-Tensorflow Plug-in
 
+The WasmEdge-TensorFlow plug-in is a software component that extends the functionality of the WasmEdge runtime. It allows developers to perform TensorFlow model inference with similar APIs to Python. The plug-in is designed for Rust to WebAssembly applications and depends on the TensorFlow C library for its operations.
+
 ## Prerequisites
 
 The prerequisites of the WasmEdge-Tensorflow plug-in is the same as the WasmEdge building environment on the [Linux platforms](../os/linux.md) or [MacOS platforms](../os/macos.md).
@@ -70,3 +72,5 @@ ln -s libtensorflow_framework.2.dylib /usr/local/lib/libtensorflow_framework.dyl
 ```
 
 Or create the symbolic link in the current directory and set the environment variable `export LD_LIBRARY_PATH=$(pwd):${LD_LIBRARY_PATH}`.
+
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_tensorflow).

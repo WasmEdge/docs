@@ -4,6 +4,8 @@ sidebar_position: 4
 
 # Build WasmEdge With WasmEdge-Image Plug-in
 
+The WasmEdge Image plug-in is a software component that extends the functionality of the WasmEdge runtime, enabling it to load and decode JPEG and PNG images and convert them into tensors. This plug-in is useful for developers who need to process image data within their WebAssembly applications.
+
 ## Prerequisites
 
 The prerequisites of the WasmEdge-Image plug-in is the same as the WasmEdge building environment on the [Linux platforms](../os/linux.md) or [MacOS platforms](../os/macos.md).
@@ -39,3 +41,5 @@ If the built `wasmedge` CLI tool cannot find the WasmEdge-Image plug-in, you can
 :::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WasmEdge-Image plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasmEdgeImage.so` after installation.
+
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_image).
