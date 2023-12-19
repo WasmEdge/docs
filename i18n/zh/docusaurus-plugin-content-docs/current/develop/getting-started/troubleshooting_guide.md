@@ -30,7 +30,7 @@ Runtime errors can occur for a variety of reasons. Here are some common causes a
 
 If WasmEdge is running slowly or consuming too much memory, consider the following:
 
-1. **Optimization**: Make sure you're using the AOT compiler if performance is a concern. The AOT compiler can significantly speed up the execution of Wasm files.
+1. **Optimization**: Make sure you're using the [AOT compiler](https://wasmedge.org/docs/start/build-and-run/aot/) if performance is a concern. The AOT compiler can significantly speed up the execution of Wasm files.
 
 2. **Memory Usage**: If memory usage is too high, consider whether the Wasm file or the data it's processing is too large. You may need to optimize the Wasm file or adjust the way it processes data.
 
@@ -38,9 +38,9 @@ If WasmEdge is running slowly or consuming too much memory, consider the followi
 
 If you're having trouble contributing to WasmEdge, make sure to:
 
-1. **Follow the Contribution Guidelines**: Ensure that your contributions follow the guidelines provided in the WasmEdge repository.
+1. **Follow the Contribution Guidelines**: Ensure that your contributions follow the [guidelines](https://wasmedge.org/docs/contribute/).
 
-2. **Understand the Code**: Make sure you have a good understanding of the WasmEdge codebase before making changes.
+2. **Understand the Code**: Make sure you have a good understanding of the [WasmEdge codebase](https://github.com/WasmEdge/WasmEdge) before making changes.
 
 3. **Test Your Changes**: Always test your changes before submitting a pull request. This can help catch issues early and make the review process smoother.
 
