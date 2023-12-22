@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # Testing
 
-This module will teach you about writing tests for C++ Code for adding test suites for new plugins or modules for WasmEdge Software. This is an important aspect if you want to submit plugins to the WasmEdge community and we would require you to write test suites to cater to the plugin functionalities.
+This module will teach you about writing tests for Web-Assembly (Wasm) Code for adding test suites for new plugins or modules for WasmEdge Software. This is an important aspect if you want to submit plugins to the WasmEdge community and we would require you to write test suites to cater to the plugin functionalities.
 
-## Writing Tests for C++ Code Targeting WebAssembly
+## Writing Tests for Wasm Code Targeting WebAssembly
 
-Testing is a crucial part of software development, ensuring that code behaves as expected. In this guide, we'll explore how to write tests for C++ code specifically designed for WebAssembly (Wasm) environments, using Google Test (gtest) and a specific example related to the WasmEdge runtime.
+Testing is a crucial part of software development, ensuring that code behaves as expected. In this guide, we'll explore how to write tests for Wasm code, using Google Test (gtest) and a specific example related to the WasmEdge runtime.
 
 ### Prerequisites
 - Familiarity with C++ and WebAssembly.
@@ -17,7 +17,7 @@ Testing is a crucial part of software development, ensuring that code behaves as
 
 ### Code Explanation and Comments
 
-The provided code snippet demonstrates how to set up and execute tests for a C++ module targeting WebAssembly, specifically using the WasmEdge runtime. The code is structured into two main parts: the test setup and the test cases themselves.
+The provided code snippet demonstrates how to set up and execute tests for a WebAssembly code or the plugins you create, specifically using the WasmEdge runtime. The code is structured into two main parts: the test setup and the test cases themselves.
 
 ```cpp
 #include "common/defines.h"
@@ -90,18 +90,22 @@ When documenting these tests in Markdown, you should focus on explaining the pur
 
 
 ```md
+
 # WasmEdge Module Tests
 
 ## Overview
+
 This document outlines the tests for the `WasiLogging` module in a WebAssembly environment using the WasmEdge runtime.
 
 ## Test Setup
+
 - **Module Creation**: A module instance is created for testing purposes using the `createModule` function.
 - **Memory Manipulation**: The `fillMemContent` functions are used to manipulate memory content, essential for setting up test scenarios.
 
 ## Test Cases
 
 ### `func_log` Tests
+
 - **Purpose**: These tests validate the logging functionality at different levels and conditions.
 - **Test Scenarios**:
   - **Clear Memory**: Ensures memory is correctly cleared before each test.
@@ -111,29 +115,24 @@ This document outlines the tests for the `WasiLogging` module in a WebAssembly e
   - **Unknown Level**: Ensures that an unknown logging level is handled appropriately.
 
 ## Running Tests
+
 - Compile the test code with your C++ compiler targeting WebAssembly.
 - Run the tests using a command-line tool that supports Google Test.
 
 ## Conclusion
+
 These tests ensure the robustness and reliability of the module in a WebAssembly environment
 
 ```
 
-### Further Reading
-
-- Here is an example test case explaination for [test/plugins/wasi_logging](./example.md)
-- Red Hat and WebAssembly: This blog post by Red Hat discusses WebAssembly (WASM) and its applications - [Link](https://www.redhat.com/en/blog/red-hat-and-webassembly)
-- Complete Docker + Wasm Tutorial: From C++ Code to Wasm - [Link](https://kodekloud.com/blog/docker-wasm-tutorial/)
-- How I created a SSR React App using WebAssembly (Wasm) - [Link](https://medium.com/wasm/how-i-created-a-ssr-react-app-using-webassembly-wasm-a6541431d0cd)
-
-#### Youtube Channels
-
-- [TheCherno](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb): This channel provides comprehensive tutorials on C++ programming, including aspects of testing and debugging.
-
-- [CppCon](https://www.youtube.com/user/CppCon): CppCon is a conference for C++ enthusiasts and professionals. Their YouTube channel features talks from experts, some of which cover testing methodologies in C++.
+> Note: You can add the documentation in the plugin test folders you create
 
 ### Blogs
 
 - [Google Test GitHub Repository](https://github.com/google/googletest): While not a traditional blog, the Google Test GitHub repository is a rich resource for learning about testing in C++
 - [Modern C++ Testing with Catch2](https://www.jetbrains.com/help/clion/unit-testing-tutorial.html)
 - [C++ Testing - Catch2 and Google Test](https://www.learncpp.com/cpp-tutorial/introduction-to-testing-your-code/): LearnCpp.com provides a tutorial on testing in C++ using frameworks like Catch2 and Google Test.
+
+### Further Reading
+
+- Here is an example test case explaination for [test/plugins/wasi_logging](./example.md)
