@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Best Practises
+# Best Practises for WasmEdge Application Testing
 
 Writing WasmEdge applications involves a blend of best practices from WebAssembly development, cloud computing, and edge computing. These best practices can serve as a guide to building robust, scalable, and efficient WasmEdge applications.
 
