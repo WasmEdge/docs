@@ -12,7 +12,7 @@ WasmEdge follows the WebAssembly specification, which currently does not support
 
 ## 2. Can WasmEdge support model training?
 
-As of now, WasmEdge supports model inference. It uses the WASI-NN API to make predictions using pre-trained models. However, model training is not yet supported. It only allows for the execution of pre-trained models.
+As of now, WasmEdge supports [model inference](https://www.secondstate.io/articles/fast-llm-inference/). It uses the WASI-NN API to make predictions using pre-trained models. However, model training is not yet supported. It only allows for the execution of pre-trained models.
 
 ## 3. What is the internal flow of WasmEdge?
 
