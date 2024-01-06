@@ -20,7 +20,7 @@ The WasmEdge runtime follows a general flow: parsing the Wasm file, validating t
 
 ## 4. Why is my plugin crashing?
 
-If your plugin crashes, it might be due to several reasons. It could be related to incorrect use of the WasmEdge API, or the plugin may be incompatible with the WasmEdge version you're using. It's recommended to debug the plugin using a debugger tool to get more detailed error information. Also it you should check the [plug-in documentation](../contribute/plugin/test_plugin.md)
+If your plugin crashes, it might be due to several reasons. It could be related to incorrect use of the WasmEdge API, or the plugin may be incompatible with the WasmEdge version you're using. It's recommended to debug the plugin using a debugger tool to get more detailed error information. Also it you should check the [plug-in documentation](..../contribute/plugin/test_plugin.md)
 
 ## 5. How to create a VM to call `infer()` in a Wasm library?
 
