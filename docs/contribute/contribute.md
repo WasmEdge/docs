@@ -50,7 +50,7 @@ LD_LIBRARY_PATH=$(pwd)/lib/api ctest
 
 When ready for review, push your branch to your fork repository on github.
 
-Then visit your fork at <https://github.com/$user/WasmEdge> and click the `Compare & Pull Request` button next to your branch to create a new pull request. The pull request description should refer to all the issues it addresses. Remember to reference issues (such as Closes #XXX and Fixes #XXX) in the comment so that the issues can be closed when the PR is merged. After creating a pull request, please check that the CI passes with your code changes.
+Then visit your fork at <https://github.com/$user/WasmEdge> and click the `Compare & Pull Request` button next to your branch to create a new pull request. The pull request description should refer to all the issues it addresses. Remember to reference issues (using keywords such as Closes #XXX and Fixes #XXX) in the comment so that the issues can be closed when the PR is merged. After creating a pull request, please check that the CI passes with your code changes.
 
 Once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style.
 
@@ -71,10 +71,24 @@ Because the issues are open to the public, when submitting the log and configura
 
 ## Documenting
 
-Update the documentation if you are creating or changing features. Good documentation is as necessary as the code itself. Documents are written with Markdown. See [Writing on GitHub](https://help.github.com/categories/writing-on-github/) for more details.
+Update the documentation if you are creating or changing features. Good documentation is as necessary as the code itself. Documents are written with Markdown. Our docs reside at this [repository](https://github.com/WasmEdge/docs/)
 
-## Design new features
+See [Writing on GitHub](https://help.github.com/categories/writing-on-github/) for more details.
 
-You can propose new designs for existing WasmEdge features. You can also design new features; please submit a proposal via the GitHub issues.
+## Feature Requests
 
-WasmEdge maintainers will review this proposal as soon as possible to ensure the overall architecture is consistent and to avoid duplicated work in the roadmap.
+- **Suggesting Enhancements**: If you have ideas for improving existing features in WasmEdge, we welcome your input.
+- **Introducing New Features**: You're also encouraged to propose completely new functionalities that could benefit the project.
+- **How to Submit**: To formalize your suggestions, please submit a feature request proposal through [GitHub Issues](https://github.com/WasmEdge/docs/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml&title=Feature+Request%3A+).
+
+### Review Process
+
+- **Timely Evaluation**: Our team of WasmEdge maintainers will review your proposal as quickly as possible.
+- **Architectural Consistency**: We aim to ensure that all contributions align well with the existing architecture of WasmEdge.
+- **Avoiding Redundancy**: Part of the review process includes checking the project's roadmap to avoid duplicated efforts.
+
+### Communication
+
+- **Feedback Loop**: After the initial review, we may ask for further clarifications or suggest modifications to align with the project's goals.
+- **Status Updates**: We aim to keep you informed about the status of your proposal throughout the review process.
+

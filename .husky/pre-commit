@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-FORCE_COLOR=1 npm run lint-staged --allow-empty
+FORCE_COLOR=1 npm run lint-staged --allow-empty && npm run lint:md-fix
