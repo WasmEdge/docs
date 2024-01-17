@@ -4,13 +4,14 @@ sidebar_position: 1
 
 # WasmEdge C SDK Introduction
 
-The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following are the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [full documentation](/embed/c/reference/latest.md). Before programming with the WasmEdge C API, please [install WasmEdge](/develop/build-and-run/install) first.
+The WasmEdge C API denotes an interface to embed the WasmEdge runtime into a C program. The following is the quick start guide for working with the C APIs of WasmEdge. For the details of the WasmEdge C API, please refer to the [complete documentation](reference/latest.md). Before programming with the WasmEdge C API, please [install WasmEdge](../../start/install.md#install) first.
 
 The WasmEdge C API is also the fundamental API for other languages' SDK.
 
-## Quick Start Guide for the WasmEdge runner
+## Quick Start Guide for the WasmEdge Runner
 
-The following is an example for running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge.c` is as following:
+The following is an example of running a WASM file. Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test_wasmedge.c` is as follows:
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -55,7 +56,8 @@ Get result: 3524578
 
 ## Quick Start Guide for the WasmEdge AOT compiler
 
-Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wasm) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as following:
+Assume that the WASM file [fibonacci.wasm](https://github.com/WasmEdge/WasmEdge/raw/master/examples/wasm/fibonacci.wat) is copied into the current directory, and the C file `test_wasmedge_compiler.c` is as follows:
+Please Note: In the example directory, `fibonacci.wat` file is provided and users should convert it into corresponding wasm file using [WABT tool](https://github.com/WebAssembly/wabt)
 
 ```c
 #include <wasmedge/wasmedge.h>
@@ -94,7 +96,7 @@ $ ./test_wasmedge_compiler fibonacci.wasm fibonacci_aot.wasm
 [2021-07-02 11:08:08.706] [info] compile done
 ```
 
-The compiled-WASM file can be used as a WASM input for the WasmEdge runner. The following is the comparison of the interpreter mode and the AOT mode:
+The compiled WASM file can be used as a WASM input for the WasmEdge runner. The following is the comparison of the interpreter mode and the AOT mode:
 
 ```bash
 $ time ./test_wasmedge fibonacci.wasm
@@ -114,15 +116,15 @@ sys 0m0.011s
 
 ## API References
 
-- [0.13.0](/embed/c/reference/latest)
-- [0.12.1](/embed/c/reference/0.12.x)
-- [0.11.2](/embed/c/reference/0.11.x)
-- [0.10.1](/embed/c/reference/0.10.x)
-- [0.9.1](/embed/c/reference/0.9.x)
+- [0.13.4](reference/latest.md)
+- [0.12.1](reference/0.12.x.md)
+- [0.11.2](reference/0.11.x.md)
+- [0.10.1](reference/0.10.x.md)
+- [0.9.1](reference/0.9.x.md)
 
 ## Examples
 
-- Link with the [WasmEdge library](/embed/c/library)
-- Use the [external reference](/embed/c/externref) of WebAssembly input and output in C/C++
-- Implement the [host functions](/embed/c/host_function) in C/C++
-- [Multiple WASM Module Example](/embed/c/multiple_modules.md)
+- Link with the [WasmEdge library](library.md)
+- Use the [external reference](externref.md) of WebAssembly input and output in C/C++
+- Implement the [host functions](host_function.md) in C/C++
+- [Multiple WASM Module Example](multiple_modules.md)

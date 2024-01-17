@@ -8,7 +8,7 @@ sidebar_position: 10
 
 ## Quick start
 
-You will need a running kubernetes cluster to install Kwasm operator. Here we use a fresh cluster created by [kind](https://kind.sigs.k8s.io/):
+You will need a running Kubernetes cluster to install Kwasm operator. Here we use a fresh cluster created by [kind](https://kind.sigs.k8s.io/):
 
 ```bash
 kind create cluster
@@ -29,7 +29,7 @@ Apply the yaml file for the wasm job:
 kubectl apply -f https://raw.githubusercontent.com/KWasm/kwasm-node-installer/main/example/test-job.yaml
 ```
 
-After the job finished, check the log:
+After the job is finished, check the log:
 
 ```bash
 kubectl logs job/wasm-test

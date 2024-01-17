@@ -2,18 +2,18 @@
 sidebar_position: 2
 ---
 
-# Create a Wasm app using Rust and wasmedge-bindgen
+# Create a WASM app using Rust and wasmedge-bindgen
 
-In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK. In this chapter, we will learn how to create a Wasm app using Rust and `wasmedge-bindgen` tool.
+In the previous chapter, we learned how to install WasmEdge and WasmEdge Go SDK. This chapter will teach us how to create a WASM app using Rust and `wasmedge-bindgen` tool.
 
 <!-- prettier-ignore -->
 :::note
-The [wasmedge-bindgen](https://github.com/second-state/wasmedge-bindgen) project provides Rust macros for functions to accept and return complex data types, and then for Go functions to call such Rust functions running in WasmEdge.
+The [wasmedge-bindgen](https://github.com/second-state/wasmedge-bindgen) project provides Rust macros for functions to accept and return complex data types and then for Go functions to call such Rust functions running in WasmEdge.
 :::
 
 ## Prerequisites
 
-We need to install [Rust and add `wasm32-wasi` target for Rust](/develop/rust/setup.md)
+We need to install [Rust and add `wasm32-wasi` target for Rust](../../develop/rust/setup.md)
 
 We also need to install `wasmedge-bindgen`.
 
@@ -24,13 +24,13 @@ $ go get github.com/second-state/wasmedge-bindgen@v0.4.1
 
 ## Rust function
 
-The full source code for the demo in this chapter is [available here](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs).
+The complete source code for the demo in this chapter is [available here](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs).
 
 In the [Rust project](https://github.com/second-state/WasmEdge-go-examples/tree/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs), all you need is to annotate [your functions](https://github.com/second-state/WasmEdge-go-examples/blob/master/wasmedge-bindgen/go_BindgenFuncs/rust_bindgen_funcs/src/lib.rs) with a `[wasmedge_bindgen]` macro.
 
 Those annotated functions will be automatically instrumented by the Rust compiler and turned into WebAssembly functions that can be called from the bindgen related functions of WasmEdge GO SDK.
 
-In the example below, we have several Rust functions that take complex call parameters and return complex values.
+The example below shows several Rust functions that take complex call parameters and return complex values.
 
 ```rust
 use wasmedge_bindgen::*;
@@ -103,9 +103,9 @@ pub fn keccak_digest(s: Vec<u8>) -> Result<Vec<u8>, String> {
 
 ## Compile the Rust code into Wasm
 
-Now the rust function is ready. Let's compile the Rust code to Wasm bytecode.
+Now the rust function is ready. Let's compile the Rust code to WASM.
 
-First，fork or git clone the demo project to get the source code.
+First， fork or git clone the demo project to get the source code.
 
 ```bash
 git clone https://github.com/second-state/WasmEdge-go-examples.git
@@ -121,4 +121,4 @@ cp target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm ../
 cd ../
 ```
 
-Now we have a Wasm function, next let's see how to embed the Wasm function to a Go Host application.
+Now we have a WASM function. Next, how to embed the WASM function into a Go Host application.

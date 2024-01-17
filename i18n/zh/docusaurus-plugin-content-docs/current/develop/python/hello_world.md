@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # Python
 
-There are already several different language implementations of the Python runtime, and some of them support WebAssembly. This document will describe how to run [RustPython](https://github.com/RustPython/RustPython) on WasmEdge to execute Python programs.
+Several different language implementations of the Python runtime exist, and some of them support WebAssembly. This document will describe how to run [RustPython](https://github.com/RustPython/RustPython) on WasmEdge to execute Python programs.
 
 ## Compile RustPython
 
-To compile RustPython, you should have the Rust toolchain installed on your machine. And `wasm32-wasi` platform support should be enabled.
+To compile RustPython, you should install the Rust toolchain on your machine. And `wasm32-wasi` platform support should be enabled.
 
 ```bash
 rustup target add wasm32-wasi
@@ -22,7 +22,7 @@ cd RustPython
 cargo build --release --target wasm32-wasi --features="freeze-stdlib"
 ```
 
-`freeze-stdlib` feature is enabled for including Python standard library inside the binary file. The output file should be able at `target/wasm32-wasi/release/rustpython.wasm`.
+`freeze-stdlib` feature is enabled for including Python standard library inside the binary file. The output file should be at `target/wasm32-wasi/release/rustpython.wasm`.
 
 ## AOT Compile
 

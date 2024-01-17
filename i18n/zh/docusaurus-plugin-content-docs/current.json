@@ -3,37 +3,37 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.developSidebar.category.Getting Started with WasmEdge": {
+  "sidebar.startSidebar.category.Getting Started with WasmEdge": {
     "message": "Getting Started with WasmEdge",
-    "description": "The label for category Getting Started with WasmEdge in sidebar developSidebar"
+    "description": "The label for category Getting Started with WasmEdge in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.Getting Started with WasmEdge.link.generated-index.description": {
+  "sidebar.startSidebar.category.Getting Started with WasmEdge.link.generated-index.description": {
     "message": "In this chapter, we will show you how to get WasmEdge up and running quickly.",
-    "description": "The generated-index page description for category Getting Started with WasmEdge in sidebar developSidebar"
+    "description": "The generated-index page description for category Getting Started with WasmEdge in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.What is WasmEdge": {
+  "sidebar.startSidebar.category.What is WasmEdge": {
     "message": "What is WasmEdge",
-    "description": "The label for category What is WasmEdge in sidebar developSidebar"
+    "description": "The label for category What is WasmEdge in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.What is WasmEdge.link.generated-index.description": {
+  "sidebar.startSidebar.category.What is WasmEdge.link.generated-index.description": {
     "message": "WasmEdge is a WebAssembly runtime optimized for cloud-native and edge-native applications. It is a safe, fast, lightweight, and portable alternative to Linux containers in the cloud. It is also an ideal runtime for serverless functions, user-defined functions, embedded functions in application platforms and data pipelines.",
-    "description": "The generated-index page description for category What is WasmEdge in sidebar developSidebar"
+    "description": "The generated-index page description for category What is WasmEdge in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.WasmEdge Extensions": {
+  "sidebar.startSidebar.category.WasmEdge Extensions": {
     "message": "WasmEdge Extensions",
-    "description": "The label for category WasmEdge Extensions in sidebar developSidebar"
+    "description": "The label for category WasmEdge Extensions in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.WasmEdge Extensions.link.generated-index.description": {
+  "sidebar.startSidebar.category.WasmEdge Extensions.link.generated-index.description": {
     "message": "WasmEdge supports all standard WebAssembly and WASI specifications. In addition, it supports features and APIs that are crucial for the cloud-native use cases. WasmEdge is a superset of standard Wasm. Through its extension SDK, developers can easily add features they need to the WasmEdge Runtime as plugins.",
-    "description": "The generated-index page description for category WasmEdge Extensions in sidebar developSidebar"
+    "description": "The generated-index page description for category WasmEdge Extensions in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.Building and running WasmEdge apps": {
+  "sidebar.startSidebar.category.Building and running WasmEdge apps": {
     "message": "Building and running WasmEdge apps",
-    "description": "The label for category Building and running WasmEdge apps in sidebar developSidebar"
+    "description": "The label for category Building and running WasmEdge apps in sidebar startSidebar"
   },
-  "sidebar.developSidebar.category.Building and running WasmEdge apps.link.generated-index.description": {
+  "sidebar.startSidebar.category.Building and running WasmEdge apps.link.generated-index.description": {
     "message": "In this chapter, we will discuss WasmEdge CLIs and how to leverage Docker + Wasm to run build, share, and run your Wasm apps.",
-    "description": "The generated-index page description for category Building and running WasmEdge apps in sidebar developSidebar"
+    "description": "The generated-index page description for category Building and running WasmEdge apps in sidebar startSidebar"
   },
   "sidebar.developSidebar.category.Develop Wasm Apps in Rust": {
     "message": "Develop Wasm Apps in Rust",

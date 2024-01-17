@@ -6,19 +6,19 @@ sidebar_position: 5
 
 ## What is the WasmEdge DockerSlim
 
-An easy way to run WebAssembly applications in the Docker ecosystem is to simply embed the WebAssembly bytecode file in a Linux container image. Specifically, we trim down the Linux OS inside the container to the point where it is just enough to support the `wasmedge` runtime. This approach has many advantages.
+An easy way to run WebAssembly applications in the Docker ecosystem is to embed the WebAssembly bytecode file in a Linux container image. Precisely, we trim down the Linux OS inside the container to the point where it is just enough to support the `wasmedge` runtime. This approach has many advantages.
 
-- It works seamlessly with any tool in the Docker or container ecosystem since the WebAssembly application is wrapped in a regular container.
+- It works seamlessly with any Docker or container ecosystem tool since the WebAssembly application is wrapped in a regular container.
 - The memory footprint of the entire image of Linux OS and WasmEdge can be reduced to as low as 4MB.
 - The attack surface of the slimmed Linux OS is dramatically reduced from a regular Linux OS.
-- The overall application security is managed by the WebAssembly sandbox. The risk for software supply chain attack is greatly reduced since the WebAssembly sandbox only has access to explicitly declared capabilities.
+- The overall application security is managed by the WebAssembly sandbox. The software supply chain attack risk is greatly reduced since the WebAssembly sandbox only has access to explicitly declared capabilities.
 - The above three advantages are amplified if the application is complex. For example, a WasmEdge AI inference application would NOT require a Python install. A WasmEdge node.js application would NOT require a Node.js and v8 install.
 
 However, this approach still requires starting up a Linux container. The containerized Linux OS, however slim, still takes 80% of the total image size. There is still a lot of room for optimization. The performance and security of this approach would not be as great as running WebAssembly applications directly in [crun](/develop/deploy/oci-runtime/crun.md) or in a [containerd shim](/develop/deploy/cri-runtime/containerd.md).
 
 ## WasmEdge DockerSlim
 
-The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every releases.
+The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built with [DockerSlim](https://dockersl.im) every release.
 
 - Image `wasmedge/slim-runtime:{version}` includes only WasmEdge runtime with `wasmedge` command.
 - Image `wasmedge/slim:{version}` includes the following command line utilities:
@@ -34,7 +34,7 @@ The `wasmedge/slim:{version}` Docker images provide a slim WasmEdge images built
 
 ## Run a simple WebAssembly app
 
-We can run a simple WebAssembly program using Docker. An slim Linux image with WasmEdge installed is only 4MB as opposed to 30MB for a general Linux image for native compiled applications. The Linux + WasmEdge image is similar to a unikernel OS image. It minimizes the footprint, performance overhead, and potential attack surface for WebAssembly applications.
+We can run a simple WebAssembly program using Docker. A slim Linux image with WasmEdge installed is only 4MB instead of 30MB for a general Linux image for natively compiled applications. The Linux + WasmEdge image is similar to a unikernel OS image. It minimizes the footprint, performance overhead, and potential attack surface for WebAssembly applications.
 
 [The sample application is here](https://github.com/second-state/wasm-learning/tree/master/cli/wasi). First, create a `Dockerfile` based on our release image. Include the [wasm application file](https://github.com/second-state/wasm-learning/raw/master/cli/wasi/wasi_example_main.wasm) in the new image, and run the `wasmedge` command at start up.
 
@@ -64,9 +64,9 @@ File content is This is in a file
 
 ## Run a HTTP server app
 
-We can run a simple WebAssembly-based HTTP micro-service using the Docker CLI. The [sample application is here](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server). Follow instructions to compile and build the `http_server.wasm` file.
+We can run a simple WebAssembly-based HTTP micro-service using the Docker CLI. The [sample application is here](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_server). Follow the instructions to compile and build the `http_server.wasm` file.
 
-Create a `Dockerfile` based on our release image. Include the `http_server.wasm` application file in the new image, and run the `wasmedge` command at start up.
+Create a `Dockerfile` based on our release image. Include the `http_server.wasm` application file in the new image, and run the `wasmedge` command at startup.
 
 ```shell
 FROM wasmedge/slim-runtime:0.10.1
@@ -94,7 +94,7 @@ echo: name=WasmEdge
 
 ## Run a lightweight Node.js server
 
-With WasmEdge QuickJS support for the Node.js API, we can run a lightweight and secure node.js server from Docker CLI. The slim Linux + WasmEdge + Node.js support image size is less than 15MB as opposed to over 350MB for a standard Node.js image. You will need to do the following.
+With WasmEdge QuickJS support for the Node.js API, we can run a lightweight and secure node.js server from Docker CLI. The slim Linux + WasmEdge + Node.js support image size is less than 15MB instead of over 350MB for a standard Node.js image. You will need to do the following.
 
 - [Download the WasmEdge QuickJS runtime](https://github.com/second-state/wasmedge-quickjs/releases/download/v0.4.0-alpha/wasmedge_quickjs.wasm) here. You will have the `wasmedge_quickjs.wasm` file.
 - [Download the modules](https://github.com/second-state/wasmedge-quickjs/tree/main/modules) directory from the WasmEdge QuickJS repo.
@@ -143,7 +143,7 @@ echo:WasmEdge
 
 ## Run a lightweight Tensorflow inference application
 
-A unique and powerful feature of the WasmEdge runtime is its support for AI frameworks. In this example, we will show you how to run an image recognition service from Docker CLI. [The sample application is here](https://github.com/WasmEdge/wasmedge_hyper_demo/tree/main/server-tflite). First, create a `Dockerfile` based on our `tensorflow` release image. Include the [wasm application file](https://github.com/WasmEdge/wasmedge_hyper_demo/raw/main/server-tflite/wasmedge_hyper_server_tflite.wasm) in the new image, and run the `wasmedge-tensorflow-lite` command at start up.
+A unique and powerful feature of the WasmEdge runtime is its support for AI frameworks. In this example, we will show you how to run an image recognition service from Docker CLI. [The sample application is here](https://github.com/WasmEdge/wasmedge_hyper_demo/tree/main/server-tflite). First, create a `Dockerfile` based on our `tensorflow` release image. Include the [wasm application file](https://github.com/WasmEdge/wasmedge_hyper_demo/raw/main/server-tflite/wasmedge_hyper_server_tflite.wasm) in the new image, and run the `wasmedge-tensorflow-lite` command at startup.
 
 The Dockerfile is as follows. The whole package is 115MB. It is less than 1/4 of a typically Linux + Python + Tensorflow setup.
 

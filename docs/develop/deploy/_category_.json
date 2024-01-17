@@ -3,6 +3,6 @@
   "position": 8,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will introduce how to depoloy Wasm app using the exisiting container toolings."
+    "description": "In this chapter, we will introduce how to depoloy WASM app using the exisiting container toolings."
   }
 }

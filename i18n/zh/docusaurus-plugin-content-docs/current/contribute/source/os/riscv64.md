@@ -6,7 +6,7 @@ sidebar_position: 6
 
 ## Prepare the Environment
 
-This tutorial is based on Ubuntu 22.04 host, and WasmEdge uses the [RISCV-Lab](https://gitee.com/tinylab/riscv-lab) which provide Ubuntu 22.04 system with riscv64 architecture. Here users can use their own riscv64 environment.
+This tutorial is based on Ubuntu 22.04 host, and WasmEdge uses the [RISCV-Lab](https://gitee.com/tinylab/riscv-lab), which provides Ubuntu 22.04 system with riscv64 architecture. Here users can use their riscv64 environment.
 
 ### Install and run RISCV-Lab
 
@@ -29,7 +29,7 @@ ubuntu@riscv-lab:/labs/riscv-lab$ cd WasmEdge
 
 ### Dependencies
 
-WasmEdge requires LLVM 12 at least and you may need to install these following dependencies by yourself.
+WasmEdge requires LLVM 12 at least and you may need to install the following dependencies yourself.
 
 ```bash
 ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt-get update
@@ -39,7 +39,7 @@ ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt install -y llvm-12-dev liblld-12-dev
 
 ### Compile
 
-Please refer to [here](/contribute/source/build_from_src.md#cmake-building-options) for the descriptions of all CMake options.
+Please refer to [here](../build_from_src.md#cmake-building-options) for the descriptions of all CMake options.
 
 ```bash
 ubuntu@riscv-lab:/labs/riscv-lab$ cd WasmEdge
@@ -66,7 +66,7 @@ ubuntu@riscv-lab:/labs/riscv-lab/WasmEdge/examples/wasm$ wasmedge --reactor add.
 
 ### Execute wasmedge compile
 
-To improve the performance, the `wasmedge compile` can compile WebAssembly into native machine code. After compiling with the `wasmedge compile` AOT compiler, the wasmedge tool can execute the WASM in AOT mode which is much faster.
+To improve the performance, the `wasmedge compile` can compile WebAssembly into native machine code. After compiling with the `wasmedge compile` AOT compiler, the wasmedge tool can execute the WASM in AOT mode, which is much faster.
 
 ```bash
 ubuntu@riscv-lab:/labs/riscv-lab/WasmEdge/examples/wasm$ wasmedge compile fibonacci.wasm fibonacci_aot.wasm

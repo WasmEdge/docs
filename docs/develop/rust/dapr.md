@@ -12,7 +12,7 @@ The figure below shows a Dapr-enabled microservice running inside the WasmEdge s
 
 ## Prerequisites
 
-Before we started, make sure [you have Rust and WasmEdge installed](setup).
+Before we start, ensure [you have Rust and WasmEdge installed](setup.md).
 
 You also need to install the following tools.
 
@@ -23,7 +23,7 @@ You also need to install the following tools.
 
 The template application showcases how [Dapr](https://dapr.io/) and [WasmEdge](https://github.com/WasmEdge/) work together to support [lightweight WebAssembly-based microservices](https://github.com/second-state/microservice-rust-mysql) in a cloud-native environment. The microservices are all written in Rust and compiled into WebAssembly.
 
-This application consists of three microservices and a standalone web page that enables users to interact with the microservices using a HTML+JavaScript UI. It is a very typical JAMstack setup. Each microservice is attached to a Dapr sidecar, which provides a suite of useful services commonly required by cloud-native microservices.
+This application consists of three microservices and a standalone web page that enables users to interact with the microservices using an HTML+JavaScript UI. It is a very typical JAMstack setup. Each microservice is attached to a Dapr sidecar, which provides a suite of valuable services commonly required by cloud-native microservices.
 
 ![Dapr and WasmEdge](dapr-wasmedge.png)
 
@@ -32,12 +32,12 @@ The WasmEdge's Dapr SDK is used to access Dapr sidecars from the microservice ap
 - It uses Dapr to discover and invoke the [events](https://github.com/second-state/dapr-wasm/tree/main/events-service) microservice to record every successful user request.
 - It also stores each user’s IP address and last timestamp data in its Dapr sidecar’s state database. That allows the service to rate limit users if needed.
 
-The [classify](https://github.com/second-state/dapr-wasm/tree/main/image-api-classify) microservices takes an image from an HTTP POST, runs a Tensorflow model against it to classify the object on the image, and returns the result as a text label in the HTTP response. You can learn more about AI inference in Rust and WasmEdge [here](https://wasmedge.org/docs/category/ai-inference). It uses its own Dapr sidecar the same way as the [grayscale](https://github.com/second-state/dapr-wasm/tree/main/image-api-grayscale) microservice.
+The [classify](https://github.com/second-state/dapr-wasm/tree/main/image-api-classify) microservices takes an image from an HTTP POST, runs a Tensorflow model against it to classify the object on the image, and returns the result as a text label in the HTTP response. You can learn more about AI inference in Rust and WasmEdge [here](/category/ai-inference). It uses its own Dapr sidecar like the [grayscale](https://github.com/second-state/dapr-wasm/tree/main/image-api-grayscale) microservice.
 
-The [events](https://github.com/second-state/dapr-wasm/tree/main/events-service) microservice takes JSON data from a HTTP POST and saves it to an external MySQL database for later analysis.
+The [events](https://github.com/second-state/dapr-wasm/tree/main/events-service) microservice takes JSON data from an HTTP POST and saves it to an external MySQL database for later analysis.
 
 - It uses Dapr to make itself discoverable by name by other microservices that need to record events.
-- It also uses its Dapr sidecar to store secrets such as the MySQL database credentials.
+- It also uses its Dapr sidecar to store secrets such as MySQL database credentials.
 
 Ok, enough concepts for the template project. Let's go ahead.
 
@@ -121,7 +121,7 @@ dapr run --app-id events-service \
 
 ## Test
 
-You can use the [static web page UI](http://dapr-demo.secondstate.co/) or `curl` to test the services.
+To test the services, you can use the [static web page UI](http://dapr-demo.secondstate.co/) or `curl`.
 
 Initialize the events database table.
 
@@ -156,4 +156,4 @@ $ curl http://localhost:9007/events
 [{"id":1,"event_ts":1665358852918,"op_type":"grayscale","input_size":68016},{"id":2,"event_ts":1665358853114,"op_type":"classify","input_size":68016}]
 ```
 
-Next, you could use WasmEdge and WasmEdge's Dapr Rust API to create your own lightweight microservices with better security, faster performance, and smaller footprints.
+Next, you could use WasmEdge and WasmEdge's Dapr Rust API to create lightweight microservices with better security, faster performance, and smaller footprints.

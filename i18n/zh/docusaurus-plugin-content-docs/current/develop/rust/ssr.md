@@ -1,19 +1,19 @@
 ---
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # Server-side rendering
 
-Frontend web frameworks allow developers to create web apps in a high level language and component model. The web app is built into a static web site to be rendered in the browser. While many frontend web frameworks are based on JavaScript, such as React and Vue, Rust-based frameworks are also emerging as the Rust language gains traction among developers. Those web frameworks render the HTML DOM UI using the WebAssembly, which is compiled from Rust source code. They use [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen) to tie the Rust to the HTML DOM. While all of these frameworks send `.wasm` files to the browser to render the UI on the client-side, some provide the additional choice for [Server-side rendering](https://en.wikipedia.org/wiki/Server-side_scripting). That is to run the WebAssembly code and build the HTML DOM UI on the server, and stream the HTML content to the browser for faster performance and startup time on slow devices and networks.
+Frontend web frameworks allow developers to create web apps in a high-level language and component model. The web app is built into a static website to be rendered in the browser. While many frontend web frameworks are based on JavaScript, such as React and Vue, Rust-based frameworks are also emerging as the Rust language gains traction among developers. Those web frameworks render the HTML DOM UI using the WebAssembly, compiled from Rust source code. They use [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen) to tie the Rust to the HTML DOM. While these frameworks send `.wasm` files to the browser to render the UI on the client side, some provide the additional choice for [Server-side rendering](https://en.wikipedia.org/wiki/Server-side_scripting). That is to run the WebAssembly code, build the HTML DOM UI on the server, and stream the HTML content to the browser for faster performance and startup time on slow devices and networks.
 
 <!-- prettier-ignore -->
 :::note
-If you are interested in JavaScript-based Jamstack and SSR frameworks, such as React, please [checkout our JavaScript SSR chapter](../javascript/ssr.md).
+If you are interested in JavaScript-based Jamstack and SSR frameworks, such as React, please [check out our JavaScript SSR chapter](../javascript/ssr.md).
 :::
 
-This article will explore how to render the web UI on the server using WasmEdge. We pick [Percy](https://github.com/chinedufn/percy) as our framework because it is relatively mature in SSR and [Hydration](<https://en.wikipedia.org/wiki/Hydration_(web_development)>). Percy already provides an [example](https://github.com/chinedufn/percy/tree/master/examples/isomorphic) for SSR. It's highly recommended to read it first to understand how it works. The default SSR setup with Percy utilizes a native Rust web server. The Rust code is compiled to machine native code for the server. However, in order to host user applications on the server, we need a sandbox. While we could run native code inside a Linux container (Docker), a far more efficient (and safer) approach is to run the compiled code in a WebAssembly VM on the server, especially considerring the rendering code is already compiled into WebAssembly.
+This article will explore how to render the web UI on the server using WasmEdge. We pick [Percy](https://github.com/chinedufn/percy) as our framework because it is relatively mature in SSR and [Hydration](<https://en.wikipedia.org/wiki/Hydration_(web_development)>). Percy already provides an [example](https://github.com/chinedufn/percy/tree/master/examples/isomorphic) for SSR. It's highly recommended to read it first to understand how it works. The default SSR setup with Percy utilizes a native Rust web server. The Rust code is compiled to machine native code for the server. However, we need a sandbox to host user applications on the server. While we could run native code inside a Linux container (Docker), a far more efficient (and safer) approach is to run the compiled code in a WebAssembly VM on the server, especially considering the rendering code is already compiled into WebAssembly.
 
-Now, let's go through the steps to run a Percy SSR service in a WasmEdge server.
+Let's go through the steps to run a Percy SSR service in a WasmEdge server.
 
 Assuming we are in the `examples/isomorphic` directory, make a new crate beside the existing `server`.
 
@@ -36,10 +36,10 @@ wasm-bindgen = { git = "https://github.com/KernelErr/wasm-bindgen.git", branch =
 
 <!-- prettier-ignore -->
 :::note
-Why do we need a forked `wasm-bindgen`? That is because `wasm-bindgen` is the required glue between Rust and HTML in the browser. On the server, however, we need to build the Rust code to the `wasm32-wasi` target, which is incompatible with `wasm-bindgen`. Our forked `wasm-bindgen` has conditional configs that removes browser-specific code in the generated `.wasm` file for the `wasm32-wasi` target.
+Why do we need a forked `wasm-bindgen`? That is because `wasm-bindgen` is the required glue between Rust and HTML in the browser. On the server, however, we need to build the Rust code to the `wasm32-wasi` target, which is incompatible with `wasm-bindgen`. Our forked `wasm-bindgen` has conditional configs that remove browser-specific code in the generated `.wasm` file for the `wasm32-wasi` target.
 :::
 
-Then replace the crate's `Cargo.toml` with following content.
+Then replace the crate's `Cargo.toml` with the following content.
 
 ```toml
 [package]
@@ -58,7 +58,7 @@ serde = { version = "1.0", features = ["derive"] }
 isomorphic-app = { path = "../app" }
 ```
 
-The `wasmedge_wasi_socket` crate is the socket API of WasmEdge. This project is under development. Next copy the `index.html` file into the crate's root.
+The `wasmedge_wasi_socket` crate is the socket API of WasmEdge. This project is under development. Next, copy the `index.html` file into the crate's root.
 
 ```bash
 cp server/src/index.html server-wasmedge/src/
@@ -78,7 +78,7 @@ fn main() {
     let server = TcpListener::bind("127.0.0.1:3000", false).unwrap();
     println!("Server listening on 127.0.0.1:3000");
 
-    // Simple single thread HTTP server
+    // Simple single-thread HTTP server
     // For server with Pool support, see https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/poll_http_server
     loop {
         let (mut stream, addr) = server.accept(0).unwrap();
@@ -101,7 +101,7 @@ fn main() {
 }
 ```
 
-The `handler.rs` parses the received data to the path and query objects and return the corresponding response.
+The `handler.rs` parses the received data to the path and queries objects and returns the corresponding response.
 
 ```rust
 use crate::response;
@@ -160,7 +160,7 @@ pub fn handle_req(stream: &mut TcpStream, addr: SocketAddr) -> Result<(Response,
 }
 ```
 
-The `response.rs` program packs the response object for static assets and for server rendered content. For the latter, you could see that SSR happens at `app.render().to_string()`, the result string is put into HTML by replacing the placeholder text.
+The `response.rs` program packs the response object for static assets and server-rendered content. For the latter, you could see that SSR happens at `app.render().to_string()`, the result string is put into HTML by replacing the placeholder text.
 
 ```rust
 use crate::mime::MimeType;
@@ -260,7 +260,7 @@ pub fn internal_error() -> (Response, Option<Vec<u8>>) {
 }
 ```
 
-The `mime.rs` program is a map for assets' extension name and the Mime type.
+The `mime.rs` program is a map for assets' extension names and the Mime type.
 
 ```rust
 pub struct MimeType {
@@ -293,7 +293,7 @@ impl MimeType {
 }
 ```
 
-That's it! Now let's build and run the web application. If you have tested the original example, you probably have already built the client WebAssembly.
+That's it! Now let's build and run the web application. If you have tested the original example, you have already built the client WebAssembly.
 
 ```bash
 cd client
@@ -308,7 +308,7 @@ cargo build --target wasm32-wasi
 OUTPUT_CSS="$(pwd)/../client/build/app.css" wasmedge --dir /static:../client/build ../../../target/wasm32-wasi/debug/isomorphic-server-wasmedge.wasm
 ```
 
-Navigate to `http://127.0.0.1:3000` and you will see the web application in action.
+Navigate to `http://127.0.0.1:3000`, and you will see the web application in action.
 
 Furthermore, you can place all the steps into a shell script `../start-wasmedge.sh`.
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 8.6.1 Deploy with containerd's runwasi
+# Deploy with containerd's runwasi
 
 <!-- prettier-ignore -->
 :::info
@@ -13,7 +13,7 @@ The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project su
 
 ## Prerequisites
 
-1. [Install Rust](https://www.rust-lang.org/tools/install). Because we need to compile the runwasi project.
+1. [Install Rust](https://www.rust-lang.org/tools/install) because we need to compile the runwasi project.
 
 2. Install WasmEdge
 
@@ -50,4 +50,7 @@ The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project su
 
 ## Run a simple Wasi app
 
-WIP
+<!-- prettier-ignore -->
+:::info
+Work in Progress
+:::

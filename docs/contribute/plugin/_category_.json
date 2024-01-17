@@ -3,6 +3,6 @@
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "we will learn how to the WasmEdge Plugin System."
+    "description": "We will learn how to develop the plug-ins for WasmEdge."
   }
 }

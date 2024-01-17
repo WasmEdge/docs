@@ -2,26 +2,26 @@
 sidebar_position: 5
 ---
 
-# Bpf userspace program example with wasm_bpf plugin
+# Bpf userspace program example with wasm_bpf plug-in
 
-Currently, there is a WasmEdge plugin called `wasm_bpf` which provided APIs to perform operations on eBPF program, such ad loading, attaching and polling.
+There is a WasmEdge plug-in called `wasm_bpf`, which provided APIs to perform operations on eBPF program, such as loading, attaching and polling.
 
-The detailed description could be found at [https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md](https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md).
+The detailed description can be found at [https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md](https://github.com/WasmEdge/WasmEdge/blob/master/plugins/wasm_bpf/README.md).
 
-Here we will provide several examples to demonstrate the `wasm_bpf` plugin
+Here we will provide several examples to demonstrate the `wasm_bpf` plug-in.
 
 ## Prerequisites
 
-For simplicity, we will just reuse the `Makefile` of [wasm-bpf](https://github.com/eunomia-bpf/wasm-bpf), since `wasmEdge_bpfPlugin` has the exactly same API as `wasm-bpf`
+For simplicity, we will reuse the `Makefile` of [wasm-bpf](https://github.com/eunomia-bpf/wasm-bpf), since `wasmEdge_bpfPlugin` has the precisely same API as `wasm-bpf`
 
 1. Clone the [`wasm-bpf`](https://github.com/eunomia-bpf/wasm-bpf) repo.
-2. Run `make install-deps` and `make /opt/wasi-sdk` at the root of the project. This will install the build prerequisites.
-3. [Install WasmEdge](../build-and-run/install)
-4. Build and install the `wasm_bpf` plugin. Currently, we have to build `wasm_bpf` plugin manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
+2. Run `make install-deps` and `make /opt/wasi-sdk` at the project's root. This will install the build prerequisites.
+3. [Install WasmEdge](../../start/install.md#install)
+4. Build and install the `wasm_bpf` plug-in. Currently, we have to build `wasm_bpf` plug-in manually. The building instructions could be found at [https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf#build-wasm_bpf-plug-in)
 
 ## The bootstrap example
 
-`bootstrap` is a simple eBPF program to track the entry and exit of all processes. It will print a line of message when there is an entry of exiting event of a process.
+`bootstrap` is a simple eBPF program to track the entry and exit of all processes. It will print a line of message when there is an entry of an exiting event of a process.
 
 Run `make` in `wasm-bpf/examples/bootstrap`, and you will find the `bootstrap.wasm`, which can be executed by `WasmEdge`.
 
@@ -29,7 +29,7 @@ Run `make` in `wasm-bpf/examples/bootstrap`, and you will find the `bootstrap.wa
 WASMEDGE_PLUGIN_PATH=./build/plugins/wasm_bpf/ wasmedge bootstrap.wasm
 ```
 
-`WASMEDGE_PLUGIN_PATH` should be changed due to your build directory of the plugin.
+`WASMEDGE_PLUGIN_PATH` should be changed due to your build directory of the plug-in.
 
 Example output:
 
@@ -48,13 +48,13 @@ TIME     EVENT COMM             PID     PPID    FILENAME/EXIT CODE
 
 ### Details of `bootstrap`
 
-`bootstrap` was created in the similar spirit as libbpf-tools from BCC package, but is designed to be more stand-alone and with simpler Makefile to simplify adoption to user's particular needs. It demonstrates the use of typical BPF features:
+`bootstrap` was created in a similar spirit as libbpf-tools from BCC package but is designed to be more stand-alone and with a simpler Makefile to simplify adoption to users' particular needs. It demonstrates the use of typical BPF features:
 
-cooperating BPF programs (tracepoint handlers for process `exec` and `exit` events, in this particular case); BPF map for maintaining the state; BPF ring buffer for sending data to user-space; global variables for application behavior parameterization. it utilizes BPF CO-RE and vmlinux.h to read extra process information from kernel's struct task_struct.
+Cooperating BPF programs (tracepoint handlers for process `exec` and `exit` events, in this particular case); BPF map for maintaining the state; BPF ring buffer for sending data to userspace; global variables for application behavior parameterization. It utilizes BPF CO-RE and vmlinux.h to read extra process information from kernel's struct task_struct.
 
 #### Some code snippets
 
-A bpf program from `bootstrap.bpf.c`. It tracks the exeution of processes, wraps the event in a struct, and send the struct to the userspace program through ringbuf.
+A bpf program from `bootstrap.bpf.c`. It tracks the execution of processes, wraps the event in a struct, and sends the struct to the userspace program through ringbuf.
 
 ```c
 SEC("tp/sched/sched_process_exec")
@@ -97,7 +97,7 @@ int handle_exec(struct trace_event_raw_sched_process_exec* ctx) {
 }
 ```
 
-The core process of the userspace program (which is compiled to Wasm). It invokes APIs from `wasm_bpf` to open, load, attach the bpf program, and poll data from the ringbuf.
+The userspace program's core process (compiled to Wasm). It invokes APIs from `wasm_bpf` to open, load, attach the bpf program, and poll data from the ringbuf.
 
 ```c
 /* Load and verify BPF application */
@@ -151,4 +151,4 @@ The core process of the userspace program (which is compiled to Wasm). It invoke
 
 ## Other examples
 
-Each directory under `wasm-bpf/examples` represents an example able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding Wasm with `WasmEdge`
+Each directory under `wasm-bpf/examples` represents an example able to be run using `WasmEdge`. You can run `make` in their directory and run the corresponding WASM with `WasmEdge`.

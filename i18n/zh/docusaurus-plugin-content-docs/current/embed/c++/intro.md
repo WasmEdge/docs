@@ -2,9 +2,7 @@
 sidebar_position: 1
 ---
 
-# WasmEdge C++ SDK
-
-## Introduction
+# WasmEdge C++ SDK Introduction
 
 The WasmEdge C++ SDK is a collection of headers and libraries that allow you to build and deploy WebAssembly (Wasm) modules for execution on WasmEdge devices. It includes a CMake project and a set of command-line tools that you can use to build and deploy your Wasm modules.
 
@@ -12,7 +10,7 @@ The WasmEdge C++ SDK is a collection of headers and libraries that allow you to 
 
 To get started with WasmEdge, follow these steps:
 
-Install the WasmEdge C/C++ SDK: Download C++ SDK from the WasmEdge [website](https://wasmedge.org/book/en/quick_start/install.html) and follow the instructions to install it on your development machine
+Install the WasmEdge C/C++ SDK: Download C++ SDK from the WasmEdge [website](https://wasmedge.org/docs/embed/quick-start/install) and follow the instructions to install it on your development machine
 
 ```cpp
 #include <wasmedge/wasmedge.h>
