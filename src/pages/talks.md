@@ -4,6 +4,15 @@ import ReactPlayer from 'react-player/lazy'
 
 ## 2023
 
+
+### December 6th
+
+####  Optimizing Microservices with WebAssembly and Linux Containers: Exploring Hybrid Container Architectures — Miley Fu, WasmEdge
+
+<ReactPlayer url='https://youtu.be/YJWOpNsULiA?si=8UcWubtgcvHgMNdY' />
+
+---
+
 ### December 5th
 
 #### Lightweight and High-Performance Microservices with Dapr and WasmEdge — Michael Yuan, WasmEdge
@@ -17,14 +26,6 @@ import ReactPlayer from 'react-player/lazy'
 #### Efficient and Cross-Platform AI Inference Apps Using Rust and Wasm — Michael Yuan, WasmEdge
 
 <ReactPlayer url='https://youtu.be/HI2w_Qw06YE?si=tZcJX9GYUpn7Qeet' />
-
----
-
-### December 6th
-
-####  Optimizing Microservices with WebAssembly and Linux Containers: Exploring Hybrid Container Architectures — Miley Fu, WasmEdge
-
-<ReactPlayer url='https://youtu.be/YJWOpNsULiA?si=8UcWubtgcvHgMNdY' />
 
 ---
 
