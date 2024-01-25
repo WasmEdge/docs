@@ -121,7 +121,7 @@ dnf install wasmedge
 
 ## 安装 WasmEdge 插件和依赖项
 
-WasmEdge 使用插件来扩展其功能。如果您想使用更多 WasmEdge 的功能，可以按下面的说明安装 WasmEdge 以及其插件和扩展：
+WasmEdge 使用插件来扩展其功能。如果你想使用更多 WasmEdge 的功能，可以按下面的说明安装 WasmEdge 以及其插件和扩展：
 
 ### TLS 插件
 
@@ -362,7 +362,7 @@ ln -s libtensorflow_framework.2.dylib ~/.wasmedge/lib/libtensorflow_framework.dy
 
 ### TensorFlow-Lite 依赖
 
-如果未使用安装程序安装 `WasmEdge-TensorflowLite` 插件，您可以使用以下命令下载共享库：
+如果未使用安装程序安装 `WasmEdge-TensorflowLite` 插件，你可以使用以下命令下载共享库：
 
 ```bash
 VERSION=TF-2.12.0-CC

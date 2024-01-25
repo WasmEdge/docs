@@ -1,8 +1,8 @@
 {
-  "label": "Serverless Platforms",
+  "label": "Serverless 平台",
   "position": 9,
   "link": {
     "type": "generated-index",
-    "description": "Run WebAssembly as an alternative lightweight runtime side-by-side with Docker and microVMs in cloud native infrastructure"
+    "description": "在云原生基础设施中，使用 WebAssembly 作为一种轻量级的备选运行时，与 Docker 和微型虚拟机（microVMs）并行运行。"
   }
 }

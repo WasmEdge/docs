@@ -11,14 +11,22 @@ WasmEdge 运行时为其包含的 WebAssembly 字节码程序提供了良好定�
 
 本章将介绍如何安装并开始使用 WasmEdge。
 
-将涵盖以下内容：
+涵盖以下内容：
 
 - [安装和卸载 WasmEdge](install.md)
 - [入门指南](/category/getting-started-with-wasmEdge)
 - 介绍 [WasmEdge 运行时](/category/what-is-wasmedge)
 - [运行 WasmEdge](/category/running-with-wasmedge)
 
-对于使用 WasmEdge 进行高级编程，请参考 [开发 WASM 应用程序](../develop/overview.md)，[在应用中嵌入 WasmEdge](../embed/overview.md)，或向 WasmEdge [进行贡献](../contribute/overview.md) 的指南。
+对于使用 WasmEdge 进行高级编程，请参考[开发 WASM 应用程序](../develop/overview.md)，[在应用中嵌入 WasmEdge](../embed/overview.md)，或向 WasmEdge [进行贡献](../contribute/overview.md) 的指南。
+
+如果你有任何问题或有任何反馈，请通过以下方式联系我们：
+
+- [Discord 聊天](https://discord.gg/U4B5sFTkFc)
+- [创建 GitHub 问题以获取技术支持](https://github.com/WasmEdge/WasmEdge/issues)
+- [提交 GitHub 讨论](https://github.com/WasmEdge/WasmEdge/discussions)
+- [在 Twitter 关注 @realwasmedge](https://twitter.com/realwasmedge)
+对于使用 WasmEdge 进行高级编程，请参考[开发 WASM 应用程序](../develop/overview.md)，[在应用中嵌入 WasmEdge](../embed/overview.md)，或向 WasmEdge [进行贡献](../contribute/overview.md) 的指南。
 
 如果你有任何问题或有任何反馈，请通过以下方式联系我们：
 

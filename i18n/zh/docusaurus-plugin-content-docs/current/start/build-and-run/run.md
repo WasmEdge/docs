@@ -2,11 +2,11 @@
 sidebar_position: 2
 ---
 
-# `wasmedge run` CLI
+# `wasmedge run` 
 
-After [installation](../install.md#install), users can execute the `wasmedge run` command.
+安装完成后（参见[安装](../install.md#install)），用户可以执行 `wasmedge run` 命令。
 
-`wasmedge run` is an alias of `wasmedge` without `-v|--version` option. The usage of the `wasmedge run` tool will be:
+`wasmedge run` 是不带 `-v|--version` 选项的 `wasmedge` 的别名。`wasmedge run` 工具的用法如下：
 
 ```bash
 $ wasmedge run -h
@@ -14,17 +14,17 @@ USAGE
    wasmedge run [OPTIONS] [--] WASM_OR_SO [ARG ...]
 ```
 
-## Options
+## 选项
 
-`wasmedge run` is an alias of `wasmedge` without `-v|--version` option.
+`wasmedge run` 是不带 `-v|--version` 选项的 `wasmedge` 的别名。
 
-In the other words, if users want to execute the following command.
+换句话说，如果用户希望执行以下命令。
 
 ```bash
 wasmedge --reactor fibonacci.wasm fib 10
 ```
 
-It is also accepted to add subcommand `run` and will have no difference on execution process and result.
+也可以使用子命令 `run`，在执行过程和结果上不会有任何区别。
 
 ```bash
 wasmedge run --reactor fibonacci.wasm fib 10

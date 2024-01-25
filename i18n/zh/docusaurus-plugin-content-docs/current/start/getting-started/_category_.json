@@ -1,8 +1,8 @@
 {
-  "label": "Getting Started with WasmEdge",
+  "label": "开始使用 WasmEdge",
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will show you how to get WasmEdge up and running quickly."
+    "description": "在本章中，我们将向你展示如何快速启动和运行 WasmEdge。"
   }
 }
