@@ -1,8 +1,8 @@
 {
-  "label": "WasmEdge Use-cases",
+  "label": "WasmEdge 使用案例",
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will discuss use-cases of WasmEdge"
+    "description": "在本章中，我们将讨论 WasmEdge 的使用案例。"
   }
 }

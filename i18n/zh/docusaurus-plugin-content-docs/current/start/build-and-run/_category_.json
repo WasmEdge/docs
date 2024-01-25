@@ -1,8 +1,8 @@
 {
-  "label": "Running with WasmEdge",
+  "label": "运行 WasmEdge",
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will discuss WasmEdge CLIs and how to leverage Docker + WASM to run build, share, and run your WASM apps."
+    "description": "在这一章节中，我们将讨论 WasmEdge CLIs（命令行界面）以及如何利用 Docker 和 WASM 来构建、分享和运行你的 WASM 应用程序。"
   }
 }

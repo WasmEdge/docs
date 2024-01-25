@@ -2,15 +2,15 @@
 sidebar_position: 5
 ---
 
-# Comparison
+# 对比
 
-## What's the relationship between WebAssembly and Docker?
+## WebAssembly 与 Docker 之间的关系是什么？
 
-Check out our infographic [WebAssembly vs. Docker](https://wasmedge.org/wasm_docker/). WebAssembly runs side by side with Docker in cloud native and edge native applications.
+请查看我们的信息图表 [WebAssembly vs. Docker](https://wasmedge.org/wasm_docker/)。在云原生和边缘原生应用中，WebAssembly 与 Docker 并驾齐驱。
 
-## What's the difference for Native clients (NaCl), Application runtimes, and WebAssembly?
+## Native clients（NaCl）、应用程序运行时和 WebAssembly 之间有何区别？
 
-We created a handy table for the comparison.
+我们创建了一个便捷的表格进行对比。
 
 |  | NaCl | Application runtimes (eg Node &amp; Python) | Docker-like container | WebAssembly |
 | --- | --- | --- | --- | --- |
@@ -24,6 +24,6 @@ We created a handy table for the comparison.
 | Ease of use | OK | Great | Great | OK |
 | Manageability | Poor | Poor | Great | Great |
 
-## What's the difference between WebAssembly and eBPF?
+## WebAssembly 与 eBPF 有何区别？
 
-`eBPF` is the bytecode format for a Linux kernel space VM that is suitable for network or security related tasks. WebAssembly is the bytecode format for a user space VM that is suited for business applications. [See details here](https://medium.com/codex/ebpf-and-webassembly-whose-vm-reigns-supreme-c2861ce08f89).
+`eBPF` 是适用于网络或安全相关任务的 Linux 内核空间虚拟机的字节码格式。而 WebAssembly 是适用于业务应用的用户空间虚拟机的字节码格式。[点击此处查看详细信息](https://medium.com/codex/ebpf-and-webassembly-whose-vm-reigns-supreme-c2861ce08f89)。
