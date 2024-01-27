@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Best Practice 
 
-When developing a WasmEdge plugin, it's important to follow certain best practices to ensure the plugin is robust, reliable, and efficient. Here are some key best practices to follow:
+When developing a WasmEdge plugin, it's important to follow best practices to ensure the plugin is well purformed, reliable, and efficient. Here are some key best practices to follow:
 
 ## Using the Latest Version of WasmEdge
 
@@ -27,27 +27,13 @@ WasmEdge plugins can be developed in several languages including [C](develop_plu
    
 ## Writing and Compiling the Plugin
 
-To create a plugin, you need to define a function in C or C++, and declare it with the `extern "C"` keyword to ensure that the function is exported using C-compatible naming conventions. 
+When creating a WasmEdge plugin:
 
-   ```ccp
-   extern "C" void my_function() {
-      // Your plugin code goes here
-   }
-   ```
+   1. **Code Writing**: While develop your plugin, write clear, maintainable code, and document it well for easy understanding and future maintenance.
 
-In this code, we define a function named my_function and use the extern "C" keyword to ensure that the function name is compatible with C naming conventions. This is necessary because the WasmEdge runtime uses C-style linking.
+   2. **Compiling to Shared Library**: Use a compiler like `gcc` for C or `g++` for C++ to compile your code into a shared library. For example, in a Linux environment, you might use `gcc -shared -fPIC -o my_plugin.so my_plugin.c` for a C plugin.
 
-Then compile the function as a shared library. You can compile this function into a shared library using a compiler such as g++. The specific command would depend on your operating system and setup, but here's a basic example for Linux:
-
-   ```bash
-   g++ -shared -o my_plugin.so my_plugin.cpp
-   ```
-
-In this command, `g++` is the compiler, `-shared` tells the compiler to create a shared library, -`o my_plugin.so` specifies the output file name, and `my_plugin.cpp` is the source file containing your function.
-
-Remember to replace `my_plugin.cpp` and `my_plugin.so` with your actual source file name and desired output file name.
-
-Please note that this is a simplified example. In a real-world scenario, your plugin would likely contain more complex code, and you might need to include additional compiler flags or link against other libraries.
+   3. **Error Handling and Input Validation**: Efficitive error handling to catch and manage potential issues. Validate all inputs thoroughly to ensure the plugin's stability and security.
 
 ## Testing the Plugin
 
@@ -89,7 +75,7 @@ Security is a vital part of any software development process. It involves severa
 
    - **Validate Inputs:** Always validate the inputs to your functions. This can prevent many types of attacks, including buffer overflow attacks and code injection attacks.
 
-      ```cpp
+      ```c
       WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
                            const WasmEdge_Value *In, WasmEdge_Value *Out) {
          if (In[0].Type != WasmEdge_ValType_I32 || In[1].Type != WasmEdge_ValType_I32) {
@@ -101,7 +87,7 @@ Security is a vital part of any software development process. It involves severa
 
    - **Handle Errors:** Always handle errors properly. Don't ignore return values that indicate an error, and don't continue execution after an error occurs.
 
-      ```cpp
+      ```c
       WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
                            const WasmEdge_Value *In, WasmEdge_Value *Out) {
          // Check the input types...
@@ -158,12 +144,12 @@ Package the Rust library and the header file into a tarball or a similar package
 tar czvf wasmedge_image_rust_sdk.tar.gz libwasmedge_image.so wasmedge_image.h
 ```
 
-With this package, other Rust developers can easily use your plugin in their applications. They just need to include your header file in their code, and link against your Rust library when they compile their application.
+With this package, other rust developers can easily use your plugin in their applications. They just need to include your header file in their code, and link against your rust library when they compile their application.
 
-Now, When you're ready to publish your plugin and the corresponding SDK, can publish your plugin on the official WasmEdge [plugin repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins) by creating a pull request into it or any other repository of your choice. Make sure to include the documentation and any other resources (like test files) with your plugin.
+Now, when you're ready to publish your plugin and the corresponding SDK, can publish your plugin on the official WasmEdge [plugin repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins) by creating a pull request into it or any other repository of your choice. Make sure to include the documentation and any other resources (like test files) with your plugin.
    
 ## Contributing to the WasmEdge Community
 
-As an open-source contributor, you can share your plugin with the community by submitting it to the official WasmEdge repository. This allows others to benefit from your work, and also opens up opportunities for collaboration and improvement.
+As an open-source contributor, you can share your plugin with the community by submitting it to the official [WasmEdge repository](https://github.com/WasmEdge/WasmEdge). This allows others to benefit from your work.
 
 By following these best practices, you can ensure a successful and efficient plugin development process for WasmEdge.
