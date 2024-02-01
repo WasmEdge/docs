@@ -45,27 +45,11 @@ import ReactPlayer from 'react-player/lazy'
 
 ---
 
-### May 10th
-
-#### WebAssembly: From the Browser to… Everywhere? by Matt Butcher, Fermyon
-
-<ReactPlayer url='https://youtu.be/T-Bupn40lAQ?si=kVd2PyanA79bRsB7' />
-
----
-
 ### May 11th
 
 #### Microservices and WASM, Are We There Yet? by Will Christensen, Defense Unicorns and Kingdon Barrett, Weaveworks
 
 <ReactPlayer url='https://youtu.be/2eTjGFbOz5E?si=Qg7EHyK-vknCpLPm' />
-
----
-
-### May 1st
-
-#### A WASM Runtime for FaaS Protected by TEE by Sara Wang and Yongli He, Intel (Virtual Talk)
-
-<ReactPlayer url='https://youtu.be/lDmSg9uNkH4?si=wYz6kzdY1yW9Tlbr' />
 
 ---
 
@@ -79,25 +63,9 @@ import ReactPlayer from 'react-player/lazy'
 
 ### April 19th
 
-#### Hands on with WebAssembly Microservices and Kubernetes - Jiaxiao Zhou, David Justice & Kate Goldenring, Microsoft & Radu Matei, Fermyon
-
-<ReactPlayer url='https://youtu.be/LdsyS2cedOw?si=LwlQXmBNz37AXlrq' />
-
----
-
-### April 19th
-
 #### Love, Death and Robots - with Wasm & K8s on Boston Dynamics Spot - Max Körbächer, Liquid Reply & Kevin Hawryluk, Roboverse Reply
 
 <ReactPlayer url='https://youtu.be/UsjZSsWpdRo?si=gAFfPdekEGq9HJK0' />
-
----
-
-### April 19th
-
-#### Safe, Dynamic Middleware with Dapr and WebAssembly - Mauricio Salatino, Diagrid & Adrian Cole, Tetrate
-
-<ReactPlayer url='https://youtu.be/DXW9kB0NsUY?si=axuLWqmBm5-s9Edw' />
 
 ---
 
