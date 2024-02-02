@@ -69,14 +69,6 @@ import ReactPlayer from 'react-player/lazy'
 
 ---
 
-### April 19th
-
-#### Hands on with WebAssembly Microservices & Kubernetes- J Zhou D Justice K Goldenring R Matei
-
-<ReactPlayer url='https://youtu.be/LdsyS2cedOw?si=Ez1A5W7BD2GIdTb0' />
-
----
-
 ### March 16th
 
 #### Introduction to WebAssembly (WASM) with Rust and WASMEdge
