@@ -4,6 +4,79 @@ import ReactPlayer from 'react-player/lazy'
 
 ## 2023
 
+
+### December 6th
+
+####  Optimizing Microservices with WebAssembly and Linux Containers: Exploring Hybrid Container Architectures — Miley Fu, WasmEdge
+
+<ReactPlayer url='https://youtu.be/YJWOpNsULiA?si=8UcWubtgcvHgMNdY' />
+
+---
+
+### December 5th
+
+#### Lightweight and High-Performance Microservices with Dapr and WasmEdge — Michael Yuan, WasmEdge
+
+<ReactPlayer url='https://youtu.be/RkEaz-MPR8k?si=QgbduonqUhZu3Tc_' />
+
+---
+
+### December 5th
+
+#### Efficient and Cross-Platform AI Inference Apps Using Rust and Wasm — Michael Yuan, WasmEdge
+
+<ReactPlayer url='https://youtu.be/HI2w_Qw06YE?si=tZcJX9GYUpn7Qeet' />
+
+---
+
+### September 
+
+#### Develop Wasm Applications with Docker - Angel M De Miguel Meana, VMware & Justin Cormack, Docker
+
+<ReactPlayer url='https://youtu.be/xPO3-TOZxW0?si=A-G3DP-ejMxJflwm' />
+
+---
+
+### May 10th
+
+#### Exotic Runtime Targets: Ruby and Wasm on Kubernetes and GitOps Delivery Pipelines by Kingdon Barrett, Weaveworks
+
+<ReactPlayer url='https://youtu.be/EsAuJmHYWgI?si=KPR96Lo-FyvSaumz' />
+
+---
+
+### May 11th
+
+#### Microservices and WASM, Are We There Yet? by Will Christensen, Defense Unicorns and Kingdon Barrett, Weaveworks
+
+<ReactPlayer url='https://youtu.be/2eTjGFbOz5E?si=Qg7EHyK-vknCpLPm' />
+
+---
+
+### April 21st
+
+#### Create and Deploy a Lightweight Microservice in WebAssembly - Tai Hung-Ying & Vivian Hu, Second State
+
+<ReactPlayer url='https://youtu.be/bBZf23f_sVg?si=2Jsao0ynI5dEitZs' />
+
+---
+
+### April 19th
+
+#### Love, Death and Robots - with Wasm & K8s on Boston Dynamics Spot - Max Körbächer, Liquid Reply & Kevin Hawryluk, Roboverse Reply
+
+<ReactPlayer url='https://youtu.be/UsjZSsWpdRo?si=gAFfPdekEGq9HJK0' />
+
+---
+
+### April 19th
+
+#### Hands on with WebAssembly Microservices & Kubernetes- J Zhou D Justice K Goldenring R Matei
+
+<ReactPlayer url='https://youtu.be/LdsyS2cedOw?si=Ez1A5W7BD2GIdTb0' />
+
+---
+
 ### March 16th
 
 #### Introduction to WebAssembly (WASM) with Rust and WASMEdge
