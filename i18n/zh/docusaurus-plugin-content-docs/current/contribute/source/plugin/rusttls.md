@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# Build with Rusttls Plug-in
+# Build with Rustls Plug-in
 
 The WasmEdge Rustls plug-in is a replacement for the OpenSSL plug-in in WasmEdge. It provides a Rust-friendly interface to the Rustls library, which is a modern, fast, and more secure alternative to OpenSSL.
 
