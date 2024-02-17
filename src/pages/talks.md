@@ -61,14 +61,6 @@ import ReactPlayer from 'react-player/lazy'
 
 ---
 
-### April 19th
-
-#### Love, Death and Robots - with Wasm & K8s on Boston Dynamics Spot - Max Körbächer, Liquid Reply & Kevin Hawryluk, Roboverse Reply
-
-<ReactPlayer url='https://youtu.be/UsjZSsWpdRo?si=gAFfPdekEGq9HJK0' />
-
----
-
 ### March 16th
 
 #### Introduction to WebAssembly (WASM) with Rust and WASMEdge
