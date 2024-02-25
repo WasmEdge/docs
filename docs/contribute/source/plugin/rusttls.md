@@ -69,4 +69,4 @@ Replace `your_wasm_file.wasm` with the path to your WebAssembly file. The `--rus
 
 That's it! You have successfully built and installed the WasmEdge Rustls plug-in. Please ensure to replace the OpenSSL plug-in with the Rustls plug-in in your WasmEdge runtime configuration if you were previously using OpenSSL. 
 
-For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasi_crypto).
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_rustls).
