@@ -52,7 +52,7 @@ Because the example already includes a compiled WASM file from the Rust code, we
 First, get the latest llama-chat wasm application
 
 ```bash
-curl -LO https://github.com/second-state/LlamaEdge/releases/latest/download/llama-chat.wasm
+curl -LO https://github.com/LlamaEdge/LlamaEdge/releases/latest/download/llama-chat.wasm
 ```
 
 Next, let's get the model. In this example, we are going to use the llama2 7b chat model in GGUF format. You can also use other kinds of llama2 models, check out [here](https://github.com/second-state/llamaedge/blob/main/chat/README.md#get-model).
@@ -85,7 +85,7 @@ The total cost of four apples is 20 dollars.
 Let's build the wasm file from the rust source code. First, git clone the `llamaedge` repo.
 
 ```bash
-git clone https://github.com/second-state/llamaedge.git
+git clone https://github.com/LlamaEdge/LlamaEdge.git
 cd chat
 ```
 
@@ -143,7 +143,7 @@ You can configure the chat inference application through CLI options.
           Print help
 ```
 
-The `--prompt-template` option is perhaps the most interesting. It allows the application to support different open source LLM models beyond llama2.
+The `--prompt-template` option is perhaps the most interesting. It allows the application to support different open source LLM models beyond llama2. Check out more prompt templates [here](https://github.com/LlamaEdge/LlamaEdge/tree/main/api-server/chat-prompts).
 
 | Template name         | Model                                                                    | Download                                                                                                                                |
 | ------------          | ------------------------------                                           | ---                                                                                                                                     |
