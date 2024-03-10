@@ -14,7 +14,7 @@ You must have [Go already installed](https://go.dev/doc/install) on your machine
 
 ```bash
 wget https://github.com/tinygo-org/tinygo/releases/download/v0.21.0/tinygo_0.21.0_amd64.deb
-sudo dpkg -i tinygo_0.21.0_amd64.deb`
+sudo dpkg -i tinygo_0.21.0_amd64.deb
 ```
 
 Next, run the following command line to check if the installation succeeds.
