@@ -91,13 +91,13 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 # create kubernetes cluster
 $ swapoff -a
 $ kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+$ export KUBECONFIG=/etc/kubernetes/admin.conf
 
 # install cni
 $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 
 # untaint master node
 $ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-$ export KUBECONFIG=/etc/kubernetes/admin.conf
 
 # add crun runtimeClass
 $ cat > runtime.yaml <<EOF
@@ -107,7 +107,7 @@ metadata:
   name: crun
 handler: crun
 EOF
-$ kubectl apply runtime.yaml
+$ kubectl apply -f runtime.yaml
 
 # Verify if the configuration works
 $ kubectl run -it --rm --restart=Never wasi-demo --image=wasmedge/example-wasi:latest --annotations="module.wasm.image/variant=compat-smart" --overrides='{"kind":"Pod", "apiVersion":"v1", "spec": {"hostNetwork": true, "runtimeClassName": "crun"}}' /wasi_example_main.wasm 50000000
@@ -179,7 +179,7 @@ spec:
             port: 1234
 EOF
 
-$ kubectl apply http-wasm-serverless.yaml
+$ kubectl apply -f http-wasm-serverless.yaml
 
 # wait for a while, and check if the serverless service is available
 $ kubectl get ksvc http-wasm
