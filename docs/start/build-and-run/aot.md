@@ -27,7 +27,7 @@ The options of the `wasmedge compile` command are as follows.
 3. _(Optional)_ `--interruptible`: Generate the binary which supports interruptible execution.
    - By default, the AOT-compiled WASM not supports [interruptions in asynchronous executions](../../embed/c/reference/0.12.x#async).
 4. _(Optional)_ Statistics information:
-   - By default, the AOT-compiled WASM not supports all statistics even if the options are turned on when running the `wasmedge` tool.
+   - By default, the AOT-compiled WASM does not support all statistics even if the options are turned on when running the `wasmedge` tool.
    - Use `--enable-time-measuring` to generate code for enabling time-measuring statistics in execution.
    - Use `--enable-gas-measuring` to generate code for enabling the statistics of gas measuring in execution.
    - Use `--enable-instruction-count` to generate code for enabling the statistics of counting WebAssembly instructions.
