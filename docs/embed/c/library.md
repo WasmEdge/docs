@@ -59,9 +59,8 @@ int main() {
   WasmEdge_String ExportName = WasmEdge_StringCreateByCString("extern");
   WasmEdge_ModuleInstanceContext *HostModCxt =
       WasmEdge_ModuleInstanceCreate(ExportName);
-  enum WasmEdge_ValType ParamList[2] = {WasmEdge_ValType_I32,
-                                        WasmEdge_ValType_I32};
-  enum WasmEdge_ValType ReturnList[1] = {WasmEdge_ValType_I32};
+  WasmEdge_ValType ParamList[2] = {WasmEdge_ValTypeGenI32(), WasmEdge_ValTypeGenI32()};
+  WasmEdge_ValType ReturnList[1] = {WasmEdge_ValTypeGenI32()};
   WasmEdge_FunctionTypeContext *HostFType =
       WasmEdge_FunctionTypeCreate(ParamList, 2, ReturnList, 1);
   WasmEdge_FunctionInstanceContext *HostFunc =
@@ -79,7 +78,7 @@ int main() {
   WasmEdge_Value Returns[1];
   /* Function name. */
   WasmEdge_String FuncName = WasmEdge_StringCreateByCString("addTwo");
-  /* Run the WASM function from file. */
+  /* Run the WASM function from buffer. */
   WasmEdge_Result Res = WasmEdge_VMRunWasmFromBuffer(
       VMCxt, WASM, sizeof(WASM), FuncName, Params, 2, Returns, 1);
 

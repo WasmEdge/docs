@@ -8,7 +8,7 @@ The database connection is necessary for today's enterprise development. WasmEdg
 
 <!-- prettier-ignore -->
 :::note
-Before we start, ensure [you have Rust and WasmEdge installed](../setup.md).
+Before we start, ensure [you have Rust and WasmEdge installed](../setup.md). If you are connecting to a remote MySQL database using TLS, you will need to [install the TLS plugin](../../../start/install.md#tls-plug-in) for WasmEdge as well.
 :::
 
 ## Run the example
@@ -24,6 +24,19 @@ cargo build --target wasm32-wasi --release
 
 # Execute MySQL statements against a MySQL database at mysql://user:passwd@127.0.0.1:3306
 wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wasm32-wasi/release/crud.wasm
+```
+
+To use TLS, you will need to turn on the `default-rustls` feature in `Cargo.toml`.
+
+```
+mysql_async_wasi = { version = "0.31", features = [ "default-rustls" ] }
+```
+
+Then, run the application as follows.
+
+```
+# Execute MySQL statements against an AWS RDS database that requires TLS
+wasmedge --env "DATABASE_SSL=1" --env "DATABASE_URL=mysql://user:passwd@mydb.123456789012.us-east-1.rds.amazonaws.com:3306/mysql" crud.wasm
 ```
 
 ## Code explanation

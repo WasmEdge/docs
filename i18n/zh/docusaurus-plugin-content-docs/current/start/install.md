@@ -163,6 +163,7 @@ WasmEdge 支持多种 `WASI-NN` 的后端。
 ```
 apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.
 ```
+
 安装完成后，请在 [Rust 中的大模型推理](../develop/rust/wasinn/llm_inference) 章节中了解如何使用 `ggml` 运行 LLM 推理程序。
 
 #### 带有 PyTorch 后端的 WASI-NN 插件
@@ -271,7 +272,7 @@ WasmEdge 扩展自 `0.13.0` 版本起已被弃用，并由插件取代。支持�
 
 ### WasmEdge 图像扩展
 
-WasmEdge 图像扩展（在 `0.13.0 `后被 [WasmEdge-Image 插件](#wasmedge-image-plug-in) 取代）可以帮助开发者加载和解码 JPEG 和 PNG 图像，并将其转换为张量。要安装此扩展，请在[运行安装命令](#generic-linux-and-macos)时使用 `-e image` 参数。
+WasmEdge 图像扩展（在 `0.13.0`后被 [WasmEdge-Image 插件](#wasmedge-image-plug-in) 取代）可以帮助开发者加载和解码 JPEG 和 PNG 图像，并将其转换为张量。要安装此扩展，请在[运行安装命令](#generic-linux-and-macos)时使用 `-e image` 参数。
 
 ### WasmEdge Tensorflow 和 TensorFlow-Lite 带有 CLI 工具的扩展
 

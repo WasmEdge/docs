@@ -20,13 +20,13 @@ go version go1.16.5 linux/amd64
 Meanwhile, please ensure you have installed [WasmEdge](../../start/install.md#install) with the same `WasmEdge-go` release version.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_version }}
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_go_version }}
 ```
 
 Install the `WasmEdge-go` package and build in your Go project directory:
 
 ```bash
-go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_version }}
+go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
 go build
 ```
 

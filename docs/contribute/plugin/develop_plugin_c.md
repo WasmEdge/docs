@@ -95,17 +95,17 @@ WasmEdge_Result HostFuncSub(void *Data,
   WasmEdge_ModuleInstanceContext *
   CreateTestModule(const struct WasmEdge_ModuleDescriptor *Desc) {
     /*
-    * The `Desc` is the const pointer to the module descriptor struct:
-    *
-    *   typedef struct WasmEdge_ModuleDescriptor {
-    *     const char *Name;
-    *     const char *Description;
-    *     WasmEdge_ModuleInstanceContext *(*Create)(
-    *         const struct WasmEdge_ModuleDescriptor *);
-    *   } WasmEdge_ModuleDescriptor;
-    *
-    * Developers can get the name and description from this descriptor.
-    */
+     * The `Desc` is the const pointer to the module descriptor struct:
+     *
+     *   typedef struct WasmEdge_ModuleDescriptor {
+     *     const char *Name;
+     *     const char *Description;
+     *     WasmEdge_ModuleInstanceContext *(*Create)(
+     *         const struct WasmEdge_ModuleDescriptor *);
+     *   } WasmEdge_ModuleDescriptor;
+     *
+     * Developers can get the name and description from this descriptor.
+     */
 
     /* Exported module name of this module instance. */
     WasmEdge_String ModuleName =
@@ -117,10 +117,10 @@ WasmEdge_Result HostFuncSub(void *Data,
     WasmEdge_String FuncName;
     WasmEdge_FunctionTypeContext *FType;
     WasmEdge_FunctionInstanceContext *FuncCxt;
-    enum WasmEdge_ValType ParamTypes[2], ReturnTypes[1];
-    ParamTypes[0] = WasmEdge_ValType_I32;
-    ParamTypes[1] = WasmEdge_ValType_I32;
-    ReturnTypes[0] = WasmEdge_ValType_I32;
+    WasmEdge_ValType ParamTypes[2], ReturnTypes[1];
+    ParamTypes[0] = WasmEdge_ValTypeGenI32();
+    ParamTypes[1] = WasmEdge_ValTypeGenI32();
+    ReturnTypes[0] = WasmEdge_ValTypeGenI32();
 
     /* Create and add the host function instances into the module instance. */
     FType = WasmEdge_FunctionTypeCreate(ParamTypes, 2, ReturnTypes, 1);
@@ -148,9 +148,9 @@ WasmEdge_Result HostFuncSub(void *Data,
   /* The module descriptor array. There can be multiple modules in a plug-in. */
   static WasmEdge_ModuleDescriptor ModuleDesc[] = {{
       /*
-      * Module name. This is the name for searching and creating the module
-      * instance context by the `WasmEdge_PluginCreateModule()` API.
-      */
+       * Module name. This is the name for searching and creating the module
+       * instance context by the `WasmEdge_PluginCreateModule()` API.
+       */
       .Name = "wasmedge_plugintest_c_module",
       /* Module description. */
       .Description = "This is for the plugin tests in WasmEdge C API.",
@@ -161,9 +161,9 @@ WasmEdge_Result HostFuncSub(void *Data,
   /* The plug-in descriptor */
   static WasmEdge_PluginDescriptor Desc[] = {{
       /*
-      * Plug-in name. This is the name for searching the plug-in context by the
-      * `WasmEdge_PluginFind()` API.
-      */
+       * Plug-in name. This is the name for searching the plug-in context by the
+       * `WasmEdge_PluginFind()` API.
+       */
       .Name = "wasmedge_plugintest_c",
       /* Plug-in description. */
       .Description = "",

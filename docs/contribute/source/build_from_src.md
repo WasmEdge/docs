@@ -51,7 +51,7 @@ WasmEdge provides various tools for enabling different runtime environments for 
 Developers can set the CMake options to customize the WasmEdge building.
 
 1. `WASMEDGE_BUILD_TESTS`: build the WasmEdge tests. Default is `OFF`.
-2. `WASMEDGE_BUILD_AOT_RUNTIME`: build with the Ahead-of-Time compiler supporting. Default is `ON`.
+2. `WASMEDGE_USE_LLVM`: build with LLVM-based runtime for supporting Ahead-of-Time and Just-In-Time compiler. Default is `ON`.
 3. `WASMEDGE_BUILD_SHARED_LIB`: build the WasmEdge shared library (`libwasmedge.so`, `libwasmedge.dylib`, or `wasmedge.dll`). Default is `ON`.
    - By default, the WasmEdge shared library will link to the LLVM shared library.
 4. `WASMEDGE_BUILD_STATIC_LIB`: build the WasmEdge static library (`libwasmedge.a`, Linux and MacOS platforms, experimental). Default is `OFF`.
@@ -60,7 +60,7 @@ Developers can set the CMake options to customize the WasmEdge building.
    - For linking with `libwasmedge.a`, developers should also add the `-ldl`, `-pthread`, `-lm`, and `-lstdc++` linker options on both Linux and MacOS platforms, and `-lrt` on Linux platforms.
 5. `WASMEDGE_BUILD_TOOLS`: build the `wasmedge` and `wasmedgec` tools. Default is `ON`.
    - The `wasmedge` and `wasmedgec` tools will link to the WasmEdge shared library by default.
-   - If this option is set as `ON` and `WASMEDGE_BUILD_AOT_RUNTIME` is set as `OFF`, the `wasmedgec` tool for the AOT compiler will not be built.
+   - If this option is set as `ON` and `WASMEDGE_USE_LLVM` is set as `OFF`, the `wasmedgec` tool for the AOT compiler will not be built.
    - If this option is set as `ON` but the option `WASMEDGE_LINK_TOOLS_STATIC` is set as `OFF`, the option `WASMEDGE_BUILD_SHARED_LIB` will forcefully be set as `ON`.
    - If this option and the option `WASMEDGE_LINK_TOOLS_STATIC` are both set as `ON`, the `WASMEDGE_LINK_LLVM_STATIC` and `WASMEDGE_BUILD_STATIC_LIB` will both be set as `ON`, and the `wasmedge` and `wasmedgec` tools will link to the WasmEdge static library instead. In this case, the plug-ins will not work in tools.
 6. `WASMEDGE_BUILD_PLUGINS`: build the WasmEdge plug-ins. Default is `ON`.

@@ -45,11 +45,13 @@ That's it.
    Next, configure and build a `crun` binary with WasmEdge support.
 
    ```bash
+   git clone https://github.com/containers/crun
+   cd crun
    ./autogen.sh
    ./configure --with-wasmedge
    make
    sudo make install
-   # replace crun (be careful, you may want to do a bakup first)
+   # replace crun (be careful, you may want to do a backup first)
    mv crun $(which crun)
    ```
 

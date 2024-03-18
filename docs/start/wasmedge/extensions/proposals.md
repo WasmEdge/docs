@@ -21,12 +21,16 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 | [Multiple memories][] | `--enable-multi-memory` | `WasmEdge_Proposal_MultiMemories` |  | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
 | [Extended Constant Expressions][] | `--enable-extended-const` | `WasmEdge_Proposal_ExtendedConst` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
 | [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
+| [Typed Function References][] | `--enable-function-reference` | `WasmEdge_Proposal_FunctionReferences` |  | ✓ (since `0.14.0`) | ✓ (since `0.14.0`) |
+| [Garbage collection][] | `--enable-gc` | `WasmEdge_Proposal_GC` |  | ✓ (since `0.14.0`) |  |
 
 The following proposals are under development and may be supported in the future:
 
 - [Component Model][]
 - [Exception handling][]
-- [Garbage collection][]
+- [Relaxed SIMD][]
+- [Memory64][]
+- [Exception handling][]
 - [WebAssembly C and C++ API][]
 
 [Import/Export of Mutable Globals]: https://github.com/WebAssembly/mutable-global
@@ -42,7 +46,10 @@ The following proposals are under development and may be supported in the future
 [Threads]: https://github.com/webassembly/threads
 [Component Model]: https://github.com/WebAssembly/component-model
 [Exception handling]: https://github.com/WebAssembly/exception-handling
+[Typed Function References]: https://github.com/WebAssembly/function-references
 [Garbage collection]: https://github.com/WebAssembly/gc
+[Relaxed SIMD]: https://github.com/WebAssembly/relaxed-simd
+[Memory64]: https://github.com/WebAssembly/memory64
 [WebAssembly C and C++ API]: https://github.com/WebAssembly/wasm-c-api
 
 ## WASI proposals

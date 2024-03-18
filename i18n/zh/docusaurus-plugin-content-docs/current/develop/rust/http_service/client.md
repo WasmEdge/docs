@@ -13,20 +13,95 @@ Before we start, ensure [you have Rust and WasmEdge installed](../setup.md). To 
 
 We will discuss HTTP and HTTPS clients using popular Rust APIs.
 
-- [The hyper API (recommended)](#the-hyper-api)
-- [The http_req API](#the-http_req-api)
 - [The reqwest API](#the-reqwest-api)
+- [The hyper API](#the-hyper-api)
+- [The http_req API](#the-http_req-api)
 
-## The hyper API
+## The reqwest API
 
-The [hyper crate](https://crates.io/crates/hyper) is a widely used Rust library to create HTTP and HTTPS networking applications. We recommend you use it in WasmEdge applications. A key feature of the `hyper` crate is that it is based on the `tokio` runtime, which supports asynchronous network connections. Asynchronous HTTP or HTTPS requests do not block the execution of the calling application. It allows an application to make multiple concurrent HTTP requests and to process responses as they are received. That enables high-performance networking applications in WasmEdge.
+The `reqwest` crate is a popular Rust library to create asynchronous HTTP clients. It is built on top of the `hyper` and `tokio` APIs. Many developers find it easier to use. But perhaps more importantly, many existing Rust applications use `reqwest`, and you can make them work in WasmEdge by simply replacing the `reqwest` crate with `reqwest_wasi`! Build and run [the example](https://github.com/WasmEdge/wasmedge_reqwest_demo/) in WasmEdge as follows.
 
 <!-- prettier-ignore -->
 :::note
 Non-blocking I/O means that the application program can keep multiple connections open simultaneously, and process data in and out of those connections as they come in. The program can either alternatingly poll those open connections or wait for incoming data to trigger async functions. That allows I/O intensive programs to run much faster, even in a single-threaded environment.
 :::
 
-Build and run [the hyper example](https://github.com/WasmEdge/wasmedge_hyper_demo/) in WasmEdge as follows.
+```bash
+git clone https://github.com/WasmEdge/wasmedge_reqwest_demo
+cd wasmedge_reqwest_demo
+
+# Build the Rust code
+cargo build --target wasm32-wasi --release
+# Use the AoT compiler to get better performance
+wasmedge compile target/wasm32-wasi/release/http.wasm http.wasm
+wasmedge compile target/wasm32-wasi/release/https.wasm https.wasm
+
+# Run the HTTP GET and POST examples
+wasmedge http.wasm
+
+# Run the HTTPS GET and POST examples
+wasmedge https.wasm
+```
+
+In your Rust application, import [the WasmEdge adapted reqwest crate](https://crates.io/crates/reqwest_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
+
+```toml
+[dependencies]
+reqwest_wasi = { version = "0.11", features = ["json"] }
+tokio_wasi = { version = "1.21", features = ["full"] }
+```
+
+The [example Rust code](https://github.com/WasmEdge/wasmedge_reqwest_demo/blob/main/src/http.rs) below shows an HTTP GET request.
+
+```rust
+use std::collections::HashMap;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let resp = reqwest::get("http://eu.httpbin.org/ip")
+        .await?
+        .json::<HashMap<String, String>>()
+        .await?;
+    println!("{:#?}", resp);
+    Ok(())
+}
+```
+
+And here is an HTTP POST request.
+
+```rust
+    let client = reqwest::Client::new();
+
+    let res = client
+        .post("http://eu.httpbin.org/post")
+        .body("msg=WasmEdge")
+        .send()
+        .await?;
+    let body = res.text().await?;
+
+    println!("POST: {}", body);
+```
+
+### HTTPS support
+
+In order to make HTTPS requests from `reqwest`, you will need to install WasmEdge with [the TLS plug-in](../../../start/install.md#tls-plug-in).
+
+```
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_rustls
+```
+
+Then, in `Cargo.toml`, you should enable the TLS feature.
+
+```
+reqwest_wasi = { version = "0.11", features = ["wasmedge-tls"] }
+tokio_wasi = { version = "1", features = ["rt", "macros", "net", "time"] }
+```
+
+Then, you can just replace the URLs in the above examples from `http` and `https`. [See details here](https://github.com/WasmEdge/wasmedge_reqwest_demo/blob/main/src/https.rs).
+
+## The hyper API
+
+The [hyper crate](https://crates.io/crates/hyper) is a widely used Rust library to create HTTP and HTTPS networking applications for both clients and servers. A key feature of the `hyper` crate is that it is based on the `tokio` runtime, which supports asynchronous network connections. Asynchronous HTTP or HTTPS requests do not block the execution of the calling application. It allows an application to make multiple concurrent HTTP requests and to process responses as they are received. That enables high-performance networking applications in WasmEdge. Build and run [the hyper example](https://github.com/WasmEdge/wasmedge_hyper_demo/) in WasmEdge as follows.
 
 ```bash
 git clone https://github.com/WasmEdge/wasmedge_hyper_demo
@@ -171,63 +246,3 @@ fn main() {
 }
 ```
 
-## The reqwest API
-
-The `reqwest` crate is another popular Rust library to create asynchronous HTTP clients. It is built on top of the `hyper` API. Many developers find it easier to use. But perhaps more importantly, many existing Rust applications use `reqwest`, and you can make them work in WasmEdge by simply replacing the `reqwest` crate with `reqwest_wasi`! Build and run [the example](https://github.com/WasmEdge/wasmedge_reqwest_demo/) in WasmEdge as follows.
-
-<!-- prettier-ignore -->
-:::note
-Our current adaptation of [reqwest_wasi](https://github.com/wasmedge/reqwest) does not support HTTPS yet. You are welcome to contribute to the project!
-:::
-
-```bash
-git clone https://github.com/WasmEdge/wasmedge_reqwest_demo
-cd wasmedge_reqwest_demo
-
-# Build the Rust code
-cargo build --target wasm32-wasi --release
-# Use the AoT compiler to get better performance
-wasmedge compile target/wasm32-wasi/release/wasmedge_reqwest_demo.wasm wasmedge_reqwest_demo.wasm
-
-# Run the example
-wasmedge wasmedge_reqwest_demo.wasm
-```
-
-In your Rust application, import [the WasmEdge adapted reqwest crate](https://crates.io/crates/reqwest_wasi), which uses a special version of single-threaded Tokio that is adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
-
-```toml
-[dependencies]
-reqwest_wasi = { version = "0.11", features = ["json"] }
-tokio_wasi = { version = "1.21", features = ["full"] }
-```
-
-The [example Rust code](https://github.com/WasmEdge/wasmedge_reqwest_demo/blob/main/src/main.rs) below shows an HTTP GET request.
-
-```rust
-use std::collections::HashMap;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let resp = reqwest::get("http://eu.httpbin.org/ip")
-        .await?
-        .json::<HashMap<String, String>>()
-        .await?;
-    println!("{:#?}", resp);
-    Ok(())
-}
-```
-
-And here is an HTTP POST request.
-
-```rust
-    let client = reqwest::Client::new();
-
-    let res = client
-        .post("http://eu.httpbin.org/post")
-        .body("msg=WasmEdge")
-        .send()
-        .await?;
-    let body = res.text().await?;
-
-    println!("POST: {}", body);
-```
