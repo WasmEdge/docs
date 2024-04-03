@@ -57,12 +57,12 @@ nvidia.com/gpu=all
 
 ## Setup your container runtime (crun + wasmedge + plugin system)
 
-Build crun with wasmedge  and plugin system both enable 
+Build crun with wasmedge enable
 
 ```bash
 > sudo apt install -y make git gcc build-essential pkgconf libtool libsystemd-dev libprotobuf-c-dev libcap-dev libseccomp-dev libyajl-dev go-md2man libtool autoconf python3 automake
 
-> git clone -b enable-wasmedge-plugin https://github.com/second-state/crun
+> git clone https://github.com/containers/crun
 > cd crun
 > ./autogen.sh
 > ./configure --with-wasmedge
