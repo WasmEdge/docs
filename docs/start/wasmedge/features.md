@@ -41,7 +41,7 @@ Through the [WasmEdge-Quickjs](https://github.com/second-state/wasmedge-quickjs)
 
 WasmEdge could be seamlessly integrated with the existing cloud-native infra.
 
-To integrate WasmEdge with your existing cloud-native infrastructure, there are several options available for managing WASM applications as "containers" under Kubernetes. These options enables you to run Linux containers and WASM containers side by side within a Kubernetes cluster.
+To integrate WasmEdge with your existing cloud-native infrastructure, there are several options available for managing WASM applications as "containers" under Kubernetes. These options enable you to run Linux containers and WASM containers side by side within a Kubernetes cluster.
 
 **Option #1:** is to [use an OCI runtime crun](../../develop/deploy/oci-runtime/crun.md) (the C version of runc — mainly supported by Red Hat). crun decides whether an OCI image is WASM or Linux based on image annotations. If the image is annotated as wasm32, crun will bypass the Linux container setup and just use WasmEdge to run the image. By using crun, you can get the entire Kubernetes stack - including CRI-O, containerd, Podman, kind, micro k8s, and k8s - to work with WASM images.
 
@@ -49,7 +49,7 @@ Option #2 is to [use a containerd-shim to start WASM "containers" via runwasi](.
 
 ## Cross Platform
 
-WASM is Portable. The compiled wasm file could run on different hardware and platforms without any changes.
+WASM is Portable. The compiled WASM file could run on different hardware and platforms without any changes.
 
 WasmEdge supports a wide range of operating systems and hardware platforms. It allows WebAssembly applications to be truly portable across platforms. It runs on Linux-like systems and microkernels such as the `seL4` real-time system.
 
@@ -69,7 +69,7 @@ WasmEdge now supports:
 
 It is easy to build customized WasmEdge runtime with native host functions in C, Go, and Rust.
 
-Or you could build your own plug-ins for WasmEdge in,
+Or you could build your own plug-ins for WasmEdge in
 
 - [Rust](../../contribute/plugin/develop_plugin_rustsdk)
 - [C](../../contribute/plugin/develop_plugin_c)
@@ -77,4 +77,4 @@ Or you could build your own plug-ins for WasmEdge in,
 
 ## Easy to Embed into a Host Application
 
-Embedded runtime is the classical use case for WasmEdge. You could embed WasmEdge functions in C, Go, Rust, Node.js, Java (WIP), and Python (WIP) host applications.
+[Embedded runtime](https://wasmedge.org/docs/embed/overview) is the classical use case for WasmEdge. You could embed WasmEdge functions in C, Go, Rust, Node.js, Java (WIP), and Python (WIP) host applications.
