@@ -42,3 +42,10 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | Shifu | Use WasmEdge to support user-defined functions (UDF) in data streams from edge devices | <https://github.com/Edgenesis/wasm-shifu-demo> |
 | Lnjoying | Offers WasmEdge as part of its edge cloud service. | Internal use case |
 | Red Hat EPEL 9 | Offers support for wasmedge packages for Red Hat Linux 9 users. | <https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html> |
+| Open Interpreter| Use WasmEdge as the LLM runtime | <https://github.com/OpenInterpreter/01/tree/main/software/source/server/services/llm/llamaedge> |
+| GaiaNet| Use WasmEdge as LLM runtime | <https://github.com/GaiaNet-AI/gaianet-node> |
+| MoXin| Use WasmEdge as the LLM runtime | <https://github.com/project-robius/moxin> |
+| CODA Bridge| Use WasmEdge as the container to run microservices | Internal use case |
+| Kuasar| Use WasmEdge as a lightweight container | <https://github.com/kuasar-io/kuasar> |
+
+
