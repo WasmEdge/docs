@@ -46,6 +46,5 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | GaiaNet| Use WasmEdge as LLM runtime | <https://github.com/GaiaNet-AI/gaianet-node> |
 | MoXin| Use WasmEdge as the LLM runtime | <https://github.com/project-robius/moxin> |
 | CODA Bridge| Use WasmEdge as the container to run microservices | Internal use case |
-| Kuasar| Use WasmEdge as a lightweight container | <https://github.com/kuasar-io/kuasar> |
 
 
