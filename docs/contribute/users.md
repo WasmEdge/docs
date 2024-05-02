@@ -23,7 +23,7 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | Polkadot | Provide WasmEdge as a smart contract runtime for parachains, and support WasmEdge as an alternative runtime for substrate nodes. | <https://github.com/second-state/substrate-wasmedge> |
 | Apache Traffic Server | Use WasmEdge as a plug-in to process the traffic flow | <https://github.com/apache/trafficserver/pull/9390> |
 | Enovy | Use WasmEdge as a plug-in to process the traffic flow | <https://github.com/envoyproxy/envoy/pull/24817/files> |
-| Liquid Reply |  | <https://kwasm.sh/> |
+| Liquid Reply | Kubernetes operators for managing WasmEdge workloads for customers | <https://kwasm.sh/> |
 | Docker | Use WasmEdge to support wasm containers in Docker Desktop tools | <https://www.docker.com/blog/docker-wasm-technical-preview/> |
 | ByteDance | Use WasmEdge to run custom logic in service mesh proxies and sidecars | Internal use case |
 | ByteDance | Use WasmEdge to run serverless functions | Internal use case |
@@ -46,5 +46,6 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | GaiaNet| Use WasmEdge as LLM runtime | <https://github.com/GaiaNet-AI/gaianet-node> |
 | MoXin| Use WasmEdge as the LLM runtime | <https://github.com/project-robius/moxin> |
 | CODA Bridge| Use WasmEdge as the container to run microservices | Internal use case |
-
+| CloudEvents | Support the Rust SDK to be compiled into Wasm so that a Wasm app can send and receive cloud events | <https://github.com/cloudevents/sdk-rust/pull/202> |
+| Kagome | A C++ implementation of Polkadot host which runs Wasm smart contracts on WasmEdge | <https://github.com/qdrvm/kagome/tree/master/core/runtime> |
 
