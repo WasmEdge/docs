@@ -50,16 +50,16 @@ Suppose you are interested in the latest builds from the `HEAD` of the `master` 
 
 #### Install WasmEdge with plug-ins
 
-WasmEdge plug-ins are pre-built native modules that provide additional functionalities to the WasmEdge Runtime. To install plug-ins with the runtime, you can pass the `--plugins` parameter in the installer. For example, the command below installs the `wasmedge_rustls` plug-in to enable TLS and HTTPS networking.
+WasmEdge plug-ins are pre-built native modules that provide additional functionalities to the WasmEdge Runtime. To install plug-ins with the runtime, you can pass the `--plugins` parameter in the installer. For example, the command below installs the `wasi_nn-ggml` plug-in to enable LLM (Large Language Model) inference.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_rustls
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-ggml
 ```
 
-To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasmedge_rustls` and the `wasi_nn-ggml` plug-ins. The latter enables WasmEdge to run AI inference programs on large language models such as llama2 family of LLMs.
+To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasi_logging`` and the `wasi_nn-ggml` plug-ins. The `wasi_logging` plug-in allows the Rust [log::Log](https://crates.io/crates/log) API to compile into Wasm and run in WasmEdge.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_rustls wasi_nn-ggml
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_logging wasi_nn-ggml
 ```
 
 The installer downloads the plug-in files from the WasmEdge release on GitHub, unzips them, and then copies them over to the `~/.wasmedge/plugin/` folder (for user install) and to the `/usr/local/lib/wasmedge/` folder (for system install).
@@ -123,15 +123,16 @@ If you used `winget` to install WasmEdge, the files are located at `C:\Program F
 
 WasmEdge uses plug-ins to extend its functionality. If you want to use more of WasmEdge's features, you can install WasmEdge along with its plug-ins and extensions as described below:
 
-### TLS plug-in
+### The logging plug-in
 
-The WasmEdge TLS plug-in utilizes the native OpenSSL library to support HTTPS and TLS requests from WasmEdge sockets. To install WasmEdge with the TLS plug-in, run the following command.
+The `wasi_logging` plug-in supports the [log::Log](https://crates.io/crates/log) Rust API.
+It allows [log::Log](https://crates.io/crates/log) in Rust code to be compiled to Wasm and to run in WasmEdge.
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_rustls
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_logging
 ```
 
-Then, go to [HTTPS request in Rust chapter](../develop/rust/http_service/client.md) to see how to run HTTPs services with Rust.
+[See more examples](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/wasi-logging)
 
 ### WASI-NN plug-ins
 
@@ -239,6 +240,27 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 ```
 
 Then, go to [WASI-Crypto in Rust chapter](../develop/rust/wasicrypto.md) to see how to run WASI-crypto functions.
+
+### WasmEdge OpenCV mini Plug-in
+
+The WasmEdge OpenCV Mini plug-in supports a subset of OpenCV APIs in a [Rust API](https://github.com/second-state/opencvmini).
+It is essential for developing image processing / vision AI applications in WasmEdge.
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_opencvmini
+```
+
+[See an example](https://github.com/second-state/opencvmini-example)
+
+### WasmEdge zlib Plug-in
+
+The zlib is required for compiling and running many existing C / C++ / Rust apps in Wasm. Most noticeably, it is required for the Python port to Wasm. It supports the standard [zlib.h](https://github.com/madler/zlib/blob/develop/zlib.h) C API. 
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_zlib
+```
+
+[See an example](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/wasmedge-zlib).
 
 ### WasmEdge Image Plug-in
 
