@@ -289,6 +289,22 @@ If you install this plug-in WITHOUT installer, you can [refer to here to install
 
 Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plugin.md) to see how to run `WasmEdge-TensorFlow` functions.
 
+
+### TLS plug-in
+
+<!-- prettier-ignore -->
+:::note
+The Tensorflow Lite plugin is being deprecated from WasmEdge 0.14.0. We now compile TLS functions directly into Wasm for better portability.
+:::note
+
+The WasmEdge TLS plug-in utilizes the native OpenSSL library to support HTTPS and TLS requests from WasmEdge sockets. To install WasmEdge with the TLS plug-in, run the following command.
+
+```
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.13.5 --plugins wasmedge_rustls
+```
+
+The HTTPS and TLS demos from 0.13.5 require the TLS plug-in.
+
 ### WasmEdge TensorFlow-Lite Plug-in
 
 <!-- prettier-ignore -->
