@@ -71,14 +71,14 @@ async fn main() {
 
 ## The hyper API
 
-The `warp` crate is convenient to use. But oftentimes, developers need access to lower-level APIs. The `hyper` crate is an excellent HTTP library for that. Build and run [the example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/server/) in WasmEdge as follows.
+The `hyper` crate is an excellent library for building HTTP servers using customizable low level APIs. Build and run [the example](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/server/) in WasmEdge as follows.
 
 ```bash
 git clone https://github.com/WasmEdge/wasmedge_hyper_demo
 cd wasmedge_hyper_demo/server
 
 # Build the Rust code
-cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
 # Use the AoT compiler to get better performance
 wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_server.wasm wasmedge_hyper_server.wasm
 
@@ -93,12 +93,17 @@ $ curl http://localhost:8080/echo -X POST -d "WasmEdge"
 WasmEdge
 ```
 
-In your Rust application, import the WasmEdge adapted `hyper_wasi` crate, which uses a special version of single threaded Tokio that is adapted for WebAssembly. Just add the following lines to your `Cargo.toml`.
+In your Rust application, import the [hyper](https://crates.io/crates/hyper) and [tokio](https://crates.io/crates/tokio) crates, as well as the WasmEdge patches. Just add the following lines to your `Cargo.toml`.
 
 ```toml
+[patch.crates-io]
+tokio = { git = "https://github.com/second-state/wasi_tokio.git", branch = "v1.36.x" }
+socket2 = { git = "https://github.com/second-state/socket2.git", branch = "v0.5.x" }
+hyper = { git = "https://github.com/second-state/wasi_hyper.git", branch = "v0.14.x" }
+
 [dependencies]
-tokio_wasi = { version = "1", features = ["rt", "macros", "net", "time", "io-util"]}
-hyper_wasi = "0.15.0"
+hyper = { version = "0.14", features = ["full"]}
+tokio = { version = "1", features = ["rt", "macros", "net", "time", "io-util"]}
 ```
 
 The [Rust example code](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/server/src/main.rs) below shows an HTTP server that echoes back any incoming request.
