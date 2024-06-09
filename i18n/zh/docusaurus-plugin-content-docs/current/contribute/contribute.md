@@ -25,9 +25,23 @@ Please submit a pull request broken down into small changes bit by bit. A pull r
 If you split your pull request into small changes, please ensure any changes that go to the main branch will not break anything. Otherwise, it can only be merged once this feature is complete.
 :::
 
+## Understanding the WasmEdge Ecosystem
+
+The WasmEdge Ecosystem describes the architecture and components that make up the WasmEdge project. The ecosystem can be broken down into several key components:
+
+- **Core**: This is the central part of the WasmEdge project. The core functionality of the WasmEdge runtime resides here.
+
+- **Plugins**: These are extensions of WASM host functions along with their dependencies. They extend the functionality of the WasmEdge runtime.
+
+- **Tools**: These are runtime executables. For instance, WasmEdge-TensorFlow-Tools are released tools to execute WASM with access to TensorFlow or TensorFlow-Lite.
+
+You can check out more [about the WasmEdge ecosystem](https://github.com/WasmEdge/WasmEdge/blob/master/docs/ecosystem.md) to understand how these parts work together.
+
+By understanding the ecosystem, you can make more impactful contributions and see how your work advances the overall goals of WasmEdge.
+
 ### Fork and Clone the Repository
 
-Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace
+Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone the code to your local workspace.
 
 ### Branches and Commits
 
@@ -50,9 +64,11 @@ LD_LIBRARY_PATH=$(pwd)/lib/api ctest
 
 When ready for review, push your branch to your fork repository on github.
 
-Then visit your fork at <https://github.com/$user/WasmEdge> and click the `Compare & Pull Request` button next to your branch to create a new pull request. The pull request description should refer to all the issues it addresses. Remember to reference issues (such as Closes #XXX and Fixes #XXX) in the comment so that the issues can be closed when the PR is merged. After creating a pull request, please check that the CI passes with your code changes.
+Then visit your fork at <https://github.com/$user/WasmEdge> and click the `Compare & Pull Request` button next to your branch to create a new pull request. Description of a pull request should refer to all the issues that it addresses. Remember to put a reference to issues (such as Closes #XXX and Fixes #XXX) in the comment so that the issues can be closed when the PR is merged. After creating a pull request, please check that the CI passes with your code changes.
 
-Once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style.
+After creating a pull request, please ensure that the CI passes with your code and documentation changes.
+
+Once your pull request has been opened it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style.
 
 Commit changes made in response to review comments to the same branch on your fork.
 
@@ -77,4 +93,8 @@ Update the documentation if you are creating or changing features. Good document
 
 You can propose new designs for existing WasmEdge features. You can also design new features; please submit a proposal via the GitHub issues.
 
-WasmEdge maintainers will review this proposal as soon as possible to ensure the overall architecture is consistent and to avoid duplicated work in the roadmap.
+WasmEdge maintainers will review this proposal as soon as possible. This is necessary to ensure the overall architecture is consistent and to avoid duplicated work in the [roadmap](https://github.com/WasmEdge/WasmEdge/blob/master/docs/ROADMAP.md).
+
+## Code of Conduct
+
+We value the participation and collaboration of every member of our community. Therefore, we require all participants to adhere to our [Code of Conduct](https://github.com/WasmEdge/WasmEdge/blob/master/docs/CODE_OF_CONDUCT.md).
