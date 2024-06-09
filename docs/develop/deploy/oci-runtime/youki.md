@@ -15,25 +15,29 @@ youki is an OCI container runtime written in Rust. youki has WasmEdge baked in. 
    Run the following command line to build and install youki on your machine.
 
    ```bash
-   $ sudo apt-get install   \
-       pkg-config         \
-       libsystemd-dev     \
-       libdbus-glib-1-dev \
-       build-essential    \
-       libelf-dev \
-       libseccomp-dev \
-       libclang-dev
+   $ sudo apt-get install \
+      curl                \
+      git                 \
+      pkg-config          \
+      libsystemd-dev      \
+      libdbus-glib-1-dev  \
+      build-essential     \
+      libelf-dev          \
+      libzstd-dev         \
+      libseccomp-dev      \
+      libclang-dev
+
+   # If you don't have the rust toolchain installed run:
+   $ curl https://sh.rustup.rs -sSf | sudo sh -s -- -y
    ```
 
    Next, configure, build, and install a `youki` binary with WasmEdge support.
 
    ```bash
-   git clone https://github.com/containers/youki.git
-   go into the cloned directory
+   git clone --recurse-submodules https://github.com/containers/youki.git
    cd youki
-   make youki-dev
-   ./youki -h
    ./scripts/build.sh -o . -r -f wasm-wasmedge
+   ./youki -h
    export LD_LIBRARY_PATH=$HOME/.wasmedge/lib
    ```
 
