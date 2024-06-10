@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# Contributing Steps
+# Code Contribution Steps
 
 ## Setup Development Environment
 
@@ -18,7 +18,7 @@ To build WasmEdge from the source, please refer to: [Build WasmEdge from source]
 
 Pull requests are always welcome, even if they only contain minor fixes like typos or a few lines of code. If there will be a significant effort, please document it as an issue and get a discussion going before starting to work on it.
 
-Please submit a pull request broken down into small changes bit by bit. A pull request consisting of many features and code changes may take a lot of work to review. It is recommended to submit pull requests incrementally.
+Please submit a pull request broken down into small changes bit by bit. A pull request consisting of many features and code changes may take a lot of work to review. It is recommended that pull requests be submitted incrementally.
 
 <!-- prettier-ignore -->
 :::note
@@ -33,7 +33,30 @@ Fork [the WasmEdge repository](https://github.com/WasmEdge/WasmEdge) and clone t
 
 Changes should be made on your own fork in a new branch. Pull requests should be rebased on the top of the main branch.
 
-The WasmEdge project adopts [DCO](https://www.secondstate.io/articles/dco/) to manage all contributions. Please ensure you add your `sign-off-statement` through the `-s` or `--signoff` flag or the GitHub Web UI before committing the pull request message.
+Licensing is important to open source projects. It provides some assurances that the software will continue to be available based under the terms that the author(s) desired. We require that contributors sign off on commits submitted to our project's repositories. The [Developer Certificate of Origin (DCO)](https://probot.github.io/apps/dco/) is a way to certify that you wrote and have the right to contribute the code you are submitting to the project.
+
+You can sign-off by adding the following to your commit messages. Your sign-off must
+match the git user and email associated with the commit.
+
+```
+    This is my commit message
+
+    Signed-off-by: Your Name <your.name@example.com>
+```
+
+Git has a `-s` command line option to do this automatically:
+
+```
+    git commit -s -m 'This is my commit message'
+```
+
+If you forgot to do this and have not yet pushed your changes to the remote
+repository, you can amend your commit with the sign-off by running 
+
+```
+    git commit --amend -s 
+```
+
 
 ### Develop, Build, and Test
 
