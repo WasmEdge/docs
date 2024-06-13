@@ -240,7 +240,7 @@ globinst := mod.FindGlobal("global_i32")
 
 4. WASM function invocation
 
-   This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat). In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
+   This example uses the WASM file `fibonacci.wasm` converted from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat). In WasmEdge-Go `v0.9.2` version, developers can invoke a WASM function with the export function name:
 
    ```go
    // Create the store object. The store object holds the instances.
@@ -328,7 +328,7 @@ globinst := mod.FindGlobal("global_i32")
 
 ## Instances retrievement
 
-This example uses the [fibonacci.wasm](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wasm), and the corresponding WAT file is at [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
+This example uses the WASM file `fibonacci.wasm` converted from the text format [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat).
 
 Before the WasmEdge-Go `v0.9.2` versions, developers can retrieve all exported instances of named or anonymous modules from `Store`:
 

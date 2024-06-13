@@ -156,10 +156,9 @@ The `--prompt-template` option is perhaps the most interesting. It allows the ap
 | vicuna-chat           | [Vicuna](https://lmsys.org/blog/2023-03-30-vicuna/)                      | [7b](https://huggingface.co/TheBloke/vicuna-7B-v1.5-GGUF/resolve/main/vicuna-7b-v1.5.Q5_K_M.gguf)                                       |
 | chatml                | [ChatML](https://huggingface.co/chargoddard/rpguild-chatml-13b)          | [13b](https://huggingface.co/TheBloke/rpguild-chatml-13B-GGUF/resolve/main/rpguild-chatml-13b.Q5_K_M.gguf)                              |
 
-
 Furthermore, the following command tells WasmEdge to print out logs and statistics of the model at runtime.
 
-```
+```bash
 wasmedge --dir .:. --nn-preload default:GGML:AUTO:llama-2-7b-chat-q5_k_m.gguf \
   llama-chat.wasm --prompt-template llama-2-chat --log-stat
 ..................................................................................................
@@ -310,4 +309,3 @@ println!("\noutput: {}", output);
 * If you're looking for multi-turn conversations with llama 2 models, please check out the above mentioned chat example source code [here](https://github.com/second-state/llamaedge/tree/main/chat).
 * If you want to construct OpenAI-compatible APIs specifically for your llama2 model, or the Llama2 model itself, please check out the source code [for the API server](https://github.com/second-state/llamaedge/tree/main/api-server).
 * To learn more, please check out [this article](https://medium.com/stackademic/fast-and-portable-llama2-inference-on-the-heterogeneous-edge-a62508e82359).
-

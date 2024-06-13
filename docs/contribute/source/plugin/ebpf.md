@@ -37,24 +37,27 @@ wget https://eunomia-bpf.github.io/wasm-bpf/examples/runqlat/runqlat.wasm
 ```
 
 ### Build Examples
+
 You can also build examples of wasm-bpf programs from the `wasm-bpf` repository:
 
 1. Install the wasi-sdk if you don't have it:
 
-```bash
-wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-17/wasi-sdk-17.0-linux.tar.gz
-tar -zxf wasi-sdk-17.0-linux.tar.gz
-sudo mkdir -p /opt/wasi-sdk/ && sudo mv wasi-sdk-17.0/* /opt/wasi-sdk/
-```
+   ```bash
+   wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-17/wasi-sdk-17.0-linux.tar.gz
+   tar -zxf wasi-sdk-17.0-linux.tar.gz
+   sudo mkdir -p /opt/wasi-sdk/ && sudo mv wasi-sdk-17.0/* /opt/wasi-sdk/
+   ```
 
 2. Build the examples:
-```bash
-git clone https://github.com/eunomia-bpf/wasm-bpf
-cd wasm-bpf/examples
-git submodule update --init --recursive
-```
+
+   ```bash
+   git clone https://github.com/eunomia-bpf/wasm-bpf
+   cd wasm-bpf/examples
+   git submodule update --init --recursive
+   ```
 
 3. For example, to build the execve example:
+
 ```bash
 cd execve && make
 ```

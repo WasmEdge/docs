@@ -30,12 +30,13 @@ If the built `wasmedge` CLI tool cannot find the WASI-Logging plug-in, you can s
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-Logging plugin under `/usr/local/lib/wasmedge/libwasmedgePluginWasiLogging.so` after installation.
 
 ## Loading WASI-Logging Plug-in
+
 If the built `wasmedge` CLI tool cannot find the WASI-Logging plug-in, set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_logging/`) to resolve this issue 1.
 
 After installation, the `wasmedge` runtime will be located under `/usr/local/bin` and the WASI-Logging plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiLogging.so`.
 
 ## Using WASI-Logging in Your Applications
+
 You can use the WASI-Logging plug-in in your WebAssembly applications to log messages in a standardized way.
 
-
-For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasi_logging).
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/wasi-logging).

@@ -34,14 +34,15 @@ Please check that these dependencies are satisfied.
 - LLVM 12.0.0 (>= 10.0.0)
 - _(Optional)_ GCC 11.1.0 (>= 9.4.0), install it if you prefer to use GCC toolchain.
 
+After `WasmEdge 0.13.0`, the `boost` dependency is not needed.
+
 #### For Ubuntu 22.04
 
 ```bash
 # Tools and libraries
 sudo apt install -y \
    software-properties-common \
-   cmake \
-   libboost-all-dev
+   cmake
 
 # And you will need to install llvm for the AOT runtime
 sudo apt install -y \
@@ -62,8 +63,7 @@ sudo apt install -y clang-14
 # Tools and libraries
 sudo apt install -y \
    software-properties-common \
-   cmake \
-   libboost-all-dev
+   cmake
 
 # And you will need to install llvm for the AOT runtime
 sudo apt install -y \

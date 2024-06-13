@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-## Using Plug-ins to Extend the Runtime in Rust
+# Using Plug-ins to Extend the Runtime in Rust
 
 The WasmEdge plug-ins are the shared libraries to provide the WasmEdge runtime to load and create host module instances. With the plug-ins, the WasmEdge runtime can be extended more easily.
 

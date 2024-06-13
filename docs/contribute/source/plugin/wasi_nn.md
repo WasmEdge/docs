@@ -136,7 +136,7 @@ You don't need to install any llama.cpp libraries. WasmEdge will download it dur
 
 Due to the acceleration frameworks being various, you will need to use different compilation options to build this plugin. Please make sure you are following the same OS section to do this.
 
-### macOS
+### MacOS
 
 #### Intel Model
 
@@ -176,7 +176,7 @@ cmake --install build
 
 #### Ubuntu/Debian with CUDA 12
 
-Please follow the official guide provided by NVIDIA for installing the CUDA framework: https://developer.nvidia.com/cuda-12-2-0-download-archive
+Please follow the official guide provided by NVIDIA for installing the CUDA framework: <https://developer.nvidia.com/cuda-12-2-0-download-archive>
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
@@ -331,6 +331,7 @@ If the built `wasmedge` CLI tool cannot find the WASI-NN plugin, you can set the
 <!-- prettier-ignore -->
 :::note
 We also provided the pre-built ggml plugins on the following platforms:
+
 - darwin\_x86\_64: Intel Model macOS
 - darwin\_arm64: Apple Silicon Model macOS
 - ubuntu20.04\_x86\_64: x86\_64 Linux (the glibc is using Ubuntu20.04 one)
@@ -341,4 +342,5 @@ We also provided the pre-built ggml plugins on the following platforms:
 - ubuntu20.04\_cuda\_aarch64: aarch64 Linux with CUDA 11 support (the glibc is using Ubuntu20.04 one), for NVIDIA Jetson AGX Orin
 - manylinux2014\_x86\_64: x86\_64 Linux (the glibc is using CentOS 7 one)
 - manylinux2014\_aarch64: aarch64 Linux (the glibc is using CentOS 7 one)
+
 :::

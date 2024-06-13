@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Frequently Asked Questions 
+# Frequently Asked Questions
 
 This FAQ page is designed to address the most common technical questions about WasmEdge. If your question is not directly answered here, please refer to the WasmEdge [documentation](https://wasmedge.org/docs/) or engage with the WasmEdge community via discord.
 
@@ -33,6 +33,5 @@ Yes, WasmEdge can use Tensorflow as its [inference](https://wasmedge.org/docs/em
 ## 7. How to read a host file in WasmEdge runtime?
 
 WasmEdge provides the WASI (WebAssembly System Interface) API for interacting with the host system, including file operations. You can use the [WASI API](https://wasmedge.org/docs/embed/go/reference/0.11.x?_highlight=wasi&_highlight=api#preregistrations) to open and read files from the host system.
-
 
 Please remember, this FAQ page is not exhaustive, and the WasmEdge community is always ready to help with any questions or issues you may have. Don't hesitate to reach out if you need assistance in our [Discord server](https://discord.gg/h4KDyB8XTt).

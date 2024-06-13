@@ -134,7 +134,7 @@ The actual installer handles all stuff. It supports python2.7 (not tested on ear
 - Full Option: `--dist ubuntu20.04` or `--dist manylinux2014`
 - Note - the `ubuntu20.04` and `manylinux2014` values are case insensitive and only these two are currently supported.
 - Note - Specifying `--dist` value for `Darwin` has no effect.
-- Note - For `Linux` platform if the distribution matches exactly as `Ubuntu 20.04`, which is checked using `lsb_release` and python's ` platform.dist()` functionality is then set to `ubuntu20.04` if not specified, or it is used without questioning. However different release packages for WasmEdge are available only after `0.11.1` release, below which there is no effect of specifying this option.
+- Note - For `Linux` platform if the distribution matches exactly as `Ubuntu 20.04`, which is checked using `lsb_release` and python's `platform.dist()` functionality is then set to `ubuntu20.04` if not specified, or it is used without questioning. However different release packages for WasmEdge are available only after `0.11.1` release, below which there is no effect of specifying this option.
 
 ### Platform and OS
 

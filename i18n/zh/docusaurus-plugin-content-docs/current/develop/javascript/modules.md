@@ -17,7 +17,7 @@ In this article, we will use the [wasmedge-quickjs/modules](https://github.com/s
 The modules system collects JavaScript files in the `modules` directory in the WasmEdge QuickJS distribution. To use the JavaScript functions and APIs defined in those modules, you need to map this directory to the `/modules` directory inside the WasmEdge Runtime instance. The following example shows how to do this on the WasmEdge CLI. You can do this with any of the host language SDKs that support the embedded use of WasmEdge.
 
 ```bash
-wasmedge --dir /host/os/path/to/modules:/modules wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
+wasmedge --dir /modules:/host/os/path/to/modules wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
 ```
 
 ## Add your own JavaScript modules

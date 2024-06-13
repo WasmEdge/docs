@@ -33,7 +33,7 @@ WasmEdge requires LLVM 12 at least and you may need to install the following dep
 
 ```bash
 ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt-get update
-ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt install -y software-properties-common cmake libboost-all-dev
+ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt install -y software-properties-common cmake
 ubuntu@riscv-lab:/labs/riscv-lab$ sudo apt install -y llvm-12-dev liblld-12-dev
 ```
 

@@ -40,8 +40,7 @@ Please check that these dependencies are satisfied.
 # Tools and libraries
 sudo apt install -y \
    software-properties-common \
-   cmake \
-   libboost-all-dev
+   cmake
 
 # And you will need to install llvm for the AOT runtime
 sudo apt install -y \
@@ -62,8 +61,7 @@ sudo apt install -y clang-14
 # Tools and libraries
 sudo apt install -y \
    software-properties-common \
-   cmake \
-   libboost-all-dev
+   cmake
 
 # And you will need to install llvm for the AOT runtime
 sudo apt install -y \

@@ -10,11 +10,11 @@ The WasmEdge Image plug-in is a software component that extends the functionalit
 
 The prerequisites of the WasmEdge-Image plug-in is the same as the WasmEdge building environment on the [Linux platforms](../os/linux.md) or [MacOS platforms](../os/macos.md).
 
-If developers build with their own environment, please ensure the `zlib` are installed.
+If developers build with their own environment, please ensure the `zlib` and `libboost-all-dev` are installed.
 
 ```bash
 sudo apt update
-sudo apt install zlib1g-dev
+sudo apt install zlib1g-dev libboost-all-dev
 ```
 
 On MacOS platforms, the `libjpeg` and `libpng` are required.
