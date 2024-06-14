@@ -56,7 +56,7 @@ WasmEdge plug-ins are pre-built native modules that provide additional functiona
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-ggml
 ```
 
-To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasi_logging`` and the `wasi_nn-ggml` plug-ins. The `wasi_logging` plug-in allows the Rust [log::Log](https://crates.io/crates/log) API to compile into Wasm and run in WasmEdge.
+To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasi_logging`` and the`wasi_nn-ggml` plug-ins. The `wasi_logging` plug-in allows the Rust [log::Log](https://crates.io/crates/log) API to compile into Wasm and run in WasmEdge.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_logging wasi_nn-ggml
@@ -254,7 +254,7 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 ### WasmEdge zlib Plug-in
 
-The zlib is required for compiling and running many existing C / C++ / Rust apps in Wasm. Most noticeably, it is required for the Python port to Wasm. It supports the standard [zlib.h](https://github.com/madler/zlib/blob/develop/zlib.h) C API. 
+The zlib is required for compiling and running many existing C / C++ / Rust apps in Wasm. Most noticeably, it is required for the Python port to Wasm. It supports the standard [zlib.h](https://github.com/madler/zlib/blob/develop/zlib.h) C API.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_zlib
@@ -289,7 +289,6 @@ If you install this plug-in WITHOUT installer, you can [refer to here to install
 
 Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plugin.md) to see how to run `WasmEdge-TensorFlow` functions.
 
-
 ### TLS plug-in
 
 <!-- prettier-ignore -->
@@ -299,7 +298,7 @@ The WasmEdge TLS plugin is being deprecated from WasmEdge 0.14.0. We now compile
 
 The WasmEdge TLS plug-in utilizes the native OpenSSL library to support HTTPS and TLS requests from WasmEdge sockets. To install WasmEdge with the TLS plug-in, run the following command.
 
-```
+```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.13.5 --plugins wasmedge_rustls
 ```
 

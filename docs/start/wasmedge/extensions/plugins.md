@@ -26,7 +26,7 @@ The following lists are the WasmEdge official released plug-ins. Users can insta
 | [WasmEdge-TensorflowLite](../../../contribute/source/plugin/tensorflowlite.md)| A native library for inferring TensorFlow-Lite models. | `manylinux2014 (x86_64, aarch64)`<br/>`ubuntu 20.04 (x86_64)`<br/>`darwin (x86_64, arm64)`<br/>(since `0.13.0`) | [Rust](https://crates.io/crates/wasmedge_tensorflow_interface) (0.3.0) | [Steps](../../../contribute/source/plugin/tensorflowlite.md) |
 | WasmEdge-OpenCV | Very popular utility functions to process images and videos for AI input/output. | `manylinux2014 (x86_64, aarch64)`<br/>`ubuntu 20.04 (x86_64)`<br/>`darwin (x86_64, arm64)`<br/>(since `0.13.3`) | Rust | |
 | [WasmEdge-eBPF](../../../contribute/source/plugin/ebpf.md) | A native library for inferring eBPF applications | `manylinux2014 (x86_64,  aarch64)`<br/>`ubuntu 20.04 (x86_64)`<br/>(since `0.13.2`) | Rust | [Steps](../../../contribute/source/plugin/ebpf.md) |
-| [WasmEdge-rustls](../../../contribute/source/plugin/rusttls.md) | A native library for inferring Rust and TLS Library | `manylinux2014 (x86_64, aarch64)`<br/>`ubuntu 20.04 (x86_64)`<br/>`darwin (x86_64, arm64)`<br/>(since `0.13.0`) | [Rust](https://crates.io/crates/wasmedge_rustls_api) | [Steps](../../../contribute/source/plugin/rusttls.md) |
+| [WasmEdge-rustls](../../../contribute/source/plugin/rusttls.md) (DEPRECATED) | A native library for inferring Rust and TLS Library | `manylinux2014 (x86_64, aarch64)`<br/>`ubuntu 20.04 (x86_64)`<br/>`darwin (x86_64, arm64)`<br/>(since `0.13.0`, until `0.13.5`) | [Rust](https://crates.io/crates/wasmedge_rustls_api) | [Steps](../../../contribute/source/plugin/rusttls.md) |
 
 ## Old WasmEdge Extensions
 
