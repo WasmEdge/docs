@@ -277,6 +277,50 @@ cmake --build build
 cmake --install build
 ```
 
+#### Apple Silicon Model
+
+You can build and install WasmEdge from source directly on the macOS arm64 platform. It will use the built-in GPU by default.
+
+```bash
+cd <path/to/your/wasmedge/source/folder>
+# Enable METAL on arm64 macOS.
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
+  -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="GGML" \
+  -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_METAL=ON \
+  -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_BLAS=OFF \
+  .
+cmake --build build
+# For the WASI-NN plugin, you should install this project.
+cmake --install build
+```
+
+## Build WasmEdge with WASI-NN Neural Speed Backend
+
+The Neural Speed backend relies on Neural Speed, we recommend the following commands to install Neural Speed.
+
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-dev
+wget https://raw.githubusercontent.com/intel/neural-speed/main/requirements.txt
+pip install -r requirements.txt
+pip install neural-speed
+```
+
+Then build and install WasmEdge from source:
+
+```bash
+cd <path/to/your/wasmedge/source/folder>
+
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="neuralspeed"
+cmake --build build
+
+# For the WASI-NN plugin, you should install this project.
+cmake --install build
+```
+
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with Neural Speed backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
+
 ### Appendix
 
 <!-- prettier-ignore -->
