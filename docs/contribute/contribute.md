@@ -17,7 +17,7 @@ sidebar_position: 8
 Welcome! We are glad that you want to contribute to our project! 💖
 
 As you get started, you are in the best position to give us feedback on areas of
-our project that we need help with including:
+the project that we need help with including:
 
 * Problems found during setting up a new developer environment
 * Gaps in our Quickstart Guide or documentation
@@ -77,7 +77,7 @@ that you want to work on it. Something like "I want to work on this" is fine.
 The best way to reach us with a question when contributing is to ask on:
 
 * The original github issue
-* Mailing list: Send an email to [WasmEdge@googlegroups.com](https://groups.google.com/g/wasmedge/)
+* Mailing list: Send an email to [WasmEdge@googlegroups.com](mailto:WasmEdge@googlegroups.com)
 * Discord: Join the [WasmEdge Discord server](https://discord.gg/h4KDyB8XTt)!
 * Slack: Join the #WasmEdge channel on the [CNCF Slack](https://slack.cncf.io/)
 
