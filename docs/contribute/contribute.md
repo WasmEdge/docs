@@ -77,7 +77,7 @@ that you want to work on it. Something like "I want to work on this" is fine.
 The best way to reach us with a question when contributing is to ask on:
 
 * The original github issue
-* Mailing list: Send an email to [WasmEdge@googlegroups.com](mailto:WasmEdge@googlegroups.com)
+* Mailing list: Send an email to [our email list](mailto:WasmEdge@googlegroups.com)
 * Discord: Join the [WasmEdge Discord server](https://discord.gg/h4KDyB8XTt)!
 * Slack: Join the #WasmEdge channel on the [CNCF Slack](https://slack.cncf.io/)
 
