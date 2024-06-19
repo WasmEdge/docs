@@ -17,7 +17,7 @@ sidebar_position: 8
 Welcome! We are glad that you want to contribute to our project! 💖
 
 As you get started, you are in the best position to give us feedback on areas of
-the project that we need help with including:
+the project that we need help with includes:
 
 * Problems found during setting up a new developer environment
 * Gaps in our Quickstart Guide or documentation
@@ -66,8 +66,8 @@ suitable for someone who isn't a core maintainer and is good to move onto after
 your first pull request.
 
 Sometimes there won’t be any issues with these labels. That’s ok! There is
-likely still something for you to work on. If you want to contribute but you
-don’t know where to start or can't find a suitable issue, you can leave a commnet under this issue like "I'd like to work on this. Can you tell XYZ (list the stuff you want to communicate)" or send your questions to our discord server or slack channel.
+likely still something for you to work on. If you want to contribute but 
+don’t know where to start or can't find a suitable issue, you can leave a comment under this issue like "I'd like to work on this. Can you tell XYZ (list the stuff you want to communicate)" or send your questions to our discord server or slack channel.
 
 Once you see an issue that you'd like to work on, please post a comment saying
 that you want to work on it. Something like "I want to work on this" is fine.
@@ -77,8 +77,8 @@ that you want to work on it. Something like "I want to work on this" is fine.
 The best way to reach us with a question when contributing is to ask on:
 
 * The original github issue
-* Mailing list: Send an email to [our email list](WasmEdge@googlegroups.com)
-* Discord: Join the [WasmEdge Discord server](https://discord.gg/h4KDyB8XTt)!
+* Mailing list: Send an email to [our email list](https://groups.google.com/g/wasmedge)
+* Discord: Join the [WasmEdge Discord server](https://discord.gg/h4KDyB8XTt)
 * Slack: Join the #WasmEdge channel on the [CNCF Slack](https://slack.cncf.io/)
 
 Before opening any issue, please look up the existing [issues](https://github.com/WasmEdge/WasmEdge/issues) to avoid submitting a duplication. If you find a match, you can "subscribe" to it to get notified of updates. If you have additional helpful information about the issue, please leave a comment.
@@ -97,19 +97,19 @@ Pull requests are always welcome, even if they only contain minor fixes like typ
 
 Please submit a pull request broken down into small changes bit by bit. A pull request consisting of many features and code changes may take a lot of work to review. It is recommended to submit pull requests incrementally.
 
-Generally, once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style. If your PR is not ready to review, please mark you PR as draft.
+Generally, once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style. If your PR is not ready to review, please mark your PR as a draft.
 
-The reviewers will give you some feedback in three workdays. 
+The reviewers will give you some feedback in three work days. 
 
-After the first review is done, the PR comtributor is expected to review and make some changes based on the review in 5 workdays. 
+After the first review is done, the PR contributor is expected to review and make some changes based on the review in 5 workdays. 
 
 If you have finished the adjustments, mark the problem as solved, then the reviewers will review your PR again in 2 workdays.
 
-If the PR contributor doesn't respond to the PR in 30 days, the miantainer will close the PR. The original PR contributor is welcome to open it again. 
+If the PR contributor doesn't respond to the PR in 30 days, the maintainer will close the PR. The original PR contributor is welcome to open it again. 
 
-If the PR contributor don't want to maintain the PR due to some reason, please enable maintainers edit this PR if you still want this PR to be merged.
+If the PR contributor doesn't want to maintain the PR due to some reason, please enable maintainers to edit this PR if you still want this PR to be merged.
 
-When your PR is merged, your contribution will be implemented in the next release. And we will add the contributors's GitHub name in the release note.
+When your PR is merged, your contribution will be implemented in the next release. And we will add the contributors' GitHub name in the release note.
 
 ## Development Environment Setup
 
@@ -157,7 +157,7 @@ accept and merge it. We recommend that you check the following things locally
 before you submit your code:
 
 * DCO: Did you sign off your commit
-* Code of conduct: Did you follow the CNCF code of condct
+* Code of conduct: Did you follow the CNCF code of conduct
 
 
 ## Reporting issues
