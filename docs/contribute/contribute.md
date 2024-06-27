@@ -42,7 +42,7 @@ We welcome many different types of contributions including:
 * Release management
 
 Not everything happens through a GitHub pull request. Please come to our
-[meetings](https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing) or [contact us](WasmEdge@gmailgroup.com) and let's discuss how we can work
+[meetings](https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing) or [contact us](https://groups.google.com/g/wasmedge) and let's discuss how we can work
 together. 
 
 ### Come to Meetings
