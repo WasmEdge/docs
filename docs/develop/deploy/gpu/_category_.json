@@ -1,0 +1,9 @@
+{
+    "label": "Manage LLM workloads on GPU",
+    "position": 7,
+    "link": {
+      "type": "generated-index",
+      "description": "In this chapter, we will demonstrate how to use container tools to mange LLM WasmEdge workloads on GPU."
+    }
+  }
+  
