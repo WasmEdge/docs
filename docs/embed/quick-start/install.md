@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Install Notes
 
-To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted, he version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK v{{ wasmedge_go_version }}, then your WasmEdge version must be {{ wasmedge_go_version }} as well.
+To use a kind of WasmEdge language SDK, you must install WasmEdge itself first. Please be noted, the version of WasmEdge's language SDKs should be the same as the version of WasmEdge. For example, If you want to use WasmEdge Go SDK v{{ wasmedge_go_version }}, then your WasmEdge version must be {{ wasmedge_go_version }} as well.
 
 <!-- prettier-ignore -->
 :::note
