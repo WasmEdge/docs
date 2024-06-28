@@ -277,23 +277,6 @@ cmake --build build
 cmake --install build
 ```
 
-#### Apple Silicon Model
-
-You can build and install WasmEdge from source directly on the macOS arm64 platform. It will use the built-in GPU by default.
-
-```bash
-cd <path/to/your/wasmedge/source/folder>
-# Enable METAL on arm64 macOS.
-cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
-  -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="GGML" \
-  -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_METAL=ON \
-  -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_BLAS=OFF \
-  .
-cmake --build build
-# For the WASI-NN plugin, you should install this project.
-cmake --install build
-```
-
 ### Appendix
 
 <!-- prettier-ignore -->
