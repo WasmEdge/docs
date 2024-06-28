@@ -56,7 +56,7 @@ WasmEdge plug-ins are pre-built native modules that provide additional functiona
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-ggml
 ```
 
-To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasi_logging`` and the `wasi_nn-ggml` plug-ins. The `wasi_logging` plug-in allows the Rust [log::Log](https://crates.io/crates/log) API to compile into Wasm and run in WasmEdge.
+To install multiple plug-ins, you can pass a list of plug-ins with the `--plugins` option. For example, the following command installs the `wasi_logging` and the `wasi_nn-ggml` plug-ins. The `wasi_logging` plug-in allows the Rust [log::Log](https://crates.io/crates/log) API to compile into Wasm and run in WasmEdge.
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_logging wasi_nn-ggml
