@@ -344,3 +344,22 @@ We also provided the pre-built ggml plugins on the following platforms:
 - manylinux2014\_aarch64: aarch64 Linux (the glibc is using CentOS 7 one)
 
 :::
+
+## Build WasmEdge with WASI-NN Piper Backend
+
+Build and install WasmEdge from source:
+
+```bash
+cd <path/to/your/wasmedge/source/folder>
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="Piper"
+cmake --build build
+# For the WASI-NN plug-in, you should install this project.
+cmake --install build
+```
+
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
+
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with Piper backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
