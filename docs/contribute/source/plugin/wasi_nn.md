@@ -277,22 +277,29 @@ cmake --build build
 cmake --install build
 ```
 
-#### Apple Silicon Model
+### Appendix
 
-You can build and install WasmEdge from source directly on the macOS arm64 platform. It will use the built-in GPU by default.
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plugin, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plugin installation path (such as `/usr/local/lib/wasmedge/` or the built plugin path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
 
-```bash
-cd <path/to/your/wasmedge/source/folder>
-# Enable METAL on arm64 macOS.
-cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
-  -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="GGML" \
-  -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_METAL=ON \
-  -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_BLAS=OFF \
-  .
-cmake --build build
-# For the WASI-NN plugin, you should install this project.
-cmake --install build
-```
+<!-- prettier-ignore -->
+:::note
+We also provided the pre-built ggml plugins on the following platforms:
+
+- darwin\_x86\_64: Intel Model macOS
+- darwin\_arm64: Apple Silicon Model macOS
+- ubuntu20.04\_x86\_64: x86\_64 Linux (the glibc is using Ubuntu20.04 one)
+- ubuntu20.04\_aarch64: aarch64 Linux (the glibc is using Ubuntu20.04 one)
+- ubuntu20.04\_blas\_x86\_64: x86\_64 Linux with OpenBLAS support (the glibc is using Ubuntu20.04 one)
+- ubuntu20.04\_blas\_aarch64: aarch64 Linux with OpenBLAS support (the glibc is using Ubuntu20.04 one)
+- ubuntu20.04\_cuda\_x86\_64: x86\_64 Linux with CUDA 12 support (the glibc is using Ubuntu20.04 one)
+- ubuntu20.04\_cuda\_aarch64: aarch64 Linux with CUDA 11 support (the glibc is using Ubuntu20.04 one), for NVIDIA Jetson AGX Orin
+- manylinux2014\_x86\_64: x86\_64 Linux (the glibc is using CentOS 7 one)
+- manylinux2014\_aarch64: aarch64 Linux (the glibc is using CentOS 7 one)
+
+:::
 
 ## Build WasmEdge with WASI-NN Neural Speed Backend
 
@@ -320,30 +327,6 @@ cmake --install build
 ```
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with Neural Speed backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
-
-### Appendix
-
-<!-- prettier-ignore -->
-:::note
-If the built `wasmedge` CLI tool cannot find the WASI-NN plugin, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plugin installation path (such as `/usr/local/lib/wasmedge/` or the built plugin path `build/plugins/wasi_nn/`) to try to fix this issue.
-:::
-
-<!-- prettier-ignore -->
-:::note
-We also provided the pre-built ggml plugins on the following platforms:
-
-- darwin\_x86\_64: Intel Model macOS
-- darwin\_arm64: Apple Silicon Model macOS
-- ubuntu20.04\_x86\_64: x86\_64 Linux (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_aarch64: aarch64 Linux (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_blas\_x86\_64: x86\_64 Linux with OpenBLAS support (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_blas\_aarch64: aarch64 Linux with OpenBLAS support (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_cuda\_x86\_64: x86\_64 Linux with CUDA 12 support (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_cuda\_aarch64: aarch64 Linux with CUDA 11 support (the glibc is using Ubuntu20.04 one), for NVIDIA Jetson AGX Orin
-- manylinux2014\_x86\_64: x86\_64 Linux (the glibc is using CentOS 7 one)
-- manylinux2014\_aarch64: aarch64 Linux (the glibc is using CentOS 7 one)
-
-:::
 
 ## Build WasmEdge with WASI-NN Piper Backend
 
