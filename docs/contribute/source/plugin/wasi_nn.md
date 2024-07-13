@@ -346,3 +346,33 @@ If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set th
 :::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with Piper backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
+
+## Build WasmEdge with WASI-NN ChatTTS Backend
+
+The ChatTTS backend relies on ChatTTS and Python library, we recommend the following commands to install dependencies.
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-dev
+pip install chattts==0.1.1
+```
+
+Then build and install WasmEdge from source:
+
+``` bash
+cd <path/to/your/wasmedge/source/folder>
+
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="chatTTS"
+cmake --build build
+
+# For the WASI-NN plugin, you should install this project.
+cmake --install build
+```
+
+
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
+
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with ChatTTS backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
