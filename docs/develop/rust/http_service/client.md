@@ -8,7 +8,8 @@ WasmEdge allows Rust developers to use APIs they are already familiar with to ac
 
 <!-- prettier-ignore -->
 :::note
-Before we start, ensure [you have Rust and WasmEdge installed](../setup.md).
+Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
+Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
 :::
 
 We will discuss HTTP and HTTPS clients using popular Rust APIs.
@@ -58,7 +59,7 @@ tokio = { version = "1", features = ["rt", "macros", "net", "time"] }
 
 <!-- prettier-ignore -->
 :::note
-The `Cargo.toml` here shows that TLS is enabled. If you need to compile it on the MacOS, you will need the [wasi-sdk version of clang](../setup#compile-rust-tls-on-macos).
+The `Cargo.toml` here shows that TLS is enabled. If you need to compile it on the MacOS, you will need the [wasi-sdk version of clang](../setup#tls-on-macos).
 :::
 
 The [example Rust code](https://github.com/WasmEdge/wasmedge_reqwest_demo/blob/main/src/http.rs) below shows an HTTP GET request.

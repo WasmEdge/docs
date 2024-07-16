@@ -8,7 +8,8 @@ The database connection is necessary for today's enterprise development. WasmEdg
 
 <!-- prettier-ignore -->
 :::note
-Before we start, ensure [you have Rust and WasmEdge installed](../setup.md).
+Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
+Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
 :::
 
 ## Run the example
@@ -25,6 +26,11 @@ RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi
 # Execute MySQL statements against a MySQL database at mysql://user:passwd@127.0.0.1:3306
 wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wasm32-wasi/release/crud.wasm
 ```
+
+<!-- prettier-ignore -->
+:::note
+Since we have TLS enabled by default in this example, you will need the [wasi-sdk version of clang](../setup#tls-on-macos) for compiling it on MacOS.
+:::
 
 To use TLS, you will need to turn on the `default-rustls` feature on the `mysql_async` crate in `Cargo.toml`.
 Then, run the application as follows.

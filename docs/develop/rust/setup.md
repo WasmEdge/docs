@@ -32,9 +32,9 @@ To build a WASM file running in server-side WebAssembly like WasmEdge, we need t
 rustup target add wasm32-wasi
 ```
 
-## Special notes
+## Special notes for networking apps
 
-### Async networking with tokio
+### Tokio support
 
 WasmEdge supports async networking APIs provided by [Tokio](https://tokio.rs/) and related crates. If you have tokio in your `Cargo.toml`, you 
 need to add a few config flags to help the Rust compiler choose the correct feature branches in the library source code. Here is an example of `cargo build` command for 
@@ -52,7 +52,13 @@ target = "wasm32-wasi"
 rustflags = ["--cfg", "wasmedge", "--cfg", "tokio_unstable"]
 ```
 
-### Compile Rust TLS on MacOS
+Once you have these lines in `.cargo/config.toml`, you can simply use the regular `cargo` command.
+
+```
+cargo build --target wasm32-wasi --release
+```
+
+### TLS on MacOS
 
 The standard `cargo` toolchain can support the [Rust TLS](https://github.com/rustls/rustls) library on Linux. However,
 on MacOS, you need a special version of the Clang tool, released from the official [wasi-sdk](https://github.com/WebAssembly/wasi-sdk), in order to support TLS libraries.
