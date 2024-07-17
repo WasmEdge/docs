@@ -32,4 +32,46 @@ To build a WASM file running in server-side WebAssembly like WasmEdge, we need t
 rustup target add wasm32-wasi
 ```
 
-That's it. Go to the following chapters to build and compile Rust programs in action.
+## Special notes for networking apps
+
+### Tokio support
+
+WasmEdge supports async networking APIs provided by [Tokio](https://tokio.rs/) and related crates. If you have tokio in your `Cargo.toml`, you 
+need to add a few config flags to help the Rust compiler choose the correct feature branches in the library source code. Here is an example of `cargo build` command for 
+compiling a tokio app to Wasm.
+
+```
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+```
+
+Alternatively, you could add these lines to the `.cargo/config.toml` file.
+
+```
+[build]
+target = "wasm32-wasi"
+rustflags = ["--cfg", "wasmedge", "--cfg", "tokio_unstable"]
+```
+
+Once you have these lines in `.cargo/config.toml`, you can simply use the regular `cargo` command.
+
+```
+cargo build --target wasm32-wasi --release
+```
+
+### TLS on MacOS
+
+The standard `cargo` toolchain can support the [Rust TLS](https://github.com/rustls/rustls) library on Linux. However,
+on MacOS, you need a special version of the Clang tool, released from the official [wasi-sdk](https://github.com/WebAssembly/wasi-sdk), in order to support TLS libraries.
+
+> When you compile Rust TLS source code to Wasm on Linux, the result Wasm file is cross-platform and can run correctly on any platform with WasmEdge installed. This section is only applicable when you need to **compile** Rust TLS source code on MacOS.
+
+[Download the latest wasi-sdk release](https://github.com/WebAssembly/wasi-sdk/releases) for your platform and 
+expand it into a directory. Point the `WASI_SDK_PATH` variable to this directory and export a `CC` variable for the default Clang.
+
+```
+export WASI_SDK_PATH /path/to/wasi-sdk-22.0
+export CC="${WASI_SDK_PATH}/bin/clang --sysroot=${WASI_SDK_PATH}/share/wasi-sysroot"
+```
+
+That's it. Now you can use the `cargo` tools on MacOS to compile tokio libraries with `rust-tls` feature turned on.
+
