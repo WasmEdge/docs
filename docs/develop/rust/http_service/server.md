@@ -12,7 +12,7 @@ For WasmEdge to become a cloud-native runtime for microservices, it needs to sup
 <!-- prettier-ignore -->
 :::note
 Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
-Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
+Make sure that you read the [special notes on networking apps](../setup#special-notes-for-networking-apps) especially if you are compiling Rust programs on a Mac.
 :::
 
 ## The axum API
