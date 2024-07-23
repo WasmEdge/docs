@@ -277,6 +277,82 @@ cmake --build build
 cmake --install build
 ```
 
+### Windows
+
+#### Install Dependencies
+
+1. (Optional, skip this deps if you don't need to use GPU) Download and install CUDA toolkit
+    - We use CUDA Toolkit 12 for the release assets
+    - Link: https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local
+
+2. Download and install Visual Studio 2022 Community Edition
+    - Link: https://visualstudio.microsoft.com/vs/community/
+    - Select the following components in the installer:
+        - msvc v143 - vs 2022 c++ x64/x86 build tools (latest)
+        - windows 11 sdk (10.0.22621.0)
+        - C++ ATL for v143 build tools (x86 & x64)
+
+3. Download and install cmake
+    - We use cmake 3.29.3 for the release assets
+    - Link: https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3-windows-x86_64.msi
+
+5. Download and install git
+    - We use git 2.45.1
+    - Link: https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe
+
+6. Download and install ninja-build
+    - We use ninja-build 1.12.1
+    - Link: https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip
+    - Installation: just unzip it to a custom folder
+
+#### Build
+
+1. Open Developer PowerShell for VS 2022
+    - Start -> Visual Studio 2022 -> Visual Studio Tools -> Developer PowerShell for VS 2022
+
+2. Inside the PowerShell, use git to download wasmedge repo
+
+```console
+cd $HOME
+git clone https://github.com/WasmEdge/WasmEdge.git
+cd WasmEdge
+```
+
+3. Compile wasmedge with enabling the `wasi_nn_ggml` related options, please use the following commands. To build the plugin, you don't need to enable AOT/LLVM related features, so set them to OFF.
+
+##### CUDA Enable
+
+```console
+# CUDA ENABLE:
+& "C:\Program files\CMake\bin\cmake.exe" -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND=ggml -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_CUBLAS=ON -DWASMEDGE_USE_LLVM=OFF .
+& "<the ninja-build folder>\ninja.exe" -C build
+```
+
+##### CUDA Disable
+
+```console
+# CUDA DISABLE:
+& "C:\Program files\CMake\bin\cmake.exe" -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND=ggml -DWASMEDGE_USE_LLVM=OFF .
+& "<the ninja-build folder>\ninja.exe" -C build
+```
+
+#### Execute the WASI-NN plugin with the llama example
+
+1. Set the environment variables
+
+```console
+$env:PATH += ";$pwd\build\lib\api"
+$env:WASMEDGE_PLUGIN_PATH = "$pwd\build\plugins"
+```
+
+2. Download the wasm and run
+
+```console
+wget https://github.com/second-state/WasmEdge-WASINN-examples/raw/master/wasmedge-ggml/llama/wasmedge-ggml-llama.wasm
+wget https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/blob/main/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf
+wasmedge --dir .:. --env llama3=true --env n_gpu_layers=100 --nn-preload default:GGML:AUTO:Meta-Llama-3-8B-Instruct.Q5_K_M.gguf wasmedge-ggml-llama.wasm default
+```
+
 ### Appendix
 
 <!-- prettier-ignore -->
