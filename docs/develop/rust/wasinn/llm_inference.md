@@ -6,7 +6,7 @@ sidebar_position: 1
 
 WasmEdge now supports running open-source Large Language Models (LLMs) in Rust. We will use [this example project](https://github.com/second-state/LlamaEdge/tree/main/chat) to show how to make AI inferences with the llama-3.1-8B model in WasmEdge and Rust.
 
-Basically, WasmEdge can support any open-source LLMs. Please check [the supported models](https://github.com/second-state/LlamaEdge/blob/main/models.md) for details.
+Furthermore, WasmEdge can support any open-source LLMs. Please check [the supported models](https://github.com/second-state/LlamaEdge/blob/main/models.md) for details.
 
 ## Prerequisite
 
@@ -31,7 +31,7 @@ curl -LO https://huggingface.co/second-state/Meta-Llama-3.1-8B-Instruct-GGUF/res
 Run the inference application in WasmEdge.
 
 ```bash
-wasmedge --dir .:. --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm -p llama-a-chat
+wasmedge --dir .:. --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm -p llama-3-chat
 ```
 
 After executing the command, you may need to wait a moment for the input prompt to appear. You can enter your question once you see the `[USER]:` prompt:
@@ -119,7 +119,10 @@ You can configure the chat inference application through CLI options.
 
 The `--prompt-template` option is perhaps the most interesting. It allows the application to support different open source LLM models beyond llama2. Check out more prompt templates [here](https://github.com/LlamaEdge/LlamaEdge/tree/main/api-server/chat-prompts).
 
-Furthermore, the following command tells WasmEdge to print out logs and statistics of the model at runtime.
+The `--ctx-size` option specifies the context windows size of the application. It is limited by the model's intrinsic context window size. If you increase the `--ctx-size`, make sure that you also 
+explicitly specify the `--batch-size` to a reasonable value (e.g., `--batch-size 512`).
+
+The following command tells WasmEdge to print out logs and statistics of the model at runtime.
 
 ```bash
 wasmedge --dir .:. --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf \
@@ -147,12 +150,12 @@ You can make the inference program run faster by AOT compiling the wasm file fir
 
 ```bash
 wasmedge compile llama-chat.wasm llama-chat.wasm
-wasmedge --dir .:.  --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm
+wasmedge --dir .:.  --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm -p llama-3-chat
 ```
 
 ## Understand the code
 
-The [main.rs](https://github.com/second-state/llamaedge/blob/main/chat/src/main.rs) is the full Rust code to create an interactive chatbot using a LLM. The Rust program manages the user input, tracks the conversation history, transforms the text into the llama2 and other model’s chat templates, and runs the inference operations using the WASI NN standard API. The code logic for the chat interaction is somewhat complex. In this section, we will use the [simple example](https://github.com/second-state/llamaedge/tree/main/simple) to explain how to set up and perform one inference round trip. Here is how you use the simple example.
+The [main.rs](https://github.com/second-state/llamaedge/blob/main/chat/src/main.rs) is the full Rust code to create an interactive chatbot using a LLM. The Rust program manages the user input, tracks the conversation history, transforms the text into the model’s chat templates, and runs the inference operations using the WASI NN standard API. The code logic for the chat interaction is somewhat complex. In this section, we will use the [simple example](https://github.com/second-state/llamaedge/tree/main/simple) to explain how to set up and perform one inference round trip. Here is how you use the simple example.
 
 ```bash
 # Download the compiled simple inference wasm
@@ -269,6 +272,6 @@ println!("\noutput: {}", output);
 
 ## Resources
 
-* If you're looking for multi-turn conversations with llama 2 models, please check out the above mentioned chat example source code [here](https://github.com/second-state/llamaedge/tree/main/chat).
+* If you're looking for multi-turn conversations with llama models, please check out the above mentioned chat example source code [here](https://github.com/second-state/llamaedge/tree/main/chat).
 * If you want to construct OpenAI-compatible APIs specifically for your llama2 model, or the Llama2 model itself, please check out the source code [for the API server](https://github.com/second-state/llamaedge/tree/main/api-server).
 * To learn more, please check out [this article](https://medium.com/stackademic/fast-and-portable-llama2-inference-on-the-heterogeneous-edge-a62508e82359).
