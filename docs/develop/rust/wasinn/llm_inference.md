@@ -119,10 +119,9 @@ You can configure the chat inference application through CLI options.
 
 The `--prompt-template` option is perhaps the most interesting. It allows the application to support different open source LLM models beyond llama2. Check out more prompt templates [here](https://github.com/LlamaEdge/LlamaEdge/tree/main/api-server/chat-prompts).
 
-The `--ctx-size` option specifies the context windows size of the application. It is limited by the model's intrinsic context window size. If you increase the `--ctx-size`, make sure that you also 
-explicitly specify the `--batch-size` to a reasonable value (e.g., `--batch-size 512`).
+The `--ctx-size` option specifies the context windows size of the application. It is limited by the model's intrinsic context window size.
 
-The following command tells WasmEdge to print out logs and statistics of the model at runtime.
+The `--log-stat` tells WasmEdge to print out logs and statistics of the model at runtime.
 
 ```bash
 wasmedge --dir .:. --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf \
