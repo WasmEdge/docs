@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Llama 2 inference
 
-WasmEdge now supports running llama2 series of models in Rust. We will use [this example project](https://github.com/second-state/LlamaEdge/tree/main/chat) to show how to make AI inferences with the llama2 model in WasmEdge and Rust.
+WasmEdge now supports running open source models in Rust. We will use [this example project](https://github.com/second-state/LlamaEdge/tree/main/chat) to show how to make AI inferences with the llama2 model in WasmEdge and Rust.
 
 WasmEdge now supports the following models:
 
@@ -39,7 +39,7 @@ WasmEdge now supports the following models:
 1. Nous-Hermes-2-Mixtral-8x7B-DPO
 1. Nous-Hermes-2-Mixtral-8x7B-SFT
 
-And more, please check [the supported models](https://github.com/second-state/LlamaEdge/blob/main/models.md) for detials.
+And more, please check [the supported models](https://github.com/second-state/LlamaEdge/blob/main/models.md) for details.
 
 ## Prerequisite
 
@@ -145,17 +145,6 @@ You can configure the chat inference application through CLI options.
 
 The `--prompt-template` option is perhaps the most interesting. It allows the application to support different open source LLM models beyond llama2. Check out more prompt templates [here](https://github.com/LlamaEdge/LlamaEdge/tree/main/api-server/chat-prompts).
 
-| Template name         | Model                                                                    | Download                                                                                                                                |
-| ------------          | ------------------------------                                           | ---                                                                                                                                     |
-| llama-2-chat          | [The standard llama2 chat model](https://ai.meta.com/llama/)             | [7b](https://huggingface.co/wasmedge/llama2/resolve/main/llama-2-7b-chat-q5_k_m.gguf)                                                   |
-| codellama-instruct    | [CodeLlama](https://about.fb.com/news/2023/08/code-llama-ai-for-coding/) | [7b](https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF/resolve/main/codellama-7b-instruct.Q5_K_M.gguf)                         |
-| mistral-instruct-v0.1 | [Mistral](https://mistral.ai/)                                           | [7b](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/resolve/main/mistral-7b-instruct-v0.1.Q5_K_M.gguf)                   |
-| mistrallite           | [Mistral Lite](https://huggingface.co/amazon/MistralLite)                | [7b](https://huggingface.co/TheBloke/MistralLite-7B-GGUF/resolve/main/mistrallite.Q5_K_M.gguf)                                          |
-| openchat              | [OpenChat](https://github.com/imoneoi/openchat)                          | [7b](https://huggingface.co/TheBloke/openchat_3.5-GGUF/resolve/main/openchat_3.5.Q5_K_M.gguf)                                           |
-| belle-llama-2-chat    | [BELLE](https://github.com/LianjiaTech/BELLE)                            | [13b](https://huggingface.co/second-state/BELLE-Llama2-13B-Chat-0.4M-GGUF/resolve/main/BELLE-Llama2-13B-Chat-0.4M-ggml-model-q4_0.gguf) |
-| vicuna-chat           | [Vicuna](https://lmsys.org/blog/2023-03-30-vicuna/)                      | [7b](https://huggingface.co/TheBloke/vicuna-7B-v1.5-GGUF/resolve/main/vicuna-7b-v1.5.Q5_K_M.gguf)                                       |
-| chatml                | [ChatML](https://huggingface.co/chargoddard/rpguild-chatml-13b)          | [13b](https://huggingface.co/TheBloke/rpguild-chatml-13B-GGUF/resolve/main/rpguild-chatml-13b.Q5_K_M.gguf)                              |
-
 Furthermore, the following command tells WasmEdge to print out logs and statistics of the model at runtime.
 
 ```bash
@@ -197,7 +186,7 @@ curl -LO https://github.com/second-state/llamaedge/releases/latest/download/llam
 
 # Give it a prompt and ask it to use the model to complete it.
 wasmedge --dir .:. --nn-preload default:GGML:AUTO:llama-2-7b-chat-q5_k_m.gguf llama-simple.wasm \
-  --prompt 'Robert Oppenheimer most important achievement is ' --ctx-size 4096
+  --prompt 'Robert Oppenheimer most important achievement is ' --ctx-size 512
 
 output: in 1942, when he led the team that developed the first atomic bomb, which was dropped on Hiroshima, Japan in 1945.
 ```
@@ -286,7 +275,7 @@ Next, execute the model inference.
     context.compute().expect("Failed to complete inference");
 ```
 
-After the inference is finished, extract the result from the computation context and losing invalid UTF8 sequences handled by converting the output to a string using `String::from_utf8_lossy`.
+After the inference is finished, extract the result from the computation context and lose invalid UTF8 sequences handled by converting the output to a string using `String::from_utf8_lossy`.
 
 ```rust
   let mut output_buffer = vec![0u8; *CTX_SIZE.get().unwrap()];
@@ -307,5 +296,5 @@ println!("\noutput: {}", output);
 ## Resources
 
 * If you're looking for multi-turn conversations with llama 2 models, please check out the above mentioned chat example source code [here](https://github.com/second-state/llamaedge/tree/main/chat).
-* If you want to construct OpenAI-compatible APIs specifically for your llama2 model, or the Llama2 model itself, please check out the source code [for the API server](https://github.com/second-state/llamaedge/tree/main/api-server).
+* If you want to construct OpenAI-compatible APIs specifically for any open-source LLMs, please check out the source code [for the API server](https://github.com/second-state/llamaedge/tree/main/api-server).
 * To learn more, please check out [this article](https://medium.com/stackademic/fast-and-portable-llama2-inference-on-the-heterogeneous-edge-a62508e82359).
