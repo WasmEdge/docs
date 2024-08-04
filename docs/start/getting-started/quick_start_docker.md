@@ -21,9 +21,10 @@ In this quick start guide, we cover how to run WASM container apps using Docker 
 
 ## Prerequisite
 
-You must have Docker Desktop 4.15+ installed. Make sure you have turned on the containerd image store feature in your Docker Desktop.
+You must have Docker Desktop 4.21 installed. Make sure you have turned on the containerd image store feature in your Docker Desktop.
 
-![Docker config](docker_config.png)
+![image](https://github.com/user-attachments/assets/3f0a5896-3e3e-4df1-a335-9e3b6a5240a0)
+
 
 ## Run a standalone WASM app
 
