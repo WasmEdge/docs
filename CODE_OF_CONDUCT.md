@@ -1,3 +1,3 @@
 # WasmEdge Code of Conduct
 
-The WasmEdge community follows the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
+See the Code of Conduct [here](https://github.com/WasmEdge/WasmEdge/blob/master/docs/CODE_OF_CONDUCT.md).
