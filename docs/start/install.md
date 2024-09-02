@@ -69,6 +69,14 @@ The installer downloads the plug-in files from the WasmEdge release on GitHub, u
 AI plug-ins for WasmEdge, such as the `OpenVINO backend` or `PyTorch backend` for `WASI-NN` plug-ins, have additional dependencies on the `OpenVINO` or `PyTorch` runtime libraries. [See the next section](#install-wasmedge-plug-ins-and-dependencies) for commands to install the plug-in dependencies.
 :::
 
+#### Install via Nix
+
+For nix/nixos users, we also provide a `flake.nix` in repository, so you can install WasmEdge via:
+
+```bash
+nix profile install github:WasmEdge/WasmEdge
+```
+
 ### Windows
 
 For `Windows 10`, you could use Windows Package Manager Client (aka `winget.exe`) to install WasmEdge with one single command in your terminal.
