@@ -9,6 +9,8 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | Name | Desciption | PR or Docs |
 | --- | --- | --- |
 | WebAssembly Languages Runtime maintained by VMWare | Use WasmEdge to run PHP and python programs | <https://github.com/vmware-labs/webassembly-language-runtimes/pull/19> |
+| Cocos AI | WasmEdge is is used for Confidential Computing inference of AI workloads in a secure TEE enclave. | <https://github.com/ultravioletrs/cocos/pull/189> |
+| WikiFunction | Use WasmEdge to execute functions to improve the performance| <https://www.wikifunctions.org/wiki/Wikifunctions:Status_updates/2024-08-23> |
 | LF Edge eKuiper | Use WasmEdge to process data streamed from IoT devices | <https://github.com/lf-edge/ekuiper/pull/1449/> |
 | crun | Use WasmEdge to run WASM containers | <https://github.com/containers/crun/pull/774> |
 | youki | Use WasmEdge to run WASM containers | <https://github.com/containers/youki/pull/1320> |
