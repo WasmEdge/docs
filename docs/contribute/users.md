@@ -9,8 +9,8 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | Name | Desciption | PR or Docs |
 | --- | --- | --- |
 | WebAssembly Languages Runtime maintained by VMWare | Use WasmEdge to run PHP and python programs | <https://github.com/vmware-labs/webassembly-language-runtimes/pull/19> |
-| Cocos AI | WasmEdge is is used for Confidential Computing inference of AI workloads in a secure TEE enclave. | <https://github.com/ultravioletrs/cocos/pull/189> |
-| WikiFunction | Use WasmEdge to execute functions to improve the performance| <https://www.wikifunctions.org/wiki/Wikifunctions:Status_updates/2024-08-23> |
+| Cocos AI | WasmEdge is used for Confidential Computing inference of AI workloads in a secure TEE enclave | <https://github.com/ultravioletrs/cocos/pull/189> |
+| WikiFunctions | Use WasmEdge to execute serverless functions to be embedded in Wikipedia | <https://www.wikifunctions.org/wiki/Wikifunctions:Status_updates/2024-08-23> |
 | LF Edge eKuiper | Use WasmEdge to process data streamed from IoT devices | <https://github.com/lf-edge/ekuiper/pull/1449/> |
 | crun | Use WasmEdge to run WASM containers | <https://github.com/containers/crun/pull/774> |
 | youki | Use WasmEdge to run WASM containers | <https://github.com/containers/youki/pull/1320> |
@@ -32,7 +32,7 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | ByteDance | Use WasmEdge as a Ray node | <https://github.com/ray-project/enhancements/blob/main/reps/2023-02-01-wasm-on-ray.md> |
 | Huawei Cloud | Use WasmEdge to run Serverless functions | Internal use case |
 | 5miles | Use WasmEdge to run internal microservices | Internal use case |
-| Bytetrade | Use WasmEdge to run microservices for automated crypto trading and marketing automation. | Internal use case |
+| Bytetrade | Use WasmEdge to run microservices for automated crypto trading and marketing automation | Internal use case |
 | FutureWei | Use WasmEdge on automobile and OpenHarmony | <https://github.com/WasmEdge/WasmEdge/pull/902> |
 | WinSoft | Use WasmEdge to improve IDE’s user experience | <https://winsoft.sk/webassembly.htm> |
 | ParaState | Use WasmEdge to execute smart contracts on the ParaState blockchain | <https://www.parastate.io/> |
@@ -43,11 +43,11 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | libsql | Use WasmEdge to support user-defined functions (UDF) in a database | <https://github.com/libsql/libsql/pull/131> |
 | Shifu | Use WasmEdge to support user-defined functions (UDF) in data streams from edge devices | <https://github.com/Edgenesis/wasm-shifu-demo> |
 | Lnjoying | Offers WasmEdge as part of its edge cloud service. | Internal use case |
-| Red Hat EPEL 9 | Offers support for wasmedge packages for Red Hat Linux 9 users. | <https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html> |
+| Red Hat EPEL 9 | Offers support for wasmedge packages for Red Hat Linux 9 users | <https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html> |
 | Open Interpreter| Use WasmEdge as the LLM runtime | <https://github.com/OpenInterpreter/01/tree/main/software/source/server/services/llm/llamaedge> |
 | GaiaNet| Use WasmEdge as LLM runtime | <https://github.com/GaiaNet-AI/gaianet-node> |
 | MoXin| Use WasmEdge as the LLM runtime | <https://github.com/project-robius/moxin> |
 | CODA Bridge| Use WasmEdge as the container to run microservices | Internal use case |
 | CloudEvents | Support the Rust SDK to be compiled into Wasm so that a Wasm app can send and receive cloud events | <https://github.com/cloudevents/sdk-rust/pull/202> |
 | Kagome | A C++ implementation of Polkadot host which runs Wasm smart contracts on WasmEdge | <https://github.com/qdrvm/kagome/tree/master/core/runtime> |
-| Sealos | A Cloud Operating System designed for managing cloud-native applications. It uses WasmEdge to run LLMs locally in its cluster. | <https://github.com/labring-actions/cluster-image/blob/main/applications/runwasi-wasmedge/latest/install.sh> |
+| Sealos | A Cloud Operating System designed for managing cloud-native applications. It uses WasmEdge to run LLMs locally in its cluster | <https://github.com/labring-actions/cluster-image/blob/main/applications/runwasi-wasmedge/latest/install.sh> |
