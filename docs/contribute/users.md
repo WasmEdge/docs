@@ -46,6 +46,7 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | Red Hat EPEL 9 | Offers support for wasmedge packages for Red Hat Linux 9 users | <https://packages.fedoraproject.org/pkgs/wasmedge/wasmedge/index.html> |
 | Open Interpreter| Use WasmEdge as the LLM runtime | <https://github.com/OpenInterpreter/01/tree/main/software/source/server/services/llm/llamaedge> |
 | GaiaNet| Use WasmEdge as LLM runtime | <https://github.com/GaiaNet-AI/gaianet-node> |
+| EigenLayer | Ue WasmEdge as LLM runtime to generate ideas | <https://x.com/sreeramkannan/status/1834313576133394438> |
 | MoXin| Use WasmEdge as the LLM runtime | <https://github.com/project-robius/moxin> |
 | CODA Bridge| Use WasmEdge as the container to run microservices | Internal use case |
 | CloudEvents | Support the Rust SDK to be compiled into Wasm so that a Wasm app can send and receive cloud events | <https://github.com/cloudevents/sdk-rust/pull/202> |
