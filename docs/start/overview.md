@@ -18,7 +18,7 @@ We will cover the following content:
 - Introduce the [WasmEdge Runtime](/category/what-is-wasmedge)
 - Usages of [Running WasmEdge](/category/running-with-wasmedge)
 - [Frequently Asked Question](faq.md)
-- [Style Guide](style_guide.md) for new contributors 
+- [Style Guide](style_guide.md) for new contributors
 - [Troubleshooting Guide](troubleshooting_guide.md)
 
 For advanced programming with WasmEdge, please refer to the guides for [developing WASM apps](../develop/overview.md), [Embedding WasmEdge in your apps](../embed/overview.md), or [contributing](../contribute/overview.md) to WasmEdge.

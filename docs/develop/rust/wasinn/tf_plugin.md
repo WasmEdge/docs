@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 8
 ---
 
-# TensorFlow Plug-in For WasmEdge
+# TensorFlow And TensorFlow-Lite Plug-in For WasmEdge
 
 Developers can use [WASI-NN](https://github.com/WebAssembly/wasi-nn) to inference the models. However, for the TensorFlow and TensorFlow-Lite users, the WASI-NN APIs could be more friendly to retrieve the input and output tensors. Therefore WasmEdge provides the TensorFlow-related plug-in and rust SDK for inferencing models in WASM.
 
@@ -133,13 +133,6 @@ The output WASM file will be at `target/wasm32-wasi/debug/` or `target/wasm32-wa
 Please refer to [WasmEdge CLI](../../../start/build-and-run/cli.md) for WASM execution.
 
 ## Examples
-
-<!-- prettier-ignore -->
-:::info
-Work in Progress
-:::
-
-## Old WasmEdge TensorFlow extension
 
 <!-- prettier-ignore -->
 :::info

@@ -48,6 +48,14 @@ curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/insta
 
 Suppose you are interested in the latest builds from the `HEAD` of the `master` branch, which is basically WasmEdge's nightly builds. In that case, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/2969775464#artifacts).
 
+#### Install via Nix
+
+For nix/nixos users, we also provide a `flake.nix` in repository, so you can install WasmEdge via:
+
+```bash
+nix profile install github:WasmEdge/WasmEdge
+```
+
 #### Install WasmEdge with plug-ins
 
 WasmEdge plug-ins are pre-built native modules that provide additional functionalities to the WasmEdge Runtime. To install plug-ins with the runtime, you can pass the `--plugins` parameter in the installer. For example, the command below installs the `wasi_nn-ggml` plug-in to enable LLM (Large Language Model) inference.
@@ -66,16 +74,40 @@ The installer downloads the plug-in files from the WasmEdge release on GitHub, u
 
 <!-- prettier-ignore -->
 :::note
-AI plug-ins for WasmEdge, such as the `OpenVINO backend` or `PyTorch backend` for `WASI-NN` plug-ins, have additional dependencies on the `OpenVINO` or `PyTorch` runtime libraries. [See the next section](#install-wasmedge-plug-ins-and-dependencies) for commands to install the plug-in dependencies.
+The `WASI-NN` related plug-ins are all EXCLUSIVE. Users can only install one of the WASI-NN backends.
+
+After WasmEdge `0.14.1`, the WASI-Logging plug-in is bundled into the WasmEdge shared library and is not necessary to be installed.
+
+Some of plug-ins need dependencies. Please follow the guide in the comment column to install the dependencies.
 :::
 
-#### Install via Nix
+The following lists are the WasmEdge official released plug-ins. Users can install them easily by the parameters of `--plugins` option of installer.
 
-For nix/nixos users, we also provide a `flake.nix` in repository, so you can install WasmEdge via:
+| Plug-in | Parameter | Supported Platforms | Versions | Comment |
+|---------|-----------|---------------------|----------|---------|
+| WASI-Logging | `wasi_logging` | All | Since `0.13.0` | Bundled into WasmEdge library since `0.14.1`. |
+| WASI-Crypto | `wasi_crypto` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.10.1` | |
+| WASI-NN OpenVINO backend | `wasi_nn-openvino` | Linux (`x86_64`, Ubuntu only) | Since `0.10.1` | Users should install the [OpenVINO dependency](#openvino-dependencies). |
+| WASI-NN PyTorch backend | `wasi_nn-pytorch` | Linux (`x86_64`) | Since `0.11.1` | Users should install the [PyTorch dependency](#pytorch-dependencies). |
+| WASI-NN TensorFlow-Lite backend | `wasi_nn-tensorflowlite` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.11.2` | [Dependency](#tensorflow-lite-dependencies) installed automatically by installer. |
+| WASI-NN GGML backend | `wasi_nn-ggml` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.4` | [Notes for the dependency](#ggml-dependencies) |
+| WASI-NN Piper backend | `wasi_nn-piper` | Linux (`x86_64`, `aarch64`) | Since `0.14.1` | Users should install the [Piper dependency](#piper-dependencies). |
+| WASI-NN Whisper backend | `wasi_nn-whisper` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.1` | |
+| WASI-NN Burn.rs backend (Squeezenet) | `wasi_nn_burnrs-squeezenet` | Linux (`x86_64`, Ubuntu only) | Since `0.14.1` | |
+| WASI-NN Burn.rs backend (Whisper) | `wasi_nn_burnrs-whisper` | Linux (`x86_64`, Ubuntu only) | Since `0.14.1` | |
+| Ffmpeg | `wasmedge_ffmpeg` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.0` | |
+| Image | `wasmedge_image` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | |
+| LLM | `wasmedge_llmc` | Linux (`x86_64`, `aarch64`) | Since `0.14.1` | |
+| OpenCV mini | `wasmedge_opencvmini` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.3` | |
+| Process | `wasmedge_process` | Linux (`x86_64`, `aarch64`) | Since `0.10.0` | |
+| Stable Diffusion | `wasmedge_stablediffusion` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.1` | |
+| TensorFlow | `wasmedge_tensorflow` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | [Dependency](#tensorflow-dependencies) installed automatically by installer. |
+| TensorFlow-Lite | `wasmedge_tensorflowlite` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | [Dependency](#tensorflow-lite-dependencies) installed automatically by installer. |
+| Zlib | `wasmedge_zlib` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.5` | |
+| WASM-eBPF | `wasm_bpf` | Linux (`x86_64`) | Since `0.13.2` | |
+| Rust TLS | `wasmedge_rustls` | Linux (`x86_64`) | Since `0.13.0` | Until `0.13.5`. DEPRECATED. |
 
-```bash
-nix profile install github:WasmEdge/WasmEdge
-```
+For further details of each plug-ins, please follow the [plug-in page](wasmedge/extensions/plugins.md).
 
 ### Windows
 
@@ -127,221 +159,6 @@ You could also change it to `/usr/local` if you did a system-wide install.
 If you used `winget` to install WasmEdge, the files are located at `C:\Program Files\WasmEdge`.
 :::
 
-## Install WasmEdge plug-ins and dependencies
-
-WasmEdge uses plug-ins to extend its functionality. If you want to use more of WasmEdge's features, you can install WasmEdge along with its plug-ins and extensions as described below:
-
-### The logging plug-in
-
-The `wasi_logging` plug-in supports the [log::Log](https://crates.io/crates/log) Rust API.
-It allows [log::Log](https://crates.io/crates/log) in Rust code to be compiled to Wasm and to run in WasmEdge.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_logging
-```
-
-[See more examples](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/wasi-logging)
-
-### WASI-NN plug-ins
-
-WasmEdge supports various backends for `WASI-NN`, which provides a standardized API for WasmEdge applications to access AI models for inference. Each backend supports a specific type of AI models.
-
-- [ggml backend](#wasi-nn-plug-in-with-ggml-backend): supported on `Ubuntu 20.04+` and macOS.
-- [PyTorch backend](#wasi-nn-plug-in-with-pytorch-backend): supported on `Ubuntu 20.04+` and `manylinux2014_x86_64`.
-- [OpenVINO™ backend](#wasi-nn-plug-in-with-openvino-backend): supported on `Ubuntu 20.04+`.
-- [TensorFlow-Lite backend](#wasi-nn-plug-in-with-tensorflow-lite-backend): supported on `Ubuntu 20.04+`, `manylinux2014_x86_64`, and `manylinux2014_aarch64`.
-
-Noticed that the backends are exclusive. Developers can only choose and install one backend for the `WASI-NN` plug-in.
-
-#### WASI-NN plug-in with ggml backend
-
-The WASI-NN plug-in with ggml backend allows WasmEdge to run llama2 inference. To install WasmEdge with WASI-NN ggml backend, please pass the `wasi_nn-ggml` option to the `--plugins` flag when running the installer command.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-ggml
-```
-
-Please note, the installer from WasmEdge 0.13.5 will detect CUDA automatically. If CUDA is detected, the installer will always attempt to install a CUDA-enabled version of the plug-in.
-
-If CPU is the only available hardware on your machine, the installer will install OpenBLAS version of plugin instead.
-
-```bash
-apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.
-```
-
-Then, go to the [Llama2 inference in Rust chapter](../develop/rust/wasinn/llm_inference) to see how to run AI inference with llama2 series of models.
-
-#### WASI-NN plug-in with PyTorch backend
-
-The WASI-NN plug-in with PyTorch backend allows WasmEdge applications to perform PyTorch model inference. To install WasmEdge with WASI-NN PyTorch backend, please pass the `wasi_nn-pytorch` option to the `--plugins` flag when running the installer command.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-pytorch
-```
-
-The WASI-NN plug-in with PyTorch backend depends on the `libtorch` C++ library to perform AI/ML computations. You need to install the [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependencies for it to work properly.
-
-```bash
-export PYTORCH_VERSION="1.8.2"
-# For the Ubuntu 20.04 or above, use the libtorch with cxx11 abi.
-export PYTORCH_ABI="libtorch-cxx11-abi"
-# For the manylinux2014, please use the without cxx11 abi version:
-#   export PYTORCH_ABI="libtorch"
-curl -s -L -O --remote-name-all https://download.pytorch.org/libtorch/lts/1.8/cpu/${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip
-unzip -q "${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
-rm -f "${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$(pwd)/libtorch/lib
-```
-
-<!-- prettier-ignore -->
-:::note
-For the `Ubuntu 20.04` or above versions, the WasmEdge installer will install the `Ubuntu` version of WasmEdge and its plug-ins.
-For other systems, the WasmEdge installer will install the `manylinux2014` version, and you should get the `libtorch` without `cxx11-abi`.
-:::
-
-Then, go to the [WASI-NN PyTorch backend in Rust chapter](../develop/rust/wasinn/pytorch) to see how to run AI inference with `Pytorch`.
-
-#### WASI-NN plug-in with OpenVINO backend
-
-The WASI-NN plug-in with the OpenVINO backend allows WasmEdge applications to perform OpenVINO model inference. To install WasmEdge with WASI-NN OpenVINO backend, please pass the `wasi_nn-openvino` option to the `--plugins` flag when running the installer command.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-openvino
-```
-
-The WASI-NN plug-in with OpenVINO backend depends on the OpenVINO C library to perform AI/ML computations. [OpenVINO](https://docs.openvino.ai/2023.0/openvino_docs_install_guides_installing_openvino_apt.html)(2023) dependencies. The following instructions are for Ubuntu 20.04 and above.
-
-```bash
-wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-echo "deb https://apt.repos.intel.com/openvino/2023 ubuntu20 main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2023.list
-sudo apt update
-sudo apt-get -y install openvino
-ldconfig
-```
-
-Then, go to the [WASI-NN OpenVINO backend in Rust](../develop/rust/wasinn/openvino) chapter to see how to run AI inference with `OpenVINO.
-
-#### WASI-NN plug-in with TensorFlow-Lite backend
-
-The WASI-NN plug-in with Tensorflow-Lite backend allows WasmEdge applications to perform Tensorflow-Lite model inference. To install WasmEdge with WASI-NN Tensorflow-Lite backend, please pass the `wasi_nn-tensorflowlite` option to the `--plugins` flag when running the installer command.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-tensorflowlite
-```
-
-The WASI-NN plug-in with Tensorflow-Lite backend depends on the `libtensorflowlite_c` shared library to perform AI/ML computations, and it will be installed by the installer automatically.
-
-<!-- prettier-ignore -->
-:::note
-If you install this plug-in WITHOUT installer, you can [refer to here to install the dependency](#tensorflow-lite-dependencies).
-:::note
-
-Then, go to [WASI-NN TensorFlow-lite backend in Rust chapter](../develop/rust/wasinn/tensorflow_lite) to see how to run AI inference with TensorFlow-Lite.
-
-### WASI-Crypto Plug-in
-
-[WASI-crypto](https://github.com/WebAssembly/wasi-crypto) is Cryptography API proposals for WASI. To use WASI-Crypto proposal, please use the `--plugins wasi_crypto` parameter when [running the installer command](#generic-linux-and-macos).
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_crypto
-```
-
-Then, go to [WASI-Crypto in Rust chapter](../develop/rust/wasicrypto.md) to see how to run WASI-crypto functions.
-
-### WasmEdge OpenCV mini Plug-in
-
-The WasmEdge OpenCV Mini plug-in supports a subset of OpenCV APIs in a [Rust API](https://github.com/second-state/opencvmini).
-It is essential for developing image processing / vision AI applications in WasmEdge.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_opencvmini
-```
-
-[See an example](https://github.com/second-state/opencvmini-example)
-
-### WasmEdge zlib Plug-in
-
-The zlib is required for compiling and running many existing C / C++ / Rust apps in Wasm. Most noticeably, it is required for the Python port to Wasm. It supports the standard [zlib.h](https://github.com/madler/zlib/blob/develop/zlib.h) C API.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_zlib
-```
-
-[See an example](https://github.com/WasmEdge/WasmEdge/tree/master/examples/plugin/wasmedge-zlib).
-
-### WasmEdge Image Plug-in
-
-The wasmEdge-Image plug-in can help developers to load and decode JPEG and PNG images and convert into tensors. To install this plug-in, please use the `--plugins wasmedge_image` parameter when [running the installer command](#generic-linux-and-macos).
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_image
-```
-
-Then, go to [TensorFlow interface (image part) in Rust chapter](../develop/rust/wasinn/tf_plugin.md#image-loading-and-conversion) to see how to run WasmEdge-Image functions.
-
-### WasmEdge TensorFlow Plug-in
-
-The WasmEdge-TensorFlow plug-in can help developers to perform TensorFlow model inference as the similar API in python. To install this plug-in, please use the `--plugins wasmedge_tensorflow` parameter when [running the installer command](#generic-linux-and-macos).
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_tensorflow
-```
-
-The WasmEdge-Tensorflow plug-in depends on the `libtensorflow_cc` shared library.
-
-<!-- prettier-ignore -->
-:::note
-If you install this plug-in WITHOUT installer, you can [refer to here to install the dependency](#tensorflow-dependencies).
-:::note
-
-Then, go to [TensorFlow interface in Rust chapter](../develop/rust/wasinn/tf_plugin.md) to see how to run `WasmEdge-TensorFlow` functions.
-
-### TLS plug-in
-
-<!-- prettier-ignore -->
-:::note
-The WasmEdge TLS plugin is being deprecated from WasmEdge 0.14.0. We now compile TLS functions directly into Wasm for better portability.
-:::note
-
-The WasmEdge TLS plug-in utilizes the native OpenSSL library to support HTTPS and TLS requests from WasmEdge sockets. To install WasmEdge with the TLS plug-in, run the following command.
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v 0.13.5 --plugins wasmedge_rustls
-```
-
-The HTTPS and TLS demos from 0.13.5 require the TLS plug-in.
-
-### WasmEdge TensorFlow-Lite Plug-in
-
-<!-- prettier-ignore -->
-:::note
-The Tensorflow Lite plugin is being deprecated. Please use the [WASI NN TensorflowLite plugin](#wasi-nn-plug-in-with-tensorflow-lite-backend) instead.
-:::note
-
-The wasmEdge-TensorFlowLite plug-in can help developers to perform TensorFlow-Lite model inference. To install this plug-in, please use the `--plugins wasmedge_tensorflowlite` parameter when [running the installer command](#generic-linux-and-macos).
-
-```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_tensorflowlite
-```
-
-## Install WasmEdge extensions and dependencies
-
-<!-- prettier-ignore -->
-:::note
-The WasmEdge extensions are deprecated and replaced by the plug-ins since `0.13.0`. The latest version supporting the extensions is `0.12.1`. This chapter will be removed when the `0.12.x` versions are no longer supported by the WasmEdge installer.
-:::note
-
-To install the WasmEdge extensions, please use the `-e` option and assign the WasmEdge version before `0.13.0`. You can also use the `-e all` to install the supported extensions.
-
-### WasmEdge Image extension
-
-WasmEdge Image extension (replaced by the [WasmEdge-Image plug-in](#wasmedge-image-plug-in) after `0.13.0`) can help developers to load and decode JPEG and PNG images and convert them into tensors. To install this extension, please use the `-e image` parameter when [running the installer command](#generic-linux-and-macos).
-
-### WasmEdge Tensorflow and TensorFlow-Lite extension with CLI tool
-
-WasmEdge Tensorflow extension and the CLI tool (replaced by the [WasmEdge-Tensorflow plug-in](#wasmedge-tensorflow-plug-in) and the [WasmEdge-TensorflowLite plug-in](#wasmedge-tensorflow-lite-plug-in) after `0.13.0`) can help developers to perform `TensorFlow` and `TensorFlow-Lite` model inference as the similar API in python. To install this extension, please use the `-e tensorflow` parameter when [running the installer command](#generic-linux-and-macos).
-
 ## Uninstall
 
 To uninstall WasmEdge, you can run the following command:
@@ -379,11 +196,21 @@ If you used `winget` to install WasmEdge on Windows, run the following command t
 winget uninstall wasmedge
 ```
 
-## Appendix: Installing the TensorFlow Dependencies
+## Appendix: Installing the Dependencies
+
+### GGML Dependencies
+
+The installer from WasmEdge 0.13.5 will detect CUDA automatically. If CUDA is detected, the installer will always attempt to install a CUDA-enabled version of the WASI-NN GGML plug-in.
+
+If CPU is the only available hardware on your machine, the installer will install OpenBLAS version of plugin instead.
+
+```bash
+apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.
+```
 
 ### TensorFlow-Lite Dependencies
 
-If you install the WASI NN TensorflowLite plug-in WITHOUT installer, you can download the shared libraries with the following commands:
+If you install the WASI-NN TensorflowLite or `WasmEdge-TensorFlowLite` plug-in WITHOUT installer, you can download the shared libraries with the following commands:
 
 ```bash
 VERSION=TF-2.12.0-CC
@@ -455,6 +282,56 @@ ln -s libtensorflow_cc.2.12.0.dylib ~/.wasmedge/lib/libtensorflow_cc.2.dylib
 ln -s libtensorflow_cc.2.dylib ~/.wasmedge/lib/libtensorflow_cc.dylib
 ln -s libtensorflow_framework.2.12.0.dylib ~/.wasmedge/lib/libtensorflow_framework.2.dylib
 ln -s libtensorflow_framework.2.dylib ~/.wasmedge/lib/libtensorflow_framework.dylib
+```
+
+### OpenVINO Dependencies
+
+The WASI-NN plug-in with OpenVINO backend depends on the OpenVINO C library to perform AI/ML computations. The following commands are for Ubuntu 20.04 and above to install [OpenVINO](https://docs.openvino.ai/2023.0/openvino_docs_install_guides_installing_openvino_apt.html)(2023) dependencies.
+
+```bash
+wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+echo "deb https://apt.repos.intel.com/openvino/2023 ubuntu20 main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2023.list
+sudo apt update
+sudo apt-get -y install openvino
+ldconfig
+```
+
+### PyTorch Dependencies
+
+The WASI-NN plug-in with PyTorch backend depends on the `libtorch` C++ library to perform AI/ML computations. You need to install the [PyTorch 1.8.2 LTS](https://pytorch.org/get-started/locally/) dependencies for it to work properly.
+
+```bash
+export PYTORCH_VERSION="1.8.2"
+# For the Ubuntu 20.04 or above, use the libtorch with cxx11 abi.
+export PYTORCH_ABI="libtorch-cxx11-abi"
+# For the manylinux2014, please use the without cxx11 abi version:
+#   export PYTORCH_ABI="libtorch"
+curl -s -L -O --remote-name-all https://download.pytorch.org/libtorch/lts/1.8/cpu/${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip
+unzip -q "${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
+rm -f "${PYTORCH_ABI}-shared-with-deps-${PYTORCH_VERSION}%2Bcpu.zip"
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$(pwd)/libtorch/lib
+```
+
+<!-- prettier-ignore -->
+:::note
+For the `Ubuntu 20.04` or above versions, the WasmEdge installer will install the `Ubuntu` version of WasmEdge and its plug-ins.
+For other systems, the WasmEdge installer will install the `manylinux2014` version, and you should get the `libtorch` without `cxx11-abi`.
+:::
+
+### Piper Dependencies
+
+The WASI-NN plug-in with Piper backend depends on the ONNX Runtime C++ API. For installation instructions, please refer to the installation table on the [official website](https://onnxruntime.ai/getting-started).
+
+Example of installing ONNX Runtime 1.14.1 on Ubuntu:
+
+```bash
+curl -LO https://github.com/microsoft/onnxruntime/releases/download/v1.14.1/onnxruntime-linux-x64-1.14.1.tgz
+tar zxf onnxruntime-linux-x64-1.14.1.tgz
+mv onnxruntime-linux-x64-1.14.1/include/* /usr/local/include/
+mv onnxruntime-linux-x64-1.14.1/lib/* /usr/local/lib/
+rm -rf onnxruntime-linux-x64-1.14.1.tgz onnxruntime-linux-x64-1.14.1
+ldconfig
 ```
 
 ## Troubleshooting

@@ -52,7 +52,7 @@ qdrant_rest_client = "0.1.0"
 ## Code explanation
 
 The following program uses the `qdrant_rest_client` crate to access local Qdrant server through its RESTful API.
-It first creates several points (vectors), saves those vectors to the Qdrant database, retrieves some vectors, 
+It first creates several points (vectors), saves those vectors to the Qdrant database, retrieves some vectors,
 searches for vectors, and finally deletes them from the database.
 
 ```rust
@@ -129,4 +129,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     Ok(())
 }
 ```
-

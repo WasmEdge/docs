@@ -11,7 +11,7 @@ Hence, besides the LLM inference runtime, those LLM applications also need to ma
 <!-- prettier-ignore -->
 :::note
 Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
-Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
+Make sure that you read the [special notes on networking apps](../setup#special-notes-for-networking-apps) especially if you are compiling Rust programs on a Mac.
 :::
 
 ## Run the example
@@ -52,7 +52,7 @@ qdrant_rest_client = "0.1.0"
 ## Code explanation
 
 The following program uses the `qdrant_rest_client` crate to access local Qdrant server through its RESTful API.
-It first creates several points (vectors), saves those vectors to the Qdrant database, retrieves some vectors, 
+It first creates several points (vectors), saves those vectors to the Qdrant database, retrieves some vectors,
 searches for vectors, and finally deletes them from the database.
 
 ```rust
@@ -129,4 +129,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     Ok(())
 }
 ```
-

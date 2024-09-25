@@ -6,7 +6,7 @@ sidebar_position: 2
 
 For WasmEdge to become a cloud-native runtime for microservices, it needs to support HTTP servers. By its very nature, the HTTP server is always asynchronous (non-blocking -- so that it can handle concurrent requests). This chapter will cover HTTP servers using popular Rust APIs.
 
-- [The axum API](#the-warp-api)
+- [The axum API](#the-axum-api)
 - [The hyper API](#the-hyper-api)
 
 <!-- prettier-ignore -->
@@ -46,7 +46,7 @@ In your Rust application, you will apply a few patches developed by the WasmEdge
 POSIX sockets with WasmEdge sockets in standard libraries. With those patches, you can then
 use the official `tokio` and `axum` crates.
 
-```
+```toml
 [patch.crates-io]
 tokio = { git = "https://github.com/second-state/wasi_tokio.git", branch = "v1.36.x" }
 socket2 = { git = "https://github.com/second-state/socket2.git", branch = "v0.5.x" }

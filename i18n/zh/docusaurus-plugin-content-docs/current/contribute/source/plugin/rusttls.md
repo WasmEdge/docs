@@ -2,7 +2,12 @@
 sidebar_position: 8
 ---
 
-# Build with Rustls Plug-in
+# (DEPRECATED after `0.14.0`) Build with Rustls Plug-in
+
+<!-- prettier-ignore -->
+:::note
+This plug-in has been deprecated after WasmEdge `0.14.0` because the `rustls` is replaced by [`reqwest`](../../../develop/rust/http_service/client.md#the-reqwest-api).
+:::
 
 The WasmEdge Rustls plug-in is a replacement for the OpenSSL plug-in in WasmEdge. It provides a Rust-friendly interface to the Rustls library, which is a modern, fast, and more secure alternative to OpenSSL.
 

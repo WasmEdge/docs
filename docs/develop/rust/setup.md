@@ -53,7 +53,7 @@ rustflags = ["--cfg", "wasmedge", "--cfg", "tokio_unstable"]
 
 Once you have these lines in `.cargo/config.toml`, you can simply use the regular `cargo` command.
 
-```
+```bash
 cargo build --target wasm32-wasi --release
 ```
 

@@ -76,7 +76,8 @@ Developers can set the CMake options to customize the WasmEdge building.
     - To build the WASI-NN plug-in with multiple backends, please use `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=<backend_name1>,<backend_name2>`.
 13. `WASMEDGE_PLUGIN_WASI_CRYPTO`: build the WasmEdge WASI-Crypto plug-in (Linux and MacOS platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
-14. `WASMEDGE_PLUGIN_WASI_LOGGING`: build the WasmEdge WASI-Logging plug-in (Linux and MacOS platforms only). Default is `OFF`.
+14. `WASMEDGE_PLUGIN_WASI_LOGGING`: build the WasmEdge WASI-Logging plug-in (Linux and MacOS platforms only). Default is `ON`.
+    - In WasmEdge `0.14.1`, the WASI-Logging plug-in is bundled into the WasmEdge library and will not generate the plug-in shared library target.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
 15. `WASMEDGE_PLUGIN_WASM_BPF`: build the WasmEdge wasm_bpf plugin (Linux platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
@@ -91,7 +92,7 @@ Developers can set the CMake options to customize the WasmEdge building.
 
 Developers can follow the steps to build WasmEdge with plug-ins from source.
 
-- [WASI-NN (OpenVINO, PyTorch, or TensorFlow-Lite backends)](plugin/wasi_nn.md)
+- [WASI-NN (with several backends)](plugin/wasi_nn.md)
 - [WASI-Crypto](plugin/wasi_crypto.md)
 - [WasmEdge-Image](plugin/image.md)
 - [WasmEdge-TensorFlow](plugin/tensorflow.md)

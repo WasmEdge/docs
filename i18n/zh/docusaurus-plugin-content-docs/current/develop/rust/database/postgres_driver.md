@@ -9,7 +9,7 @@ A database connection is necessary for today's enterprise development. WasmEdge 
 <!-- prettier-ignore -->
 :::note
 Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
-Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
+Make sure that you read the [special notes on networking apps](../setup#special-notes-for-networking-apps) especially if you are compiling Rust programs on a Mac.
 :::
 
 ## Run the example
@@ -31,7 +31,7 @@ wasmedge --env "DATABASE_URL=postgres://user:passwd@localhost/testdb" target/was
 
 In order to compile the `tokio-postgres` and `tokio` crates, we will need to apply patches to add WasmEdge-specific socket APIs to those crates in `Cargo.toml`.
 
-```
+```toml
 [patch.crates-io]
 tokio = { git = "https://github.com/second-state/wasi_tokio.git", branch = "v1.36.x" }
 socket2 = { git = "https://github.com/second-state/socket2.git", branch = "v0.5.x" }
@@ -151,4 +151,3 @@ async fn main() -> Result<(), Error> {
     Ok(())
 }
 ```
-

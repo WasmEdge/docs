@@ -9,7 +9,7 @@ The database connection is necessary for today's enterprise development. WasmEdg
 <!-- prettier-ignore -->
 :::note
 Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
-Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
+Make sure that you read the [special notes on networking apps](../setup#special-notes-for-networking-apps) especially if you are compiling Rust programs on a Mac.
 :::
 
 ## Run the example
@@ -45,7 +45,7 @@ wasmedge --env "DATABASE_SSL=1" --env "DATABASE_URL=mysql://user:passwd@mydb.123
 In order to compile the `mysql_async` and `tokio` crates, we will need to apply two patches to add
 WasmEdge-specific socket APIs to those crates. The following example shows that the TLS connection is enabled.
 
-```
+```toml
 [patch.crates-io]
 tokio = { git = "https://github.com/second-state/wasi_tokio.git", branch = "v1.36.x" }
 socket2 = { git = "https://github.com/second-state/socket2.git", branch = "v0.5.x" }
@@ -63,7 +63,7 @@ statements.
 
 Connect to a MySQL database.
 
-```
+```rust
     // Below we create a customized connection pool
     let opts = Opts::from_url(&*get_url()).unwrap();
     let mut builder = OptsBuilder::from_opts(opts);
@@ -80,7 +80,7 @@ Connect to a MySQL database.
 
 Create a table on the connected database.
 
-```
+```rust
     // create table if no tables exist
     let result = r"SHOW TABLES LIKE 'orders';"
         .with(())
@@ -100,7 +100,7 @@ Create a table on the connected database.
 
 Insert some records into the MySQL database using SQL.
 
-```
+```rust
     let orders = vec![
         Order::new(1, 12, 2, 56.0, 15.0, 2.0, String::from("Mataderos 2312")),
         Order::new(2, 15, 3, 256.0, 30.0, 16.0, String::from("1234 NW Bobcat")),
@@ -128,7 +128,7 @@ Insert some records into the MySQL database using SQL.
 
 Query the database.
 
-```
+```rust
     // query data
     let loaded_orders = "SELECT * FROM orders"
         .with(())
@@ -153,8 +153,8 @@ Query the database.
 
 Delete some records from the database.
 
-```
-    // // delete some data
+```rust
+    // delete some data
     r"DELETE FROM orders WHERE order_id=4;"
         .ignore(&mut conn)
         .await?;
@@ -183,8 +183,8 @@ Delete some records from the database.
 
 Update records in the MySQL database.
 
-```
-    // // update some data
+```rust
+    // update some data
     r"UPDATE orders
     SET shipping_address = '8366 Elizabeth St.'
     WHERE order_id = 2;"
@@ -214,8 +214,7 @@ Update records in the MySQL database.
 
 Close the database connection.
 
-```
+```rust
     drop(conn);
     pool.disconnect().await.unwrap();
 ```
-

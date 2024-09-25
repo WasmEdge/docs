@@ -4,7 +4,6 @@ sidebar_position: 8
 
 # Contributing Guide
 
-
 * [New Contributor Guide](#contributing-guide)
   * [Ways to Contribute](#ways-to-contribute)
   * [Find an Issue](#find-an-issue)
@@ -43,10 +42,9 @@ We welcome many different types of contributions including:
 
 Not everything happens through a GitHub pull request. Please come to our
 [meetings](https://docs.google.com/document/d/1iFlVl7R97Lze4RDykzElJGDjjWYDlkI8Rhf8g4dQ5Rk/edit?usp=sharing) or [contact us](https://groups.google.com/g/wasmedge) and let's discuss how we can work
-together. 
+together.
 
 ### Come to Meetings
-
 
 Absolutely everyone is welcome to come to any of our meetings. You never need an
 invite to join us. In fact, we want you to join us, even if you don’t have
@@ -66,7 +64,7 @@ suitable for someone who isn't a core maintainer and is good to move onto after
 your first pull request.
 
 Sometimes there won’t be any issues with these labels. That’s ok! There is
-likely still something for you to work on. If you want to contribute but 
+likely still something for you to work on. If you want to contribute but
 don’t know where to start or can't find a suitable issue, you can leave a comment under this issue like "I'd like to work on this. Can you tell XYZ (list the stuff you want to communicate)" or send your questions to our discord server or slack channel.
 
 Once you see an issue that you'd like to work on, please post a comment saying
@@ -85,11 +83,10 @@ Before opening any issue, please look up the existing [issues](https://github.co
 
 When reporting issues, always include:
 
-- Version of your system
-- Configuration files of WasmEdge
+* Version of your system
+* Configuration files of WasmEdge
 
 Because the issues are open to the public, when submitting the log and configuration files, be sure to remove any sensitive information, e.g. user name, password, IP address, and company name. You can replace those parts with "REDACTED" or other strings like "\*\*\*\*". Be sure to include the steps to reproduce the problem if applicable. It can help us understand and fix your issue faster.
-
 
 ## Pull Request Lifecycle
 
@@ -99,13 +96,13 @@ Please submit a pull request broken down into small changes bit by bit. A pull r
 
 Generally, once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation and comments, and coding style. If your PR is not ready to review, please mark your PR as a draft.
 
-The reviewers will give you some feedback in three work days. 
+The reviewers will give you some feedback in three work days.
 
-After the first review is done, the PR contributor is expected to review and make some changes based on the review in 5 workdays. 
+After the first review is done, the PR contributor is expected to review and make some changes based on the review in 5 workdays.
 
 If you have finished the adjustments, mark the problem as solved, then the reviewers will review your PR again in 2 workdays.
 
-If the PR contributor doesn't respond to the PR in 30 days, the maintainer will close the PR. The original PR contributor is welcome to open it again. 
+If the PR contributor doesn't respond to the PR in 30 days, the maintainer will close the PR. The original PR contributor is welcome to open it again.
 
 If the PR contributor doesn't want to maintain the PR due to some reason, please enable maintainers to edit this PR if you still want this PR to be merged.
 
@@ -124,6 +121,7 @@ To build WasmEdge from the source, please refer to: [Build WasmEdge from source]
 ## Sign Your Commits
 
 ### DCO
+
 Licensing is important to open source projects. It provides some assurances that
 the software will continue to be available based under the terms that the
 author(s) desired. We require that contributors sign off on commits submitted to
@@ -143,10 +141,9 @@ Git has a `-s` command line option to do this automatically:
     git commit -s -m 'This is my commit message'
 
 If you forgot to do this and have not yet pushed your changes to the remote
-repository, you can amend your commit with the sign-off by running 
+repository, you can amend your commit with the sign-off by running
 
     git commit --amend -s 
-
 
 ## Pull Request Checklist
 
@@ -159,9 +156,7 @@ before you submit your code:
 * DCO: Did you sign off your commit
 * Code of conduct: Did you follow the CNCF code of conduct
 
-
 ## Reporting issues
-
 
 ## Documenting
 

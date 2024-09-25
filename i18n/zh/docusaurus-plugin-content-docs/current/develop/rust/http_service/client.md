@@ -9,7 +9,7 @@ WasmEdge allows Rust developers to use APIs they are already familiar with to ac
 <!-- prettier-ignore -->
 :::note
 Before we start, [you need to have Rust and WasmEdge installed](../setup.md).
-Make sure that you read the [special notes on networking apps](../setup#special-notes) especially if you are compiling Rust programs on a Mac.
+Make sure that you read the [special notes on networking apps](../setup#special-notes-for-networking-apps) especially if you are compiling Rust programs on a Mac.
 :::
 
 We will discuss HTTP and HTTPS clients using popular Rust APIs.
@@ -110,7 +110,7 @@ wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_
 wasmedge wasmedge_hyper_client.wasm
 ```
 
-In your Rust application, import the [hyper](https://crates.io/crates/hyper) crate, 
+In your Rust application, import the [hyper](https://crates.io/crates/hyper) crate,
 and patch it with WasmEdge sockets patches.
 Just add the following line to your `Cargo.toml`.
 
@@ -139,7 +139,7 @@ wasmedge wasmedge_hyper_client_https.wasm
 
 In the HTTPS version of `Cargo.toml`, you just need to import the standard [hyper-rustls](https://crates.io/crates/hyper-rustls), [rustls](https://crates.io/crates/rustls) and [webpki-roots](https://crates.io/crates/webpki-roots) crates with the same patches as above.
 
-```
+```toml
 [patch.crates-io]
 tokio = { git = "https://github.com/second-state/wasi_tokio.git", branch = "v1.36.x" }
 socket2 = { git = "https://github.com/second-state/socket2.git", branch = "v0.5.x" }
@@ -157,7 +157,7 @@ pretty_env_logger = "0.4.0"
 
 <!-- prettier-ignore -->
 :::note
-If you need to compile `rustls` as shown in the `Cargo.toml` above on the MacOS, you will need the [wasi-sdk version of clang](../setup#compile-rust-tls-on-macos).
+If you need to compile `rustls` as shown in the `Cargo.toml` above on the MacOS, you will need the [wasi-sdk version of clang](../setup#tls-on-macos).
 :::
 
 The [Rust example code](https://github.com/WasmEdge/wasmedge_hyper_demo/blob/main/client/src/main.rs) below shows an HTTP GET request.
@@ -212,4 +212,3 @@ async fn post_url_return_str (url: hyper::Uri, post_body: &'static [u8]) -> Resu
     Ok(())
 }
 ```
-
