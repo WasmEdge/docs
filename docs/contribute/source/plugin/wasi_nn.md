@@ -452,3 +452,26 @@ If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set th
 :::
 
 Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with ChatTTS backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.so` after installation.
+
+
+## Build WasmEdge with WASI-NN MLX Backend
+
+You can directly build and install WasmEdge from source or custom install mlx and set `CMAKE_INSTALL_PREFIX` variable.
+
+Build and install WasmEdge from source:
+``` bash
+cd <path/to/your/wasmedge/source/folder>
+
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="mlx"
+cmake --build build
+
+# For the WASI-NN plugin, you should install this project.
+cmake --install build
+```
+
+<!-- prettier-ignore -->
+:::note
+If the built `wasmedge` CLI tool cannot find the WASI-NN plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasi_nn/`) to try to fix this issue.
+:::
+
+Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and the WASI-NN with MLX backend plug-in under `/usr/local/lib/wasmedge/libwasmedgePluginWasiNN.dylib` after installation.
