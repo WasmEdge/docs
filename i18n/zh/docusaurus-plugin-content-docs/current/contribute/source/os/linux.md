@@ -34,6 +34,8 @@ Please check that these dependencies are satisfied.
 - LLVM 12.0.0 (>= 10.0.0)
 - _(Optional)_ GCC 11.1.0 (>= 9.4.0), install it if you prefer to use GCC toolchain.
 
+After `WasmEdge 0.13.0`, the `boost` dependency is not needed.
+
 #### For Ubuntu 22.04
 
 ```bash

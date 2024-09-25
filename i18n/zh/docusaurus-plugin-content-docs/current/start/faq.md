@@ -34,4 +34,8 @@ Yes, WasmEdge can use Tensorflow as its [inference](https://wasmedge.org/docs/em
 
 WasmEdge provides the WASI (WebAssembly System Interface) API for interacting with the host system, including file operations. You can use the [WASI API](https://wasmedge.org/docs/embed/go/reference/0.11.x?_highlight=wasi&_highlight=api#preregistrations) to open and read files from the host system.
 
+## 8. What's the relationship between WasmEdge and Second State
+
+The relationship between WasmEdge and Second State is rooted in the latter contributing their WasmEdge Runtime project to the Cloud Native Computing Foundation (CNCF). Subsequently, Second State became one of the maintainers for WasmEdge. As WasmEdge seeks to broaden its community, it continues to search for additional maintainers.
+
 Please remember, this FAQ page is not exhaustive, and the WasmEdge community is always ready to help with any questions or issues you may have. Don't hesitate to reach out if you need assistance in our [Discord server](https://discord.gg/h4KDyB8XTt).

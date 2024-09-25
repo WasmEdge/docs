@@ -6,6 +6,12 @@ sidebar_position: 1
 
 WASI-Logging allows WebAssembly applications to log messages in a standardized way. This becomes particularly helpful when debugging applications or understanding the flow of execution within them. The WASI-Logging plug-in is designed to be straightforward to use, enabling developers to focus more on their application logic and less on logging mechanics.
 
+<!-- prettier-ignore -->
+:::note
+In WasmEdge `0.14.1` version, this plug-in is bundled into the WasmEdge library and not generate the plug-in shared library.
+The plug-in building architecture will be refactored in the future. Therefore we reserve this page for documentation before `0.14.0` versions.
+:::
+
 ## Prerequisites
 
 The prerequisite of the Wasi-Logging plug-in is the same as the WasmEdge building environment on the [Linux](../os/linux.md) and [MacOS](../os/macos.md) platforms.

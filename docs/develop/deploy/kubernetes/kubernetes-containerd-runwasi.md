@@ -18,10 +18,8 @@ In the rest of this section, we will explain the steps in detail.
 Please ensure that you have completed the following steps before proceeding with this setup.
 
 - Install the latest version of [Wasmedge](../../../start/install.md)
-- Ensure that you have containerd setup following the [instructions here](../../deploy/cri-runtime/containerd-crun.md). 
+- Ensure that you have containerd setup following the [instructions here](../../deploy/cri-runtime/containerd-crun.md).
 - Ensure that you have installed and [setup runwasi](../../deploy/cri-runtime/containerd.md) for containerd-shim-wasmedge
-
-
 
 ## Install and start Kubernetes
 
@@ -56,7 +54,6 @@ Local Kubernetes cluster is running. Press Ctrl-C to shut it down.
 
 Do NOT close your terminal window. Kubernetes is running!
 
-
 ## Run and test the Kubernetes Cluster
 
 Finally, we can run WebAssembly programs in Kubernetes as containers in pods. In this section, we will start from **another terminal window** and start using the cluster.
@@ -87,10 +84,11 @@ CoreDNS is running at https://localhost:6443/api/v1/namespaces/kube-system/servi
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-## Configure containerd and Kubernetes for Wasmedge Runtime 
+## Configure containerd and Kubernetes for Wasmedge Runtime
 
 Next we will configure containerd to add support for the containerd-shim-wasmedge.
 Please ensure that you have [setup runwasi](../../deploy/cri-runtime/containerd.md) to work with WasmEdge container images.
+
 ```bash
 # Run the following command as root user
 sudo bash -c "containerd config default > /etc/containerd/config.toml"
@@ -118,6 +116,7 @@ sudo cluster/kubectl.sh label nodes 127.0.0.1 runtime=wasm
 # A successful output from the above command looks like this
 node/127.0.0.1 labeled
 ```
+
 ### A WebAssembly-based HTTP service
 
 [A separate article](https://github.com/second-state/wasmedge-containers-examples/blob/main/http_server_wasi_app.md) explains how to compile, package, and publish a simple WebAssembly HTTP service application as a container image to Docker hub. Run the WebAssembly-based image from Docker Hub in the Kubernetes cluster as follows.
@@ -134,14 +133,3 @@ echo: name=WasmEdge
 ```
 
 That's it!
-
-
-
-
-
-
-
-
-
-
-

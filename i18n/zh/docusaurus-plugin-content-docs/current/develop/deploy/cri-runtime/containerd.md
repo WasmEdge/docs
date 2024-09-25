@@ -19,7 +19,9 @@ The containerd-shim [runwasi](https://github.com/containerd/runwasi/) project su
 3. Build and install the wasmedge-containerd-shim
 
    ```bash
+   # Reference: https://github.com/containerd/runwasi/blob/main/CONTRIBUTING.md#setting-up-your-local-environment
    cd runwasi
+   ./scripts/setup-linux.sh
    make build-wasmedge
    INSTALL="sudo install" LN="sudo ln -sf" make install-wasmedge
    ```
