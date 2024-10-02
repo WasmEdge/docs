@@ -26,8 +26,7 @@ cargo build --target wasm32-wasi --release
 We will use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge target/wasm32-wasi/release/hello.wasm
-Hello WasmEdge
+wasmedge target/wasm32-wasi/release/hello.wasm
 ```
 
 ## A simple function
@@ -56,8 +55,7 @@ cargo build --target wasm32-wasi --release
 We will use `wasmedge` in reactor mode to run the program. We pass the function name and its input parameters as command line arguments.
 
 ```bash
-$ wasmedge --reactor target/wasm32-wasi/release/add.wasm add 2 2
-4
+wasmedge --reactor target/wasm32-wasi/release/add.wasm add 2 2
 ```
 
 ## Pass parameters with complex data types
@@ -72,19 +70,13 @@ Of course, in most cases, you will not call functions using CLI arguments. Inste
 If we don't have extra notes for AoT, all the WASM file will be executed in the interpreter mode, which is much slower. To achieve native Rust performance for those applications, you could use the `wasmedge compile` command to AOT compile the `wasm` program and then run it with the `wasmedge` command.
 
 ```bash
-$ wasmedge compile hello.wasm hello_aot.wasm
-
-$ wasmedge hello_aot.wasm second state
-hello
-second
-state
+wasmedge compile hello.wasm hello_aot.wasm
+wasmedge hello_aot.wasm second state
 ```
 
 For the `--reactor` mode,
 
 ```bash
-$ wasmedge compile add.wasm add_aot.wasm
-
-$ wasmedge --reactor add_aot.wasm add 2 2
-4
+wasmedge compile add.wasm add_aot.wasm
+wasmedge --reactor add_aot.wasm add 2 2
 ```
