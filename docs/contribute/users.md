@@ -37,7 +37,7 @@ This list is constantly being updated. Please submit a PR to add your own item i
 | WinSoft | Use WasmEdge to improve IDE’s user experience | <https://winsoft.sk/webassembly.htm> |
 | ParaState | Use WasmEdge to execute smart contracts on the ParaState blockchain | <https://www.parastate.io/> |
 | Plurigrid | Use WasmEdge to run client-side / edge simulations | <https://twitter.com/bmorphism/status/1606237485037674499> |
-| XRPL Labs | Use WasmEdge to execute smart contracts on the Ripple blockchain | <https://github.com/XRPL-Labs/xrpld-hooks> |
+| Xahau Network | Use WasmEdge to execute smart contracts on the Xahau blockchain | <[https://github.com/](https://github.com/Xahau/xahaud)> |
 | API7 | Run WasmEdge in OpenResty/Nginx | <https://github.com/api7/wasm-nginx-module> |
 | YoMo | Use WasmEdge to support user-defined functions (UDF) in streaming data pipelines | [https://github.com/yomorun/yomo-wasmedge-tensorflow](https://github.com/yomorun/yomo) |
 | libsql | Use WasmEdge to support user-defined functions (UDF) in a database | <https://github.com/libsql/libsql/pull/131> |
