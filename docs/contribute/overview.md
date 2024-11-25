@@ -15,6 +15,7 @@ To help new contributors understand WasmEdge development workflow, this guide wi
 - [WasmEdge Fuzzing](fuzzing.md)
 - [WasmEdge internal explanation](internal.md)
 - [WasmEdge installer system explanation](installer.md)
+- [WasmEdge installer v2 system explanation](installer_v2.md)
 - [contributing steps](contribute.md)
 - [WasmEdge release process](release.md)
 - [Join WasmEdge community](community.md)
