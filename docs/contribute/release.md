@@ -48,7 +48,7 @@ sidebar_position: 9
 
 ## Create the Official Release
 
-- [ ] Make sure the `Changelog.md` and `.CurrentChangelog.md` have the correct version number and the release date.
+- [ ] Make sure the `Changelog.md`, `.CurrentChangelog.md` and the `SECURITY.md` have the correct version number and the release date.
 - [ ] Use git tag to create a new release tag `major.minor.patch`. And push this tag to GitHub.
 - [ ] Wait for the CI builds and push the release binaries and release notes to the GitHub release page.
 - [ ] Publish the release.
