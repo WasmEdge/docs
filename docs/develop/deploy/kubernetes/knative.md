@@ -76,7 +76,7 @@ File content is This is in a file
 
 ## Creating a cluster with kubeadm
 
-Refering to the tree documents [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/), [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) and [Install flannel cni](https://github.com/flannel-io/flannel#deploying-flannel-manually), to create a kubernetes cluster.
+Referring to the tree documents [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/), [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) and [Install flannel cni](https://github.com/flannel-io/flannel#deploying-flannel-manually), to create a kubernetes cluster.
 
 ```bash
 # install kubeadm
