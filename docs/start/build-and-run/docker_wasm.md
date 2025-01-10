@@ -54,7 +54,7 @@ FROM buildbase AS build
 COPY Cargo.toml .
 COPY src ./src
 # Build the WASM binary
-RUN cargo build --target wasm32-wasi --release
+RUN cargo build --target wasm32-wasip1 --release
 ```
 
 The third part is the essential. It copies the WASM file into an empty `scratch` container and then set the WASM file as the `ENTRYPOINT` of the container. It is the container image `rust-example-hello` built by the command in this section.
@@ -62,7 +62,7 @@ The third part is the essential. It copies the WASM file into an empty `scratch`
 ```dockerfile
 FROM scratch
 ENTRYPOINT [ "hello.wasm" ]
-COPY --link --from=build /src/target/wasm32-wasi/release/hello.wasm /hello.wasm
+COPY --link --from=build /src/target/wasm32-wasip1/release/hello.wasm /hello.wasm
 ```
 
 The WASM container image is only 0.5MB. It is much smaller than a natively compiled Rust program in a minimal Linux container.

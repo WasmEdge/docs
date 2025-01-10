@@ -131,11 +131,11 @@ You should add `wasm32-wasi` target to rust to compile this function into WebAss
 rustup target add wasm32-wasi
 
 cd flow/rust_mobilenet_food
-cargo build --target wasm32-wasi --release
-# The output WASM will be target/wasm32-wasi/release/rust_mobilenet_food_lib.wasm
+cargo build --target wasm32-wasip1 --release
+# The output WASM will be target/wasm32-wasip1/release/rust_mobilenet_food_lib.wasm
 
 # Copy the wasm bytecode file to the flow/ directory
-cp target/wasm32-wasi/release/rust_mobilenet_food_lib.wasm ../
+cp target/wasm32-wasip1/release/rust_mobilenet_food_lib.wasm ../
 ```
 
 To release the best performance of WasmEdge, you should enable the AOT mode by compiling the `.wasm` file to the `.so`.

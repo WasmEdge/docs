@@ -27,9 +27,9 @@ git clone https://github.com/WasmEdge/wasmedge_hyper_demo
 cd wasmedge_hyper_demo/server-axum
 
 # Build the Rust code
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler for better performance
-wasmedge compile target/wasm32-wasi/release/wasmedge_axum_server.wasm wasmedge_axum_server.wasm
+wasmedge compile target/wasm32-wasip1/release/wasmedge_axum_server.wasm wasmedge_axum_server.wasm
 
 # Run the example
 wasmedge wasmedge_axum_server.wasm
@@ -103,9 +103,9 @@ git clone https://github.com/WasmEdge/wasmedge_hyper_demo
 cd wasmedge_hyper_demo/server
 
 # Build the Rust code
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler to get better performance
-wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_server.wasm wasmedge_hyper_server.wasm
+wasmedge compile target/wasm32-wasip1/release/wasmedge_hyper_server.wasm wasmedge_hyper_server.wasm
 
 # Run the example
 wasmedge wasmedge_hyper_server.wasm

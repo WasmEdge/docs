@@ -38,8 +38,8 @@ You can build the standard `Cargo` command into a WebAssembly function.
 ```bash
 git clone https://github.com/second-state/WasmEdge-go-examples.git
 cd go_TfliteFood/rust_tflite_food
-cargo build --target wasm32-wasi --release
-cp target/wasm32-wasi/release/rust_tflite_food_lib.wasm ../
+cargo build --target wasm32-wasip1 --release
+cp target/wasm32-wasip1/release/rust_tflite_food_lib.wasm ../
 cd ../
 ```
 

@@ -128,7 +128,7 @@ After completing your code, you can follow the command to compile into WASM.
 cargo build --target=wasm32-wasi
 ```
 
-The output WASM file will be at `target/wasm32-wasi/debug/` or `target/wasm32-wasi/release`.
+The output WASM file will be at `target/wasm32-wasip1/debug/` or `target/wasm32-wasip1/release`.
 
 Please refer to [WasmEdge CLI](../../../start/build-and-run/cli.md) for WASM execution.
 

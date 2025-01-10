@@ -58,13 +58,13 @@ You can use Rust’s `cargo` tool to build the Rust program into WebAssembly byt
 
 ```bash
 cd api/functions/image-grayscale/
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
 Copy the build artifacts to the `api` folder.
 
 ```bash
-cp target/wasm32-wasi/release/grayscale.wasm ../../
+cp target/wasm32-wasip1/release/grayscale.wasm ../../
 ```
 
 > When we build the docker image, `api/pre.sh` is executed. `pre.sh` installs the WasmEdge runtime, and then compiles each WebAssembly bytecode program into a native `so` library for faster execution.
@@ -225,13 +225,13 @@ You can use the `cargo` tool to build the Rust program into WebAssembly bytecode
 
 ```bash
 cd api/functions/image-classification/
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
 Copy the build artifacts to the `api` folder.
 
 ```bash
-cp target/wasm32-wasi/release/classify.wasm ../../
+cp target/wasm32-wasip1/release/classify.wasm ../../
 ```
 
 Again, the `api/pre.sh` script installs WasmEdge runtime and its Tensorflow dependencies in this application. It also compiles the `classify.wasm` bytecode program to the `classify.so` native shared library at the time of deployment.

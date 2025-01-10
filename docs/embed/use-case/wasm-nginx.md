@@ -107,7 +107,7 @@ http {
     init_by_lua_block {
         local wasm = require("resty.proxy-wasm")
         package.loaded.plugin = assert(wasm.load("fault_injection",
-            "/path/to/fault-injection/target/wasm32-wasi/debug/fault_injection.wasm"))
+            "/path/to/fault-injection/target/wasm32-wasip1/debug/fault_injection.wasm"))
     }
     server {
         listen 1980;

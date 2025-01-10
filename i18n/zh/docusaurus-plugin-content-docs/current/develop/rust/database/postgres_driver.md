@@ -21,10 +21,10 @@ git clone https://github.com/WasmEdge/wasmedge-db-examples
 cd wasmedge-db-examples/postgres
 
 # Compile the rust code into WASM
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 
 # Execute SQL statements against a PostgreSQL database at postgres://user:passwd@localhost/testdb
-wasmedge --env "DATABASE_URL=postgres://user:passwd@localhost/testdb" target/wasm32-wasi/release/crud.wasm
+wasmedge --env "DATABASE_URL=postgres://user:passwd@localhost/testdb" target/wasm32-wasip1/release/crud.wasm
 ```
 
 ## Configuration

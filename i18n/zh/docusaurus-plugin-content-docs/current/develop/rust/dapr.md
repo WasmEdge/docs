@@ -59,8 +59,8 @@ Build.
 
 ```bash
 cd image-api-grayscale
-cargo build --target wasm32-wasi --release
-wasmedgec ./target/wasm32-wasi/release/image-api-grayscale.wasm image-api-grayscale.wasm
+cargo build --target wasm32-wasip1 --release
+wasmedgec ./target/wasm32-wasip1/release/image-api-grayscale.wasm image-api-grayscale.wasm
 ```
 
 Deploy.
@@ -81,8 +81,8 @@ Build.
 
 ```bash
 cd image-api-classify
-cargo build --target wasm32-wasi --release
-wasmedgec target/wasm32-wasi/release/wasmedge_hyper_server_tflite.wasm wasmedge_hyper_server_tflite.wasm
+cargo build --target wasm32-wasip1 --release
+wasmedgec target/wasm32-wasip1/release/wasmedge_hyper_server_tflite.wasm wasmedge_hyper_server_tflite.wasm
 ```
 
 Deploy.
@@ -103,8 +103,8 @@ Build.
 
 ```bash
 cd events-service
-cargo build --target wasm32-wasi --release
-wasmedgec target/wasm32-wasi/release/events_service.wasm events_service.wasm
+cargo build --target wasm32-wasip1 --release
+wasmedgec target/wasm32-wasip1/release/events_service.wasm events_service.wasm
 ```
 
 Deploy.

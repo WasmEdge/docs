@@ -304,8 +304,8 @@ Next, build and run the server.
 
 ```bash
 cd ../server-wasmedge
-cargo build --target wasm32-wasi
-OUTPUT_CSS="$(pwd)/../client/build/app.css" wasmedge --dir /static:../client/build ../../../target/wasm32-wasi/debug/isomorphic-server-wasmedge.wasm
+cargo build --target wasm32-wasip1
+OUTPUT_CSS="$(pwd)/../client/build/app.css" wasmedge --dir /static:../client/build ../../../target/wasm32-wasip1/debug/isomorphic-server-wasmedge.wasm
 ```
 
 Navigate to `http://127.0.0.1:3000`, and you will see the web application in action.

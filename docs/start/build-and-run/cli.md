@@ -108,13 +108,13 @@ The Hello World example is a standalone Rust application that can be executed by
 You will need to have the [Rust compiler installed](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites), and then use the following command to build the WASM bytecode file from the Rust source code.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 You can then use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge target/wasm32-wasi/release/hello.wasm
+$ wasmedge target/wasm32-wasip1/release/hello.wasm
 Hello WasmEdge!
 ```
 
@@ -197,7 +197,7 @@ The [add](https://github.com/second-state/wasm-learning/tree/master/cli/add) pro
 You will need to have the [Rust compiler](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites) installed, and then use the following command to build the WASM bytecode file from the Rust source code.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 You can execute `wasmedge` in reactor mode to invoke the `add()` function with two `i32` integer input parameters.

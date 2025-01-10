@@ -19,23 +19,23 @@ Then you could use the following command to clone and compile RustPython:
 ```bash
 git clone https://github.com/RustPython/RustPython.git
 cd RustPython
-cargo build --release --target wasm32-wasi --features="freeze-stdlib"
+cargo build --release --target wasm32-wasip1 --features="freeze-stdlib"
 ```
 
-`freeze-stdlib` feature is enabled for including Python standard library inside the binary file. The output file should be at `target/wasm32-wasi/release/rustpython.wasm`.
+`freeze-stdlib` feature is enabled for including Python standard library inside the binary file. The output file should be at `target/wasm32-wasip1/release/rustpython.wasm`.
 
 ## AOT Compile
 
 WasmEdge supports compiling WebAssembly bytecode programs into native machine code for better performance. It is highly recommended to compile the RustPython to native machine code before running.
 
 ```bash
-wasmedge compile ./target/wasm32-wasi/release/rustpython.wasm ./target/wasm32-wasi/release/rustpython.wasm
+wasmedge compile ./target/wasm32-wasip1/release/rustpython.wasm ./target/wasm32-wasip1/release/rustpython.wasm
 ```
 
 ## Run
 
 ```bash
-wasmedge ./target/wasm32-wasi/release/rustpython.wasm
+wasmedge ./target/wasm32-wasip1/release/rustpython.wasm
 ```
 
 Then you could get a Python shell in WebAssembly!
@@ -45,5 +45,5 @@ Then you could get a Python shell in WebAssembly!
 You can pre-open directories to let WASI programs have permission to read and write files stored on the real machine. The following command mounted the current working directory to the WASI virtual file system.
 
 ```bash
-wasmedge --dir .:. ./target/wasm32-wasi/release/rustpython.wasm
+wasmedge --dir .:. ./target/wasm32-wasip1/release/rustpython.wasm
 ```
