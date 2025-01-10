@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Access OS services
 
-The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssembly applications to access operating system services. The `wasm32-wasi` target in the Rust compiler supports WASI. This section will use [an example project](https://github.com/second-state/rust-examples/tree/main/wasi) to show how to use Rust standard APIs to access operating system services.
+The WASI (WebAssembly Systems Interface) standard is designed to allow WebAssembly applications to access operating system services. The `wasm32-wasip1` target in the Rust compiler supports WASI. This section will use [an example project](https://github.com/second-state/rust-examples/tree/main/wasi) to show how to use Rust standard APIs to access operating system services.
 
 <!-- prettier-ignore -->
 :::note
@@ -13,7 +13,7 @@ Before we start, ensure [you have Rust and WasmEdge installed](setup.md).
 
 ## Random numbers
 
-The WebAssembly VM is a pure software construct. It does not have a hardware entropy source for random numbers. That's why WASI defines a function for WebAssembly programs to call its host operating system to get a random seed. As a Rust developer, you only need to use the popular (de facto standard) `rand` and/or `getrandom` crates. With the `wasm32-wasi` compiler backend, these crates generate the correct WASI calls in the WebAssembly bytecode. The `Cargo.toml` dependencies are as follows.
+The WebAssembly VM is a pure software construct. It does not have a hardware entropy source for random numbers. That's why WASI defines a function for WebAssembly programs to call its host operating system to get a random seed. As a Rust developer, you only need to use the popular (de facto standard) `rand` and/or `getrandom` crates. With the `wasm32-wasip1` compiler backend, these crates generate the correct WASI calls in the WebAssembly bytecode. The `Cargo.toml` dependencies are as follows.
 
 ```toml
 [dependencies]
@@ -117,13 +117,13 @@ fn main() {
 Use the command below to compile [the Rust project](https://github.com/second-state/rust-examples/blob/main/wasi/).
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 To run it in `wasmedge`, do the following. The `--dir` option maps the current directory of the command shell to the file system's current directory inside the WebAssembly app.
 
 ```bash
-$ wasmedge --dir .:. target/wasm32-wasi/release/wasi.wasm
+$ wasmedge --dir .:. target/wasm32-wasip1/release/wasi.wasm
 Random number: -1157533356
 Random bytes: [159, 159, 9, 119, 106, 172, 207, 82, 173, 145, 233, 214, 104, 35, 23, 53, 155, 12, 102, 231, 117, 67, 192, 215, 207, 202, 128, 198, 213, 41, 235, 57, 89, 223, 138, 70, 185, 137, 74, 162, 42, 20, 226, 177, 114, 170, 172, 39, 149, 99, 122, 68, 115, 205, 155, 202, 4, 48, 178, 224, 124, 42, 24, 56, 215, 90, 203, 150, 106, 128, 127, 201, 177, 187, 20, 195, 172, 56, 72, 28, 53, 163, 59, 36, 129, 160, 69, 203, 196, 72, 113, 61, 46, 249, 81, 134, 94, 134, 159, 51, 233, 247, 253, 116, 202, 210, 100, 75, 74, 95, 197, 44, 81, 87, 89, 115, 20, 226, 143, 139, 50, 60, 196, 59, 206, 105, 161, 226]
 Printed from wasi: This is from a main function

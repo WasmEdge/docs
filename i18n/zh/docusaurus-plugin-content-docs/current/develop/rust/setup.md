@@ -26,10 +26,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ## Set up the Rust compiler's target
 
-To build a WASM file running in server-side WebAssembly like WasmEdge, we need to add the `wasm32-wasi` target for the Rust compiler after Rust is installed.
+To build a WASM file running in server-side WebAssembly like WasmEdge, we need to add the `wasm32-wasip1` target for the Rust compiler after Rust is installed.
 
 ```bash
-rustup target add wasm32-wasi
+rustup target add wasm32-wasip1
 ```
 
 ## Special notes for networking apps
@@ -40,21 +40,21 @@ WasmEdge supports async networking APIs provided by [Tokio](https://tokio.rs/) a
 need to add a few config flags to help the Rust compiler choose the correct feature branches in the library source code. Here is an example of `cargo build` command for compiling a tokio app to Wasm.
 
 ```bash
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 ```
 
 Alternatively, you could add these lines to the `.cargo/config.toml` file.
 
 ```toml
 [build]
-target = "wasm32-wasi"
+target = "wasm32-wasip1"
 rustflags = ["--cfg", "wasmedge", "--cfg", "tokio_unstable"]
 ```
 
 Once you have these lines in `.cargo/config.toml`, you can simply use the regular `cargo` command.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 ### TLS on MacOS

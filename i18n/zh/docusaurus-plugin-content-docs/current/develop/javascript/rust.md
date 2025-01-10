@@ -22,8 +22,8 @@ The examples are in the `examples/embed_js` folder in the `wasmedge-quickjs` rep
 
 ```bash
 cd examples/embed_js
-cargo build --target wasm32-wasi --release
-wasmedge --dir .:. target/wasm32-wasi/release/embed_js.wasm
+cargo build --target wasm32-wasip1 --release
+wasmedge --dir .:. target/wasm32-wasip1/release/embed_js.wasm
 ```
 
 ## Code explanation: embed JavaScript into a Rust program
@@ -191,8 +191,8 @@ The project is in the [examples/embed_rust_module](https://github.com/second-sta
 
 ```bash
 cd examples/embed_rust_module
-cargo build --target wasm32-wasi --release
-wasmedge --dir .:. target/wasm32-wasi/release/embed_rust_module.wasm
+cargo build --target wasm32-wasip1 --release
+wasmedge --dir .:. target/wasm32-wasip1/release/embed_rust_module.wasm
 ```
 
 ### Code explanation

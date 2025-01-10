@@ -23,10 +23,10 @@ git clone https://github.com/WasmEdge/wasmedge-db-examples
 cd wasmedge-db-examples/qdrant
 
 # Compile the rust code into WASM
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 
 # Perform vector data operations against a Qdrant at http://localhost:6333
-wasmedge target/wasm32-wasi/release/qdrant_examples.wasm
+wasmedge target/wasm32-wasip1/release/qdrant_examples.wasm
 ```
 
 ## Configuration

@@ -68,8 +68,8 @@ Next, let's compile the application into WebAssembly.
 ```bash
 git clone https://github.com/second-state/WasmEdge-go-examples.git
 cd rust_readfile
-cargo build --target wasm32-wasi
-# The output file will be target/wasm32-wasi/debug/rust_readfile.wasm
+cargo build --target wasm32-wasip1
+# The output file will be target/wasm32-wasip1/debug/rust_readfile.wasm
 ```
 
 ## The Go Host app
@@ -118,7 +118,7 @@ go build
 Run the Golang application.
 
 ```bash
-$ ./read_file rust_readfile/target/wasm32-wasi/debug/rust_readfile.wasm file.txt
+$ ./read_file rust_readfile/target/wasm32-wasip1/debug/rust_readfile.wasm file.txt
 Rust: Opening input file "file.txt"...
 Rust: Read input file "file.txt" succeeded.
 Rust: Please input the line number to print the line of file.

@@ -59,10 +59,10 @@ cd chat
 Second, use `cargo` to build the example project.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/llama-chat.wasm`. Next, use WasmEdge to load the llama-3.1-8b model and then ask the model questions.
+The output WASM file is `target/wasm32-wasip1/release/llama-chat.wasm`. Next, use WasmEdge to load the llama-3.1-8b model and then ask the model questions.
 
 ```bash
 wasmedge --dir .:. --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm -p llama-3-chat

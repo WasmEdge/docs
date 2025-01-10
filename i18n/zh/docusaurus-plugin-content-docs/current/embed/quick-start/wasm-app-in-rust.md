@@ -13,7 +13,7 @@ The [wasmedge-bindgen](https://github.com/second-state/wasmedge-bindgen) project
 
 ## Prerequisites
 
-We need to install [Rust and add `wasm32-wasi` target for Rust](../../develop/rust/setup.md)
+We need to install [Rust and add `wasm32-wasip1` target for Rust](../../develop/rust/setup.md)
 
 We also need to install `wasmedge-bindgen`.
 
@@ -115,9 +115,9 @@ Next, build the WebAssembly bytecode file using standard `Cargo` commands.
 
 ```bash
 cd rust_bindgen_funcs
-cargo build --target wasm32-wasi --release
-# The output WASM will be target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm.
-cp target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm ../
+cargo build --target wasm32-wasip1 --release
+# The output WASM will be target/wasm32-wasip1/release/rust_bindgen_funcs_lib.wasm.
+cp target/wasm32-wasip1/release/rust_bindgen_funcs_lib.wasm ../
 cd ../
 ```
 

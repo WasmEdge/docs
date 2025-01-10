@@ -25,9 +25,9 @@ git clone https://github.com/second-state/wasmedge_wasi_socket.git
 cd wasmedge_wasi_socket/http_client/
 
 # Build the Rust Code
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler to get better performance
-wasmedge compile target/wasm32-wasi/release/http_client.wasm http_client.wasm
+wasmedge compile target/wasm32-wasip1/release/http_client.wasm http_client.wasm
 
 # Run the example
 wasmedge http_client.wasm
@@ -69,9 +69,9 @@ git clone https://github.com/second-state/wasmedge_wasi_socket
 cd wasmedge_wasi_socket/nonblock_http_client/
 
 # Build the Rust Code
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler for better performance
-wasmedge compile target/wasm32-wasi/release/nonblock_http_client.wasm nonblock_http_client.wasm
+wasmedge compile target/wasm32-wasip1/release/nonblock_http_client.wasm nonblock_http_client.wasm
 
 # Run the example
 wasmedge nonblock_http_client.wasm

@@ -21,12 +21,12 @@ make
 
 ## The encrypt and decrypt example
 
-Build the encrypt and decrypt example into wasm. Since WasmEdge supports WASI functions here, we will use the `wasm32-wasi` target.
+Build the encrypt and decrypt example into wasm. Since WasmEdge supports WASI functions here, we will use the `wasm32-wasip1` target.
 
 ```bash
 git clone https://github.com/libsql/libsql_bindgen
 cd libsql_bindgen/examples/encrypt_decrypt
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 Then, we can build a SQL file for creating the `encrypt` function in a libSQL database.
@@ -35,7 +35,7 @@ Then, we can build a SQL file for creating the `encrypt` function in a libSQL da
 export FUNC_NAME='encrypt'
 echo "DROP FUNCTION IF EXISTS ${FUNC_NAME};" >> create_${FUNC_NAME}_udf.sql
 echo -n "CREATE FUNCTION ${FUNC_NAME} LANGUAGE wasm AS X'" >> create_${FUNC_NAME}_udf.sql
-xxd -p  ../../target/wasm32-wasi/release/libsql_encrypt_decrypt.wasm | tr -d "\n" >> create_${FUNC_NAME}_udf.sql
+xxd -p  ../../target/wasm32-wasip1/release/libsql_encrypt_decrypt.wasm | tr -d "\n" >> create_${FUNC_NAME}_udf.sql
 echo "';" >> create_${FUNC_NAME}_udf.sql
 ```
 
@@ -45,7 +45,7 @@ Create another SQL file for the `decrypt` function.
 export FUNC_NAME='decrypt'
 echo "DROP FUNCTION IF EXISTS ${FUNC_NAME};" >> create_${FUNC_NAME}_udf.sql
 echo -n "CREATE FUNCTION ${FUNC_NAME} LANGUAGE wasm AS X'" >> create_${FUNC_NAME}_udf.sql
-xxd -p  ../../target/wasm32-wasi/release/libsql_encrypt_decrypt.wasm | tr -d "\n" >> create_${FUNC_NAME}_udf.sql
+xxd -p  ../../target/wasm32-wasip1/release/libsql_encrypt_decrypt.wasm | tr -d "\n" >> create_${FUNC_NAME}_udf.sql
 echo "';" >> create_${FUNC_NAME}_udf.sql
 ```
 

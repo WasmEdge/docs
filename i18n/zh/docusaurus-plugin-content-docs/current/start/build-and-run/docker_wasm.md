@@ -43,7 +43,7 @@ RUN <<EOT bash
     apt-get install -y \
         git \
         clang
-    rustup target add wasm32-wasi
+    rustup target add wasm32-wasip1
 EOT
 ```
 
@@ -54,7 +54,7 @@ FROM buildbase AS build
 COPY Cargo.toml .
 COPY src ./src
 # Build the WASM binary
-RUN cargo build --target wasm32-wasi --release
+RUN cargo build --target wasm32-wasip1 --release
 ```
 
 第三部分是关键部分。它将 WASM 文件复制到一个空的 `scratch` 容器中，然后将 WASM 文件设置为容器的 `ENTRYPOINT`。`rust-example-hello` 是由本节中的命令构建的容器镜像。
@@ -62,7 +62,7 @@ RUN cargo build --target wasm32-wasi --release
 ```dockerfile
 FROM scratch
 ENTRYPOINT [ "hello.wasm" ]
-COPY --link --from=build /src/target/wasm32-wasi/release/hello.wasm /hello.wasm
+COPY --link --from=build /src/target/wasm32-wasip1/release/hello.wasm /hello.wasm
 ```
 
 WASM 容器镜像仅为 0.5MB。它比最小 Linux 容器中原生编译的 Rust 程序要小得多。

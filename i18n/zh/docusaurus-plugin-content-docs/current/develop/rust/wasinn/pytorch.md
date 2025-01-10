@@ -52,10 +52,10 @@ cd WasmEdge-WASINN-examples/pytorch-mobilenet-image/rust
 Second, use `cargo` to build the example project.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Next, use WasmEdge to load the PyTorch model and then use it to classify objects in your image.
+The output WASM file is `target/wasm32-wasip1/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Next, use WasmEdge to load the PyTorch model and then use it to classify objects in your image.
 
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-mobilenet-image.wasm mobilenet.pt input.jpg

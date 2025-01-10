@@ -55,10 +55,10 @@ cd WasmEdge-WASINN-examples/openvino-mobilenet-image/rust/
 Second, use `cargo` to build the template project.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Download the OpenVINO model files. Next, use WasmEdge to load the OpenVINO model and then use it to classify objects in your image.
+The output WASM file is `target/wasm32-wasip1/release/wasmedge-wasinn-example-mobilenet-image.wasm`. Download the OpenVINO model files. Next, use WasmEdge to load the OpenVINO model and then use it to classify objects in your image.
 
 ```bash
 ./download_mobilenet.sh

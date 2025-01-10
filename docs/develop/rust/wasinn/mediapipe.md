@@ -22,8 +22,8 @@ cd demo-object-detection/
 Build an inference application using the Mediapipe object detection model.
 
 ```bash
-cargo build --target wasm32-wasi --release
-wasmedge compile target/wasm32-wasi/release/demo-object-detection.wasm demo-object-detection.wasm
+cargo build --target wasm32-wasip1 --release
+wasmedge compile target/wasm32-wasip1/release/demo-object-detection.wasm demo-object-detection.wasm
 ```
 
 Run the inference application against an image. The input `example.jpg` image is shown below.
