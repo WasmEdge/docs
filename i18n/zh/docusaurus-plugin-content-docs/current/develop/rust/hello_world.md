@@ -20,13 +20,13 @@ fn main() {
 Build the WASM bytecode:
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 We will use the `wasmedge` command to run the program.
 
 ```bash
-$ wasmedge target/wasm32-wasi/release/hello.wasm
+$ wasmedge target/wasm32-wasip1/release/hello.wasm
 Hello WasmEdge
 ```
 
@@ -48,7 +48,7 @@ pub fn add(a: i32, b: i32) -> i32 {
 ### Build the WASM bytecode
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 ### Run the application from command line
@@ -56,7 +56,7 @@ cargo build --target wasm32-wasi --release
 We will use `wasmedge` in reactor mode to run the program. We pass the function name and its input parameters as command line arguments.
 
 ```bash
-$ wasmedge --reactor target/wasm32-wasi/release/add.wasm add 2 2
+$ wasmedge --reactor target/wasm32-wasip1/release/add.wasm add 2 2
 4
 ```
 

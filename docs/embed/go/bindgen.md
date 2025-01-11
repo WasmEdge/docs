@@ -93,8 +93,8 @@ First, we will compile the Rust source code into WebAssembly bytecode functions.
 ```bash
 git clone https://github.com/second-state/WasmEdge-go-examples.git
 cd rust_bindgen_funcs
-$cargo build --release --target wasm32-wasi
-# The output WASM will be target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm
+$cargo build --release --target wasm32-wasip1
+# The output WASM will be target/wasm32-wasip1/release/rust_bindgen_funcs_lib.wasm
 ```
 
 ## The Go host app
@@ -203,7 +203,7 @@ go build
 Run the Go application and it will run the WebAssembly functions embedded in the WasmEdge runtime.
 
 ```bash
-$ ./bindgen_funcs rust_bindgen_funcs/target/wasm32-wasi/release/rust_bindgen_funcs_lib.wasm
+$ ./bindgen_funcs rust_bindgen_funcs/target/wasm32-wasip1/release/rust_bindgen_funcs_lib.wasm
 Run bindgen -- create_line: {"points":[{"x":1.5,"y":3.8},{"x":2.5,"y":5.8}],"valid":true,"length":2.2360682,"desc":"A thin red line"}
 Run bindgen -- say: hello bindgen funcs test
 Run bindgen -- obfusticate: N dhvpx oebja sbk whzcf bire gur ynml qbt

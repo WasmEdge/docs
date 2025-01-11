@@ -101,13 +101,13 @@ Hello World 示例是一个独立的 Rust 应用程序，可以通过 [WasmEdge 
 你需要安装 [Rust 编译器](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites)，然后使用以下命令从 Rust 源代码构建 WASM 字节码文件。
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 你可以使用 `wasmedge` 指令运行这个程序：
 
 ```bash
-$ wasmedge target/wasm32-wasi/release/hello.wasm
+$ wasmedge target/wasm32-wasip1/release/hello.wasm
 Hello WasmEdge!
 ```
 
@@ -190,7 +190,7 @@ Hello WasmEdge!
 你需要安装 [Rust 编译器](https://github.com/second-state/rust-examples/blob/main/README.md#prerequisites)，然后使用以下命令从 Rust 源代码构建 WASM 字节码文件。
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 你可以在反应器模式下执行 `wasmedge`，以调用具有两个 `i32` 整数输入参数的 `add()` 函数。

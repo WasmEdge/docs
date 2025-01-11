@@ -76,7 +76,7 @@ git clone https://github.com/second-state/wasmedge-quickjs
 cd wasmedge-quickjs
 
 # Build the QuickJS JavaScript interpreter
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
 The WebAssembly-based JavaScript interpreter program is located in the build `target` directory.
@@ -84,7 +84,7 @@ The WebAssembly-based JavaScript interpreter program is located in the build `ta
 WasmEdge provides a `wasmedgec` utility to compile and add a native machine code section to the `wasm` file. You can use `wasmedge` to run the natively instrumented `wasm` file to get a much faster performance.
 
 ```bash
-wasmedge compile target/wasm32-wasi/release/wasmedge_quickjs.wasm wasmedge_quickjs.wasm
+wasmedge compile target/wasm32-wasip1/release/wasmedge_quickjs.wasm wasmedge_quickjs.wasm
 wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js
 ```
 

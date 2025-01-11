@@ -74,17 +74,17 @@ git clone https://github.com/second-state/wasm-learning.git
 cd wasm-learning/rust/birds_v1
 ```
 
-Use the `cargo` command to build a WASM bytecode file from the Rust source code. The WASM file is located at `target/wasm32-wasi/release/birds_v1.wasm`.
+Use the `cargo` command to build a WASM bytecode file from the Rust source code. The WASM file is located at `target/wasm32-wasip1/release/birds_v1.wasm`.
 
 ```bash
-rustup target add wasm32-wasi
-cargo build --release --target=wasm32-wasi
+rustup target add wasm32-wasip1
+cargo build --release --target=wasm32-wasip1
 ```
 
 Push the WASM bytecode file, tensorflow lite model file, and the test bird picture file onto the Android device using `adb`.
 
 ```bash
-adb push target/wasm32-wasi/release/birds_v1.wasm /data/local/tmp/WasmEdge-tensorflow-tools
+adb push target/wasm32-wasip1/release/birds_v1.wasm /data/local/tmp/WasmEdge-tensorflow-tools
 adb push lite-model_aiy_vision_classifier_birds_V1_3.tflite /data/local/tmp/WasmEdge-tensorflow-tools
 adb push bird.jpg /data/local/tmp/WasmEdge-tensorflow-tools
 ```

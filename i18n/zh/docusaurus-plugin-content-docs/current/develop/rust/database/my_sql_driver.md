@@ -21,10 +21,10 @@ git clone https://github.com/WasmEdge/wasmedge-db-examples
 cd wasmedge-db-examples/mysql_async
 
 # Compile the rust code into WASM
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 
 # Execute MySQL statements against a MySQL database at mysql://user:passwd@127.0.0.1:3306
-wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wasm32-wasi/release/crud.wasm
+wasmedge --env "DATABASE_URL=mysql://user:passwd@127.0.0.1:3306/mysql" target/wasm32-wasip1/release/crud.wasm
 ```
 
 <!-- prettier-ignore -->

@@ -52,10 +52,10 @@ cd WasmEdge-WASINN-examples/tflite-birds_v1-image/rust/
 Second, use `cargo` to build the example project.
 
 ```bash
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 ```
 
-The output WASM file is `target/wasm32-wasi/release/wasmedge-wasinn-example-tflite-bird-image.wasm`. Next, let's use WasmEdge to load the Tensorflow Lite model and then use it to classify objects in your image.
+The output WASM file is `target/wasm32-wasip1/release/wasmedge-wasinn-example-tflite-bird-image.wasm`. Next, let's use WasmEdge to load the Tensorflow Lite model and then use it to classify objects in your image.
 
 ```bash
 wasmedge --dir .:. wasmedge-wasinn-example-tflite-bird-image.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg

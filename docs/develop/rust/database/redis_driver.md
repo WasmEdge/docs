@@ -21,10 +21,10 @@ git clone https://github.com/WasmEdge/wasmedge-db-examples
 cd wasmedge-db-examples/redis
 
 # Compile the rust code into WASM
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 
 # Execute Redis command against a Redis instance at redis://localhost/
-wasmedge --env "REDIS_URL=redis://localhost/" target/wasm32-wasi/release/wasmedge-redis-client-examples.wasm
+wasmedge --env "REDIS_URL=redis://localhost/" target/wasm32-wasip1/release/wasmedge-redis-client-examples.wasm
 ```
 
 ## Configuration

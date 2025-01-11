@@ -31,10 +31,10 @@ git clone https://github.com/WasmEdge/wasmedge_reqwest_demo
 cd wasmedge_reqwest_demo
 
 # Build the Rust code
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler to get better performance
-wasmedge compile target/wasm32-wasi/release/http.wasm http.wasm
-wasmedge compile target/wasm32-wasi/release/https.wasm https.wasm
+wasmedge compile target/wasm32-wasip1/release/http.wasm http.wasm
+wasmedge compile target/wasm32-wasip1/release/https.wasm https.wasm
 
 # Run the HTTP GET and POST examples
 wasmedge http.wasm
@@ -102,9 +102,9 @@ git clone https://github.com/WasmEdge/wasmedge_hyper_demo
 cd wasmedge_hyper_demo/client
 
 # Build the Rust code
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler to get better performance
-wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
+wasmedge compile target/wasm32-wasip1/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
 
 # Run the example
 wasmedge wasmedge_hyper_client.wasm
@@ -130,8 +130,8 @@ The HTTPS version of the demo is as follows.
 ```bash
 // Build
 cd wasmedge_hyper_demo/client-https
-RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi --release
-wasmedge compile target/wasm32-wasi/release/wasmedge_hyper_client_https.wasm wasmedge_hyper_client_https.wasm
+RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasip1 --release
+wasmedge compile target/wasm32-wasip1/release/wasmedge_hyper_client_https.wasm wasmedge_hyper_client_https.wasm
 
 // Run
 wasmedge wasmedge_hyper_client_https.wasm

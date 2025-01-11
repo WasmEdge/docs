@@ -9,10 +9,10 @@ sidebar_position: 2
 
 ## 环境
 
-由于我们的演示 WebAssembly 函数是用 Rust 编写的，你将需要一个 [Rust 编译器](https://www.rust-lang.org/tools/install)。确保按照以下步骤安装 `wasm32-wasi` 编译目标，以便生成 WebAssembly 字节码。
+由于我们的演示 WebAssembly 函数是用 Rust 编写的，你将需要一个 [Rust 编译器](https://www.rust-lang.org/tools/install)。确保按照以下步骤安装 `wasm32-wasip1` 编译目标，以便生成 WebAssembly 字节码。
 
 ```bash
-rustup target add wasm32-wasi
+rustup target add wasm32-wasip1
 ```
 
 演示应用的前端是用 [Next.js](https://nextjs.org/) 编写的，并部署在 Netlify 上。我们假设你已经具备使用 Next.js 和 Netlify 的基本知识。
@@ -56,13 +56,13 @@ fn main() {
 
 ```bash
 cd api/functions/image-grayscale/
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
 将构建产物复制到 `api` 文件夹。
 
 ```bash
-cp target/wasm32-wasi/release/grayscale.wasm ../../
+cp target/wasm32-wasip1/release/grayscale.wasm ../../
 ```
 
 > 在设置无服务器环境时，Netlify 函数会运行 [`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/pre.sh)。该脚本安装 WasmEdge 运行时，然后将每个 WebAssembly 字节码程序编译为本机 `so` 库，以实现更快的执行。
@@ -144,13 +144,13 @@ pub fn main() {
 
 ```bash
 cd api/functions/image-classification/
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
 将构建产物复制到 `api` 文件夹中。
 
 ```bash
-cp target/wasm32-wasi/release/classify.wasm ../../
+cp target/wasm32-wasip1/release/classify.wasm ../../
 ```
 
 同样，[`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/tensorflow/api/pre.sh) 脚本在该应用程序中安装 WasmEdge 运行时及其 Tensorflow 依赖项。它还在部署时将 `classify.wasm` 字节码程序编译为 `classify.so` 本机共享库。

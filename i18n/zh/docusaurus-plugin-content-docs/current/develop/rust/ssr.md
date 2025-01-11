@@ -36,7 +36,7 @@ wasm-bindgen = { git = "https://github.com/KernelErr/wasm-bindgen.git", branch =
 
 <!-- prettier-ignore -->
 :::note
-Why do we need a forked `wasm-bindgen`? That is because `wasm-bindgen` is the required glue between Rust and HTML in the browser. On the server, however, we need to build the Rust code to the `wasm32-wasi` target, which is incompatible with `wasm-bindgen`. Our forked `wasm-bindgen` has conditional configs that remove browser-specific code in the generated `.wasm` file for the `wasm32-wasi` target.
+Why do we need a forked `wasm-bindgen`? That is because `wasm-bindgen` is the required glue between Rust and HTML in the browser. On the server, however, we need to build the Rust code to the `wasm32-wasip1` target, which is incompatible with `wasm-bindgen`. Our forked `wasm-bindgen` has conditional configs that remove browser-specific code in the generated `.wasm` file for the `wasm32-wasip1` target.
 :::
 
 Then replace the crate's `Cargo.toml` with the following content.
@@ -304,8 +304,8 @@ Next, build and run the server.
 
 ```bash
 cd ../server-wasmedge
-cargo build --target wasm32-wasi
-OUTPUT_CSS="$(pwd)/../client/build/app.css" wasmedge --dir /static:../client/build ../../../target/wasm32-wasi/debug/isomorphic-server-wasmedge.wasm
+cargo build --target wasm32-wasip1
+OUTPUT_CSS="$(pwd)/../client/build/app.css" wasmedge --dir /static:../client/build ../../../target/wasm32-wasip1/debug/isomorphic-server-wasmedge.wasm
 ```
 
 Navigate to `http://127.0.0.1:3000`, and you will see the web application in action.
@@ -330,9 +330,9 @@ Add the following to the `.cargo/config.toml` file.
 
 ```toml
 [build]
-target = "wasm32-wasi"
+target = "wasm32-wasip1"
 
-[target.wasm32-wasi]
+[target.wasm32-wasip1]
 runner = "wasmedge --dir /static:../client/build"
 ```
 

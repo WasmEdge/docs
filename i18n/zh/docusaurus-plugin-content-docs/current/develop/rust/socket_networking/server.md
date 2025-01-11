@@ -23,9 +23,9 @@ git clone https://github.com/second-state/wasmedge_wasi_socket
 cd wasmedge_wasi_socket/http_server
 
 # Build the Rust code
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler for better performance
-wasmedge compile target/wasm32-wasi/release/http_server.wasm http_server.wasm
+wasmedge compile target/wasm32-wasip1/release/http_server.wasm http_server.wasm
 
 # Run the example
 $wasmedge http_server.wasm
@@ -117,9 +117,9 @@ git clone https://github.com/second-state/wasmedge_wasi_socket
 cd wasmedge_wasi_socket
 
 # Build the Rust code
-cargo build --target wasm32-wasi --release
+cargo build --target wasm32-wasip1 --release
 # Use the AoT compiler for better performance
-wasmedge compile target/wasm32-wasi/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
+wasmedge compile target/wasm32-wasip1/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
 
 # Run the example
 wasmedge poll_tcp_listener.wasm

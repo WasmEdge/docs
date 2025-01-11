@@ -63,8 +63,8 @@ Use standard Rust compiler tools to compile the Rust source code into a WebAssem
 
 ```bash
 cd rust_memory_greet
-cargo build --target wasm32-wasi
-# The output WASM will be `target/wasm32-wasi/debug/rust_memory_greet_lib.wasm`.
+cargo build --target wasm32-wasip1
+# The output WASM will be `target/wasm32-wasip1/debug/rust_memory_greet_lib.wasm`.
 ```
 
 The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_MemoryGreet/greet_memory.go) must call `allocate` from the WasmEdge VM to get a pointer to the string parameter. It will then call the `greet` function in Rust with the pointer. After the function returns, the Go application will call `deallocate` to free the memory space.
@@ -367,8 +367,8 @@ Use standard Rust compiler tools to compile the Rust source code into a WebAssem
 
 ```bash
 cd rust_access_memory
-cargo build --target wasm32-wasi
-# The output WASM will be target/wasm32-wasi/debug/rust_access_memory_lib.wasm.
+cargo build --target wasm32-wasip1
+# The output WASM will be target/wasm32-wasip1/debug/rust_access_memory_lib.wasm.
 ```
 
 The [Go SDK application](https://github.com/second-state/WasmEdge-go-examples/blob/master/go_AccessMemory/run.go) must call `allocate` from the WasmEdge VM to get a pointer to the array. It will then call the `fib_array()` function in Rust and pass in the pointer. After the functions return, the Go application will use the WasmEdge `store` API to construct an array from the pointer in the call parameter (`fib_array()`) or in the return value (`fib_array_return_memory()`). The Go app will eventually call `deallocate` to free the memory space.

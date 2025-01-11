@@ -10,10 +10,10 @@ In this article we will show you two serverless functions in Rust and WasmEdge d
 
 ## Prerequisite
 
-Since our demo WebAssembly functions are written in Rust, you will need a [Rust compiler](https://www.rust-lang.org/tools/install). Make sure that you install the `wasm32-wasi` compiler target as follows, in order to generate WebAssembly bytecode.
+Since our demo WebAssembly functions are written in Rust, you will need a [Rust compiler](https://www.rust-lang.org/tools/install). Make sure that you install the `wasm32-wasip1` compiler target as follows, in order to generate WebAssembly bytecode.
 
 ```bash
-rustup target add wasm32-wasi
+rustup target add wasm32-wasip1
 ```
 
 The demo application front end is written in [Next.js](https://nextjs.org/), and deployed on Netlify. We will assume that you already have the basic knowledge of how to work with Next.js and Netlify.
@@ -56,13 +56,13 @@ You can use Rust’s `cargo` tool to build the Rust program into WebAssembly byt
 
 ```bash
 cd api/functions/image-grayscale/
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
 Copy the build artifacts to the `api` folder.
 
 ```bash
-cp target/wasm32-wasi/release/grayscale.wasm ../../
+cp target/wasm32-wasip1/release/grayscale.wasm ../../
 ```
 
 > The Netlify function runs [`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/main/api/pre.sh) upon setting up the serverless environment. It installs the WasmEdge runtime, and then compiles each WebAssembly bytecode program into a native `so` library for faster execution.
@@ -144,13 +144,13 @@ You can use the `cargo` tool to build the Rust program into WebAssembly bytecode
 
 ```bash
 cd api/functions/image-classification/
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
 Copy the build artifacts to the `api` folder.
 
 ```bash
-cp target/wasm32-wasi/release/classify.wasm ../../
+cp target/wasm32-wasip1/release/classify.wasm ../../
 ```
 
 Again, the [`api/pre.sh`](https://github.com/second-state/netlify-wasm-runtime/blob/tensorflow/api/pre.sh) script installs WasmEdge runtime and its Tensorflow dependencies in this application. It also compiles the `classify.wasm` bytecode program to the `classify.so` native shared library at the time of deployment.
