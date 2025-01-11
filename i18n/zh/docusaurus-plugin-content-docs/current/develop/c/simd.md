@@ -6,9 +6,9 @@ sidebar_position: 4
 
 [128-bit packed Single Instruction Multiple Data (SIMD)](https://webassembly.github.io/simd/core/syntax/instructions.html#simd-instructions) instructions provide simultaneous computations over packed data in just one instruction. It's commonly used to improve performance for multimedia applications. With the SIMD proposal, the modules can benefit from using these commonly used instructions in modern hardware to gain more speedup.
 
-If you are interested in enabling the SIMD proposal will improve how much performance of the applications, please refer to our [wasm32-wasip1 benchmark](https://github.com/second-state/wasm32-wasip1-benchmark) for more information. The Mandelbrot Set application can have a **2.65x** speedup in our benchmark.
+If you are interested in enabling the SIMD proposal will improve how much performance of the applications, please refer to our [wasm32-wasip1 benchmark](https://github.com/second-state/wasm32-wasi-benchmark) for more information. The Mandelbrot Set application can have a **2.65x** speedup in our benchmark.
 
-We modified the Mandelbrot Set example from our [wasm32-wasip1 benchmark project](https://github.com/second-state/wasm32-wasip1-benchmark/blob/master/src/mandelbrot.c). We will use this as an example in this article.
+We modified the Mandelbrot Set example from our [wasm32-wasip1 benchmark project](https://github.com/second-state/wasm32-wasi-benchmark/blob/master/src/mandelbrot.c). We will use this as an example in this article.
 
 ## Prerequisites
 
