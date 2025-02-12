@@ -32,7 +32,7 @@ WasmEdge will try to use the latest LLVM release to create our nightly build. If
 
 ```bash
 # Tools and libraries
-brew install cmake ninja llvm
+brew install cmake ninja lld llvm
 export LLVM_DIR="$(brew --prefix)/opt/llvm/lib/cmake"
 export CC=clang
 export CXX=clang++
