@@ -2,17 +2,17 @@
 sidebar_position: 1
 ---
 
-# Go API v0.13.4 Documentation
+# Go API v0.14.0 Documentation
 
 The following are the guides to working with the WasmEdge-Go SDK.
 
 ## Getting Started
 
-The WasmEdge-go requires golang version >= 1.16. Please check your golang version before installation. Developers can [download golang here](https://golang.org/dl/).
+The WasmEdge-go requires golang version >= 1.22. Please check your golang version before installation. Developers can [download golang here](https://golang.org/dl/).
 
 ```bash
 $ go version
-go version go1.16.5 linux/amd64
+go version go1.23.1 linux/amd64
 ```
 
 ### WasmEdge Installation
@@ -23,13 +23,11 @@ Developers must [install the WasmEdge shared library](../../../start/install.md#
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_go_version }}
 ```
 
-For the developers need the `TensorFlow` or `Image` extension for `WasmEdge-go`, please install the `WasmEdge` with extensions:
+For the developers need the plug-ins such as `TensorFlow` or `Image` for `WasmEdge-go`, please install the `WasmEdge` with plug-ins:
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e tf,image -v {{ wasmedge_go_version }}
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_tensorflow wasmedge_tensorflowlite wasmedge_image -v {{ wasmedge_go_version }}
 ```
-
-Noticed that the `TensorFlow` and `Image` extensions are only for the `Linux` platforms. After installation, developers can use the `source` command to update the include and linking searching path.
 
 ### Get WasmEdge-go
 
@@ -74,6 +72,44 @@ Developers can also use the `wasmedge.SetLogOff()` API to disable all logging.
 
 ### Value Types
 
+To describe the value types in WASM, WasmEdge-go uses the `ValType` struct to describe the value types.
+
+1. Number types: `i32`, `i64`, `f32`, `f64`, and `v128` for the `SIMD` proposal
+
+   ```go
+   vtype := wasmedge.NewValTypeI32()
+   // `vtype.IsI32()` will be `true`.
+   vtype = wasmedge.NewValTypeI64()
+   // `vtype.IsI64()` will be `true`.
+   vtype = wasmedge.NewValTypeF32()
+   // `vtype.IsF32()` will be `true`.
+   vtype = wasmedge.NewValTypeF64()
+   // `vtype.IsF64()` will be `true`.
+   vtype = wasmedge.NewValTypeV128()
+   // `vtype.IsV128()` will be `true`.
+
+   vtype2 := wasmedge.NewValTypeV128()
+   // `vtype.IsEqual(vtype2)` will be `true`.
+   ```
+
+2. Reference types: `funcref` and `externref` for the `Reference-Types` or `Typed-Function References` proposal
+
+   ```go
+   vtype := wasmedge.NewValTypeFuncRef()
+   // The nullable funcref type is generated.
+   // `vtype.IsFuncRef()` will be `true`.
+   // `vtype.IsRef()` will be `true`.
+   // `vtype.IsRefNull()` will be `true`.
+
+   vtype = wasmedge.NewValTypeExternRef()
+   // The nullable funcref type is generated.
+   // `vtype.IsExternRef()` will be `true`.
+   // `vtype.IsRef()` will be `true`.
+   // `vtype.IsRefNull()` will be `true`.
+   ```
+
+### Values
+
 In WasmEdge-go, the APIs will automatically do the conversion for the built-in types, and implement the data structure for the reference types.
 
 1. Number types: `i32`, `i64`, `f32`, and `f64`
@@ -99,7 +135,7 @@ In WasmEdge-go, the APIs will automatically do the conversion for the built-in t
    // `high` will be uint64(1234), `low` will be uint64(5678)
    ```
 
-3. Reference types: `FuncRef` and `ExternRef` for the `Reference-Types` proposal
+3. Reference types: `FuncRef` and `ExternRef` for the `Reference-Types` or `Typed-Function References` proposal
 
    ```go
    var funccxt *wasmedge.Function = ... // Create or get function object.
@@ -205,13 +241,13 @@ The WASM data structures are used for creating instances or can be queried from 
 
    ```go
    functype := wasmedge.NewFunctionType(
-     []wasmedge.ValType{
-       wasmedge.ValType_ExternRef,
-       wasmedge.ValType_I32,
-       wasmedge.ValType_I64,
-     }, []wasmedge.ValType{
-       wasmedge.ValType_F32,
-       wasmedge.ValType_F64,
+     []*wasmedge.ValType{
+       wasmedge.NewValTypeExternRef(),
+       wasmedge.NewValTypeI32(),
+       wasmedge.NewValTypeI64(),
+     }, []*wasmedge.ValType{
+       wasmedge.NewValTypeF32(),
+       wasmedge.NewValTypeF64(),
      })
 
    plen := functype.GetParametersLength()
@@ -219,9 +255,9 @@ The WASM data structures are used for creating instances or can be queried from 
    rlen := functype.GetReturnsLength()
    // `rlen` will be 2.
    plist := functype.GetParameters()
-   // `plist` will be `[]wasmedge.ValType{wasmedge.ValType_ExternRef, wasmedge.ValType_I32, wasmedge.ValType_I64}`.
+   // `plist` will be `[]*wasmedge.ValType` with the above parameter types data.
    rlist := functype.GetReturns()
-   // `rlist` will be `[]wasmedge.ValType{wasmedge.ValType_F32, wasmedge.ValType_F64}`.
+   // `rlist` will be `[]*wasmedge.ValType` with the above return types data.
 
    functype.Release()
    ```
@@ -232,10 +268,10 @@ The WASM data structures are used for creating instances or can be queried from 
 
    ```go
    lim := wasmedge.NewLimit(12)
-   tabtype := wasmedge.NewTableType(wasmedge.RefType_ExternRef, lim)
+   tabtype := wasmedge.NewTableType(wasmedge.NewValTypeExternRef(), lim)
 
    rtype := tabtype.GetRefType()
-   // `rtype` will be `wasmedge.RefType_ExternRef`.
+   // `rtype` will be `wasmedge.ValType` with `externref` value type.
    getlim := tabtype.GetLimit()
    // `getlim` will be the same value as `lim`.
 
@@ -261,19 +297,37 @@ The WASM data structures are used for creating instances or can be queried from 
    The `GlobalType` is an object holds the global type context and used for `Global` instance creation or getting information from `Global` instances.
 
    ```go
-   globtype := wasmedge.NewGlobalType(wasmedge.ValType_F64, wasmedge.ValMut_Var)
+   globtype := wasmedge.NewGlobalType(wasmedge.NewValTypeF64(), wasmedge.ValMut_Var)
 
    vtype := globtype.GetValType()
-   // `vtype` will be `wasmedge.ValType_F64`.
+   // `vtype` will be `wasmedge.ValType` with `i64` value type.
    vmut := globtype.GetMutability()
    // `vmut` will be `wasmedge.ValMut_Var`.
 
    globtype.Release()
    ```
 
-6. Import type context
+6. Tag type context
 
-   The `ImportType` is an object holds the import type context and used for getting the imports information from a [AST Module](#ast-module). Developers can get the external type (`function`, `table`, `memory`, or `global`), import module name, and external name from an `ImportType` object. The details about querying `ImportType` objects will be introduced in the [AST Module](#ast-module).
+   The `Tag Type` is an object holds the tag type context and used for getting information from `Tag` instances.
+   This will only usable if the `Exception Handling` proposal turned on.
+
+   ```go
+   var mod *wasmedge.Module = ...
+   // Assume that `mod` is an instantiated module instance.
+
+   // Get the tag instance by name.
+   taginst := mod.FindTag(...)
+   // Get the tag type from a tag instance.
+   tagtype := taginst.GetTagType()
+
+   functype := tagtype.GetFunctionType()
+   // `functype` will be `*FunctionType` retrieved from the tag type.
+   ```
+
+7. Import type context
+
+   The `ImportType` is an object holds the import type context and used for getting the imports information from a [AST Module](#ast-module). Developers can get the external type (`function`, `table`, `memory`, `global`, or `tag`), import module name, and external name from an `ImportType` object. The details about querying `ImportType` objects will be introduced in the [AST Module](#ast-module).
 
    ```go
    var ast *wasmedge.AST = ...
@@ -284,7 +338,7 @@ The WASM data structures are used for creating instances or can be queried from 
    for i, imptype := range imptypelist {
      exttype := imptype.GetExternalType()
      // The `exttype` must be one of `wasmedge.ExternType_Function`, `wasmedge.ExternType_Table`,
-     // wasmedge.ExternType_Memory`, or `wasmedge.ExternType_Global`.
+     // wasmedge.ExternType_Memory`, `wasmedge.ExternType_Global`, or `wasmedge.ExternType_Tag`.
 
      modname := imptype.GetModuleName()
      extname := imptype.GetExternalName()
@@ -292,13 +346,13 @@ The WASM data structures are used for creating instances or can be queried from 
 
      extval := imptype.GetExternalValue()
      // The `extval` is the type of `interface{}` which indicates one of `*wasmedge.FunctionType`,
-     // `*wasmedge.TableType`, `*wasmedge.MemoryType`, or `*wasmedge.GlobalType`.
+     // `*wasmedge.TableType`, `*wasmedge.MemoryType`, `*wasmedge.GlobalType`, or `*wasmedge.TagType`.
    }
    ```
 
-7. Export type context
+8. Export type context
 
-   The `ExportType` is an object holds the export type context is used for getting the exports information from a [AST Module](#ast-module). Developers can get the external type (`function`, `table`, `memory`, or `global`) and external name from an `Export Type` context. The details about querying `ExportType` objects will be introduced in the [AST Module](#ast-module).
+   The `ExportType` is an object holds the export type context is used for getting the exports information from a [AST Module](#ast-module). Developers can get the external type (`function`, `table`, `memory`, `global`, or `tag`) and external name from an `Export Type` context. The details about querying `ExportType` objects will be introduced in the [AST Module](#ast-module).
 
    ```go
    var ast *wasmedge.AST = ...
@@ -309,14 +363,14 @@ The WASM data structures are used for creating instances or can be queried from 
    for i, exptype := range exptypelist {
      exttype := exptype.GetExternalType()
      // The `exttype` must be one of `wasmedge.ExternType_Function`, `wasmedge.ExternType_Table`,
-     // wasmedge.ExternType_Memory`, or `wasmedge.ExternType_Global`.
+     // wasmedge.ExternType_Memory`, `wasmedge.ExternType_Global`, or `wasmedge.ExternType_Tag`.
 
      extname := exptype.GetExternalName()
      // Get the external name of the exports.
 
      extval := exptype.GetExternalValue()
      // The `extval` is the type of `interface{}` which indicates one of `*wasmedge.FunctionType`,
-     // `*wasmedge.TableType`, `*wasmedge.MemoryType`, or `*wasmedge.GlobalType`.
+     // `*wasmedge.TableType`, `*wasmedge.MemoryType`, `*wasmedge.GlobalType`, or `*wasmedge.TagType`.
    }
    ```
 
@@ -374,12 +428,16 @@ The configuration object, `wasmedge.Configure`, manages the configurations for `
      REFERENCE_TYPES                   = Proposal(C.WasmEdge_Proposal_ReferenceTypes)
      SIMD                              = Proposal(C.WasmEdge_Proposal_SIMD)
      TAIL_CALL                         = Proposal(C.WasmEdge_Proposal_TailCall)
+     EXTENDED_CONST                    = Proposal(C.WasmEdge_Proposal_ExtendedConst)
+     FUNCTION_REFERENCES               = Proposal(C.WasmEdge_Proposal_FunctionReferences)
+     GC                                = Proposal(C.WasmEdge_Proposal_GC)
+     MULTI_MEMORIES                    = Proposal(C.WasmEdge_Proposal_MultiMemories)
+     THREADS                           = Proposal(C.WasmEdge_Proposal_Threads)
+     RELAXED_SIMD                      = Proposal(C.WasmEdge_Proposal_RelaxSIMD)
      ANNOTATIONS                       = Proposal(C.WasmEdge_Proposal_Annotations)
      MEMORY64                          = Proposal(C.WasmEdge_Proposal_Memory64)
      EXCEPTION_HANDLING                = Proposal(C.WasmEdge_Proposal_ExceptionHandling)
-     EXTENDED_CONST                    = Proposal(C.WasmEdge_Proposal_ExtendedConst)
-     THREADS                           = Proposal(C.WasmEdge_Proposal_Threads)
-     FUNCTION_REFERENCES               = Proposal(C.WasmEdge_Proposal_FunctionReferences)
+     COMPONENT_MODEL                   = Proposal(C.WasmEdge_Proposal_Component)
    )
    ```
 
@@ -396,9 +454,13 @@ The configuration object, `wasmedge.Configure`, manages the configurations for `
    // * SIMD
    // For the current WasmEdge version, the following proposals are supported:
    // * TAIL_CALL
+   // * EXTENDED_CONST
+   // * FUNCTION_REFERENCES
+   // * GC (interpreter only)
    // * MULTI_MEMORIES
    // * THREADS
-   // * EXTENDED_CONST
+   // * EXCEPTION_HANDLING (interpreter only)
+   // * COMPONENT_MODEL (loader phase only)
    conf := wasmedge.NewConfigure()
    // Developers can also pass the proposals as parameters:
    // conf := wasmedge.NewConfigure(wasmedge.SIMD, wasmedge.BULK_MEMORY_OPERATIONS)
@@ -1622,12 +1684,12 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
 3. Table instance
 
-   In WasmEdge, developers can create the `Table` objects and add them into an `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Table` objects supply APIs to control the data in table instances.
+   In WasmEdge, developers can create the `Table` objects and add them into a `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Table` objects supply APIs to control the data in table instances.
 
    ```go
    lim := wasmedge.NewLimitWithMax(10, 20)
    // Create the table type with limit and the `FuncRef` element type.
-   tabtype := wasmedge.NewTableType(wasmedge.RefType_FuncRef, lim)
+   tabtype := wasmedge.NewTableType(wasmedge.NewValTypeFuncRef(), lim)
    // Create the table instance with table type.
    tabinst := wasmedge.NewTable(tabtype)
    // Delete the table type.
@@ -1637,7 +1699,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    // The `gottabtype` got from table instance is owned by the `tabinst`
    // and should __NOT__ be released.
    reftype := gottabtype.GetRefType()
-   // The `reftype` will be `wasmedge.RefType_FuncRef`.
+   // The `reftype` will be `wasmedge.ValType` with `funcref` value type.
 
    var gotdata interface{}
    data := wasmedge.NewFuncRef(5)
@@ -1669,7 +1731,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
 
 4. Memory instance
 
-   In WasmEdge, developers can create the `Memory` objects and add them into an `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Memory` objects supply APIs to control the data in memory instances.
+   In WasmEdge, developers can create the `Memory` objects and add them into a `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Memory` objects supply APIs to control the data in memory instances.
 
    ```go
    lim := wasmedge.NewLimitWithMax(1, 5)
@@ -1707,13 +1769,33 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    meminst.Release()
    ```
 
-5. Global instance
+5. Tag instance
 
-   In WasmEdge, developers can create the `Global` objects and add them into an `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Global` objects supply APIs to control the value in global instances.
+   Unlike the other instances, the `Tag` objects are only available and can be retrieved from a `wasmedge.Module` object when turning on the `Exception Handling` proposal. Developers can retrieve the `TagType` from the instance.
+
+   ```go
+   // ...
+   // Instantiate a WASM module via the executor object and get the `mod` as the output module instance.
+   // ...
+
+   // List the exported tag instances of the instantiated WASM module.
+   tagnames := mod.ListTag()
+
+   // Try to find the exported tag instance of the instantiated WASM module.
+   taginst := mod.FindTag("tag-1")
+   if taginst == nil {
+     // Get the tag type from the tag instance.
+     tagtype := taginst.GetTagType()
+   }
+   ```
+
+6. Global instance
+
+   In WasmEdge, developers can create the `Global` objects and add them into a `wasmedge.Module` object for registering into a `VM` or a `Store`. The `Global` objects supply APIs to control the value in global instances.
 
    ```go
    // Create the global type with value type and mutation.
-   globtype := wasmedge.NewGlobalType(wasmedge.ValType_I64, wasmedge.ValMut_Var)
+   globtype := wasmedge.NewGlobalType(wasmedge.NewValTypeI64(), wasmedge.ValMut_Var)
    // Create the global instance with value and global type.
    globinst := wasmedge.NewGlobal(globtype, uint64(1000))
    // Delete the global type.
@@ -1723,13 +1805,13 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    // The `gotglobtype` got from global instance is owned by the `globinst`
    // and should __NOT__ be released.
    valtype := gotglobtype.GetValType()
-   // The `valtype` will be `wasmedge.ValType_I64`.
+   // The `valtype` will be `wasmedge.ValType` with `i64` value type.
    valmut := gotglobtype.GetMutability()
    // The `valmut` will be `wasmedge.ValMut_Var`.
 
-   globinst.SetValue(uint64(888))
+   err = globinst.SetValue(uint64(888))
    // Set the value u64(888) to the global.
-   // This function will do nothing if the value type mismatched or the
+   // This function will get an error if the value type mismatched or the
    // global mutability is `wasmedge.ValMut_Const`.
    gotval := globinst.GetValue()
    // The `gotbal` will be `interface{}` which the type is `uint64` and
@@ -1774,8 +1856,8 @@ In this chapter, we show the example for registering the host modules into a `VM
    ```go
    // Create a function type: {i32, i32} -> {i32}.
    functype := wasmedge.NewFunctionType(
-     []wasmedge.ValType{wasmedge.ValType_I32, wasmedge.ValType_I32},
-     []wasmedge.ValType{wasmedge.ValType_I32},
+     []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+     []*wasmedge.ValType{wasmedge.NewValTypeI32()},
    )
 
    // Create a function context with the function type and host function body.
@@ -1906,7 +1988,7 @@ In this chapter, we show the example for registering the host modules into a `VM
      impmod := wasmedge.NewModule("extern")
 
      // Create and add a function instance into the module instance with export name "func-add".
-     functype := wasmedge.NewFunctionType([]wasmedge.ValType{wasmedge.ValType_I32}, []wasmedge.ValType{})
+     functype := wasmedge.NewFunctionType([]*wasmedge.ValType{wasmedge.NewValTypeI32()}, []*wasmedge.ValType{})
      hostfunc := wasmedge.NewFunction(functype, host_trap, nil, 0)
      functype.Release()
      impmod.AddFunction("trap", hostfunc)
@@ -1958,15 +2040,15 @@ In this chapter, we show the example for registering the host modules into a `VM
 
    // Create and add a function instance into the module instance with export name "add".
    functype := wasmedge.NewFunctionType(
-     []wasmedge.ValType{wasmedge.ValType_I32, wasmedge.ValType_I32},
-     []wasmedge.ValType{wasmedge.ValType_I32},
+     []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+     []*wasmedge.ValType{wasmedge.NewValTypeI32()},
    )
    hostfunc := wasmedge.NewFunction(functype, host_add, nil, 0)
    functype.Release()
    mod.AddFunction("add", hostfunc)
 
    // Create and add a table instance into the module instance with export name "table".
-   tabtype := wasmedge.NewTableType(wasmedge.RefType_FuncRef ,wasmedge.NewLimitWithMax(10, 20))
+   tabtype := wasmedge.NewTableType(wasmedge.NewValTypeFuncRef() ,wasmedge.NewLimitWithMax(10, 20))
    hosttab := wasmedge.NewTable(tabtype)
    tabtype.Release()
    mod.AddTable("table", hosttab)
@@ -1978,7 +2060,7 @@ In this chapter, we show the example for registering the host modules into a `VM
    mod.AddMemory("memory", hostmem)
 
    // Create and add a global instance into the module instance with export name "global".
-   globtype := wasmedge.NewGlobalType(wasmedge.ValType_I32, wasmedge.ValMut_Var)
+   globtype := wasmedge.NewGlobalType(wasmedge.NewValTypeI32(), wasmedge.ValMut_Var)
    hostglob := wasmedge.NewGlobal(globtype, uint32(666))
    globtype.Release()
    mod.AddGlobal("global", hostglob)
@@ -2093,8 +2175,8 @@ In this chapter, we show the example for registering the host modules into a `VM
 
      // Create and add a function instance into the module instance with export name "func-add".
      functype := wasmedge.NewFunctionType(
-       []wasmedge.ValType{wasmedge.ValType_I32, wasmedge.ValType_I32},
-       []wasmedge.ValType{wasmedge.ValType_I32},
+       []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+       []*wasmedge.ValType{wasmedge.NewValTypeI32()},
      )
      hostfunc := wasmedge.NewFunction(functype, host_add, nil, 0)
      functype.Release()
@@ -2195,8 +2277,8 @@ In this chapter, we show the example for registering the host modules into a `VM
 
      // Create and add a function instance into the module instance with export name "func-add".
      functype := wasmedge.NewFunctionType(
-       []wasmedge.ValType{wasmedge.ValType_I32, wasmedge.ValType_I32},
-       []wasmedge.ValType{wasmedge.ValType_I32},
+       []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+       []*wasmedge.ValType{wasmedge.NewValTypeI32()},
      )
      hostfunc := wasmedge.NewFunction(functype, host_add, &data, 0)
      functype.Release()
