@@ -158,7 +158,7 @@ WasmEdge 支持多种 `WASI-NN` 的后端。
 
 注意，WasmEdge 0.13.5 的安装程序将自动检测 CUDA。如果检测到 CUDA，安装程序将始终尝试安装支持 CUDA 的插件版本。
 
-如果您的机器上只有CPU可用，那么需要安装 OpenBLAS 版本的插件。
+如果您的机器上只有CPU可用，那么只會安裝 CPU 版本的插件。
 
 ```
 apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.
