@@ -202,7 +202,7 @@ winget uninstall wasmedge
 
 The installer from WasmEdge 0.13.5 will detect CUDA automatically. If CUDA is detected, the installer will always attempt to install a CUDA-enabled version of the WASI-NN GGML plug-in.
 
-If CPU is the only available hardware on your machine, the installer will install OpenBLAS version of plugin instead.
+If CPU is the only available hardware on your machine, the installer will install the pure CPU version of plugin instead.
 
 ```bash
 apt update && apt install -y libopenblas-dev # You may need sudo if the user is not root.

@@ -352,8 +352,6 @@ We also provided the pre-built ggml plugins on the following platforms:
 - darwin\_arm64: Apple Silicon Model macOS
 - ubuntu20.04\_x86\_64: x86\_64 Linux (the glibc is using Ubuntu20.04 one)
 - ubuntu20.04\_aarch64: aarch64 Linux (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_blas\_x86\_64: x86\_64 Linux with OpenBLAS support (the glibc is using Ubuntu20.04 one)
-- ubuntu20.04\_blas\_aarch64: aarch64 Linux with OpenBLAS support (the glibc is using Ubuntu20.04 one)
 - ubuntu20.04\_cuda\_x86\_64: x86\_64 Linux with CUDA 12 support (the glibc is using Ubuntu20.04 one)
 - ubuntu20.04\_cuda\_aarch64: aarch64 Linux with CUDA 11 support (the glibc is using Ubuntu20.04 one), for NVIDIA Jetson AGX Orin
 - manylinux2014\_x86\_64: x86\_64 Linux (the glibc is using CentOS 7 one)
