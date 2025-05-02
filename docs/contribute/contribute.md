@@ -10,7 +10,7 @@ sidebar_position: 8
   * [Ask for Help](#ask-for-help)
   * [Pull Request Lifecycle](#pull-request-lifecycle)
   * [Development Environment Setup](#development-environment-setup)
-  * [Sign Your Commits](#sign-your-commits)
+  * [Commit Format](#commit-format)
   * [Pull Request Checklist](#pull-request-checklist)
 
 Welcome! We are glad that you want to contribute to our project! 💖
@@ -118,9 +118,43 @@ If you use an operating system older than Ubuntu 20.04, please use our [special 
 
 To build WasmEdge from the source, please refer to: [Build WasmEdge from source](/category/build-wasmedge-from-source).
 
-## Sign Your Commits
+## Commit Format
 
-### DCO
+The commit messages should follow [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/).
+
+A valid commit should look like this:
+
+```
+<type>: <short description of the change>
+
+<optional detailed description>
+
+Signed-off-by: Your Name <your.email@example.com>
+```
+
+Please check the full specification from [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/#specification).
+
+:::note
+
+See [@commitlint/@config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) for allowed `<type>` values.
+
+:::
+
+An example commit message:
+
+```
+docs: updates Contribution Guide
+
+Signed-off-by: Alice Chen <alice.chen@example.com>
+```
+
+:::note
+
+WasmEdge has enforced conventional commit starting from Apr 9, 2025, see [WasmEdge#3850](https://github.com/WasmEdge/WasmEdge/pull/3850).
+
+:::
+
+### DCO - Sign Your Commits
 
 Licensing is important to open source projects. It provides some assurances that
 the software will continue to be available based under the terms that the
@@ -132,7 +166,7 @@ have the right to contribute the code you are submitting to the project.
 You sign-off by adding the following to your commit messages. Your sign-off must
 match the git user and email associated with the commit.
 
-    This is my commit message
+    docs: this commit updates something at somedoc.md
 
     Signed-off-by: Your Name <your.name@example.com>
 
@@ -143,7 +177,7 @@ Git has a `-s` command line option to do this automatically:
 If you forgot to do this and have not yet pushed your changes to the remote
 repository, you can amend your commit with the sign-off by running
 
-    git commit --amend -s 
+    git commit --amend -s
 
 ## Pull Request Checklist
 
