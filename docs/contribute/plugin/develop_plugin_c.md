@@ -186,6 +186,12 @@ WasmEdge_Result HostFuncSub(void *Data,
       /* Pointer to the plug-in option description array (Work in progress). */
       .ProgramOptions = NULL,
   }};
+
+  /* Export the plug-in descriptor */
+  WASMEDGE_CAPI_PLUGIN_EXPORT const WasmEdge_PluginDescriptor *
+  WasmEdge_Plugin_GetDescriptor(void) {
+    return &Desc;
+  }
   ```
 
   These descriptions define the name, description, version, and creation function of the plug-in and the name and description of the module it contains.
