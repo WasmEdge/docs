@@ -28,12 +28,12 @@ cd WasmEdge
 
 WasmEdge will try to use the latest LLVM release to create our nightly build. If you want to build from source, you may need to install these dependencies yourself.
 
-- LLVM 16.0.4 (>= 10.0.0)
+- LLVM 18.1.8 (>= 10.0.0)
 
 ```bash
 # Tools and libraries
-brew install cmake ninja llvm@16
-export LLVM_DIR="$(brew --prefix)/opt/llvm@16/lib/cmake"
+brew install cmake ninja llvm@18
+export LLVM_DIR="$(brew --prefix)/opt/llvm@18/lib/cmake"
 export CC=clang
 export CXX=clang++
 ```
