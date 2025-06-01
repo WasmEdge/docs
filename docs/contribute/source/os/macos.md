@@ -28,12 +28,12 @@ cd WasmEdge
 
 WasmEdge will try to use the latest LLVM release to create our nightly build. If you want to build from source, you may need to install these dependencies yourself.
 
-- LLVM 16.0.4 (>= 10.0.0)
+- LLVM 18.1.8 (>= 10.0.0)
 
 ```bash
 # Tools and libraries
-brew install cmake ninja llvm
-export LLVM_DIR="$(brew --prefix)/opt/llvm/lib/cmake"
+brew install cmake ninja llvm@18
+export LLVM_DIR="$(brew --prefix)/opt/llvm@18/lib/cmake"
 export CC=clang
 export CXX=clang++
 ```
@@ -59,11 +59,3 @@ Users can use these tests to verify the correctness of WasmEdge binaries.
 cd build
 DYLD_LIBRARY_PATH=$(pwd)/lib/api ctest
 ```
-
-## Known issues
-
-The following tests can not pass on Macos, we are investigating these issues:
-
-- wasmedgeWasiSocketTests
-
-But we have an open issue working on it. Don't hesitate to leave your feedback for [this issue](https://github.com/WasmEdge/WasmEdge/issues/2438).
