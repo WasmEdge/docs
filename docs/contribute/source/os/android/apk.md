@@ -66,7 +66,11 @@ class MainActivity : AppCompatActivity() {
 
 ### The native library
 
-The Android UI app calls a `NativeLib` Kotlin object to access WasmEdge functions. The `NativeLib` source code is [available here](https://github.com/WasmEdge/WasmEdge/blob/master/utils/android/app/lib/src/main/java/org/wasmedge/native_lib/NativeLib.kt). It uses JNI (Java Native Interface) to load a C shared library called `wasmedge_lib`. It then calls the `nativeWasmFibonacci` function in `wasmedge_lib` to execute the `fibonacci.wasm` WebAssembly bytecode.
+The Android UI app calls a `NativeLib` Kotlin object to access WasmEdge functions.
+The `NativeLib` source code is [available here](https://github.com/WasmEdge/WasmEdge/blob/master/utils/android/app/lib/src/main/java/org/wasmedge/native_lib/NativeLib.kt). It uses JNI (Java Native Interface) to load a C shared library called `wasmedge_lib`.
+It then calls the `nativeWasmFibonacci` function in `wasmedge_lib` to execute the `fibonacci.wasm` WebAssembly bytecode.
+
+Please ensure you have built the `fibonacci.wasm` file from `fibonacci.wat` in the example folder using the WABT tool or any other WebAssembly compiler.
 
 ```java
 class NativeLib(ctx : Context) {
@@ -124,7 +128,7 @@ Java_org_wasmedge_native_1lib_NativeLib_nativeWasmFibonacci(
 
 ### The WebAssembly function
 
-The `factorial.wat` is a [handwritten WebAssembly script](https://github.com/WasmEdge/WasmEdge/blob/master/examples/wasm/fibonacci.wat) to compute factorial numbers. It is compiled into WebAssembly using the [WABT tool](https://github.com/WebAssembly/wabt).
+The `fibonacci.wat` is a [handwritten WebAssembly script](https://github.com/WasmEdge/WasmEdge/blob/master/examples/wasm/fibonacci.wat) to compute fibonacci numbers. It can be compiled into WebAssembly using the [WABT tool](https://github.com/WebAssembly/wabt).
 
 ### Build dependencies
 
