@@ -20,6 +20,7 @@ Then download the pre-built WasmEdge QuickJS Runtime program, and optionally, AO
 ```bash
 curl -OL https://github.com/second-state/wasmedge-quickjs/releases/download/v0.5.0-alpha/wasmedge_quickjs.wasm
 wasmedge compile wasmedge_quickjs.wasm wasmedge_quickjs.wasm
+git checkout v0.5.0-alpha
 ```
 
 <!-- prettier-ignore -->
