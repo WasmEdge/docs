@@ -17,6 +17,8 @@ sidebar_position: 8
 
 Welcome! We are glad that you want to contribute to our project! 💖
 
+
+
 As you get started, you are in the best position to give us feedback on areas of
 the project that we need help with includes:
 
@@ -25,7 +27,7 @@ the project that we need help with includes:
 * Bugs in our automation scripts
 
 If anything doesn't make sense, or doesn't work when you run it, please open a
-bug report and let us know!
+bug report and let us know! We're committed to maintaining a welcoming, inclusive community for all contributors. **Please familiarize yourself with our [Code of Conduct](https://github.com/WasmEdge/WasmEdge/blob/master/docs/CODE_OF_CONDUCT.md)**, which outlines our community standards and expectations.
 
 ## Ways to Contribute
 
