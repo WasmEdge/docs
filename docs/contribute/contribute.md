@@ -13,7 +13,7 @@ sidebar_position: 8
   * [Commit Format](#commit-format)
   * [Pull Request Checklist](#pull-request-checklist)
   * [Open Source License Guidelines](#open-source-license-guidelines)
-  * [Contriboutr Ladder]
+  * [Contributor Ladder](#contributor-ladder)
 
 Welcome! We are glad that you want to contribute to our project! 💖
 
