@@ -19,7 +19,7 @@ const config = {
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'Second State', // Usually your GitHub org/user name.
+    organizationName: 'WasmEdge', // Usually your GitHub org/user name.
     projectName: 'WasmEdge', // Usually your repo name.
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -200,12 +200,12 @@ const config = {
                                 href: 'https://github.com/WasmEdge/WasmEdge',
                             },
                             {
-                                label: 'Second State',
-                                href: 'https://www.secondstate.io/',
+                                label: 'Code of Conduct',
+                                href: 'https://github.com/WasmEdge/WasmEdge/blob/master/docs/CODE_OF_CONDUCT.md',
                             },
                             {
-                                label: 'Articles & Blog',
-                                href: 'https://www.secondstate.io/articles/'
+                                label: 'Governance',
+                                href: 'https://github.com/WasmEdge/WasmEdge/blob/master/docs/GOVERNANCE.md'
                             },
                             {
                                 label: 'WasmEdge Talks',
