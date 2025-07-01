@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Contributing Guide
 
-* [New Contributor Guide](#contributing-guide)
+* [Contributor Guide](#contributing-guide)
   * [Ways to Contribute](#ways-to-contribute)
   * [Find an Issue](#find-an-issue)
   * [Ask for Help](#ask-for-help)
@@ -12,6 +12,8 @@ sidebar_position: 8
   * [Development Environment Setup](#development-environment-setup)
   * [Commit Format](#commit-format)
   * [Pull Request Checklist](#pull-request-checklist)
+  * [Open Source License Guidelines](#open-source-license-guidelines)
+  * [Contriboutr Ladder]
 
 Welcome! We are glad that you want to contribute to our project! 💖
 
@@ -187,8 +189,9 @@ passes these checks, but we also have more criteria than just that before we can
 accept and merge it. We recommend that you check the following things locally
 before you submit your code:
 
+* Commit message format: Did your commit messages should follow [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/)
 * DCO: Did you sign off your commit
-* Code of conduct: Did you follow the CNCF code of conduct
+* Code of Conduct: Did you follow the CNCF code of conduct
 
 ## Reporting issues
 
@@ -203,3 +206,23 @@ You can propose new designs for existing WasmEdge features. You can also design 
 WasmEdge maintainers will review this proposal as soon as possible to ensure the overall architecture is consistent and to avoid duplicated work in the roadmap.
 
 New features of WasmEdge will be discussed via a GitHub issue or the community meeting.
+
+
+## Open Source License Guidelines
+
+When contributing code that incorporates other open source projects, please ensure:
+
+1. **License Compatibility**: Verify that the original repository's license allows the intended use
+2. **Proper Attribution**: For Apache 2.0 licensed code:
+   - Add at the top of any files: "This file is licensed under Apache 2.0 and was originally developed by [author name]"
+   - Include in README: "This work was made possible by [author name]"
+
+See best practice example [here](https://github.com/WasmEdge/mediapipe-rs/pull/1#issuecomment-1580763759).
+
+## Contributor Ladder
+
+We believe every contributor has the potential to become a WasmEdge maintainer, and we're genuinely excited about welcoming new maintainers to our community! Our current maintainers all started as contributors, and we'd love to see you follow the same path.
+
+We've designed a clear progression path that recognizes your growing expertise and contributions. For complete details on contributor roles and how to advance from contributor to maintainer, please check out our [Contributor Ladder](https://github.com/WasmEdge/WasmEdge/blob/master/docs/CONTRIBUTOR_LADDER.md)).
+
+Your journey to becoming a maintainer starts with your first contribution - we can't wait to see where it leads!
