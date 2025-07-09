@@ -39,7 +39,7 @@ Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation -DevCmdArguments 
 
 # Download our pre-built LLVM 16 binary
 $llvm = "LLVM-16.0.6-win64-MultiThreadedDLL.zip"
-curl -sLO https://github.com/WasmEdge/llvm-windows/releases/download/llvmorg-16.0.6/LLVM-16.0.6-win64-MultiThreadedDLL.zip -o $llvm
+Invoke-WebRequest -Uri https://github.com/WasmEdge/llvm-windows/releases/download/llvmorg-16.0.6/LLVM-16.0.6-win64-MultiThreadedDLL.zip -OutFile $llvm
 Expand-Archive -Path $llvm
 
 # Set LLVM environment
