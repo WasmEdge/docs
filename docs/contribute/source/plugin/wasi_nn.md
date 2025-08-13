@@ -266,6 +266,64 @@ cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
 cmake --build build
 ```
 
+#### Ubuntu/Debian with HIP on AMD GPU
+
+The HIP backend enables the WASI-NN GGML plugin to leverage AMD GPUs for accelerated inference using the llama.cpp library. This provides significant performance improvements when running large language models on AMD hardware.
+
+**Prerequisites**
+
+- AMD GPU with ROCm support
+- Linux operating system (Ubuntu 20.04/22.04, RHEL/CentOS 8+)
+- CMake 3.18 or later
+- ROCm/HIP development environment
+
+**Installation**
+
+1.  **Install ROCm/HIP**
+
+    Follow the official ROCm installation guide: https://rocm.docs.amd.com/
+
+    For **Ubuntu 22.04**:
+    ```bash
+    sudo apt update
+    wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+    echo "deb [arch=amd64] https://repo.radeon.com/rocm/apt/5.7/ ubuntu main" | sudo tee /etc/apt/sources.list.d/rocm.list
+    sudo apt update
+    sudo apt install -y rocm-dev rocm-utils hipblas hip-dev
+    ```
+
+2.  **Setup Environment**
+
+    You can manually set environment variables:
+    ```bash
+    export ROCM_PATH=/opt/rocm
+    export PATH=$ROCM_PATH/bin:$PATH
+    export LD_LIBRARY_PATH=$ROCM_PATH/lib:$LD_LIBRARY_PATH
+    ```
+
+3.  **Build WasmEdge with HIP Support**
+
+    Build manually:
+    ```bash
+    cd <path/to/your/wasmedge/source/folder>
+    mkdir build-hip && cd build-hip
+    cmake .. \
+      -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_HIP=ON \
+      -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_HIP_ARCH=gfx90a;gfx1030 \
+      -DWASMEDGE_PLUGIN_WASI_NN_BACKEND=ggml \
+      -DWASMEDGE_BUILD_PLUGINS=ON \
+      -DCMAKE_BUILD_TYPE=Release
+    cmake --build . --target wasmedgePluginWasiNN -j$(nproc)
+    ```
+
+**Configuration Options**
+
+- `WASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_HIP`: Enable HIP backend (default: OFF)
+- `WASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_HIP_ARCH`: Semicolon separated HIP GPU architectures (e.g., `gfx90a;gfx1030`). When set, forwarded to `CMAKE_HIP_ARCHITECTURES`.
+- `CMAKE_HIP_ARCHITECTURES`: (Advanced) Direct CMake variable; normally you can just use the plugin-specific variable above.
+
+Once built with HIP support, the WASI-NN plugin will automatically detect and use AMD GPUs when available. No additional configuration is needed in your WebAssembly applications.
+
 ### Build with llama.cpp Backend on Windows
 
 #### Install Dependencies for llama.cpp And Build on Windows
