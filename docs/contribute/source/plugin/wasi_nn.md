@@ -20,6 +20,7 @@ Currently, WasmEdge supports following backends for WASI-NN proposal:
 | [Whisper](#build-wasmedge-with-wasi-nn-whisper-backend) | [whisper.cpp](https://github.com/ggerganov/whisper.cpp) | `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=Whisper` |
 | [ChatTTS](#build-wasmedge-with-wasi-nn-chattts-backend) | [ChatTTS](https://github.com/2noise/ChatTTS) | `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=ChatTTS` |
 | [MLX](#build-wasmedge-with-wasi-nn-mlx-backend) | [MLX](https://github.com/ml-explore/mlx) | `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=MLX` |
+| [BitNet](#build-wasmedge-with-wasi-nn-bitnet-backend) | [BitNet.cpp](https://github.com/microsoft/BitNet) | `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND=BitNet` |
 
 Developers can [build the WasmEdge from source](../os/linux.md) with the cmake option `WASMEDGE_PLUGIN_WASI_NN_BACKEND` to enable the backends. For supporting multiple backends, developers can assign the option such as `-DWASMEDGE_PLUGIN_WASI_NN_BACKEND="GGML;Whisper;TensorFlowLite"`.
 
@@ -407,5 +408,34 @@ Build and install WasmEdge from source:
 cd <path/to/your/wasmedge/source/folder>
 
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="mlx"
+cmake --build build
+```
+
+## Build WasmEdge with WASI-NN BitNet Backend
+
+To build this backend, exactly one of the following target-level (TL) optimization flags must be enabled. Enabling both flags simultaneously is not supported and will result in a build failure. If these specific optimizations are not required, we recommend using the `GGML` backend with `llama.cpp` for broader compatibility.
+
+
+### Build for ARM with TL1 Optimization
+
+For ARM-based systems, use the `WASMEDGE_PLUGIN_WASI_NN_BITNET_ARM_TL1` flag. 
+
+```bash
+cd <path/to/your/wasmedge/source/folder>
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
+  -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="BitNet" \
+  -DWASMEDGE_PLUGIN_WASI_NN_BITNET_ARM_TL1=ON
+cmake --build build
+```
+
+### Build for x86 with TL2 Optimization
+
+For x86-based systems, use the `WASMEDGE_PLUGIN_WASI_NN_BITNET_X86_TL2` flag.
+
+```bash
+cd <path/to/your/wasmedge/source/folder>
+cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
+  -DWASMEDGE_PLUGIN_WASI_NN_BACKEND="BitNet" \
+  -DWASMEDGE_PLUGIN_WASI_NN_BITNET_X86_TL2=ON
 cmake --build build
 ```
