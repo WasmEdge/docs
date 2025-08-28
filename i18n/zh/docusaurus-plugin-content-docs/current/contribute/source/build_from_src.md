@@ -15,6 +15,7 @@ Please follow this guide to build and test WasmEdge from the source code.
 - [OpenHarmony](os/openharmony.md)
 - [seL4](os/sel4)
 - [Raspberry Pi](os/raspberrypi.md)
+- [S390x](os/s390x.md)
 
 <!-- prettier-ignore -->
 :::note

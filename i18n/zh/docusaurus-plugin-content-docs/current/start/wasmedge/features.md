@@ -64,6 +64,7 @@ WasmEdge 目前支持：
 - [OpenHarmony](../../contribute/source/os/openharmony.md)
 - [Raspberry Pi](../../contribute/source/os/raspberrypi.md)
 - [RISC-V(WIP)](../../contribute/source/os/riscv64.md)
+- [S390x](../../contribute/source/os/s390x.md)
 
 ## 易于扩展
 
