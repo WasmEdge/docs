@@ -54,7 +54,7 @@ export ANDROID_NDK_HOME=path/to/you/ndk/dir
 Run the build script in WasmEdge source code. This script will automatically build the WasmEdge for Android, and the results are in the `build` folder.
 
 ```bash
-./utils/android/standalone/build_for_android.sh
+./examples/android/standalone/build_for_android.sh
 ```
 
 ## Test the WasmEdge CLI on Android platforms
