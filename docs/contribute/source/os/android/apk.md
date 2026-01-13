@@ -8,7 +8,7 @@ In this section, we will show you how to build a "regular" Android app (i.e., an
 
 ## Quickstart
 
-The demo project is [available here](https://github.com/WasmEdge/WasmEdge/tree/master/utils/android/app). You can build the project using the Gradle tool or using the Android Studio IDE.
+The demo project is [available here](https://github.com/WasmEdge/WasmEdge/tree/master/examples/android/app). You can build the project using the Gradle tool or using the Android Studio IDE.
 
 ### Building Project with Gradle
 
@@ -28,7 +28,7 @@ The Android UI app is written in Kotlin, and it uses JNI (Java Native Interface)
 
 ### Android UI
 
-The Android UI application is [located here](https://github.com/WasmEdge/WasmEdge/blob/master/utils/android/app/app/src/main/java/org/wasmedge/example_app/MainActivity.kt). It is written in Kotlin using the Android SDK.
+The Android UI application is [located here](https://github.com/WasmEdge/WasmEdge/blob/master/examples/android/app/app/src/main/java/org/wasmedge/example_app/MainActivity.kt). It is written in Kotlin using the Android SDK.
 
 ```java
 class MainActivity : AppCompatActivity() {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 ### The native library
 
 The Android UI app calls a `NativeLib` Kotlin object to access WasmEdge functions.
-The `NativeLib` source code is [available here](https://github.com/WasmEdge/WasmEdge/blob/master/utils/android/app/lib/src/main/java/org/wasmedge/native_lib/NativeLib.kt). It uses JNI (Java Native Interface) to load a C shared library called `wasmedge_lib`.
+The `NativeLib` source code is [available here](https://github.com/WasmEdge/WasmEdge/blob/master/examples/android/app/lib/src/main/java/org/wasmedge/native_lib/NativeLib.kt). It uses JNI (Java Native Interface) to load a C shared library called `wasmedge_lib`.
 It then calls the `nativeWasmFibonacci` function in `wasmedge_lib` to execute the `fibonacci.wasm` WebAssembly bytecode.
 
 Please ensure you have built the `fibonacci.wasm` file from `fibonacci.wat` in the example folder using the WABT tool or any other WebAssembly compiler.
@@ -92,7 +92,7 @@ class NativeLib(ctx : Context) {
 
 ### The C shared library
 
-The C shared library source code `wasmedge_lib.cpp` is [available here](https://github.com/WasmEdge/WasmEdge/blob/master/utils/android/app/lib/src/main/cpp/wasmedge_lib.cpp). It uses the WasmEdge C SDK to embed a WasmEdge VM and execute the WebAssembly function.
+The C shared library source code `wasmedge_lib.cpp` is [available here](https://github.com/WasmEdge/WasmEdge/blob/master/examples/android/app/lib/src/main/cpp/wasmedge_lib.cpp). It uses the WasmEdge C SDK to embed a WasmEdge VM and execute the WebAssembly function.
 
 ```c
 extern "C" JNIEXPORT jint JNICALL
@@ -132,4 +132,4 @@ The `fibonacci.wat` is a [handwritten WebAssembly script](https://github.com/Was
 
 ### Build dependencies
 
-Android Studio and Gradle use CMake to build the C shared library. The [CMakeLists.txt file](https://github.com/WasmEdge/WasmEdge/blob/master/utils/android/app/lib/src/main/cpp/CMakeLists.txt) builds the WasmEdge source into Android shared library files and embeds them into the final APK application. In this case, there is no separate step to install WasmEdge share libraries onto the Android device.
+Android Studio and Gradle use CMake to build the C shared library. The [CMakeLists.txt file](https://github.com/WasmEdge/WasmEdge/blob/master/examples/android/app/lib/src/main/cpp/CMakeLists.txt) builds the WasmEdge source into Android shared library files and embeds them into the final APK application. In this case, there is no separate step to install WasmEdge share libraries onto the Android device.
