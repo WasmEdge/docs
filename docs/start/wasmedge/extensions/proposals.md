@@ -17,19 +17,20 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 | [Reference Types][] | `--disable-reference-types` | `WasmEdge_Proposal_ReferenceTypes` | ✓ (since `0.8.2`) | ✓ | ✓ |
 | [Bulk memory operations][] | `--disable-bulk-memory` | `WasmEdge_Proposal_BulkMemoryOperations` | ✓ (since `0.8.2`) | ✓ | ✓ |
 | [Fixed-width SIMD][] | `--disable-simd` | `WasmEdge_Proposal_SIMD` | ✓ (since `0.9.0`) | ✓ (since `0.8.2`) | ✓ (since `0.8.2`) |
-| [Tail call][] | `--enable-tail-call` | `WasmEdge_Proposal_TailCall` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
-| [Extended Constant Expressions][] | `--enable-extended-const` | `WasmEdge_Proposal_ExtendedConst` |  | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
-| [Typed Function References][] | `--enable-function-reference` | `WasmEdge_Proposal_FunctionReferences` |  | ✓ (since `0.14.0`) | ✓ (since `0.14.0`) |
-| [Garbage collection][] | `--enable-gc` | `WasmEdge_Proposal_GC` |  | ✓ (since `0.14.0`) |  |
-| [Multiple memories][] | `--enable-multi-memory` | `WasmEdge_Proposal_MultiMemories` |  | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
+| [Tail call][] | `--disable-tail-call` | `WasmEdge_Proposal_TailCall` | ✓ (since `0.16.0`) | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
+| [Extended Constant Expressions][] | `--disable-extended-const` | `WasmEdge_Proposal_ExtendedConst` | ✓ (since `0.16.0`) | ✓ (since `0.10.0`) | ✓ (since `0.10.0`) |
+| [Typed Function References][] | `--disable-function-reference` | `WasmEdge_Proposal_FunctionReferences` | ✓ (since `0.16.0`) | ✓ (since `0.14.0`) | ✓ (since `0.14.0`) |
+| [Garbage collection][] | `--disable-gc` | `WasmEdge_Proposal_GC` | ✓ (since `0.16.0`) | ✓ (since `0.14.0`) | ✓ (since `0.15.0`) |
+| [Multiple memories][] | `--disable-multi-memory` | `WasmEdge_Proposal_MultiMemories` | ✓ (since `0.16.0`) | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
+| [Relaxed SIMD][] | `--disable-relaxed-simd` | `WasmEdge_Proposal_RelaxSIMD` | ✓ (since `0.16.0`) | ✓ (since `0.14.1`) | ✓ (since `0.14.1`) |
+| [Exception handling][] | `--disable-exception-handling` | `WasmEdge_Proposal_ExceptionHandling` | ✓ (since `0.16.0`) | ✓ (since `0.14.0`) |  |
+| [Memory64][] | | | | | |
 | [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
-| [Exception handling][] | `--enable-exception-handling` | `WasmEdge_Proposal_ExceptionHandling` |  | ✓ (since `0.14.0`) |  |
 | [Component Model][] | `--enable-component` | `WasmEdge_Proposal_Component` |  | Loader only (since `0.14.0`) |  |
 
 The following proposals are under development and may be supported in the future:
 
-- [Exception handling][]
-- [Relaxed SIMD][]
+- [Exception handling][] (AOT mode)
 - [Memory64][]
 - [WebAssembly C and C++ API][]
 

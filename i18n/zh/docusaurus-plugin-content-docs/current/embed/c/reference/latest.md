@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.14.1 Documentation
+# C API 0.16.1 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
@@ -79,9 +79,54 @@ printf("WasmEdge version patch: %u\n", WasmEdge_VersionGetPatch());
 
 ### Logging Settings
 
-The `WasmEdge_LogSetErrorLevel()` and `WasmEdge_LogSetDebugLevel()` APIs can set the logging system to debug level or error level. By default, the error level is set, and the debug info is hidden.
+1. Setting logging levels
 
-Developers can also use the `WasmEdge_LogOff()` API to disable all logging.
+   The `WasmEdge_LogSetErrorLevel()` and `WasmEdge_LogSetDebugLevel()` APIs can set the logging system to debug level or error level. By default, the error level is set, and the debug info is hidden.
+
+   Developers can set the logging level by the `WasmEdge_LogSetLevel()` API with the level enumeration:
+
+   ```c
+   typedef enum WasmEdge_LogLevel {
+     WasmEdge_LogLevel_Trace,
+     WasmEdge_LogLevel_Debug,
+     WasmEdge_LogLevel_Info,
+     WasmEdge_LogLevel_Warn,
+     WasmEdge_LogLevel_Error,
+     WasmEdge_LogLevel_Critical,
+   } WasmEdge_LogLevel;
+   ```
+
+   Developers can also use the `WasmEdge_LogOff()` API to disable all logging.
+
+2. Logging callback
+
+   For getting the detailed result or error message, WasmEdge provides the callback interface to register the customized callback function into the logging sink.
+
+   Developers will get the message struct via the callback argument:
+
+   ```c
+   typedef struct WasmEdge_LogMessage {
+     WasmEdge_String Message;
+     WasmEdge_String LoggerName;
+     WasmEdge_LogLevel Level;
+     time_t Time;
+     uint64_t ThreadId;
+   } WasmEdge_LogMessage;
+   ```
+
+   Developers can register the callback by the `WasmEdge_LogSetCallback()` API to receive the message when logging occurs.
+
+   ```c
+   #include <wasmedge/wasmedge.h>
+   void callback(const WasmEdge_LogMessage *Message) {
+     printf("Message: %s, LoggerName: %s\n", Message->Message.Buf, Message->LoggerName.Buf);
+   }
+
+   int main() {
+     WasmEdge_LogSetCallback(callback);
+     return 0;
+   }
+   ```
 
 ### Value Types
 
@@ -627,7 +672,53 @@ After calling the [asynchronous execution APIs](#asynchronous-execution), develo
 
 The configuration context, `WasmEdge_ConfigureContext`, manages the configurations for `Loader`, `Validator`, `Executor`, `VM`, and `Compiler` contexts. Developers can adjust the settings about the proposals, VM host pre-registrations (such as `WASI`), and AOT compiler options, and then apply the `Configure` context to create the runtime contexts.
 
-1. Proposals
+1. Standard
+
+   WasmEdge supports the WebAssembly standards from the oldest `1.0` versions. Developers can use the `WasmEdge_ConfigureSetWASMStandard()` API to assign the WASM standard in the `Configure` context. After assigning the WASM standard, the corresponding WASM proposals will be enabled or disabled, and all of the proposal settings will be overwritten.
+
+   The following WASM standards are supported:
+
+   ```c
+   enum WasmEdge_Standard {
+     WasmEdge_Standard_WASM_1, // WASM 1.0
+     WasmEdge_Standard_WASM_2, // WASM 2.0
+     WasmEdge_Standard_WASM_3, // WASM 3.0, default
+   }
+   ```
+
+   ```c
+   /* By default, the standard is WASM 3.0. */
+   WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
+
+   /* The `IsMultiRet` will be `TRUE`. */
+   bool IsMultiRet =
+       WasmEdge_ConfigureHasProposal(ConfCxt, WasmEdge_Proposal_MultiValue);
+
+   /* Remove the Multi-value returns proposal, which is in WASM 2.0. */
+   WasmEdge_ConfigureRemoveProposal(ConfCxt, WasmEdge_Proposal_MultiValue);
+
+   /* The `IsMultiRet` will be `FALSE`. */
+   IsMultiRet =
+       WasmEdge_ConfigureHasProposal(ConfCxt, WasmEdge_Proposal_MultiValue);
+
+   /* Set the standard to WASM 2.0. All proposal settings is reset. */
+   WasmEdge_ConfigureSetWASMStandard(ConfCxt, WasmEdge_Standard_WASM_2);
+
+   /* The `IsMultiRet` will be `TRUE`. */
+   IsMultiRet =
+       WasmEdge_ConfigureHasProposal(ConfCxt, WasmEdge_Proposal_MultiValue);
+
+   /* Set the standard to WASM 1.0. All proposal settings is reset. */
+   WasmEdge_ConfigureSetWASMStandard(ConfCxt, WasmEdge_Standard_WASM_1);
+
+   /* The `IsMultiRet` will be `FALSE`. */
+   IsMultiRet =
+       WasmEdge_ConfigureHasProposal(ConfCxt, WasmEdge_Proposal_MultiValue);
+
+   WasmEdge_ConfigureDelete(ConfCxt);
+   ```
+
+2. Proposals
 
    WasmEdge supports turning on or off the WebAssembly proposals. This configuration is effective in any contexts created with the `Configure` context.
 
@@ -645,11 +736,11 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
      WasmEdge_Proposal_FunctionReferences,
      WasmEdge_Proposal_GC,
      WasmEdge_Proposal_MultiMemories,
-     WasmEdge_Proposal_Threads,
      WasmEdge_Proposal_RelaxSIMD,
-     WasmEdge_Proposal_Annotations,
-     WasmEdge_Proposal_Memory64,
+     WasmEdge_Proposal_Annotations,       // NOT IMPLEMENTED
      WasmEdge_Proposal_ExceptionHandling,
+     WasmEdge_Proposal_Memory64,          // NOT IMPLEMENTED
+     WasmEdge_Proposal_Threads,
      WasmEdge_Proposal_Component,
    };
    ```
@@ -659,35 +750,39 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    ```c
    /*
     * By default, the following proposals have turned on initially:
-    * * Import/Export of mutable globals
-    * * Non-trapping float-to-int conversions
-    * * Sign-extension operators
-    * * Multi-value returns
-    * * Bulk memory operations
-    * * Reference types
-    * * Fixed-width SIMD
+    * * WASM 1.0 Proposals:
+    *    * Import/Export of mutable globals
+    * * WASM 2.0 Proposals:
+    *    * Non-trapping float-to-int conversions
+    *    * Sign-extension operators
+    *    * Multi-value returns
+    *    * Bulk memory operations
+    *    * Reference types
+    *    * Fixed-width SIMD
+    * * WASM 3.0 Proposals:
+    *    * Tail-call
+    *    * Extended-const
+    *    * Typed-function references
+    *    * GC
+    *    * Multiple memories
+    *    * Relaxed SIMD
+    *    * Exception handling (interpreter only)
     *
     * For the current WasmEdge version, the following proposals are supported
     * (turned off by default) additionally:
-    * * Tail-call
-    * * Extended-const
-    * * Typed-function references
-    * * GC (interpreter only)
-    * * Multiple memories
     * * Threads
-    * * Exception handling (interpreter only)
     * * Component model (loader phase only)
     */
    WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
-   WasmEdge_ConfigureAddProposal(ConfCxt, WasmEdge_Proposal_MultiMemories);
-   WasmEdge_ConfigureRemoveProposal(ConfCxt, WasmEdge_Proposal_ReferenceTypes);
+   WasmEdge_ConfigureAddProposal(ConfCxt, WasmEdge_Proposal_Threads);
+   WasmEdge_ConfigureRemoveProposal(ConfCxt, WasmEdge_Proposal_GC);
    bool IsBulkMem = WasmEdge_ConfigureHasProposal(
        ConfCxt, WasmEdge_Proposal_BulkMemoryOperations);
    /* The `IsBulkMem` will be `TRUE`. */
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-2. Host registrations
+3. Host registrations
 
    This configuration is used for the `VM` context to turn on the `WASI` supports and only effective in `VM` contexts.
 
@@ -714,7 +809,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-3. Maximum memory pages
+4. Maximum memory pages
 
    Developers can limit the page size of memory instances by this configuration. When growing the page size of memory instances in WASM execution and exceeding the limited size, the page growing will fail. This configuration is only effective in the `Executor` and `VM` contexts.
 
@@ -732,7 +827,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-4. Forcibly interpreter mode
+5. Forcibly interpreter mode
 
    If developers want to execute the WASM file or the AOT compiled WASM in interpreter mode forcibly, they can turn on the configuration.
 
@@ -746,7 +841,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-5. AOT compiler options
+6. AOT compiler options
 
    The AOT compiler options configure the behavior about optimization level, output format, dump IR, and generic binary.
 
@@ -797,7 +892,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-6. Statistics options
+7. Statistics options
 
    The statistics options configure the behavior about instruction counting, cost measuring, and time measuring in both runtime and AOT compiler. These configurations are effective in `Compiler`, `VM`, and `Executor` contexts.
 
@@ -1314,6 +1409,50 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    $ gcc test.c -lwasmedge
    $ ./a.out
    Get the result: 10946
+   ```
+
+3. Forcibly delete the registered WASM modules
+
+   For instantiated and registered modules in VM context, developers can use the `WasmEdge_VMForceDeleteRegisteredModule()` API to forcibly delete and unregister the module instance by name.
+
+   <!-- prettier-ignore -->
+   :::note
+   This API doesn't check the module instance dependencies for exporting and importing. Developers should guarantee the module dependencies by theirselves when using this API. The safer API will be provided in the future.
+   :::
+
+   ```c
+   #include <wasmedge/wasmedge.h>
+   #include <stdio.h>
+   int main() {
+     WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
+
+     /* Names. */
+     WasmEdge_String ModName = WasmEdge_StringCreateByCString("mod");
+     WasmEdge_String FuncName = WasmEdge_StringCreateByCString("fib");
+     /* Result. */
+     WasmEdge_Result Res;
+
+     /* Register the WASM module into VM. */
+     Res = WasmEdge_VMRegisterModuleFromFile(VMCxt, ModName, "fibonacci.wasm");
+     if (!WasmEdge_ResultOK(Res)) {
+       printf("WASM registration failed: %s\n",
+              WasmEdge_ResultGetMessage(Res));
+       return 1;
+     }
+     /*
+      * The function "fib" in the "fibonacci.wasm" was exported with the module
+      * name "mod". As the same as host functions, other modules can import the
+      * function `"mod" "fib"`.
+      */
+
+     /* Forcibly delete the registered module. */
+     WasmEdge_VMForceDeleteRegisteredModule(VMCxt, ModName);
+
+     WasmEdge_StringDelete(ModName);
+     WasmEdge_StringDelete(FuncName);
+     WasmEdge_VMDelete(VMCxt);
+     return 0;
+   }
    ```
 
 ### Asynchronous Execution
