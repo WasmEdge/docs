@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 10
 ---
 
 # Upgrade to WasmEdge 0.12.0

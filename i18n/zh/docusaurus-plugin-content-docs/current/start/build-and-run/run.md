@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# `wasmedge run` 
+# `wasmedge run`
 
 安装完成后（参见[安装](../install.md#install)），用户可以执行 `wasmedge run` 命令。
 

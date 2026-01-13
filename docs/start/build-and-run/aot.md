@@ -34,6 +34,24 @@ The options of the `wasmedge compile` command are as follows.
    - Or use `--enable-all-statistics` to generate code for enabling all of the statistics.
 5. _(Optional)_ `--generic-binary`: Generate the generic binary of the current host CPU architecture.
 6. _(Optional)_ WebAssembly proposals:
+   - Use `--wasm-1` to set the compilation environment as WASM 1.0 standard. This standard includes the following proposals:
+      - [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global)
+   - Use `--wasm-2` to set the compilation environment as WASM 2.0 standard. This standard includes the WASM 1.0 and following proposals:
+      - [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions)
+      - [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops)
+      - [Multi-value](https://github.com/WebAssembly/multi-value)
+      - [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations)
+      - [Reference Types](https://github.com/WebAssembly/reference-types)
+      - [Fixed-width SIMD](https://github.com/webassembly/simd)
+   - Use `--wasm-3` to set the compilation environment as WASM 3.0 standard (Currently default since 0.16.0). This standard includes the WASM 2.0 and following proposals:
+      - [Tail call](https://github.com/WebAssembly/tail-call)
+      - [Extended Constant Expressions](https://github.com/WebAssembly/extended-const)
+      - [Typed-Function References](https://github.com/WebAssembly/function-references)
+      - [Garbage Collection](https://github.com/WebAssembly/gc)
+      - [Multiple Memories](https://github.com/WebAssembly/multi-memory)
+      - [Relaxed SIMD](https://github.com/webassembly/relaxed-simd)
+      - [Exception Handling (currently not implemented)](https://github.com/WebAssembly/exception-handling)
+      - [Memory64 (currently not implemented)](https://github.com/WebAssembly/memory64)
    - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
    - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
    - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
@@ -41,11 +59,19 @@ The options of the `wasmedge compile` command are as follows.
    - Use `--disable-bulk-memory` to disable the [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations) proposal (Default `ON`).
    - Use `--disable-reference-types` to disable the [Reference Types](https://github.com/WebAssembly/reference-types) proposal (Default `ON`).
    - Use `--disable-simd` to disable the [Fixed-width SIMD](https://github.com/webassembly/simd) proposal (Default `ON`).
-   - Use `--enable-multi-memory` to enable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `OFF`).
-   - Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `OFF`).
-   - Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `OFF`).
+   - Use `--disable-tail-call` to disable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `ON`).
+   - Use `--disable-extended-const` to disable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `ON`).
+   - Use `--disable-function-reference` to disable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal (Default `ON`).
+   - Use `--disable-gc` to disable the [Garbage Collection](https://github.com/WebAssembly/gc) proposal (Default `ON`).
+   - Use `--disable-multi-memory` to disable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `ON`).
+   - Use `--disable-relaxed-simd` to disable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal (Default `ON`).
+   - DEPRECATED: Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal.
+   - DEPRECATED: Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal.
+   - DEPRECATED: Use `--enable-function-reference` to enable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal.
+   - DEPRECATED: Use `--enable-gc` to enable the [GC](https://github.com/WebAssembly/gc) proposal.
+   - DEPRECATED: Use `--enable-multi-memory` to enable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal.
+   - DEPRECATED: Use `--enable-relaxed-simd` to enable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal.
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
-   - Use `--enable-function-reference` to enable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal (Default `OFF`).
    - Use `--enable-all` to enable ALL proposals above.
 7. _(Optional)_ `--optimize`: Select the LLVM optimization level.
    - Use `--optimize LEVEL` to set the optimization level. The `LEVEL` should be one of `0`, `1`, `2`, `3`, `s`, or `z`.
