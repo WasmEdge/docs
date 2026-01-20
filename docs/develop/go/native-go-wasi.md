@@ -27,6 +27,46 @@ There are currently two ways to develop Go applications for WasmEdge: using Tiny
 TinyGo has historically been the primary way to run Go applications on WebAssembly and remains a good choice for lightweight workloads. Native Go with WASI support enables developers to reuse more existing Go code and tooling, but it is still subject to the limitations of the WASI environment.
 
 
+## Hello World example
+
+The following example demonstrates a minimal Go application compiled to WASI and executed using WasmEdge.
+
+### hello.go
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, world")
+}
+```
+
+### Build
+
+```bash
+# initialize a module (optional, but recommended)
+go mod init hello
+# build a WASI-compatible WebAssembly module
+GOOS=wasip1 GOARCH=wasm go build -o hello.wasm
+```
+
+### Run with WasmEdge
+
+```bash
+wasmedge hello.wasm
+```
+
+Expected output:
+
+```
+Hello, world
+```
+
+Ensure the example prints "Hello, world" when run with WasmEdge. This section is intentionally minimal to demonstrate the native Go WASI path working end-to-end.
+
+
 ## Building a WASI module with Go 1.21
 
 To compile a Go application to a WASI-compatible WebAssembly module, Go 1.21 or newer is required.
@@ -68,17 +108,51 @@ This limitation applies to both TinyGo and native Go when targeting WASI and is 
 
 ## Networking with stealthrocket/net
 
-To work around the lack of native networking support in WASI Preview 1, alternative approaches are required. One such approach is the use of the `stealthrocket/net` project, which provides a networking implementation designed for WASI environments.
+To work around the lack of native networking support in WASI Preview 1,
+alternative approaches are required. One such experimental approach is the use
+of the external `stealthrocket/net` project, which provides a networking
+implementation designed for WASI environments.
 
-Rather than relying on traditional socket APIs, `stealthrocket/net` enables networking by forwarding requests to host-provided functionality. This allows Go applications compiled to WASI to perform HTTP requests and other network operations when supported by the runtime environment.
+Rather than relying on traditional socket APIs, `stealthrocket/net` forwards
+network requests to host-provided functionality. This can enable limited HTTP
+and networking capabilities for Go applications compiled to WASI, depending on
+the runtime environment.
 
-When using native Go with WASI, libraries such as `stealthrocket/net` can be used to enable networking functionality that is otherwise unavailable through the standard Go `net` and `net/http` packages.
+> **Note**
+> `stealthrocket/net` is **not part of WasmEdge** and is mentioned here only as an
+> external reference. Usage details, compatibility, and examples should be
+> verified directly with the project maintainers.
+
+For more information, see the official repository:
+- https://github.com/stealthrocket/net
 
 
-## Importing host functions in Go 1.21
 
-In addition to using libraries such as `stealthrocket/net`, native Go applications compiled to WASI can interact with runtime-provided functionality by importing host functions.
+## Importing host functions in native Go (Go 1.21+)
 
-Starting with Go 1.21, host functions can be declared using the `//go:wasmimport` directive. This allows Go code to call functions that are implemented by the WebAssembly runtime, such as WasmEdge, rather than inside the WebAssembly module itself.
+Native Go applications compiled to WASI can call functions that are implemented
+by the WebAssembly runtime (such as WasmEdge) rather than inside the module
+itself.
 
-Host functions can be used to expose capabilities that are not available in the WASI specification, including networking, system integration, or custom platform services. The exact set of available host functions depends on the runtime and its configuration.
+Starting with Go 1.21, host functions can be declared using the
+`//go:wasmimport` directive.
+
+### Example
+
+```go
+package main
+
+//go:wasmimport wasi_snapshot_preview1 proc_exit
+func procExit(code uint32)
+
+func main() {
+	procExit(0)
+}
+```
+
+In this example, proc_exit is a WASI host function provided by the runtime.
+The implementation is supplied by the WASI environment rather than by Go code
+inside the WebAssembly module.
+
+For more details, see the official Go documentation:
+- https://pkg.go.dev/cmd/compile#hdr-Directives
