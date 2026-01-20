@@ -4,7 +4,10 @@ sidebar_position: 1
 
 # TinyGo
 
-This page focuses on using TinyGo with WasmEdge. Native Go (Go 1.21+) support is documented separately.
+This page focuses on using TinyGo with WasmEdge.  
+Native Go (Go 1.21+) support is documented separately in
+[native Go WASI documentation](./native-go-wasi.md).
+
 
 The best way to run Go programs in WasmEdge is to compile Go source code to WebAssembly using [TinyGo](https://tinygo.org/). In this article, we will show you how.
 
