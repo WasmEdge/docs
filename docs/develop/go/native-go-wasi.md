@@ -19,15 +19,9 @@ There are currently two ways to develop Go applications for WasmEdge: using Tiny
 |------|--------|----------------------|
 | Compiler | TinyGo (LLVM-based) | Standard Go compiler |
 | Standard library | Partial | More complete |
-| Binary size (generated .wasm output) | Typically smaller | Typically larger |
 | WASI support | Mature | Introduced in Go 1.21 |
 | Networking | Not available by default | Not available by default (WASI limitation) |
 | Typical use cases | Small, resource-constrained workloads | Existing Go codebases, richer language features |
-
-Binary size here refers to the size of the generated WebAssembly (`.wasm`) file.
-Actual output size can vary depending on the application, enabled features, and
-dependencies. The comparison reflects typical behavior rather than a
-benchmarked guarantee.
 
 TinyGo has historically been the primary way to run Go applications on WebAssembly and remains a good choice for lightweight workloads. Native Go with WASI support enables developers to reuse more existing Go code and tooling, but it is still subject to the limitations of the WASI environment.
 
