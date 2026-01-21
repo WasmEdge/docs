@@ -116,7 +116,7 @@ Our development environment requires `libLLVM-12` and `>=GLIBCXX_3.4.26`.
 
 If you use an operating system older than Ubuntu 20.04, please use our [special docker image] to build WasmEdge. If you are looking for the pre-built binaries for the older operating system, we also provide several pre-built binaries based on the `manylinux2014` distribution.
 
-To build WasmEdge from the source, please refer to: [Build WasmEdge from source](/category/build-wasmedge-from-source).
+To build WasmEdge from the source, please refer to: [Build WasmEdge from source](/docs/contribute/source/build_from_src).
 
 ## Commit Format
 
