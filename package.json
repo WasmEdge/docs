@@ -22,7 +22,8 @@
     "lint:fix": "npm run lint:eslint-fix && npm run lint:style-fix",
     "lint:eslint-fix": "eslint --fix --cache --report-unused-disable-directives \"**/*.{js,jsx,ts,tsx}\"",
     "lint:style-fix": "stylelint --fix \"**/*.css\"",
-    "lint:style": "stylelint \"**/*.css\""
+    "lint:style": "stylelint \"**/*.css\"",
+    "lint-staged": "lint-staged"
   },
   "engines": {
     "node": ">=16.14.0",
