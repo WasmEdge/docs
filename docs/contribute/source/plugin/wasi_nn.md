@@ -328,6 +328,14 @@ Then developers can build by following the steps.
       & "<the ninja-build folder>\ninja.exe" -C build
       ```
 
+   - If you want to enable HIP (AMD GPU):
+
+      ```console
+      # HIP ENABLE:
+      & "C:\Program files\CMake\bin\cmake.exe" -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKEND=ggml -DWASMEDGE_PLUGIN_WASI_NN_GGML_LLAMA_HIP=ON -DWASMEDGE_USE_LLVM=OFF .
+      & "<the ninja-build folder>\ninja.exe" -C build
+      ```
+
 #### Execute the WASI-NN plugin with the llama example on Windows
 
 1. Set the environment variables
@@ -344,6 +352,22 @@ Then developers can build by following the steps.
     wget https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/blob/main/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf
     wasmedge --dir .:. --env llama3=true --env n_gpu_layers=100 --nn-preload default:GGML:AUTO:Meta-Llama-3-8B-Instruct.Q5_K_M.gguf wasmedge-ggml-llama.wasm default
     ```
+
+#### Troubleshooting: AMD Radeon Integrated Graphics (Windows)
+
+If you are building the GGML backend on Windows with an integrated AMD GPU (e.g., Radeon 780M / gfx1103) and encounter `rocBLAS` or initialization errors, you may need the following workarounds:
+
+1. **Set the Architecture Override:**
+   The RDNA 3 integrated graphics require an override to match the available ROCm kernels.
+   ```console
+   $env:HSA_OVERRIDE_GFX_VERSION = "11.0.0"
+   ```
+
+2. **Manual Library Linking (ROCm 6.x):** The ROCm installer on Windows may not create the necessary symlinks for `gfx1103`. If you see errors related to missing `TensileLibrary` files:
+
+   * Navigate to your ROCm installation folder (e.g., `C:\Program Files\AMD\ROCm\6.x\bin\rocblas\library`).
+   * Copy the `gfx1100` files and rename them to `gfx1103`.
+     * Example: Copy `TensileLibrary_lazy_gfx1100.dat` -> `TensileLibrary_lazy_gfx1103.dat`
 
 ### Appendix for llama.cpp backend
 
