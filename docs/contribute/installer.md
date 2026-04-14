@@ -64,7 +64,7 @@ The actual installer handles all stuff. It supports python2.7 (not tested on ear
 - Full Option: `--version VERSION`
 - Description: Install the given VERSION of WasmEdge
 - Available Value: VERSION `{{ wasmedge_version }}` or other valid release versions.
-- Note - If supplied an invalid or nonexistent version, the installer exists with an error.
+- Note - If supplied an invalid or nonexistent version, the installer exits with an error.
 
 ### Installation path
 

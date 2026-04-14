@@ -6,11 +6,11 @@ sidebar_position: 7
 
 ## Overview
 
-WasmEdge installer V2 is designed for installing the Core Tools (`wasmedge`, `wasmedge compile`), the Libraries (`libwasmedge`),  and the WASI-NN GGML/GGUF Plugin..
+WasmEdge installer V2 is designed for installing the Core Tools (`wasmedge`, `wasmedge compile`), the Libraries (`libwasmedge`), and the WASI-NN GGML/GGUF Plugin.
 
 ## Dependencies
 
-This is a pure shell script implementation. The only dependecies are `curl` or `wget` for downloading the tarballs, and `tar` for extracting them.
+This is a pure shell script implementation. The only dependencies are `curl` or `wget` for downloading the tarballs, and `tar` for extracting them.
 
 
 ## Usage
@@ -95,7 +95,7 @@ The installer entry point.
 
 - WasmEdge installation appends all the files it installs to a file which is located in the installer directory named `env` with its path as `$INSTALLATION_PATH/env`.
 
-### Shell and it's configuration
+### Shell and its configuration
 
 - Source string in shell configuration is given as `. $INSTALLATION_PATH/env` so that it exports the necessary environment variables for WasmEdge.
 - Shell configuration file is appended with source string if it cannot find the source string in that file.
