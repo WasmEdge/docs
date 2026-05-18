@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.16.1 Documentation
+# C API 0.17.0 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
@@ -59,7 +59,8 @@ The releases before 0.11.0 are all unversioned. Please make sure the library ver
 | 0.11.2 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.1 |
 | 0.12.0 to 0.12.1 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.2 |
 | 0.13.0 to 0.13.5 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.0.3 |
-| Since 0.14.0 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.1.0 |
+| 0.14.0 to 0.16.3 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.1.0 |
+| Since 0.17.0 | libwasmedge.so | libwasmedge.so.0 | libwasmedge.so.0.1.1 |
 
 ## WasmEdge Basics
 
@@ -374,25 +375,50 @@ The details of other contexts will be introduced later.
 
 The WASM data structures are used for creating instances or can be queried from instance contexts. The details of instances creation will be introduced in the [Instances](#instances).
 
-1. Limit
+1. Limit context
 
-   The `WasmEdge_Limit` struct is defined in the header:
+   The `WasmEdge_LimitContext` is used to describe the minimum and maximum value, the shareable, and the 64-bit address type (for the Memory64 proposal) of a limit.
+
+   Developers can create the `WasmEdge_LimitContext` by either of the following APIs:
 
    ```c
-   /// Struct of WASM limit.
-   typedef struct WasmEdge_Limit {
-     /// Boolean to describe has max value or not.
-     bool HasMax;
-     /// Boolean to describe is shared memory or not.
-     bool Shared;
-     /// Minimum value.
-     uint32_t Min;
-     /// Maximum value. Will be ignored if the `HasMax` is false.
-     uint32_t Max;
-   } WasmEdge_Limit;
+   /// Create a limit context without the maximum value.
+   WasmEdge_LimitContext *WasmEdge_LimitCreate(const uint64_t Min,
+                                               const bool Is64Bit);
+
+   /// Create a limit context with the maximum value.
+   WasmEdge_LimitContext *WasmEdge_LimitCreateWithMax(
+       const uint64_t Min, const uint64_t Max,
+       const bool Is64Bit, const bool IsShared);
    ```
 
-   Developers can initialize the struct by assigning it's value, and the `Max` value is needed to be larger or equal to the `Min` value. The API `WasmEdge_LimitIsEqual()` is provided to compare with 2 `WasmEdge_Limit` structs.
+   The minimum and maximum values are passed as `uint64_t`. The `Is64Bit` parameter is to determine the limit context is the 64-bit address type for the Memory64 proposal. For the table type using, the `IsShared` parameter should be `false`.
+
+   After creation, developers can use the following APIs to access the information of the limit context:
+
+   ```c
+   /// Get the minimum value of the limit context.
+   uint64_t WasmEdge_LimitGetMin(const WasmEdge_LimitContext *Cxt);
+   /// Get the maximum value of the limit context.
+   uint64_t WasmEdge_LimitGetMax(const WasmEdge_LimitContext *Cxt);
+   /// Get the has-maximum option of the limit context.
+   bool WasmEdge_LimitHasMax(const WasmEdge_LimitContext *Cxt);
+   /// Get the shareable option of the limit context.
+   bool WasmEdge_LimitIsShared(const WasmEdge_LimitContext *Cxt);
+   /// Get the 64-bit address type option of the limit context.
+   bool WasmEdge_LimitIs64Bit(const WasmEdge_LimitContext *Cxt);
+   /// Compare 2 limit contexts.
+   bool WasmEdge_LimitIsEqual(const WasmEdge_LimitContext *Lim1,
+                              const WasmEdge_LimitContext *Lim2);
+   ```
+
+   Developers should destroy the `WasmEdge_LimitContext` by calling the `WasmEdge_LimitDelete()` API after using it. Note that the `WasmEdge_LimitContext` returned from the `WasmEdge_TableTypeGetLimit()` or `WasmEdge_MemoryTypeGetLimit()` is owned by the corresponding type context, and developers should __NOT__ delete it.
+
+   ```c
+   WasmEdge_LimitContext *LimCxt = WasmEdge_LimitCreateWithMax(10, 20, false, false);
+   /* ... */
+   WasmEdge_LimitDelete(LimCxt);
+   ```
 
 2. Function type context
 
@@ -428,10 +454,12 @@ The WASM data structures are used for creating instances or can be queried from 
    The `Table Type` context is used for `Table` instance creation or getting information from `Table` instances.
 
    ```c
-   WasmEdge_Limit TabLim = {
-       .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
+   /* Create a limit context with min=10, max=20, 32-bit address, non-shared. */
+   WasmEdge_LimitContext *TabLim = WasmEdge_LimitCreateWithMax(10, 20, false, false);
    WasmEdge_TableTypeContext *TabTypeCxt =
        WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenExternRef(), TabLim);
+   /* The limit context is copied. Delete the local copy after the type creation. */
+   WasmEdge_LimitDelete(TabLim);
 
    WasmEdge_ValType GotRefType = WasmEdge_TableTypeGetRefType(TabTypeCxt);
    bool IsTypeExternRef = WasmEdge_ValTypeIsExternRef(GotRefType);
@@ -440,8 +468,12 @@ The WASM data structures are used for creating instances or can be queried from 
    /* `IsTypeRef` will be `TRUE`. */
    bool IsTypeNullableRef = WasmEdge_ValTypeIsRefNull(GotRefType);
    /* `IsTypeNullableRef` will be `TRUE`. */
-   WasmEdge_Limit GotTabLim = WasmEdge_TableTypeGetLimit(TabTypeCxt);
-   /* `GotTabLim` will be the same value as `TabLim`. */
+   const WasmEdge_LimitContext *GotTabLim = WasmEdge_TableTypeGetLimit(TabTypeCxt);
+   /*
+    * `GotTabLim` is owned by `TabTypeCxt` and should __NOT__ be deleted by
+    * developers. The minimum, maximum, and other options can be queried via
+    * the `WasmEdge_LimitGet*()` APIs.
+    */
 
    WasmEdge_TableTypeDelete(TabTypeCxt);
    ```
@@ -451,15 +483,18 @@ The WASM data structures are used for creating instances or can be queried from 
    The `Memory Type` context is used for `Memory` instance creation or getting information from `Memory` instances.
 
    ```c
-   WasmEdge_Limit MemLim = {
-       .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
+   /* Create a limit context with min=10, max=20, 32-bit address, non-shared. */
+   WasmEdge_LimitContext *MemLim = WasmEdge_LimitCreateWithMax(10, 20, false, false);
    WasmEdge_MemoryTypeContext *MemTypeCxt = WasmEdge_MemoryTypeCreate(MemLim);
+   WasmEdge_LimitDelete(MemLim);
 
-   WasmEdge_Limit GotMemLim = WasmEdge_MemoryTypeGetLimit(MemTypeCxt);
-   /* `GotMemLim` will be the same value as `MemLim`. */
+   const WasmEdge_LimitContext *GotMemLim = WasmEdge_MemoryTypeGetLimit(MemTypeCxt);
+   /* `GotMemLim` is owned by `MemTypeCxt` and should __NOT__ be deleted. */
 
-   WasmEdge_MemoryTypeDelete(MemTypeCxt)
+   WasmEdge_MemoryTypeDelete(MemTypeCxt);
    ```
+
+   Developers can pass `true` as the `Is64Bit` parameter of `WasmEdge_LimitCreate()` or `WasmEdge_LimitCreateWithMax()` to create a 64-bit memory type, which is used by the [Memory64 proposal](https://github.com/WebAssembly/memory64).
 
 5. Global type context
 
@@ -739,7 +774,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
      WasmEdge_Proposal_RelaxSIMD,
      WasmEdge_Proposal_Annotations,       // NOT IMPLEMENTED
      WasmEdge_Proposal_ExceptionHandling,
-     WasmEdge_Proposal_Memory64,          // NOT IMPLEMENTED
+     WasmEdge_Proposal_Memory64,
      WasmEdge_Proposal_Threads,
      WasmEdge_Proposal_Component,
    };
@@ -766,12 +801,13 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
     *    * GC
     *    * Multiple memories
     *    * Relaxed SIMD
+    *    * Memory64
     *    * Exception handling (interpreter only)
     *
     * For the current WasmEdge version, the following proposals are supported
     * (turned off by default) additionally:
     * * Threads
-    * * Component model (loader phase only)
+    * * Component model (loader and validator phase only)
     */
    WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
    WasmEdge_ConfigureAddProposal(ConfCxt, WasmEdge_Proposal_Threads);
@@ -827,19 +863,34 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-5. Forcibly interpreter mode
+5. Run mode
 
-   If developers want to execute the WASM file or the AOT compiled WASM in interpreter mode forcibly, they can turn on the configuration.
+   WasmEdge supports a tri-state run mode for the WASM execution engine: interpreter, JIT, or AOT. Developers can use the `WasmEdge_ConfigureSetRunMode()` API to select the engine:
+
+   ```c
+   enum WasmEdge_RunMode {
+     WasmEdge_RunMode_Interpreter = 0, // Default, interpreter mode.
+     WasmEdge_RunMode_JIT,             // JIT mode.
+     WasmEdge_RunMode_AOT,             // AOT mode.
+   };
+   ```
+
+   Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen` shared-library WASM artifacts. In the other modes, AOT data is ignored, and shared-library inputs are re-loaded as plain WASM after extracting their embedded bytes.
 
    ```c
    WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
-   bool IsForceInterp = WasmEdge_ConfigureIsForceInterpreter(ConfCxt);
-   /* By default, The `IsForceInterp` will be `FALSE`. */
-   WasmEdge_ConfigureSetForceInterpreter(ConfCxt, TRUE);
-   IsForceInterp = WasmEdge_ConfigureIsForceInterpreter(ConfCxt);
-   /* The `IsForceInterp` will be `TRUE`. */
+   enum WasmEdge_RunMode Mode = WasmEdge_ConfigureGetRunMode(ConfCxt);
+   /* By default, `Mode` will be `WasmEdge_RunMode_Interpreter`. */
+   WasmEdge_ConfigureSetRunMode(ConfCxt, WasmEdge_RunMode_AOT);
+   Mode = WasmEdge_ConfigureGetRunMode(ConfCxt);
+   /* `Mode` will be `WasmEdge_RunMode_AOT`. */
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
+
+   <!-- prettier-ignore -->
+   :::note
+   The `WasmEdge_ConfigureSetForceInterpreter()` and `WasmEdge_ConfigureIsForceInterpreter()` APIs are deprecated since the `0.17.0` release. Developers should use the `WasmEdge_ConfigureSetRunMode()` and `WasmEdge_ConfigureGetRunMode()` APIs instead.
+   :::
 
 6. AOT compiler options
 
@@ -1307,6 +1358,23 @@ WasmEdge_ModuleInstanceDelete(WasiModule);
  * The created module instances should be deleted by the developers when the VM
  * deallocation.
  */
+```
+
+Developers can use the `WasmEdge_VMRegisterModuleFromImportWithAlias()` API to register a module instance under a given alias name instead of its own module name. This is useful when the same module instance should be accessible under a different import namespace, for example, in the threads proposal.
+
+```c
+WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
+WasmEdge_ModuleInstanceContext *HostModule =
+    WasmEdge_ModuleInstanceCreate(/* ... ignored ... */);
+WasmEdge_String AliasName = WasmEdge_StringCreateByCString("alias_name");
+/* Register the module instance under the alias name. */
+WasmEdge_Result Res =
+    WasmEdge_VMRegisterModuleFromImportWithAlias(VMCxt, AliasName, HostModule);
+/* The result status should be checked. */
+
+WasmEdge_StringDelete(AliasName);
+WasmEdge_VMDelete(VMCxt);
+WasmEdge_ModuleInstanceDelete(HostModule);
 ```
 
 ### WASM Registrations And Executions
@@ -2075,6 +2143,16 @@ The `Executor` context is the executor for both WASM and compiled-WASM. This obj
      printf("WASM registration failed: %s\n", WasmEdge_ResultGetMessage(Res));
      return -1;
    }
+   /*
+    * Developers can also register the module instance under an alias module
+    * name through the `WasmEdge_ExecutorRegisterImportWithAlias()` API:
+    *
+    *   WasmEdge_String AliasName =
+    *       WasmEdge_StringCreateByCString("alias-module");
+    *   Res = WasmEdge_ExecutorRegisterImportWithAlias(
+    *       ExecCxt, StoreCxt, HostModCxt, AliasName);
+    *   WasmEdge_StringDelete(AliasName);
+    */
 
    /* ... */
 
@@ -2311,11 +2389,12 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    In WasmEdge, developers can create the `Table` contexts and add them into an `Module` instance context for registering into a `VM` or a `Store`. The `Table` contexts supply APIs to control the data in table instances.
 
    ```c
-   WasmEdge_Limit TabLimit = {
-       .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
+   /* Create a limit context with min=10, max=20, 32-bit address, non-shared. */
+   WasmEdge_LimitContext *TabLimit = WasmEdge_LimitCreateWithMax(10, 20, false, false);
    /* Create the table type with limit and the `FuncRef` element type. */
    WasmEdge_TableTypeContext *TabTypeCxt =
        WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenFuncRef(), TabLimit);
+   WasmEdge_LimitDelete(TabLimit);
    /* Create the table instance with table type. */
    /* 
     * Developers can also use the `WasmEdge_TableInstanceCreateWithInit()` API to
@@ -2371,11 +2450,12 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    In WasmEdge, developers can create the `Memory` contexts and add them into an `Module` instance context for registering into a `VM` or a `Store`. The `Memory` contexts supply APIs to control the data in memory instances.
 
    ```c
-   WasmEdge_Limit MemLimit = {
-       .HasMax = true, .Shared = false, .Min = 1, .Max = 5};
+   /* Create a limit context with min=1, max=5, 32-bit address, non-shared. */
+   WasmEdge_LimitContext *MemLimit = WasmEdge_LimitCreateWithMax(1, 5, false, false);
    /* Create the memory type with limit. The memory page size is 64KiB. */
    WasmEdge_MemoryTypeContext *MemTypeCxt =
        WasmEdge_MemoryTypeCreate(MemLimit);
+   WasmEdge_LimitDelete(MemLimit);
    /* Create the memory instance with memory type. */
    WasmEdge_MemoryInstanceContext *HostMemory =
        WasmEdge_MemoryInstanceCreate(MemTypeCxt);
@@ -2763,10 +2843,10 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_StringDelete(FuncName);
 
    /* Create and add a table instance into the import object. */
-   WasmEdge_Limit TableLimit = {
-       .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
+   WasmEdge_LimitContext *TableLimit = WasmEdge_LimitCreateWithMax(10, 20, false, false);
    WasmEdge_TableTypeContext *HostTType =
        WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenFuncRef(), TableLimit);
+   WasmEdge_LimitDelete(TableLimit);
    WasmEdge_TableInstanceContext *HostTable =
        WasmEdge_TableInstanceCreate(HostTType);
    WasmEdge_TableTypeDelete(HostTType);
@@ -2775,10 +2855,10 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_StringDelete(TableName);
 
    /* Create and add a memory instance into the import object. */
-   WasmEdge_Limit MemoryLimit = {
-       .HasMax = true, .Shared = false, .Min = 1, .Max = 2};
+   WasmEdge_LimitContext *MemoryLimit = WasmEdge_LimitCreateWithMax(1, 2, false, false);
    WasmEdge_MemoryTypeContext *HostMType =
        WasmEdge_MemoryTypeCreate(MemoryLimit);
+   WasmEdge_LimitDelete(MemoryLimit);
    WasmEdge_MemoryInstanceContext *HostMemory =
        WasmEdge_MemoryInstanceCreate(HostMType);
    WasmEdge_MemoryTypeDelete(HostMType);

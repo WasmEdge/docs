@@ -54,13 +54,15 @@ The options of the `wasmedge` CLI tool are as follows:
    - Use `--enable-gas-measuring` to show the amount of used gas.
    - Use `--enable-instruction-count` to display the number of executed instructions.
    - Or use `--enable-all-statistics` to enable all of the statistics options.
+   - Use `--log-level=LEVEL` to control the logging level. Valid values are `off`, `trace`, `debug`, `info`, `warning`, `error`, `fatal`. Default is `info`.
 7. _(Optional)_ Resource limitations:
    - Use `--time-limit MILLISECOND_TIME` to limit the execution time. Default value is `0` which specifies no limitation.
    - Use `--gas-limit GAS_LIMIT` to limit the execution cost.
    - Use `--memory-page-limit PAGE_COUNT` to set the limitation of pages(as size of 64 KiB) in every memory instance.
 8. _(Optional)_ Execution mode:
-   - Use `--force-interpreter` to forcibly run WASM in interpreter mode.
-   - Use `--enable-jit` to enable Just-In-Time compiler for running WASM.
+   - Use `--run-mode=<interpreter|jit|aot>` to select the WASM execution engine (case-insensitive, default `interpreter`). Available since `0.17.0`.
+   - DEPRECATED: Use `--force-interpreter` to forcibly run WASM in interpreter mode. Use `--run-mode=interpreter` instead.
+   - DEPRECATED: Use `--enable-jit` to enable Just-In-Time compiler for running WASM. Use `--run-mode=jit` instead.
 9. _(Optional)_ WebAssembly proposals:
    - Use `--wasm-1` to set the execution environment as WASM 1.0 standard. This standard includes the following proposals:
       - [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global)
@@ -79,7 +81,7 @@ The options of the `wasmedge` CLI tool are as follows:
       - [Multiple Memories](https://github.com/WebAssembly/multi-memory)
       - [Relaxed SIMD](https://github.com/webassembly/relaxed-simd)
       - [Exception Handling](https://github.com/WebAssembly/exception-handling)
-      - [Memory64 (currently not implemented)](https://github.com/WebAssembly/memory64)
+      - [Memory64](https://github.com/WebAssembly/memory64)
    - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
    - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
    - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
@@ -102,7 +104,7 @@ The options of the `wasmedge` CLI tool are as follows:
    - DEPRECATED: Use `--enable-relaxed-simd` to enable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal.
    - DEPRECATED: Use `--enable-exception-handling` to enable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal.
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
-   - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader phase only).
+   - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader and validator phase only).
    - Use `--enable-all` to enable ALL proposals above.
 10. WASM file (`/path/to/wasm/file`).
 11. _(Optional)_ `ARG` command line arguments array.
