@@ -72,17 +72,18 @@ To create a `host table`, `memory`, and `global` instance, developers can use si
 
 ```c
 /* Create a host table exported as "table". */
-WasmEdge_Limit TabLimit = {
-    .HasMax = true, .Shared = false, .Min = 10, .Max = 20};
+WasmEdge_LimitContext *TabLimit = WasmEdge_LimitCreateWithMax(10, 20, false, false);
 WasmEdge_TableTypeContext *HostTType =
     WasmEdge_TableTypeCreate(WasmEdge_ValTypeGenFuncRef(), TabLimit);
+WasmEdge_LimitDelete(TabLimit);
 WasmEdge_TableInstanceContext *HostTable =
     WasmEdge_TableInstanceCreate(HostTType);
 WasmEdge_TableTypeDelete(HostTType);
 
 /* Create a host memory exported as "memory". */
-WasmEdge_Limit MemLimit = {.HasMax = true, .Shared = false, .Min = 1, .Max = 2};
+WasmEdge_LimitContext *MemLimit = WasmEdge_LimitCreateWithMax(1, 2, false, false);
 WasmEdge_MemoryTypeContext *HostMType = WasmEdge_MemoryTypeCreate(MemLimit);
+WasmEdge_LimitDelete(MemLimit);
 WasmEdge_MemoryInstanceContext *HostMemory =
     WasmEdge_MemoryInstanceCreate(HostMType);
 WasmEdge_MemoryTypeDelete(HostMType);

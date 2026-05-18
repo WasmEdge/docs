@@ -24,14 +24,13 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 | [Multiple memories][] | `--disable-multi-memory` | `WasmEdge_Proposal_MultiMemories` | ✓ (since `0.16.0`) | ✓ (since `0.9.1`) | ✓ (since `0.9.1`) |
 | [Relaxed SIMD][] | `--disable-relaxed-simd` | `WasmEdge_Proposal_RelaxSIMD` | ✓ (since `0.16.0`) | ✓ (since `0.14.1`) | ✓ (since `0.14.1`) |
 | [Exception handling][] | `--disable-exception-handling` | `WasmEdge_Proposal_ExceptionHandling` | ✓ (since `0.16.0`) | ✓ (since `0.14.0`) |  |
-| [Memory64][] | | | | | |
+| [Memory64][] | `--disable-memory64` | `WasmEdge_Proposal_Memory64` | ✓ (since `0.17.0`) | ✓ (since `0.17.0`) | ✓ (since `0.17.0`) |
 | [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
-| [Component Model][] | `--enable-component` | `WasmEdge_Proposal_Component` |  | Loader only (since `0.14.0`) |  |
+| [Component Model][] | `--enable-component` | `WasmEdge_Proposal_Component` |  | Loader and validator (since `0.17.0`) |  |
 
 The following proposals are under development and may be supported in the future:
 
 - [Exception handling][] (AOT mode)
-- [Memory64][]
 - [WebAssembly C and C++ API][]
 
 [Import/Export of Mutable Globals]: https://github.com/WebAssembly/mutable-global
