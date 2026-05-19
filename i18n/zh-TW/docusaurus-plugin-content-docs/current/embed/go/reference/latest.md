@@ -1,0 +1,2477 @@
+---
+sidebar_position: 1
+---
+
+# Go API v0.14.0 文件
+
+以下是使用 WasmEdge-Go SDK 的指南。
+
+## 開始使用
+
+WasmEdge-go 需要 golang 版本 >= 1.22。安裝前請檢查您的 golang 版本。開發者可以[在這裡下載 golang](https://golang.org/dl/)。
+
+```bash
+$ go version
+go version go1.23.1 linux/amd64
+```
+
+### WasmEdge 安裝
+
+開發者必須[安裝 WasmEdge 共用函式庫](../../../start/install.md#install),並且版本要與 `WasmEdge-go` 的釋出版本或預釋出版本相同。
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v {{ wasmedge_go_version }}
+```
+
+如果開發者需要 `WasmEdge-go` 的外掛(例如 `TensorFlow` 或 `Image`),請安裝帶有外掛的 `WasmEdge`:
+
+```bash
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasmedge_tensorflow wasmedge_tensorflowlite wasmedge_image -v {{ wasmedge_go_version }}
+```
+
+### 取得 WasmEdge-go
+
+安裝 WasmEdge 後,開發者可以取得 `WasmEdge-go` 套件並在您的 Go 專案目錄中建置。
+
+```bash
+go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+go build
+```
+
+<!-- prettier-ignore -->
+:::note
+WasmEdge-Go 版本號應與已安裝的 WasmEdge 版本相符。
+:::
+
+### 範例儲存庫
+
+開發者可以參考[範例儲存庫](https://github.com/second-state/WasmEdge-go-examples/)以查看 WasmEdge-Go 範例。
+
+## WasmEdge-go 基礎
+
+在此章節,我們將介紹 WasmEdge-go API 及資料結構的工具與概念。
+
+### 版本
+
+`Version` 相關 API 提供開發者檢查已安裝的 WasmEdge 共用函式庫版本。
+
+```go
+import "github.com/second-state/WasmEdge-go/wasmedge"
+
+verstr := wasmedge.GetVersion() // Will be `string` of WasmEdge version.
+vermajor := wasmedge.GetVersionMajor() // Will be `uint` of WasmEdge major version number.
+verminor := wasmedge.GetVersionMinor() // Will be `uint` of WasmEdge minor version number.
+verpatch := wasmedge.GetVersionPatch() // Will be `uint` of WasmEdge patch version number.
+```
+
+### 日誌設定
+
+`wasmedge.SetLogErrorLevel()` 和 `wasmedge.SetLogDebugLevel()` API 可以將日誌系統設定為除錯等級或錯誤等級。預設為錯誤等級,除錯資訊將被隱藏。
+
+開發者也可以使用 `wasmedge.SetLogOff()` API 來停用所有日誌。
+
+### 值型別
+
+為了描述 WASM 中的值型別,WasmEdge-go 使用 `ValType` 結構來表示值型別。
+
+1. 數值型別:`i32`、`i64`、`f32`、`f64`,以及給 `SIMD` 提案使用的 `v128`
+
+   ```go
+   vtype := wasmedge.NewValTypeI32()
+   // `vtype.IsI32()` will be `true`.
+   vtype = wasmedge.NewValTypeI64()
+   // `vtype.IsI64()` will be `true`.
+   vtype = wasmedge.NewValTypeF32()
+   // `vtype.IsF32()` will be `true`.
+   vtype = wasmedge.NewValTypeF64()
+   // `vtype.IsF64()` will be `true`.
+   vtype = wasmedge.NewValTypeV128()
+   // `vtype.IsV128()` will be `true`.
+
+   vtype2 := wasmedge.NewValTypeV128()
+   // `vtype.IsEqual(vtype2)` will be `true`.
+   ```
+
+2. 參照型別:給 `Reference-Types` 或 `Typed-Function References` 提案使用的 `funcref` 和 `externref`
+
+   ```go
+   vtype := wasmedge.NewValTypeFuncRef()
+   // The nullable funcref type is generated.
+   // `vtype.IsFuncRef()` will be `true`.
+   // `vtype.IsRef()` will be `true`.
+   // `vtype.IsRefNull()` will be `true`.
+
+   vtype = wasmedge.NewValTypeExternRef()
+   // The nullable funcref type is generated.
+   // `vtype.IsExternRef()` will be `true`.
+   // `vtype.IsRef()` will be `true`.
+   // `vtype.IsRefNull()` will be `true`.
+   ```
+
+### 值
+
+在 WasmEdge-go 中,API 將自動為內建型別進行轉換,並為參照型別實作資料結構。
+
+1. 數值型別:`i32`、`i64`、`f32` 和 `f64`
+
+   - 將值傳遞至 WASM 時,自動將 `uint32` 和 `int32` 轉換為 `i32`。
+   - 將值傳遞至 WASM 時,自動將 `uint64` 和 `int64` 轉換為 `i64`。
+   - 在 32 位元系統中,將值傳遞至 WASM 時,自動將 `uint` 和 `int` 轉換為 `i32`。
+   - 在 64 位元系統中,將值傳遞至 WASM 時,自動將 `uint` 和 `int` 轉換為 `i64`。
+   - 將值傳遞至 WASM 時,自動將 `float32` 轉換為 `f32`。
+   - 將值傳遞至 WASM 時,自動將 `float64` 轉換為 `f64`。
+   - 從 WASM 取得結果時,將 `i32` 轉換為 `int32`。
+   - 從 WASM 取得結果時,將 `i64` 轉換為 `int64`。
+   - 從 WASM 取得結果時,將 `f32` 轉換為 `float32`。
+   - 從 WASM 取得結果時,將 `f64` 轉換為 `float64`。
+
+2. 數值型別:給 `SIMD` 提案使用的 `v128`
+
+   開發者應使用 `wasmedge.NewV128()` 來產生 `v128` 值,並使用 `wasmedge.GetV128()` 來取得值。
+
+   ```go
+   val := wasmedge.NewV128(uint64(1234), uint64(5678))
+   high, low := val.GetVal()
+   // `high` will be uint64(1234), `low` will be uint64(5678)
+   ```
+
+3. 參照型別:給 `Reference-Types` 或 `Typed-Function References` 提案使用的 `FuncRef` 和 `ExternRef`
+
+   ```go
+   var funccxt *wasmedge.Function = ... // Create or get function object.
+   funcref := wasmedge.NewFuncRef(funccxt)
+   // Create a `FuncRef` with the function object.
+
+   num := 1234
+   // `num` is a `int`.
+   externref := wasmedge.NewExternRef(&num)
+   // Create an `ExternRef` which reference to the `num`.
+   num = 5678
+   // Modify the `num` to 5678.
+   numref := externref.GetRef().(*int)
+   // Get the original reference from the `ExternRef`.
+   fmt.Println(*numref)
+   // Will print `5678`.
+   numref.Release()
+   // Should call the `Release` method.
+   ```
+
+### 結果
+
+`Result` 物件指定執行狀態。開發者可以使用 `Error()` 函式來取得錯誤訊息。
+
+```go
+// Assume that `vm` is a `wasmedge.VM` object.
+res, err = vm.Execute(...) // Ignore the detail of parameters.
+// Assume that `res, err` are the return values for executing a function with `vm`.
+if err != nil {
+  fmt.Println("Error message:", err.Error())
+  category := err.GetErrorCategory()
+  // The `category` will be `wasmedge.ErrCategory_WASM`.
+}
+
+userdef_err := wasmedge.NewResult(wasmedge.ErrCategory_UserLevel, 123456)
+// Generate the user-defined error with code.
+code := userdef_err.GetCode()
+// The `Code` will be 123456.
+```
+
+### 上下文及其生命週期
+
+例如 `VM`、`Store` 和 `Function` 等物件,在 WasmEdge 共用函式庫中是由 `Context` 組成。所有的上下文都可以透過呼叫對應的 `New` API 來建立,開發者也應呼叫上下文對應的 `Release` 函式來釋放資源。請注意,從其他上下文取得而非由 `New` API 建立的上下文,不需要呼叫 `Release` 函式。
+
+```go
+// Create a Configure.
+conf := wasmedge.NewConfigure()
+// Release the `conf` immediately.
+conf.Release()
+```
+
+其他上下文的細節將在稍後介紹。
+
+### WASM 資料結構
+
+WASM 資料結構用於建立實例,或可從實例上下文中查詢。建立實例的細節將在[實例](#instances)中介紹。
+
+1. Limit
+
+   `Limit` 結構表示最小值與最大值的資料結構。
+
+   ```go
+   lim1 := wasmedge.NewLimit(12)
+   fmt.Println(lim1.HasMax())
+   // Will print `false`.
+   fmt.Println(lim1.GetMin())
+   // Will print `12`.
+
+   lim2 := wasmedge.NewLimitWithMax(15, 50)
+   fmt.Println(lim2.HasMax())
+   // Will print `true`.
+   fmt.Println(lim2.GetMin())
+   // Will print `15`.
+   fmt.Println(lim2.GetMax())
+   // Will print `50`.
+   ```
+
+   對於 thread 提案,`Limit` 結構也支援共享記憶體描述。
+
+   ```go
+   lim3 := wasmedge.NewLimitShared(20)
+   fmt.Println(lim3.HasMax())
+   // Will print `false`.
+   fmt.Println(lim3.IsShared())
+   // Will print `true`.
+   fmt.Println(lim3.GetMin())
+   // Will print `20`.
+
+   lim4 := wasmedge.NewLimitSharedWithMax(30, 40)
+   fmt.Println(lim4.HasMax())
+   // Will print `true`.
+   fmt.Println(lim4.IsShared())
+   // Will print `true`.
+   fmt.Println(lim4.GetMin())
+   // Will print `30`.
+   fmt.Println(lim4.GetMax())
+   // Will print `40`.
+   ```
+
+2. 函式型別上下文
+
+   `FunctionType` 是一個保存函式型別上下文的物件,用於建立 `Function`、檢查 `Function` 實例的值型別,或從 VM 透過函式名稱取得函式型別。開發者可以使用 `FunctionType` API 來取得引數或回傳值的型別資訊。
+
+   ```go
+   functype := wasmedge.NewFunctionType(
+     []*wasmedge.ValType{
+       wasmedge.NewValTypeExternRef(),
+       wasmedge.NewValTypeI32(),
+       wasmedge.NewValTypeI64(),
+     }, []*wasmedge.ValType{
+       wasmedge.NewValTypeF32(),
+       wasmedge.NewValTypeF64(),
+     })
+
+   plen := functype.GetParametersLength()
+   // `plen` will be 3.
+   rlen := functype.GetReturnsLength()
+   // `rlen` will be 2.
+   plist := functype.GetParameters()
+   // `plist` will be `[]*wasmedge.ValType` with the above parameter types data.
+   rlist := functype.GetReturns()
+   // `rlist` will be `[]*wasmedge.ValType` with the above return types data.
+
+   functype.Release()
+   ```
+
+3. 表格型別上下文
+
+   `TableType` 是一個保存表格型別上下文的物件,用於建立 `Table` 實例或從 `Table` 實例取得資訊。
+
+   ```go
+   lim := wasmedge.NewLimit(12)
+   tabtype := wasmedge.NewTableType(wasmedge.NewValTypeExternRef(), lim)
+
+   rtype := tabtype.GetRefType()
+   // `rtype` will be `wasmedge.ValType` with `externref` value type.
+   getlim := tabtype.GetLimit()
+   // `getlim` will be the same value as `lim`.
+
+   tabtype.Release()
+   ```
+
+4. 記憶體型別上下文
+
+   `MemoryType` 是一個保存記憶體型別上下文的物件,用於建立 `Memory` 實例或從 `Memory` 實例取得資訊。
+
+   ```go
+   lim := wasmedge.NewLimit(1)
+   memtype := wasmedge.NewMemoryType(lim)
+
+   getlim := memtype.GetLimit()
+   // `getlim` will be the same value as `lim`.
+
+   memtype.Release()
+   ```
+
+5. 全域型別上下文
+
+   `GlobalType` 是一個保存全域型別上下文的物件,用於建立 `Global` 實例或從 `Global` 實例取得資訊。
+
+   ```go
+   globtype := wasmedge.NewGlobalType(wasmedge.NewValTypeF64(), wasmedge.ValMut_Var)
+
+   vtype := globtype.GetValType()
+   // `vtype` will be `wasmedge.ValType` with `i64` value type.
+   vmut := globtype.GetMutability()
+   // `vmut` will be `wasmedge.ValMut_Var`.
+
+   globtype.Release()
+   ```
+
+6. 標籤型別上下文
+
+   `Tag Type` 是一個保存標籤型別上下文的物件,用於從 `Tag` 實例取得資訊。
+   只有在 `Exception Handling` 提案開啟時才可使用。
+
+   ```go
+   var mod *wasmedge.Module = ...
+   // Assume that `mod` is an instantiated module instance.
+
+   // Get the tag instance by name.
+   taginst := mod.FindTag(...)
+   // Get the tag type from a tag instance.
+   tagtype := taginst.GetTagType()
+
+   functype := tagtype.GetFunctionType()
+   // `functype` will be `*FunctionType` retrieved from the tag type.
+   ```
+
+7. 匯入型別上下文
+
+   `ImportType` 是一個保存匯入型別上下文的物件,用於從 [AST Module](#ast-module) 取得匯入資訊。開發者可以從 `ImportType` 物件取得外部型別(`function`、`table`、`memory`、`global` 或 `tag`)、匯入模組名稱及外部名稱。查詢 `ImportType` 物件的細節將在 [AST Module](#ast-module) 中介紹。
+
+   ```go
+   var ast *wasmedge.AST = ...
+   // Assume that `ast` is returned by the `Loader` for the result of loading a WASM file.
+   imptypelist := ast.ListImports()
+   // Assume that `imptypelist` is an array listed from the `ast` for the imports.
+
+   for i, imptype := range imptypelist {
+     exttype := imptype.GetExternalType()
+     // The `exttype` must be one of `wasmedge.ExternType_Function`, `wasmedge.ExternType_Table`,
+     // wasmedge.ExternType_Memory`, `wasmedge.ExternType_Global`, or `wasmedge.ExternType_Tag`.
+
+     modname := imptype.GetModuleName()
+     extname := imptype.GetExternalName()
+     // Get the module name and external name of the imports.
+
+     extval := imptype.GetExternalValue()
+     // The `extval` is the type of `interface{}` which indicates one of `*wasmedge.FunctionType`,
+     // `*wasmedge.TableType`, `*wasmedge.MemoryType`, `*wasmedge.GlobalType`, or `*wasmedge.TagType`.
+   }
+   ```
+
+8. 匯出型別上下文
+
+   `ExportType` 是一個保存匯出型別上下文的物件,用於從 [AST Module](#ast-module) 取得匯出資訊。開發者可以從 `Export Type` 上下文取得外部型別(`function`、`table`、`memory`、`global` 或 `tag`)及外部名稱。查詢 `ExportType` 物件的細節將在 [AST Module](#ast-module) 中介紹。
+
+   ```go
+   var ast *wasmedge.AST = ...
+   // Assume that `ast` is returned by the `Loader` for the result of loading a WASM file.
+   exptypelist := ast.ListExports()
+   // Assume that `exptypelist` is an array listed from the `ast` for the exports.
+
+   for i, exptype := range exptypelist {
+     exttype := exptype.GetExternalType()
+     // The `exttype` must be one of `wasmedge.ExternType_Function`, `wasmedge.ExternType_Table`,
+     // wasmedge.ExternType_Memory`, `wasmedge.ExternType_Global`, or `wasmedge.ExternType_Tag`.
+
+     extname := exptype.GetExternalName()
+     // Get the external name of the exports.
+
+     extval := exptype.GetExternalValue()
+     // The `extval` is the type of `interface{}` which indicates one of `*wasmedge.FunctionType`,
+     // `*wasmedge.TableType`, `*wasmedge.MemoryType`, `*wasmedge.GlobalType`, or `*wasmedge.TagType`.
+   }
+   ```
+
+### Async
+
+呼叫[非同步執行 API](#asynchronous-execution) 後,開發者將取得 `wasmedge.Async` 物件。開發者擁有此物件,並應呼叫 `(*Async).Release()` API 來釋放它。
+
+1. 取得非同步執行的執行結果
+
+   開發者可以使用 `(*Async).GetResult()` API 來阻塞並等待取得回傳值。此函式將阻塞並等待執行。如果執行已完成,此函式將立即回傳。如果執行失敗,此函式將回傳錯誤。
+
+   ```go
+   async := ... // Ignored. Asynchronous execute a function.
+
+   // Blocking and waiting for the execution and get the return values.
+   res, err := async.GetResult()
+   async.Release()
+   ```
+
+2. 以逾時設定等待非同步執行
+
+   除了等到執行結束之外,開發者可以設定逾時時間來等待。
+
+   ```go
+   async := ... // Ignored. Asynchronous execute a function.
+
+   // Blocking and waiting for the execution with the timeout(ms).
+   isend := async.WaitFor(1000)
+   if isend {
+     res, err := async.GetResult()
+     // ...
+   } else {
+     async.Cancel()
+     _, err := async.GetResult()
+     // The error message in `err` will be "execution interrupted".
+   }
+   async.Release()
+   ```
+
+### 設定
+
+設定物件 `wasmedge.Configure` 管理 `Loader`、`Validator`、`Executor`、`VM` 與 `Compiler` 的設定。開發者可以調整關於提案、VM 主機預先註冊(如 `WASI`)及 AOT 編譯器選項的設定,然後套用 `Configure` 物件來建立其他執行環境物件。
+
+1. 提案
+
+   WasmEdge 支援開啟或關閉 WebAssembly 提案。此設定在任何透過 `Configure` 物件建立的上下文中皆有效。
+
+   ```go
+   const (
+     IMPORT_EXPORT_MUT_GLOBALS         = Proposal(C.WasmEdge_Proposal_ImportExportMutGlobals)
+     NON_TRAP_FLOAT_TO_INT_CONVERSIONS = Proposal(C.WasmEdge_Proposal_NonTrapFloatToIntConversions)
+     SIGN_EXTENSION_OPERATORS          = Proposal(C.WasmEdge_Proposal_SignExtensionOperators)
+     MULTI_VALUE                       = Proposal(C.WasmEdge_Proposal_MultiValue)
+     BULK_MEMORY_OPERATIONS            = Proposal(C.WasmEdge_Proposal_BulkMemoryOperations)
+     REFERENCE_TYPES                   = Proposal(C.WasmEdge_Proposal_ReferenceTypes)
+     SIMD                              = Proposal(C.WasmEdge_Proposal_SIMD)
+     TAIL_CALL                         = Proposal(C.WasmEdge_Proposal_TailCall)
+     EXTENDED_CONST                    = Proposal(C.WasmEdge_Proposal_ExtendedConst)
+     FUNCTION_REFERENCES               = Proposal(C.WasmEdge_Proposal_FunctionReferences)
+     GC                                = Proposal(C.WasmEdge_Proposal_GC)
+     MULTI_MEMORIES                    = Proposal(C.WasmEdge_Proposal_MultiMemories)
+     THREADS                           = Proposal(C.WasmEdge_Proposal_Threads)
+     RELAXED_SIMD                      = Proposal(C.WasmEdge_Proposal_RelaxSIMD)
+     ANNOTATIONS                       = Proposal(C.WasmEdge_Proposal_Annotations)
+     MEMORY64                          = Proposal(C.WasmEdge_Proposal_Memory64)
+     EXCEPTION_HANDLING                = Proposal(C.WasmEdge_Proposal_ExceptionHandling)
+     COMPONENT_MODEL                   = Proposal(C.WasmEdge_Proposal_Component)
+   )
+   ```
+
+   開發者可以新增或移除 `Configure` 物件中的提案。
+
+   ```go
+   // By default, the following proposals have turned on initially:
+   // * IMPORT_EXPORT_MUT_GLOBALS
+   // * NON_TRAP_FLOAT_TO_INT_CONVERSIONS
+   // * SIGN_EXTENSION_OPERATORS
+   // * MULTI_VALUE
+   // * BULK_MEMORY_OPERATIONS
+   // * REFERENCE_TYPES
+   // * SIMD
+   // For the current WasmEdge version, the following proposals are supported:
+   // * TAIL_CALL
+   // * EXTENDED_CONST
+   // * FUNCTION_REFERENCES
+   // * GC (interpreter only)
+   // * MULTI_MEMORIES
+   // * THREADS
+   // * EXCEPTION_HANDLING (interpreter only)
+   // * COMPONENT_MODEL (loader phase only)
+   conf := wasmedge.NewConfigure()
+   // Developers can also pass the proposals as parameters:
+   // conf := wasmedge.NewConfigure(wasmedge.SIMD, wasmedge.BULK_MEMORY_OPERATIONS)
+   conf.AddConfig(wasmedge.SIMD)
+   conf.RemoveConfig(wasmedge.REFERENCE_TYPES)
+   is_bulkmem := conf.HasConfig(wasmedge.BULK_MEMORY_OPERATIONS)
+   // The `is_bulkmem` will be `true`.
+   conf.Release()
+   ```
+
+2. 主機註冊
+
+   此設定用於讓 `VM` 上下文開啟 `WASI` 支援,且僅在 `VM` 上下文中有效。
+
+   此列舉的元素保留給未來其他內建主機函式(例如 `wasi-socket`)使用。
+
+   ```go
+   const (
+     WASI = HostRegistration(C.WasmEdge_HostRegistration_Wasi)
+   )
+   ```
+
+   詳細內容將在 [VM 上下文的預先註冊](#built-in-host-modules-and-plug-in-preregistrations)中介紹。
+
+   ```go
+   conf := wasmedge.NewConfigure()
+   // Developers can also pass the proposals as parameters:
+   // conf := wasmedge.NewConfigure(wasmedge.WASI)
+   conf.AddConfig(wasmedge.WASI)
+   conf.Release()
+   ```
+
+3. 最大記憶體頁數
+
+   開發者可以透過此設定限制記憶體實例的頁面大小。當在 WASM 執行中要擴增記憶體實例的頁面大小且超出限制時,頁面擴增將失敗。此設定僅在 `Executor` 與 `VM` 物件中有效。
+
+   ```go
+   conf := wasmedge.NewConfigure()
+
+   pagesize := conf.GetMaxMemoryPage()
+   // By default, the maximum memory page size in each memory instances is 65536.
+   conf.SetMaxMemoryPage(1234)
+   pagesize = conf.GetMaxMemoryPage()
+   // `pagesize` will be 1234.
+
+   conf.Release()
+   ```
+
+4. 強制直譯器模式
+
+   如果開發者想要以直譯器模式強制執行 WASM 檔案或 AOT 編譯後的 WASM,可以開啟此設定。
+
+   ```go
+   conf := wasmedge.NewConfigure()
+
+   is_forceinterp := conf.IsForceInterpreter()
+   // By default, the `is_forceinterp` will be `false`.
+   conf.SetForceInterpreter(true)
+   is_forceinterp = conf.IsForceInterpreter()
+   /* The `is_forceinterp` will be `true`. */
+
+   conf.Release()
+   ```
+
+5. AOT 編譯器選項
+
+   AOT 編譯器選項可以設定關於最佳化等級、輸出格式、傾印 IR 與通用二進位的行為。
+
+   ```go
+   const (
+     // Disable as many optimizations as possible.
+     CompilerOptLevel_O0 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O0)
+     // Optimize quickly without destroying debuggability.
+     CompilerOptLevel_O1 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O1)
+     // Optimize for fast execution as much as possible without triggering significant incremental compile time or code size growth.
+     CompilerOptLevel_O2 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O2)
+     // Optimize for fast execution as much as possible.
+     CompilerOptLevel_O3 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O3)
+     // Optimize for small code size as much as possible without triggering significant incremental compile time or execution time slowdowns.
+     CompilerOptLevel_Os = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_Os)
+     // Optimize for small code size as much as possible.
+     CompilerOptLevel_Oz = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_Oz)
+   )
+
+   const (
+     // Native dynamic library format.
+     CompilerOutputFormat_Native = CompilerOutputFormat(C.WasmEdge_CompilerOutputFormat_Native)
+     // WebAssembly with AOT compiled codes in custom section.
+     CompilerOutputFormat_Wasm = CompilerOutputFormat(C.WasmEdge_CompilerOutputFormat_Wasm)
+   )
+   ```
+
+   這些設定僅在 `Compiler` 上下文中有效。
+
+   ```go
+   conf := wasmedge.NewConfigure()
+
+   // By default, the optimization level is O3.
+   conf.SetCompilerOptimizationLevel(wasmedge.CompilerOptLevel_O2)
+   // By default, the output format is universal WASM.
+   conf.SetCompilerOutputFormat(wasmedge.CompilerOutputFormat_Native)
+   // By default, the dump IR is `false`.
+   conf.SetCompilerDumpIR(true)
+   // By default, the generic binary is `false`.
+   conf.SetCompilerGenericBinary(true)
+
+   conf.Release()
+   ```
+
+6. 統計選項
+
+   統計選項可以設定關於執行環境與 AOT 編譯器中指令計數、成本量測與時間量測的行為。這些設定在 `Compiler`、`VM` 與 `Executor` 物件中有效。
+
+   ```go
+   conf := wasmedge.NewConfigure()
+
+   // By default, the instruction counting is `false` when running a compiled-WASM or a pure-WASM.
+   conf.SetStatisticsInstructionCounting(true)
+   // By default, the cost measurement is `false` when running a compiled-WASM or a pure-WASM.
+   conf.SetStatisticsTimeMeasuring(true)
+   // By default, the time measurement is `false` when running a compiled-WASM or a pure-WASM.
+   conf.SetStatisticsCostMeasuring(true)
+
+   conf.Release()
+   ```
+
+### 統計
+
+統計物件 `wasmedge.Statistics` 提供執行時的指令計數器、成本累加與成本限制。
+
+使用統計之前,必須先設定統計設定。否則,呼叫統計的回傳值將會是未定義行為。
+
+1. 指令計數器
+
+   指令計數器可以幫助開發者剖析 WASM 執行的效能。開發者可以從 `VM` 物件取得 `Statistics` 物件,或建立新的 `Statistics` 物件以用於建立 `Executor`。細節將在後續章節中介紹。
+
+   ```go
+   stat := wasmedge.NewStatistics()
+   // ... After running the WASM functions with the `Statistics` object
+
+   count := stat.GetInstrCount()
+   ips := stat.GetInstrPerSecond()
+   stat.Release()
+   ```
+
+2. 成本表
+
+   成本表用於累加指令的成本及其權重。開發者可以將成本表陣列(索引為指令的位元組碼值,值為指令的成本)設定到 `Statistics` 物件中。如果設定了成本限制值,當執行環境的成本超過限制時,執行將立即回傳 `cost limit exceeded` 錯誤。
+
+   ```c
+   stat := wasmedge.NewStatistics()
+
+   costtable := []uint64{
+     0, 0,
+     10, /* 0x02: Block */
+     11, /* 0x03: Loop */
+     12, /* 0x04: If */
+     12, /* 0x05: Else */
+     0, 0, 0, 0, 0, 0,
+     20, /* 0x0C: Br */
+     21, /* 0x0D: Br_if */
+     22, /* 0x0E: Br_table */
+     0,
+   }
+   // Developers can set the costs of each instruction. The value not covered will be 0.
+
+   WasmEdge_StatisticsSetCostTable(StatCxt, CostTable, 16);
+   stat.SetCostTable()
+   stat.SetCostLimit(5000000)
+
+   // ... After running the WASM functions with the `Statistics` object
+   cost := stat.GetTotalCost()
+   stat.Release()
+   ```
+
+## WasmEdge VM
+
+在此章節,我們將介紹 `wasmedge.VM` 物件的函式並展示執行 WASM 函式的範例。
+
+### 使用 VM 物件的 WASM 執行範例
+
+以下展示執行 WASM 來取得費氏數列的範例。此範例使用從文字格式 [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) 轉換而來的 WASM 檔案 `fibonacci.wasm`。
+
+```wasm
+(module
+  (export "fib" (func $fib))
+  (func $fib (param $n i32) (result i32)
+    (if
+      (i32.lt_s (get_local $n)(i32.const 2))
+      (return (i32.const 1))
+    )
+    (return
+      (i32.add
+        (call $fib (i32.sub (get_local $n)(i32.const 2)))
+        (call $fib (i32.sub (get_local $n)(i32.const 1)))
+      )
+    )
+  )
+)
+```
+
+1. 快速執行 WASM 函式
+
+   首先建立一個新的 Go 專案:
+
+   ```bash
+   mkdir wasmedge_test && cd wasmedge_test
+   go mod init wasmedge_test
+   ```
+
+   假設從文字格式 [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) 轉換而來的 WASM 檔案 `fibonacci.wasm` 已複製到目前的 `wasmedge_test` 目錄,並建立並編輯 Go 檔案 `main.go` 如下:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   func main() {
+     // Set the logging level.
+     wasmedge.SetLogErrorLevel()
+
+     // Create the configure context and add the WASI support.
+     // This step is not necessary unless you need WASI support.
+     conf := wasmedge.NewConfigure(wasmedge.WASI)
+     // Create VM with the configure.
+     vm := wasmedge.NewVMWithConfig(conf)
+
+     res, err := vm.RunWasmFile("fibonacci.wasm", "fib", uint32(21))
+     if err == nil {
+       fmt.Println("Get fibonacci[21]:", res[0].(int32))
+     } else {
+       fmt.Println("Run failed:", err.Error())
+     }
+
+     vm.Release()
+     conf.Release()
+   }
+   ```
+
+   然後您可以使用 WasmEdge Golang SDK 來建置與執行此 Golang 應用程式:(第 21 個費氏數在 0 為基底的索引中是 17711)
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Get fibonacci[21]: 17711
+   ```
+
+2. 手動實例化並執行 WASM 函式
+
+   除了上述範例之外,開發者也可以使用 `VM` 物件 API 來逐步執行 WASM 函式:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   func main() {
+     // Set the logging level.
+     wasmedge.SetLogErrorLevel()
+
+     // Create VM.
+     vm := wasmedge.NewVM()
+     var err error
+     var res []interface{}
+
+     // Step 1: Load WASM file.
+     err = vm.LoadWasmFile("fibonacci.wasm")
+     if err != nil {
+       fmt.Println("Load WASM from file FAILED:", err.Error())
+       return
+     }
+
+     // Step 2: Validate the WASM module.
+     err = vm.Validate()
+     if err != nil {
+       fmt.Println("Validation FAILED:", err.Error())
+       return
+     }
+
+     // Step 3: Instantiate the WASM module.
+     err = vm.Instantiate()
+     // Developers can load, validate, and instantiate another WASM module
+     // to replace the instantiated one. In this case, the old module will
+     // be cleared, but the registered modules are still kept.
+     if err != nil {
+       fmt.Println("Instantiation FAILED:", err.Error())
+       return
+     }
+
+     // Step 4: Execute WASM functions. Parameters: (funcname, args...)
+     res, err = vm.Execute("fib", uint32(25))
+     // Developers can execute functions repeatedly after instantiation.
+     if err == nil {
+       fmt.Println("Get fibonacci[25]:", res[0].(int32))
+     } else {
+       fmt.Println("Run failed:", err.Error())
+     }
+
+     vm.Release()
+   }
+   ```
+
+   然後您可以建置並執行:(第 25 個費氏數在 0 為基底的索引中是 121393)
+
+   ```bash
+   $ go build
+   $ ./wasmedge_test
+   Get fibonacci[25]: 121393
+   ```
+
+   下圖說明 `VM` 物件的狀態。
+
+   ```text
+                          |========================|
+                 |------->|      VM: Initiated     |
+                 |        |========================|
+                 |                    |
+                 |                 LoadWasm
+                 |                    |
+                 |                    v
+                 |        |========================|
+                 |--------|       VM: Loaded       |<-------|
+                 |        |========================|        |
+                 |              |            ^              |
+                 |         Validate          |              |
+             Cleanup            |          LoadWasm         |
+                 |              v            |            LoadWasm
+                 |        |========================|        |
+                 |--------|      VM: Validated     |        |
+                 |        |========================|        |
+                 |              |            ^              |
+                 |      Instantiate          |              |
+                 |              |          RegisterModule   |
+                 |              v            |              |
+                 |        |========================|        |
+                 |--------|    VM: Instantiated    |--------|
+                          |========================|
+                                |            ^
+                                |            |
+                                --------------
+                   Instantiate, Execute, ExecuteRegistered,
+                   ExecuteBindgen, ExecuteBindgenRegistered
+   ```
+
+   `VM` 上下文建立時的狀態為 `Inited`。成功載入 WASM 後,狀態將變為 `Loaded`。成功驗證 WASM 後,狀態將變為 `Validated`。成功實例化 WASM 後,狀態將變為 `Instantiated`,開發者可以呼叫函式。開發者可以在任何狀態下註冊 WASM 或匯入物件,但他們應再次實例化 WASM。開發者也可以在任何狀態下載入 WASM,然後應在呼叫函式前先驗證並實例化 WASM 模組。在 `Instantiated` 狀態時,開發者可以再次實例化 WASM 模組以重設舊的 WASM 執行環境結構。
+
+### 建立 VM
+
+`VM` 建立 API 接受 `Configure` 物件與 `Store` 物件。請注意,如果 `VM` 是以外部 `Store` 物件建立的,`VM` 將在該 `Store` 物件上執行 WASM。如果 `Store` 物件被設定到多個 `VM` 物件中,執行時可能會造成資料衝突。`Store` 物件的細節將在 [Store](#store) 中介紹。
+
+```go
+conf := wasmedge.NewConfigure()
+store := wasmedge.NewStore()
+
+// Create a VM with default configure and store.
+vm := wasmedge.NewVM()
+vm.Release()
+
+// Create a VM with the specified configure and default store.
+vm = wasmedge.NewVMWithConfig(conf)
+vm.Release()
+
+// Create a VM with the default configure and specified store.
+vm = wasmedge.NewVMWithStore(store)
+vm.Release()
+
+// Create a VM with the specified configure and store.
+vm = wasmedge.NewVMWithConfigAndStore(conf, store)
+vm.Release()
+
+conf.Release()
+store.Release()
+```
+
+### 內建主機模組與外掛預先註冊
+
+WasmEdge 提供以下內建主機模組與外掛預先註冊。
+
+1. [WASI (WebAssembly System Interface)](https://github.com/WebAssembly/WASI)
+
+   開發者可以在 `Configure` 物件中開啟 VM 的 WASI 支援。
+
+   ```go
+   conf := wasmedge.NewConfigure(wasmedge.WASI)
+   // Or you can set the `wasmedge.WASI` into the configure object through `(*Configure).AddConfig`.
+   vm := wasmedge.NewVMWithConfig(conf)
+   conf.Release()
+
+   // The following API can retrieve the built-in registered module instances from the VM object.
+   // This API will return `nil` if the corresponding configuration is not set when creating the VM object.
+   wasiconf := vm.GetImportModule(wasmedge.WASI)
+   // Initialize the WASI.
+   wasiconf.InitWasi(/* ... ignored */)
+
+   vm.Release()
+   ```
+
+   也可以從 API 建立 WASI 匯入物件。細節將在[主機函式](#host-functions)與[主機模組註冊](#host-module-registrations)中介紹。
+
+2. 外掛
+
+   如果使用者[透過安裝程式安裝了 WasmEdge 外掛](../../../start/install.md#install-wasmedge-plug-ins-and-dependencies),預設外掛路徑中可能會有數個外掛。
+
+   使用外掛之前,開發者應該[從路徑載入外掛](#load-plug-ins-from-paths)。
+
+   `VM` 物件在建立時將自動建立並註冊已載入外掛的模組。此外,如果外掛未載入,以下的主機模組將被模擬:
+
+   - `wasi_ephemeral_crypto_asymmetric_common` (給 `WASI-Crypto` 使用)
+   - `wasi_ephemeral_crypto_common` (給 `WASI-Crypto` 使用)
+   - `wasi_ephemeral_crypto_kx` (給 `WASI-Crypto` 使用)
+   - `wasi_ephemeral_crypto_signatures` (給 `WASI-Crypto` 使用)
+   - `wasi_ephemeral_crypto_symmetric` (給 `WASI-Crypto` 使用)
+   - `wasi_ephemeral_nn`
+   - `wasi_snapshot_preview1`
+   - `wasmedge_httpsreq`
+   - `wasmedge_process`
+   - `wasi:logging/logging` (給 `WASI-Logging` 使用)
+
+   當 WASM 想要呼叫這些主機函式但對應的外掛未安裝時,WasmEdge 將列印錯誤訊息並回傳錯誤。
+
+   ```go
+   // Load the plug-ins in the default paths first.
+   wasmedge.LoadPluginDefaultPaths()
+
+   // Create the VM object with the WASI configuration.
+   conf := wasmedge.NewConfigure(wasmedge.WASI)
+   vm := wasmedge.NewVMWithConfig(conf)
+   conf.Release()
+
+   // The following API can retrieve the registered modules in the VM objects, includes the built-in WASI and the plug-ins.
+   // This API will return `NULL` if the module instance not found.
+
+   // The `wasimodule` will not be `nil` because the configuration was set.
+   wasimodule := vm.GetRegisteredModule("wasi_snapshot_preview1")
+
+   // The `wasinnmodule` will not be `nil` even if the wasi_nn plug-in is not installed, because the VM context will mock and register the host modules.
+   wasinnmodule := vm.GetRegisteredModule("wasi_ephemeral_nn")
+
+   vm.Release()
+   ```
+
+### 主機模組註冊
+
+[主機函式](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc)是 WebAssembly 之外的函式,並作為匯入傳遞給 WASM 模組。在 WasmEdge-go 中,主機函式被組合成具有模組名稱的 `Module` 物件主機模組。細節請參考 [WasmEdge 執行環境中的主機函式](#host-functions)。在本章中,我們展示將主機模組註冊到 `VM` 物件的範例。
+
+```go
+vm := wasmedge.NewVM()
+// You can also create and register the WASI host modules by this API.
+wasiobj := wasmedge.NewWasiModule(/* ... ignored ... */)
+
+res := vm.RegisterModule(wasiobj)
+// The result status should be checked.
+
+vm.Release()
+// The created import objects should be released.
+wasiobj.Release()
+```
+
+### WASM 註冊與執行
+
+在 WebAssembly 中,WASM 模組中的實例可以匯出,並可由其他 WASM 模組匯入。WasmEdge VM 提供 API 讓開發者註冊與匯出任意 WASM 模組,並在已註冊的 WASM 模組中執行函式或主機函式。
+
+1. 以匯出模組名稱註冊 WASM 模組
+
+   除非匯入物件已包含模組名稱,否則註冊時每個 WASM 模組都應有唯一名稱。以下展示範例。
+
+   首先建立一個新的 Go 專案:
+
+   ```bash
+   mkdir wasmedge_test && cd wasmedge_test
+   go mod init wasmedge_test
+   ```
+
+   假設從文字格式 [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) 轉換而來的 WASM 檔案 `fibonacci.wasm` 已複製到目前目錄。然後建立並編輯 Go 檔案 `main.go` 如下:
+
+   ```go
+   package main
+
+   import "github.com/second-state/WasmEdge-go/wasmedge"
+
+   func main() {
+     // Create VM.
+     vm := wasmedge.NewVM()
+
+     var err error
+     err = vm.RegisterWasmFile("module_name", "fibonacci.wasm")
+     // Developers can register the WASM module from `[]byte` with the
+     // `(*VM).RegisterWasmBuffer` function, or from `AST` object with
+     // the `(*VM).RegisterAST` function.
+     // The result status should be checked. The error will occur if the
+     // WASM module instantiation failed or the module name conflicts.
+
+     vm.Release()
+   }
+   ```
+
+2. 執行已註冊 WASM 模組中的函式
+
+   編輯 Go 檔案 `main.go` 如下:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   func main() {
+     // Create VM.
+     vm := wasmedge.NewVM()
+
+     var res []interface{}
+     var err error
+     // Register the WASM module from file into VM with the module name "mod".
+     err = vm.RegisterWasmFile("mod", "fibonacci.wasm")
+     // Developers can register the WASM module from `[]byte` with the
+     // `(*VM).RegisterWasmBuffer` function, or from `AST` object with
+     // the `(*VM).RegisterAST` function.
+     if err != nil {
+       fmt.Println("WASM registration failed:", err.Error())
+       return
+     }
+     // The function "fib" in the "fibonacci.wasm" was exported with the module
+     // name "mod". As the same as host functions, other modules can import the
+     // function `"mod" "fib"`.
+
+     // Execute WASM functions in registered modules.
+     // Unlike the execution of functions, the registered functions can be
+     // invoked without `(*VM).Instantiate` because the WASM module was
+     // instantiated when registering.
+     // Developers can also invoke the host functions directly with this API.
+     res, err = vm.ExecuteRegistered("mod", "fib", int32(25))
+     if err == nil {
+       fmt.Println("Get fibonacci[25]:", res[0].(int32))
+     } else {
+       fmt.Println("Run failed:", err.Error())
+     }
+
+     vm.Release()
+   }
+   ```
+
+   然後您可以建置並執行:(第 25 個費氏數在 0 為基底的索引中是 121393)
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Get fibonacci[25]: 121393
+   ```
+
+### 非同步執行
+
+1. 非同步快速執行 WASM 函式
+
+   假設建立的新 Go 專案如下:
+
+   ```bash
+   mkdir wasmedge_test && cd wasmedge_test
+   go mod init wasmedge_test
+   ```
+
+   然後假設從文字格式 [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) 轉換而來的 WASM 檔案 `fibonacci.wasm` 已複製到目前目錄,並建立並編輯 Go 檔案 `main.go`:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   func main() {
+     // Create VM.
+     vm := wasmedge.NewVM()
+
+     // Asynchronously run the WASM function from file and get the `wasmedge.Async` object.
+     async := vm.AsyncRunWasmFile("fibonacci.wasm", "fib", uint32(20))
+
+     // Block and wait for the execution and get the results.
+     res, err := async.GetResult()
+     if err == nil {
+       fmt.Println("Get the result:", res[0].(int32))
+     } else {
+       fmt.Println("Error message:", err.Error())
+     }
+     async.Release()
+     vm.Release()
+   }
+   ```
+
+   然後您可以建置並執行:(第 20 個費氏數在 0 為基底的索引中是 10946)
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Get the result: 10946
+   ```
+
+2. 手動實例化並非同步執行 WASM 函式
+
+   除了上述範例之外,開發者可以使用 `VM` 上下文 API 來逐步執行 WASM 函式:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   func main() {
+     var err error
+     var res []interface{}
+
+     // Create VM.
+     vm := wasmedge.NewVM()
+
+     // Step 1: Load WASM file.
+     // Developers can load the WASM binary from buffer with the `(*VM).LoadWasmBuffer()` API,
+     // or from `wasmedge.AST` object with the `(*VM).LoadWasmAST()` API.
+     err := vm.LoadWasmFile("fibonacci.wasm")
+     if err != nil {
+       fmt.Println("Load WASM from file FAILED:", err.Error())
+       return
+     }
+
+     // Step 2: Validate the WASM module.
+     err = vm.Validate()
+     if err != nil {
+       fmt.Println("Validation FAILED:", err.Error())
+       return
+     }
+
+     // Step 3: Instantiate the WASM module.
+     err = vm.Instantiate()
+     if err != nil {
+       fmt.Println("Instantiation FAILED:", err.Error())
+       return
+     }
+
+     // Step 4: Asynchronously execute the WASM function and get the `wasmedge.Async` object.
+     async := vm.AsyncExecute("fib", uint32(25))
+
+     // Block and wait for the execution and get the results.
+     res, err := async.GetResult()
+     if err == nil {
+       fmt.Println("Get the result:", res[0].(int32))
+     } else {
+       fmt.Println("Error message:", err.Error())
+     }
+     async.Release()
+     vm.Release()
+   }
+   ```
+
+   然後您可以建置並執行:(第 25 個費氏數在 0 為基底的索引中是 121393)
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Get the result: 121393
+   ```
+
+### 實例追蹤
+
+有時開發者可能需要取得 WASM 執行環境的實例。`VM` 物件提供了取得實例的 API。
+
+1. Store
+
+   如果建立 `VM` 物件時沒有指派 `Store` 物件,`VM` 上下文將配置並擁有一個 `Store`。
+
+   ```go
+   vm := wasmedge.NewVM()
+   store := vm.GetStore()
+   // The object should __NOT__ be deleted by calling `(*Store).Release`.
+   vm.Release()
+   ```
+
+   開發者也可以使用 `Store` 物件來建立 `VM` 物件。在這種情況下,開發者應確保 `Store` 物件不會在 `VM` 物件之前被釋放。關於 `Store` API 的細節,請參考 [Store 物件](#store)。
+
+   ```go
+   store := wasmedge.NewStore()
+   vm := wasmedge.NewVMWithStore(store)
+
+   storemock := vm.GetStore()
+   // The internal store context of the `store` and the `storemock` are the same.
+
+   vm.Release()
+   store.Release()
+   ```
+
+2. 列出匯出的函式
+
+   在 WASM 模組實例化後,開發者可以使用 `(*VM).Execute` 函式來呼叫匯出的 WASM 函式。為此,開發者可能需要關於匯出的 WASM 函式列表的資訊。關於函式型別的細節,請參考[執行環境中的實例](#instances)。
+
+   假設建立的新 Go 專案如下:
+
+   ```bash
+   mkdir wasmedge_test && cd wasmedge_test
+   go mod init wasmedge_test
+   ```
+
+   然後假設從文字格式 [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) 轉換而來的 WASM 檔案 `fibonacci.wasm` 已複製到目前目錄,並建立並編輯 Go 檔案 `main.go`:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   func main() {
+     // Create VM.
+     vm := wasmedge.NewVM()
+
+     // Step 1: Load WASM file.
+     err := vm.LoadWasmFile("fibonacci.wasm")
+     if err != nil {
+       fmt.Println("Load WASM from file FAILED:", err.Error())
+       return
+     }
+
+     // Step 2: Validate the WASM module.
+     err = vm.Validate()
+     if err != nil {
+       fmt.Println("Validation FAILED:", err.Error())
+       return
+     }
+
+     // Step 3: Instantiate the WASM module.
+     err = vm.Instantiate()
+     if err != nil {
+       fmt.Println("Instantiation FAILED:", err.Error())
+       return
+     }
+
+     // List the exported functions for the names and function types.
+     funcnames, functypes := vm.GetFunctionList()
+     for _, fname := range funcnames {
+       fmt.Println("Exported function name:", fname)
+     }
+     for _, ftype := range functypes {
+       // `ftype` is the `FunctionType` object of the same index in the `funcnames` array.
+       // Developers should __NOT__ call the `ftype.Release()`.
+     }
+
+     vm.Release()
+   }
+   ```
+
+   然後您可以建置並執行:(`fibonacci.wasm` 中唯一匯出的函式是 `fib`)
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Exported function name: fib
+   ```
+
+   如果開發者想取得已註冊 WASM 模組中匯出的函式名稱,請從 `VM` 物件取得 `Store` 物件,並參考 [Store 上下文](#store)中的 API,根據模組名稱列出已註冊的函式。
+
+3. 取得函式型別
+
+   `VM` 物件提供 API 透過函式名稱來找出函式型別。關於函式型別的細節,請參考[執行環境中的實例](#instances)。
+
+   ```go
+   // Assume that a WASM module is instantiated in `vm` which is a `wasmedge.VM` object.
+   functype := vm.GetFunctionType("fib")
+   // Developers can get the function types of functions in the registered modules via the
+   // `(*VM).GetFunctionTypeRegistered` API with the function name and the module name.
+   // If the function is not found, these APIs will return `nil`.
+   // Developers should __NOT__ call the `(*FunctionType).Release` function of the returned object.
+   ```
+
+4. 取得作用中模組
+
+   在 WASM 模組實例化後,會實例化並由 `VM` 物件擁有一個匿名模組。開發者可能需要取得它來取得模組外的實例。然後開發者可以使用 `(*VM).GetActiveModule()` API 來取得該匿名模組實例。關於模組實例 API 的細節,請參考[模組實例](#instances)。
+
+   ```go
+   // Assume that a WASM module is instantiated in `vm` which is a `wasmedge.VM` object.
+   mod := vm.GetActiveModule()
+   // If there's no WASM module instantiated, this API will return `nil`.
+   // Developers should __NOT__ call the `(*Module).Release` function of the returned module instance.
+   ```
+
+5. 列出並取得已註冊模組
+
+   除了存取 `VM` 物件的 `store` 物件之外,開發者可以使用以下的 API 來列出並取得 `VM` 物件中已註冊的模組。
+
+   ```go
+   // Assume that the `vm` is the created `wasmedge.VM` object.
+   modnames := vm.ListRegisteredModule()
+   for _, name := range modnames {
+     fmt.Println("Registered module name: ", name)
+   }
+   ```
+
+6. 取得元件
+
+   `VM` 物件由 `Loader`、`Validator` 與 `Executor` 物件組成。對於想要在不建立其他實例的情況下使用這些物件的開發者,這些 API 可以幫助開發者從 `VM` 物件中取得它們。取得的物件由 `VM` 物件擁有,開發者不應呼叫它們的 release 函式。
+
+   ```go
+   loader := vm.GetLoader()
+   // Developers should __NOT__ call the `(*Loader).Release` function of the returned object.
+   validator := vm.GetValidator()
+   // Developers should __NOT__ call the `(*Validator).Release` function of the returned object.
+   executor := vm.GetExecutor()
+   // Developers should __NOT__ call the `(*Executor).Release` function of the returned object.
+   ```
+
+## WasmEdge 執行環境
+
+在此章節,我們將手動介紹 WasmEdge 執行環境的物件。
+
+### 逐步執行 WASM 範例
+
+除了透過 [`VM` 物件](#wasmedge-vm)快速執行 WASM 之外,開發者可以使用 `Loader`、`Validator`、`Executor` 與 `Store` 物件來逐步執行 WASM 函式或實例化 WASM 模組。
+
+假設建立的新 Go 專案如下:
+
+```bash
+mkdir wasmedge_test && cd wasmedge_test
+go mod init wasmedge_test
+```
+
+然後假設從文字格式 [fibonacci.wat](https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/examples/wasm/fibonacci.wat) 轉換而來的 WASM 檔案 `fibonacci.wasm` 已複製到目前目錄,並建立並編輯 Go 檔案 `main.go`:
+
+```go
+package main
+
+import (
+  "fmt"
+
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  // Set the logging level to debug to print the statistics info.
+  wasmedge.SetLogDebugLevel()
+  // Create the configure object. This is not necessary if developers use the default configuration.
+  conf := wasmedge.NewConfigure()
+  // Turn on the runtime instruction counting and time measuring.
+  conf.SetStatisticsInstructionCounting(true)
+  conf.SetStatisticsTimeMeasuring(true)
+  // Create the statistics object. This is not necessary if the statistics in runtime is not needed.
+  stat := wasmedge.NewStatistics()
+  // Create the store object. The store object is the WASM runtime structure core.
+  store := wasmedge.NewStore()
+
+  var err error
+  var res []interface{}
+  var ast *wasmedge.AST
+  var mod *wasmedge.Module
+
+  // Create the loader object.
+  // For loader creation with default configuration, you can use `wasmedge.NewLoader()` instead.
+  loader := wasmedge.NewLoaderWithConfig(conf)
+  // Create the validator object.
+  // For validator creation with default configuration, you can use `wasmedge.NewValidator()` instead.
+  validator := wasmedge.NewValidatorWithConfig(conf)
+  // Create the executor object.
+  // For executor creation with default configuration and without statistics, you can use `wasmedge.NewExecutor()` instead.
+  executor := wasmedge.NewExecutorWithConfigAndStatistics(conf, stat)
+
+  // Load the WASM file or the compiled-WASM file and convert into the AST module object.
+  ast, err = loader.LoadFile("fibonacci.wasm")
+  if err != nil {
+    fmt.Println("Load WASM from file FAILED:", err.Error())
+    return
+  }
+  // Validate the WASM module.
+  err = validator.Validate(ast)
+  if err != nil {
+    fmt.Println("Validation FAILED:", err.Error())
+    return
+  }
+  // Instantiate the WASM module and get the output module instance.
+  mod, err = executor.Instantiate(store, ast)
+  if err != nil {
+    fmt.Println("Instantiation FAILED:", err.Error())
+    return
+  }
+
+  // Try to list the exported functions of the instantiated WASM module.
+  funcnames := mod.ListFunction()
+  for _, fname := range funcnames {
+    fmt.Println("Exported function name:", fname)
+  }
+
+  // Invoke the WASM function.
+  funcinst := mod.FindFunction("fib")
+  if funcinst == nil {
+    fmt.Println("Run FAILED: Function name `fib` not found")
+    return
+  }
+  res, err = executor.Invoke(funcinst, int32(30))
+  if err == nil {
+    fmt.Println("Get fibonacci[30]:", res[0].(int32))
+  } else {
+    fmt.Println("Run FAILED:", err.Error())
+  }
+
+  // Resources deallocations.
+  conf.Release()
+  stat.Release()
+  ast.Release()
+  loader.Release()
+  validator.Release()
+  executor.Release()
+  store.Release()
+  mod.Release()
+}
+```
+
+然後您可以建置並執行:(第 30 個費氏數在 0 為基底的索引中是 1346269)
+
+```bash
+$ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+$ go build
+$ ./wasmedge_test
+Exported function name: fib
+[2021-11-24 18:53:01.451] [debug]  Execution succeeded.
+[2021-11-24 18:53:01.452] [debug]
+ ====================  Statistics  ====================
+ Total execution time: 556372295 ns
+ Wasm instructions execution time: 556372295 ns
+ Host functions execution time: 0 ns
+ Executed wasm instructions count: 28271634
+ Gas costs: 0
+ Instructions per second: 50814237
+Get fibonacci[30]: 1346269
+```
+
+### Loader
+
+`Loader` 物件可從檔案或緩衝區載入 WASM 二進位。同時支援 WASM 與來自 [WasmEdge AOT 編譯器](#wasmedge-aot-compiler)的編譯後 WASM。
+
+```go
+var buf []byte
+// ... Read the WASM code to the `buf`.
+
+// Developers can adjust settings in the configure object.
+conf := wasmedge.NewConfigure()
+// Create the loader object.
+// For loader creation with default configuration, you can use `wasmedge.NewLoader()` instead.
+loader := wasmedge.NewLoaderWithConfig(conf)
+conf.Release()
+
+// Load WASM or compiled-WASM from the file.
+ast, err := loader.LoadFile("fibonacci.wasm")
+if err != nil {
+  fmt.Println("Load WASM from file FAILED:", err.Error())
+} else {
+  // The output AST object should be released.
+  ast.Release()
+}
+
+// Load WASM or compiled-WASM from the buffer
+ast, err = loader.LoadBuffer(buf)
+if err != nil {
+  fmt.Println("Load WASM from buffer FAILED:", err.Error())
+} else {
+  // The output AST object should be released.
+  ast.Release()
+}
+
+loader.Release()
+```
+
+### Validator
+
+`Validator` 物件可以驗證 WASM 模組。每個 WASM 模組在實例化之前都應經過驗證。
+
+```go
+// ...
+// Assume that the `ast` is the output `*wasmedge.AST` object from the loader context.
+// Assume that the `conf` is the `*wasmedge.Configure` object.
+
+// Create the validator context.
+// For validator creation with default configuration, you can use `wasmedge.NewValidator()` instead.
+validator := wasmedge.NewValidatorWithConfig(conf)
+
+err := validator.Validate(ast)
+if err != nil {
+  fmt.Println("Validation FAILED:", err.Error())
+}
+
+validator.Release()
+```
+
+### Executor
+
+`Executor` 物件是 WASM 與編譯後 WASM 的執行器。此物件應基於 `Store` 物件運作。關於 `Store` 物件的細節,請參考[下一章](#store)。
+
+1. 將 `AST` 物件實例化並註冊為命名 `Module` 實例
+
+   就像 `VM` 物件中[註冊主機模組](#host-module-registrations)或[匯入 WASM 模組](#wasm-registrations-and-executions)一樣,開發者可以將 `AST module` 物件實例化為命名的 `Module` 實例,並將其註冊到 `Store` 物件中。註冊後,產生的 `Module` 實例會以給定的模組名稱匯出到 `Store`,並可在實例化另一個模組時被連結。
+
+   關於 `Module` 實例 API 的細節,請參考[實例](#instances)。`Store` 上下文僅是實例化時搜尋並連結匯出模組的連結器。當不再使用時,開發者應釋放輸出的 `Module` 實例。`Module` 實例釋放時,將自動取消與所有已連結的 `Store` 物件之間的連結。
+
+   ```go
+   // ...
+   // Assume that the `ast` is the output `*wasmedge.AST` object from the loader
+   // and has passed the validation.
+   // Assume that the `conf` is the `*wasmedge.Configure` object.
+
+   // Create the statistics object. This step is not necessary if the statistics
+   // is not needed.
+   stat := wasmedge.NewStatistics()
+   // Create the executor object.
+   // For executor creation with default configuration and without statistics,
+   // you can use `wasmedge.NewExecutor()` instead.
+   executor := wasmedge.NewExecutorWithConfigAndStatistics(conf, stat)
+   // Create the store object. The store is the WASM runtime structure core.
+   store := wasmedge.NewStore()
+
+   // Register the loaded WASM `ast` into store with the export module name "mod".
+   mod, res := executor.Register(store, ast, "mod")
+   if err != nil {
+     fmt.Println("WASM registration FAILED:", err.Error())
+     return
+   }
+
+   // ...
+
+   // Resources deallocations.
+   executor.Release()
+   stat.Release()
+   store.Release()
+   mod.Release()
+   ```
+
+2. 註冊現有 `Module` 實例並匯出模組名稱
+
+   除了實例化並註冊 `AST` 物件之外,開發者可以將現有的 `Module` 實例註冊到 store 並匯出模組名稱(模組名稱已在 `Module` 實例中)。當開發者為主機函式建立 `Module` 實例並想要註冊它以供連結時會發生這種情況。關於在 `Module` 實例中建構主機函式的細節,請參考[主機函式](#host-functions)。
+
+   ```go
+   // ...
+   // Assume that the `ast` is the output `*wasmedge.AST` object from the loader
+   // and has passed the validation.
+   // Assume that the `conf` is the `*wasmedge.Configure` object.
+
+   // Create the statistics object. This step is not necessary if the statistics
+   // is not needed.
+   stat := wasmedge.NewStatistics()
+   // Create the executor object.
+   // For executor creation with default configuration and without statistics,
+   // you can use `wasmedge.NewExecutor()` instead.
+   executor := wasmedge.NewExecutorWithConfigAndStatistics(conf, stat)
+   // Create the store object. The store is the WASM runtime structure core.
+   store := wasmedge.NewStore()
+
+   // Create a module instance for host functions.
+   mod := wasmedge.NewModule("mod")
+   // ...
+   // Create and add the host functions, tables, memories, and globals into the module instance.
+   // ...
+
+   // Register the module instance into store with the exported module name.
+   // The export module name is in the module instance already.
+   res := executor.RegisterImport(store, mod)
+   if err != nil {
+     fmt.Println("WASM registration FAILED:", err.Error())
+     return
+   }
+
+   // ...
+
+   // Resources deallocations.
+   executor.Release()
+   stat.Release()
+   store.Release()
+   mod.Release()
+   ```
+
+3. 將 `AST` 物件實例化為匿名 `Module` 實例
+
+   WASM 或編譯後的 WASM 模組在呼叫函式前應先實例化。實例化 WASM 模組之前,請檢查[匯入區段](https://webassembly.github.io/spec/core/syntax/modules.html#syntax-import)以確保匯入已註冊到 `Store` 物件以供連結。
+
+   ```go
+   // ...
+   // Assume that the `ast` is the output `*wasmedge.AST` object from the loader
+   // and has passed the validation.
+   // Assume that the `conf` is the `*wasmedge.Configure` object.
+
+   // Create the statistics object. This step is not necessary if the statistics
+   // is not needed.
+   stat := wasmedge.NewStatistics()
+   // Create the executor object.
+   // For executor creation with default configuration and without statistics,
+   // you can use `wasmedge.NewExecutor()` instead.
+   executor := wasmedge.NewExecutorWithConfigAndStatistics(conf, stat)
+   // Create the store object. The store is the WASM runtime structure core.
+   store := wasmedge.NewStore()
+
+   // Instantiate the WASM module.
+   mod, err := executor.Instantiate(stpre, ast)
+   if err != nil {
+     fmt.Println("WASM instantiation FAILED:", err.Error())
+     return
+   }
+
+   executor.Release()
+   stat.Release()
+   store.Release()
+   mod.Release()
+   ```
+
+4. 呼叫函式
+
+   註冊或實例化並取得結果 `Module` 實例後,開發者可以從 `Module` 實例取得匯出的 `Function` 實例以進行呼叫。關於 `Module` 實例 API 的細節,請參考[實例](#instances)。關於使用 `(*Executor).Invoke` API 呼叫 `Function` 實例的細節,請參考[上面的範例](#wasm-execution-example-step-by-step)。
+
+5. 非同步呼叫函式
+
+   就像[在 VM 中非同步執行 WASM 函式](#asynchronous-execution)一樣,開發者也可以透過 `Executor` 物件 API 來非同步呼叫函式。
+
+   取得 `Function` 實例後,開發者可以透過呼叫 `(*wasmedge.executor).AsyncInvoke()` API 來取得 `wasmedge.Async` 物件。請參考 [Async](#async) 章節以了解如何使用此物件來取得結果。
+
+### AST Module
+
+`AST` 物件代表從 WASM 檔案或緩衝區載入的結構。開發者在從 [Loader](#loader) 載入 WASM 檔案或緩衝區後將取得此物件。實例化之前,開發者也可以查詢 `AST` 物件的匯入與匯出。
+
+```go
+ast := ...
+// Assume that a WASM is loaded into an `*wasmedge.AST` object from loader.
+
+// List the imports.
+imports := ast.ListImports()
+for _, import := range imports {
+  fmt.Println("Import:", import.GetModuleName(), import.GetExternalName())
+}
+
+// List the exports.
+exports := ast.ListExports()
+for _, export := range exports {
+  fmt.Println("Export:", export.GetExternalName())
+}
+
+ast.Release()
+```
+
+### Store
+
+[Store](https://webassembly.github.io/spec/core/exec/runtime.html#store) 是執行環境結構,用於表示所有可由 WebAssembly 程式操作的全域狀態。WasmEdge-Go 中的 `Store` 物件是一個代表連結器的物件,在實例化 WASM 模組時提供實例的匯出與匯入。開發者可以從 `Store` 物件取得命名的模組,如果不再使用,應釋放註冊到 `Store` 物件中的 `Module` 實例。
+
+當 `Store` 物件被釋放時,已連結的 `Module` 實例將自動取消與此 `Store` 物件的連結。當 `Module` 實例被釋放時,將自動取消與所有已連結 `Store` 物件之間的連結。
+
+```go
+store := wasmedge.NewStore()
+
+// ...
+// Register a WASM module via the executor object.
+// ...
+
+// Try to list the registered WASM modules.
+modnames := store.ListModule()
+// ...
+
+// Find named module by name.
+mod := store.FindModule("module")
+// If the module with name not found, the `mod` will be `nil`.
+
+store.Release()
+```
+
+### 實例
+
+實例是 WASM 的執行環境結構。開發者可以從 `Store` 上下文取得 `Module` 實例,並從 `Module` 實例取得其他實例。可以透過建立函式來配置單一實例。開發者可以將實例組合到 `Module` 實例中以進行註冊。細節請參考[主機函式](#host-functions)。透過建立函式建立的實例應由開發者銷毀,除非它們已被加入到 `Module` 實例中。
+
+1. 模組實例
+
+   實例化或註冊 `AST` 物件後,開發者將取得 `Module` 實例作為結果,並有責任在不使用時釋放它。也可以為主機模組建立 `Module` 實例。細節請參考[主機函式](#host-functions)。`Module` 實例提供 API 來列出並找出模組中匯出的實例。
+
+   ```go
+   // ...
+   // Instantiate a WASM module via the executor object and get the `mod` as the output module instance.
+   // ...
+
+   // List the exported instance of the instantiated WASM module.
+   // Take the function instances for example here.
+   funcnames := mod.ListFunction()
+
+   // Try to find the exported instance of the instantiated WASM module.
+   // Take the function instances for example here.
+   funcinst := mod.FindFunction("fib")
+   // `funcinst` will be `nil` if the function not found.
+   // The returned instance is owned by the module instance and should __NOT__ be released.
+   ```
+
+2. 函式實例
+
+   [主機函式](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc)是 WebAssembly 之外的函式,並作為匯入傳遞給 WASM 模組。在 WasmEdge 中,開發者可以為主機函式建立 `Function` 物件,並將它們加入到 `Module` 實例以註冊到 `VM` 或 `Store`。開發者可以透過 API 從 `Function` 物件取得 `Function Type`。關於`主機函式`指南的細節,請參考[下一章](#host-functions)。
+
+   ```go
+   funcobj := ...
+   // `funcobj` is the `*wasmedge.Function` retrieved from the module instance.
+   functype := funcobj.GetFunctionType()
+   // The `funcobj` retrieved from the module instance should __NOT__ be released.
+   // The `functype` retrieved from the `funcobj` should __NOT__ be released.
+
+   // For the function object creation, please refer to the `Host Function` guide.
+   ```
+
+3. 表格實例
+
+   在 WasmEdge 中,開發者可以建立 `Table` 物件並將其加入到 `wasmedge.Module` 物件以註冊到 `VM` 或 `Store`。`Table` 物件提供 API 以控制表格實例中的資料。
+
+   ```go
+   lim := wasmedge.NewLimitWithMax(10, 20)
+   // Create the table type with limit and the `FuncRef` element type.
+   tabtype := wasmedge.NewTableType(wasmedge.NewValTypeFuncRef(), lim)
+   // Create the table instance with table type.
+   tabinst := wasmedge.NewTable(tabtype)
+   // Delete the table type.
+   tabtype.Release()
+
+   gottabtype := tabinst.GetTableType()
+   // The `gottabtype` got from table instance is owned by the `tabinst`
+   // and should __NOT__ be released.
+   reftype := gottabtype.GetRefType()
+   // The `reftype` will be `wasmedge.ValType` with `funcref` value type.
+
+   var gotdata interface{}
+   data := wasmedge.NewFuncRef(5)
+   err := tabinst.SetData(data, 3)
+   // Set the function index 5 to the table[3].
+
+   // The following line will get an "out of bounds table access" error
+   // because the position (13) is out of the table size (10):
+   //   err = tabinst.SetData(data, 13)
+
+   gotdata, err = tabinst.GetData(3)
+   // Get the FuncRef value of the table[3].
+
+   // The following line will get an "out of bounds table access" error
+   // because the position (13) is out of the table size (10):
+   //   gotdata, err = tabinst.GetData(13)
+
+   tabsize := tabinst.GetSize()
+   // `tabsize` will be 10.
+   err = tabinst.Grow(6)
+   // Grow the table size of 6, the table size will be 16.
+
+   // The following line will get an "out of bounds table access" error
+   // because the size (16 + 6) will reach the table limit (20):
+   //   err = tabinst.Grow(6)
+
+   tabinst.Release()
+   ```
+
+4. 記憶體實例
+
+   在 WasmEdge 中,開發者可以建立 `Memory` 物件並將其加入到 `wasmedge.Module` 物件以註冊到 `VM` 或 `Store`。`Memory` 物件提供 API 以控制記憶體實例中的資料。
+
+   ```go
+   lim := wasmedge.NewLimitWithMax(1, 5)
+   // Create the memory type with limit. The memory page size is 64KiB.
+   memtype := wasmedge.NewMemoryType(lim)
+   // Create the memory instance with memory type.
+   meminst := wasmedge.NewMemory(memtype)
+   // Delete the memory type.
+   memtype.Release()
+
+   data := []byte("A quick brown fox jumps over the lazy dog")
+   err := meminst.SetData(data, 0x1000, 10)
+   // Set the data[0:9] to the memory[4096:4105].
+
+   // The following line will get an "out of bounds memory access" error
+   // because [65535:65544] is out of 1 page size (65536):
+   //   err = meminst.SetData(data, 0xFFFF, 10)
+
+   var gotdata []byte
+   gotdata, err = meminst.GetData(0x1000, 10)
+   // Get the memory[4096:4105]. The `gotdata` will be `[]byte("A quick br").
+   // The following line will get an "out of bounds memory access" error
+   // because [65535:65544] is out of 1 page size (65536):
+   //   gotdata, err = meminst.Getdata(0xFFFF, 10)
+
+   pagesize := meminst.GetPageSize()
+   // `pagesize` will be 1.
+   err = meminst.GrowPage(2)
+   // Grow the page size of 2, the page size of the memory instance will be 3.
+
+   // The following line will get an "out of bounds memory access" error
+   // because the size (3 + 3) will reach the memory limit (5):
+   //   err = meminst.GetPageSize(3)
+
+   meminst.Release()
+   ```
+
+5. 標籤實例
+
+   與其他實例不同,`Tag` 物件只有在開啟 `Exception Handling` 提案時才能使用,並只能從 `wasmedge.Module` 物件中取得。開發者可以從實例取得 `TagType`。
+
+   ```go
+   // ...
+   // Instantiate a WASM module via the executor object and get the `mod` as the output module instance.
+   // ...
+
+   // List the exported tag instances of the instantiated WASM module.
+   tagnames := mod.ListTag()
+
+   // Try to find the exported tag instance of the instantiated WASM module.
+   taginst := mod.FindTag("tag-1")
+   if taginst == nil {
+     // Get the tag type from the tag instance.
+     tagtype := taginst.GetTagType()
+   }
+   ```
+
+6. 全域實例
+
+   在 WasmEdge 中,開發者可以建立 `Global` 物件並將其加入到 `wasmedge.Module` 物件以註冊到 `VM` 或 `Store`。`Global` 物件提供 API 以控制全域實例中的值。
+
+   ```go
+   // Create the global type with value type and mutation.
+   globtype := wasmedge.NewGlobalType(wasmedge.NewValTypeI64(), wasmedge.ValMut_Var)
+   // Create the global instance with value and global type.
+   globinst := wasmedge.NewGlobal(globtype, uint64(1000))
+   // Delete the global type.
+   globtype.Release()
+
+   gotglobtype := globinst.GetGlobalType()
+   // The `gotglobtype` got from global instance is owned by the `globinst`
+   // and should __NOT__ be released.
+   valtype := gotglobtype.GetValType()
+   // The `valtype` will be `wasmedge.ValType` with `i64` value type.
+   valmut := gotglobtype.GetMutability()
+   // The `valmut` will be `wasmedge.ValMut_Var`.
+
+   err = globinst.SetValue(uint64(888))
+   // Set the value u64(888) to the global.
+   // This function will get an error if the value type mismatched or the
+   // global mutability is `wasmedge.ValMut_Const`.
+   gotval := globinst.GetValue()
+   // The `gotbal` will be `interface{}` which the type is `uint64` and
+   // the value is 888.
+
+   globinst.Release()
+   ```
+
+### 主機函式
+
+[主機函式](https://webassembly.github.io/spec/core/exec/runtime.html#syntax-hostfunc)是 WebAssembly 之外的函式,並作為匯入傳遞給 WASM 模組。在 WasmEdge 中,主機函式被組合成具有模組名稱的 `wasmedge.Module` 物件作為主機模組。細節請參考 [WasmEdge 執行環境中的主機函式](#host-functions)。
+
+在本章中,我們展示將主機模組註冊到 `VM` 物件的範例。請注意,開發者應確保已註冊模組實例的可用性,並在不再使用時釋放模組實例。
+
+1. 主機函式配置
+
+   開發者可以定義具有以下函式簽章的 Go 函式作為主機函式的主體:
+
+   ```go
+   type hostFunctionSignature func(
+       data interface{}, callframe *CallingFrame, params []interface{}) ([]interface{}, Result)
+   ```
+
+   將兩個 `i32` 值相加的 `add` 主機函式範例:
+
+   ```go
+   func host_add(data interface{}, callframe *wasmedge.CallingFrame, params []interface{}) ([]interface{}, wasmedge.Result) {
+     // add: i32, i32 -> i32
+     res := params[0].(int32) + params[1].(int32)
+
+     // Set the returns
+     returns := make([]interface{}, 1)
+     returns[0] = res
+
+     // Return
+     return returns, wasmedge.Result_Success
+   }
+   ```
+
+   接著,開發者可以使用主機函式主體與函式型別來建立 `Function` 物件:
+
+   ```go
+   // Create a function type: {i32, i32} -> {i32}.
+   functype := wasmedge.NewFunctionType(
+     []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+     []*wasmedge.ValType{wasmedge.NewValTypeI32()},
+   )
+
+   // Create a function context with the function type and host function body.
+   // The third parameter is the pointer to the additional data.
+   // Developers should guarantee the life cycle of the data, and it can be
+   // `nil` if the external data is not needed.
+   // The last parameter can be 0 if developers do not need the cost measuring.
+   func_add := wasmedge.NewFunction(functype, host_add, nil, 0)
+
+   // If the function object is not added into an module instance object, it should be released.
+   func_add.Release()
+   functype.Release()
+   ```
+
+2. 呼叫框架物件
+
+   `wasmedge.CallingFrame` 是讓開發者存取[位於呼叫堆疊頂部的框架](https://webassembly.github.io/spec/core/exec/runtime.html#activations-and-frames)的模組實例的物件。根據 [WASM 規格](https://webassembly.github.io/spec/core/exec/instructions.html#function-calls),當呼叫函式時,具有模組實例的框架會被推入堆疊。因此,主機函式可以存取頂部框架的模組實例,以取得記憶體實例來讀寫資料。
+
+   ```go
+   import (
+     "encoding/binary"
+     "fmt"
+   )
+
+   // Host function body definition.
+   func LoadOffset(data interface{}, callframe *wasmedge.CallingFrame, params []interface{}) ([]interface{}, wasmedge.Result) {
+     // Function type: {i32} -> {}
+     offset := params[0].(int32)
+
+     // Get the 0th memory instance of the module of the top frame on the stack.
+     mem := callframe.GetMemoryByIndex(0)
+
+     data, err := mem.GetData(uint(offset), 4)
+     if err != nil {
+       return nil, err
+     }
+     fmt.Println("u32 at memory[{}]: {}", offset, binary.LittleEndian.Uint32(data))
+     return nil, wasmedge.Result_Success
+   }
+   ```
+
+   除了使用 `(*CallingFrame).GetMemoryByIndex()` API 透過模組實例中的索引取得記憶體實例之外,開發者可以使用 `(*CallingFrame).GetModule()` 直接取得模組實例。因此,開發者可以透過 `wasmedge.Module` API 取得匯出的上下文。並且,開發者可以使用 `(*CallingFrame).GetExecutor()` API 來取得目前使用的執行器上下文。
+
+3. 主機函式的使用者自訂錯誤碼
+
+   在主機函式中,WasmEdge-Go 提供 `wasmedge.Result_Success` 來回傳成功,`wasmedge.Result_Terminate` 來終止 WASM 執行,以及 `wasmedge.Result_Fail` 來回傳失敗。WasmEdge-Go 也提供回傳使用者指定碼的用法。開發者可以使用 `wasmedge.NewResult()` API 來產生帶有錯誤碼的 `wasmedge.Result` 結構,並使用 `(*result).GetCode()` API 來取得錯誤碼。
+
+   > 注意:錯誤碼僅支援 24 位元整數(`uint32` 中的 0 ~ 16777216)。超過 24 位元的值將被截斷。
+
+   首先建立一個新的 Go 專案:
+
+   ```bash
+   mkdir wasmedge_test && cd wasmedge_test
+   go mod init wasmedge_test
+   ```
+
+   假設從 WAT 而來的簡單 WASM 如下:
+
+   ```wasm
+   (module
+     (type $t0 (func (param i32)))
+     (import "extern" "trap" (func $f-trap (type $t0)))
+     (func (export "trap") (param i32)
+       local.get 0
+       call $f-trap)
+   )
+   ```
+
+   而 `main.go` 如下:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   // Host function body definition.
+   func host_trap(data interface{}, callframe *wasmedge.CallingFrame, params []interface{}) ([]interface{}, wasmedge.Result) {
+     // add: i32, i32 -> i32
+     res := params[0].(int32) + params[1].(int32)
+
+     // Set the returns
+     returns := make([]interface{}, 1)
+     returns[0] = res
+
+     // Return
+     return returns, wasmedge.Result_Success
+   }
+
+   func main() {
+     // Create the VM object.
+     vm := wasmedge.NewVM()
+
+     // The WASM module buffer.
+     wasmbuf := []byte{
+       /* WASM header */
+       0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00,
+       /* Type section */
+       0x01, 0x05, 0x01,
+       /* function type {i32} -> {} */
+       0x60, 0x01, 0x7F, 0x00,
+       /* Import section */
+       0x02, 0x0F, 0x01,
+       /* module name: "extern" */
+       0x06, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6E,
+       /* extern name: "trap" */
+       0x04, 0x74, 0x72, 0x61, 0x70,
+       /* import desc: func 0 */
+       0x00, 0x00,
+       /* Function section */
+       0x03, 0x02, 0x01, 0x00,
+       /* Export section */
+       0x07, 0x08, 0x01,
+       /* export name: "trap" */
+       0x04, 0x74, 0x72, 0x61, 0x70,
+       /* export desc: func 0 */
+       0x00, 0x01,
+       /* Code section */
+       0x0A, 0x08, 0x01,
+       /* code body */
+       0x06, 0x00, 0x20, 0x00, 0x10, 0x00, 0x0B,
+     }
+
+     // Create the module instance with the module name "extern".
+     impmod := wasmedge.NewModule("extern")
+
+     // Create and add a function instance into the module instance with export name "func-add".
+     functype := wasmedge.NewFunctionType([]*wasmedge.ValType{wasmedge.NewValTypeI32()}, []*wasmedge.ValType{})
+     hostfunc := wasmedge.NewFunction(functype, host_trap, nil, 0)
+     functype.Release()
+     impmod.AddFunction("trap", hostfunc)
+
+     // Register the module instance into VM.
+     vm.RegisterImport(impmod)
+
+     _, err := vm.RunWasmBuffer(wasmbuf, "trap", uint32(5566))
+     if err != nil {
+       fmt.Println("Get the error code:", err.GetCode())
+     }
+
+     impmod.Release()
+     vm.Release()
+   }
+   ```
+
+   然後您可以使用 WasmEdge Golang SDK 來建置與執行此 Golang 應用程式:
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   [2022-08-26 15:06:40.384] [error] user defined failed: user defined error code, Code: 0x15be
+   [2022-08-26 15:06:40.384] [error]     When executing function name: "trap"
+   Get the error code: 5566
+   ```
+
+4. 以主機實例建構模組實例
+
+   除了透過註冊或實例化 WASM 模組來建立 `Module` 實例之外,開發者可以建立帶有模組名稱的 `Module` 實例,並將 `Function`、`Memory`、`Table` 與 `Global` 實例及其匯出名稱加入其中。
+
+   ```go
+   // Host function body definition.
+   func host_add(data interface{}, callframe *wasmedge.CallingFrame, params []interface{}) ([]interface{}, wasmedge.Result) {
+     // add: i32, i32 -> i32
+     res := params[0].(int32) + params[1].(int32)
+
+     // Set the returns
+     returns := make([]interface{}, 1)
+     returns[0] = res
+
+     // Return
+     return returns, wasmedge.Result_Success
+   }
+
+   // Create a module instance with the module name "module".
+   mod := wasmedge.NewModule("module")
+
+   // Create and add a function instance into the module instance with export name "add".
+   functype := wasmedge.NewFunctionType(
+     []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+     []*wasmedge.ValType{wasmedge.NewValTypeI32()},
+   )
+   hostfunc := wasmedge.NewFunction(functype, host_add, nil, 0)
+   functype.Release()
+   mod.AddFunction("add", hostfunc)
+
+   // Create and add a table instance into the module instance with export name "table".
+   tabtype := wasmedge.NewTableType(wasmedge.NewValTypeFuncRef() ,wasmedge.NewLimitWithMax(10, 20))
+   hosttab := wasmedge.NewTable(tabtype)
+   tabtype.Release()
+   mod.AddTable("table", hosttab)
+
+   // Create and add a memory instance into the module instance with export name "memory".
+   memtype := wasmedge.NewMemoryType(wasmedge.NewLimitWithMax(1, 2))
+   hostmem := wasmedge.NewMemory(memtype)
+   memtype.Release()
+   mod.AddMemory("memory", hostmem)
+
+   // Create and add a global instance into the module instance with export name "global".
+   globtype := wasmedge.NewGlobalType(wasmedge.NewValTypeI32(), wasmedge.ValMut_Var)
+   hostglob := wasmedge.NewGlobal(globtype, uint32(666))
+   globtype.Release()
+   mod.AddGlobal("global", hostglob)
+
+   // The module instances should be released.
+   // Developers should __NOT__ release the instances added into the module instance objects.
+   mod.Release()
+   ```
+
+5. 特定模組實例
+
+   `wasmedge.NewWasiModule()` API 可以建立並初始化 `WASI` 模組實例。
+
+   ```go
+   wasiobj := wasmedge.NewWasiModule(
+     os.Args[1:],     // The args
+     os.Environ(),    // The envs
+     []string{".:."}, // The mapping preopens
+   )
+
+   // Register the WASI into the VM object.
+   vm := wasmedge.NewVM()
+   vm.RegisterImport(wasiobj)
+
+   // ... Execute some WASM functions.
+
+   // Get the WASI exit code.
+   exitcode := wasiobj.WasiGetExitCode()
+   // The `exitcode` will be 0 if the WASI function "_start" execution has no error.
+   // Otherwise, it will return with the related exit code.
+
+   vm.Release()
+   // The import objects should be deleted.
+   wasiobj.Release()
+   ```
+
+6. 範例
+
+   假設從 WAT 而來的簡單 WASM 如下:
+
+   ```wasm
+   (module
+     (type $t0 (func (param i32 i32) (result i32)))
+     (import "extern" "func-add" (func $f-add (type $t0)))
+     (func (export "addTwo") (param i32 i32) (result i32)
+       local.get 0
+       local.get 1
+       call $f-add)
+   )
+   ```
+
+   假設編輯上方的 Go 檔案 `main.go`:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   // Host function body definition.
+   func host_add(data interface{}, callframe *wasmedge.CallingFrame, params []interface{}) ([]interface{}, wasmedge.Result) {
+     // add: i32, i32 -> i32
+     res := params[0].(int32) + params[1].(int32)
+
+     // Set the returns
+     returns := make([]interface{}, 1)
+     returns[0] = res
+
+     // Return
+     return returns, wasmedge.Result_Success
+   }
+
+   func main() {
+     // Create the VM object.
+     vm := wasmedge.NewVM()
+
+     // The WASM module buffer.
+     wasmbuf := []byte{
+       /* WASM header */
+       0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00,
+       /* Type section */
+       0x01, 0x07, 0x01,
+       /* function type {i32, i32} -> {i32} */
+       0x60, 0x02, 0x7F, 0x7F, 0x01, 0x7F,
+       /* Import section */
+       0x02, 0x13, 0x01,
+       /* module name: "extern" */
+       0x06, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6E,
+       /* extern name: "func-add" */
+       0x08, 0x66, 0x75, 0x6E, 0x63, 0x2D, 0x61, 0x64, 0x64,
+       /* import desc: func 0 */
+       0x00, 0x00,
+       /* Function section */
+       0x03, 0x02, 0x01, 0x00,
+       /* Export section */
+       0x07, 0x0A, 0x01,
+       /* export name: "addTwo" */
+       0x06, 0x61, 0x64, 0x64, 0x54, 0x77, 0x6F,
+       /* export desc: func 0 */
+       0x00, 0x01,
+       /* Code section */
+       0x0A, 0x0A, 0x01,
+       /* code body */
+       0x08, 0x00, 0x20, 0x00, 0x20, 0x01, 0x10, 0x00, 0x0B,
+     }
+
+     // Create the module instance with the module name "extern".
+     impmod := wasmedge.NewModule("extern")
+
+     // Create and add a function instance into the module instance with export name "func-add".
+     functype := wasmedge.NewFunctionType(
+       []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+       []*wasmedge.ValType{wasmedge.NewValTypeI32()},
+     )
+     hostfunc := wasmedge.NewFunction(functype, host_add, nil, 0)
+     functype.Release()
+     impmod.AddFunction("func-add", hostfunc)
+
+     // Register the module instance into VM.
+     vm.RegisterImport(impmod)
+
+     res, err := vm.RunWasmBuffer(wasmbuf, "addTwo", uint32(1234), uint32(5678))
+     if err == nil {
+       fmt.Println("Get the result:", res[0].(int32))
+     } else {
+       fmt.Println("Error message:", err.Error())
+     }
+
+     impmod.Release()
+     vm.Release()
+   }
+   ```
+
+   然後您可以使用 WasmEdge Golang SDK 來建置與執行此 Golang 應用程式:
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Get the result: 6912
+   ```
+
+7. 主機資料範例
+
+   開發者可以將外部資料物件設定到 `Function` 物件中,並在函式主體中存取該物件。假設編輯上方的 Go 檔案 `main.go`:
+
+   ```go
+   package main
+
+   import (
+     "fmt"
+
+     "github.com/second-state/WasmEdge-go/wasmedge"
+   )
+
+   // Host function body definition.
+   func host_add(data interface{}, callframe *wasmedge.CallingFrame, params []interface{}) ([]interface{}, wasmedge.Result) {
+     // add: i32, i32 -> i32
+     res := params[0].(int32) + params[1].(int32)
+
+     // Set the returns
+     returns := make([]interface{}, 1)
+     returns[0] = res
+
+     // Also set the result to the data.
+     *data.(*int32) = res
+
+     // Return
+     return returns, wasmedge.Result_Success
+   }
+
+   func main() {
+     // Create the VM object.
+     vm := wasmedge.NewVM()
+
+     // The WASM module buffer.
+     wasmbuf := []byte{
+       /* WASM header */
+       0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00,
+       /* Type section */
+       0x01, 0x07, 0x01,
+       /* function type {i32, i32} -> {i32} */
+       0x60, 0x02, 0x7F, 0x7F, 0x01, 0x7F,
+       /* Import section */
+       0x02, 0x13, 0x01,
+       /* module name: "extern" */
+       0x06, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6E,
+       /* extern name: "func-add" */
+       0x08, 0x66, 0x75, 0x6E, 0x63, 0x2D, 0x61, 0x64, 0x64,
+       /* import desc: func 0 */
+       0x00, 0x00,
+       /* Function section */
+       0x03, 0x02, 0x01, 0x00,
+       /* Export section */
+       0x07, 0x0A, 0x01,
+       /* export name: "addTwo" */
+       0x06, 0x61, 0x64, 0x64, 0x54, 0x77, 0x6F,
+       /* export desc: func 0 */
+       0x00, 0x01,
+       /* Code section */
+       0x0A, 0x0A, 0x01,
+       /* code body */
+       0x08, 0x00, 0x20, 0x00, 0x20, 0x01, 0x10, 0x00, 0x0B,
+     }
+
+     // The additional data to set into the host function.
+     var data int32 = 0
+
+     // Create the module instance with the module name "extern".
+     modinst := wasmedge.NewModule("extern")
+
+     // Create and add a function instance into the module instance with export name "func-add".
+     functype := wasmedge.NewFunctionType(
+       []*wasmedge.ValType{wasmedge.NewValTypeI32(), wasmedge.NewValTypeI32()},
+       []*wasmedge.ValType{wasmedge.NewValTypeI32()},
+     )
+     hostfunc := wasmedge.NewFunction(functype, host_add, &data, 0)
+     functype.Release()
+     modinst.AddFunction("func-add", hostfunc)
+
+     // Register the module instance into VM.
+     vm.RegisterImport(modinst)
+
+     res, err := vm.RunWasmBuffer(wasmbuf, "addTwo", uint32(1234), uint32(5678))
+     if err == nil {
+       fmt.Println("Get the result:", res[0].(int32))
+     } else {
+       fmt.Println("Error message:", err.Error())
+     }
+     fmt.Println("Data value:", data)
+
+     modinst.Release()
+     vm.Release()
+   }
+   ```
+
+   然後您可以使用 WasmEdge Golang SDK 來建置與執行此 Golang 應用程式:
+
+   ```bash
+   $ go get github.com/second-state/WasmEdge-go/wasmedge@v{{ wasmedge_go_version }}
+   $ go build
+   $ ./wasmedge_test
+   Get the result: 6912
+   Data value: 6912
+   ```
+
+### 外掛
+
+WasmEdge 外掛是共用函式庫,可讓 WasmEdge 執行環境載入並建立主機模組實例。透過外掛,WasmEdge 執行環境可以更輕鬆地擴充。
+
+#### 從路徑載入外掛
+
+要使用外掛,開發者應先從路徑載入外掛。
+
+```go
+wasmedge.LoadPluginDefaultPaths()
+```
+
+呼叫此 API 後,預設路徑中的外掛將被載入。預設路徑為:
+
+1. 環境變數 `WASMEDGE_PLUGIN_PATH` 中給定的路徑。
+2. 相對於 WasmEdge 安裝路徑的 `../plugin/` 目錄。
+3. 如果 WasmEdge 安裝在系統目錄(例如 `/usr` 與 `/usr/local`)下,則為函式庫路徑下的 `./wasmedge/` 目錄。
+
+要從特定路徑或特定目錄下載入外掛,開發者可以使用此 API:
+
+```go
+wasmedge.LoadPluginFromPath("PATH_TO_PLUGIN/plugin.so")
+```
+
+#### 透過名稱取得外掛
+
+載入外掛後,開發者可以列出已載入的外掛名稱。
+
+```go
+wasmedge.LoadPluginDefaultPaths()
+pluginnames := wasmedge.ListPlugins()
+for _, name := range pluginnames {
+  fmt.Println("Loaded plug-in name: ", name)
+}
+```
+
+開發者可以透過名稱來取得外掛物件。
+
+```go
+// Assume that wasi_crypto plug-in is installed in the default plug-in path.
+wasmedge.LoadPluginDefaultPaths()
+plugincrypto := wasmedge.FindPlugin("wasi_crypto")
+```
+
+#### 從外掛建立模組實例
+
+透過外掛物件,開發者可以根據模組名稱建立模組實例。
+
+```go
+// Assume that the `plugincrypto` is the object to the wasi_crypto plug-in.
+
+// List the available host modules in the plug-in.
+modules := plugincrypto.ListModule()
+for _, name := range modules {
+  fmt.Println("Available module: ", name)
+}
+// Will print here for the WASI-Crypto plug-in here:
+//   wasi_ephemeral_crypto_asymmetric_common
+//   wasi_ephemeral_crypto_common
+//   wasi_ephemeral_crypto_kx
+//   wasi_ephemeral_crypto_signatures
+//   wasi_ephemeral_crypto_symmetric
+
+// Create a module instance from the plug-in by the module name.
+modinst := plugincrypto.CreateModule("wasi_ephemeral_crypto_common")
+
+modinst.Release()
+```
+
+## WasmEdge AOT 編譯器
+
+在此章節,我們將介紹 WasmEdge AOT 編譯器及其在 Go 中的選項。WasmEdge 以直譯器模式執行 WASM 檔案,WasmEdge 也支援在不修改任何程式碼的情況下以 AOT(預先編譯)模式執行。WasmEdge AOT(預先編譯)編譯器將 WASM 檔案編譯為在 AOT 模式下執行,速度比直譯器模式快得多。開發者可以將 WASM 檔案編譯為共用函式庫格式的編譯後 WASM 檔案,以便為 AOT 模式執行使用通用 WASM 格式。
+
+### 編譯範例
+
+[go_WasmAOT 範例](https://github.com/second-state/WasmEdge-go-examples/tree/master/go_WasmAOT)提供了編譯 WASM 檔案的工具。
+
+### 編譯器選項
+
+開發者可以為 AOT 編譯器設定選項,例如最佳化等級與輸出格式:
+
+```go
+const (
+  // Disable as many optimizations as possible.
+  CompilerOptLevel_O0 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O0)
+  // Optimize quickly without destroying debuggability.
+  CompilerOptLevel_O1 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O1)
+  // Optimize for fast execution as much as possible without triggering significant incremental compile time or code size growth.
+  CompilerOptLevel_O2 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O2)
+  // Optimize for fast execution as much as possible.
+  CompilerOptLevel_O3 = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_O3)
+  // Optimize for small code size as much as possible without triggering significant incremental compile time or execution time slowdowns.
+  CompilerOptLevel_Os = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_Os)
+  // Optimize for small code size as much as possible.
+  CompilerOptLevel_Oz = CompilerOptimizationLevel(C.WasmEdge_CompilerOptimizationLevel_Oz)
+)
+
+const (
+  // Native dynamic library format.
+  CompilerOutputFormat_Native = CompilerOutputFormat(C.WasmEdge_CompilerOutputFormat_Native)
+  // WebAssembly with AOT compiled codes in custom section.
+  CompilerOutputFormat_Wasm = CompilerOutputFormat(C.WasmEdge_CompilerOutputFormat_Wasm)
+)
+```
+
+詳細內容請參考 [AOT 編譯器選項設定](#configurations)。
+
+## WasmEdge CLI 工具
+
+除了執行 `wasmedge` 與 `wasmedgec` CLI 工具之外,開發者可以在 WasmEdge-Go 中觸發 WasmEdge CLI 工具。API 引數與 CLI 工具的命令列引數相同。
+
+### 執行環境 CLI
+
+`wasmedge.RunWasmEdgeCLI()` API 提供與執行 [`wasmedge run` 命令](../../../start/build-and-run/run.md)相同的功能。
+
+請注意,此 API 提供舊版 `wasmedge` CLI 工具,等同於 `wasmedge run` 命令。對於目前統一的 `wasmedge` CLI,請參考[下方的 API](#unified-cli)。
+
+```go
+package main
+
+import (
+  "os"
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  wasmedge.RunWasmEdgeCLI(os.Args)
+}
+```
+
+### 編譯器 CLI
+
+`wasmedge.RunWasmEdgeAOTCompilerCLI()` API 提供與執行 [`wasmedge compile` 工具](../../../start/build-and-run/aot.md)相同的功能。
+
+請注意,此 API 提供舊版 `wasmedgec` CLI 工具,等同於 `wasmedge compile` 命令。對於目前統一的 `wasmedge` CLI,請參考[下方的 API](#unified-cli)。
+
+```go
+package main
+
+import (
+  "os"
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  wasmedge.RunWasmEdgeAOTCompilerCLI(os.Args)
+}
+```
+
+### 統一 CLI
+
+`wasmedge.RunWasmEdgeUnifiedCLI()` API 提供與執行 [`wasmedge` 工具](../../../start/build-and-run/cli.md)相同的功能。
+
+```go
+package main
+
+import (
+  "os"
+  "github.com/second-state/WasmEdge-go/wasmedge"
+)
+
+func main() {
+  wasmedge.RunWasmEdgeUnifiedCLI(os.Args)
+}
+```

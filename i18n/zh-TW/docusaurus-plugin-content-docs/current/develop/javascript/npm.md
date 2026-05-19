@@ -1,0 +1,123 @@
+---
+sidebar_position: 8
+---
+
+# NodeJS 與 NPM 模組
+
+透過 [rollup.js](https://rollupjs.org/guide/en/)，我們也可以在 WasmEdge 中執行 CommonJS（CJS）與 NodeJS（NPM）模組。
+
+## 先決條件
+
+[請參閱此處](./hello_world#prerequisites)
+
+## 執行範例
+
+[simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) 範例示範了它的運作方式。
+
+首先，您需要使用 NPM 命令將相依模組打包成單一 JavaScript 檔案。
+
+```bash
+cd example_js/simple_common_js_demo
+npm install
+npm run build
+# 回到工作目錄
+cd ../../
+```
+
+NPM 會在 `example_js/simple_common_js_demo/dist/npm_main.mjs` 產生新的 JavaScript 檔案，您可以使用 WasmEdge QuickJS 執行環境來執行此檔案。
+
+```bash
+$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/simple_common_js_demo/dist/npm_main.mjs
+md5(message)= 78e731027d8fd50ed642340b7c9a63b3
+sqrt(-4)= 2i
+```
+
+## 程式碼說明
+
+[simple_common_js_demo/npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) 使用了第三方的 `md5` 與 `mathjs` 模組。
+
+```javascript
+const md5 = require('md5');
+console.log('md5(message)=', md5('message'));
+
+const { sqrt } = require('mathjs');
+console.log('sqrt(-4)=', sqrt(-4).toString());
+```
+
+要執行它，我們必須先使用 [rollup.js](https://rollupjs.org/guide/en/) 工具將所有相依套件建置到單一檔案中。在這個過程中，`rollup.js` 會將 CommonJS 模組轉換為[相容於 WasmEdge 的 ES6 模組](es6)。建置腳本為 [rollup.config.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/rollup.config.js)。
+
+```javascript
+const { babel } = require('@rollup/plugin-babel');
+const nodeResolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const replace = require('@rollup/plugin-replace');
+
+const globals = require('rollup-plugin-node-globals');
+const builtins = require('rollup-plugin-node-builtins');
+const plugin_async = require('rollup-plugin-async');
+
+const babelOptions = {
+  presets: ['@babel/preset-react'],
+};
+
+module.exports = [
+  {
+    input: './npm_main.js',
+    output: {
+      inlineDynamicImports: true,
+      file: 'dist/npm_main.mjs',
+      format: 'esm',
+    },
+    external: ['process', 'wasi_net', 'std'],
+    plugins: [
+      plugin_async(),
+      nodeResolve(),
+      commonjs({ ignoreDynamicRequires: false }),
+      babel(babelOptions),
+      globals(),
+      builtins(),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        'process.env.NODE_DEBUG': JSON.stringify(''),
+      }),
+    ],
+  },
+];
+```
+
+[package.json](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/package.json) 檔案指定了 `rollup.js` 的相依套件以及將 [npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) 範例程式建置成單一檔案的命令。
+
+```json
+{
+  "dependencies": {
+    "mathjs": "^9.5.1",
+    "md5": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "@rollup/plugin-replace": "^3.0.0",
+    "rollup": "^2.60.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-async": "^1.2.0"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  }
+}
+```
+
+執行以下 NPM 命令，將 [npm_main.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/simple_common_js_demo/npm_main.js) 範例程式建置成 `dist/npm_main.mjs`。
+
+```bash
+npm install
+npm run build
+```
+
+您可以透過這種方式在 WasmEdge 中匯入並執行任何 NPM 套件。

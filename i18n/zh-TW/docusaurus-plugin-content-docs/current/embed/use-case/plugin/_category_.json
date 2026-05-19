@@ -1,0 +1,8 @@
+{
+  "label": "Plugin-User Guide",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "We will learn how to use WasmEdge Plugin System."
+  }
+}
