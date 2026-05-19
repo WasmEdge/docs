@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate, { translate } from '@docusaurus/Translate';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
@@ -10,17 +10,32 @@ import GHButton from '../components/GHButton';
 
 // Homepage Header Content
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title">
+          <Translate
+            id="homepage.hero.title"
+            description="Homepage hero title (also used as the site title)">
+            WasmEdge Developer Guides
+          </Translate>
+        </h1>
+        <p className="hero__subtitle">
+          <Translate
+            id="homepage.hero.tagline"
+            description="Homepage hero subtitle / site tagline">
+            Serverless functions anywhere in the cloud, in data / AI pipelines, in SaaS platforms, and on edge devices.
+          </Translate>
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/start/overview">
-            Getting Started with WasmEdge in 5min ⏱️
+            <Translate
+              id="homepage.cta.getStarted"
+              description="Call-to-action button leading to the Getting Started overview">
+              {'Getting Started with WasmEdge in 5min ⏱️'}
+            </Translate>
           </Link>
         </div>
         <br />
@@ -32,22 +47,40 @@ function HomepageHeader() {
 
 // To render the default home page
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="WasmEdge Developer Guides">
+      title={translate({
+        id: 'homepage.layout.title',
+        message: 'Hello from WasmEdge Developer Guides',
+        description: 'Browser tab / HTML <title> for the homepage',
+      })}
+      description={translate({
+        id: 'homepage.layout.description',
+        message: 'WasmEdge Developer Guides',
+        description: 'HTML meta description for the homepage',
+      })}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
       </main>
       <div className={clsx('homepageCNCFLogo', styles.homepageCNCFLogo)}>
         <h2 className="hero_subtitle">
-          WasmEdge is a{' '}
-          <a href="https://cncf.io/">
-            CNCF (Cloud Native Computing Foundation)
-          </a>{' '}
-          sandbox project
+          <Translate
+            id="homepage.cncf.text"
+            description="Sentence on the homepage noting WasmEdge is a CNCF sandbox project. {cncfLink} is replaced with a linked CNCF text."
+            values={{
+              cncfLink: (
+                <a href="https://cncf.io/">
+                  <Translate
+                    id="homepage.cncf.linkText"
+                    description="Linked text inside the CNCF sandbox sentence">
+                    CNCF (Cloud Native Computing Foundation)
+                  </Translate>
+                </a>
+              ),
+            }}>
+            {'WasmEdge is a {cncfLink} sandbox project'}
+          </Translate>
         </h2>
         <div className={clsx('cncf-logo', styles.cncfLogo)} />
         <br />

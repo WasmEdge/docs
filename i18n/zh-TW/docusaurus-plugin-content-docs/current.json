@@ -1,0 +1,294 @@
+{
+  "version.label": {
+    "message": "下一版",
+    "description": "The label for version current"
+  },
+  "sidebar.startSidebar.category.Getting Started with WasmEdge": {
+    "message": "WasmEdge 入門",
+    "description": "The label for category Getting Started with WasmEdge in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.Getting Started with WasmEdge.link.generated-index.description": {
+    "message": "本章節將帶您快速安裝並執行 WasmEdge。",
+    "description": "The generated-index page description for category Getting Started with WasmEdge in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.What is WasmEdge": {
+    "message": "什麼是 WasmEdge",
+    "description": "The label for category What is WasmEdge in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.What is WasmEdge.link.generated-index.description": {
+    "message": "WasmEdge 是針對雲端原生與邊緣原生應用最佳化的 WebAssembly 執行環境。它是一套安全、快速、輕量且具可攜性的方案,可在雲端取代 Linux 容器,也非常適合作為無伺服器函式、使用者自訂函式,以及嵌入應用平台與資料管線中的執行環境。",
+    "description": "The generated-index page description for category What is WasmEdge in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.WasmEdge Extensions": {
+    "message": "WasmEdge 擴充功能",
+    "description": "The label for category WasmEdge Extensions in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.WasmEdge Extensions.link.generated-index.description": {
+    "message": "WasmEdge 支援所有標準 WebAssembly 與 WASI 規範,此外亦支援雲端原生使用情境所需的關鍵功能與 API。WasmEdge 是標準 Wasm 的超集合,透過其擴充 SDK,開發者可輕鬆以外掛形式為 WasmEdge Runtime 新增所需功能。",
+    "description": "The generated-index page description for category WasmEdge Extensions in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.Running with WasmEdge": {
+    "message": "使用 WasmEdge 執行",
+    "description": "The label for category Running with WasmEdge in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.Running with WasmEdge.link.generated-index.description": {
+    "message": "本章節將介紹 WasmEdge CLI,以及如何運用 Docker + WASM 來建置、分享並執行您的 WASM 應用程式。",
+    "description": "The generated-index page description for category Running with WasmEdge in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.WasmEdge Use-cases": {
+    "message": "WasmEdge 使用情境",
+    "description": "The label for category WasmEdge Use-cases in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.WasmEdge Use-cases.link.generated-index.description": {
+    "message": "本章節將介紹 WasmEdge 的各種使用情境。",
+    "description": "The generated-index page description for category WasmEdge Use-cases in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.Serverless Platforms": {
+    "message": "無伺服器平台",
+    "description": "The label for category Serverless Platforms in sidebar startSidebar"
+  },
+  "sidebar.startSidebar.category.Serverless Platforms.link.generated-index.description": {
+    "message": "在雲端原生基礎架構中,將 WebAssembly 作為輕量級執行環境,與 Docker 及 microVM 並行使用。",
+    "description": "The generated-index page description for category Serverless Platforms in sidebar startSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in Rust": {
+    "message": "使用 Rust 開發 WASM 應用程式",
+    "description": "The label for category Develop WASM Apps in Rust in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in Rust.link.generated-index.description": {
+    "message": "Rust 在 WebAssembly 生態系中獲得完善支援。本章節將帶您學習如何以 Rust 建立 Wasm 應用程式。",
+    "description": "The generated-index page description for category Develop WASM Apps in Rust in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.HTTP services": {
+    "message": "HTTP 服務",
+    "description": "The label for category HTTP services in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.HTTP services.link.generated-index.description": {
+    "message": "在 WasmEdge 中發送 HTTP 請求並建立 HTTP 伺服器。",
+    "description": "The generated-index page description for category HTTP services in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Socket networking": {
+    "message": "Socket 網路連線",
+    "description": "The label for category Socket networking in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Socket networking.link.generated-index.description": {
+    "message": "在 WasmEdge 中執行基於 Tokio 的非同步 Rust 應用程式。",
+    "description": "The generated-index page description for category Socket networking in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.AI inference": {
+    "message": "AI 推論",
+    "description": "The label for category AI inference in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.AI inference.link.generated-index.description": {
+    "message": "以 Rust 撰寫 AI 推論函式,並於 WasmEdge 中執行。完整支援 mediapipe 模型函式庫,以及 PyTorch、TensorFlow、TensorFlow Lite 與 OpenVINO 模型格式。",
+    "description": "The generated-index page description for category AI inference in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Database drivers": {
+    "message": "資料庫驅動程式",
+    "description": "The label for category Database drivers in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Database drivers.link.generated-index.description": {
+    "message": "從 WasmEdge 中的 Rust 應用程式連線至資料庫。",
+    "description": "The generated-index page description for category Database drivers in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in JavaScript": {
+    "message": "使用 JavaScript 開發 WASM 應用程式",
+    "description": "The label for category Develop WASM Apps in JavaScript in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in JavaScript.link.generated-index.description": {
+    "message": "沒錯！您可以在 WasmEdge 中執行 JavaScript 程式。",
+    "description": "The generated-index page description for category Develop WASM Apps in JavaScript in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in C/C++": {
+    "message": "使用 C/C++ 開發 WASM 應用程式",
+    "description": "The label for category Develop WASM Apps in C/C++ in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in C/C++.link.generated-index.description": {
+    "message": "本章節將帶您學習如何以 C/C++ 建立 WASM 應用程式。",
+    "description": "The generated-index page description for category Develop WASM Apps in C/C++ in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in Python": {
+    "message": "使用 Python 開發 WASM 應用程式",
+    "description": "The label for category Develop WASM Apps in Python in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in Python.link.generated-index.description": {
+    "message": "本章節將帶您學習如何以 Python 建立 WASM 應用程式。",
+    "description": "The generated-index page description for category Develop WASM Apps in Python in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in Go": {
+    "message": "使用 Go 開發 WASM 應用程式",
+    "description": "The label for category Develop WASM Apps in Go in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Develop WASM Apps in Go.link.generated-index.description": {
+    "message": "本章節將帶您學習如何以 Go 建立 WASM 應用程式。",
+    "description": "The generated-index page description for category Develop WASM Apps in Go in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Deploy WasmEdge apps in Kubernetes": {
+    "message": "在 Kubernetes 部署 WasmEdge 應用程式",
+    "description": "The label for category Deploy WasmEdge apps in Kubernetes in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Deploy WasmEdge apps in Kubernetes.link.generated-index.description": {
+    "message": "本章節將介紹如何運用既有的容器工具來部署 WASM 應用程式。",
+    "description": "The generated-index page description for category Deploy WasmEdge apps in Kubernetes in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Low level runtime support": {
+    "message": "低階執行環境支援",
+    "description": "The label for category Low level runtime support in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Low level runtime support.link.generated-index.description": {
+    "message": "本章節將介紹 WasmEdge 與低階執行環境（例如 containerd 與 crun）的整合方式。",
+    "description": "The generated-index page description for category Low level runtime support in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.High level runtime support": {
+    "message": "高階執行環境支援",
+    "description": "The label for category High level runtime support in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.High level runtime support.link.generated-index.description": {
+    "message": "本章節將介紹 WasmEdge 與高階執行環境（例如 containerd 與 CRI-O）的整合方式。",
+    "description": "The generated-index page description for category High level runtime support in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Manage LLM workloads on GPU": {
+    "message": "在 GPU 上管理 LLM 工作負載",
+    "description": "The label for category Manage LLM workloads on GPU in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Manage LLM workloads on GPU.link.generated-index.description": {
+    "message": "本章節將示範如何使用容器工具,在 GPU 上管理 LLM 的 WasmEdge 工作負載。",
+    "description": "The generated-index page description for category Manage LLM workloads on GPU in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Kubernetes Use Cases": {
+    "message": "Kubernetes 使用情境",
+    "description": "The label for category Kubernetes Use Cases in sidebar developSidebar"
+  },
+  "sidebar.developSidebar.category.Kubernetes Use Cases.link.generated-index.description": {
+    "message": "本章節將探討熱門軟體應用程式如何嵌入 WasmEdge,以支援更多延伸功能。",
+    "description": "The generated-index page description for category Kubernetes Use Cases in sidebar developSidebar"
+  },
+  "sidebar.embedSidebar.category.Quick Start": {
+    "message": "快速上手",
+    "description": "The label for category Quick Start in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Quick Start.link.generated-index.description": {
+    "message": "本章節將介紹如何安裝 WasmEdge 執行環境,並快速執行 WASM 應用程式。",
+    "description": "The generated-index page description for category Quick Start in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Passing Complex Data": {
+    "message": "傳遞複雜資料",
+    "description": "The label for category Passing Complex Data in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Passing Complex Data.link.generated-index.description": {
+    "message": "從主機應用程式將複雜資料傳遞給 Wasm 應用程式。",
+    "description": "The generated-index page description for category Passing Complex Data in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.C SDK for Embedding WasmEdge": {
+    "message": "嵌入 WasmEdge 的 C SDK",
+    "description": "The label for category C SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.C SDK for Embedding WasmEdge.link.generated-index.description": {
+    "message": "本章節將帶您學習如何透過 C API 嵌入 WasmEdge。",
+    "description": "The generated-index page description for category C SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.API Reference": {
+    "message": "API 參考文件",
+    "description": "The label for category API Reference in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.API Reference.link.generated-index.description": {
+    "message": "本章節將介紹 WasmEdge Go API 參考文件。",
+    "description": "The generated-index page description for category API Reference in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Rust SDK for Embedding WasmEdge": {
+    "message": "嵌入 WasmEdge 的 Rust SDK",
+    "description": "The label for category Rust SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Rust SDK for Embedding WasmEdge.link.generated-index.description": {
+    "message": "我們將學習如何在 Rust 主機應用程式中嵌入 WasmEdge。",
+    "description": "The generated-index page description for category Rust SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Go SDK for Embedding WasmEdge": {
+    "message": "嵌入 WasmEdge 的 Go SDK",
+    "description": "The label for category Go SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Go SDK for Embedding WasmEdge.link.generated-index.description": {
+    "message": "本章節將帶您學習如何在 Go 主機應用程式中嵌入 WasmEdge。",
+    "description": "The generated-index page description for category Go SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Java SDK for Embedding WasmEdge": {
+    "message": "嵌入 WasmEdge 的 Java SDK",
+    "description": "The label for category Java SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Java SDK for Embedding WasmEdge.link.generated-index.description": {
+    "message": "本章節將帶您學習如何在 Java 主機應用程式中嵌入 WasmEdge。",
+    "description": "The generated-index page description for category Java SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.C++ SDK for Embedding WasmEdge": {
+    "message": "嵌入 WasmEdge 的 C++ SDK",
+    "description": "The label for category C++ SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.C++ SDK for Embedding WasmEdge.link.generated-index.description": {
+    "message": "本章節將帶您學習如何在 C++ 主機應用程式中嵌入 WasmEdge。",
+    "description": "The generated-index page description for category C++ SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Python SDK for Embedding WasmEdge": {
+    "message": "嵌入 WasmEdge 的 Python SDK",
+    "description": "The label for category Python SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Python SDK for Embedding WasmEdge.link.generated-index.description": {
+    "message": "本章節將帶您學習如何在 Python 主機應用程式中嵌入 WasmEdge。",
+    "description": "The generated-index page description for category Python SDK for Embedding WasmEdge in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Use Cases": {
+    "message": "使用情境",
+    "description": "The label for category Use Cases in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Use Cases.link.generated-index.description": {
+    "message": "本章節將探討熱門軟體應用程式如何嵌入 WasmEdge,以支援更多延伸功能。",
+    "description": "The generated-index page description for category Use Cases in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Plugin-User Guide": {
+    "message": "外掛使用者指南",
+    "description": "The label for category Plugin-User Guide in sidebar embedSidebar"
+  },
+  "sidebar.embedSidebar.category.Plugin-User Guide.link.generated-index.description": {
+    "message": "我們將學習如何使用 WasmEdge 的外掛系統。",
+    "description": "The generated-index page description for category Plugin-User Guide in sidebar embedSidebar"
+  },
+  "sidebar.contributeSidebar.category.Build WasmEdge from source": {
+    "message": "從原始碼建置 WasmEdge",
+    "description": "The label for category Build WasmEdge from source in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Build WasmEdge from source.link.generated-index.description": {
+    "message": "以下是在各種平台上從原始碼建置 WasmEdge 及其外掛的指南。",
+    "description": "The generated-index page description for category Build WasmEdge from source in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Supported Platforms": {
+    "message": "支援的平台",
+    "description": "The label for category Supported Platforms in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Supported Platforms.link.generated-index.description": {
+    "message": "我們將學習如何在不同平台上從原始碼建置 WasmEdge。",
+    "description": "The generated-index page description for category Supported Platforms in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Build and Run WasmEdge on Android": {
+    "message": "在 Android 上建置與執行 WasmEdge",
+    "description": "The label for category Build and Run WasmEdge on Android in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Build and Run WasmEdge on Android.link.generated-index.description": {
+    "message": "我們將學習如何在 Android 上建置與執行 WasmEdge。",
+    "description": "The generated-index page description for category Build and Run WasmEdge on Android in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Build Plug-ins": {
+    "message": "建置外掛",
+    "description": "The label for category Build Plug-ins in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.Build Plug-ins.link.generated-index.description": {
+    "message": "本章節將帶您學習如何從原始碼建置 WasmEdge 外掛。",
+    "description": "The generated-index page description for category Build Plug-ins in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.WasmEdge Plugin System": {
+    "message": "WasmEdge 外掛系統",
+    "description": "The label for category WasmEdge Plugin System in sidebar contributeSidebar"
+  },
+  "sidebar.contributeSidebar.category.WasmEdge Plugin System.link.generated-index.description": {
+    "message": "我們將學習如何為 WasmEdge 開發外掛。",
+    "description": "The generated-index page description for category WasmEdge Plugin System in sidebar contributeSidebar"
+  }
+}
