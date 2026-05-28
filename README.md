@@ -2,7 +2,7 @@
 
 ![WasmEdge Logo](https://github.com/WasmEdge/.github/raw/main/profile/wasmedge-runtime-logo.png)
 
-This repo contains technical documentation for the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge) project. The documentation website built from this repo is published <https://wasmedge.org/docs/>, check it out!
+This repo contains technical documentation for the [WasmEdge Runtime](https://github.com/WasmEdge/WasmEdge) project. The documentation website built from this repo is published at [https://wasmedge.org/docs/](https://wasmedge.org/docs/), check it out!
 
 ## Setting up the Docs Locally
 
@@ -26,6 +26,6 @@ To set up the WasmEdge Docs locally, you will need to follow these general steps
    npm start
    ```
 
-This should start the development server on port 3000. You can access the running application by opening a web browser and navigating to <http://localhost:3000/docs/>.
+This should start the development server on port 3000. You can access the running application by opening a web browser and navigating to [http://localhost:3000/docs/](http://localhost:3000/docs/).
 
 That's it! You should now have a local instance of the WasmEdge Docs running on your machine.
