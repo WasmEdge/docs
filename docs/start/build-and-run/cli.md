@@ -18,6 +18,16 @@ By default, the `wasmedge` will execute WebAssembly programs in interpreter mode
 The original `wasmedgec` tool is changed to `wasmedge compile`. The [`wasmedge compile` CLI tool](aot.md) is the ahead-of-time compiler to compile the WebAssembly file into native code.
 :::
 
+The `wasmedge` CLI supports the following subcommands:
+
+| Subcommand | Description |
+| --- | --- |
+| [`run`](run.md) | Execute a WebAssembly program. |
+| [`compile`](aot.md) | Ahead-of-time compile a WebAssembly file into native code. |
+| [`parse`](parse.md) | Parse a WebAssembly module and display its section details. |
+| [`validate`](validate.md) | Validate a WebAssembly module against the specification. |
+| [`instantiate`](instantiate.md) | Instantiate a WebAssembly module, checking that all imports can be resolved. |
+
 ```bash
 $ wasmedge -v
 wasmedge version {{ wasmedge_version }}
@@ -28,7 +38,14 @@ Users can run the `wasmedge -h` to realize the command line options quickly or [
 ```bash
 $ wasmedge -h
 USAGE
-   wasmedge [OPTIONS] [--] WASM_OR_SO [ARG ...]
+   wasmedge [SUBCOMMANDS] [OPTIONS] [--] WASM_OR_SO [ARG ...]
+
+SUBCOMMANDS
+   compile        Wasmedge compiler subcommand
+   run            Wasmedge runtime tool subcommand
+   parse          Wasmedge parse tool subcommand
+   instantiate    Wasmedge instantiate tool subcommand
+   validate       Wasmedge validate tool subcommand
 
 ...
 ```
