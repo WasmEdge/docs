@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # `wasmedge parse` CLI
 
-After [installation](../install.md#install), users can execute the `wasmedge parse` command.
+After [installation](https://wasmedge.org/docs/start/install#install), users can execute the `wasmedge parse` command.
 
 The `wasmedge parse` command loads a WebAssembly module and displays a detailed summary of its structure, including all sections defined in the binary (types, imports, functions, globals, exports, code, memory, tables, and custom sections). It is useful for inspecting WASM modules without executing them.
 

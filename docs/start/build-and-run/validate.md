@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # `wasmedge validate` CLI
 
-After [installation](../install.md#install), users can execute the `wasmedge validate` command.
+After [installation](https://wasmedge.org/docs/start/install#install), users can execute the `wasmedge validate` command.
 
 The `wasmedge validate` command loads a WebAssembly module and runs the validation phase, checking that the module conforms to the WebAssembly specification. It does **not** instantiate or execute the module. This is useful for verifying correctness of a WASM binary before deployment or execution.
 
