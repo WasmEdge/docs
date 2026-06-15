@@ -47,7 +47,7 @@ WasmEdge 支持以下 [WebAssembly 提案](https://github.com/WebAssembly/propos
 
 ## WASI 提案
 
-WasmEdge 实现了以下 [WASI 提案](https://github.com/WebAssembly/WASI/blob/main/Proposals.md)：
+WasmEdge 实现了以下 [WASI 提案](https://github.com/WebAssembly/WASI/blob/main/docs/Proposals.md)：
 
 | 提案 | 平台支持 |
 | --- | --- |

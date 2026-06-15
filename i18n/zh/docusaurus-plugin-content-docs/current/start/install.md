@@ -46,7 +46,7 @@ VERSION={{ wasmedge_version }}
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -v $VERSION
 ```
 
-如果你对 `master` 分支的 `HEAD` 构建感兴趣（这基本上是 WasmEdge 的每夜构建版本）。在这种情况下，可以直接从我们的 Github Action 的 CI artifact 下载发布包。[以下是一个示例链接](https://github.com/WasmEdge/WasmEdge/actions/runs/2969775464#artifacts)。
+如果你对 `master` 分支的 `HEAD` 构建感兴趣（这基本上是 WasmEdge 的每夜构建版本）。在这种情况下，可以直接从我们的 Github Action 的 CI artifact 下载发布包。[以下是一个示例链接](https://github.com/WasmEdge/WasmEdge/actions/workflows/release.yml)。
 
 #### 带插件安装 WasmEdge
 
