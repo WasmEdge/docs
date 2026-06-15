@@ -19,7 +19,7 @@ Please follow this guide to build and test WasmEdge from the source code.
 
 <!-- prettier-ignore -->
 :::note
-If you just want the latest builds from the `HEAD` of the `master` branch, and do not want to build it yourself, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/runs/1521549504#artifacts).
+If you just want the latest builds from the `HEAD` of the `master` branch, and do not want to build it yourself, you can download the release package directly from our Github Action's CI artifact. [Here is an example](https://github.com/WasmEdge/WasmEdge/actions/workflows/release.yml).
 :::
 
 ## What Will Be Built

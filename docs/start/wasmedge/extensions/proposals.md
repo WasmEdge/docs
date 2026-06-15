@@ -54,7 +54,7 @@ The following proposals are under development and may be supported in the future
 
 ## WASI proposals
 
-WasmEdge implements the following [WASI proposals](https://github.com/WebAssembly/WASI/blob/main/Proposals.md):
+WasmEdge implements the following [WASI proposals](https://github.com/WebAssembly/WASI/blob/main/docs/Proposals.md):
 
 | Proposal | Platform: `Linux x86_64` | Platform: `Linux aarch64` | Platform: `x86_64 MacOS` | Platform: `MacOS arm64` |
 | --- | --- | --- | --- | --- |
