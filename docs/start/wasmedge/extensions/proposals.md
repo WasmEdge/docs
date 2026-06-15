@@ -47,7 +47,7 @@ The following proposals are under development and may be supported in the future
 [Component Model]: https://github.com/WebAssembly/component-model
 [Exception handling]: https://github.com/WebAssembly/exception-handling
 [Typed Function References]: https://github.com/WebAssembly/function-references
-[Garbage collection]: https://github.com/WebAssembly/gc
+[Garbage collection]: ./gc
 [Relaxed SIMD]: https://github.com/WebAssembly/relaxed-simd
 [Memory64]: https://github.com/WebAssembly/memory64
 [WebAssembly C and C++ API]: https://github.com/WebAssembly/wasm-c-api
