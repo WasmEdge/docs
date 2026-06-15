@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Build on seL4 RTOS
 
-[Video demo](https://youtu.be/2Qu-Trtkspk) | [Build logs](https://github.com/second-state/wasmedge-seL4/runs/3982081148?check_suite_focus=true) | [Build artifact](https://github.com/second-state/wasmedge-seL4/actions/runs/1374510169)
+[Video demo](https://youtu.be/2Qu-Trtkspk) | [Build logs](https://github.com/second-state/wasmedge-seL4/actions) | [Build artifact](https://github.com/second-state/wasmedge-seL4/releases)
 
 In this article, we demonstrate how to run WasmEdge on the seL4 RTOS, there are two parts:
 
