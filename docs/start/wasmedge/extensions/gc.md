@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Garbage Collection
@@ -10,7 +10,7 @@ WasmEdge supports the [WebAssembly Garbage Collection (GC) proposal](https://git
 
 Normally, WebAssembly manages memory manually — programs allocate and free memory themselves using linear memory. The GC proposal adds first-class garbage-collected types: **structs** (fixed heterogeneous fields) and **arrays** (homogeneous elements), both allocated on the heap and automatically reclaimed when no longer reachable.
 
-This is enabled by default in WasmEdge since `0.16.0`. You can disable it with the `--disable-gc` CLI flag if needed.
+This is enabled by default in WasmEdge since `0.16.0`. For WasmEdge `0.14.x`–`0.15.x`, enable it explicitly with the (deprecated) `--enable-gc` flag; you can disable GC with `--disable-gc` when needed.
 
 ## Prerequisites
 
@@ -122,9 +122,10 @@ To configure GC support programmatically via the WasmEdge C API, use the `WasmEd
 
 ```c
 WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
-// GC is enabled by default since 0.16.0.
-// To disable it:
+// WasmEdge 0.16.0+ enables GC by default; to disable it:
 WasmEdge_ConfigureRemoveProposal(ConfCxt, WasmEdge_Proposal_GC);
+// WasmEdge 0.14.x–0.15.x has GC off by default; to enable it instead:
+// WasmEdge_ConfigureAddProposal(ConfCxt, WasmEdge_Proposal_GC);
 ```
 
 ## Language Support
