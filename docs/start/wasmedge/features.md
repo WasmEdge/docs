@@ -78,4 +78,4 @@ Or you could build your own plug-ins for WasmEdge in
 
 ## Easy to Embed into a Host Application
 
-[Embedded runtime](https://wasmedge.org/docs/embed/overview) is the classical use case for WasmEdge. You could embed WasmEdge functions in C, Go, Rust, Node.js, Java (WIP), and Python (WIP) host applications.
+[Embedded runtime](https://wasmedge.org/docs/embed/overview) is the classical use case for WasmEdge. You could embed WasmEdge functions in C, Go, Rust, and Node.js host applications.

@@ -78,4 +78,4 @@ WasmEdge 目前支持：
 
 ## 易于嵌入到主机应用程序中
 
-嵌入式运行时是 WasmEdge 的经典用例。你可以将 WasmEdge 函数嵌入到 C、Go、Rust、Node.js、Java(WIP) 和 Python(WIP) 主机应用程序中。
+嵌入式运行时是 WasmEdge 的经典用例。你可以将 WasmEdge 函数嵌入到 C、Go、Rust、Node.js 主机应用程序中。
