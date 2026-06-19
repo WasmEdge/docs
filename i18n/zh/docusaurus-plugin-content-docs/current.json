@@ -171,14 +171,6 @@
     "message": "In this chapter, we will learn how to Embed WasmEdge in your Go host applications.",
     "description": "The generated-index page description for category Go SDK for Embedding Wasm Functions in sidebar embedSidebar"
   },
-  "sidebar.embedSidebar.category.Java SDK for Embedding Wasm Functions": {
-    "message": "Java SDK for Embedding Wasm Functions",
-    "description": "The label for category Java SDK for Embedding Wasm Functions in sidebar embedSidebar"
-  },
-  "sidebar.embedSidebar.category.Java SDK for Embedding Wasm Functions.link.generated-index.description": {
-    "message": "In this chapter, we will learn how to Embed WasmEdge in your Java host applications.",
-    "description": "The generated-index page description for category Java SDK for Embedding Wasm Functions in sidebar embedSidebar"
-  },
   "sidebar.embedSidebar.category.C++ SDK for Embedding Wasm Functions": {
     "message": "C++ SDK for Embedding Wasm Functions",
     "description": "The label for category C++ SDK for Embedding Wasm Functions in sidebar embedSidebar"
@@ -186,14 +178,6 @@
   "sidebar.embedSidebar.category.C++ SDK for Embedding Wasm Functions.link.generated-index.description": {
     "message": "In this chapter, we will learn how to Embed WasmEdge in your C++ host applications.",
     "description": "The generated-index page description for category C++ SDK for Embedding Wasm Functions in sidebar embedSidebar"
-  },
-  "sidebar.embedSidebar.category.Python SDK for Embedding Wasm Functions": {
-    "message": "Python SDK for Embedding Wasm Functions",
-    "description": "The label for category Python SDK for Embedding Wasm Functions in sidebar embedSidebar"
-  },
-  "sidebar.embedSidebar.category.Python SDK for Embedding Wasm Functions.link.generated-index.description": {
-    "message": "In this chapter, we will learn how to Embed WasmEdge in your Python host applications.",
-    "description": "The generated-index page description for category Python SDK for Embedding Wasm Functions in sidebar embedSidebar"
   },
   "sidebar.embedSidebar.category.WasmEdge Use Cases": {
     "message": "WasmEdge Use Cases",
