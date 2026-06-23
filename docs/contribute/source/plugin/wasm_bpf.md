@@ -15,6 +15,7 @@ sudo apt update
 sudo apt install -y libbpf-dev libelf-dev zlib1g-dev
 ```
 
+<!-- prettier-ignore -->
 :::note
 If `libbpf >= 1.2.0` is not available through your package manager, the build system will automatically download and build it from source via `FetchContent`. In that case, you still need `libelf` and `zlib` installed.
 :::
@@ -30,6 +31,7 @@ cmake --build build
 cmake --install build
 ```
 
+<!-- prettier-ignore -->
 :::note
 If the built `wasmedge` CLI tool cannot find the Wasm-BPF plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasm_bpf/`) to try to fix this issue.
 :::

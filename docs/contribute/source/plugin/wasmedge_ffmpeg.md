@@ -35,6 +35,7 @@ cmake --build build
 cmake --install build
 ```
 
+<!-- prettier-ignore -->
 :::note
 If the built `wasmedge` CLI tool cannot find the WasmEdge-FFmpeg plug-in, you can set the `WASMEDGE_PLUGIN_PATH` environment variable to the plug-in installation path (such as `/usr/local/lib/wasmedge/`, or the built plug-in path `build/plugins/wasmedge_ffmpeg/`) to try to fix this issue.
 :::
