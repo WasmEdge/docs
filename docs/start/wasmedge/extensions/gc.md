@@ -20,7 +20,8 @@ This is enabled by default in WasmEdge since `0.16.0`. For WasmEdge `0.14.x`–`
 Install WABT on Linux:
 
 ```bash
-apt install wabt
+sudo apt update
+sudo apt install -y wabt
 ```
 
 Or on macOS:

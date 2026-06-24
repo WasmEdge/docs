@@ -108,6 +108,8 @@ Developers can follow the steps to build WasmEdge with plug-ins from source.
 - [WasmEdge-StableDiffusion](plugin/wasmedge_stablediffusion.md)
 - [WasmEdge-zlib](plugin/wasmedge_zlib.md)
 
+> Note: Each plug-in guide above includes the corresponding `-DWASMEDGE_PLUGIN_*` CMake option.
+
 ## Run Tests
 
 The tests are only available when the build option `WASMEDGE_BUILD_TESTS` is set to `ON`.
