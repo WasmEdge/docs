@@ -1,0 +1,8 @@
+{
+  "label": "Testing WasmEdge",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Here's the guide focused on testing WasmEdge"
+  }
+}
