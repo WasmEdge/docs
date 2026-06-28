@@ -8,7 +8,7 @@ The WASI-HTTP plug-in provides an implementation of the [WASI HTTP proposal](htt
 
 ## Build WasmEdge with WASI-HTTP Plug-in
 
-To enable the WasmEdge WASI-HTTP plug-in, developers need to [build WasmEdge from source](../os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_WASI_HTTP=ON`.
+To enable the WasmEdge WASI-HTTP plug-in, developers need to [build WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_WASI_HTTP=ON`.
 
 The build system will automatically fetch and build `libcpr` via CMake's `FetchContent`, so no manual installation of dependencies is required.
 

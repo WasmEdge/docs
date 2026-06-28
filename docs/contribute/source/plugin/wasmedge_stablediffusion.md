@@ -31,7 +31,7 @@ xcode-select --install
 
 ## Build WasmEdge with the Stable Diffusion Plug-in
 
-To enable the WasmEdge Stable Diffusion plug-in, developers need to [build WasmEdge from source](../os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_STABLEDIFFUSION=ON`.
+To enable the WasmEdge Stable Diffusion plug-in, developers need to [build WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_STABLEDIFFUSION=ON`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>

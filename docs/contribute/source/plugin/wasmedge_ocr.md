@@ -25,7 +25,7 @@ brew install tesseract leptonica
 
 ## Build WasmEdge with WasmEdge-OCR Plug-in
 
-To enable the WasmEdge-OCR plug-in, developers need to [build WasmEdge from source](../os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_OCR=ON`.
+To enable the WasmEdge-OCR plug-in, developers need to [build WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_OCR=ON`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>

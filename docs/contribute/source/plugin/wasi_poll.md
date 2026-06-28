@@ -8,7 +8,7 @@ The WASI-Poll plug-in provides an implementation of the [WASI Poll proposal](htt
 
 ## Build WasmEdge with WASI-Poll Plug-in
 
-To enable the WasmEdge WASI-Poll plug-in, developers need to [build WasmEdge from source](../os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_WASI_POLL=ON`.
+To enable the WasmEdge WASI-Poll plug-in, developers need to [build WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_WASI_POLL=ON`.
 
 The WASI-Poll plug-in has no external dependencies beyond the WasmEdge runtime itself.
 

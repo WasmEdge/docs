@@ -26,7 +26,7 @@ brew install ffmpeg
 
 ## Build WasmEdge with WasmEdge-FFmpeg Plug-in
 
-To enable the WasmEdge-FFmpeg plug-in, developers need to [build WasmEdge from source](../os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_FFMPEG=ON`.
+To enable the WasmEdge-FFmpeg plug-in, developers need to [build WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_FFMPEG=ON`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>

@@ -25,7 +25,7 @@ brew install zlib
 
 ## Build WasmEdge with the zlib Plug-in
 
-To enable the WasmEdge zlib plug-in, developers need to [build WasmEdge from source](../os/linux.md) with the cmake option `-DWASMEDGE_PLUGIN_ZLIB=ON`.
+To enable the WasmEdge zlib plug-in, developers need to [build WasmEdge from source](../build_from_src.md) with the cmake option `-DWASMEDGE_PLUGIN_ZLIB=ON`.
 
 ```bash
 cd <path/to/your/wasmedge/source/folder>
