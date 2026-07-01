@@ -99,6 +99,16 @@ Developers can follow the steps to build WasmEdge with plug-ins from source.
 - [WasmEdge-TensorFlow](plugin/tensorflow.md)
 - [WasmEdge-TensorFlowLite](plugin/tensorflowlite.md)
 - [WASI-Logging](plugin/wasi_logging.md)
+- [WASI-HTTP](plugin/wasi_http.md)
+- [WASI-Poll](plugin/wasi_poll.md)
+- [Wasm-BPF](plugin/wasm_bpf.md)
+- [WasmEdge-FFmpeg](plugin/wasmedge_ffmpeg.md)
+- [WasmEdge-OCR](plugin/wasmedge_ocr.md)
+- [WasmEdge-OpenCVMini](plugin/wasmedge_opencvmini.md)
+- [WasmEdge-StableDiffusion](plugin/wasmedge_stablediffusion.md)
+- [WasmEdge-zlib](plugin/wasmedge_zlib.md)
+
+> Note: Each plug-in guide above includes the corresponding `-DWASMEDGE_PLUGIN_*` CMake option.
 
 ## Run Tests
 
