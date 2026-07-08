@@ -36,9 +36,26 @@ wasmedge --enable-exception-handling path/to/test.wasm
 
 ## Emscripten repro (expected failure today)
 
+`a.cpp`:
+
+```cpp
+#include <stdio.h>
+
+int main() {
+  try {
+    puts("throw...");
+    throw 1;
+    puts("(never reached)");
+  } catch (...) {
+    puts("catch!");
+  }
+  return 0;
+}
+```
+
 ```bash
 emcc -O1 -fwasm-exceptions -sSTANDALONE_WASM a.cpp -o a.wasm
 wasmedge --enable-exception-handling a.wasm
 ```
 
-Example `a.cpp` and more detail: [examples/exception_handling](https://github.com/WasmEdge/WasmEdge/tree/master/examples/exception_handling) in the WasmEdge repository.
+Typical error: `loading failed: illegal opcode, Code: 0x117` (`Deprecated delegate instruction`).
