@@ -15,11 +15,12 @@ wasmedge compile --enable-exception-handling module.wasm module.aot.wasm
 
 ## Toolchain compatibility
 
-| Toolchain | Compatible with WasmEdge EH | Notes |
-|-----------|----------------------------|-------|
-| Emscripten (`-fwasm-exceptions`) | No (as of 2026) | Often emits legacy EH (e.g. opcode `0x117` / `delegate`) |
-| C/C++ via wasi-sdk / clang | Check your LLVM version | Must emit the latest EH proposal, not legacy EH |
-| `wasm-3.0-exceptions` spec tests | Yes | Official test inputs used by WasmEdge |
+| Toolchain | Version | Compatible | Notes |
+|-----------|---------|------------|-------|
+| WasmEdge (runtime) | 0.17.x | Yes | Latest EH proposal; use `--enable-exception-handling` |
+| Emscripten (`-fwasm-exceptions`) | 3.1.64, 6.0.0 | No | Emits legacy EH (e.g. opcode `0x117` / `delegate`) |
+| wasi-sdk / clang | None verified | No | No public wasi-sdk release verified to emit latest EH yet |
+| `wasm-3.0-exceptions` spec tests | wasmedge-spectest | Yes | Official test inputs used by WasmEdge CI |
 
 WasmEdge does not plan to support legacy EH. Use modules built for the current proposal only.
 
