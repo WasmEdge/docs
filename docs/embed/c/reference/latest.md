@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.17.2 Documentation
+# C API 0.18.0 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
@@ -802,7 +802,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
     *    * Multiple memories
     *    * Relaxed SIMD
     *    * Memory64
-    *    * Exception handling (interpreter only)
+    *    * Exception handling
     *
     * For the current WasmEdge version, the following proposals are supported
     * (turned off by default) additionally:
@@ -863,24 +863,42 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-5. Run mode
+5. Maximum stack size
 
-   WasmEdge supports a tri-state run mode for the WASM execution engine: interpreter, JIT, or AOT. Developers can use the `WasmEdge_ConfigureSetRunMode()` API to select the engine:
+   Developers can limit the call stack size of one execution by this configuration. When the call stack exceeds the limit (such as in unbounded recursion), the execution traps with the `WasmEdge_ErrCode_CallStackExhausted` error instead of crashing. This configuration is only effective in the `Executor` and `VM` contexts.
+
+   ```c
+   WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
+   uint64_t StackSize = WasmEdge_ConfigureGetMaxStackSize(ConfCxt);
+   /*
+    * By default, the `StackSize` is 0, which selects the engine default: 8 MiB
+    * in the interpreter mode, and 512 KiB in the AOT and JIT modes.
+    */
+   WasmEdge_ConfigureSetMaxStackSize(ConfCxt, 1024 * 1024);
+   /* Limit the call stack size of one execution to 1 MiB. */
+   StackSize = WasmEdge_ConfigureGetMaxStackSize(ConfCxt);
+   /* The `StackSize` will be 1048576. */
+   WasmEdge_ConfigureDelete(ConfCxt);
+   ```
+
+   Setting the value to `UINT64_MAX` removes the limit.
+
+6. Run mode
+
+   WasmEdge supports the following run modes for the WASM execution engine: interpreter, JIT, AOT, or lazy JIT. Developers can use the `WasmEdge_ConfigureSetRunMode()` API to select the engine:
 
    ```c
    enum WasmEdge_RunMode {
      WasmEdge_RunMode_Interpreter = 0, // Default, interpreter mode.
      WasmEdge_RunMode_JIT,             // JIT mode.
      WasmEdge_RunMode_AOT,             // AOT mode.
+     WasmEdge_RunMode_LazyJIT,         // Lazy JIT mode.
    };
    ```
 
-   Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen` shared-library WASM artifacts. In the other modes, the AOT custom sections in universal WASM are ignored, and shared-library inputs are rejected with the `WasmEdge_ErrCode_MalformedMagic` error.
+   The JIT mode compiles the whole WASM module when loading, and the lazy JIT mode compiles each function on its first call.
 
-   <!-- prettier-ignore -->
-   :::note
-   In the `0.17.0` and `0.17.1` releases, shared-library inputs in the non-AOT modes were re-loaded as plain WASM after extracting their embedded bytes. Since the `0.17.2` release, they are rejected instead. Please set the run mode to `WasmEdge_RunMode_AOT` to load the AOT-compiled shared libraries.
-   :::
+   Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen` shared-library WASM artifacts. In the other modes, the AOT custom sections in universal WASM are ignored, and shared-library inputs are rejected with the `WasmEdge_ErrCode_MalformedMagic` error.
 
    ```c
    WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
@@ -897,7 +915,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    The `WasmEdge_ConfigureSetForceInterpreter()` and `WasmEdge_ConfigureIsForceInterpreter()` APIs are deprecated since the `0.17.0` release. Developers should use the `WasmEdge_ConfigureSetRunMode()` and `WasmEdge_ConfigureGetRunMode()` APIs instead.
    :::
 
-6. AOT compiler options
+7. AOT compiler options
 
    The AOT compiler options configure the behavior about optimization level, output format, dump IR, and generic binary.
 
@@ -948,7 +966,7 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    WasmEdge_ConfigureDelete(ConfCxt);
    ```
 
-7. Statistics options
+8. Statistics options
 
    The statistics options configure the behavior about instruction counting, cost measuring, and time measuring in both runtime and AOT compiler. These configurations are effective in `Compiler`, `VM`, and `Executor` contexts.
 
@@ -1298,10 +1316,12 @@ WasmEdge provides the following built-in host modules and plug-in pre-registrati
    - `wasi_ephemeral_crypto_kx` (for the `WASI-Crypto`)
    - `wasi_ephemeral_crypto_signatures` (for the `WASI-Crypto`)
    - `wasi_ephemeral_crypto_symmetric` (for the `WASI-Crypto`)
-   - `wasi_ephemeral_nn`
-   - `wasi_snapshot_preview1`
-   - `wasmedge_httpsreq`
-   - `wasmedge_process`
+   - `wasi_ephemeral_nn` (for the `WASI-NN`)
+   - `wasi:logging/logging` (for the `WASI-Logging`)
+   - `wasmedge_image`
+   - `wasmedge_stablediffusion`
+   - `wasmedge_tensorflow`
+   - `wasmedge_tensorflowlite`
 
    When the WASM want to invoke these host functions but the corresponding plug-in not installed, WasmEdge will print the error message and return an error.
 
@@ -1484,13 +1504,13 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
    Get the result: 10946
    ```
 
-3. Forcibly delete the registered WASM modules
+3. Delete the registered WASM modules
 
-   For instantiated and registered modules in VM context, developers can use the `WasmEdge_VMForceDeleteRegisteredModule()` API to forcibly delete and unregister the module instance by name.
+   For instantiated and registered modules in VM context, developers can use the `WasmEdge_VMDeleteRegisteredModule()` API to unregister the module instance by name. The module instance will be safely destroyed only when there are no remaining dependencies from other modules.
 
    <!-- prettier-ignore -->
    :::note
-   This API doesn't check the module instance dependencies for exporting and importing. Developers should guarantee the module dependencies by theirselves when using this API. The safer API will be provided in the future.
+   The `WasmEdge_VMForceDeleteRegisteredModule()` API is deprecated since the `0.18.0` release. Developers should use the `WasmEdge_VMDeleteRegisteredModule()` API instead.
    :::
 
    ```c
@@ -1518,8 +1538,8 @@ In WebAssembly, the instances in WASM modules can be exported and can be importe
       * function `"mod" "fib"`.
       */
 
-     /* Forcibly delete the registered module. */
-     WasmEdge_VMForceDeleteRegisteredModule(VMCxt, ModName);
+     /* Unregister and delete the registered module. */
+     WasmEdge_VMDeleteRegisteredModule(VMCxt, ModName);
 
      WasmEdge_StringDelete(ModName);
      WasmEdge_StringDelete(FuncName);
@@ -2889,6 +2909,19 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_ModuleInstanceDelete(HostModCxt);
    ```
 
+   The `WasmEdge_ModuleInstanceAddFunction()`, `WasmEdge_ModuleInstanceAddTable()`, `WasmEdge_ModuleInstanceAddMemory()`, and `WasmEdge_ModuleInstanceAddGlobal()` APIs return the `WasmEdge_Result`. The module instance is mutable until it is first used in execution (e.g. one of its host functions is invoked). After that, the module instance is finalized, and these APIs fail with the `WasmEdge_ErrCode_WrongVMWorkflow` error.
+
+   On success, the ownership of the added instance is moved into the module instance. On failure, the ownership is __NOT__ taken, and developers should destroy the instance by themselves.
+
+   ```c
+   WasmEdge_Result Res =
+       WasmEdge_ModuleInstanceAddFunction(HostModCxt, FuncName, HostFunc);
+   if (!WasmEdge_ResultOK(Res)) {
+     /* The module instance does not take the ownership on failure. */
+     WasmEdge_FunctionInstanceDelete(HostFunc);
+   }
+   ```
+
 5. Specified module instance
 
    `WasmEdge_ModuleInstanceCreateWASI()` API can create and initialize the `WASI` module instance.
@@ -2899,7 +2932,7 @@ The instances are the runtime structures of WASM. Developers can retrieve the `M
    WasmEdge_ModuleInstanceContext *WasiModCxt =
        WasmEdge_ModuleInstanceCreateWASI(/* ... ignored */);
    WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(NULL, NULL);
-   /* Register the WASI and WasmEdge_Process into the VM context. */
+   /* Register the WASI into the VM context. */
    WasmEdge_VMRegisterModuleFromImport(VMCxt, WasiModCxt);
    /* Get the WASI exit code. */
    uint32_t ExitCode = WasmEdge_ModuleInstanceWASIGetExitCode(WasiModCxt);

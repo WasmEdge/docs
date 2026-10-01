@@ -34,12 +34,12 @@ Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and t
 Installing the necessary `libtensorflowlite_c.so` and `libtensorflowlite_flex.so` on both `Linux` and `MacOS` platforms, we recommend the following commands:
 
 ```bash
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.12.0-CC/WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
-# For the Linux aarch64 platforms, please use the `WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_aarch64.tar.gz`.
-# For the MacOS x86_64 platforms, please use the `WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-darwin_x86_64.tar.gz`.
-# For the MacOS arm64 platforms, please use the `WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-darwin_arm64.tar.gz`.
-tar -zxf WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
-rm -f WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.21.0-CC/WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
+# For the Linux aarch64 platforms, please use the `WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_aarch64.tar.gz`.
+# For the MacOS x86_64 platforms, please use the `WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-darwin_x86_64.tar.gz`.
+# For the MacOS arm64 platforms, please use the `WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-darwin_arm64.tar.gz`.
+tar -zxf WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
+rm -f WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
 ```
 
 The shared library will be extracted in the current directory `./libtensorflowlite_c.so` and `./libtensorflowlite_flex.so` on `Linux` platforms, or `./libtensorflowlite_c.dylib` and `./libtensorflowlite_flex.dylib` on `MacOS` platforms.

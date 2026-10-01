@@ -97,9 +97,9 @@ The following lists are the WasmEdge official released plug-ins. Users can insta
 | WASI-NN Burn.rs backend (Whisper) | `wasi_nn_burnrs-whisper` | Linux (`x86_64`, Ubuntu only) | Since `0.14.1` | |
 | Ffmpeg | `wasmedge_ffmpeg` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.0` | |
 | Image | `wasmedge_image` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | |
-| LLM | `wasmedge_llmc` | Linux (`x86_64`, `aarch64`) | Since `0.14.1` | |
-| OpenCV mini | `wasmedge_opencvmini` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.3` | Since `0.17.2`, only released on MacOS `arm64`. |
-| Process | `wasmedge_process` | Linux (`x86_64`, `aarch64`) | Since `0.10.0` | |
+| LLM | `wasmedge_llmc` | Linux (`x86_64`, `aarch64`) | Since `0.14.1` | Until `0.17.2`. REMOVED. |
+| OpenCV mini | `wasmedge_opencvmini` | MacOS (`arm64`) | Since `0.13.3` | Linux (`x86_64`, `aarch64`) and MacOS (`x86_64`) until `0.17.1`. |
+| Process | `wasmedge_process` | Linux (`x86_64`, `aarch64`) | Since `0.10.0` | Until `0.17.2`. REMOVED. |
 | Stable Diffusion | `wasmedge_stablediffusion` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.1` | |
 | TensorFlow | `wasmedge_tensorflow` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | [Dependency](#tensorflow-dependencies) installed automatically by installer. |
 | TensorFlow-Lite | `wasmedge_tensorflowlite` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | [Dependency](#tensorflow-lite-dependencies) installed automatically by installer. |
@@ -213,10 +213,11 @@ apt update && apt install -y libopenblas-dev # You may need sudo if the user is 
 If you install the WASI-NN TensorflowLite or `WasmEdge-TensorFlowLite` plug-in WITHOUT installer, you can download the shared libraries with the following commands:
 
 ```bash
-VERSION=TF-2.12.0-CC
-# For the WasmEdge versions before 0.13.0, please use the `TF-2.6.0-CC` version.
-PLATFORM=manylinux2014_x86_64
-# For the Linux aarch64 platforms, please use the `manylinux2014_aarch64`.
+VERSION=TF-2.21.0-CC
+PLATFORM=manylinux_2_28_x86_64
+# For the Linux aarch64 platforms, please use the `manylinux_2_28_aarch64`.
+# For the WasmEdge versions before 0.18.0, please use the `TF-2.12.0-CC` version
+# with the `manylinux2014_x86_64` or `manylinux2014_aarch64` platform.
 # For the MacOS x86_64 platforms, please use the `darwin_x86_64`.
 # For the MacOS arm64 platforms, please use the `darwin_arm64`.
 curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/$VERSION/WasmEdge-tensorflow-deps-TFLite-$VERSION-$PLATFORM.tar.gz
@@ -245,42 +246,37 @@ mv libtensorflowlite_flex.dylib ~/.wasmedge/lib
 If you install the `WasmEdge-Tensorflow` plug-in WITHOUT installer, you can download the shared libraries with the following commands:
 
 ```bash
-VERSION=TF-2.12.0-CC
-# For the WasmEdge versions before 0.13.0, please use the `TF-2.6.0-CC` version.
-PLATFORM=manylinux2014_x86_64
-# For the Linux aarch64 platforms, please use the `manylinux2014_aarch64`.
+VERSION=TF-2.21.0-CC
+PLATFORM=manylinux_2_28_x86_64
+# For the Linux aarch64 platforms, please use the `manylinux_2_28_aarch64`.
+# For the WasmEdge versions before 0.18.0, please use the `TF-2.12.0-CC` version
+# with the `manylinux2014_x86_64` or `manylinux2014_aarch64` platform.
 # For the MacOS x86_64 platforms, please use the `darwin_x86_64`.
 # For the MacOS arm64 platforms, please use the `darwin_arm64`.
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.12.0-CC/WasmEdge-tensorflow-deps-TF-TF-$VERSION-$PLATFORM.tar.gz
-tar -zxf WasmEdge-tensorflow-deps-TF-TF-$VERSION-$PLATFORM.tar.gz
-rm -f WasmEdge-tensorflow-deps-TF-TF-$VERSION-$PLATFORM.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/$VERSION/WasmEdge-tensorflow-deps-TF-$VERSION-$PLATFORM.tar.gz
+tar -zxf WasmEdge-tensorflow-deps-TF-$VERSION-$PLATFORM.tar.gz
+rm -f WasmEdge-tensorflow-deps-TF-$VERSION-$PLATFORM.tar.gz
 ```
 
-The shared library will be extracted in the current directory `./libtensorflow_cc.so.2.12.0` and `./libtensorflow_framework.so.2.12.0` on `Linux` platforms, or `./libtensorflow_cc.2.12.0.dylib` and `./libtensorflow_framework.2.12.0.dylib` on `MacOS` platforms. You can move the library to the installation path:
+The shared library will be extracted in the current directory `./libtensorflow_cc.so.2` and `./libtensorflow_framework.so.2` on `Linux` platforms, or `./libtensorflow_cc.2.dylib` and `./libtensorflow_framework.2.dylib` on `MacOS` platforms. You can move the library to the installation path:
 
 ```bash
 # If you installed wasmedge locally as above
-mv libtensorflow_cc.so.2.12.0 ~/.wasmedge/lib
-mv libtensorflow_framework.so.2.12.0 ~/.wasmedge/lib
-ln -s libtensorflow_cc.so.2.12.0 ~/.wasmedge/lib/libtensorflow_cc.so.2
+mv libtensorflow_cc.so.2 ~/.wasmedge/lib
+mv libtensorflow_framework.so.2 ~/.wasmedge/lib
 ln -s libtensorflow_cc.so.2 ~/.wasmedge/lib/libtensorflow_cc.so
-ln -s libtensorflow_framework.so.2.12.0 ~/.wasmedge/lib/libtensorflow_framework.so.2
 ln -s libtensorflow_framework.so.2 ~/.wasmedge/lib/libtensorflow_framework.so
 
 # Or, if you installed wasmedge for all users in /usr/local/
-mv libtensorflow_cc.so.2.12.0 /usr/local/lib
-mv libtensorflow_framework.so.2.12.0 /usr/local/lib
-ln -s libtensorflow_cc.so.2.12.0 /usr/local/lib/libtensorflow_cc.so.2
+mv libtensorflow_cc.so.2 /usr/local/lib
+mv libtensorflow_framework.so.2 /usr/local/lib
 ln -s libtensorflow_cc.so.2 /usr/local/lib/libtensorflow_cc.so
-ln -s libtensorflow_framework.so.2.12.0 /usr/local/lib/libtensorflow_framework.so.2
 ln -s libtensorflow_framework.so.2 /usr/local/lib/libtensorflow_framework.so
 
 # Or on MacOS platforms
-mv libtensorflow_cc.2.12.0.dylib ~/.wasmedge/lib
-mv libtensorflow_framework.2.12.0.dylib ~/.wasmedge/lib
-ln -s libtensorflow_cc.2.12.0.dylib ~/.wasmedge/lib/libtensorflow_cc.2.dylib
+mv libtensorflow_cc.2.dylib ~/.wasmedge/lib
+mv libtensorflow_framework.2.dylib ~/.wasmedge/lib
 ln -s libtensorflow_cc.2.dylib ~/.wasmedge/lib/libtensorflow_cc.dylib
-ln -s libtensorflow_framework.2.12.0.dylib ~/.wasmedge/lib/libtensorflow_framework.2.dylib
 ln -s libtensorflow_framework.2.dylib ~/.wasmedge/lib/libtensorflow_framework.dylib
 ```
 

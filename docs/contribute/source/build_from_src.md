@@ -91,7 +91,7 @@ Developers can set the CMake options to customize the WasmEdge building.
 
 <!-- prettier-ignore -->
 :::note
-Since WasmEdge `0.17.2`, the build uses the system `blake3` library when it is available, and falls back to the vendored copy otherwise. Developers can set `-DCMAKE_DISABLE_FIND_PACKAGE_blake3=ON` to force the vendored copy. When the option `WASMEDGE_BUILD_STATIC_LIB` is set as `ON`, the vendored copy is always used.
+The build uses the system `blake3` library when it is available, and falls back to the vendored copy otherwise. Developers can set `-DCMAKE_DISABLE_FIND_PACKAGE_blake3=ON` to force the vendored copy. When the option `WASMEDGE_BUILD_STATIC_LIB` is set as `ON`, the vendored copy is always used.
 :::
 
 ## Build WasmEdge with Plug-ins
