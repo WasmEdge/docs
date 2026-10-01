@@ -11,7 +11,7 @@ The `wasmedge` binary is a command line interface (CLI) program that runs WebAss
 - If the WebAssembly program contains a `main()` function, `wasmedge` would execute it as a standalone program in the command mode.
 - If the WebAssembly program contains one or more exported public functions, `wasmedge` could invoke individual functions in the reactor mode.
 
-By default, the `wasmedge` will execute WebAssembly programs in interpreter mode and execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode. If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first.
+By default, the `wasmedge` will execute WebAssembly programs in interpreter mode. If you want to accelerate the WASM execution, we recommend to [compile the WebAssembly with the AOT compiler](aot.md) first, and then execute the AOT-compiled `.so`, `.dylib`, `.dll`, or `.wasm` (universal output format) in AOT mode with the `--run-mode=aot` option.
 
 <!-- prettier-ignore -->
 :::note
@@ -50,7 +50,7 @@ SUBCOMMANDS
 ...
 ```
 
-The `wasmedge` CLI tool will execute the wasm file in ahead-of-time(AOT) mode or interpreter mode. If the file has been compiled with `wasmedge compile`, then WasmEdge will execute it in AOT mode, otherwise, WasmEdge will execute it in interpreter mode.
+The `wasmedge` CLI tool will execute the wasm file in interpreter mode by default. If the file has been compiled with `wasmedge compile` and the `--run-mode=aot` option is given, then WasmEdge will execute it in ahead-of-time(AOT) mode.
 
 ## Options
 
@@ -64,6 +64,7 @@ The options of the `wasmedge` CLI tool are as follows:
    - If an exported function names `_initialize`, the function will be executed with the empty parameter at first.
 4. _(Optional)_ `--dir`: Bind directories into WASI virtual filesystem.
    - Use `--dir guest_path:host_path` to bind the host path into the guest path in WASI virtual system.
+   - Use `--dir guest_path:host_path:readonly` to bind the host path in read-only mode. The default permission is `readwrite`.
 5. _(Optional)_ `--env`: Assign the environment variables in WASI.
    - Use `--env ENV_NAME=VALUE` to assign the environment variable.
 6. _(Optional)_ Statistics information:
@@ -78,6 +79,8 @@ The options of the `wasmedge` CLI tool are as follows:
    - Use `--memory-page-limit PAGE_COUNT` to set the limitation of pages(as size of 64 KiB) in every memory instance.
 8. _(Optional)_ Execution mode:
    - Use `--run-mode=<interpreter|jit|aot>` to select the WASM execution engine (case-insensitive, default `interpreter`). Available since `0.17.0`.
+      - Only `--run-mode=aot` executes the AOT-compiled code. In the other modes, the AOT-compiled code in the universal WASM format is ignored.
+      - Since `0.17.2`, the AOT-compiled shared libraries (`.so`, `.dylib`, or `.dll`) are only loadable with `--run-mode=aot`, and are rejected in the other modes.
    - DEPRECATED: Use `--force-interpreter` to forcibly run WASM in interpreter mode. Use `--run-mode=interpreter` instead.
    - DEPRECATED: Use `--enable-jit` to enable Just-In-Time compiler for running WASM. Use `--run-mode=jit` instead.
 9. _(Optional)_ WebAssembly proposals:

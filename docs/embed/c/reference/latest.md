@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# C API 0.17.0 Documentation
+# C API 0.17.2 Documentation
 
 [WasmEdge C API](https://github.com/WasmEdge/WasmEdge/blob/master/include/api/wasmedge/wasmedge.h) denotes an interface to access the WasmEdge runtime at version `{{ wasmedge_version }}`. The following are the guides to working with the C APIs of WasmEdge.
 
@@ -875,7 +875,12 @@ The configuration context, `WasmEdge_ConfigureContext`, manages the configuratio
    };
    ```
 
-   Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen` shared-library WASM artifacts. In the other modes, AOT data is ignored, and shared-library inputs are re-loaded as plain WASM after extracting their embedded bytes.
+   Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen` shared-library WASM artifacts. In the other modes, the AOT custom sections in universal WASM are ignored, and shared-library inputs are rejected with the `WasmEdge_ErrCode_MalformedMagic` error.
+
+   <!-- prettier-ignore -->
+   :::note
+   In the `0.17.0` and `0.17.1` releases, shared-library inputs in the non-AOT modes were re-loaded as plain WASM after extracting their embedded bytes. Since the `0.17.2` release, they are rejected instead. Please set the run mode to `WasmEdge_RunMode_AOT` to load the AOT-compiled shared libraries.
+   :::
 
    ```c
    WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
@@ -3331,6 +3336,17 @@ $ ./a.out
 [2021-07-02 11:08:08.653] [info] optimize start
 [2021-07-02 11:08:08.670] [info] codegen start
 [2021-07-02 11:08:08.706] [info] compile done
+```
+
+To execute the compiled WASM in AOT mode, developers should set the [run mode](#configurations) to `WasmEdge_RunMode_AOT` in the configure context for creating the VM or loader context. With the default interpreter run mode, the AOT custom sections in universal WASM are ignored, and the shared library format is rejected.
+
+```c
+WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
+WasmEdge_ConfigureSetRunMode(ConfCxt, WasmEdge_RunMode_AOT);
+WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(ConfCxt, NULL);
+/* ... Run the "fibonacci-aot.wasm" with the VM context. */
+WasmEdge_VMDelete(VMCxt);
+WasmEdge_ConfigureDelete(ConfCxt);
 ```
 
 ### Compiler Options

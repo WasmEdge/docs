@@ -89,6 +89,11 @@ Developers can set the CMake options to customize the WasmEdge building.
 18. `WASMEDGE_PLUGIN_TENSORFLOWLITE`: build the WasmEdge TensorFlow-Lite plug-in (Linux and MacOS platforms only). Default is `OFF`.
     - This option is useless if the option `WASMEDGE_BUILD_PLUGINS` is set as `OFF`.
 
+<!-- prettier-ignore -->
+:::note
+Since WasmEdge `0.17.2`, the build uses the system `blake3` library when it is available, and falls back to the vendored copy otherwise. Developers can set `-DCMAKE_DISABLE_FIND_PACKAGE_blake3=ON` to force the vendored copy. When the option `WASMEDGE_BUILD_STATIC_LIB` is set as `ON`, the vendored copy is always used.
+:::
+
 ## Build WasmEdge with Plug-ins
 
 Developers can follow the steps to build WasmEdge with plug-ins from source.

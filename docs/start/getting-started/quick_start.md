@@ -48,11 +48,11 @@ $ wasmedge hello.wasm
 Hello WasmEdge!
 ```
 
-Use the AoT compiler `wasmedgec` to get much better performance.
+Use the AoT compiler `wasmedgec` and run in AOT mode to get much better performance.
 
 ```bash
 $ wasmedgec hello.wasm hello_aot.wasm
-$ wasmedge hello_aot.wasm
+$ wasmedge --run-mode=aot hello_aot.wasm
 Hello WasmEdge!
 ```
 

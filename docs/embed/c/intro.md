@@ -101,7 +101,13 @@ $ ./test_wasmedge_compiler fibonacci.wasm fibonacci_aot.wasm
 [2021-07-02 11:08:08.706] [info] compile done
 ```
 
-The compiled WASM file can be used as a WASM input for the WasmEdge runner. The following is the comparison of the interpreter mode and the AOT mode:
+The compiled WASM file can be used as a WASM input for the WasmEdge runner. Since `0.17.0`, the AOT-compiled code is only loaded when the run mode is AOT, so please add the following line before `WasmEdge_VMCreate()` in `test_wasmedge.c` and rebuild it:
+
+```c
+WasmEdge_ConfigureSetRunMode(ConfCxt, WasmEdge_RunMode_AOT);
+```
+
+The following is the comparison of the interpreter mode and the AOT mode:
 
 ```bash
 $ time ./test_wasmedge fibonacci.wasm
@@ -121,7 +127,7 @@ sys 0m0.011s
 
 ## API References
 
-- [0.17.0](reference/latest.md)
+- [0.17.2](reference/latest.md)
 - [0.16.3](reference/0.16.x.md)
 - [0.15.1](reference/0.15.x.md)
 - [0.14.1](reference/0.14.x.md)
