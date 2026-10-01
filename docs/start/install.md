@@ -98,7 +98,7 @@ The following lists are the WasmEdge official released plug-ins. Users can insta
 | Ffmpeg | `wasmedge_ffmpeg` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.0` | |
 | Image | `wasmedge_image` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | |
 | LLM | `wasmedge_llmc` | Linux (`x86_64`, `aarch64`) | Since `0.14.1` | |
-| OpenCV mini | `wasmedge_opencvmini` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.3` | |
+| OpenCV mini | `wasmedge_opencvmini` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.3` | Since `0.17.2`, only released on MacOS `arm64`. |
 | Process | `wasmedge_process` | Linux (`x86_64`, `aarch64`) | Since `0.10.0` | |
 | Stable Diffusion | `wasmedge_stablediffusion` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.14.1` | |
 | TensorFlow | `wasmedge_tensorflow` | Linux (`x86_64`, `aarch64`), MacOS (`x86_64`, `arm64`) | Since `0.13.0` | [Dependency](#tensorflow-dependencies) installed automatically by installer. |
@@ -139,10 +139,10 @@ If you install into the `$HOME/.wasmedge` directory, you will have the following
 
   - The `wasmedge` tool is the standard WasmEdge runtime. You can use it from the CLI.
     - Execute a WASM file: `wasmedge --dir .:. app.wasm`
-  - The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file.
+  - The `wasmedgec` tool is the ahead-of-time (AOT) compiler to compile a `.wasm` file into a native `.so` file (or `.dylib` on MacOS, `.dll` on Windows, or `.wasm` as the universal WASM format on all platforms). The `wasmedge` can then execute the output file with the `--run-mode=aot` option.
 
     - Compile a WASM file into a AOT-compiled WASM: `wasmedgec app.wasm app.so`
-    - Execute the WASM in AOT mode: `wasmedge --dir .:. app.so`
+    - Execute the WASM in AOT mode: `wasmedge --run-mode=aot --dir .:. app.so`
 
     <!-- prettier-ignore -->
     :::note

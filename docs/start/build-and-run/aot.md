@@ -16,7 +16,7 @@ USAGE
 ...
 ```
 
-The `wasmedge compile` command can compile WebAssembly into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedge compile` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode, which is much faster.
+The `wasmedge compile` command can compile WebAssembly into native machine code (i.e., the AOT compiler). For the pure WebAssembly, the `wasmedge` tool will execute the WASM in interpreter mode. After compiling with the `wasmedge compile` AOT compiler, the `wasmedge` tool can execute the WASM in AOT mode with the `--run-mode=aot` option, which is much faster.
 
 ## Options
 
@@ -108,10 +108,10 @@ The output will be:
 [2022-09-09 14:22:10.600] [info] compile done
 ```
 
-Then you can execute the output file with `wasmedge` and measure the execution time:
+Then you can execute the output file with `wasmedge` in AOT mode and measure the execution time:
 
 ```bash
-time wasmedge --reactor fibonacci_aot.wasm fib 30
+time wasmedge --run-mode=aot --reactor fibonacci_aot.wasm fib 30
 ```
 
 The output will be:
@@ -144,7 +144,7 @@ sys     0m0.012s
 
 By default, the `wasmedge compile` AOT compiler tool could wrap the AOT-compiled native binary into a custom section in the origin WASM file. We call this the universal WASM binary format.
 
-This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime, WasmEdge will extract the native binary from the custom section and execute it in AOT mode.
+This AOT-compiled WASM file is compatible with any WebAssembly runtime. However, when this WASM file is executed by the WasmEdge runtime in the AOT run mode, WasmEdge will extract the native binary from the custom section and execute it in AOT mode. In the other run modes (the default is interpreter), the custom section is ignored and the WASM is executed as a normal WASM file.
 
 <!-- prettier-ignore -->
 :::note
@@ -153,7 +153,7 @@ On MacOS platforms, the universal WASM format will `bus error` in execution. By 
 
 ```bash
 wasmedge compile app.wasm app_aot.wasm
-wasmedge app_aot.wasm
+wasmedge --run-mode=aot app_aot.wasm
 ```
 
 ## Output Format: Shared Library
@@ -164,5 +164,10 @@ This AOT-compiled WASM file is only for WasmEdge use and cannot be used by other
 
 ```bash
 wasmedge compile app.wasm app_aot.so
-wasmedge app_aot.so
+wasmedge --run-mode=aot app_aot.so
 ```
+
+<!-- prettier-ignore -->
+:::note
+Since `0.17.2`, the shared library format is only loadable in the AOT run mode. Executing it without `--run-mode=aot` will fail in loading.
+:::

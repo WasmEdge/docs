@@ -123,7 +123,12 @@ enum WasmEdge_RunMode {
 };
 ```
 
-Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen`s shared-library WASM artifacts. In the other modes, AOT data is ignored, and shared-library inputs are re-loaded as plain WASM after extracting their embedded bytes.
+Only `WasmEdge_RunMode_AOT` loads AOT custom sections from universal WASM, or `dlopen`s shared-library WASM artifacts. In the other modes, the AOT custom sections in universal WASM are ignored, and shared-library inputs are rejected with the `WasmEdge_ErrCode_MalformedMagic` error.
+
+<!-- prettier-ignore -->
+:::note
+In the `0.17.0` and `0.17.1` releases, shared-library inputs in the non-AOT modes were re-loaded as plain WASM after extracting their embedded bytes. Since the `0.17.2` release, they are rejected instead. Developers who load the AOT-compiled shared libraries (`.so`, `.dylib`, or `.dll`) should set the run mode to `WasmEdge_RunMode_AOT`.
+:::
 
 ```c
 WasmEdge_ConfigureContext *ConfCxt = WasmEdge_ConfigureCreate();
