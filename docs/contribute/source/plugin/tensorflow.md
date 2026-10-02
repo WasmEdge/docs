@@ -34,15 +34,15 @@ Then you will have an executable `wasmedge` runtime under `/usr/local/bin` and t
 Installing the necessary `libtensorflow_cc.so` and `libtensorflow_framework.so` on both `Linux` and `MacOS` platforms, we recommend the following commands:
 
 ```bash
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.12.0-CC/WasmEdge-tensorflow-deps-TF-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
-# For the Linux aarch64 platforms, please use the `WasmEdge-tensorflow-deps-TF-TF-2.12.0-CC-manylinux2014_aarch64.tar.gz`.
-# For the MacOS x86_64 platforms, please use the `WasmEdge-tensorflow-deps-TF-TF-2.12.0-CC-darwin_x86_64.tar.gz`.
-# For the MacOS arm64 platforms, please use the `WasmEdge-tensorflow-deps-TF-TF-2.12.0-CC-darwin_arm64.tar.gz`.
-tar -zxf WasmEdge-tensorflow-deps-TF-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
-rm -f WasmEdge-tensorflow-deps-TF-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.21.0-CC/WasmEdge-tensorflow-deps-TF-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
+# For the Linux aarch64 platforms, please use the `WasmEdge-tensorflow-deps-TF-TF-2.21.0-CC-manylinux_2_28_aarch64.tar.gz`.
+# For the MacOS x86_64 platforms, please use the `WasmEdge-tensorflow-deps-TF-TF-2.21.0-CC-darwin_x86_64.tar.gz`.
+# For the MacOS arm64 platforms, please use the `WasmEdge-tensorflow-deps-TF-TF-2.21.0-CC-darwin_arm64.tar.gz`.
+tar -zxf WasmEdge-tensorflow-deps-TF-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
+rm -f WasmEdge-tensorflow-deps-TF-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
 ```
 
-The shared library will be extracted in the current directory `./libtensorflow_cc.so.2.12.0` and `./libtensorflow_framework.so.2.12.0` on `Linux` platforms, or `./libtensorflow_cc.2.12.0.dylib` and `./libtensorflow_framework.2.12.0.dylib` on `MacOS` platforms.
+The shared library will be extracted in the current directory `./libtensorflow_cc.so.2` and `./libtensorflow_framework.so.2` on `Linux` platforms, or `./libtensorflow_cc.2.dylib` and `./libtensorflow_framework.2.dylib` on `MacOS` platforms.
 
 <!-- prettier-ignore -->
 :::note
@@ -52,22 +52,18 @@ After building the plug-in, you can also find these shared libraries under the `
 Then you can move the library to the installation path and create the symbolic link:
 
 ```bash
-mv libtensorflow_cc.so.2.12.0 /usr/local/lib
-mv libtensorflow_framework.so.2.12.0 /usr/local/lib
-ln -s libtensorflow_cc.so.2.12.0 /usr/local/lib/libtensorflow_cc.so.2
+mv libtensorflow_cc.so.2 /usr/local/lib
+mv libtensorflow_framework.so.2 /usr/local/lib
 ln -s libtensorflow_cc.so.2 /usr/local/lib/libtensorflow_cc.so
-ln -s libtensorflow_framework.so.2.12.0 /usr/local/lib/libtensorflow_framework.so.2
 ln -s libtensorflow_framework.so.2 /usr/local/lib/libtensorflow_framework.so
 ```
 
 If on `MacOS` platforms:
 
 ```bash
-mv libtensorflow_cc.2.12.0.dylib /usr/local/lib
-mv libtensorflow_framework.2.12.0.dylib /usr/local/lib
-ln -s libtensorflow_cc.2.12.0.dylib /usr/local/lib/libtensorflow_cc.2.dylib
+mv libtensorflow_cc.2.dylib /usr/local/lib
+mv libtensorflow_framework.2.dylib /usr/local/lib
 ln -s libtensorflow_cc.2.dylib /usr/local/lib/libtensorflow_cc.dylib
-ln -s libtensorflow_framework.2.12.0.dylib /usr/local/lib/libtensorflow_framework.2.dylib
 ln -s libtensorflow_framework.2.dylib /usr/local/lib/libtensorflow_framework.dylib
 ```
 

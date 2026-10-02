@@ -110,12 +110,12 @@ cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DWASMEDGE_PLUGIN_WASI_NN_BACKE
 cmake --build build
 ```
 
-Installing the necessary `libtensorflowlite_c.so` and `libtensorflowlite_flex.so` on both `Ubuntu 20.04` and `manylinux2014` for the backend, we recommend the following commands:
+Installing the necessary `libtensorflowlite_c.so` and `libtensorflowlite_flex.so` on both `Ubuntu 20.04` and `manylinux_2_28` for the backend, we recommend the following commands:
 
 ```bash
-curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.12.0-CC/WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
-tar -zxf WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
-rm -f WasmEdge-tensorflow-deps-TFLite-TF-2.12.0-CC-manylinux2014_x86_64.tar.gz
+curl -s -L -O --remote-name-all https://github.com/second-state/WasmEdge-tensorflow-deps/releases/download/TF-2.21.0-CC/WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
+tar -zxf WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
+rm -f WasmEdge-tensorflow-deps-TFLite-TF-2.21.0-CC-manylinux_2_28_x86_64.tar.gz
 ```
 
 The shared library will be extracted in the current directory `./libtensorflowlite_c.so` and `./libtensorflowlite_flex.so`.

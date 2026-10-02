@@ -8,7 +8,7 @@ The WasmEdge-OpenCVMini plug-in exposes a subset of [OpenCV](https://opencv.org/
 
 ## Prerequisites
 
-Since WasmEdge `0.17.2`, the plug-in requires OpenCV 5. Please install OpenCV 5 on your system.
+Install OpenCV 5 on your system.
 
 For macOS:
 
@@ -17,11 +17,6 @@ brew install opencv@5
 ```
 
 For Linux, the `libopencv-dev` package of most distributions still provides OpenCV 4. Please build and install OpenCV 5 from the [OpenCV source](https://github.com/opencv/opencv) instead.
-
-<!-- prettier-ignore -->
-:::note
-For WasmEdge `0.17.1` and earlier versions, the plug-in requires OpenCV 4, which can be installed by `sudo apt install -y libopencv-dev` on Ubuntu or `brew install opencv` on macOS.
-:::
 
 ## Build WasmEdge with WasmEdge-OpenCVMini Plug-in
 

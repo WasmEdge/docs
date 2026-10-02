@@ -67,67 +67,63 @@ The options of the `wasmedge` CLI tool are as follows:
    - Use `--dir guest_path:host_path:readonly` to bind the host path in read-only mode. The default permission is `readwrite`.
 5. _(Optional)_ `--env`: Assign the environment variables in WASI.
    - Use `--env ENV_NAME=VALUE` to assign the environment variable.
-6. _(Optional)_ Statistics information:
+6. _(Optional)_ `--module`: Register additional WASM modules for linking.
+   - Use `--module name:path` to register the WASM file in `path` with the module name `name`.
+7. _(Optional)_ Statistics information:
    - Use `--enable-time-measuring` to show the execution time.
    - Use `--enable-gas-measuring` to show the amount of used gas.
    - Use `--enable-instruction-count` to display the number of executed instructions.
    - Or use `--enable-all-statistics` to enable all of the statistics options.
    - Use `--log-level=LEVEL` to control the logging level. Valid values are `off`, `trace`, `debug`, `info`, `warning`, `error`, `fatal`. Default is `info`.
-7. _(Optional)_ Resource limitations:
+8. _(Optional)_ Resource limitations:
    - Use `--time-limit MILLISECOND_TIME` to limit the execution time. Default value is `0` which specifies no limitation.
    - Use `--gas-limit GAS_LIMIT` to limit the execution cost.
    - Use `--memory-page-limit PAGE_COUNT` to set the limitation of pages(as size of 64 KiB) in every memory instance.
-8. _(Optional)_ Execution mode:
-   - Use `--run-mode=<interpreter|jit|aot>` to select the WASM execution engine (case-insensitive, default `interpreter`). Available since `0.17.0`.
-      - Only `--run-mode=aot` executes the AOT-compiled code. In the other modes, the AOT-compiled code in the universal WASM format is ignored.
-      - Since `0.17.2`, the AOT-compiled shared libraries (`.so`, `.dylib`, or `.dll`) are only loadable with `--run-mode=aot`, and are rejected in the other modes.
+   - Use `--stack-size-limit BYTES` to limit the call stack size of execution. Default value is `0` which specifies the engine default (8 MiB for the interpreter, and 512 KiB for the compiled code). Available since `0.18.0`.
+9. _(Optional)_ Execution mode:
+   - Use `--run-mode=<interpreter|jit|aot|lazyjit>` to select the WASM execution engine (case-insensitive, default `interpreter`). Available since `0.17.0`.
+      - Only `--run-mode=aot` executes the AOT-compiled code. In the other modes, the AOT-compiled code in the universal WASM format is ignored, and the AOT-compiled shared libraries (`.so`, `.dylib`, or `.dll`) are rejected.
+      - The `jit` mode compiles the whole WASM when loading, and the `lazyjit` mode compiles each function on its first call. The `lazyjit` mode is available since `0.18.0`.
    - DEPRECATED: Use `--force-interpreter` to forcibly run WASM in interpreter mode. Use `--run-mode=interpreter` instead.
    - DEPRECATED: Use `--enable-jit` to enable Just-In-Time compiler for running WASM. Use `--run-mode=jit` instead.
-9. _(Optional)_ WebAssembly proposals:
-   - Use `--wasm-1` to set the execution environment as WASM 1.0 standard. This standard includes the following proposals:
-      - [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global)
-   - Use `--wasm-2` to set the execution environment as WASM 2.0 standard. This standard includes the WASM 1.0 and following proposals:
-      - [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions)
-      - [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops)
-      - [Multi-value](https://github.com/WebAssembly/multi-value)
-      - [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations)
-      - [Reference Types](https://github.com/WebAssembly/reference-types)
-      - [Fixed-width SIMD](https://github.com/webassembly/simd)
-   - Use `--wasm-3` to set the execution environment as WASM 3.0 standard (Currently default since 0.16.0). This standard includes the WASM 2.0 and following proposals:
-      - [Tail call](https://github.com/WebAssembly/tail-call)
-      - [Extended Constant Expressions](https://github.com/WebAssembly/extended-const)
-      - [Typed-Function References](https://github.com/WebAssembly/function-references)
-      - [Garbage Collection](https://github.com/WebAssembly/gc)
-      - [Multiple Memories](https://github.com/WebAssembly/multi-memory)
-      - [Relaxed SIMD](https://github.com/webassembly/relaxed-simd)
-      - [Exception Handling](https://github.com/WebAssembly/exception-handling)
-      - [Memory64](https://github.com/WebAssembly/memory64)
-   - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
-   - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
-   - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
-   - Use `--disable-multi-value` to disable the [Multi-value](https://github.com/WebAssembly/multi-value) proposal (Default `ON`).
-   - Use `--disable-bulk-memory` to disable the [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations) proposal (Default `ON`).
-   - Use `--disable-reference-types` to disable the [Reference Types](https://github.com/WebAssembly/reference-types) proposal (Default `ON`).
-   - Use `--disable-simd` to disable the [Fixed-width SIMD](https://github.com/webassembly/simd) proposal (Default `ON`).
-   - Use `--disable-tail-call` to disable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `ON`).
-   - Use `--disable-extended-const` to disable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `ON`).
-   - Use `--disable-function-reference` to disable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal (Default `ON`).
-   - Use `--disable-gc` to disable the [Garbage Collection](https://github.com/WebAssembly/gc) proposal (Default `ON`).
-   - Use `--disable-multi-memory` to disable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `ON`).
-   - Use `--disable-relaxed-simd` to disable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal (Default `ON`).
-   - Use `--disable-exception-handling` to disable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal (Default `ON`, interpreter mode only).
-   - DEPRECATED: Use `--enable-tail-call` to enable the [Tail call](https://github.com/WebAssembly/tail-call) proposal.
-   - DEPRECATED: Use `--enable-extended-const` to enable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal.
-   - DEPRECATED: Use `--enable-function-reference` to enable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal.
-   - DEPRECATED: Use `--enable-gc` to enable the [GC](https://github.com/WebAssembly/gc) proposal.
-   - DEPRECATED: Use `--enable-multi-memory` to enable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal.
-   - DEPRECATED: Use `--enable-relaxed-simd` to enable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal.
-   - DEPRECATED: Use `--enable-exception-handling` to enable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal.
-   - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
-   - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader and validator phase only).
-   - Use `--enable-all` to enable ALL proposals above.
-10. WASM file (`/path/to/wasm/file`).
-11. _(Optional)_ `ARG` command line arguments array.
+10. _(Optional)_ WebAssembly proposals:
+    - Use `--wasm-1` to set the execution environment as WASM 1.0 standard. This standard includes the following proposals:
+       - [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global)
+    - Use `--wasm-2` to set the execution environment as WASM 2.0 standard. This standard includes the WASM 1.0 and following proposals:
+       - [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions)
+       - [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops)
+       - [Multi-value](https://github.com/WebAssembly/multi-value)
+       - [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations)
+       - [Reference Types](https://github.com/WebAssembly/reference-types)
+       - [Fixed-width SIMD](https://github.com/webassembly/simd)
+    - Use `--wasm-3` to set the execution environment as WASM 3.0 standard (Currently default since 0.16.0). This standard includes the WASM 2.0 and following proposals:
+       - [Tail call](https://github.com/WebAssembly/tail-call)
+       - [Extended Constant Expressions](https://github.com/WebAssembly/extended-const)
+       - [Typed-Function References](https://github.com/WebAssembly/function-references)
+       - [Garbage Collection](https://github.com/WebAssembly/gc)
+       - [Multiple Memories](https://github.com/WebAssembly/multi-memory)
+       - [Relaxed SIMD](https://github.com/webassembly/relaxed-simd)
+       - [Exception Handling](https://github.com/WebAssembly/exception-handling)
+       - [Memory64](https://github.com/WebAssembly/memory64)
+    - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
+    - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
+    - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
+    - Use `--disable-multi-value` to disable the [Multi-value](https://github.com/WebAssembly/multi-value) proposal (Default `ON`).
+    - Use `--disable-bulk-memory` to disable the [Bulk Memory Operations](https://github.com/WebAssembly/bulk-memory-operations) proposal (Default `ON`).
+    - Use `--disable-reference-types` to disable the [Reference Types](https://github.com/WebAssembly/reference-types) proposal (Default `ON`).
+    - Use `--disable-simd` to disable the [Fixed-width SIMD](https://github.com/webassembly/simd) proposal (Default `ON`).
+    - Use `--disable-tail-call` to disable the [Tail call](https://github.com/WebAssembly/tail-call) proposal (Default `ON`).
+    - Use `--disable-extended-const` to disable the [Extended Constant Expressions](https://github.com/WebAssembly/extended-const) proposal (Default `ON`).
+    - Use `--disable-function-reference` to disable the [Typed-Function References](https://github.com/WebAssembly/function-references) proposal (Default `ON`).
+    - Use `--disable-gc` to disable the [Garbage Collection](https://github.com/WebAssembly/gc) proposal (Default `ON`).
+    - Use `--disable-multi-memory` to disable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `ON`).
+    - Use `--disable-relaxed-simd` to disable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal (Default `ON`).
+    - Use `--disable-exception-handling` to disable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal (Default `ON`).
+    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
+    - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader and validator phase only).
+    - Use `--enable-all` to enable ALL proposals above.
+11. WASM file (`/path/to/wasm/file`).
+12. _(Optional)_ `ARG` command line arguments array.
     - In reactor mode, the first argument will be the function name, and the arguments after `ARG[0]` will be parameters of wasm function `ARG[0]`.
     - In command mode, the arguments will be the command line arguments of the WASI `_start` function. They are also known as command line arguments(`argv`) for a standalone C/C++ program.
 

@@ -4,6 +4,11 @@ sidebar_position: 11
 
 # Command interface
 
+<!-- prettier-ignore -->
+:::note
+The command interface relies on the WasmEdge-Process plug-in, which is removed since WasmEdge `0.18.0`. This guide only applies to WasmEdge `0.17.2` and the earlier versions.
+:::
+
 WASI enables WebAssembly programs to call standard library functions in the host operating system. It does so through a fine-grained security model known as “capability-based security”. The WebAssembly VM owner can grant access to host system resources when the VM starts. The program cannot access resources (e.g., file folders) that are not explicitly allowed.
 
 Now, why limit ourselves to standard library functions? The same approach can call just any host function from WebAssembly. WasmEdge provides a WASI-like extension to access command line programs in the host operating system.
