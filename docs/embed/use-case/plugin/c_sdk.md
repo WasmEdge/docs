@@ -100,10 +100,12 @@ Upon creating a `VM` context, the WasmEdge runtime will automatically create and
 - `wasi_ephemeral_crypto_kx` (for the `WASI-Crypto`)
 - `wasi_ephemeral_crypto_signatures` (for the `WASI-Crypto`)
 - `wasi_ephemeral_crypto_symmetric` (for the `WASI-Crypto`)
-- `wasi_ephemeral_nn`
-- `wasi_snapshot_preview1`
-- `wasmedge_httpsreq`
-- `wasmedge_process`
+- `wasi_ephemeral_nn` (for the `WASI-NN`)
+- `wasi:logging/logging` (for the `WASI-Logging`)
+- `wasmedge_image`
+- `wasmedge_stablediffusion`
+- `wasmedge_tensorflow`
+- `wasmedge_tensorflowlite`
 
 ## Handling Missing Plug-ins and Error Messages
 

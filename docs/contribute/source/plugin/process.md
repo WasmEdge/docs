@@ -4,6 +4,11 @@ sidebar_position: 3
 
 # Build WasmEdge With WasmEdge-Process Plug-in
 
+<!-- prettier-ignore -->
+:::note
+The WasmEdge-Process plug-in is removed since WasmEdge `0.18.0`. This guide only applies to WasmEdge `0.17.2` and the earlier versions.
+:::
+
 The WasmEdge Process plug-in provides a sandboxed environment to execute system processes in a secured manner. This guide will walk you through the steps to build the WasmEdge Process plug-in.
 
 ## Prerequisites
@@ -41,4 +46,4 @@ Replace `your_wasm_file.wasm` with the path to your WebAssembly file. The `--pro
 
 That's it! You have successfully built and installed the WasmEdge Process plug-in.
 
-For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_process).
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/0.17.x/plugins/wasmedge_process).
