@@ -4,4 +4,4 @@ sidebar_position: 7
 
 # API Reference
 
-Check out [the `wasmedge-sdk` crate](https://crates.io/crates/wasmedge-sdk) for more information.
+Starting with version 0.17.1, the [`wasmedge-sdk` API documentation](https://docs.rs/wasmedge-sdk/latest/wasmedge_sdk/) is available on docs.rs.
