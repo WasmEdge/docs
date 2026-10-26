@@ -15,20 +15,23 @@ This is enabled by default in WasmEdge since `0.16.0`. For WasmEdge `0.14.x`–`
 ## Prerequisites
 
 - WasmEdge `0.14.0` or later. See the [installation guide](https://github.com/WasmEdge/docs/blob/main/docs/start/install.md).
-- [`wat2wasm`](https://github.com/WebAssembly/wabt) from the WABT toolkit, to compile `.wat` source files to `.wasm`.
+- [`wasm-tools`](https://github.com/bytecodealliance/wasm-tools), to compile `.wat` source files to `.wasm`.
 
-Install WABT on Linux:
+Install wasm-tools on Linux (x86_64):
 
 ```bash
-sudo apt update
-sudo apt install -y wabt
+curl -LO https://github.com/bytecodealliance/wasm-tools/releases/download/v1.262.0/wasm-tools-1.262.0-x86_64-linux.tar.gz
+tar -xzf wasm-tools-1.262.0-x86_64-linux.tar.gz
+sudo install wasm-tools-1.262.0-x86_64-linux/wasm-tools /usr/local/bin/wasm-tools
 ```
 
 Or on macOS:
 
 ```bash
-brew install wabt
+brew install wasm-tools
 ```
+
+For other platforms, see the [wasm-tools installation instructions](https://github.com/bytecodealliance/wasm-tools#installation).
 
 ## Example: Working with Structs
 
@@ -57,13 +60,13 @@ Create a file called `point.wat`:
 Compile it to a `.wasm` binary:
 
 ```bash
-wat2wasm point.wat -o point.wasm
+wasm-tools parse point.wat -o point.wasm
 ```
 
 Run it with WasmEdge:
 
 ```bash
-wasmedge --invoke make_point point.wasm
+wasmedge --reactor point.wasm make_point
 ```
 
 Expected output:
@@ -99,8 +102,8 @@ Create a file called `array.wat`:
 Compile and run:
 
 ```bash
-wat2wasm array.wat -o array.wasm
-wasmedge --invoke array_example array.wasm
+wasm-tools parse array.wat -o array.wasm
+wasmedge --reactor array.wasm array_example
 ```
 
 Expected output:
