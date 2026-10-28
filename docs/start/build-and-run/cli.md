@@ -122,8 +122,12 @@ The options of the `wasmedge` CLI tool are as follows:
     - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
     - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader and validator phase only).
     - Use `--enable-all` to enable ALL proposals above.
-11. WASM file (`/path/to/wasm/file`).
-12. _(Optional)_ `ARG` command line arguments array.
+11. _(Optional)_ Other options:
+    - Use `--allow-af-unix` to allow the WASI socket functions to use UNIX domain sockets (`AF_UNIX`).
+    - Use `--enable-coredump` to write a coredump file named `coredump.<UNIX timestamp>` to the current directory when the WebAssembly program traps. Coredumps are only generated in the interpreter mode; in the other run modes the option is ignored with a warning.
+    - Use `--coredump-for-wasmgdb` to write the coredump in the format expected by the [wasmgdb](https://github.com/xtuc/wasm-coredump/tree/main/bin/wasmgdb) debugger instead of the [WebAssembly tool conventions](https://github.com/WebAssembly/tool-conventions/blob/main/Coredump.md) format. This option also enables `--enable-coredump`.
+12. WASM file (`/path/to/wasm/file`).
+13. _(Optional)_ `ARG` command line arguments array.
     - In reactor mode, the first argument will be the function name, and the arguments after `ARG[0]` will be parameters of wasm function `ARG[0]`.
     - In command mode, the arguments will be the command line arguments of the WASI `_start` function. They are also known as command line arguments(`argv`) for a standalone C/C++ program.
 
