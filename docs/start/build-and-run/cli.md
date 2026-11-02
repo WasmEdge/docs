@@ -119,6 +119,7 @@ The options of the `wasmedge` CLI tool are as follows:
     - Use `--disable-multi-memory` to disable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `ON`).
     - Use `--disable-relaxed-simd` to disable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal (Default `ON`).
     - Use `--disable-exception-handling` to disable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal (Default `ON`).
+    - Use `--disable-memory64` to disable the [Memory64](https://github.com/WebAssembly/memory64) proposal (Default `ON`).
     - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
     - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader and validator phase only).
     - Use `--enable-all` to enable ALL proposals above.

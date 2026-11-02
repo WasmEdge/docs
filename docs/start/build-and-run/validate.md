@@ -41,7 +41,7 @@ The options of the `wasmedge validate` command are as follows.
       - [Multiple Memories](https://github.com/WebAssembly/multi-memory)
       - [Relaxed SIMD](https://github.com/webassembly/relaxed-simd)
       - [Exception Handling](https://github.com/WebAssembly/exception-handling)
-      - [Memory64 (currently not implemented)](https://github.com/WebAssembly/memory64)
+      - [Memory64](https://github.com/WebAssembly/memory64)
    - Use `--disable-import-export-mut-globals` to disable the [Import/Export of Mutable Globals](https://github.com/WebAssembly/mutable-global) proposal (Default `ON`).
    - Use `--disable-non-trap-float-to-int` to disable the [Non-Trapping Float-to-Int Conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions) proposal (Default `ON`).
    - Use `--disable-sign-extension-operators` to disable the [Sign-Extension Operators](https://github.com/WebAssembly/sign-extension-ops) proposal (Default `ON`).
@@ -56,6 +56,7 @@ The options of the `wasmedge validate` command are as follows.
    - Use `--disable-multi-memory` to disable the [Multiple Memories](https://github.com/WebAssembly/multi-memory) proposal (Default `ON`).
    - Use `--disable-relaxed-simd` to disable the [Relaxed SIMD](https://github.com/webassembly/relaxed-simd) proposal (Default `ON`).
    - Use `--disable-exception-handling` to disable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal (Default `ON`).
+   - Use `--disable-memory64` to disable the [Memory64](https://github.com/WebAssembly/memory64) proposal (Default `ON`).
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
    - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader phase only).
    - Use `--enable-all` to enable ALL proposals above.
