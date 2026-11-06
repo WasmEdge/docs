@@ -73,7 +73,7 @@ With WasmEdge's AoT compiler, you will get higher performance.
 # Compile the wasm file with wasmedge aot compiler
 $ wasmedgec hello.wasm hello.wasm
 # Run the native binary with wasmedge
-$ wasmedge hello.wasm
+$ wasmedge --run-mode=aot hello.wasm
 ```
 
 ## Example: Add function
@@ -114,7 +114,7 @@ We can further improve performance by using wasmedge AOT compilation , this feat
 
 ```bash
 $ wasmedgec add.wasm add_aot.wasm
-$ wasmedge add_aot.wasm 4 9
+$ wasmedge --run-mode=aot add_aot.wasm 4 9
 13
 ```
 

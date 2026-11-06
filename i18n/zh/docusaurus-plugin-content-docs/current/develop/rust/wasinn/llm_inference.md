@@ -149,7 +149,7 @@ You can make the inference program run faster by AOT compiling the wasm file fir
 
 ```bash
 wasmedge compile llama-chat.wasm llama-chat.wasm
-wasmedge --dir .:.  --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm -p llama-3-chat
+wasmedge --run-mode=aot --dir .:.  --nn-preload default:GGML:AUTO:Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf llama-chat.wasm -p llama-3-chat
 ```
 
 ## Understand the code
