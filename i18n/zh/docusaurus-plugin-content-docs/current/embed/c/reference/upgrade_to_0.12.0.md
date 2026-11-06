@@ -124,7 +124,7 @@ When developers didn't use the VM context to load the plug-ins, they can use the
 /* Assume that wasi_crypto plug-in is installed in the default plug-in path. */
 WasmEdge_PluginLoadWithDefaultPaths();
 
-WasmEdge_ModuleInstance *WasiCryptoCommonCxt =
+WasmEdge_ModuleInstanceContext *WasiCryptoCommonCxt =
     WasmEdge_ModuleInstanceCreateWasiCryptoCommon();
 
 WasmEdge_ModuleInstanceDelete(WasiCryptoCommonCxt);
@@ -146,7 +146,7 @@ WasmEdge_String ModuleName =
     WasmEdge_StringWrap(CryptoMName, strlen(CryptoMName));
 const WasmEdge_PluginContext *PluginCxt = WasmEdge_PluginFind(PluginName);
 
-WasmEdge_ModuleInstance *ModCxt =
+WasmEdge_ModuleInstanceContext *ModCxt =
     WasmEdge_PluginCreateModule(PluginCxt, ModuleName);
 
 WasmEdge_ModuleInstanceDelete(ModCxt);
@@ -177,10 +177,10 @@ WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(Conf, NULL);
 WasmEdge_ConfigureDelete(Conf);
 
 /* Get the WASI module instance. */
-WasmEdge_ModuleInstance *WASIModInst =
+WasmEdge_ModuleInstanceContext *WASIModInst =
     WasmEdge_VMGetImportModuleContext(VMCxt, WasmEdge_HostRegistration_Wasi);
 /* Get the WASI-crypto-common module instance. */
-WasmEdge_ModuleInstance *WASICryptoCommonModInst =
+WasmEdge_ModuleInstanceContext *WASICryptoCommonModInst =
     WasmEdge_VMGetImportModuleContext(
         VMCxt, WasmEdge_HostRegistration_WasiCrypto_Common);
 
@@ -188,7 +188,7 @@ WasmEdge_ModuleInstance *WASICryptoCommonModInst =
 WasmEdge_StoreContext *StoreCxt = WasmEdge_VMGetStoreContext(VMCxt);
 WasmEdge_String ModName =
     WasmEdge_StringCreateByCString("wasi_ephemeral_crypto_kx");
-const WasmEdge_ModuleInstance *WASICryptoKxModInst =
+const WasmEdge_ModuleInstanceContext *WASICryptoKxModInst =
     WasmEdge_StoreFindModule(StoreCxt, ModName);
 WasmEdge_StringDelete(ModName);
 
@@ -209,12 +209,12 @@ WasmEdge_VMContext *VMCxt = WasmEdge_VMCreate(Conf, NULL);
 WasmEdge_ConfigureDelete(Conf);
 
 /* Get the WASI module instance. */
-WasmEdge_ModuleInstance *WASIModInst =
+WasmEdge_ModuleInstanceContext *WASIModInst =
     WasmEdge_VMGetImportModuleContext(VMCxt, WasmEdge_HostRegistration_Wasi);
 /* Get the registered WASI-crypto-common module instance by name. */
 WasmEdge_String ModName =
     WasmEdge_StringCreateByCString("wasi_ephemeral_crypto_common");
-const WasmEdge_ModuleInstance *WASICryptoKxModInst =
+const WasmEdge_ModuleInstanceContext *WASICryptoKxModInst =
     WasmEdge_VMGetImportModuleContext(VMCxt, ModName);
 WasmEdge_StringDelete(ModName);
 

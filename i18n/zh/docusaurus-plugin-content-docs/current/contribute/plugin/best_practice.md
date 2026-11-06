@@ -77,8 +77,8 @@ Security is a vital part of any software development process. It involves severa
    ```c
    WasmEdge_Result Add(void *, const WasmEdge_CallingFrameContext *,
                         const WasmEdge_Value *In, WasmEdge_Value *Out) {
-      if (In[0].Type != WasmEdge_ValType_I32 || In[1].Type != WasmEdge_ValType_I32) {
-      return WasmEdge_Result_Error;
+      if (!WasmEdge_ValTypeIsI32(In[0].Type) || !WasmEdge_ValTypeIsI32(In[1].Type)) {
+      return WasmEdge_Result_Fail;
       }
       // Rest of the function...
    }
@@ -93,7 +93,7 @@ Security is a vital part of any software development process. It involves severa
       int32_t Val1 = WasmEdge_ValueGetI32(In[0]);
       int32_t Val2 = WasmEdge_ValueGetI32(In[1]);
       if (Val1 == INT32_MIN || Val2 == INT32_MIN) {
-      return WasmEdge_Result_Error;
+      return WasmEdge_Result_Fail;
       }
       // Rest of the function...
    }
