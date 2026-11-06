@@ -39,7 +39,7 @@ $ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedge
 [2022-07-07 08:15:50.421] [info] compile done
 [2022-07-07 08:15:50.422] [info] output start
 
-$ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedge hello.aot.wasm world
+$ docker run -it --rm -v $PWD:/app wasmedge/slim:{{ wasmedge_version }} wasmedge --run-mode=aot hello.aot.wasm world
 hello
 world
 ```

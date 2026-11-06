@@ -69,7 +69,7 @@ You can make the inference program run faster by AOT compiling the `wasm` file f
 
 ```bash
 wasmedge compile wasmedge-wasinn-example-tflite-bird-image.wasm out.wasm
-wasmedge --dir .:. out.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
+wasmedge --run-mode=aot --dir .:. out.wasm lite-model_aiy_vision_classifier_birds_V1_3.tflite bird.jpg
 ```
 
 ## Understand the code

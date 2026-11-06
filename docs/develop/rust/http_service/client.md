@@ -37,10 +37,10 @@ wasmedge compile target/wasm32-wasip1/release/http.wasm http.wasm
 wasmedge compile target/wasm32-wasip1/release/https.wasm https.wasm
 
 # Run the HTTP GET and POST examples
-wasmedge http.wasm
+wasmedge --run-mode=aot http.wasm
 
 # Run the HTTPS GET and POST examples
-wasmedge https.wasm
+wasmedge --run-mode=aot https.wasm
 ```
 
 In your Rust application, import the standard [reqwest](https://crates.io/crates/reqwest) and [tokio](https://crates.io/crates/tokio) crates. You will also patch a few dependency crates to make them aware of the WasmEdge socket API. Just add the following lines to your `Cargo.toml`.
@@ -107,7 +107,7 @@ RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi
 wasmedge compile target/wasm32-wasip1/release/wasmedge_hyper_client.wasm wasmedge_hyper_client.wasm
 
 # Run the example
-wasmedge wasmedge_hyper_client.wasm
+wasmedge --run-mode=aot wasmedge_hyper_client.wasm
 ```
 
 In your Rust application, import the [hyper](https://crates.io/crates/hyper) crate,
@@ -134,7 +134,7 @@ RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi
 wasmedge compile target/wasm32-wasip1/release/wasmedge_hyper_client_https.wasm wasmedge_hyper_client_https.wasm
 
 // Run
-wasmedge wasmedge_hyper_client_https.wasm
+wasmedge --run-mode=aot wasmedge_hyper_client_https.wasm
 ```
 
 In the HTTPS version of `Cargo.toml`, you just need to import the standard [hyper-rustls](https://crates.io/crates/hyper-rustls), [rustls](https://crates.io/crates/rustls) and [webpki-roots](https://crates.io/crates/webpki-roots) crates with the same patches as above.

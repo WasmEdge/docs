@@ -32,7 +32,7 @@ The reason to use `wasmedge-quickjs` as the current working directory is that `m
 You can try a simple "hello world" JavaScript program ([example_js/hello.js](https://github.com/second-state/wasmedge-quickjs/blob/main/example_js/hello.js)), which prints out the command line arguments to the console.
 
 ```bash
-$ wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
+$ wasmedge --run-mode=aot --dir .:. wasmedge_quickjs.wasm example_js/hello.js WasmEdge Runtime
 Hello WasmEdge Runtime
 ```
 
@@ -85,7 +85,7 @@ WasmEdge provides a `wasmedgec` utility to compile and add a native machine code
 
 ```bash
 wasmedge compile target/wasm32-wasip1/release/wasmedge_quickjs.wasm wasmedge_quickjs.wasm
-wasmedge --dir .:. wasmedge_quickjs.wasm example_js/hello.js
+wasmedge --run-mode=aot --dir .:. wasmedge_quickjs.wasm example_js/hello.js
 ```
 
 Next, we will discuss more advanced use cases for JavaScript in WasmEdge.
