@@ -72,7 +72,7 @@ dapr run --app-id image-api-grayscale \
         --dapr-http-port 3503 \
         --components-path ../config \
         --log-level debug \
- wasmedge image-api-grayscale.wasm
+ wasmedge --run-mode=aot image-api-grayscale.wasm
 ```
 
 ### The image classification microservice
@@ -116,7 +116,7 @@ dapr run --app-id events-service \
         --dapr-http-port 3505 \
         --log-level debug \
         --components-path ../config \
-        wasmedge events_service.wasm
+        wasmedge --run-mode=aot events_service.wasm
 ```
 
 ## Test

@@ -32,7 +32,7 @@ RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi
 wasmedge compile target/wasm32-wasip1/release/wasmedge_axum_server.wasm wasmedge_axum_server.wasm
 
 # Run the example
-wasmedge wasmedge_axum_server.wasm
+wasmedge --run-mode=aot wasmedge_axum_server.wasm
 ```
 
 Then from another terminal, you can request the server. The HTTP server echoes the request data and sends back the response.
@@ -108,7 +108,7 @@ RUSTFLAGS="--cfg wasmedge --cfg tokio_unstable" cargo build --target wasm32-wasi
 wasmedge compile target/wasm32-wasip1/release/wasmedge_hyper_server.wasm wasmedge_hyper_server.wasm
 
 # Run the example
-wasmedge wasmedge_hyper_server.wasm
+wasmedge --run-mode=aot wasmedge_hyper_server.wasm
 ```
 
 Then from another terminal, you can request the server. The HTTP server echoes the request data and sends back the response.

@@ -69,7 +69,7 @@ You can make the inference program run faster by AOT compiling the `wasm` file f
 
 ```bash
 wasmedge compile wasmedge-wasinn-example-mobilenet.wasm out.wasm
-wasmedge --dir .:. out.wasm mobilenet.pt input.jpg
+wasmedge --run-mode=aot --dir .:. out.wasm mobilenet.pt input.jpg
 ```
 
 ## Understand the code

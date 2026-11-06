@@ -71,12 +71,12 @@ If we don't have extra notes for AoT, all the WASM file will be executed in the 
 
 ```bash
 wasmedge compile hello.wasm hello_aot.wasm
-wasmedge hello_aot.wasm second state
+wasmedge --run-mode=aot hello_aot.wasm second state
 ```
 
 For the `--reactor` mode,
 
 ```bash
 wasmedge compile add.wasm add_aot.wasm
-wasmedge --reactor add_aot.wasm add 2 2
+wasmedge --run-mode=aot --reactor add_aot.wasm add 2 2
 ```

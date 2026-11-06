@@ -28,7 +28,7 @@ cargo build --target wasm32-wasip1 --release
 wasmedge compile target/wasm32-wasip1/release/http_server.wasm http_server.wasm
 
 # Run the example
-$wasmedge http_server.wasm
+$wasmedge --run-mode=aot http_server.wasm
 new connection at 1234
 ```
 
@@ -122,7 +122,7 @@ cargo build --target wasm32-wasip1 --release
 wasmedge compile target/wasm32-wasip1/release/poll_tcp_listener.wasm poll_tcp_listener.wasm
 
 # Run the example
-wasmedge poll_tcp_listener.wasm
+wasmedge --run-mode=aot poll_tcp_listener.wasm
 ```
 
 You can submit an HTTP request via `curl` to test the HTTP server.
