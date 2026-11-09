@@ -50,5 +50,5 @@ With WasmEdge's AoT compiler, you will get higher performance.
 # Compile wasm-simd with wasmedge aot compiler
 $ wasmedge compile mandelbrot-simd.wasm mandelbrot-simd-out.wasm
 # Run the native binary with wasmedge
-$ wasmedge mandelbrot-simd-out.wasm 15000
+$ wasmedge --run-mode=aot mandelbrot-simd-out.wasm 15000
 ```

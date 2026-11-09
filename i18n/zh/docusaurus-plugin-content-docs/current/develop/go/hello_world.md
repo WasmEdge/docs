@@ -111,7 +111,7 @@ To achieve native Go performance for those applications, you could use the `wasm
 ```bash
 $ wasmedge compile hello.wasm hello.wasm
 
-$ wasmedge hello.wasm
+$ wasmedge --run-mode=aot hello.wasm
 Hello TinyGo from WasmEdge!
 ```
 
@@ -120,6 +120,6 @@ For the `--reactor` mode,
 ```bash
 $ wasmedge compile fib.wasm fib.wasm
 
-$ wasmedge --reactor fib.wasm fibArray 10
+$ wasmedge --run-mode=aot --reactor fib.wasm fibArray 10
 34
 ```

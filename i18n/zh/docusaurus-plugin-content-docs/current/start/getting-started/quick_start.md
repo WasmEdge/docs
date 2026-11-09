@@ -52,7 +52,7 @@ Hello WasmEdge!
 
 ```bash
 $ wasmedgec hello.wasm hello_aot.wasm
-$ wasmedge hello_aot.wasm
+$ wasmedge --run-mode=aot hello_aot.wasm
 Hello WasmEdge!
 ```
 

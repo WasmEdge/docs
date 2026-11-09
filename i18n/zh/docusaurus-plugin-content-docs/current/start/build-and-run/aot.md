@@ -83,7 +83,7 @@ wasmedge compile fibonacci.wasm fibonacci_aot.so # 在 Linux 上
 然后，你可以使用 `wasmedge` 执行输出文件并测量执行时间：
 
 ```bash
-time wasmedge --reactor fibonacci_aot.wasm fib 30
+time wasmedge --run-mode=aot --reactor fibonacci_aot.wasm fib 30
 ```
 
 输出将会是：
@@ -125,7 +125,7 @@ sys     0m0.012s
 
 ```bash
 wasmedge compile app.wasm app_aot.wasm
-wasmedge app_aot.wasm
+wasmedge --run-mode=aot app_aot.wasm
 ```
 
 ## 输出格式：共享库
@@ -136,5 +136,5 @@ wasmedge app_aot.wasm
 
 ```bash
 wasmedge compile app.wasm app_aot.so
-wasmedge app_aot.so
+wasmedge --run-mode=aot app_aot.so
 ```

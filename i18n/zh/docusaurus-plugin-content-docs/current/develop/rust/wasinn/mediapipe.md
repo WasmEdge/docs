@@ -31,7 +31,7 @@ Run the inference application against an image. The input `example.jpg` image is
 ![The input image](https://raw.githubusercontent.com/juntao/demo-object-detection/main/example.jpg)
 
 ```bash
-wasmedge --dir .:. demo-object-detection.wasm example.jpg output.jpg
+wasmedge --run-mode=aot --dir .:. demo-object-detection.wasm example.jpg output.jpg
 ```
 
 The inference result `output.jpg` image is shown below.

@@ -102,7 +102,7 @@ dnf install wasmedge
   - `wasmedgec` 工具是提前（AOT）编译器，用于将 `.wasm` 文件编译成本机的 `.so` 文件（在 MacOS 上则编译成 `.dylib`，在 Windows 上则编译成 `.dll`，或编译成在各平台上通用的 `.wasm` 格式）。`wasmedge` 可以执行编译后的文件。
 
     - 使用 AOT 编译 WASM 文件：`wasmedgec app.wasm app.so`
-    - 以 AOT 模式运行 WASM：`wasmedge --dir .:. app.so`
+    - 以 AOT 模式运行 WASM：`wasmedge --run-mode=aot --dir .:. app.so`
 
     <!-- prettier-ignore -->
     :::note

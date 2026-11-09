@@ -30,7 +30,7 @@ cargo build --target wasm32-wasip1 --release
 wasmedge compile target/wasm32-wasip1/release/http_client.wasm http_client.wasm
 
 # Run the example
-wasmedge http_client.wasm
+wasmedge --run-mode=aot http_client.wasm
 ```
 
 The [source code](https://github.com/second-state/wasmedge_wasi_socket/tree/main/examples/http_client) for the HTTP client is available as follows.
@@ -74,7 +74,7 @@ cargo build --target wasm32-wasip1 --release
 wasmedge compile target/wasm32-wasip1/release/nonblock_http_client.wasm nonblock_http_client.wasm
 
 # Run the example
-wasmedge nonblock_http_client.wasm
+wasmedge --run-mode=aot nonblock_http_client.wasm
 ```
 
 <!-- prettier-ignore -->
