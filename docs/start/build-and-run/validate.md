@@ -58,6 +58,7 @@ The options of the `wasmedge validate` command are as follows.
    - Use `--disable-exception-handling` to disable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal (Default `ON`).
    - Use `--disable-memory64` to disable the [Memory64](https://github.com/WebAssembly/memory64) proposal (Default `ON`).
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
+   - Use `--enable-wide-arithmetic` to enable the [Wide Arithmetic](https://github.com/WebAssembly/wide-arithmetic) proposal (Default `OFF`).
    - Use `--enable-component` to enable the [Component Model](https://github.com/WebAssembly/component-model) proposal (Default `OFF`, loader phase only).
    - Use `--enable-all` to enable ALL proposals above.
 5. Input WASM file (`/path/to/wasm/file`).

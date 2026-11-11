@@ -26,6 +26,7 @@ WasmEdge supports the following [WebAssembly proposals](https://github.com/WebAs
 | [Exception handling][] | `--disable-exception-handling` | `WasmEdge_Proposal_ExceptionHandling` | ✓ (since `0.16.0`) | ✓ (since `0.14.0`) | ✓ (since `0.18.0`) |
 | [Memory64][] | `--disable-memory64` | `WasmEdge_Proposal_Memory64` | ✓ (since `0.17.0`) | ✓ (since `0.17.0`) | ✓ (since `0.17.0`) |
 | [Threads][] | `--enable-threads` | `WasmEdge_Proposal_Threads` |  | ✓ (since `0.10.1`) | ✓ (since `0.10.1`) |
+| [Wide Arithmetic][] | `--enable-wide-arithmetic` | `WasmEdge_Proposal_WideArithmetic` |  | ✓ (since `0.19.0`) | ✓ (since `0.19.0`) |
 | [Component Model][] | `--enable-component` | `WasmEdge_Proposal_Component` |  | Loader and validator (since `0.17.0`) |  |
 
 Besides the proposals above, WasmEdge implements the [WebAssembly C and C++ API][] (`wasm.h` and `wasm.hh`) in the WasmEdge shared library since `0.18.0`, in parallel with the [WasmEdge C API](../../../embed/c/intro.md).
@@ -47,6 +48,7 @@ Besides the proposals above, WasmEdge implements the [WebAssembly C and C++ API]
 [Garbage collection]: https://github.com/WebAssembly/gc
 [Relaxed SIMD]: https://github.com/WebAssembly/relaxed-simd
 [Memory64]: https://github.com/WebAssembly/memory64
+[Wide Arithmetic]: https://github.com/WebAssembly/wide-arithmetic
 [WebAssembly C and C++ API]: https://github.com/WebAssembly/wasm-c-api
 
 ## WASI proposals
