@@ -32,7 +32,7 @@ use wasmedge_tensorflow_interface;
 
 In this crate, we provide several functions to decode and convert images into tensors using the `WasmEdge-Image` host functions.
 
-To use these functions in WASM and execute in WasmEdge, users should [install WasmEdge with WasmEdge-Image plug-in](../../../start/install.md#wasmedge-image-plug-in).
+To use these functions in WASM and execute in WasmEdge, users should [install WasmEdge with WasmEdge-Image plug-in](../../../start/install.md#install-wasmedge-with-plug-ins).
 
 For decoding the `JPEG` images, there are:
 
@@ -72,9 +72,9 @@ let flat_img = wasmedge_tensorflow_interface::load_jpg_image_to_rgb32f(&img_buf,
 
 ## Inferring TensorFlow And TensorFlow-Lite Models
 
-For using the `TFSession` struct to inference the TensorFlow models and executing in WasmEdge, users should install the [WasmEdge-TensorFlow plug-in with dependencies](../../../start/install.md#wasmedge-tensorflow-plug-in).
+For using the `TFSession` struct to inference the TensorFlow models and executing in WasmEdge, users should install the [WasmEdge-TensorFlow plug-in with dependencies](../../../start/install.md#install-wasmedge-with-plug-ins).
 
-For using the `TFLiteSession` struct and to inference the TensorFlow-Lite models executing in WasmEdge, users should install the [WasmEdge-TensorFlowLite plug-in with dependencies](../../../start/install.md#wasmedge-tensorflow-lite-plug-in).
+For using the `TFLiteSession` struct and to inference the TensorFlow-Lite models executing in WasmEdge, users should install the [WasmEdge-TensorFlowLite plug-in with dependencies](../../../start/install.md#install-wasmedge-with-plug-ins).
 
 ### Create Session
 
