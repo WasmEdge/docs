@@ -8,7 +8,7 @@ Mediapipe is a collection of highly popular AI models developed by Google. They 
 
 ## Prerequisite
 
-Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [WASI-NN plugin with TensorFlow Lite installed](../../../start/install.md#wasi-nn-plug-in-with-tensorflow-lite-backend).
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [WASI-NN plugin with TensorFlow Lite installed](../../../start/install.md#install-wasmedge-with-plug-ins).
 
 ## Quick start
 
