@@ -56,8 +56,8 @@ The `wasmedge` CLI tool will execute the wasm file in interpreter mode by defaul
 
 The options of the `wasmedge` CLI tool are as follows:
 
-1. `-v|--version`: Show the version information. Will ignore other arguments below.
-2. `-h|--help`: Show the help messages. Will ignore other arguments below.
+1. `-v|--version`: Show the version information and exit without running a program; other arguments are still checked, so an unknown option or an invalid value is reported as an error.
+2. `-h|--help`: Show the help messages and exit without running a program; other arguments are still checked, so an unknown option or an invalid value is reported as an error.
 3. _(Optional)_ `--reactor`: Enable the reactor mode.
    - In the reactor mode, `wasmedge` runs a specified function exported by the WebAssembly program.
    - WasmEdge will execute the function whose name should be given in `ARG[0]`.

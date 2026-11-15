@@ -6,7 +6,7 @@ sidebar_position: 7
 
 After [installation](https://wasmedge.org/docs/start/install#install), users can execute the `wasmedge instantiate` command.
 
-The `wasmedge instantiate` command loads, validates, and instantiates a WebAssembly module. It checks that all imports can be resolved and that the module can be fully instantiated, but does **not** execute any functions. This is useful for verifying that a WASM module can be successfully linked and instantiated in a given environment before running it.
+The `wasmedge instantiate` command loads, validates, and instantiates a WebAssembly module. It checks that all imports can be resolved and that the module can be fully instantiated, but does **not** call any exported function. If the module has a start function, it runs as part of instantiation, and a trap in it makes the command fail. This is useful for verifying that a WASM module can be successfully linked and instantiated in a given environment before running it.
 
 The `wasmedge instantiate` command also supports linking additional WASM modules, allowing you to verify that multi-module dependencies resolve correctly.
 
