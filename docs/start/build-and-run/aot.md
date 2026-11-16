@@ -68,6 +68,7 @@ The options of the `wasmedge compile` command are as follows.
    - Use `--disable-exception-handling` to disable the [Exception Handling](https://github.com/WebAssembly/exception-handling) proposal (Default `ON`).
    - Use `--disable-memory64` to disable the [Memory64](https://github.com/WebAssembly/memory64) proposal (Default `ON`).
    - Use `--enable-threads` to enable the [Threads](https://github.com/webassembly/threads) proposal (Default `OFF`).
+   - Use `--enable-wide-arithmetic` to enable the [Wide Arithmetic](https://github.com/WebAssembly/wide-arithmetic) proposal (Default `OFF`).
    - Use `--enable-all` to enable ALL proposals above.
 7. _(Optional)_ `--optimize`: Select the LLVM optimization level.
    - Use `--optimize LEVEL` to set the optimization level. The `LEVEL` should be one of `0`, `1`, `2`, `3`, `s`, or `z`.
