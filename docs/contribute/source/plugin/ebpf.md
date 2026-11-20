@@ -104,4 +104,4 @@ i32 wasm_bpf_map_operate(u64 fd, i32 cmd, u32 key, u32 value,
                          u32 next_key, u64 flags);
 ```
 
-For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasmedge_bpf).
+For more information, you can refer to the [GitHub repository](https://github.com/WasmEdge/WasmEdge/tree/master/plugins/wasm_bpf).
