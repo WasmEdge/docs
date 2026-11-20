@@ -10,7 +10,7 @@ Furthermore, WasmEdge can support any open-source LLMs. Please check [the suppor
 
 ## Prerequisite
 
-Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [Wasi-NN plugin with ggml installed](../../../start/install.md#wasi-nn-plug-in-with-ggml-backend).
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [Wasi-NN plugin with ggml installed](../../../start/install.md#install-wasmedge-with-plug-ins).
 
 ## Quick start
 

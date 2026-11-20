@@ -6,7 +6,7 @@ sidebar_position: 9
 
 While optimizing compilers could allow efficient implementation of cryptographic features in WebAssembly, there are several occasions where a host implementation is more desirable. [WASI-crypto](https://github.com/WebAssembly/wasi-crypto/blob/main/docs/HighLevelGoals.md) aims to fill those gaps by defining a standard interface as a set of APIs. Currently not support Android.
 
-Make sure [you have Rust and WasmEdge installed](setup.md) and [the WASI-crypto plugin](../../start/install.md#wasi-crypto-plug-in) installed.
+Make sure [you have Rust and WasmEdge installed](setup.md) and [the WASI-crypto plugin](../../start/install.md#install-wasmedge-with-plug-ins) installed.
 
 ## Write WebAssembly Using WASI-Crypto
 

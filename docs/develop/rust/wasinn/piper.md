@@ -8,7 +8,7 @@ We will use [this example project](https://github.com/second-state/WasmEdge-WASI
 
 ## Prerequisite
 
-Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [WASI-NN plugin with Piper installed](../../../start/install.md#wasi-nn-plug-in-with-piper-backend).
+Besides the [regular WasmEdge and Rust requirements](../../rust/setup.md), please make sure that you have the [WASI-NN plugin with Piper installed](../../../start/install.md#install-wasmedge-with-plug-ins).
 
 ## Quick start
 
