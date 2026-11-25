@@ -6,7 +6,7 @@ sidebar_position: 11
 
 This list is constantly being updated. Please submit a PR to add your own item if we missed your use case. We appreciate our community members' contributions. Thank you!
 
-| Name | Desciption | PR or Docs |
+| Name | Description | PR or Docs |
 | --- | --- | --- |
 | WebAssembly Languages Runtime maintained by VMWare | Use WasmEdge to run PHP and python programs | <https://github.com/vmware-labs/webassembly-language-runtimes/pull/19> |
 | Cocos AI | WasmEdge is used for Confidential Computing inference of AI workloads in a secure TEE enclave | <https://github.com/ultravioletrs/cocos/pull/189> |
