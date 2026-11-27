@@ -4,15 +4,15 @@
     "description": "The title in the navbar"
   },
   "item.label.Develop": {
-    "message": "Develop",
+    "message": "发展",
     "description": "Navbar item with label Develop"
   },
   "item.label.Embed": {
-    "message": "Embed",
+    "message": "嵌入",
     "description": "Navbar item with label Embed"
   },
   "item.label.Extend": {
-    "message": "Extend",
+    "message": "延长",
     "description": "Navbar item with label Extend"
   },
   "item.label.GitHub": {
