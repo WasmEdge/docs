@@ -11,7 +11,7 @@ To help new contributors understand WasmEdge development workflow, this guide wi
 
 - [Build WasmEdge and WasmEdge plug-in from source on different platforms](/category/build-wasmedge-from-source)
 - [WasmEdge Plug-in system introduction](/category/wasmedge-plugin-system)
-- [Test WasmEdge](test.md)
+- [Test WasmEdge](./test/testing.md)
 - [WasmEdge Fuzzing](fuzzing.md)
 - [WasmEdge internal explanation](internal.md)
 - [WasmEdge installer system explanation](installer.md)
